@@ -1,11 +1,11 @@
 package mcp.mobius.wdmla.util;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
+import mcp.mobius.wdmla.impl.Area;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -40,7 +40,7 @@ public enum RenderUtil {
 
             GL11.glScalef(xScale, yScale, 1);
 
-            RenderHelper.enableGUIStandardItemLighting();
+            net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
             renderItem.renderItemAndEffectIntoGUI(
                     fontRenderer,
                     textureManager,
@@ -53,7 +53,7 @@ public enum RenderUtil {
                     stack,
                     (int) (x / xScale),
                     (int) (y / yScale));
-            RenderHelper.disableStandardItemLighting();
+            net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         } catch (Exception e) {
             String stackStr = stack != null ? stack.toString() : "NullStack";
             WailaExceptionHandler.handleErr(e, "renderStack | " + stackStr, null);
@@ -116,5 +116,24 @@ public enum RenderUtil {
 
     public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
         Gui.drawRect(x1, y1, x2, y1 + 1, color);
+    }
+
+    public static void drawBG(Area area, int bg, int grad1, int grad2) {
+        int x = area.getX();
+        int y = area.getY();
+        int w = area.getW();
+        int h = area.getH();
+
+        drawGradientRect(x + 1, y, w - 1, 1, bg, bg);
+        drawGradientRect(x + 1, y + h, w - 1, 1, bg, bg);
+
+        drawGradientRect(x + 1, y + 1, w - 1, h - 1, bg, bg);// center
+
+        drawGradientRect(x, y + 1, 1, h - 1, bg, bg);
+        drawGradientRect(x + w, y + 1, 1, h - 1, bg, bg);
+        drawGradientRect(x + 1, y + 2, 1, h - 3, grad1, grad2);
+        drawGradientRect(x + w - 1, y + 2, 1, h - 3, grad1, grad2);
+        drawGradientRect(x + 1, y + 1, w - 1, 1, grad1, grad1);
+        drawGradientRect(x + 1, y + h - 1, w - 1, 1, grad2, grad2);
     }
 }

@@ -3,7 +3,6 @@ package mcp.mobius.wdmla.impl.drawable;
 import mcp.mobius.wdmla.util.RenderUtil;
 import net.minecraft.item.ItemStack;
 
-import mcp.mobius.waila.api.impl.elements.ItemStyle;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IArea;
 

@@ -5,10 +5,7 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 import java.util.List;
 
 import mcp.mobius.wdmla.api.IHUDWidget;
-import mcp.mobius.wdmla.impl.widget.ItemWidget;
-import mcp.mobius.wdmla.impl.widget.ProgressWidget;
-import mcp.mobius.wdmla.impl.widget.TextWidget;
-import mcp.mobius.wdmla.impl.widget.VPanelWidget;
+import mcp.mobius.wdmla.impl.widget.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,7 +58,7 @@ public class WailaTickHandler {
 //            return;
 //        }
         if (testWidget != null) {
-            mcp.mobius.wdmla.OverlayRenderer.renderOverlay(testWidget);
+            mcp.mobius.wdmla.overlay.OverlayRenderer.renderOverlay((RootWidget) testWidget);
             return;
         }
 
@@ -96,7 +93,13 @@ public class WailaTickHandler {
 
                 if (targetStack != null) {
                     probe = elementHandler.handleBlockElementData(targetStack, world, player, target, accessor);
-                    testWidget = new VPanelWidget().child(new TextWidget("TEST BLOCK")).child(new ItemWidget(targetStack)).child(new ProgressWidget(100, 200));
+                    testWidget = new RootWidget()
+                            .child(
+                                    new VPanelWidget()
+                                            .child(new TextWidget("TEST BLOCK"))
+                                            .child(new ItemWidget(targetStack))
+                                            .child(new ProgressWidget(100, 200))
+                            );
                 }
             }
 

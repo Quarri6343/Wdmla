@@ -1,7 +1,6 @@
 package mcp.mobius.wdmla.impl.drawable;
 
 import mcp.mobius.wdmla.util.RenderUtil;
-import net.minecraft.client.gui.Gui;
 
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IPanelStyle;
