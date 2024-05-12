@@ -4,10 +4,6 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
-import mcp.mobius.wdmla.api.IHUDWidget;
-import mcp.mobius.wdmla.impl.setting.Size;
-import mcp.mobius.wdmla.impl.setting.TextStyle;
-import mcp.mobius.wdmla.impl.widget.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +27,10 @@ import mcp.mobius.waila.api.impl.elements.ProbeInfo;
 import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.utils.Constants;
+import mcp.mobius.wdmla.api.IHUDWidget;
+import mcp.mobius.wdmla.impl.setting.Size;
+import mcp.mobius.wdmla.impl.setting.TextStyle;
+import mcp.mobius.wdmla.impl.widget.*;
 
 public class WailaTickHandler {
 
@@ -55,10 +55,10 @@ public class WailaTickHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickRender(TickEvent.RenderTickEvent event) {
-//        if (probe != null) {
-//            TOPOverlayRenderer.renderOverlay();
-//            return;
-//        }
+        // if (probe != null) {
+        // TOPOverlayRenderer.renderOverlay();
+        // return;
+        // }
         if (testWidget != null) {
             mcp.mobius.wdmla.overlay.OverlayRenderer.renderOverlay((RootWidget) testWidget);
             return;
@@ -95,13 +95,11 @@ public class WailaTickHandler {
 
                 if (targetStack != null) {
                     probe = elementHandler.handleBlockElementData(targetStack, world, player, target, accessor);
-                    testWidget = new RootWidget()
-                            .child(
-                                    new VPanelWidget()
-                                            .child(new TextWidget("TEST BLOCK").style(new TextStyle().color(0xFFAA0000)))
-                                            .child(new ItemWidget(targetStack))
-                                            .child(new ProgressWidget(100, 200).size(new Size(50, 30)))
-                            );
+                    testWidget = new RootWidget().child(
+                            new VPanelWidget()
+                                    .child(new TextWidget("TEST BLOCK").style(new TextStyle().color(0xFFAA0000)))
+                                    .child(new ItemWidget(targetStack))
+                                    .child(new ProgressWidget(100, 200).size(new Size(50, 30))));
                 }
             }
 

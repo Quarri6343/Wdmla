@@ -1,24 +1,25 @@
 package mcp.mobius.wdmla.impl.drawable;
 
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IProgress;
 import mcp.mobius.wdmla.api.IProgressStyle;
-import mcp.mobius.wdmla.api.IArea;
-import mcp.mobius.wdmla.impl.setting.Progress;
 import mcp.mobius.wdmla.impl.setting.ProgressStyle;
 import mcp.mobius.wdmla.util.RenderUtil;
 
 public class ProgressDrawable implements IDrawable {
 
-    private final IProgress progress;
-    private final IProgressStyle style;
+    private final @NotNull IProgress progress;
+    private final @NotNull IProgressStyle style;
 
-    public ProgressDrawable(IProgress progress) {
+    public ProgressDrawable(@NotNull IProgress progress) {
         this.progress = progress;
         this.style = new ProgressStyle();
     }
 
-    private ProgressDrawable(IProgress progress, IProgressStyle style) {
+    private ProgressDrawable(@NotNull IProgress progress, @NotNull IProgressStyle style) {
         this.progress = progress;
         this.style = style;
     }

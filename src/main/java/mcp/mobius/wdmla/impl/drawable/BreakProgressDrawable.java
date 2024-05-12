@@ -1,10 +1,11 @@
 package mcp.mobius.wdmla.impl.drawable;
 
+import net.minecraft.client.Minecraft;
+
 import mcp.mobius.wdmla.api.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.util.MiscUtil;
 import mcp.mobius.wdmla.util.RenderUtil;
-import net.minecraft.client.Minecraft;
 
 public class BreakProgressDrawable implements IDrawable {
 

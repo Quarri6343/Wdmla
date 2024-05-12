@@ -1,22 +1,24 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.setting.Area;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.*;
+import mcp.mobius.wdmla.impl.setting.Area;
+
 /**
- * A Horizontal layout panel.
- * Size depends on children.
+ * A Horizontal layout panel. Size depends on children.
  */
 public class HPanelWidget extends PanelWidget {
 
-    public HPanelWidget(){
+    public HPanelWidget() {
         super();
     }
 
-    protected HPanelWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground, IPanelStyle style) {
+    protected HPanelWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground,
+            IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 
@@ -27,13 +29,13 @@ public class HPanelWidget extends PanelWidget {
             int h = children.get(i).getHeight();
             int cy = y;
             switch (style.getAlignment()) {
-                case ALIGN_TOPLEFT:
+                case TOPLEFT:
                     cy = y + padding.getTop();
                     break;
-                case ALIGN_CENTER:
+                case CENTER:
                     cy = y + (totHeight - h) / 2;
                     break;
-                case ALIGN_BOTTOMRIGHT:
+                case BOTTOMRIGHT:
                     cy = y + totHeight - h - padding.getBottom();
                 default:
                     break;
@@ -41,7 +43,7 @@ public class HPanelWidget extends PanelWidget {
 
             children.get(i).tick(x, cy);
 
-            if(i < children.size() - 1){
+            if (i < children.size() - 1) {
                 x += children.get(i).getWidth() + style.getSpacing();
             }
         }
@@ -64,7 +66,7 @@ public class HPanelWidget extends PanelWidget {
         int h = 0;
         for (IHUDWidget child : children) {
             int ww = child.getHeight();
-            if(ww > h) {
+            if (ww > h) {
                 h = ww;
             }
         }
@@ -73,14 +75,14 @@ public class HPanelWidget extends PanelWidget {
     }
 
     @Override
-    public HPanelWidget child(IHUDWidget child) {
+    public HPanelWidget child(@NotNull IHUDWidget child) {
         List<IHUDWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
         return new HPanelWidget(newChildren, padding, size, foreground, style);
     }
 
     @Override
-    public PanelWidget size(ISize size) {
+    public PanelWidget size(@NotNull ISize size) {
         throw new IllegalArgumentException("Horizontal Panel is auto sized.");
     }
 }

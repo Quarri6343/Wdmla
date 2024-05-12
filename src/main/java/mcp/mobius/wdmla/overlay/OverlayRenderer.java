@@ -1,11 +1,13 @@
 package mcp.mobius.wdmla.overlay;
 
+import net.minecraft.client.Minecraft;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.wdmla.impl.widget.RootWidget;
-import net.minecraft.client.Minecraft;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 public class OverlayRenderer {
 
@@ -24,7 +26,7 @@ public class OverlayRenderer {
     }
 
     public static void renderOverlay(RootWidget root) {
-        if(!canShowOverlay()) {
+        if (!canShowOverlay()) {
             return;
         }
 

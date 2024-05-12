@@ -1,16 +1,18 @@
 package mcp.mobius.wdmla.impl.drawable;
 
-import mcp.mobius.wdmla.util.RenderUtil;
 import net.minecraft.item.ItemStack;
 
-import mcp.mobius.wdmla.api.IDrawable;
+import org.jetbrains.annotations.NotNull;
+
 import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.IDrawable;
+import mcp.mobius.wdmla.util.RenderUtil;
 
 public class ItemDrawable implements IDrawable {
 
-    private final ItemStack item;
+    private final @NotNull ItemStack item;
 
-    public ItemDrawable(ItemStack item) {
+    public ItemDrawable(@NotNull ItemStack item) {
         this.item = item;
     }
 

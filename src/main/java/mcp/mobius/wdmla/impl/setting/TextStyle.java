@@ -1,27 +1,27 @@
 package mcp.mobius.wdmla.impl.setting;
 
-import mcp.mobius.waila.api.elements.ElementAlignment;
 import mcp.mobius.wdmla.api.ITextStyle;
+import mcp.mobius.wdmla.api.WidgetAlignment;
 
 public class TextStyle implements ITextStyle {
 
-    private final ElementAlignment alignment;
+    private final WidgetAlignment alignment;
     private final int color;
     private final boolean shadow;
 
     public TextStyle() {
-        this.alignment = ElementAlignment.ALIGN_TOPLEFT;
+        this.alignment = WidgetAlignment.TOPLEFT;
         this.color = DEFAULT_COLOR;
         this.shadow = DEFAULT_SHADOW;
     }
 
-    public TextStyle(ElementAlignment alignment, int color, boolean shadow) {
+    public TextStyle(WidgetAlignment alignment, int color, boolean shadow) {
         this.alignment = alignment;
         this.color = color;
         this.shadow = shadow;
     }
 
-    public TextStyle alignment(ElementAlignment alignment) {
+    public TextStyle alignment(WidgetAlignment alignment) {
         return new TextStyle(alignment, color, shadow);
     }
 
@@ -34,7 +34,7 @@ public class TextStyle implements ITextStyle {
     }
 
     @Override
-    public ElementAlignment getAlignment() {
+    public WidgetAlignment getAlignment() {
         return alignment;
     }
 

@@ -1,21 +1,22 @@
 package mcp.mobius.wdmla.impl.drawable;
 
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.IDrawable;
+import mcp.mobius.wdmla.api.IPanelStyle;
 import mcp.mobius.wdmla.impl.setting.PanelStyle;
 import mcp.mobius.wdmla.util.RenderUtil;
 
-import mcp.mobius.wdmla.api.IDrawable;
-import mcp.mobius.wdmla.api.IPanelStyle;
-import mcp.mobius.wdmla.api.IArea;
-
 public class BorderDrawable implements IDrawable {
 
-    protected final IPanelStyle style;
+    protected final @NotNull IPanelStyle style;
 
     public BorderDrawable() {
         style = new PanelStyle();
     }
 
-    private BorderDrawable(IPanelStyle style) {
+    private BorderDrawable(@NotNull IPanelStyle style) {
         this.style = style;
     }
 

@@ -1,18 +1,22 @@
 package mcp.mobius.wdmla.impl.widget;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import org.jetbrains.annotations.NotNull;
+
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IHUDWidget;
 import mcp.mobius.wdmla.api.IPadding;
 import mcp.mobius.wdmla.api.ISize;
+import mcp.mobius.wdmla.impl.drawable.ItemDrawable;
 import mcp.mobius.wdmla.impl.setting.Padding;
 import mcp.mobius.wdmla.impl.setting.Size;
-import mcp.mobius.wdmla.impl.drawable.ItemDrawable;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemWidget extends Widget {
+
     public static final int DEFAULT_W = 16;
     public static final int DEFAULT_H = 16;
 
@@ -25,12 +29,12 @@ public class ItemWidget extends Widget {
     }
 
     @Override
-    public ItemWidget padding(IPadding padding) {
+    public ItemWidget padding(@NotNull IPadding padding) {
         return new ItemWidget(children, padding, size, foreground);
     }
 
     @Override
-    public ItemWidget size(ISize size) {
+    public ItemWidget size(@NotNull ISize size) {
         return new ItemWidget(children, padding, size, foreground);
     }
 }

@@ -1,7 +1,5 @@
 package mcp.mobius.wdmla.api;
 
-import mcp.mobius.waila.api.elements.ElementAlignment;
-
 public interface IPanelStyle {
 
     int NO_BORDER = 0x00000000;
@@ -9,7 +7,7 @@ public interface IPanelStyle {
 
     int getBorderColor();
 
-    ElementAlignment getAlignment();
+    WidgetAlignment getAlignment();
 
     int getSpacing();
 }

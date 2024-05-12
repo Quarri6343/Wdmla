@@ -1,11 +1,12 @@
 package mcp.mobius.wdmla.util;
 
+import java.awt.*;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
-import java.awt.*;
-
 public enum MiscUtil {
+
     INSTANCE;
 
     public static Dimension displaySize() {

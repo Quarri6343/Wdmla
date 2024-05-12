@@ -3,8 +3,7 @@ package mcp.mobius.wdmla.impl.setting;
 import mcp.mobius.wdmla.api.IPadding;
 
 /**
- * Padding between widgets.
- * Negative number is allowed to intentionally overlap widgets
+ * Padding between widgets. Negative number is allowed to intentionally overlap widgets
  */
 public class Padding implements IPadding {
 
@@ -20,7 +19,7 @@ public class Padding implements IPadding {
         this.right = 0;
     }
 
-    public Padding(int top, int bottom, int left, int right){
+    public Padding(int top, int bottom, int left, int right) {
         this.top = top;
         this.bottom = bottom;
         this.left = left;

@@ -1,12 +1,14 @@
 package mcp.mobius.wdmla.impl.setting;
 
-import mcp.mobius.wdmla.api.IArea;
-
 import java.awt.*;
+
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.IArea;
 
 public class Area extends Size implements IArea {
 
-    private final Point point;
+    private final @NotNull Point point;
 
     public Area(int x, int y, int width, int height) {
         super(width, height);

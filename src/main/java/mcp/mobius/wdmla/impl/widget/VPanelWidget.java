@@ -1,22 +1,24 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.setting.Area;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.*;
+import mcp.mobius.wdmla.impl.setting.Area;
+
 /**
- * A Vertical layout panel.
- * Size depends on children.
+ * A Vertical layout panel. Size depends on children.
  */
 public class VPanelWidget extends PanelWidget {
 
-    public VPanelWidget(){
+    public VPanelWidget() {
         super();
     }
 
-    protected VPanelWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground, IPanelStyle style) {
+    protected VPanelWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground,
+            IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 
@@ -28,13 +30,13 @@ public class VPanelWidget extends PanelWidget {
             int w = children.get(i).getWidth();
             int cx = x;
             switch (style.getAlignment()) {
-                case ALIGN_TOPLEFT:
+                case TOPLEFT:
                     cx = x + padding.getLeft();
                     break;
-                case ALIGN_CENTER:
+                case CENTER:
                     cx = x + (totWidth - w) / 2;
                     break;
-                case ALIGN_BOTTOMRIGHT:
+                case BOTTOMRIGHT:
                     cx = x + totWidth - w - padding.getRight();
                 default:
                     break;
@@ -42,7 +44,7 @@ public class VPanelWidget extends PanelWidget {
 
             children.get(i).tick(cx, y);
 
-            if(i < children.size() - 1){
+            if (i < children.size() - 1) {
                 y += children.get(i).getHeight() + style.getSpacing();
             }
         }
@@ -55,7 +57,7 @@ public class VPanelWidget extends PanelWidget {
         int w = 0;
         for (IHUDWidget child : children) {
             int ww = child.getWidth();
-            if(ww > w) {
+            if (ww > w) {
                 w = ww;
             }
         }
@@ -74,14 +76,14 @@ public class VPanelWidget extends PanelWidget {
     }
 
     @Override
-    public VPanelWidget child(IHUDWidget child) {
+    public VPanelWidget child(@NotNull IHUDWidget child) {
         List<IHUDWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
         return new VPanelWidget(newChildren, padding, size, foreground, style);
     }
 
     @Override
-    public PanelWidget size(ISize size) {
+    public PanelWidget size(@NotNull ISize size) {
         throw new IllegalArgumentException("Vertical Panel is auto sized.");
     }
 }

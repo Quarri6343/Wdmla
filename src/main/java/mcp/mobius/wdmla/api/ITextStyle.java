@@ -1,14 +1,12 @@
 package mcp.mobius.wdmla.api;
 
-import mcp.mobius.waila.api.elements.ElementAlignment;
-
 public interface ITextStyle {
 
-    ElementAlignment DEFAULT_ALIGN = ElementAlignment.ALIGN_TOPLEFT;
+    WidgetAlignment DEFAULT_ALIGN = WidgetAlignment.TOPLEFT;
     int DEFAULT_COLOR = 0xDEDEDE;
     boolean DEFAULT_SHADOW = true;
 
-    ElementAlignment getAlignment();
+    WidgetAlignment getAlignment();
 
     int getColor();
 

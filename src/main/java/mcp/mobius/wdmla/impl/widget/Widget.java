@@ -1,10 +1,12 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.setting.Area;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.*;
+import mcp.mobius.wdmla.impl.setting.Area;
 
 public class Widget implements IHUDWidget {
 
@@ -24,13 +26,11 @@ public class Widget implements IHUDWidget {
         this.foreground = foreground;
     }
 
-    @Override
-    public IHUDWidget padding(IPadding padding) {
+    public Widget padding(@NotNull IPadding padding) {
         return new Widget(this.children, padding, size, foreground);
     }
 
-    @Override
-    public IHUDWidget size(ISize size) {
+    public Widget size(@NotNull ISize size) {
         return new Widget(this.children, padding, size, foreground);
     }
 
@@ -52,8 +52,7 @@ public class Widget implements IHUDWidget {
         return padding.getTop() + size.getH() + padding.getBottom();
     }
 
-    @Override
-    public IHUDWidget child(IHUDWidget child) {
+    public Widget child(@NotNull IHUDWidget child) {
         List<IHUDWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
         return new Widget(newChildren, padding, size, foreground);

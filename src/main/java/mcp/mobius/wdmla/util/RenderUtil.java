@@ -1,7 +1,5 @@
 package mcp.mobius.wdmla.util;
 
-import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.impl.setting.Area;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -10,10 +8,15 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import mcp.mobius.waila.utils.WailaExceptionHandler;
+import mcp.mobius.wdmla.impl.setting.Area;
+
 public enum RenderUtil {
+
     INSTANCE;
 
     private static final int VANILLA_ITEM_SCALE = 16;
@@ -99,7 +102,7 @@ public enum RenderUtil {
     }
 
     public static void drawThickBeveledBox(int x1, int y1, int x2, int y2, int thickness, int topleftcolor,
-                                           int botrightcolor, int fillcolor) {
+            int botrightcolor, int fillcolor) {
         if (fillcolor != -1) {
             Gui.drawRect(x1 + 1, y1 + 1, x2 - 1, y2 - 1, fillcolor);
         }

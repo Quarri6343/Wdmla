@@ -1,22 +1,24 @@
 package mcp.mobius.wdmla.impl.drawable;
 
-import mcp.mobius.wdmla.impl.setting.TextStyle;
-import mcp.mobius.wdmla.util.RenderUtil;
+import org.jetbrains.annotations.NotNull;
+
 import mcp.mobius.wdmla.api.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.ITextStyle;
+import mcp.mobius.wdmla.impl.setting.TextStyle;
+import mcp.mobius.wdmla.util.RenderUtil;
 
 public class TextDrawable implements IDrawable {
 
-    private final String text;
-    private final ITextStyle style;
+    private final @NotNull String text;
+    private final @NotNull ITextStyle style;
 
-    public TextDrawable(String text) {
+    public TextDrawable(@NotNull String text) {
         this.text = text;
         this.style = new TextStyle();
     }
 
-    private TextDrawable(String text, ITextStyle style) {
+    private TextDrawable(@NotNull String text, @NotNull ITextStyle style) {
         this.text = text;
         this.style = style;
     }

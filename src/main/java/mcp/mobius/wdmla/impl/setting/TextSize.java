@@ -2,12 +2,14 @@ package mcp.mobius.wdmla.impl.setting;
 
 import net.minecraft.client.Minecraft;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TextSize extends Size {
 
-    protected final String text;
+    protected final @NotNull String text;
 
-    public TextSize(String text) {
-        super(0,0);
+    public TextSize(@NotNull String text) {
+        super(0, 0);
         this.text = text;
     }
 

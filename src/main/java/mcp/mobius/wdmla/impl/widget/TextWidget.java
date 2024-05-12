@@ -1,14 +1,16 @@
 package mcp.mobius.wdmla.impl.widget;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jetbrains.annotations.NotNull;
+
 import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.drawable.TextDrawable;
 import mcp.mobius.wdmla.impl.setting.Area;
 import mcp.mobius.wdmla.impl.setting.Padding;
 import mcp.mobius.wdmla.impl.setting.TextSize;
 import mcp.mobius.wdmla.impl.setting.TextStyle;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TextWidget extends Widget {
 
@@ -19,7 +21,8 @@ public class TextWidget extends Widget {
         this.style = new TextStyle();
     }
 
-    private TextWidget(List<IHUDWidget> children, IPadding padding, ISize textSize, IDrawable foreground, ITextStyle style) {
+    private TextWidget(List<IHUDWidget> children, IPadding padding, ISize textSize, IDrawable foreground,
+            ITextStyle style) {
         super(children, padding, textSize, foreground);
         this.style = style;
     }
@@ -29,12 +32,12 @@ public class TextWidget extends Widget {
     }
 
     @Override
-    public TextWidget padding(IPadding padding) {
+    public TextWidget padding(@NotNull IPadding padding) {
         return new TextWidget(children, padding, size, foreground, style);
     }
 
     @Override
-    public TextWidget size(ISize size) {
+    public TextWidget size(@NotNull ISize size) {
         throw new IllegalArgumentException("You can't set the size of TextWidget!");
     }
 
@@ -43,11 +46,11 @@ public class TextWidget extends Widget {
         int width = size.getW();
         int height = size.getH();
         switch (style.getAlignment()) {
-            case ALIGN_BOTTOMRIGHT -> foreground
+            case BOTTOMRIGHT -> foreground
                     .draw(new Area((x + width) + padding.getLeft(), y + padding.getTop(), width, height));
-            case ALIGN_CENTER -> foreground
+            case CENTER -> foreground
                     .draw(new Area((x + (width / 2)) + padding.getLeft(), y + padding.getTop(), width, height));
-            case ALIGN_TOPLEFT -> foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), width, height));
+            case TOPLEFT -> foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), width, height));
         }
     }
 }
