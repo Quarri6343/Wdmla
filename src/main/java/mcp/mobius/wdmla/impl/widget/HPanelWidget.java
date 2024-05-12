@@ -1,11 +1,15 @@
 package mcp.mobius.wdmla.impl.widget;
 
 import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.Area;
+import mcp.mobius.wdmla.impl.setting.Area;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Horizontal layout panel.
+ * Size depends on children.
+ */
 public class HPanelWidget extends PanelWidget {
 
     public HPanelWidget(){
@@ -18,19 +22,19 @@ public class HPanelWidget extends PanelWidget {
 
     public void tick(int x, int y) {
         int totHeight = this.getHeight();
-        x += padding.getLeftPadding();
+        x += padding.getLeft();
         for (int i = 0; i < children.size(); i++) {
             int h = children.get(i).getHeight();
             int cy = y;
             switch (style.getAlignment()) {
                 case ALIGN_TOPLEFT:
-                    cy = y + padding.getTopPadding();
+                    cy = y + padding.getTop();
                     break;
                 case ALIGN_CENTER:
                     cy = y + (totHeight - h) / 2;
                     break;
                 case ALIGN_BOTTOMRIGHT:
-                    cy = y + totHeight - h - padding.getBottomPadding();
+                    cy = y + totHeight - h - padding.getBottom();
                 default:
                     break;
             }
@@ -42,7 +46,7 @@ public class HPanelWidget extends PanelWidget {
             }
         }
 
-        foreGround.draw(new Area(x + padding.getLeftPadding(), y + padding.getTopPadding(), size.getW(), size.getH()));
+        foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
     }
 
     @Override
@@ -52,7 +56,7 @@ public class HPanelWidget extends PanelWidget {
             w += child.getWidth();
         }
 
-        return padding.getLeftPadding() + w + style.getSpacing() * (children.size() - 1) + padding.getRightPadding();
+        return padding.getLeft() + w + style.getSpacing() * (children.size() - 1) + padding.getRight();
     }
 
     @Override
@@ -65,13 +69,18 @@ public class HPanelWidget extends PanelWidget {
             }
         }
 
-        return padding.getTopPadding() + h + padding.getBottomPadding();
+        return padding.getTop() + h + padding.getBottom();
     }
 
     @Override
     public HPanelWidget child(IHUDWidget child) {
         List<IHUDWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
-        return new HPanelWidget(newChildren, padding, size, foreGround, style);
+        return new HPanelWidget(newChildren, padding, size, foreground, style);
+    }
+
+    @Override
+    public PanelWidget size(ISize size) {
+        throw new IllegalArgumentException("Horizontal Panel is auto sized.");
     }
 }

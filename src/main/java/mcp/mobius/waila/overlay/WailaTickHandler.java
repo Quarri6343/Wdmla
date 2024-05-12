@@ -5,8 +5,8 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 import java.util.List;
 
 import mcp.mobius.wdmla.api.IHUDWidget;
-import mcp.mobius.wdmla.impl.Size;
-import mcp.mobius.wdmla.impl.TextStyle;
+import mcp.mobius.wdmla.impl.setting.Size;
+import mcp.mobius.wdmla.impl.setting.TextStyle;
 import mcp.mobius.wdmla.impl.widget.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

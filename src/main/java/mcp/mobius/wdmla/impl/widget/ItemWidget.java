@@ -4,9 +4,8 @@ import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IHUDWidget;
 import mcp.mobius.wdmla.api.IPadding;
 import mcp.mobius.wdmla.api.ISize;
-import mcp.mobius.wdmla.impl.Padding;
-import mcp.mobius.wdmla.impl.Size;
-import mcp.mobius.wdmla.impl.Widget;
+import mcp.mobius.wdmla.impl.setting.Padding;
+import mcp.mobius.wdmla.impl.setting.Size;
 import mcp.mobius.wdmla.impl.drawable.ItemDrawable;
 import net.minecraft.item.ItemStack;
 
@@ -27,11 +26,11 @@ public class ItemWidget extends Widget {
 
     @Override
     public ItemWidget padding(IPadding padding) {
-        return new ItemWidget(children, padding, size, foreGround);
+        return new ItemWidget(children, padding, size, foreground);
     }
 
     @Override
     public ItemWidget size(ISize size) {
-        return new ItemWidget(children, padding, size, foreGround);
+        return new ItemWidget(children, padding, size, foreground);
     }
 }

@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl;
+package mcp.mobius.wdmla.impl.setting;
 
 import mcp.mobius.wdmla.api.IArea;
 
@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Area extends Size implements IArea {
 
-    private Point point;
+    private final Point point;
 
     public Area(int x, int y, int width, int height) {
         super(width, height);

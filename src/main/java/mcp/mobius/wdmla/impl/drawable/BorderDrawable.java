@@ -1,5 +1,6 @@
 package mcp.mobius.wdmla.impl.drawable;
 
+import mcp.mobius.wdmla.impl.setting.PanelStyle;
 import mcp.mobius.wdmla.util.RenderUtil;
 
 import mcp.mobius.wdmla.api.IDrawable;
@@ -8,11 +9,18 @@ import mcp.mobius.wdmla.api.IArea;
 
 public class BorderDrawable implements IDrawable {
 
-    protected IPanelStyle style;
+    protected final IPanelStyle style;
+
+    public BorderDrawable() {
+        style = new PanelStyle();
+    }
+
+    private BorderDrawable(IPanelStyle style) {
+        this.style = style;
+    }
 
     public BorderDrawable style(IPanelStyle style) {
-        this.style = style;
-        return this;
+        return new BorderDrawable(style);
     }
 
     @Override

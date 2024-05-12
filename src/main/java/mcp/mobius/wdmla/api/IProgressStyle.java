@@ -2,17 +2,10 @@ package mcp.mobius.wdmla.api;
 
 public interface IProgressStyle {
 
-    /// The color that is used for the border of the progress bar
-    IProgressStyle borderColor(int c);
-
-    /// The color that is used for the background of the progress bar
-    IProgressStyle backgroundColor(int c);
-
-    /// The color that is used for the filled part of the progress bar
-    IProgressStyle filledColor(int c);
-
-    /// If this is different from the filledColor then the fill color will alternate
-    IProgressStyle alternateFilledColor(int c);
+    int DEFAULT_BORDER = 0xFFFFFFFF;
+    int DEFAULT_BACKGROUND = 0xFFFFFFFF;
+    int DEFAULT_FILLED = 0xFFD7D7D7;
+    int DEFAULT_FILLED_ALTERNATE = 0xFFD7D7D7;
 
     int getBorderColor();
 

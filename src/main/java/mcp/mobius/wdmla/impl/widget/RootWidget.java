@@ -4,7 +4,7 @@ import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.Area;
+import mcp.mobius.wdmla.impl.setting.Area;
 import mcp.mobius.wdmla.impl.drawable.BreakProgressDrawable;
 import mcp.mobius.wdmla.util.MiscUtil;
 import mcp.mobius.wdmla.util.RenderUtil;
@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RootWidget extends VPanelWidget {
+public final class RootWidget extends VPanelWidget {
 
     private final IDrawable breakProgress = new BreakProgressDrawable();
     private static final int MARGIN = 5;
@@ -38,7 +38,7 @@ public class RootWidget extends VPanelWidget {
         int x = area.getX() + MARGIN;
         int y = area.getY() + MARGIN;
         for (IHUDWidget child : children) {
-            child.tick(x + padding.getLeftPadding(), y + padding.getTopPadding());
+            child.tick(x + padding.getLeft(), y + padding.getTop());
         }
     }
 
@@ -64,6 +64,6 @@ public class RootWidget extends VPanelWidget {
     public RootWidget child(IHUDWidget child) {
         List<IHUDWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
-        return new RootWidget(newChildren, padding, size, foreGround, style);
+        return new RootWidget(newChildren, padding, size, foreground, style);
     }
 }

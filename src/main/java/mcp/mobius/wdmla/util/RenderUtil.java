@@ -1,7 +1,7 @@
 package mcp.mobius.wdmla.util;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.impl.Area;
+import mcp.mobius.wdmla.impl.setting.Area;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;

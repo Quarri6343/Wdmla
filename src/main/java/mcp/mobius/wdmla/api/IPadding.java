@@ -2,27 +2,11 @@ package mcp.mobius.wdmla.api;
 
 public interface IPadding {
 
-    default IPadding vPadding(int padding) {
-        return topPadding(padding).bottomPadding(padding);
-    }
+    int getLeft();
 
-    default IPadding hPadding(int padding) {
-        return leftPadding(padding).rightPadding(padding);
-    }
+    int getRight();
 
-    IPadding topPadding(int padding);
+    int getTop();
 
-    IPadding bottomPadding(int padding);
-
-    IPadding leftPadding(int padding);
-
-    IPadding rightPadding(int padding);
-
-    int getLeftPadding();
-
-    int getRightPadding();
-
-    int getTopPadding();
-
-    int getBottomPadding();
+    int getBottom();
 }

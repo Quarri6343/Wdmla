@@ -1,11 +1,11 @@
-package mcp.mobius.wdmla.impl;
+package mcp.mobius.wdmla.impl.setting;
 
 import mcp.mobius.wdmla.api.ISize;
 
 public class Size implements ISize {
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public Size(int width, int height) {
         if(width < 0 || height < 0) {

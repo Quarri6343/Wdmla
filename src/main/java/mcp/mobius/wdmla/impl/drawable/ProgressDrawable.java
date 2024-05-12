@@ -1,28 +1,36 @@
 package mcp.mobius.wdmla.impl.drawable;
 
 import mcp.mobius.wdmla.api.IDrawable;
+import mcp.mobius.wdmla.api.IProgress;
 import mcp.mobius.wdmla.api.IProgressStyle;
 import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.impl.setting.Progress;
+import mcp.mobius.wdmla.impl.setting.ProgressStyle;
 import mcp.mobius.wdmla.util.RenderUtil;
 
 public class ProgressDrawable implements IDrawable {
 
-    private final long current;
-    private final long max;
-    private IProgressStyle style;
+    private final IProgress progress;
+    private final IProgressStyle style;
 
-    public ProgressDrawable(long current, long max) {
-        this.current = current;
-        this.max = max;
+    public ProgressDrawable(IProgress progress) {
+        this.progress = progress;
+        this.style = new ProgressStyle();
+    }
+
+    private ProgressDrawable(IProgress progress, IProgressStyle style) {
+        this.progress = progress;
+        this.style = style;
     }
 
     public ProgressDrawable style(IProgressStyle style) {
-        this.style = style;
-        return this;
+        return new ProgressDrawable(progress, style);
     }
 
     @Override
     public void draw(IArea area) {
+        long current = progress.getCurrent();
+        long max = progress.getMax();
         RenderUtil.drawThickBeveledBox(
                 area.getX(),
                 area.getY(),

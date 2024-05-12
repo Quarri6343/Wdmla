@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl;
+package mcp.mobius.wdmla.impl.setting;
 
 import net.minecraft.client.Minecraft;
 
