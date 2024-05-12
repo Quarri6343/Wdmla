@@ -5,6 +5,8 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 import java.util.List;
 
 import mcp.mobius.wdmla.api.IHUDWidget;
+import mcp.mobius.wdmla.impl.Size;
+import mcp.mobius.wdmla.impl.TextStyle;
 import mcp.mobius.wdmla.impl.widget.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -96,9 +98,9 @@ public class WailaTickHandler {
                     testWidget = new RootWidget()
                             .child(
                                     new VPanelWidget()
-                                            .child(new TextWidget("TEST BLOCK"))
+                                            .child(new TextWidget("TEST BLOCK").style(new TextStyle().color(0xFFAA0000)))
                                             .child(new ItemWidget(targetStack))
-                                            .child(new ProgressWidget(100, 200))
+                                            .child(new ProgressWidget(100, 200).size(new Size(50, 30)))
                             );
                 }
             }

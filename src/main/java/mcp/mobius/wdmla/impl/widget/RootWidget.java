@@ -3,8 +3,7 @@ package mcp.mobius.wdmla.impl.widget;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
-import mcp.mobius.wdmla.api.IDrawable;
-import mcp.mobius.wdmla.api.IHUDWidget;
+import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.Area;
 import mcp.mobius.wdmla.impl.drawable.BreakProgressDrawable;
 import mcp.mobius.wdmla.util.MiscUtil;
@@ -12,12 +11,22 @@ import mcp.mobius.wdmla.util.RenderUtil;
 import net.minecraftforge.common.config.Configuration;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RootWidget extends VPanelWidget {
 
     private final IDrawable breakProgress = new BreakProgressDrawable();
     private static final int MARGIN = 5;
     private Area area;
+
+    public RootWidget(){
+        super();
+    }
+
+    protected RootWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground, IPanelStyle style) {
+        super(children, padding, size, foreground, style);
+    }
 
     public void preTick() {
         area = computeRenderArea();
@@ -49,5 +58,12 @@ public class RootWidget extends VPanelWidget {
         int y = ((int) (size.height / OverlayConfig.scale) - h - 1) * pos.y / 10000;
 
         return new Area(x, y, w, h);
+    }
+
+    @Override
+    public RootWidget child(IHUDWidget child) {
+        List<IHUDWidget> newChildren = new ArrayList<>(children);
+        newChildren.add(child);
+        return new RootWidget(newChildren, padding, size, foreGround, style);
     }
 }

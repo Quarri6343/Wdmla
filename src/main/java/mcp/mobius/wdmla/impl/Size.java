@@ -8,6 +8,9 @@ public class Size implements ISize {
     private int height;
 
     public Size(int width, int height) {
+        if(width < 0 || height < 0) {
+            throw new IllegalArgumentException("Invalid size");
+        }
         this.width = width;
         this.height = height;
     }
@@ -20,17 +23,5 @@ public class Size implements ISize {
     @Override
     public int getH() {
         return height;
-    }
-
-    @Override
-    public ISize w(int width) {
-        this.width = width;
-        return this;
-    }
-
-    @Override
-    public ISize h(int height) {
-        this.height = height;
-        return this;
     }
 }

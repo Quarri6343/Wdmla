@@ -1,6 +1,5 @@
 package mcp.mobius.wdmla.impl;
 
-import mcp.mobius.wdmla.api.ISize;
 import net.minecraft.client.Minecraft;
 
 public class TextSize extends Size {
@@ -20,15 +19,5 @@ public class TextSize extends Size {
     @Override
     public int getH() {
         return Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
-    }
-
-    @Override
-    public ISize w(int width) {
-        return this;
-    }
-
-    @Override
-    public ISize h(int height) {
-        return this;
     }
 }

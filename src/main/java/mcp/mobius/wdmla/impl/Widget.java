@@ -7,31 +7,30 @@ import java.util.List;
 
 public class Widget implements IHUDWidget {
 
-    protected List<IHUDWidget> children = new ArrayList();
+    protected final List<IHUDWidget> children;
 
     // settings
-    protected IPadding padding;
-    protected ISize size;
+    protected final IPadding padding;
+    protected final ISize size;
 
     // render
     protected final IDrawable foreGround;
 
-    public Widget(IDrawable foreGround, ISize size) {
+    protected Widget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreGround) {
+        this.children = children;
+        this.padding = padding;
+        this.size = size;
         this.foreGround = foreGround;
-        padding(new Padding());
-        size(size);
     }
 
     @Override
     public IHUDWidget padding(IPadding padding) {
-        this.padding = padding;
-        return this;
+        return new Widget(this.children, padding, size, foreGround);
     }
 
     @Override
     public IHUDWidget size(ISize size) {
-        this.size = size;
-        return this;
+        return new Widget(this.children, padding, size, foreGround);
     }
 
     @Override
@@ -54,7 +53,8 @@ public class Widget implements IHUDWidget {
 
     @Override
     public IHUDWidget child(IHUDWidget child) {
-        this.children.add(child);
-        return this;
+        List<IHUDWidget> newChildren = new ArrayList<>(children);
+        newChildren.add(child);
+        return new Widget(newChildren, padding, size, foreGround);
     }
 }

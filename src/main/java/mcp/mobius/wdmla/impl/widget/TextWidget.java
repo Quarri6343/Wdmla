@@ -4,29 +4,37 @@ import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.*;
 import mcp.mobius.wdmla.impl.drawable.TextDrawable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TextWidget extends Widget {
 
-    // settings
-    protected ITextStyle style;
+    protected final ITextStyle style;
 
     public TextWidget(String text) {
-        super(new TextDrawable(text), new TextSize(text));
-        style(new TextStyle());
+        super(new ArrayList<>(), new Padding(), new TextSize(text), new TextDrawable(text));
+        this.style = new TextStyle();
+        ((TextDrawable) foreGround).style(style);
+    }
+
+    private TextWidget(List<IHUDWidget> children, IPadding padding, ISize textSize, IDrawable foreground, ITextStyle style) {
+        super(children, padding, textSize, foreground);
+        this.style = style;
+        ((TextDrawable) foreGround).style(style);
     }
 
     public TextWidget style(ITextStyle style) {
-        this.style = style;
-        ((TextDrawable) foreGround).style(style);
-        return this;
+        return new TextWidget(children, padding, size, foreGround, style);
     }
 
     @Override
-    public IHUDWidget size(ISize size) {
-        if(size instanceof TextSize) {
-            this.size = size;
-        }
+    public TextWidget padding(IPadding padding) {
+        return new TextWidget(children, padding, size, foreGround, style);
+    }
 
-        return this;
+    @Override
+    public TextWidget size(ISize size) {
+        throw new IllegalArgumentException("You can't set the size of TextWidget!");
     }
 
     @Override

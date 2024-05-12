@@ -1,9 +1,20 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import mcp.mobius.wdmla.api.IHUDWidget;
+import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.Area;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HPanelWidget extends PanelWidget {
+
+    public HPanelWidget(){
+        super();
+    }
+
+    protected HPanelWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground, IPanelStyle style) {
+        super(children, padding, size, foreground, style);
+    }
 
     public void tick(int x, int y) {
         int totHeight = this.getHeight();
@@ -55,5 +66,12 @@ public class HPanelWidget extends PanelWidget {
         }
 
         return padding.getTopPadding() + h + padding.getBottomPadding();
+    }
+
+    @Override
+    public HPanelWidget child(IHUDWidget child) {
+        List<IHUDWidget> newChildren = new ArrayList<>(children);
+        newChildren.add(child);
+        return new HPanelWidget(newChildren, padding, size, foreGround, style);
     }
 }

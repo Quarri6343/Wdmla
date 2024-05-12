@@ -1,12 +1,11 @@
 package mcp.mobius.wdmla.api;
 
+/**
+ * The width and height of a widget. All elements must be greater than zero.
+ */
 public interface ISize {
 
     int getW();
 
     int getH();
-
-    ISize w(int width);
-
-    ISize h(int height);
 }
