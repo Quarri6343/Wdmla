@@ -27,9 +27,8 @@ import mcp.mobius.waila.api.impl.elements.ProbeInfo;
 import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.utils.Constants;
-import mcp.mobius.wdmla.api.IHUDWidget;
-import mcp.mobius.wdmla.impl.setting.Size;
-import mcp.mobius.wdmla.impl.setting.TextStyle;
+import mcp.mobius.wdmla.impl.values.setting.TextStyle;
+import mcp.mobius.wdmla.impl.values.sizer.Size;
 import mcp.mobius.wdmla.impl.widget.*;
 
 public class WailaTickHandler {
@@ -38,7 +37,7 @@ public class WailaTickHandler {
     public MetaDataProvider handler = new MetaDataProvider();
 
     public ProbeInfo probe = null;
-    public IHUDWidget testWidget = null;
+    public RootWidget testWidget = null;
     public MetaProbeDataProvider elementHandler = new MetaProbeDataProvider();
 
     private final Minecraft mc = Minecraft.getMinecraft();
@@ -60,7 +59,7 @@ public class WailaTickHandler {
         // return;
         // }
         if (testWidget != null) {
-            mcp.mobius.wdmla.overlay.OverlayRenderer.renderOverlay((RootWidget) testWidget);
+            testWidget.renderHUD();
             return;
         }
 

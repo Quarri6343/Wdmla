@@ -1,27 +1,28 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraftforge.common.config.Configuration;
+import net.minecraft.client.Minecraft;
 
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
-import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.drawable.BreakProgressDrawable;
-import mcp.mobius.wdmla.impl.setting.Area;
-import mcp.mobius.wdmla.util.MiscUtil;
+import mcp.mobius.wdmla.impl.values.ScreenRenderArea;
+import mcp.mobius.wdmla.impl.values.sizer.Area;
+import mcp.mobius.wdmla.impl.values.sizer.Size;
+import mcp.mobius.wdmla.util.HUDGLSaver;
 import mcp.mobius.wdmla.util.RenderUtil;
 
 public final class RootWidget extends VPanelWidget {
 
-    private final IDrawable breakProgress = new BreakProgressDrawable();
-    private static final int MARGIN = 5;
-    private Area area;
+    private final @NotNull HUDGLSaver glSaver = new HUDGLSaver();
+    private final @NotNull IDrawable breakProgress = new BreakProgressDrawable();
 
     public RootWidget() {
         super();
@@ -32,38 +33,48 @@ public final class RootWidget extends VPanelWidget {
         super(children, padding, size, foreground, style);
     }
 
-    public void preTick() {
-        area = computeRenderArea();
-        RenderUtil.drawBG(area, OverlayConfig.bgcolor, OverlayConfig.gradient1, OverlayConfig.gradient2); // TODO:
-                                                                                                          // drawable変換
-        breakProgress.draw(area);
+    public void renderHUD() {
+        if (!canShowOverlay()) {
+            return;
+        }
+
+        GL11.glPushMatrix();
+        glSaver.save();
+
+        GL11.glScalef(OverlayConfig.scale, OverlayConfig.scale, 1.0f);
+
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+
+        Area bgArea = new ScreenRenderArea(new Size(getWidth(), getHeight())).computeBackground();
+        RenderUtil.drawBG(bgArea, OverlayConfig.bgcolor, OverlayConfig.gradient1, OverlayConfig.gradient2);
+        breakProgress.draw(bgArea);
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        Area fgArea = new ScreenRenderArea(new Size(getWidth(), getHeight())).computeForeground();
+        for (IHUDWidget child : children) {
+            child.tick(fgArea.getX() + padding.getLeft(), fgArea.getY() + padding.getTop());
+        }
+
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        glSaver.load();
+        GL11.glPopMatrix();
     }
 
-    public void tick() {
-        int x = area.getX() + MARGIN;
-        int y = area.getY() + MARGIN;
-        for (IHUDWidget child : children) {
-            child.tick(x + padding.getLeft(), y + padding.getTop());
-        }
+    private static boolean canShowOverlay() {
+        Minecraft mc = Minecraft.getMinecraft();
+        return mc.currentScreen == null && mc.theWorld != null
+                && Minecraft.isGuiEnabled()
+                && !mc.gameSettings.keyBindPlayerList.getIsKeyPressed()
+                && ConfigHandler.instance().showTooltip();
     }
 
     @Override
     public void tick(int x, int y) {}
-
-    private Area computeRenderArea() {
-        Point pos = new Point(
-                ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_POSX, 0),
-                ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_POSY, 0));
-
-        int w = getWidth() + MARGIN * 2;
-        int h = getHeight() + MARGIN * 2;
-
-        Dimension size = MiscUtil.displaySize();
-        int x = ((int) (size.width / OverlayConfig.scale) - w - 1) * pos.x / 10000;
-        int y = ((int) (size.height / OverlayConfig.scale) - h - 1) * pos.y / 10000;
-
-        return new Area(x, y, w, h);
-    }
 
     @Override
     public RootWidget child(@NotNull IHUDWidget child) {

@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.setting;
+package mcp.mobius.wdmla.impl.values.sizer;
 
 import mcp.mobius.wdmla.api.ISize;
 
@@ -9,7 +9,7 @@ public class Size implements ISize {
 
     public Size(int width, int height) {
         if (width < 0 || height < 0) {
-            throw new IllegalArgumentException("Invalid size");
+            throw new IllegalArgumentException("Size must not below zero");
         }
         this.width = width;
         this.height = height;

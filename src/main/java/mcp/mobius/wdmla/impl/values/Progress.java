@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.setting;
+package mcp.mobius.wdmla.impl.values;
 
 import mcp.mobius.wdmla.api.IProgress;
 

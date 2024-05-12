@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.impl.setting.Area;
+import mcp.mobius.wdmla.impl.values.sizer.Area;
 
 public enum RenderUtil {
 
@@ -21,9 +21,9 @@ public enum RenderUtil {
 
     private static final int VANILLA_ITEM_SCALE = 16;
 
-    private static FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
-    private static TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
-    private static RenderItem renderItem = new RenderItem();
+    private static final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+    private static final TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+    private static final RenderItem renderItem = new RenderItem();
 
     public static void drawString(String text, int x, int y, int colour, boolean shadow) {
         if (shadow) fontRenderer.drawStringWithShadow(text, x, y, colour);

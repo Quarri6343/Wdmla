@@ -6,7 +6,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.setting.Area;
+import mcp.mobius.wdmla.impl.values.sizer.Area;
 
 /**
  * A Vertical layout panel. Size depends on children.

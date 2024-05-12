@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.drawable.ProgressDrawable;
-import mcp.mobius.wdmla.impl.setting.Padding;
-import mcp.mobius.wdmla.impl.setting.Progress;
-import mcp.mobius.wdmla.impl.setting.Size;
+import mcp.mobius.wdmla.impl.values.Progress;
+import mcp.mobius.wdmla.impl.values.sizer.Padding;
+import mcp.mobius.wdmla.impl.values.sizer.Size;
 
 public class ProgressWidget extends Widget {
 

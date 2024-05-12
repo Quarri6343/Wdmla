@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.setting;
+package mcp.mobius.wdmla.impl.values.sizer;
 
 import mcp.mobius.wdmla.api.IPadding;
 

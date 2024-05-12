@@ -7,10 +7,10 @@ import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.drawable.TextDrawable;
-import mcp.mobius.wdmla.impl.setting.Area;
-import mcp.mobius.wdmla.impl.setting.Padding;
-import mcp.mobius.wdmla.impl.setting.TextSize;
-import mcp.mobius.wdmla.impl.setting.TextStyle;
+import mcp.mobius.wdmla.impl.values.setting.TextStyle;
+import mcp.mobius.wdmla.impl.values.sizer.Area;
+import mcp.mobius.wdmla.impl.values.sizer.Padding;
+import mcp.mobius.wdmla.impl.values.sizer.TextSize;
 
 public class TextWidget extends Widget {
 
