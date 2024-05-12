@@ -4,7 +4,9 @@ import mcp.mobius.waila.utils.WailaExceptionHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
@@ -65,6 +67,37 @@ public enum RenderUtil {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
     }
 
+    public static void drawGradientRect(int x, int y, int w, int h, int grad1, int grad2) {
+        float zLevel = 0.0f;
+
+        float f = (float) (grad1 >> 24 & 255) / 255.0F;
+        float f1 = (float) (grad1 >> 16 & 255) / 255.0F;
+        float f2 = (float) (grad1 >> 8 & 255) / 255.0F;
+        float f3 = (float) (grad1 & 255) / 255.0F;
+        float f4 = (float) (grad2 >> 24 & 255) / 255.0F;
+        float f5 = (float) (grad2 >> 16 & 255) / 255.0F;
+        float f6 = (float) (grad2 >> 8 & 255) / 255.0F;
+        float f7 = (float) (grad2 & 255) / 255.0F;
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        GL11.glShadeModel(GL11.GL_SMOOTH);
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.setColorRGBA_F(f1, f2, f3, f);
+        tessellator.addVertex(x + w, y, zLevel);
+        tessellator.addVertex(x, y, zLevel);
+        tessellator.setColorRGBA_F(f5, f6, f7, f4);
+        tessellator.addVertex(x, y + h, zLevel);
+        tessellator.addVertex(x + w, y + h, zLevel);
+        tessellator.draw();
+        GL11.glShadeModel(GL11.GL_FLAT);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
     public static void drawThickBeveledBox(int x1, int y1, int x2, int y2, int thickness, int topleftcolor,
                                            int botrightcolor, int fillcolor) {
         if (fillcolor != -1) {
@@ -83,6 +116,5 @@ public enum RenderUtil {
 
     public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
         Gui.drawRect(x1, y1, x2, y1 + 1, color);
-
     }
 }

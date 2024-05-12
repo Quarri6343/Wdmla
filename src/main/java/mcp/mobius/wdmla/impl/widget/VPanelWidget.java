@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import mcp.mobius.wdmla.api.IWidget;
+import mcp.mobius.wdmla.api.IHUDWidget;
 import mcp.mobius.wdmla.impl.Area;
 
 public class VPanelWidget extends PanelWidget {
@@ -28,7 +28,7 @@ public class VPanelWidget extends PanelWidget {
             children.get(i).tick(cx, y);
 
             if(i < children.size() - 1){
-                y += style.getSpacing();
+                y += children.get(i).getHeight() + style.getSpacing();
             }
         }
 
@@ -38,7 +38,7 @@ public class VPanelWidget extends PanelWidget {
     @Override
     public int getWidth() {
         int w = 0;
-        for (IWidget child : children) {
+        for (IHUDWidget child : children) {
             int ww = child.getWidth();
             if(ww > w) {
                 w = ww;
@@ -51,7 +51,7 @@ public class VPanelWidget extends PanelWidget {
     @Override
     public int getHeight() {
         int h = 0;
-        for (IWidget child : children) {
+        for (IHUDWidget child : children) {
             h += child.getHeight();
         }
 

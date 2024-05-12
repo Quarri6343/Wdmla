@@ -4,6 +4,11 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
+import mcp.mobius.wdmla.api.IHUDWidget;
+import mcp.mobius.wdmla.impl.widget.ItemWidget;
+import mcp.mobius.wdmla.impl.widget.ProgressWidget;
+import mcp.mobius.wdmla.impl.widget.TextWidget;
+import mcp.mobius.wdmla.impl.widget.VPanelWidget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,6 +39,7 @@ public class WailaTickHandler {
     public MetaDataProvider handler = new MetaDataProvider();
 
     public ProbeInfo probe = null;
+    public IHUDWidget testWidget = null;
     public MetaProbeDataProvider elementHandler = new MetaProbeDataProvider();
 
     private final Minecraft mc = Minecraft.getMinecraft();
@@ -50,8 +56,12 @@ public class WailaTickHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickRender(TickEvent.RenderTickEvent event) {
-        if (probe != null) {
-            TOPOverlayRenderer.renderOverlay();
+//        if (probe != null) {
+//            TOPOverlayRenderer.renderOverlay();
+//            return;
+//        }
+        if (testWidget != null) {
+            mcp.mobius.wdmla.OverlayRenderer.renderOverlay(testWidget);
             return;
         }
 
@@ -76,6 +86,7 @@ public class WailaTickHandler {
             MovingObjectPosition target = RayTracing.instance().getTarget();
 
             probe = null;
+            testWidget = null;
             if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
                     && !ConfigHandler.instance()
                             .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
@@ -85,6 +96,7 @@ public class WailaTickHandler {
 
                 if (targetStack != null) {
                     probe = elementHandler.handleBlockElementData(targetStack, world, player, target, accessor);
+                    testWidget = new VPanelWidget().child(new TextWidget("TEST BLOCK")).child(new ItemWidget(targetStack)).child(new ProgressWidget(100, 200));
                 }
             }
 

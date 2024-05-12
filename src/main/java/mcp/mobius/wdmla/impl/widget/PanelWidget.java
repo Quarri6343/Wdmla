@@ -17,7 +17,7 @@ public abstract class PanelWidget extends Widget {
 
     public PanelWidget style(IPanelStyle style) {
         this.style = style;
-        ((BorderDrawable)foreGround).style = style;
+        ((BorderDrawable)foreGround).style(style);
         return this;
     }
 }

@@ -5,9 +5,9 @@ import mcp.mobius.wdmla.api.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Widget implements IWidget {
+public class Widget implements IHUDWidget {
 
-    protected List<IWidget> children = new ArrayList();
+    protected List<IHUDWidget> children = new ArrayList();
 
     // settings
     protected IPadding padding;
@@ -23,20 +23,20 @@ public class Widget implements IWidget {
     }
 
     @Override
-    public IWidget padding(IPadding padding) {
+    public IHUDWidget padding(IPadding padding) {
         this.padding = padding;
         return this;
     }
 
     @Override
-    public IWidget size(ISize size) {
+    public IHUDWidget size(ISize size) {
         this.size = size;
         return this;
     }
 
     @Override
     public void tick(int x, int y) {
-        for (IWidget child : children) {
+        for (IHUDWidget child : children) {
             child.tick(x + padding.getLeftPadding(), y + padding.getTopPadding());
         }
         foreGround.draw(new Area(x + padding.getLeftPadding(), y + padding.getTopPadding(), size.getW(), size.getH()));
@@ -52,7 +52,8 @@ public class Widget implements IWidget {
         return padding.getTopPadding() + size.getH() + padding.getBottomPadding();
     }
 
-    public IWidget child(IWidget child) {
+    @Override
+    public IHUDWidget child(IHUDWidget child) {
         this.children.add(child);
         return this;
     }

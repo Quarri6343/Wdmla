@@ -1,16 +1,15 @@
 package mcp.mobius.wdmla.impl.widget;
 
-import mcp.mobius.wdmla.api.IWidget;
+import mcp.mobius.wdmla.api.IHUDWidget;
 import mcp.mobius.wdmla.impl.Area;
 
 public class HPanelWidget extends PanelWidget {
 
-    @Override
     public void tick(int x, int y) {
         int totHeight = this.getHeight();
         x += padding.getLeftPadding();
-        for (IWidget child : children) {
-            int h = child.getHeight();
+        for (int i = 0; i < children.size(); i++) {
+            int h = children.get(i).getHeight();
             int cy = y;
             switch (style.getAlignment()) {
                 case ALIGN_TOPLEFT:
@@ -20,13 +19,16 @@ public class HPanelWidget extends PanelWidget {
                     cy = y + (totHeight - h) / 2;
                     break;
                 case ALIGN_BOTTOMRIGHT:
-                    cy = y + totHeight - h - padding.getRightPadding();
+                    cy = y + totHeight - h - padding.getBottomPadding();
                 default:
                     break;
             }
-            x += style.getSpacing();
 
-            child.tick(x, cy);
+            children.get(i).tick(x, cy);
+
+            if(i < children.size() - 1){
+                x += children.get(i).getWidth() + style.getSpacing();
+            }
         }
 
         foreGround.draw(new Area(x + padding.getLeftPadding(), y + padding.getTopPadding(), size.getW(), size.getH()));
@@ -35,7 +37,7 @@ public class HPanelWidget extends PanelWidget {
     @Override
     public int getWidth() {
         int w = 0;
-        for (IWidget child : children) {
+        for (IHUDWidget child : children) {
             w += child.getWidth();
         }
 
@@ -45,7 +47,7 @@ public class HPanelWidget extends PanelWidget {
     @Override
     public int getHeight() {
         int h = 0;
-        for (IWidget child : children) {
+        for (IHUDWidget child : children) {
             int ww = child.getHeight();
             if(ww > h) {
                 h = ww;

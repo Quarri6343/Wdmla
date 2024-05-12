@@ -21,7 +21,7 @@ public class TextWidget extends Widget {
     }
 
     @Override
-    public IWidget size(ISize size) {
+    public IHUDWidget size(ISize size) {
         if(size instanceof TextSize) {
             this.size = size;
         }

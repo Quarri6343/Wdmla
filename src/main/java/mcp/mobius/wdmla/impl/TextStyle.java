@@ -6,7 +6,7 @@ import mcp.mobius.wdmla.api.ITextStyle;
 public class TextStyle implements ITextStyle {
 
     private ElementAlignment alignment = ElementAlignment.ALIGN_TOPLEFT;
-    private int color = 0xFF000000;
+    private int color = 0xDEDEDE;
     private boolean shadow = true;
 
     @Override
