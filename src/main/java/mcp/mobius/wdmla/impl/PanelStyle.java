@@ -7,6 +7,7 @@ public class PanelStyle implements IPanelStyle {
 
     private int borderColor = NO_BORDER;
     private ElementAlignment alignment = ElementAlignment.ALIGN_TOPLEFT;
+    private int spacing = DEFAULT_SPACE;
 
     @Override
     public IPanelStyle borderColor(int c) {
@@ -21,6 +22,12 @@ public class PanelStyle implements IPanelStyle {
     }
 
     @Override
+    public IPanelStyle spacing(int spacing) {
+        this.spacing = spacing;
+        return this;
+    }
+
+    @Override
     public int getBorderColor() {
         return borderColor;
     }
@@ -28,5 +35,10 @@ public class PanelStyle implements IPanelStyle {
     @Override
     public ElementAlignment getAlignment() {
         return alignment;
+    }
+
+    @Override
+    public int getSpacing() {
+        return spacing;
     }
 }

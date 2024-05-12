@@ -1,6 +1,7 @@
-package mcp.mobius.wdmla.impl;
+package mcp.mobius.wdmla.impl.drawable;
 
-import mcp.mobius.waila.overlay.DisplayUtil;
+import mcp.mobius.wdmla.util.RenderUtil;
+import mcp.mobius.wdmla.api.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.ITextStyle;
 
@@ -19,7 +20,7 @@ public class TextDrawable implements IDrawable {
     }
 
     @Override
-    public void draw(int x, int y) {
-        DisplayUtil.drawString(text, x, y, style.getColor(), style.getShadow());
+    public void draw(IArea area) {
+        RenderUtil.drawString(text, area.getX(), area.getY(), style.getColor(), style.getShadow());
     }
 }

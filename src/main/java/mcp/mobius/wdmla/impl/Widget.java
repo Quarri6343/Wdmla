@@ -2,7 +2,12 @@ package mcp.mobius.wdmla.impl;
 
 import mcp.mobius.wdmla.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Widget implements IWidget {
+
+    protected List<IWidget> children = new ArrayList();
 
     // settings
     protected IPadding padding;
@@ -11,8 +16,10 @@ public class Widget implements IWidget {
     // render
     protected final IDrawable foreGround;
 
-    public Widget(IDrawable foreGround) {
+    public Widget(IDrawable foreGround, ISize size) {
         this.foreGround = foreGround;
+        padding(new Padding());
+        size(size);
     }
 
     @Override
@@ -29,24 +36,24 @@ public class Widget implements IWidget {
 
     @Override
     public void tick(int x, int y) {
-        foreGround.draw(x * padding.getLeftPadding(), y + padding.getRightPadding());
+        for (IWidget child : children) {
+            child.tick(x + padding.getLeftPadding(), y + padding.getTopPadding());
+        }
+        foreGround.draw(new Area(x + padding.getLeftPadding(), y + padding.getTopPadding(), size.getW(), size.getH()));
     }
 
     @Override
     public int getWidth() {
-        if (padding != null) {
-            return padding.getLeftPadding() + size.getW() + padding.getRightPadding();
-        } else {
-            return size.getW();
-        }
+        return padding.getLeftPadding() + size.getW() + padding.getRightPadding();
     }
 
     @Override
     public int getHeight() {
-        if (padding != null) {
-            return padding.getTopPadding() + size.getH() + padding.getBottomPadding();
-        } else {
-            return size.getH();
-        }
+        return padding.getTopPadding() + size.getH() + padding.getBottomPadding();
+    }
+
+    public IWidget child(IWidget child) {
+        this.children.add(child);
+        return this;
     }
 }

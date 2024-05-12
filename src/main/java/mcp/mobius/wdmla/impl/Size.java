@@ -7,6 +7,11 @@ public class Size implements ISize {
     private int width;
     private int height;
 
+    public Size(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
     @Override
     public int getW() {
         return width;

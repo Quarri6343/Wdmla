@@ -1,14 +1,14 @@
 package mcp.mobius.wdmla.impl;
 
-import net.minecraft.client.Minecraft;
-
 import mcp.mobius.wdmla.api.ISize;
+import net.minecraft.client.Minecraft;
 
 public class TextSize extends Size {
 
     protected final String text;
 
     public TextSize(String text) {
+        super(0,0);
         this.text = text;
     }
 
