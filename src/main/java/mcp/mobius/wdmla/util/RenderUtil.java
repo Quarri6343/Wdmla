@@ -1,5 +1,8 @@
 package mcp.mobius.wdmla.util;
 
+import mcp.mobius.waila.utils.WailaExceptionHandler;
+import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.impl.values.sizer.Area;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -8,16 +11,14 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.impl.values.sizer.Area;
+public class RenderUtil {
 
-public enum RenderUtil {
-
-    INSTANCE;
+    private RenderUtil() {
+        throw new AssertionError();
+    }
 
     private static final int VANILLA_ITEM_SCALE = 16;
 
@@ -30,7 +31,12 @@ public enum RenderUtil {
         else fontRenderer.drawString(text, x, y, colour);
     }
 
-    public static void renderStack(int x, int y, ItemStack stack, int w, int h) {
+    public static void renderStack(IArea area, ItemStack stack) {
+        int x = area.getX();
+        int y = area.getY();
+        int w = area.getW();
+        int h = area.getH();
+
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
 
@@ -70,7 +76,12 @@ public enum RenderUtil {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
     }
 
-    public static void drawGradientRect(int x, int y, int w, int h, int grad1, int grad2) {
+    public static void drawGradientRect(IArea area, int grad1, int grad2) {
+        int x = area.getX();
+        int y = area.getY();
+        int w = area.getW();
+        int h = area.getH();
+
         float zLevel = 0.0f;
 
         float f = (float) (grad1 >> 24 & 255) / 255.0F;
@@ -101,8 +112,13 @@ public enum RenderUtil {
         GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
-    public static void drawThickBeveledBox(int x1, int y1, int x2, int y2, int thickness, int topleftcolor,
+    public static void drawThickBeveledBox(IArea area, int thickness, int topleftcolor,
             int botrightcolor, int fillcolor) {
+        int x1 = area.getX();
+        int y1 = area.getY();
+        int x2 = area.getEX();
+        int y2 = area.getEY();
+
         if (fillcolor != -1) {
             Gui.drawRect(x1 + 1, y1 + 1, x2 - 1, y2 - 1, fillcolor);
         }
@@ -127,16 +143,16 @@ public enum RenderUtil {
         int w = area.getW();
         int h = area.getH();
 
-        drawGradientRect(x + 1, y, w - 1, 1, bg, bg);
-        drawGradientRect(x + 1, y + h, w - 1, 1, bg, bg);
+        drawGradientRect(new Area(x + 1, y, w - 1, 1), bg, bg);
+        drawGradientRect(new Area(x + 1, y + h, w - 1, 1), bg, bg);
 
-        drawGradientRect(x + 1, y + 1, w - 1, h - 1, bg, bg);// center
+        drawGradientRect(new Area(x + 1, y + 1, w - 1, h - 1), bg, bg);// center
 
-        drawGradientRect(x, y + 1, 1, h - 1, bg, bg);
-        drawGradientRect(x + w, y + 1, 1, h - 1, bg, bg);
-        drawGradientRect(x + 1, y + 2, 1, h - 3, grad1, grad2);
-        drawGradientRect(x + w - 1, y + 2, 1, h - 3, grad1, grad2);
-        drawGradientRect(x + 1, y + 1, w - 1, 1, grad1, grad1);
-        drawGradientRect(x + 1, y + h - 1, w - 1, 1, grad2, grad2);
+        drawGradientRect(new Area(x, y + 1, 1, h - 1), bg, bg);
+        drawGradientRect(new Area(x + w, y + 1, 1, h - 1), bg, bg);
+        drawGradientRect(new Area(x + 1, y + 2, 1, h - 3), grad1, grad2);
+        drawGradientRect(new Area(x + w - 1, y + 2, 1, h - 3), grad1, grad2);
+        drawGradientRect(new Area(x + 1, y + 1, w - 1, 1), grad1, grad1);
+        drawGradientRect(new Area(x + 1, y + h - 1, w - 1, 1), grad2, grad2);
     }
 }

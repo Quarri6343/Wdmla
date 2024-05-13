@@ -1,5 +1,6 @@
 package mcp.mobius.wdmla.impl.drawable;
 
+import mcp.mobius.wdmla.impl.values.sizer.Area;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.IArea;
@@ -35,6 +36,6 @@ public class BreakProgressDrawable implements IDrawable {
 
         int color = progressAlpha.apply(DEFAULT_COLOR); // TODO: change color with harvestability
         int width = (int) ((area.getW() - 1) * savedDamage.get());
-        RenderUtil.drawGradientRect(drawX, drawY, width - 1, 2, color, color);
+        RenderUtil.drawGradientRect(new Area(drawX, drawY, width - 1, 2), color, color);
     }
 }

@@ -31,7 +31,7 @@ public class Alpha {
     }
 
     public boolean isTransparent() {
-        return value < 0;
+        return value <= 0;
     }
 
     /**

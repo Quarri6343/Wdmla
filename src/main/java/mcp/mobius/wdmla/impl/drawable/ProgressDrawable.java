@@ -1,5 +1,6 @@
 package mcp.mobius.wdmla.impl.drawable;
 
+import mcp.mobius.wdmla.impl.values.sizer.Area;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.IArea;
@@ -33,10 +34,7 @@ public class ProgressDrawable implements IDrawable {
         long current = progress.getCurrent();
         long max = progress.getMax();
         RenderUtil.drawThickBeveledBox(
-                area.getX(),
-                area.getY(),
-                area.getEX(),
-                area.getEY(),
+                area,
                 1,
                 style.getBorderColor(),
                 style.getBorderColor(),
@@ -46,10 +44,11 @@ public class ProgressDrawable implements IDrawable {
             if (style.getFilledColor() == style.getAlternateFilledColor()) {
                 if (dx > 0) {
                     RenderUtil.drawThickBeveledBox(
-                            area.getX() + 1,
-                            area.getY() + 1,
-                            area.getX() + dx + 1,
-                            area.getEY() - 1,
+                            new Area(
+                                    area.getX() + 1,
+                                    area.getY() + 1,
+                                    dx + 1,
+                                    area.getH() - 1),
                             1,
                             style.getFilledColor(),
                             style.getFilledColor(),

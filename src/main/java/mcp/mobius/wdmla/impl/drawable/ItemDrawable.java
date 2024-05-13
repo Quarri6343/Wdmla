@@ -18,6 +18,6 @@ public class ItemDrawable implements IDrawable {
 
     @Override
     public void draw(IArea area) {
-        RenderUtil.renderStack(area.getX(), area.getY(), item, area.getW(), area.getH());
+        RenderUtil.renderStack(area, item);
     }
 }
