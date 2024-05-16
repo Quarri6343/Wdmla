@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla;
 
-import mcp.mobius.wdmla.api.IHUDDataProvider;
+import mcp.mobius.wdmla.api.ui.IHUDDataProvider;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

@@ -27,8 +27,6 @@ import mcp.mobius.waila.api.impl.elements.ProbeInfo;
 import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.utils.Constants;
-import mcp.mobius.wdmla.impl.values.setting.TextStyle;
-import mcp.mobius.wdmla.impl.values.sizer.Size;
 import mcp.mobius.wdmla.impl.widget.*;
 
 public class WailaTickHandler {
