@@ -4,7 +4,7 @@ import java.awt.*;
 
 import org.jetbrains.annotations.NotNull;
 
-import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.sizer.IArea;
 
 public class Area extends Size implements IArea {
 

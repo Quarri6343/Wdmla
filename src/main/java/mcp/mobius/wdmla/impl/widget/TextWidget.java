@@ -3,6 +3,8 @@ package mcp.mobius.wdmla.impl.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import mcp.mobius.wdmla.api.sizer.IPadding;
+import mcp.mobius.wdmla.api.sizer.ISize;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
@@ -21,8 +23,8 @@ public class TextWidget extends Widget {
         this.style = new TextStyle();
     }
 
-    private TextWidget(List<IHUDWidget> children, IPadding padding, ISize textSize, IDrawable foreground,
-            ITextStyle style) {
+    private TextWidget(List<IWidget> children, IPadding padding, ISize textSize, IDrawable foreground,
+                       ITextStyle style) {
         super(children, padding, textSize, foreground);
         this.style = style;
     }

@@ -37,7 +37,6 @@ public class WailaTickHandler {
     public MetaDataProvider handler = new MetaDataProvider();
 
     public ProbeInfo probe = null;
-    public RootWidget testWidget = null;
     public MetaProbeDataProvider elementHandler = new MetaProbeDataProvider();
 
     private final Minecraft mc = Minecraft.getMinecraft();
@@ -58,12 +57,8 @@ public class WailaTickHandler {
         // TOPOverlayRenderer.renderOverlay();
         // return;
         // }
-        if (testWidget != null) {
-            testWidget.renderHUD();
-            return;
-        }
 
-        OverlayRenderer.renderOverlay();
+//        OverlayRenderer.renderOverlay();
     }
 
     @SubscribeEvent
@@ -84,7 +79,6 @@ public class WailaTickHandler {
             MovingObjectPosition target = RayTracing.instance().getTarget();
 
             probe = null;
-            testWidget = null;
             if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
                     && !ConfigHandler.instance()
                             .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
@@ -94,11 +88,6 @@ public class WailaTickHandler {
 
                 if (targetStack != null) {
                     probe = elementHandler.handleBlockElementData(targetStack, world, player, target, accessor);
-                    testWidget = new RootWidget().child(
-                            new VPanelWidget()
-                                    .child(new TextWidget("TEST BLOCK").style(new TextStyle().color(0xFFAA0000)))
-                                    .child(new ItemWidget(targetStack))
-                                    .child(new ProgressWidget(100, 200).size(new Size(50, 30))));
                 }
             }
 

@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.IDrawable;
-import mcp.mobius.wdmla.api.IHUDWidget;
-import mcp.mobius.wdmla.api.IPadding;
-import mcp.mobius.wdmla.api.ISize;
+import mcp.mobius.wdmla.api.IWidget;
+import mcp.mobius.wdmla.api.sizer.IPadding;
+import mcp.mobius.wdmla.api.sizer.ISize;
 import mcp.mobius.wdmla.impl.drawable.ItemDrawable;
 import mcp.mobius.wdmla.impl.values.sizer.Padding;
 import mcp.mobius.wdmla.impl.values.sizer.Size;
@@ -24,7 +24,7 @@ public class ItemWidget extends Widget {
         super(new ArrayList<>(), new Padding(), new Size(DEFAULT_W, DEFAULT_H), new ItemDrawable(itemStack));
     }
 
-    private ItemWidget(List<IHUDWidget> children, IPadding padding, ISize textSize, IDrawable foreground) {
+    private ItemWidget(List<IWidget> children, IPadding padding, ISize textSize, IDrawable foreground) {
         super(children, padding, textSize, foreground);
     }
 

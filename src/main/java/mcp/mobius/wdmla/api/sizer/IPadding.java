@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.api;
+package mcp.mobius.wdmla.api.sizer;
 
 public interface IPadding {
 

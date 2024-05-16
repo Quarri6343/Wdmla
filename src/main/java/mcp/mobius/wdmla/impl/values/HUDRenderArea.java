@@ -14,13 +14,13 @@ import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.wdmla.impl.values.sizer.Area;
 import mcp.mobius.wdmla.impl.values.sizer.Size;
 
-public class ScreenRenderArea {
+public class HUDRenderArea {
 
     private static final int MARGIN = 5;
 
     private final @NotNull Size hudSize;
 
-    public ScreenRenderArea(@NotNull Size hudSize) {
+    public HUDRenderArea(@NotNull Size hudSize) {
         this.hudSize = hudSize;
     }
 

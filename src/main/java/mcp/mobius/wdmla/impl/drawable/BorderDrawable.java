@@ -2,11 +2,10 @@ package mcp.mobius.wdmla.impl.drawable;
 
 import org.jetbrains.annotations.NotNull;
 
-import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.sizer.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IPanelStyle;
 import mcp.mobius.wdmla.impl.values.setting.PanelStyle;
-import mcp.mobius.wdmla.util.RenderUtil;
 
 public class BorderDrawable implements IDrawable {
 
@@ -28,10 +27,10 @@ public class BorderDrawable implements IDrawable {
     public void draw(IArea area) {
         int color = this.style.getBorderColor();
         if (this.style.getBorderColor() != IPanelStyle.NO_BORDER) {
-            RenderUtil.drawHorizontalLine(area.getX(), area.getY(), area.getEX() - 1, color);
-            RenderUtil.drawHorizontalLine(area.getX(), area.getEY() - 1, area.getEX() - 1, color);
-            RenderUtil.drawVerticalLine(area.getX(), area.getY(), area.getEY() - 1, color);
-            RenderUtil.drawVerticalLine(area.getEX() - 1, area.getY(), area.getEY(), color);
+            GuiDraw.drawHorizontalLine(area.getX(), area.getY(), area.getEX() - 1, color);
+            GuiDraw.drawHorizontalLine(area.getX(), area.getEY() - 1, area.getEX() - 1, color);
+            GuiDraw.drawVerticalLine(area.getX(), area.getY(), area.getEY() - 1, color);
+            GuiDraw.drawVerticalLine(area.getEX() - 1, area.getY(), area.getEY(), color);
         }
     }
 }

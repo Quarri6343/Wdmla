@@ -2,11 +2,10 @@ package mcp.mobius.wdmla.impl.drawable;
 
 import org.jetbrains.annotations.NotNull;
 
-import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.sizer.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.ITextStyle;
 import mcp.mobius.wdmla.impl.values.setting.TextStyle;
-import mcp.mobius.wdmla.util.RenderUtil;
 
 public class TextDrawable implements IDrawable {
 
@@ -29,6 +28,6 @@ public class TextDrawable implements IDrawable {
 
     @Override
     public void draw(IArea area) {
-        RenderUtil.drawString(text, area.getX(), area.getY(), style.getColor(), style.getShadow());
+        GuiDraw.drawString(text, area.getX(), area.getY(), style.getColor(), style.getShadow());
     }
 }

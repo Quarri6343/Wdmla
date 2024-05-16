@@ -3,6 +3,8 @@ package mcp.mobius.wdmla.impl.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import mcp.mobius.wdmla.api.sizer.IPadding;
+import mcp.mobius.wdmla.api.sizer.ISize;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
@@ -24,7 +26,7 @@ public class ProgressWidget extends Widget {
                 new ProgressDrawable(new Progress(current, max)));
     }
 
-    private ProgressWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground) {
+    private ProgressWidget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground) {
         super(children, padding, size, foreground);
     }
 

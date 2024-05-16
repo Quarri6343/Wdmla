@@ -3,6 +3,7 @@ package mcp.mobius.waila;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+import mcp.mobius.wdmla.Wdmla;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
@@ -76,6 +77,7 @@ public class Waila {
             MinecraftForge.EVENT_BUS.register(new DecoratorRenderer());
             FMLCommonHandler.instance().bus().register(new KeyEvent());
             FMLCommonHandler.instance().bus().register(WailaTickHandler.instance());
+            FMLCommonHandler.instance().bus().register(Wdmla.instance);
 
         }
         FMLCommonHandler.instance().bus().register(new NetworkHandler());

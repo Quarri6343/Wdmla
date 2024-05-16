@@ -4,9 +4,8 @@ import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.sizer.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
-import mcp.mobius.wdmla.util.RenderUtil;
 
 public class ItemDrawable implements IDrawable {
 
@@ -18,6 +17,6 @@ public class ItemDrawable implements IDrawable {
 
     @Override
     public void draw(IArea area) {
-        RenderUtil.renderStack(area, item);
+        GuiDraw.renderStack(area, item);
     }
 }

@@ -3,14 +3,16 @@ package mcp.mobius.wdmla.impl.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import mcp.mobius.wdmla.api.sizer.IPadding;
+import mcp.mobius.wdmla.api.sizer.ISize;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.values.sizer.Area;
 
-public class Widget implements IHUDWidget {
+public class Widget implements IWidget {
 
-    protected final List<IHUDWidget> children;
+    protected final List<IWidget> children;
 
     // settings
     protected final IPadding padding;
@@ -19,7 +21,7 @@ public class Widget implements IHUDWidget {
     // render
     protected final IDrawable foreground;
 
-    protected Widget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground) {
+    protected Widget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground) {
         this.children = children;
         this.padding = padding;
         this.size = size;
@@ -36,7 +38,7 @@ public class Widget implements IHUDWidget {
 
     @Override
     public void tick(int x, int y) {
-        for (IHUDWidget child : children) {
+        for (IWidget child : children) {
             child.tick(x + padding.getLeft(), y + padding.getTop());
         }
         foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
@@ -52,8 +54,8 @@ public class Widget implements IHUDWidget {
         return padding.getTop() + size.getH() + padding.getBottom();
     }
 
-    public Widget child(@NotNull IHUDWidget child) {
-        List<IHUDWidget> newChildren = new ArrayList<>(children);
+    public Widget child(@NotNull IWidget child) {
+        List<IWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
         return new Widget(newChildren, padding, size, foreground);
     }

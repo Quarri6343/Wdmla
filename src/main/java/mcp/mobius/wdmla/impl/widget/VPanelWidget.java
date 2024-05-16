@@ -3,6 +3,8 @@ package mcp.mobius.wdmla.impl.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import mcp.mobius.wdmla.api.sizer.IPadding;
+import mcp.mobius.wdmla.api.sizer.ISize;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.*;
@@ -17,8 +19,8 @@ public class VPanelWidget extends PanelWidget {
         super();
     }
 
-    protected VPanelWidget(List<IHUDWidget> children, IPadding padding, ISize size, IDrawable foreground,
-            IPanelStyle style) {
+    protected VPanelWidget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground,
+                           IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 
@@ -55,7 +57,7 @@ public class VPanelWidget extends PanelWidget {
     @Override
     public int getWidth() {
         int w = 0;
-        for (IHUDWidget child : children) {
+        for (IWidget child : children) {
             int ww = child.getWidth();
             if (ww > w) {
                 w = ww;
@@ -68,7 +70,7 @@ public class VPanelWidget extends PanelWidget {
     @Override
     public int getHeight() {
         int h = 0;
-        for (IHUDWidget child : children) {
+        for (IWidget child : children) {
             h += child.getHeight();
         }
 
@@ -76,8 +78,8 @@ public class VPanelWidget extends PanelWidget {
     }
 
     @Override
-    public VPanelWidget child(@NotNull IHUDWidget child) {
-        List<IHUDWidget> newChildren = new ArrayList<>(children);
+    public VPanelWidget child(@NotNull IWidget child) {
+        List<IWidget> newChildren = new ArrayList<>(children);
         newChildren.add(child);
         return new VPanelWidget(newChildren, padding, size, foreground, style);
     }

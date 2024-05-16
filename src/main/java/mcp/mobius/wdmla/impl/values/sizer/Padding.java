@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.impl.values.sizer;
 
-import mcp.mobius.wdmla.api.IPadding;
+import mcp.mobius.wdmla.api.sizer.IPadding;
 
 /**
  * Padding between widgets. Negative number is allowed to intentionally overlap widgets

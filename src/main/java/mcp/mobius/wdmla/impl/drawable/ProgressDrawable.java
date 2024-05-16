@@ -3,12 +3,11 @@ package mcp.mobius.wdmla.impl.drawable;
 import mcp.mobius.wdmla.impl.values.sizer.Area;
 import org.jetbrains.annotations.NotNull;
 
-import mcp.mobius.wdmla.api.IArea;
+import mcp.mobius.wdmla.api.sizer.IArea;
 import mcp.mobius.wdmla.api.IDrawable;
 import mcp.mobius.wdmla.api.IProgress;
 import mcp.mobius.wdmla.api.IProgressStyle;
 import mcp.mobius.wdmla.impl.values.setting.ProgressStyle;
-import mcp.mobius.wdmla.util.RenderUtil;
 
 public class ProgressDrawable implements IDrawable {
 
@@ -33,7 +32,7 @@ public class ProgressDrawable implements IDrawable {
     public void draw(IArea area) {
         long current = progress.getCurrent();
         long max = progress.getMax();
-        RenderUtil.drawThickBeveledBox(
+        GuiDraw.drawThickBeveledBox(
                 area,
                 1,
                 style.getBorderColor(),
@@ -43,7 +42,7 @@ public class ProgressDrawable implements IDrawable {
             int dx = (int) Math.min(current * (long) (area.getW() - 2) / max, (long) (area.getW() - 2));
             if (style.getFilledColor() == style.getAlternateFilledColor()) {
                 if (dx > 0) {
-                    RenderUtil.drawThickBeveledBox(
+                    GuiDraw.drawThickBeveledBox(
                             new Area(
                                     area.getX() + 1,
                                     area.getY() + 1,
@@ -57,7 +56,7 @@ public class ProgressDrawable implements IDrawable {
             } else {
                 for (int xx = area.getX() + 1; xx <= area.getX() + dx + 1; ++xx) {
                     int color = (xx & 1) == 0 ? style.getFilledColor() : style.getAlternateFilledColor();
-                    RenderUtil.drawVerticalLine(xx, area.getY() + 1, area.getEY() - 1, color);
+                    GuiDraw.drawVerticalLine(xx, area.getY() + 1, area.getEY() - 1, color);
                 }
             }
         }

@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.impl.values.sizer;
 
-import mcp.mobius.wdmla.api.ISize;
+import mcp.mobius.wdmla.api.sizer.ISize;
 
 import java.awt.*;
 

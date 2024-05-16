@@ -1,8 +1,7 @@
-package mcp.mobius.wdmla.util;
+package mcp.mobius.wdmla.impl.drawable;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.api.IArea;
-import mcp.mobius.wdmla.impl.values.sizer.Area;
+import mcp.mobius.wdmla.api.sizer.IArea;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -14,9 +13,9 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class RenderUtil {
+public class GuiDraw {
 
-    private RenderUtil() {
+    private GuiDraw() {
         throw new AssertionError();
     }
 
@@ -135,24 +134,5 @@ public class RenderUtil {
 
     public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
         Gui.drawRect(x1, y1, x2, y1 + 1, color);
-    }
-
-    public static void drawBG(Area area, int bg, int grad1, int grad2) {
-        int x = area.getX();
-        int y = area.getY();
-        int w = area.getW();
-        int h = area.getH();
-
-        drawGradientRect(new Area(x + 1, y, w - 1, 1), bg, bg);
-        drawGradientRect(new Area(x + 1, y + h, w - 1, 1), bg, bg);
-
-        drawGradientRect(new Area(x + 1, y + 1, w - 1, h - 1), bg, bg);// center
-
-        drawGradientRect(new Area(x, y + 1, 1, h - 1), bg, bg);
-        drawGradientRect(new Area(x + w, y + 1, 1, h - 1), bg, bg);
-        drawGradientRect(new Area(x + 1, y + 2, 1, h - 3), grad1, grad2);
-        drawGradientRect(new Area(x + w - 1, y + 2, 1, h - 3), grad1, grad2);
-        drawGradientRect(new Area(x + 1, y + 1, w - 1, 1), grad1, grad1);
-        drawGradientRect(new Area(x + 1, y + h - 1, w - 1, 1), grad2, grad2);
     }
 }

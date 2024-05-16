@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.api;
+package mcp.mobius.wdmla.api.sizer;
 
 /**
  * The width and height of a widget. All elements must be greater than zero.
