@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.ui.widget;
+package mcp.mobius.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IWidget;
+import mcp.mobius.wdmla.api.ui.IComponent;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
@@ -15,14 +15,14 @@ import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 /**
  * A Horizontal layout panel. Size depends on children.
  */
-public class HPanelWidget extends PanelWidget {
+public class HPanelComponent extends PanelComponent {
 
-    public HPanelWidget() {
+    public HPanelComponent() {
         super();
     }
 
-    protected HPanelWidget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground,
-                           IPanelStyle style) {
+    protected HPanelComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
+                              IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 
@@ -58,7 +58,7 @@ public class HPanelWidget extends PanelWidget {
     @Override
     public int getWidth() {
         int w = 0;
-        for (IWidget child : children) {
+        for (IComponent child : children) {
             w += child.getWidth();
         }
 
@@ -68,7 +68,7 @@ public class HPanelWidget extends PanelWidget {
     @Override
     public int getHeight() {
         int h = 0;
-        for (IWidget child : children) {
+        for (IComponent child : children) {
             int ww = child.getHeight();
             if (ww > h) {
                 h = ww;
@@ -79,14 +79,7 @@ public class HPanelWidget extends PanelWidget {
     }
 
     @Override
-    public HPanelWidget child(@NotNull IWidget child) {
-        List<IWidget> newChildren = new ArrayList<>(children);
-        newChildren.add(child);
-        return new HPanelWidget(newChildren, padding, size, foreground, style);
-    }
-
-    @Override
-    public PanelWidget size(@NotNull ISize size) {
+    public PanelComponent size(@NotNull ISize size) {
         throw new IllegalArgumentException("Horizontal Panel is auto sized.");
     }
 }

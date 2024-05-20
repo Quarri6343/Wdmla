@@ -77,9 +77,8 @@ public class Waila {
             MinecraftForge.EVENT_BUS.register(new DecoratorRenderer());
             FMLCommonHandler.instance().bus().register(new KeyEvent());
             FMLCommonHandler.instance().bus().register(WailaTickHandler.instance());
-            FMLCommonHandler.instance().bus().register(Wdmla.instance);
-
         }
+        FMLCommonHandler.instance().bus().register(Wdmla.instance);
         FMLCommonHandler.instance().bus().register(new NetworkHandler());
 
         MissingHarvestInfo.init();
@@ -100,6 +99,8 @@ public class Waila {
     public void loadComplete(FMLLoadCompleteEvent event) {
         proxy.registerMods();
         proxy.registerIMCs();
+
+        Wdmla.instance.loadComplete(event);
     }
 
     @EventHandler

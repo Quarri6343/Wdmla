@@ -10,7 +10,7 @@ import mcp.mobius.wdmla.impl.ui.value.setting.TextStyle;
 public class TextDrawable implements IDrawable {
 
     private final @NotNull String text;
-    private final @NotNull ITextStyle style;
+    private @NotNull ITextStyle style;
 
     public TextDrawable(@NotNull String text) {
         this.text = text;
@@ -23,7 +23,8 @@ public class TextDrawable implements IDrawable {
     }
 
     public TextDrawable style(ITextStyle style) {
-        return new TextDrawable(text, style);
+        this.style = style;
+        return this;
     }
 
     @Override

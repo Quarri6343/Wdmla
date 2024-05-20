@@ -1,6 +1,7 @@
 package mcp.mobius.wdmla.impl.value;
 
-import mcp.mobius.wdmla.api.IIdentifiedBlock;
+import mcp.mobius.wdmla.api.IBlockAccessor;
+import mcp.mobius.wdmla.util.OptionalUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,14 +32,14 @@ public class UnIdentifiedBlockPos {
         this.z = z;
     }
 
-    public @NotNull IIdentifiedBlock identify() {
+    public @NotNull BlockAccessor identify() {
         ArrayList<ItemStack> items = this.getIdentifiedStacks();
 
         items.sort((stack0, stack1) -> stack1.getItemDamage() - stack0.getItemDamage());
 
         World world = mc.theWorld;
         EntityPlayer player = mc.thePlayer;
-        return new IdentifiedBlock(world.getBlock(x, y, z), world.getTileEntity(x, y, z), items.get(0), world, player);
+        return new BlockAccessor(world.getBlock(x, y, z), world.getTileEntity(x, y, z), items.get(0), world, player);
     }
 
     private @NotNull ArrayList<ItemStack> getIdentifiedStacks() {
@@ -50,7 +51,7 @@ public class UnIdentifiedBlockPos {
 
         //TODO: simple provider for block and TE
 
-        if (tileEntity.isEmpty()) {
+        if (OptionalUtil.isEmpty(tileEntity)) {
             try {
                 ItemStack block = new ItemStack(unidentifiedBlock, 1, world.getBlockMetadata(x, y, z));
 

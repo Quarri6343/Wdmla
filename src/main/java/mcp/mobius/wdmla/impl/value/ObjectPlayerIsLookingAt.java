@@ -16,19 +16,21 @@ import java.util.Optional;
 
 public class ObjectPlayerIsLookingAt {
 
-    private final Optional<MovingObjectPosition> target;
+    private final @Nullable MovingObjectPosition target;
     private final Minecraft mc = Minecraft.getMinecraft();
 
     public ObjectPlayerIsLookingAt() {
         if (isMcPointingEntity()) {
-            target = Optional.of(mc.objectMouseOver);
+            target = mc.objectMouseOver;
             return;
         }
 
-        target = Optional.ofNullable(mc.renderViewEntity)
-                .flatMap(viewPoint ->
-                    this.rayTrace(viewPoint, mc.playerController.getBlockReachDistance(), 0)
-                );
+        if(mc.renderViewEntity != null) {
+            target = this.rayTrace(mc.renderViewEntity, mc.playerController.getBlockReachDistance(), 0).orElse(null);
+            return;
+        }
+
+        target = null;
     }
 
     private boolean isMcPointingEntity() {
@@ -46,13 +48,12 @@ public class ObjectPlayerIsLookingAt {
     }
 
     public boolean isBlock() {
-        return target.map(target -> target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-                .orElse(false);
+        return target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK;
     }
 
     public Optional<UnIdentifiedBlockPos> getBlockPos() {
         if(isBlock()) {
-            return target.map(target -> new UnIdentifiedBlockPos(target.blockX, target.blockY, target.blockZ));
+            return Optional.of(new UnIdentifiedBlockPos(target.blockX, target.blockY, target.blockZ));
         }
 
         return Optional.empty();
@@ -66,7 +67,7 @@ public class ObjectPlayerIsLookingAt {
         Vec3 vec32 = vec3.addVector(vec31.xCoord * par1, vec31.yCoord * par1, vec31.zCoord * par1);
 
         if (ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, true))
-            return Optional.of(entity.worldObj.rayTraceBlocks(vec3, vec32, true));
-        else return Optional.of(entity.worldObj.rayTraceBlocks(vec3, vec32, false));
+            return Optional.ofNullable(entity.worldObj.rayTraceBlocks(vec3, vec32, true));
+        else return Optional.ofNullable(entity.worldObj.rayTraceBlocks(vec3, vec32, false));
     }
 }

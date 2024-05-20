@@ -1,14 +1,14 @@
 package mcp.mobius.wdmla.api.ui.style;
 
-import mcp.mobius.wdmla.api.ui.WidgetAlignment;
+import mcp.mobius.wdmla.api.ui.ComponentAlignment;
 
 public interface ITextStyle {
 
-    WidgetAlignment DEFAULT_ALIGN = WidgetAlignment.TOPLEFT;
+    ComponentAlignment DEFAULT_ALIGN = ComponentAlignment.TOPLEFT;
     int DEFAULT_COLOR = 0xDEDEDE;
     boolean DEFAULT_SHADOW = true;
 
-    WidgetAlignment getAlignment();
+    ComponentAlignment getAlignment();
 
     int getColor();
 

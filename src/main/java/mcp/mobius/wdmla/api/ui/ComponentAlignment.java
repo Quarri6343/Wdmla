@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.api.ui;
 
-public enum WidgetAlignment {
+public enum ComponentAlignment {
     TOPLEFT,
     CENTER,
     BOTTOMRIGHT

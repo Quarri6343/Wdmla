@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.ui.widget;
+package mcp.mobius.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,40 +6,42 @@ import java.util.List;
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IWidget;
+import mcp.mobius.wdmla.api.ui.IComponent;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 
-public class Widget implements IWidget {
+public class Component implements IComponent {
 
-    protected final List<IWidget> children;
+    protected List<IComponent> children;
 
     // settings
-    protected final IPadding padding;
-    protected final ISize size;
+    protected IPadding padding;
+    protected ISize size;
 
     // render
-    protected final IDrawable foreground;
+    protected IDrawable foreground;
 
-    protected Widget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground) {
+    protected Component(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground) {
         this.children = children;
         this.padding = padding;
         this.size = size;
         this.foreground = foreground;
     }
 
-    public Widget padding(@NotNull IPadding padding) {
-        return new Widget(this.children, padding, size, foreground);
+    public Component padding(@NotNull IPadding padding) {
+        this.padding = padding;
+        return this;
     }
 
-    public Widget size(@NotNull ISize size) {
-        return new Widget(this.children, padding, size, foreground);
+    public Component size(@NotNull ISize size) {
+        this.size = size;
+        return this;
     }
 
     @Override
     public void tick(int x, int y) {
-        for (IWidget child : children) {
+        for (IComponent child : children) {
             child.tick(x + padding.getLeft(), y + padding.getTop());
         }
         foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
@@ -55,9 +57,8 @@ public class Widget implements IWidget {
         return padding.getTop() + size.getH() + padding.getBottom();
     }
 
-    public Widget child(@NotNull IWidget child) {
-        List<IWidget> newChildren = new ArrayList<>(children);
-        newChildren.add(child);
-        return new Widget(newChildren, padding, size, foreground);
+    public Component child(@NotNull IComponent child) {
+        this.children.add(child);
+        return this;
     }
 }

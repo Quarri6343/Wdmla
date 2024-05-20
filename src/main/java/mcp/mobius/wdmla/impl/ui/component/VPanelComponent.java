@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.ui.widget;
+package mcp.mobius.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IWidget;
+import mcp.mobius.wdmla.api.ui.IComponent;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
@@ -15,14 +15,14 @@ import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 /**
  * A Vertical layout panel. Size depends on children.
  */
-public class VPanelWidget extends PanelWidget {
+public class VPanelComponent extends PanelComponent {
 
-    public VPanelWidget() {
+    public VPanelComponent() {
         super();
     }
 
-    protected VPanelWidget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground,
-                           IPanelStyle style) {
+    protected VPanelComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
+                              IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 
@@ -59,7 +59,7 @@ public class VPanelWidget extends PanelWidget {
     @Override
     public int getWidth() {
         int w = 0;
-        for (IWidget child : children) {
+        for (IComponent child : children) {
             int ww = child.getWidth();
             if (ww > w) {
                 w = ww;
@@ -72,22 +72,16 @@ public class VPanelWidget extends PanelWidget {
     @Override
     public int getHeight() {
         int h = 0;
-        for (IWidget child : children) {
+        for (IComponent child : children) {
             h += child.getHeight();
         }
 
-        return padding.getTop() + h + style.getSpacing() * (children.size() - 1) + padding.getBottom();
+        int totalSpacing = children.isEmpty() ? 0 : style.getSpacing() * (children.size() - 1);
+        return padding.getTop() + h + totalSpacing + padding.getBottom();
     }
 
     @Override
-    public VPanelWidget child(@NotNull IWidget child) {
-        List<IWidget> newChildren = new ArrayList<>(children);
-        newChildren.add(child);
-        return new VPanelWidget(newChildren, padding, size, foreground, style);
-    }
-
-    @Override
-    public PanelWidget size(@NotNull ISize size) {
+    public PanelComponent size(@NotNull ISize size) {
         throw new IllegalArgumentException("Vertical Panel is auto sized.");
     }
 }

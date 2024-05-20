@@ -1,10 +1,10 @@
-package mcp.mobius.wdmla.impl.ui.widget;
+package mcp.mobius.wdmla.impl.ui.component;
 
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IWidget;
+import mcp.mobius.wdmla.api.ui.IComponent;
 import mcp.mobius.wdmla.impl.ui.drawable.BackgroundDrawable;
 import mcp.mobius.wdmla.impl.ui.drawable.BreakProgressDrawable;
 import mcp.mobius.wdmla.impl.ui.value.HUDRenderArea;
@@ -16,17 +16,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class RootWidget extends VPanelWidget {
+public final class RootComponent extends VPanelComponent {
 
     private final @NotNull IDrawable background = new BackgroundDrawable();
     private final @NotNull IDrawable breakProgress = new BreakProgressDrawable();
 
-    public RootWidget() {
+    public RootComponent() {
         super();
     }
 
-    private RootWidget(List<IWidget> children, IPadding padding, ISize size, IDrawable foreground,
-                       IPanelStyle style) {
+    private RootComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
+                          IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 
@@ -44,12 +44,5 @@ public final class RootWidget extends VPanelWidget {
         tick(fgArea.getX(), fgArea.getY());
 
         GLStateHelper.endDraw();
-    }
-
-    @Override
-    public RootWidget child(@NotNull IWidget child) {
-        List<IWidget> newChildren = new ArrayList<>(children);
-        newChildren.add(child);
-        return new RootWidget(newChildren, padding, size, foreground, style);
     }
 }

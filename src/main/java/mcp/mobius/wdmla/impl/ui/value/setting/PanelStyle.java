@@ -1,21 +1,21 @@
 package mcp.mobius.wdmla.impl.ui.value.setting;
 
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
-import mcp.mobius.wdmla.api.ui.WidgetAlignment;
+import mcp.mobius.wdmla.api.ui.ComponentAlignment;
 
 public class PanelStyle implements IPanelStyle {
 
     private final int borderColor;
-    private final WidgetAlignment alignment;
+    private final ComponentAlignment alignment;
     private final int spacing;
 
     public PanelStyle() {
         this.borderColor = NO_BORDER;
-        this.alignment = WidgetAlignment.TOPLEFT;
+        this.alignment = ComponentAlignment.TOPLEFT;
         this.spacing = DEFAULT_SPACE;
     }
 
-    public PanelStyle(int borderColor, WidgetAlignment alignment, int spacing) {
+    public PanelStyle(int borderColor, ComponentAlignment alignment, int spacing) {
         this.borderColor = borderColor;
         this.alignment = alignment;
         this.spacing = spacing;
@@ -25,7 +25,7 @@ public class PanelStyle implements IPanelStyle {
         return new PanelStyle(borderColor, alignment, spacing);
     }
 
-    public PanelStyle alignment(WidgetAlignment alignment) {
+    public PanelStyle alignment(ComponentAlignment alignment) {
         return new PanelStyle(borderColor, alignment, spacing);
     }
 
@@ -39,7 +39,7 @@ public class PanelStyle implements IPanelStyle {
     }
 
     @Override
-    public WidgetAlignment getAlignment() {
+    public ComponentAlignment getAlignment() {
         return alignment;
     }
 

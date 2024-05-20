@@ -1,27 +1,27 @@
 package mcp.mobius.wdmla.impl.ui.value.setting;
 
 import mcp.mobius.wdmla.api.ui.style.ITextStyle;
-import mcp.mobius.wdmla.api.ui.WidgetAlignment;
+import mcp.mobius.wdmla.api.ui.ComponentAlignment;
 
 public class TextStyle implements ITextStyle {
 
-    private final WidgetAlignment alignment;
+    private final ComponentAlignment alignment;
     private final int color;
     private final boolean shadow;
 
     public TextStyle() {
-        this.alignment = WidgetAlignment.TOPLEFT;
+        this.alignment = ComponentAlignment.TOPLEFT;
         this.color = DEFAULT_COLOR;
         this.shadow = DEFAULT_SHADOW;
     }
 
-    public TextStyle(WidgetAlignment alignment, int color, boolean shadow) {
+    public TextStyle(ComponentAlignment alignment, int color, boolean shadow) {
         this.alignment = alignment;
         this.color = color;
         this.shadow = shadow;
     }
 
-    public TextStyle alignment(WidgetAlignment alignment) {
+    public TextStyle alignment(ComponentAlignment alignment) {
         return new TextStyle(alignment, color, shadow);
     }
 
@@ -34,7 +34,7 @@ public class TextStyle implements ITextStyle {
     }
 
     @Override
-    public WidgetAlignment getAlignment() {
+    public ComponentAlignment getAlignment() {
         return alignment;
     }
 

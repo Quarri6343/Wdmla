@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.api.ui.style;
 
-import mcp.mobius.wdmla.api.ui.WidgetAlignment;
+import mcp.mobius.wdmla.api.ui.ComponentAlignment;
 
 public interface IPanelStyle {
 
@@ -9,7 +9,7 @@ public interface IPanelStyle {
 
     int getBorderColor();
 
-    WidgetAlignment getAlignment();
+    ComponentAlignment getAlignment();
 
     int getSpacing();
 }

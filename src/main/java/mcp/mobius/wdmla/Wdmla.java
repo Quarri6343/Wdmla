@@ -1,24 +1,31 @@
 package mcp.mobius.wdmla;
 
+import com.google.common.eventbus.Subscribe;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.wdmla.api.IIdentifiedBlock;
-import mcp.mobius.wdmla.impl.ui.widget.*;
+import mcp.mobius.wdmla.api.IBlockAccessor;
+import mcp.mobius.wdmla.api.IComponentProvider;
+import mcp.mobius.wdmla.api.IWdmlaPlugin;
+import mcp.mobius.wdmla.impl.ui.component.RootComponent;
+import mcp.mobius.wdmla.impl.value.BlockAccessor;
 import mcp.mobius.wdmla.impl.value.ObjectPlayerIsLookingAt;
 import mcp.mobius.wdmla.impl.value.UnIdentifiedBlockPos;
-import mcp.mobius.wdmla.impl.ui.value.setting.TextStyle;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
-import mcp.mobius.wdmla.impl.widget.*;
+import mcp.mobius.wdmla.test.TestPlugin;
+import mcp.mobius.wdmla.util.OptionalUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Wdmla {
@@ -26,27 +33,53 @@ public class Wdmla {
     //@instance
     public static Wdmla instance = new Wdmla();
 
-    private static Optional<RootWidget> mainHUD = Optional.empty();
+    private static @Nullable RootComponent mainHUD = null;
+    private static @Nullable IBlockAccessor lastLookingBlock = null;
+
+    public void loadComplete(FMLLoadCompleteEvent event) {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            IWdmlaPlugin testPlugin = new TestPlugin();
+            testPlugin.registerClient(WdmlaClientRegistration.instance());
+        }
+        //TODO: IMC
+    }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickRender(TickEvent.RenderTickEvent event) {
-        mainHUD.ifPresent(RootWidget::renderHUD);
+        if(mainHUD != null) {
+            mainHUD.renderHUD();
+        }
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickClient(TickEvent.ClientTickEvent event) {
-        mainHUD = Optional.empty();
         if(!canShowHUD()) {
+            mainHUD = null;
+            lastLookingBlock = null;
             return;
         }
 
         Optional<UnIdentifiedBlockPos> lookingBlockPos = new ObjectPlayerIsLookingAt().getBlockPos();
-        lookingBlockPos.ifPresent(block -> {
-            IIdentifiedBlock target = block.identify();
-            mainHUD = Optional.of(getTestWidget(target.getItemForm()));
-        });
+        OptionalUtil.ifPresentOrElse(lookingBlockPos, block -> {
+            BlockAccessor target = block.identify();
+            if(target.isSameBlock(lastLookingBlock)) { //TODO: method inside Accessor to compare position
+                return;
+            }
+
+            mainHUD = null;
+            List<IComponentProvider<BlockAccessor>> providers = WdmlaClientRegistration.instance().getProviders(target.getBlock());
+            if(!providers.isEmpty()) {
+                RootComponent rootComponent = new RootComponent();
+                for (IComponentProvider<BlockAccessor> provider : providers) {
+                    provider.appendTooltip(rootComponent, target); //TODO: use AccessorHandlers
+                }
+
+                mainHUD = rootComponent;
+                lastLookingBlock = target;
+            }
+        }, () -> mainHUD = null);
     }
 
     private static boolean canShowHUD() {
@@ -55,19 +88,11 @@ public class Wdmla {
         Optional<EntityPlayer> player = Optional.ofNullable(mc.thePlayer);
         Optional<GuiScreen> currentScreen = Optional.ofNullable(mc.currentScreen);
 
-        return  currentScreen.isPresent()
+        return  OptionalUtil.isEmpty(currentScreen)
                 && world.isPresent()
                 && player.isPresent()
                 && Minecraft.isGuiEnabled()
                 && !mc.gameSettings.keyBindPlayerList.getIsKeyPressed()
                 && ConfigHandler.instance().showTooltip();
-    }
-
-    private @NotNull RootWidget getTestWidget(ItemStack targetStack) {
-        return new RootWidget().child(
-                new VPanelWidget()
-                        .child(new TextWidget("TEST BLOCK").style(new TextStyle().color(0xFFAA0000)))
-                        .child(new ItemWidget(targetStack))
-                        .child(new ProgressWidget(100, 200).size(new Size(50, 30))));
     }
 }

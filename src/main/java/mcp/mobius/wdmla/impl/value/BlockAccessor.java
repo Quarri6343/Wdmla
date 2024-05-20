@@ -1,13 +1,16 @@
 package mcp.mobius.wdmla.impl.value;
 
-import mcp.mobius.wdmla.api.IIdentifiedBlock;
+import mcp.mobius.wdmla.api.IBlockAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class IdentifiedBlock implements IIdentifiedBlock {
+import java.util.Optional;
+
+public class BlockAccessor implements IBlockAccessor {
 
     private final Block block;
     private final TileEntity tileEntity;
@@ -16,7 +19,7 @@ public class IdentifiedBlock implements IIdentifiedBlock {
     private final World world;
     private final EntityPlayer player;
 
-    public IdentifiedBlock(Block block, TileEntity tileEntity, ItemStack identifiedStack, World world, EntityPlayer player) {
+    public BlockAccessor(Block block, TileEntity tileEntity, ItemStack identifiedStack, World world, EntityPlayer player) {
         this.block = block;
         this.tileEntity = tileEntity;
         this.identifiedStack = identifiedStack;
@@ -47,5 +50,9 @@ public class IdentifiedBlock implements IIdentifiedBlock {
     @Override
     public EntityPlayer getPlayer() {
         return player;
+    }
+
+    public boolean isSameBlock(@Nullable IBlockAccessor accessor) {
+        return accessor != null && accessor.getBlock().equals(this.getBlock());
     }
 }
