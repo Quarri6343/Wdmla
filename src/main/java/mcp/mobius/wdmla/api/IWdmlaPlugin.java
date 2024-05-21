@@ -1,10 +1,10 @@
 package mcp.mobius.wdmla.api;
 
-public interface IWdmlaPlugin  {
+public interface IWdmlaPlugin {
 
-//    default void register(IWailaCommonRegistration registration) {
-//
-//    }
+     default void register(IWdmlaCommonRegistration registration) {
+
+     }
 
     default void registerClient(IWdmlaClientRegistration registration) {
 

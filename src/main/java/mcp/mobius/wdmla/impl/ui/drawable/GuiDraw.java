@@ -1,7 +1,5 @@
 package mcp.mobius.wdmla.impl.ui.drawable;
 
-import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -10,8 +8,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import mcp.mobius.waila.utils.WailaExceptionHandler;
+import mcp.mobius.wdmla.api.ui.sizer.IArea;
 
 public class GuiDraw {
 
@@ -111,8 +113,8 @@ public class GuiDraw {
         GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
-    public static void drawThickBeveledBox(IArea area, int thickness, int topleftcolor,
-            int botrightcolor, int fillcolor) {
+    public static void drawThickBeveledBox(IArea area, int thickness, int topleftcolor, int botrightcolor,
+            int fillcolor) {
         int x1 = area.getX();
         int y1 = area.getY();
         int x2 = area.getEX();

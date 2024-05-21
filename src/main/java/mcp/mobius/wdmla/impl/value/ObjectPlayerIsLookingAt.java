@@ -1,7 +1,7 @@
 package mcp.mobius.wdmla.impl.value;
 
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.utils.Constants;
+import java.util.Optional;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,10 +9,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.common.config.Configuration;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.utils.Constants;
 
 public class ObjectPlayerIsLookingAt {
 
@@ -25,7 +27,7 @@ public class ObjectPlayerIsLookingAt {
             return;
         }
 
-        if(mc.renderViewEntity != null) {
+        if (mc.renderViewEntity != null) {
             target = this.rayTrace(mc.renderViewEntity, mc.playerController.getBlockReachDistance(), 0).orElse(null);
             return;
         }
@@ -34,7 +36,8 @@ public class ObjectPlayerIsLookingAt {
     }
 
     private boolean isMcPointingEntity() {
-        return mc.objectMouseOver != null && mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY
+        return mc.objectMouseOver != null
+                && mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY
                 && !shouldHidePlayer(mc.objectMouseOver.entityHit);
     }
 
@@ -52,14 +55,14 @@ public class ObjectPlayerIsLookingAt {
     }
 
     public Optional<UnIdentifiedBlockPos> getBlockPos() {
-        if(isBlock()) {
+        if (isBlock()) {
             return Optional.of(new UnIdentifiedBlockPos(target.blockX, target.blockY, target.blockZ));
         }
 
         return Optional.empty();
     }
 
-    //TODO:entity
+    // TODO:entity
 
     public Optional<MovingObjectPosition> rayTrace(@NotNull EntityLivingBase entity, double par1, float par3) {
         Vec3 vec3 = entity.getPosition(par3);

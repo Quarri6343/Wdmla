@@ -1,7 +1,7 @@
 package mcp.mobius.wdmla.impl.ui.value.setting;
 
-import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.api.ui.ComponentAlignment;
+import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 
 public class PanelStyle implements IPanelStyle {
 

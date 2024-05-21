@@ -1,14 +1,14 @@
 package mcp.mobius.wdmla.impl.value;
 
-import mcp.mobius.wdmla.api.IBlockAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
+import mcp.mobius.wdmla.api.IBlockAccessor;
 
 public class BlockAccessor implements IBlockAccessor {
 
@@ -19,7 +19,8 @@ public class BlockAccessor implements IBlockAccessor {
     private final World world;
     private final EntityPlayer player;
 
-    public BlockAccessor(Block block, TileEntity tileEntity, ItemStack identifiedStack, World world, EntityPlayer player) {
+    public BlockAccessor(Block block, TileEntity tileEntity, ItemStack identifiedStack, World world,
+            EntityPlayer player) {
         this.block = block;
         this.tileEntity = tileEntity;
         this.identifiedStack = identifiedStack;

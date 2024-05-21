@@ -1,7 +1,7 @@
 package mcp.mobius.wdmla.impl.ui.value.setting;
 
-import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 import mcp.mobius.wdmla.api.ui.ComponentAlignment;
+import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 
 public class TextStyle implements ITextStyle {
 

@@ -1,8 +1,8 @@
 package mcp.mobius.wdmla.impl.ui.drawable;
 
 import mcp.mobius.waila.overlay.OverlayConfig;
-import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import mcp.mobius.wdmla.api.ui.IDrawable;
+import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 
 public class BackgroundDrawable implements IDrawable {

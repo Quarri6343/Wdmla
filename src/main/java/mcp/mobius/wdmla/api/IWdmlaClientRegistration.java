@@ -1,9 +1,8 @@
 package mcp.mobius.wdmla.api;
 
-import mcp.mobius.wdmla.impl.value.BlockAccessor;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
 import org.jetbrains.annotations.ApiStatus;
+
+import mcp.mobius.wdmla.impl.value.BlockAccessor;
 
 @ApiStatus.NonExtendable
 public interface IWdmlaClientRegistration {

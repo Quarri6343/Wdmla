@@ -1,6 +1,5 @@
 package mcp.mobius.wdmla.api.ui;
 
-import mcp.mobius.wdmla.impl.ui.component.Component;
 import org.jetbrains.annotations.NotNull;
 
 public interface IComponent {

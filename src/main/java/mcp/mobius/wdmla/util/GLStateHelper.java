@@ -1,10 +1,12 @@
 package mcp.mobius.wdmla.util;
 
-import mcp.mobius.waila.overlay.OverlayConfig;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import mcp.mobius.waila.overlay.OverlayConfig;
+
 public class GLStateHelper {
+
     private enum HUDGLState {
         BEFORE_BG,
         BEFORE_FG,
@@ -37,7 +39,7 @@ public class GLStateHelper {
     }
 
     public static void prepareBGDraw() {
-        if(state != HUDGLState.BEFORE_BG) {
+        if (state != HUDGLState.BEFORE_BG) {
             throw new AssertionError("Illegal GL State");
         }
 
@@ -55,7 +57,7 @@ public class GLStateHelper {
     }
 
     public static void prepareFGDraw() {
-        if(state != HUDGLState.BEFORE_FG) {
+        if (state != HUDGLState.BEFORE_FG) {
             throw new AssertionError("Illegal GL State");
         }
 
@@ -66,7 +68,7 @@ public class GLStateHelper {
     }
 
     public static void endDraw() {
-        if(state != HUDGLState.AFTER_FG) {
+        if (state != HUDGLState.AFTER_FG) {
             throw new AssertionError("Illegal GL State");
         }
 

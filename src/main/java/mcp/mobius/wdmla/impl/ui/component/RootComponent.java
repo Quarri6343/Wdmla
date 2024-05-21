@@ -1,20 +1,20 @@
 package mcp.mobius.wdmla.impl.ui.component;
 
+import java.util.List;
+
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.ui.IComponent;
+import mcp.mobius.wdmla.api.ui.IDrawable;
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
-import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IComponent;
 import mcp.mobius.wdmla.impl.ui.drawable.BackgroundDrawable;
 import mcp.mobius.wdmla.impl.ui.drawable.BreakProgressDrawable;
 import mcp.mobius.wdmla.impl.ui.value.HUDRenderArea;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
 import mcp.mobius.wdmla.util.GLStateHelper;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class RootComponent extends VPanelComponent {
 
@@ -26,7 +26,7 @@ public final class RootComponent extends VPanelComponent {
     }
 
     private RootComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
-                          IPanelStyle style) {
+            IPanelStyle style) {
         super(children, padding, size, foreground, style);
     }
 

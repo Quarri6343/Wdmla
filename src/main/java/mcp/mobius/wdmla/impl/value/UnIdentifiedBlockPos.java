@@ -1,7 +1,8 @@
 package mcp.mobius.wdmla.impl.value;
 
-import mcp.mobius.wdmla.api.IBlockAccessor;
-import mcp.mobius.wdmla.util.OptionalUtil;
+import java.util.ArrayList;
+import java.util.Optional;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,14 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import mcp.mobius.wdmla.util.OptionalUtil;
 
 /**
- * capable of converting BlockPos to corresponding ItemStack.
- * ItemStack can be air.
+ * capable of converting BlockPos to corresponding ItemStack. ItemStack can be air.
  */
 public class UnIdentifiedBlockPos {
 
@@ -49,7 +49,7 @@ public class UnIdentifiedBlockPos {
         Block unidentifiedBlock = world.getBlock(x, y, z);
         Optional<TileEntity> tileEntity = Optional.ofNullable(world.getTileEntity(x, y, z));
 
-        //TODO: simple provider for block and TE
+        // TODO: simple provider for block and TE
 
         if (OptionalUtil.isEmpty(tileEntity)) {
             try {

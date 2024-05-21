@@ -1,8 +1,8 @@
 package mcp.mobius.wdmla.impl.ui.value.sizer;
 
-import mcp.mobius.wdmla.api.ui.sizer.ISize;
-
 import java.awt.*;
+
+import mcp.mobius.wdmla.api.ui.sizer.ISize;
 
 public class Size implements ISize {
 

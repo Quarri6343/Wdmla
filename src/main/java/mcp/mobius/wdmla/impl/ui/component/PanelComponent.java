@@ -3,13 +3,13 @@ package mcp.mobius.wdmla.impl.ui.component;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
+
+import mcp.mobius.wdmla.api.ui.IComponent;
+import mcp.mobius.wdmla.api.ui.IDrawable;
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
-import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IComponent;
-import org.jetbrains.annotations.NotNull;
-
 import mcp.mobius.wdmla.impl.ui.drawable.BorderDrawable;
 import mcp.mobius.wdmla.impl.ui.value.setting.PanelStyle;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
@@ -28,7 +28,7 @@ public class PanelComponent extends Component {
     }
 
     protected PanelComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
-                             @NotNull IPanelStyle style) {
+            @NotNull IPanelStyle style) {
         super(children, padding, size, foreground);
         this.style = style;
     }

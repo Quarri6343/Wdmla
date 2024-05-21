@@ -1,8 +1,34 @@
 package mcp.mobius.wdmla;
 
-import com.google.common.eventbus.Subscribe;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+
+import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.api.IWailaBlock;
+import mcp.mobius.waila.api.IWailaDataProvider;
+import mcp.mobius.waila.api.impl.DataAccessorCommon;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
+import mcp.mobius.waila.cbcore.Layout;
+import mcp.mobius.waila.gui.interfaces.IWidget;
+import mcp.mobius.waila.network.Message0x01TERequest;
+import mcp.mobius.waila.network.WailaPacketHandler;
+import mcp.mobius.waila.utils.Constants;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
+import mcp.mobius.wdmla.impl.WdmlaClientRegistration;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+
+import net.minecraftforge.common.config.Configuration;
+import org.jetbrains.annotations.Nullable;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -18,19 +44,10 @@ import mcp.mobius.wdmla.impl.value.ObjectPlayerIsLookingAt;
 import mcp.mobius.wdmla.impl.value.UnIdentifiedBlockPos;
 import mcp.mobius.wdmla.test.TestPlugin;
 import mcp.mobius.wdmla.util.OptionalUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 public class Wdmla {
 
-    //@instance
+    // @instance
     public static Wdmla instance = new Wdmla();
 
     private static @Nullable RootComponent mainHUD = null;
@@ -41,13 +58,13 @@ public class Wdmla {
             IWdmlaPlugin testPlugin = new TestPlugin();
             testPlugin.registerClient(WdmlaClientRegistration.instance());
         }
-        //TODO: IMC
+        // TODO: IMC
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickRender(TickEvent.RenderTickEvent event) {
-        if(mainHUD != null) {
+        if (mainHUD != null) {
             mainHUD.renderHUD();
         }
     }
@@ -55,7 +72,7 @@ public class Wdmla {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickClient(TickEvent.ClientTickEvent event) {
-        if(!canShowHUD()) {
+        if (!canShowHUD()) {
             mainHUD = null;
             lastLookingBlock = null;
             return;
@@ -64,16 +81,17 @@ public class Wdmla {
         Optional<UnIdentifiedBlockPos> lookingBlockPos = new ObjectPlayerIsLookingAt().getBlockPos();
         OptionalUtil.ifPresentOrElse(lookingBlockPos, block -> {
             BlockAccessor target = block.identify();
-            if(target.isSameBlock(lastLookingBlock)) { //TODO: method inside Accessor to compare position
+            if (target.isSameBlock(lastLookingBlock)) {
                 return;
             }
 
             mainHUD = null;
-            List<IComponentProvider<BlockAccessor>> providers = WdmlaClientRegistration.instance().getProviders(target.getBlock());
-            if(!providers.isEmpty()) {
+            List<IComponentProvider<BlockAccessor>> providers = WdmlaClientRegistration.instance()
+                    .getProviders(target.getBlock());
+            if (!providers.isEmpty()) {
                 RootComponent rootComponent = new RootComponent();
                 for (IComponentProvider<BlockAccessor> provider : providers) {
-                    provider.appendTooltip(rootComponent, target); //TODO: use AccessorHandlers
+                    provider.appendTooltip(rootComponent, target);
                 }
 
                 mainHUD = rootComponent;
@@ -88,8 +106,7 @@ public class Wdmla {
         Optional<EntityPlayer> player = Optional.ofNullable(mc.thePlayer);
         Optional<GuiScreen> currentScreen = Optional.ofNullable(mc.currentScreen);
 
-        return  OptionalUtil.isEmpty(currentScreen)
-                && world.isPresent()
+        return OptionalUtil.isEmpty(currentScreen) && world.isPresent()
                 && player.isPresent()
                 && Minecraft.isGuiEnabled()
                 && !mc.gameSettings.keyBindPlayerList.getIsKeyPressed()

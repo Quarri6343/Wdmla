@@ -1,5 +1,19 @@
 package mcp.mobius.waila.overlay;
 
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+import net.minecraftforge.common.config.Configuration;
+
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -13,18 +27,6 @@ import mcp.mobius.waila.api.impl.elements.ProbeInfo;
 import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.utils.Constants;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
-import org.lwjgl.input.Keyboard;
-
-import java.util.List;
-
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 public class WailaTickHandler {
 
@@ -53,7 +55,7 @@ public class WailaTickHandler {
         // return;
         // }
 
-//        OverlayRenderer.renderOverlay();
+        // OverlayRenderer.renderOverlay();
     }
 
     @SubscribeEvent

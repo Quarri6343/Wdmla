@@ -3,7 +3,6 @@ package mcp.mobius.waila;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import mcp.mobius.wdmla.Wdmla;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
@@ -36,6 +35,7 @@ import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.overlay.WailaTickHandler;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
+import mcp.mobius.wdmla.Wdmla;
 
 @Mod(
         modid = "Waila",

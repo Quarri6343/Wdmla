@@ -1,8 +1,9 @@
 package mcp.mobius.wdmla.impl.ui.value;
 
+import net.minecraft.client.Minecraft;
+
 import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
-import net.minecraft.client.Minecraft;
 
 public class HUDBlockDamage {
 
@@ -26,6 +27,6 @@ public class HUDBlockDamage {
 
     public IArea computeDrawArea(IArea area) {
         int width = (int) ((area.getW() - 1) * damage);
-        return new Area(area.getX() + 1, area.getY(), width - 1, 2); //TODO: configure Area via config
+        return new Area(area.getX() + 1, area.getY(), width - 1, 2); // TODO: configure Area via config
     }
 }

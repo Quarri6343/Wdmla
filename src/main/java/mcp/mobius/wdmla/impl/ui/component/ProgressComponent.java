@@ -1,15 +1,8 @@
 package mcp.mobius.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import mcp.mobius.wdmla.api.ui.sizer.IPadding;
-import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
-import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.IComponent;
-import org.jetbrains.annotations.NotNull;
-
 import mcp.mobius.wdmla.impl.ui.drawable.ProgressDrawable;
 import mcp.mobius.wdmla.impl.ui.value.Progress;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;

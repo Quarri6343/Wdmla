@@ -1,18 +1,22 @@
-package mcp.mobius.wdmla;
-
-import mcp.mobius.wdmla.api.IComponentProvider;
-import mcp.mobius.wdmla.api.IWdmlaClientRegistration;
-import mcp.mobius.wdmla.impl.value.BlockAccessor;
+package mcp.mobius.wdmla.impl;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import mcp.mobius.wdmla.api.IComponentProvider;
+import mcp.mobius.wdmla.api.IWdmlaClientRegistration;
+import mcp.mobius.wdmla.impl.value.BlockAccessor;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+
 public class WdmlaClientRegistration implements IWdmlaClientRegistration {
 
     private static final WdmlaClientRegistration INSTANCE = new WdmlaClientRegistration();
 
+    //We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
+    //TODO: use Session
 
     public static WdmlaClientRegistration instance() {
         return INSTANCE;
@@ -29,10 +33,8 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
         }
 
         ArrayList<IComponentProvider<BlockAccessor>> providers = dataProviders.get(clazz);
-        if (providers.contains(provider)){
-            throw new RuntimeException(
-                    "Trying to register the same provider to Wdmla twice !"
-            );
+        if (providers.contains(provider)) {
+            throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
         }
 
         dataProviders.get(clazz).add(provider);
