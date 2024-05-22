@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
@@ -24,12 +25,14 @@ public class UnIdentifiedBlockPos {
     private final int x;
     private final int y;
     private final int z;
+    private final MovingObjectPosition mop;
     private final Minecraft mc = Minecraft.getMinecraft();
 
-    public UnIdentifiedBlockPos(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public UnIdentifiedBlockPos(MovingObjectPosition mop) {
+        this.x = mop.blockX;
+        this.y = mop.blockY;
+        this.z = mop.blockZ;
+        this.mop = mop;
     }
 
     public @NotNull BlockAccessor identify() {
@@ -39,7 +42,7 @@ public class UnIdentifiedBlockPos {
 
         World world = mc.theWorld;
         EntityPlayer player = mc.thePlayer;
-        return new BlockAccessor(world.getBlock(x, y, z), world.getTileEntity(x, y, z), items.get(0), world, player);
+        return new BlockAccessor(world.getBlock(x, y, z), world.getTileEntity(x, y, z), items.get(0), world, player, mop);
     }
 
     private @NotNull ArrayList<ItemStack> getIdentifiedStacks() {

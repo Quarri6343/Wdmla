@@ -51,7 +51,7 @@ public class HUDHandlerHarvestability implements IWailaDataProvider, IProbeDataP
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> toolTip, IWailaDataAccessor accessor,
             IWailaConfigHandler config) {
-        if (!ConfigHandler.instance()
+        if (ConfigHandler.instance()
                 .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
             return toolTip;
         }

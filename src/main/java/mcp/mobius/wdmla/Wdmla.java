@@ -15,6 +15,7 @@ import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
+import mcp.mobius.wdmla.impl.BlockAccessorClientHandler;
 import mcp.mobius.wdmla.impl.WdmlaClientRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -36,7 +37,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.wdmla.api.IBlockAccessor;
-import mcp.mobius.wdmla.api.IComponentProvider;
 import mcp.mobius.wdmla.api.IWdmlaPlugin;
 import mcp.mobius.wdmla.impl.ui.component.RootComponent;
 import mcp.mobius.wdmla.impl.value.BlockAccessor;
@@ -51,7 +51,6 @@ public class Wdmla {
     public static Wdmla instance = new Wdmla();
 
     private static @Nullable RootComponent mainHUD = null;
-    private static @Nullable IBlockAccessor lastLookingBlock = null;
 
     public void loadComplete(FMLLoadCompleteEvent event) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
@@ -74,31 +73,18 @@ public class Wdmla {
     public void tickClient(TickEvent.ClientTickEvent event) {
         if (!canShowHUD()) {
             mainHUD = null;
-            lastLookingBlock = null;
             return;
         }
 
         Optional<UnIdentifiedBlockPos> lookingBlockPos = new ObjectPlayerIsLookingAt().getBlockPos();
         OptionalUtil.ifPresentOrElse(lookingBlockPos, block -> {
             BlockAccessor target = block.identify();
-            if (target.isSameBlock(lastLookingBlock)) {
-                return;
-            }
-
-            mainHUD = null;
-            List<IComponentProvider<BlockAccessor>> providers = WdmlaClientRegistration.instance()
-                    .getProviders(target.getBlock());
-            if (!providers.isEmpty()) {
-                RootComponent rootComponent = new RootComponent();
-                for (IComponentProvider<BlockAccessor> provider : providers) {
-                    provider.appendTooltip(rootComponent, target);
-                }
-
-                mainHUD = rootComponent;
-                lastLookingBlock = target;
-            }
+            //TODO: if a player looking a same block, don't request new Info until TE request occurs
+            mainHUD = BlockAccessorClientHandler.INSTANCE.handle(target);
         }, () -> mainHUD = null);
     }
+
+    //put appendtooltip method here
 
     private static boolean canShowHUD() {
         Minecraft mc = Minecraft.getMinecraft();

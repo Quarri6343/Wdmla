@@ -42,8 +42,8 @@ public class TOPOverlayRenderer {
                 && RayTracing.instance().getTarget() != null))
             return;
 
-        computePositionAndSize(WailaTickHandler.instance().probe);
-        renderElements(WailaTickHandler.instance().probe);
+//        computePositionAndSize(WailaTickHandler.instance().probe);
+//        renderElements(WailaTickHandler.instance().probe);
     }
 
     public static void renderElements(ProbeInfo probeInfo) {

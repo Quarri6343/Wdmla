@@ -4,6 +4,7 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +34,7 @@ public class WailaTickHandler {
     public Tooltip tooltip = null;
     public MetaDataProvider handler = new MetaDataProvider();
 
-    public ProbeInfo probe = null;
+//    public ProbeInfo probe = null;
     public MetaProbeDataProvider elementHandler = new MetaProbeDataProvider();
 
     private final Minecraft mc = Minecraft.getMinecraft();
@@ -58,10 +59,9 @@ public class WailaTickHandler {
         // OverlayRenderer.renderOverlay();
     }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
+//    @SubscribeEvent
+//    @SideOnly(Side.CLIENT)
     public void tickClient(TickEvent.ClientTickEvent event) {
-
         if (!Keyboard.isKeyDown(KeyEvent.key_show.getKeyCode())
                 && !ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)
                 && ConfigHandler.instance()
@@ -75,18 +75,18 @@ public class WailaTickHandler {
             RayTracing.instance().fire();
             MovingObjectPosition target = RayTracing.instance().getTarget();
 
-            probe = null;
-            if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
-                    && !ConfigHandler.instance()
-                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
-                DataAccessorCommon accessor = DataAccessorCommon.instance;
-                accessor.set(world, player, target);
-                ItemStack targetStack = RayTracing.instance().getTargetStack();
-
-                if (targetStack != null) {
-                    probe = elementHandler.handleBlockElementData(targetStack, world, player, target, accessor);
-                }
-            }
+//            probe = null;
+//            if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
+//                    && !ConfigHandler.instance()
+//                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
+//                DataAccessorCommon accessor = DataAccessorCommon.instance;
+//                accessor.set(world, player, target);
+//                ItemStack targetStack = RayTracing.instance().getTargetStack();
+//
+//                if (targetStack != null) {
+//                    probe = elementHandler.handleBlockElementData(targetStack, world, player, target, accessor);
+//                }
+//            }
 
             List<String> currenttip;
             List<String> currenttipHead;
@@ -142,10 +142,10 @@ public class WailaTickHandler {
                     currenttip.addAll(currenttipTail);
 
                     this.tooltip = new Tooltip(currenttip, targetStack);
-                    if (!ConfigHandler.instance()
-                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
-                        probe = elementHandler.appendTooltipData(probe, currenttipBody, targetStack, accessor);
-                    }
+//                    if (!ConfigHandler.instance()
+//                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
+//                        probe = elementHandler.appendTooltipData(probe, currenttipBody, targetStack, accessor);
+//                    }
                 }
             } else if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
                 DataAccessorCommon accessor = DataAccessorCommon.instance;

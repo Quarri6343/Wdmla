@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import mcp.mobius.wdmla.api.IBlockAccessor;
+import mcp.mobius.wdmla.api.IServerDataProvider;
+import mcp.mobius.wdmla.impl.WdmlaCommonRegistration;
+import mcp.mobius.wdmla.impl.value.BlockAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -99,11 +103,14 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         if (entity == null) return;
         try {
             NBTTagCompound tag = new NBTTagCompound();
-            boolean hasProbeBlock = ModuleProbeRegistrar.instance().hasProviders(block);
-            boolean hasProbeEntity = ModuleProbeRegistrar.instance().hasProviders(entity);
+//            boolean hasProbeBlock = ModuleProbeRegistrar.instance().hasProviders(block);
+//            boolean hasProbeEntity = ModuleProbeRegistrar.instance().hasProviders(entity);
+            boolean hasProbeBlock = WdmlaCommonRegistration.instance().hasProviders(block);
+            boolean hasProbeEntity = WdmlaCommonRegistration.instance().hasProviders(entity);
 
             boolean hasNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
             boolean hasNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
+            //TODO: BlockAccessorImpl#HandleRequest
 
             if ((hasProbeBlock || hasProbeEntity) && msg.useNewAPI) {
                 tag.setInteger("x", msg.posX);
@@ -114,17 +121,25 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
                 EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
                         .get()).playerEntity;
 
-                for (IProbeDataProvider provider : ModuleProbeRegistrar.instance().getProviders(block)) {
-                    try {
-                        tag = provider.getNBTData(player, entity, tag, world, msg.posX, msg.posY, msg.posZ);
-                    } catch (AbstractMethodError | NoSuchMethodError ame) {
-                        // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
-                    }
-                }
+//                for (IProbeDataProvider provider : ModuleProbeRegistrar.instance().getProviders(block)) {
+//                    try {
+//                        tag = provider.getNBTData(player, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+//                    } catch (AbstractMethodError | NoSuchMethodError ame) {
+//                        // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+//                    }
+//                }
+//
+//                for (IProbeDataProvider provider : ModuleProbeRegistrar.instance().getProviders(entity)) {
+//                    try {
+//                        tag = provider.getNBTData(player, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+//                    } catch (AbstractMethodError | NoSuchMethodError ame) {
+//                        // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+//                    }
+//                }
 
-                for (IProbeDataProvider provider : ModuleProbeRegistrar.instance().getProviders(entity)) {
+                for (IServerDataProvider<IBlockAccessor> provider : WdmlaCommonRegistration.instance().getBlockNBTProviders(block, entity)) {
                     try {
-                        tag = provider.getNBTData(player, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+                        provider.appendServerData(tag, new BlockAccessor(block, entity, null, world, player, null));
                     } catch (AbstractMethodError | NoSuchMethodError ame) {
                         // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
                     }

@@ -56,7 +56,7 @@ public class ObjectPlayerIsLookingAt {
 
     public Optional<UnIdentifiedBlockPos> getBlockPos() {
         if (isBlock()) {
-            return Optional.of(new UnIdentifiedBlockPos(target.blockX, target.blockY, target.blockZ));
+            return Optional.of(new UnIdentifiedBlockPos(target));
         }
 
         return Optional.empty();

@@ -7,5 +7,5 @@ import mcp.mobius.wdmla.impl.value.BlockAccessor;
 @ApiStatus.NonExtendable
 public interface IWdmlaClientRegistration {
 
-    void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
+    void registerBlockComponent(IComponentProvider<IBlockAccessor> provider, Class<?> clazz);
 }

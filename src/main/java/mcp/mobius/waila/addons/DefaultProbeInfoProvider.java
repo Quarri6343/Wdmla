@@ -17,20 +17,6 @@ public class DefaultProbeInfoProvider {
     public static void addStandardBlockInfo(ItemStack itemStack, IProbeInfo probeInfo, IWailaDataAccessor accessor,
             IWailaConfigHandler config) {
 
-        // TODO: item icon, horizontal layout
-        // if (!itemStack.isEmpty()) {
-        // if (Tools.show(mode, config.getShowModName())) {
-        // probeInfo.horizontal().item(pickBlock).vertical().itemLabel(pickBlock).text(TextStyleClass.MODNAME + modid);
-        // } else {
-        // probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER)).item(pickBlock).itemLabel(pickBlock);
-        // }
-        // } else if (Tools.show(mode, config.getShowModName())) {
-        // probeInfo.vertical().text(TextStyleClass.NAME + getBlockUnlocalizedName(block)).text(TextStyleClass.MODNAME +
-        // modid);
-        // } else {
-        // probeInfo.vertical().text(TextStyleClass.NAME + getBlockUnlocalizedName(block));
-        // }
-
         HUDHandlerBlocks hudHandlerBlocks = new HUDHandlerBlocks();
         IProbeInfo row = probeInfo.horizontal();
         row.item(itemStack);
