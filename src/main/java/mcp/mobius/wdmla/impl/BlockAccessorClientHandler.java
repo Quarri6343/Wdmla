@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-//TODO: decompose
+//TODO: decompose, implement AccessorClientHandler
 public enum BlockAccessorClientHandler {
     INSTANCE;
 

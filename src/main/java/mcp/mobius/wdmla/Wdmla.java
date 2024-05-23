@@ -17,6 +17,7 @@ import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 import mcp.mobius.wdmla.impl.BlockAccessorClientHandler;
 import mcp.mobius.wdmla.impl.WdmlaClientRegistration;
+import mcp.mobius.wdmla.impl.WdmlaCommonRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -55,6 +56,7 @@ public class Wdmla {
     public void loadComplete(FMLLoadCompleteEvent event) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             IWdmlaPlugin testPlugin = new TestPlugin();
+            testPlugin.register(WdmlaCommonRegistration.instance());
             testPlugin.registerClient(WdmlaClientRegistration.instance());
         }
         // TODO: IMC

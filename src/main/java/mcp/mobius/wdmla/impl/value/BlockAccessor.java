@@ -1,5 +1,6 @@
 package mcp.mobius.wdmla.impl.value;
 
+import mcp.mobius.wdmla.impl.ObjectDataCenter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,7 +32,7 @@ public class BlockAccessor implements IBlockAccessor {
         this.world = world;
         this.player = player;
         this.mop = mop;
-        this.serverData = new NBTTagCompound();
+        this.serverData = ObjectDataCenter.getServerData();
     }
 
     @Override
