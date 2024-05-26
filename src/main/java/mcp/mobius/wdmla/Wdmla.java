@@ -90,9 +90,10 @@ public class Wdmla {
         if(target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
             Block block = world.getBlock(target.blockX, target.blockY, target.blockZ);
             TileEntity tileEntity = world.getTileEntity(target.blockX, target.blockY, target.blockZ);
-            ItemStack itemForm = getIdentifierStack(world, block, tileEntity, target);
+            int metadata = world.getBlockMetadata(target.blockX, target.blockY, target.blockZ);
+            ItemStack itemForm = getIdentifierStack(world, target);
             BlockAccessor accessor = WdmlaClientRegistration.instance().blockAccessor().block(block).tileEntity(tileEntity)
-                    .hit(target).itemForm(itemForm).requireVerification().build();
+                    .meta(metadata).hit(target).itemForm(itemForm).requireVerification().build();
 
             //TODO: if a player looking a same block, don't request new Info until TE request occurs
             mainHUD = handle(accessor);
@@ -176,8 +177,8 @@ public class Wdmla {
     }
 
 
-    public ItemStack getIdentifierStack(World world, Block block, TileEntity tileEntity, MovingObjectPosition mop) {
-        ArrayList<ItemStack> items = this.getIdentifierItems(world, block, tileEntity, mop);
+    public ItemStack getIdentifierStack(World world, MovingObjectPosition mop) {
+        ArrayList<ItemStack> items = this.getIdentifierItems(world, mop);
 
         if (items.isEmpty()) return null;
 
@@ -186,12 +187,15 @@ public class Wdmla {
         return items.get(0);
     }
 
-    public ArrayList<ItemStack> getIdentifierItems(World world, Block mouseoverBlock, TileEntity tileEntity, MovingObjectPosition mop) {
+    public ArrayList<ItemStack> getIdentifierItems(World world, MovingObjectPosition mop) {
         ArrayList<ItemStack> items = new ArrayList<>();
 
         int x = mop.blockX;
         int y = mop.blockY;
         int z = mop.blockZ;
+        Block mouseoverBlock = world.getBlock(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+
         if (mouseoverBlock == null) return items;
 
         if (tileEntity == null) {

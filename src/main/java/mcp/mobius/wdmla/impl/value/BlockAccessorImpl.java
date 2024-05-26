@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
@@ -18,6 +17,7 @@ public class BlockAccessorImpl implements BlockAccessor {
 
     private final Block block;
     private final @Nullable Supplier<TileEntity> tileEntity;
+    private final int metadata;
     private final ItemStack itemForm;
 
     private final World world;
@@ -32,6 +32,7 @@ public class BlockAccessorImpl implements BlockAccessor {
     public BlockAccessorImpl(Builder builder) {
         this.block = builder.block;
         this.tileEntity = builder.tileEntity;
+        this.metadata = builder.metadata;
         this.itemForm = builder.itemForm;
         this.world = builder.level;
         this.player = builder.player;
@@ -49,6 +50,11 @@ public class BlockAccessorImpl implements BlockAccessor {
     @Override
     public @Nullable TileEntity getTileEntity() {
         return tileEntity == null ? null : tileEntity.get();
+    }
+
+    @Override
+    public int getMetadata() {
+        return metadata;
     }
 
     @Override
@@ -100,6 +106,7 @@ public class BlockAccessorImpl implements BlockAccessor {
         private MovingObjectPosition hit;
         private Block block = Blocks.air;
         private Supplier<TileEntity> tileEntity;
+        private int metadata;
         private ItemStack itemForm;
         private boolean verify;
 
@@ -158,7 +165,13 @@ public class BlockAccessorImpl implements BlockAccessor {
         }
 
         @Override
-        public BlockAccessor.Builder requireVerification() {
+        public Builder meta(int metaData) {
+            this.metadata = metaData;
+            return this;
+        }
+
+        @Override
+        public Builder requireVerification() {
             verify = true;
             return this;
         }

@@ -17,6 +17,8 @@ public interface BlockAccessor extends Accessor {
 
     TileEntity getTileEntity();
 
+    int getMetadata();
+
     ItemStack getItemForm();
 
 
@@ -43,6 +45,8 @@ public interface BlockAccessor extends Accessor {
         Builder itemForm(ItemStack itemStack);
 
         Builder tileEntity(Supplier<TileEntity> tileEntity);
+
+        Builder meta(int metaData);
 
         Builder requireVerification();
 
