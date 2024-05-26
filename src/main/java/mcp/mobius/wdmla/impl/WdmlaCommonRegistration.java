@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.impl;
 
-import mcp.mobius.wdmla.api.IBlockAccessor;
+import mcp.mobius.wdmla.api.BlockAccessor;
 import mcp.mobius.wdmla.api.IServerDataProvider;
 import mcp.mobius.wdmla.api.IWdmlaCommonRegistration;
 import net.minecraft.block.Block;
@@ -16,7 +16,7 @@ public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
     private static final WdmlaCommonRegistration INSTANCE = new WdmlaCommonRegistration();
 
     //We can't use HierarchyLookup in Java8
-    private final LinkedHashMap<Class<?>, ArrayList<IServerDataProvider<IBlockAccessor>>> dataProviders = new LinkedHashMap<>();
+    private final LinkedHashMap<Class<?>, ArrayList<IServerDataProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
     //TODO: use Session
 
     public static WdmlaCommonRegistration instance() {
@@ -24,7 +24,7 @@ public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
     }
 
     @Override
-    public void registerBlockDataProvider(IServerDataProvider<IBlockAccessor> provider, Class<?> blockOrTileEntityClass) {
+    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> provider, Class<?> blockOrTileEntityClass) {
         if (blockOrTileEntityClass == null || provider == null) {
             throw new RuntimeException(
                     "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
@@ -34,7 +34,7 @@ public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
             dataProviders.put(blockOrTileEntityClass, new ArrayList<>());
         }
 
-        ArrayList<IServerDataProvider<IBlockAccessor>> providers = dataProviders.get(blockOrTileEntityClass);
+        ArrayList<IServerDataProvider<BlockAccessor>> providers = dataProviders.get(blockOrTileEntityClass);
         if (providers.contains(provider)) {
             throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
         }
@@ -51,8 +51,8 @@ public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
         return false;
     }
 
-    public List<IServerDataProvider<IBlockAccessor>> getBlockNBTProviders(Block block, @Nullable TileEntity tileEntity) {
-        List<IServerDataProvider<IBlockAccessor>> returnList = new ArrayList<>();
+    public List<IServerDataProvider<BlockAccessor>> getBlockNBTProviders(Block block, @Nullable TileEntity tileEntity) {
+        List<IServerDataProvider<BlockAccessor>> returnList = new ArrayList<>();
 
         for (Class<?> clazz : dataProviders.keySet()) {
             if (clazz.isInstance(block)) {

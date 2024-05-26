@@ -1,11 +1,18 @@
 package mcp.mobius.wdmla.api;
 
+import net.minecraft.nbt.NBTTagCompound;
 import org.jetbrains.annotations.ApiStatus;
-
-import mcp.mobius.wdmla.impl.value.BlockAccessor;
 
 @ApiStatus.NonExtendable
 public interface IWdmlaClientRegistration {
 
-    void registerBlockComponent(IComponentProvider<IBlockAccessor> provider, Class<?> clazz);
+    void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
+
+    boolean isServerConnected();
+
+    boolean isShowDetailsPressed();
+
+    NBTTagCompound getServerData();
+
+    BlockAccessor.Builder blockAccessor();
 }

@@ -14,4 +14,8 @@ public interface Accessor {
     NBTTagCompound getServerData();
 
     MovingObjectPosition getHitResult();
+
+    boolean isServerConnected();
+
+    boolean showDetails();
 }

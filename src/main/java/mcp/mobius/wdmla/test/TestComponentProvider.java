@@ -1,6 +1,6 @@
 package mcp.mobius.wdmla.test;
 
-import mcp.mobius.wdmla.api.IBlockAccessor;
+import mcp.mobius.wdmla.api.BlockAccessor;
 import mcp.mobius.wdmla.api.IComponentProvider;
 import mcp.mobius.wdmla.api.IServerDataProvider;
 import mcp.mobius.wdmla.api.ui.IComponent;
@@ -11,10 +11,10 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.Random;
 
-public class TestComponentProvider implements IComponentProvider<IBlockAccessor>, IServerDataProvider<IBlockAccessor> {
+public class TestComponentProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
 
     @Override
-    public void appendTooltip(IComponent rootComponent, IBlockAccessor accessor) {
+    public void appendTooltip(IComponent rootComponent, BlockAccessor accessor) {
         IComponent main = new VPanelComponent().child(new TextComponent("TEST FURNACE").style(new TextStyle().color(0xFFAA0000)))
                 .child(new ItemComponent(accessor.getItemForm()))
                 .child(new ProgressComponent(100, 200).size(new Size(50, 10)));
@@ -28,7 +28,7 @@ public class TestComponentProvider implements IComponentProvider<IBlockAccessor>
     }
 
     @Override
-    public void appendServerData(NBTTagCompound data, IBlockAccessor accessor) {
+    public void appendServerData(NBTTagCompound data, BlockAccessor accessor) {
         data.setInteger("random", new Random().nextInt(11));
     }
 }
