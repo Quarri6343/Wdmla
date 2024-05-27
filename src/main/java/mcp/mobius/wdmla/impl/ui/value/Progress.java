@@ -7,7 +7,7 @@ public class Progress implements IProgress {
     long current;
     long max;
 
-    public Progress(int current, int max) {
+    public Progress(long current, long max) {
         if (current < 0) {
             current = 0;
         }

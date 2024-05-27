@@ -20,11 +20,6 @@ public class HPanelComponent extends PanelComponent {
         super();
     }
 
-    protected HPanelComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
-            IPanelStyle style) {
-        super(children, padding, size, foreground, style);
-    }
-
     public void tick(int x, int y) {
         int totHeight = this.getHeight();
         x += padding.getLeft();

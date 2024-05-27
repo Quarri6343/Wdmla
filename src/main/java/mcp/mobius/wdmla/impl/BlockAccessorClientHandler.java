@@ -6,12 +6,12 @@ import mcp.mobius.wdmla.api.AccessorClientHandler;
 import mcp.mobius.wdmla.api.BlockAccessor;
 import mcp.mobius.wdmla.api.IServerDataProvider;
 import mcp.mobius.wdmla.api.IWdmlaProvider;
-import mcp.mobius.wdmla.api.ui.IComponent;
-import net.minecraft.item.ItemStack;
+import mcp.mobius.wdmla.api.ui.ITooltip;
 
 import java.util.HashSet;
 import java.util.function.Function;
 
+//TODO:Integrate with Wdmla.java
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
     @Override
     public boolean shouldDisplay(BlockAccessor accessor) {
@@ -39,9 +39,9 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
     }
 
     @Override
-    public void gatherComponents(BlockAccessor accessor, Function<IWdmlaProvider, IComponent> tooltipProvider) {
+    public void gatherComponents(BlockAccessor accessor, Function<IWdmlaProvider, ITooltip> tooltipProvider) {
         for (var provider : WdmlaClientRegistration.instance().getProviders(accessor.getBlock())) {
-            IComponent tooltip = tooltipProvider.apply(provider);
+            ITooltip tooltip = tooltipProvider.apply(provider);
             provider.appendTooltip(tooltip, accessor);
         }
     }

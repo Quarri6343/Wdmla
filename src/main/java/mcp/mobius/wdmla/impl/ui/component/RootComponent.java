@@ -25,11 +25,6 @@ public final class RootComponent extends VPanelComponent {
         super();
     }
 
-    private RootComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
-            IPanelStyle style) {
-        super(children, padding, size, foreground, style);
-    }
-
     public void renderHUD() {
 
         GLStateHelper.prepareBGDraw();

@@ -8,7 +8,7 @@ import mcp.mobius.wdmla.impl.ui.drawable.ItemDrawable;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
 
-public class ItemComponent extends Component {
+public class ItemComponent extends TooltipComponent {
 
     public static final int DEFAULT_W = 16;
     public static final int DEFAULT_H = 16;

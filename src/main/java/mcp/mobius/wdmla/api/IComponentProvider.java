@@ -1,8 +1,8 @@
 package mcp.mobius.wdmla.api;
 
-import mcp.mobius.wdmla.api.ui.IComponent;
+import mcp.mobius.wdmla.api.ui.ITooltip;
 
 public interface IComponentProvider<T extends Accessor> extends IToggleableProvider {
 
-    void appendTooltip(IComponent rootComponent, T accessor);
+    void appendTooltip(ITooltip tooltip, T accessor);
 }

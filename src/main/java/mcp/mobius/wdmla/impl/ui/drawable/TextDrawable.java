@@ -17,11 +17,6 @@ public class TextDrawable implements IDrawable {
         this.style = new TextStyle();
     }
 
-    private TextDrawable(@NotNull String text, @NotNull ITextStyle style) {
-        this.text = text;
-        this.style = style;
-    }
-
     public TextDrawable style(ITextStyle style) {
         this.style = style;
         return this;

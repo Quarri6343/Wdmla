@@ -9,18 +9,15 @@ import mcp.mobius.wdmla.impl.ui.value.setting.PanelStyle;
 
 public class BorderDrawable implements IDrawable {
 
-    protected final @NotNull IPanelStyle style;
+    protected @NotNull IPanelStyle style;
 
     public BorderDrawable() {
         style = new PanelStyle();
     }
 
-    private BorderDrawable(@NotNull IPanelStyle style) {
-        this.style = style;
-    }
-
     public BorderDrawable style(IPanelStyle style) {
-        return new BorderDrawable(style);
+        this.style = style;
+        return this;
     }
 
     @Override

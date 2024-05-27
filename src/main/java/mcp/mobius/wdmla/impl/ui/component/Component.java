@@ -2,6 +2,11 @@ package mcp.mobius.wdmla.impl.ui.component;
 
 import java.util.List;
 
+import mcp.mobius.wdmla.api.ui.ITooltip;
+import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
+import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
+import mcp.mobius.wdmla.api.ui.style.ITextStyle;
+import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import mcp.mobius.wdmla.api.ui.IComponent;
@@ -10,9 +15,7 @@ import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 
-public class Component implements IComponent {
-
-    protected List<IComponent> children;
+public abstract class Component implements IComponent {
 
     // settings
     protected IPadding padding;
@@ -21,8 +24,7 @@ public class Component implements IComponent {
     // render
     protected IDrawable foreground;
 
-    protected Component(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground) {
-        this.children = children;
+    protected Component(IPadding padding, ISize size, IDrawable foreground) {
         this.padding = padding;
         this.size = size;
         this.foreground = foreground;
@@ -40,9 +42,6 @@ public class Component implements IComponent {
 
     @Override
     public void tick(int x, int y) {
-        for (IComponent child : children) {
-            child.tick(x + padding.getLeft(), y + padding.getTop());
-        }
         foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
     }
 
@@ -54,10 +53,5 @@ public class Component implements IComponent {
     @Override
     public int getHeight() {
         return padding.getTop() + size.getH() + padding.getBottom();
-    }
-
-    public Component child(@NotNull IComponent child) {
-        this.children.add(child);
-        return this;
     }
 }

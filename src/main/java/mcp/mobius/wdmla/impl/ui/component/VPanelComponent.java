@@ -20,11 +20,6 @@ public class VPanelComponent extends PanelComponent {
         super();
     }
 
-    protected VPanelComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground,
-            IPanelStyle style) {
-        super(children, padding, size, foreground, style);
-    }
-
     @Override
     public void tick(int x, int y) {
         int totWidth = this.getWidth();

@@ -12,20 +12,16 @@ import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 public class ProgressDrawable implements IDrawable {
 
     private final @NotNull IProgress progress;
-    private final @NotNull IProgressStyle style;
+    private @NotNull IProgressStyle style;
 
     public ProgressDrawable(@NotNull IProgress progress) {
         this.progress = progress;
         this.style = new ProgressStyle();
     }
 
-    private ProgressDrawable(@NotNull IProgress progress, @NotNull IProgressStyle style) {
-        this.progress = progress;
-        this.style = style;
-    }
-
     public ProgressDrawable style(IProgressStyle style) {
-        return new ProgressDrawable(progress, style);
+        this.style = style;
+        return this;
     }
 
     @Override

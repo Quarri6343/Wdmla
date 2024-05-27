@@ -8,12 +8,12 @@ import mcp.mobius.wdmla.impl.ui.value.Progress;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
 
-public class ProgressComponent extends Component {
+public class ProgressComponent extends TooltipComponent {
 
     public static final int DEFAULT_W = 100;
     public static final int DEFAULT_H = 12;
 
-    public ProgressComponent(int current, int max) {
+    public ProgressComponent(long current, long max) {
         super(
                 new ArrayList<>(),
                 new Padding(),

@@ -40,6 +40,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+//TODO:move mod annotation
+//TODO:Edit Readme for credits
+//TODO:TickHandler
 public class Wdmla {
 
     // @instance
