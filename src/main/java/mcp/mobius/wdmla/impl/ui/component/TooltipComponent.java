@@ -9,6 +9,7 @@ import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
 import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,6 +19,8 @@ public class TooltipComponent extends Component implements ITooltip {
 
     protected List<IComponent> children;
 
+    public static final IPadding DEFAULT_PROGRESS_TEXT_PADDING = new Padding(2,0,3,0);
+
     protected TooltipComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground) {
         super(padding, size, foreground);
         this.children = children;
@@ -25,10 +28,11 @@ public class TooltipComponent extends Component implements ITooltip {
 
     @Override
     public void tick(int x, int y) {
+        foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
+
         for (IComponent child : children) {
             child.tick(x + padding.getLeft(), y + padding.getTop());
         }
-        foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
     }
 
 
@@ -116,22 +120,17 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
-    public ITooltip progress(long current, long max, IProgressStyle style, IPadding padding, ISize size) {
-        Component c = new ProgressComponent(current, max).style(style).size(size);
+    public ITooltip progress(long current, long max, IProgressStyle style, String progressText) {
+        ITooltip c = new ProgressComponent(current, max).style(style);
+        c.child(new TextComponent(progressText).padding(DEFAULT_PROGRESS_TEXT_PADDING));
         this.children.add(c);
         return this;
     }
 
     @Override
-    public ITooltip progress(long current, long max, IProgressStyle style) {
-        Component c = new ProgressComponent(current, max).style(style);
-        this.children.add(c);
-        return this;
-    }
-
-    @Override
-    public ITooltip progress(long current, long max) {
-        Component c = new ProgressComponent(current, max);
+    public ITooltip progress(long current, long max, String progressText) {
+        ITooltip c = new ProgressComponent(current, max);
+        c.child(new TextComponent(progressText).padding(DEFAULT_PROGRESS_TEXT_PADDING));
         this.children.add(c);
         return this;
     }

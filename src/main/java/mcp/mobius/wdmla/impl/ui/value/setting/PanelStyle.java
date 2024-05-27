@@ -5,9 +5,9 @@ import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 
 public class PanelStyle implements IPanelStyle {
 
-    private final int borderColor;
-    private final ComponentAlignment alignment;
-    private final int spacing;
+    private int borderColor;
+    private ComponentAlignment alignment;
+    private int spacing;
 
     public PanelStyle() {
         this.borderColor = NO_BORDER;
@@ -15,27 +15,33 @@ public class PanelStyle implements IPanelStyle {
         this.spacing = DEFAULT_SPACE;
     }
 
-    public PanelStyle(int borderColor, ComponentAlignment alignment, int spacing) {
-        this.borderColor = borderColor;
-        this.alignment = alignment;
-        this.spacing = spacing;
-    }
-
     public PanelStyle borderColor(int borderColor) {
-        return new PanelStyle(borderColor, alignment, spacing);
+        this.borderColor = borderColor;
+        return this;
     }
 
     public PanelStyle alignment(ComponentAlignment alignment) {
-        return new PanelStyle(borderColor, alignment, spacing);
+        this.alignment = alignment;
+        return this;
     }
 
     public PanelStyle spacing(int spacing) {
-        return new PanelStyle(borderColor, alignment, spacing);
+        this.spacing = spacing;
+        return this;
     }
 
     @Override
     public int getBorderColor() {
         return borderColor;
+    }
+
+    @Override
+    public int getBorderThickness() {
+        if(borderColor == NO_BORDER) {
+            return 0;
+        }
+
+        return DEFAULT_BORDER_THICKNESS;
     }
 
     @Override

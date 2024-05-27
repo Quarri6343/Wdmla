@@ -2,15 +2,12 @@ package mcp.mobius.wdmla.impl.ui.value.sizer;
 
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 
-/**
- * Padding between widgets. Negative number is allowed to intentionally overlap widgets
- */
 public class Padding implements IPadding {
 
-    private final int top;
-    private final int bottom;
-    private final int left;
-    private final int right;
+    private int top;
+    private int bottom;
+    private int left;
+    private int right;
 
     public Padding() {
         this.top = 0;
@@ -26,14 +23,41 @@ public class Padding implements IPadding {
         this.right = right;
     }
 
-    @Override
-    public int getLeft() {
-        return left;
+    public IPadding top(int top) {
+        this.top = top;
+        return this;
     }
 
     @Override
-    public int getRight() {
-        return right;
+    public IPadding bottom(int bottom) {
+        this.bottom = bottom;
+        return this;
+    }
+
+    @Override
+    public IPadding left(int left) {
+        this.left = left;
+        return this;
+    }
+
+    @Override
+    public IPadding right(int right) {
+        this.right = right;
+        return this;
+    }
+
+    @Override
+    public IPadding vertical(int vertical) {
+        top(vertical);
+        bottom(vertical);
+        return this;
+    }
+
+    @Override
+    public IPadding horizontal(int horizontal) {
+        left(horizontal);
+        right(horizontal);
+        return this;
     }
 
     @Override
@@ -44,5 +68,15 @@ public class Padding implements IPadding {
     @Override
     public int getBottom() {
         return bottom;
+    }
+
+    @Override
+    public int getLeft() {
+        return left;
+    }
+
+    @Override
+    public int getRight() {
+        return right;
     }
 }

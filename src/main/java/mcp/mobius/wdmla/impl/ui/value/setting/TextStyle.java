@@ -5,9 +5,9 @@ import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 
 public class TextStyle implements ITextStyle {
 
-    private final ComponentAlignment alignment;
-    private final int color;
-    private final boolean shadow;
+    private ComponentAlignment alignment;
+    private int color;
+    private boolean shadow;
 
     public TextStyle() {
         this.alignment = ComponentAlignment.TOPLEFT;
@@ -15,22 +15,19 @@ public class TextStyle implements ITextStyle {
         this.shadow = DEFAULT_SHADOW;
     }
 
-    public TextStyle(ComponentAlignment alignment, int color, boolean shadow) {
-        this.alignment = alignment;
-        this.color = color;
-        this.shadow = shadow;
-    }
-
     public TextStyle alignment(ComponentAlignment alignment) {
-        return new TextStyle(alignment, color, shadow);
+        this.alignment = alignment;
+        return this;
     }
 
     public TextStyle color(int color) {
-        return new TextStyle(alignment, color, shadow);
+        this.color = color;
+        return this;
     }
 
     public TextStyle shadow(boolean shadow) {
-        return new TextStyle(alignment, color, shadow);
+        this.shadow = shadow;
+        return this;
     }
 
     @Override

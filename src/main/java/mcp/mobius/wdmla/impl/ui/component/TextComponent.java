@@ -1,9 +1,5 @@
 package mcp.mobius.wdmla.impl.ui.component;
 
-import java.util.ArrayList;
-
-import org.jetbrains.annotations.NotNull;
-
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 import mcp.mobius.wdmla.impl.ui.drawable.TextDrawable;
@@ -11,6 +7,7 @@ import mcp.mobius.wdmla.impl.ui.value.setting.TextStyle;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
 import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
 import mcp.mobius.wdmla.impl.ui.value.sizer.TextSize;
+import org.jetbrains.annotations.NotNull;
 
 public class TextComponent extends Component {
 

@@ -4,10 +4,10 @@ import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
 
 public class ProgressStyle implements IProgressStyle {
 
-    private final int borderColor;
-    private final int backgroundColor;
-    private final int filledColor;
-    private final int alternateFilledColor;
+    private int borderColor;
+    private int backgroundColor;
+    private int filledColor;
+    private int alternateFilledColor;
 
     public ProgressStyle() {
         this.borderColor = DEFAULT_BORDER;
@@ -16,27 +16,24 @@ public class ProgressStyle implements IProgressStyle {
         this.alternateFilledColor = DEFAULT_FILLED_ALTERNATE;
     }
 
-    public ProgressStyle(int borderColor, int backgroundColor, int filledColor, int alternateFilledColor) {
-        this.borderColor = borderColor;
-        this.backgroundColor = backgroundColor;
-        this.filledColor = filledColor;
-        this.alternateFilledColor = alternateFilledColor;
-    }
-
     public ProgressStyle borderColor(int borderColor) {
-        return new ProgressStyle(borderColor, backgroundColor, filledColor, alternateFilledColor);
+        this.borderColor = borderColor;
+        return this;
     }
 
     public ProgressStyle backgroundColor(int backgroundColor) {
-        return new ProgressStyle(borderColor, backgroundColor, filledColor, alternateFilledColor);
+        this.backgroundColor = backgroundColor;
+        return this;
     }
 
     public ProgressStyle filledColor(int filledColor) {
-        return new ProgressStyle(borderColor, backgroundColor, filledColor, alternateFilledColor);
+        this.filledColor = filledColor;
+        return this;
     }
 
     public ProgressStyle alternateFilledColor(int alternateFilledColor) {
-        return new ProgressStyle(borderColor, backgroundColor, filledColor, alternateFilledColor);
+        this.alternateFilledColor = alternateFilledColor;
+        return this;
     }
 
     @Override

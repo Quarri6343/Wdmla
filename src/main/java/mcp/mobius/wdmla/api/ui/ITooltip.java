@@ -1,4 +1,5 @@
 package mcp.mobius.wdmla.api.ui;
+
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
@@ -7,8 +8,10 @@ import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+//TODO: supply default component with another interface
 /**
  * The interface for component which can append child components
+ * Provides quick shortcuts to add simple elements
  */
 public interface ITooltip extends IComponent {
 
@@ -34,11 +37,9 @@ public interface ITooltip extends IComponent {
 
     ITooltip item(ItemStack stack);
 
-    ITooltip progress(long current, long max, IProgressStyle style, IPadding padding, ISize size);
+    ITooltip progress(long current, long max, IProgressStyle style, String progressText);
 
-    ITooltip progress(long current, long max, IProgressStyle style);
-
-    ITooltip progress(long current, long max);
+    ITooltip progress(long current, long max, String progressText);
 
     ITooltip child(@NotNull IComponent child);
 }
