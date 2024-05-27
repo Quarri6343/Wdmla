@@ -96,6 +96,18 @@ public class BlockAccessorImpl implements BlockAccessor {
         verify = true;
     }
 
+    @Override
+    public boolean verifyData(NBTTagCompound data) {
+        if (!verify) {
+            return true;
+        }
+        int x = data.getInteger("x");
+        int y = data.getInteger("y");
+        int z = data.getInteger("z");
+        MovingObjectPosition hitPos = getHitResult();
+        return x == hitPos.blockX && y == hitPos.blockY && z == hitPos.blockZ;
+    }
+
     public static class Builder implements BlockAccessor.Builder {
 
         private World level;

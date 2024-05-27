@@ -6,23 +6,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mcp.mobius.waila.Waila;
-import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.api.impl.DataAccessorCommon;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.network.Message0x01TERequest;
-import mcp.mobius.waila.network.WailaPacketHandler;
 import mcp.mobius.waila.overlay.RayTracing;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
-import mcp.mobius.wdmla.api.BlockAccessor;
-import mcp.mobius.wdmla.api.IComponentProvider;
+import mcp.mobius.wdmla.api.Accessor;
 import mcp.mobius.wdmla.api.IWdmlaPlugin;
 import mcp.mobius.wdmla.impl.ObjectDataCenter;
 import mcp.mobius.wdmla.impl.WdmlaClientRegistration;
 import mcp.mobius.wdmla.impl.WdmlaCommonRegistration;
 import mcp.mobius.wdmla.impl.ui.component.RootComponent;
-import mcp.mobius.wdmla.impl.ui.component.TextComponent;
 import mcp.mobius.wdmla.test.TestPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -30,18 +21,16 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
 
 //TODO:move mod annotation
-//TODO:Edit Readme for credits
+//TODO:Edit Readme for TOP and Jade credits
 //TODO:TickHandler
 public class Wdmla {
 
@@ -90,91 +79,53 @@ public class Wdmla {
             return;
         }
 
+        Accessor accessor = null;
+
         if(target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
             Block block = world.getBlock(target.blockX, target.blockY, target.blockZ);
             TileEntity tileEntity = world.getTileEntity(target.blockX, target.blockY, target.blockZ);
             int metadata = world.getBlockMetadata(target.blockX, target.blockY, target.blockZ);
             ItemStack itemForm = getIdentifierStack(world, target);
-            BlockAccessor accessor = WdmlaClientRegistration.instance().blockAccessor().block(block).tileEntity(tileEntity)
+            accessor = WdmlaClientRegistration.instance().blockAccessor().block(block).tileEntity(tileEntity)
                     .meta(metadata).hit(target).itemForm(itemForm).requireVerification().build();
-
-            //TODO: if a player looking a same block, don't request new Info until TE request occurs
-            mainHUD = handle(accessor);
         }
+
+        ObjectDataCenter.set(accessor);
+        if (accessor == null || accessor.getHitResult() == null) {
+            mainHUD = null;
+            return;
+        }
+
+        mainHUD = handle(accessor);
     }
 
-    public @NotNull RootComponent handle(BlockAccessor accessor) {
-        Block block = accessor.getBlock();
+    public RootComponent handle(Accessor accessor) {
         RootComponent root = new RootComponent();
 
-        if (!WdmlaClientRegistration.instance().hasProviders(block)
-                && !WdmlaClientRegistration.instance().hasProviders(accessor.getTileEntity())) {
-            return root;
+        var handler = WdmlaClientRegistration.instance().getAccessorHandler(accessor.getAccessorType());
+        if (!handler.shouldDisplay(accessor)) {
+            return null;
         }
 
-        if (accessor.getTileEntity() != null && Waila.instance.serverPresent
-                && ObjectDataCenter.isTimeElapsed(ObjectDataCenter.rateLimiter)) {
-            ObjectDataCenter.resetTimer();
-            HashSet<String> keys = new HashSet<>();
-
-            if (WdmlaCommonRegistration.instance().hasProviders(block)
-                    || WdmlaCommonRegistration.instance().hasProviders(accessor.getTileEntity()))
-                WailaPacketHandler.INSTANCE
-                        .sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys, true));
-            else if (ModuleRegistrar.instance().hasNBTProviders(block) //OLD API Support
-                    || ModuleRegistrar.instance().hasNBTProviders(accessor.getTileEntity()))
-                WailaPacketHandler.INSTANCE
-                        .sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys, false));
-        } else if (accessor.getTileEntity() != null && !Waila.instance.serverPresent
-                && ObjectDataCenter.isTimeElapsed(ObjectDataCenter.rateLimiter)) {
-            ObjectDataCenter.resetTimer();
-
-            try {
-                NBTTagCompound tag = accessor.getServerData();
-                accessor.getTileEntity().writeToNBT(tag);
-                //TODO: handleRequest inside BlockAccessorImpl
-            } catch (Exception e) {
-                WailaExceptionHandler.handleErr(e, this.getClass().getName(), null);
+        if (accessor.isServerConnected()) {
+            if (accessor.getServerData() != null && !accessor.verifyData(accessor.getServerData())) {
+                accessor.getServerData().func_150296_c().clear();
             }
-        }
-
-        /* Lookup by class (for blocks) */
-        if (WdmlaClientRegistration.instance().hasProviders(block)) {
-            List<IComponentProvider<BlockAccessor>> providers = WdmlaClientRegistration.instance().getProviders(block);
-            for (IComponentProvider<BlockAccessor> provider : providers) {
-                provider.appendTooltip(root, accessor);
-            }
-        }
-
-        /* Lookup by class (for tileentities) */
-        if ((WdmlaClientRegistration.instance().hasProviders(accessor.getTileEntity()))) {
-            List<IComponentProvider<BlockAccessor>> providers = WdmlaClientRegistration.instance()
-                    .getProviders(accessor.getTileEntity());
-            for (IComponentProvider<BlockAccessor> provider : providers) {
-                provider.appendTooltip(root, accessor);
-            }
-        }
-
-        //Legacy Tooltip support
-        //TODO: WailaStack support
-        DataAccessorCommon legacyAccessor = DataAccessorCommon.instance;
-        legacyAccessor.set(accessor.getWorld(), accessor.getPlayer(), accessor.getHitResult());
-        Map<Integer, List<IWailaDataProvider>> legacyProviders = new HashMap<>();
-        if(ModuleRegistrar.instance().hasBodyProviders(block)) {
-            legacyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(block));
-        }
-        if(ModuleRegistrar.instance().hasBodyProviders(accessor.getTileEntity())) {
-            legacyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getTileEntity()));
-        }
-        for (List<IWailaDataProvider> providersList : legacyProviders.values()) {
-            for (IWailaDataProvider dataProvider : providersList) {
-                List<String> tooltips = new ArrayList<>();
-                tooltips = dataProvider.getWailaBody(accessor.getItemForm(), tooltips, legacyAccessor, ConfigHandler.instance());
-                for (String tooltip : tooltips) {
-                    root.child(new TextComponent(tooltip));
+            boolean request = handler.shouldRequestData(accessor);
+            if (ObjectDataCenter.isTimeElapsed(ObjectDataCenter.rateLimiter)) {
+                ObjectDataCenter.resetTimer();
+                if (request) {
+                    handler.requestData(accessor);
                 }
             }
+            if (request && ObjectDataCenter.getServerData() == null) {
+                return null;
+            }
+        } else {
+            return null;
         }
+
+        handler.gatherComponents(accessor, root);
 
         return root;
     }

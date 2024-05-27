@@ -15,4 +15,8 @@ public interface IWdmlaClientRegistration {
     NBTTagCompound getServerData();
 
     BlockAccessor.Builder blockAccessor();
+
+    <T extends Accessor> void registerAccessorHandler(Class<T> clazz, AccessorClientHandler<T> handler);
+
+    AccessorClientHandler<Accessor> getAccessorHandler(Class<? extends Accessor> clazz);
 }

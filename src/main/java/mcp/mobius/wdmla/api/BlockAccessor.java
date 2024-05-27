@@ -21,6 +21,10 @@ public interface BlockAccessor extends Accessor {
 
     ItemStack getItemForm();
 
+    @Override
+    default Class<? extends Accessor> getAccessorType() {
+        return BlockAccessor.class;
+    }
 
     @ApiStatus.NonExtendable
     interface Builder {

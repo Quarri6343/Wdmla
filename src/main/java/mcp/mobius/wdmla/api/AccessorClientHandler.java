@@ -13,5 +13,5 @@ public interface AccessorClientHandler<T extends Accessor> {
 
 	void requestData(T accessor);
 
-	void gatherComponents(T accessor, Function<IWdmlaProvider, ITooltip> tooltipProvider);
+	void gatherComponents(T accessor, ITooltip tooltip);
 }

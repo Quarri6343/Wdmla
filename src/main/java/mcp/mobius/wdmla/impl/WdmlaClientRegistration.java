@@ -1,12 +1,10 @@
 package mcp.mobius.wdmla.impl;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
-import mcp.mobius.wdmla.api.BlockAccessor;
-import mcp.mobius.wdmla.api.IComponentProvider;
-import mcp.mobius.wdmla.api.IWdmlaClientRegistration;
+import com.google.common.collect.Maps;
+import mcp.mobius.waila.Waila;
+import mcp.mobius.wdmla.api.*;
 import mcp.mobius.wdmla.impl.value.BlockAccessorImpl;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +16,8 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
     //We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
     //TODO: use Session
+
+    public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
 
     public static WdmlaClientRegistration instance() {
         return INSTANCE;
@@ -64,7 +64,7 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
 
     @Override
     public boolean isServerConnected() {
-        return ObjectDataCenter.serverConnected;
+        return Waila.instance.serverPresent;
     }
 
     @Override
@@ -83,5 +83,16 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
 
         return new BlockAccessorImpl.Builder().level(mc.theWorld).player(mc.thePlayer).serverConnected(isServerConnected()).serverData(
                 getServerData()).showDetails(isShowDetailsPressed());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T extends Accessor> void registerAccessorHandler(Class<T> clazz, AccessorClientHandler<T> handler) {
+        accessorHandlers.put((Class<Accessor>) clazz, (AccessorClientHandler<Accessor>) handler);
+    }
+
+    @Override
+    public AccessorClientHandler<Accessor> getAccessorHandler(Class<? extends Accessor> clazz) {
+        return Objects.requireNonNull(accessorHandlers.get(clazz), () -> "No accessor handler for " + clazz);
     }
 }

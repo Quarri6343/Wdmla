@@ -18,4 +18,8 @@ public interface Accessor {
     boolean isServerConnected();
 
     boolean showDetails();
+
+    Class<? extends Accessor> getAccessorType();
+
+    boolean verifyData(NBTTagCompound data);
 }
