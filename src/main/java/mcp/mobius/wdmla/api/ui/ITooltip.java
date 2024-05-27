@@ -8,7 +8,6 @@ import mcp.mobius.wdmla.api.ui.style.ITextStyle;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-//TODO: supply default component with another interface
 /**
  * The interface for component which can append child components
  * Provides quick shortcuts to add simple elements

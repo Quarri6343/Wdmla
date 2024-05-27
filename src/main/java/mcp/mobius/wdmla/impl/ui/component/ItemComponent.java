@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import net.minecraft.item.ItemStack;
 
 import mcp.mobius.wdmla.impl.ui.drawable.ItemDrawable;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
+import mcp.mobius.wdmla.impl.ui.sizer.Padding;
+import mcp.mobius.wdmla.impl.ui.sizer.Size;
 
 public class ItemComponent extends TooltipComponent {
 

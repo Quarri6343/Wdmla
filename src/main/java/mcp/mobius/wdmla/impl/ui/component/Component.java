@@ -1,19 +1,11 @@
 package mcp.mobius.wdmla.impl.ui.component;
 
-import java.util.List;
-
-import mcp.mobius.wdmla.api.ui.ITooltip;
-import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
-import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
-import mcp.mobius.wdmla.api.ui.style.ITextStyle;
-import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-
 import mcp.mobius.wdmla.api.ui.IComponent;
 import mcp.mobius.wdmla.api.ui.IDrawable;
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.api.ui.sizer.ISize;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.sizer.Area;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class Component implements IComponent {
 

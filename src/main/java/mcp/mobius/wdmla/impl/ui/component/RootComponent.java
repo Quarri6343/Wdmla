@@ -1,19 +1,13 @@
 package mcp.mobius.wdmla.impl.ui.component;
 
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 
-import mcp.mobius.wdmla.api.ui.IComponent;
 import mcp.mobius.wdmla.api.ui.IDrawable;
-import mcp.mobius.wdmla.api.ui.sizer.IPadding;
-import mcp.mobius.wdmla.api.ui.sizer.ISize;
-import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.impl.ui.drawable.BackgroundDrawable;
 import mcp.mobius.wdmla.impl.ui.drawable.BreakProgressDrawable;
 import mcp.mobius.wdmla.impl.ui.value.HUDRenderArea;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
+import mcp.mobius.wdmla.impl.ui.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.sizer.Size;
 import mcp.mobius.wdmla.util.GLStateHelper;
 
 public final class RootComponent extends VPanelComponent {

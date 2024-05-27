@@ -3,7 +3,7 @@ package mcp.mobius.wdmla.impl.ui.value;
 import net.minecraft.client.Minecraft;
 
 import mcp.mobius.wdmla.api.ui.sizer.IArea;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.sizer.Area;
 
 public class HUDBlockDamage {
 

@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import mcp.mobius.wdmla.api.ui.IDrawable;
 import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
-import mcp.mobius.wdmla.impl.ui.value.setting.PanelStyle;
+import mcp.mobius.wdmla.impl.ui.style.PanelStyle;
 
 public class BorderDrawable implements IDrawable {
 

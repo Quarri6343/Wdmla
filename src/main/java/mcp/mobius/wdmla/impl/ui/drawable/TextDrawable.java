@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import mcp.mobius.wdmla.api.ui.IDrawable;
 import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import mcp.mobius.wdmla.api.ui.style.ITextStyle;
-import mcp.mobius.wdmla.impl.ui.value.setting.TextStyle;
+import mcp.mobius.wdmla.impl.ui.style.TextStyle;
 
 public class TextDrawable implements IDrawable {
 

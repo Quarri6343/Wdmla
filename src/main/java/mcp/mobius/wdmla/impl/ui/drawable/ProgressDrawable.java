@@ -6,8 +6,8 @@ import mcp.mobius.wdmla.api.ui.IDrawable;
 import mcp.mobius.wdmla.api.ui.IProgress;
 import mcp.mobius.wdmla.api.ui.sizer.IArea;
 import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
-import mcp.mobius.wdmla.impl.ui.value.setting.ProgressStyle;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.style.ProgressStyle;
+import mcp.mobius.wdmla.impl.ui.sizer.Area;
 
 public class ProgressDrawable implements IDrawable {
 

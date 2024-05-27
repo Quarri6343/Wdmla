@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.ui.value.setting;
+package mcp.mobius.wdmla.impl.ui.style;
 
 import mcp.mobius.wdmla.api.ui.ComponentAlignment;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;

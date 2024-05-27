@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
+import mcp.mobius.wdmla.impl.ui.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.sizer.Size;
 
 public class HUDRenderArea {
 

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
 import mcp.mobius.wdmla.impl.ui.drawable.ProgressDrawable;
 import mcp.mobius.wdmla.impl.ui.value.Progress;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Size;
+import mcp.mobius.wdmla.impl.ui.sizer.Padding;
+import mcp.mobius.wdmla.impl.ui.sizer.Size;
 
 public class ProgressComponent extends TooltipComponent {
 

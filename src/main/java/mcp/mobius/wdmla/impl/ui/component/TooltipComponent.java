@@ -8,8 +8,8 @@ import mcp.mobius.wdmla.api.ui.sizer.ISize;
 import mcp.mobius.wdmla.api.ui.style.IPanelStyle;
 import mcp.mobius.wdmla.api.ui.style.IProgressStyle;
 import mcp.mobius.wdmla.api.ui.style.ITextStyle;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Area;
-import mcp.mobius.wdmla.impl.ui.value.sizer.Padding;
+import mcp.mobius.wdmla.impl.ui.sizer.Area;
+import mcp.mobius.wdmla.impl.ui.sizer.Padding;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,42 +44,42 @@ public class TooltipComponent extends Component implements ITooltip {
 
     @Override
     public ITooltip text(String text, ITextStyle style, IPadding padding) {
-        Component c = new TextComponent(text).style(style).padding(padding);
+        IComponent c = new TextComponent(text).style(style).padding(padding);
         this.children.add(c);
         return this;
     }
 
     @Override
     public ITooltip text(String text) {
-        Component c = new TextComponent(text);
+        IComponent c = new TextComponent(text);
         this.children.add(c);
         return this;
     }
 
     @Override
     public ITooltip vertical(IPanelStyle style, IPadding padding) {
-        Component c = new VPanelComponent().style(style).padding(padding);
+        IComponent c = new VPanelComponent().style(style).padding(padding);
         this.children.add(c);
         return (ITooltip) c;
     }
 
     @Override
     public ITooltip vertical(IPanelStyle style) {
-        Component c = new VPanelComponent().style(style);
+        IComponent c = new VPanelComponent().style(style);
         this.children.add(c);
         return (ITooltip) c;
     }
 
     @Override
     public ITooltip vertical() {
-        Component c = new VPanelComponent();
+        IComponent c = new VPanelComponent();
         this.children.add(c);
         return (ITooltip) c;
     }
 
     @Override
     public ITooltip horizontal(IPanelStyle style, IPadding padding) {
-        Component c = new HPanelComponent().style(style).padding(padding);
+        IComponent c = new HPanelComponent().style(style).padding(padding);
         this.children.add(c);
         return (ITooltip) c;
     }
@@ -93,28 +93,28 @@ public class TooltipComponent extends Component implements ITooltip {
 
     @Override
     public ITooltip horizontal() {
-        Component c = new HPanelComponent();
+        IComponent c = new HPanelComponent();
         this.children.add(c);
         return (ITooltip) c;
     }
 
     @Override
     public ITooltip item(ItemStack stack, IPadding padding, ISize size) {
-        Component c = new ItemComponent(stack).padding(padding).size(size);
+        IComponent c = new ItemComponent(stack).padding(padding).size(size);
         this.children.add(c);
         return this;
     }
 
     @Override
     public ITooltip item(ItemStack stack, IPadding padding) {
-        Component c = new ItemComponent(stack).padding(padding);
+        IComponent c = new ItemComponent(stack).padding(padding);
         this.children.add(c);
         return this;
     }
 
     @Override
     public ITooltip item(ItemStack stack) {
-        Component c = new ItemComponent(stack);
+        IComponent c = new ItemComponent(stack);
         this.children.add(c);
         return this;
     }
