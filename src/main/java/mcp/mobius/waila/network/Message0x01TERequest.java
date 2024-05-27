@@ -101,16 +101,14 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         if (entity == null) return;
         try {
             NBTTagCompound tag = new NBTTagCompound();
-//            boolean hasProbeBlock = ModuleProbeRegistrar.instance().hasProviders(block);
-//            boolean hasProbeEntity = ModuleProbeRegistrar.instance().hasProviders(entity);
-            boolean hasProbeBlock = WdmlaCommonRegistration.instance().hasProviders(block);
-            boolean hasProbeEntity = WdmlaCommonRegistration.instance().hasProviders(entity);
+            boolean hasNBTBlock = WdmlaCommonRegistration.instance().hasProviders(block);
+            boolean hasNBTEntity = WdmlaCommonRegistration.instance().hasProviders(entity);
 
-            boolean hasNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
-            boolean hasNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
+            boolean hasLegacyNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
+            boolean hasLegacyNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
             //TODO: BlockAccessorImpl#HandleRequest
 
-            if ((hasProbeBlock || hasProbeEntity) && msg.useNewAPI) {
+            if ((hasNBTBlock || hasNBTEntity) && msg.useNewAPI) {
                 tag.setInteger("x", msg.posX);
                 tag.setInteger("y", msg.posY);
                 tag.setInteger("z", msg.posZ);
@@ -118,22 +116,6 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
 
                 EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
                         .get()).playerEntity;
-
-//                for (IProbeDataProvider provider : ModuleProbeRegistrar.instance().getProviders(block)) {
-//                    try {
-//                        tag = provider.getNBTData(player, entity, tag, world, msg.posX, msg.posY, msg.posZ);
-//                    } catch (AbstractMethodError | NoSuchMethodError ame) {
-//                        // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
-//                    }
-//                }
-//
-//                for (IProbeDataProvider provider : ModuleProbeRegistrar.instance().getProviders(entity)) {
-//                    try {
-//                        tag = provider.getNBTData(player, entity, tag, world, msg.posX, msg.posY, msg.posZ);
-//                    } catch (AbstractMethodError | NoSuchMethodError ame) {
-//                        // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
-//                    }
-//                }
 
                 for (IServerDataProvider<BlockAccessor> provider : WdmlaCommonRegistration.instance().getBlockNBTProviders(block, entity)) {
                     try {
@@ -146,7 +128,7 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
             }
 
             // We will try to use old tooltips regardless of the mode
-            if ((hasNBTBlock || hasNBTEnt)) {
+            if ((hasLegacyNBTBlock || hasLegacyNBTEnt)) {
                 tag.setInteger("x", msg.posX);
                 tag.setInteger("y", msg.posY);
                 tag.setInteger("z", msg.posZ);

@@ -25,7 +25,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import mcp.mobius.waila.api.IWailaTooltipRenderer;
-import mcp.mobius.waila.api.elements.IItemStyle;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
@@ -83,44 +82,6 @@ public class DisplayUtil {
             String stackStr = stack != null ? stack.toString() : "NullStack";
             WailaExceptionHandler.handleErr(e, "renderStack | " + stackStr, null);
         }
-        enable2DRender();
-    }
-
-    public static void elementRenderStack(int x, int y, ItemStack stack, IItemStyle itemStyle) {
-        enable3DRender();
-        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-
-        float xScale = (float) itemStyle.getWidth() / 16;
-        float yScale = (float) itemStyle.getHeight() / 16;
-        try {
-            GL11.glPushMatrix(); // マトリックスを保存
-
-            // スケールを適用
-            GL11.glScalef(xScale, yScale, 1);
-
-            // アイテムを描画
-            RenderHelper.enableGUIStandardItemLighting();
-            renderItem.renderItemAndEffectIntoGUI(
-                    fontRenderer,
-                    textureManager,
-                    stack,
-                    (int) (x / xScale),
-                    (int) (y / yScale));
-            renderItem.renderItemOverlayIntoGUI(
-                    fontRenderer,
-                    textureManager,
-                    stack,
-                    (int) (x / xScale),
-                    (int) (y / yScale));
-            RenderHelper.disableStandardItemLighting();
-        } catch (Exception e) {
-            String stackStr = stack != null ? stack.toString() : "NullStack";
-            WailaExceptionHandler.handleErr(e, "renderStack | " + stackStr, null);
-        } finally {
-            GL11.glPopMatrix(); // マトリックスを復元
-        }
-
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         enable2DRender();
     }
 

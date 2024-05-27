@@ -22,10 +22,8 @@ import cpw.mods.fml.common.versioning.DefaultArtifactVersion;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.addons.harvestability.MissingHarvestInfo;
 import mcp.mobius.waila.addons.harvestability.proxy.ProxyIguanaTweaks;
-import mcp.mobius.waila.addons.vanillamc.TestRegistrar;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.api.impl.elements.ModuleProbeRegistrar;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.commands.CommandDumpHandlers;
 import mcp.mobius.waila.network.NetworkHandler;
@@ -82,8 +80,6 @@ public class Waila {
         FMLCommonHandler.instance().bus().register(new NetworkHandler());
 
         MissingHarvestInfo.init();
-        TestRegistrar.init();
-
     }
 
     @EventHandler
@@ -133,15 +129,6 @@ public class Waila {
                                 imcMessage.getSender(),
                                 imcMessage.getStringValue()));
                 ModuleRegistrar.instance().addIMCRequest(imcMessage.getStringValue(), imcMessage.getSender());
-            }
-
-            if (imcMessage.key.equalsIgnoreCase("elementregister")) {
-                Waila.log.info(
-                        String.format(
-                                "Receiving registration request from [ %s ] for method %s",
-                                imcMessage.getSender(),
-                                imcMessage.getStringValue()));
-                ModuleProbeRegistrar.instance().addIMCRequest(imcMessage.getStringValue(), imcMessage.getSender());
             }
         }
     }
