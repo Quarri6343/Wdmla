@@ -134,4 +134,10 @@ public class TooltipComponent extends Component implements ITooltip {
         this.children.add(c);
         return this;
     }
+
+    @Override
+    public ITooltip clear() {
+        this.children.clear();
+        return this;
+    }
 }

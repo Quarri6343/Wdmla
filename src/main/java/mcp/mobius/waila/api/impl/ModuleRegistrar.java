@@ -39,7 +39,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
     public LinkedHashMap<Class, HashSet<String>> syncedNBTKeys = new LinkedHashMap<>();
 
     public LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> wikiDescriptions = new LinkedHashMap<>();
-    public LinkedHashMap<Class, ArrayList<IWailaSummaryProvider>> summaryProviders = new LinkedHashMap<>();
 
     public LinkedHashMap<String, String> IMCRequests = new LinkedHashMap<>();
 
@@ -268,10 +267,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
         return getProviders(name, this.tailFMPProviders);
     }
 
-    public Map<Integer, List<IWailaSummaryProvider>> getSummaryProvider(Object item) {
-        return getProviders(item, this.summaryProviders);
-    }
-
     public Map<Integer, List<IWailaBlockDecorator>> getBlockDecorators(Object block) {
         return getProviders(block, this.blockClassDecorators);
     }
@@ -381,10 +376,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
 
     private <T> boolean hasProviders(String name, LinkedHashMap<String, ArrayList<T>> target) {
         return target.containsKey(name);
-    }
-
-    public boolean hasSummaryProvider(Class item) {
-        return this.summaryProviders.containsKey(item);
     }
 
     @Deprecated

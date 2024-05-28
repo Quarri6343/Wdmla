@@ -13,5 +13,7 @@ public interface AccessorClientHandler<T extends Accessor> {
 
 	void requestData(T accessor);
 
+	ITooltip getIcon(BlockAccessor accessor);
+
 	void gatherComponents(T accessor, ITooltip tooltip);
 }

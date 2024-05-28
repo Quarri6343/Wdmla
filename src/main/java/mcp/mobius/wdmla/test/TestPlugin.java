@@ -20,7 +20,7 @@ public class TestPlugin implements IWdmlaPlugin {
     public void registerClient(IWdmlaClientRegistration registration) {
         registration.registerAccessorHandler(BlockAccessor.class, new BlockAccessorClientHandler());
 
-        registration.registerBlockComponent(new DefaultComponentProvider(), Block.class);
+        registration.registerBlockIcon(new TestComponentProvider(), BlockFurnace.class);
         registration.registerBlockComponent(new TestComponentProvider(), BlockFurnace.class);
     }
 }

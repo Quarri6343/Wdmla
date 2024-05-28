@@ -2,10 +2,13 @@ package mcp.mobius.waila.overlay;
 
 import java.util.List;
 
+import mcp.mobius.wdmla.overlay.RayTracing;
+import mcp.mobius.wdmla.wailacompat.RayTracingCompat;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 
@@ -25,7 +28,16 @@ public class DecoratorRenderer {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        if (RayTracing.instance().getTarget() == null || RayTracing.instance().getTargetStack() == null) return;
+        if (RayTracing.instance().getTarget() == null) return;
+
+        ItemStack stack = RayTracingCompat.INSTANCE.getWailaStack(RayTracing.instance().getTarget());
+        if(stack == null) {
+            stack = RayTracing.instance().getTargetStack();
+        }
+
+        if(stack == null) {
+            return;
+        }
 
         double partialTicks = event.partialTicks;
 
@@ -53,7 +65,7 @@ public class DecoratorRenderer {
                     .values()) {
                 for (IWailaBlockDecorator decorator : decoratorsList) try {
                     GL11.glPushMatrix();
-                    decorator.decorateBlock(RayTracing.instance().getTargetStack(), accessor, ConfigHandler.instance());
+                    decorator.decorateBlock(stack, accessor, ConfigHandler.instance());
                     GL11.glPopMatrix();
                 } catch (Throwable e) {
                     GL11.glPopMatrix();

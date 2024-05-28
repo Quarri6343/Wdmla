@@ -4,7 +4,8 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
+import mcp.mobius.wdmla.overlay.RayTracing;
+import mcp.mobius.wdmla.wailacompat.RayTracingCompat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,8 +73,10 @@ public class WailaTickHandler {
             if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
                 DataAccessorCommon accessor = DataAccessorCommon.instance;
                 accessor.set(world, player, target);
-                ItemStack targetStack = RayTracing.instance().getTargetStack(); // Here we get either the proper stack
-                                                                                // or the override
+                ItemStack targetStack = RayTracingCompat.INSTANCE.getWailaStack(target);
+                if(targetStack == null) {
+                    targetStack = RayTracing.instance().getTargetStack();
+                }
 
                 if (targetStack != null) {
                     currenttip = new TipList<String, String>();
@@ -124,8 +127,10 @@ public class WailaTickHandler {
                 DataAccessorCommon accessor = DataAccessorCommon.instance;
                 accessor.set(world, player, target);
 
-                Entity targetEnt = RayTracing.instance().getTargetEntity(); // This need to be replaced by the override
-                                                                            // check.
+                Entity targetEnt = RayTracingCompat.INSTANCE.getWailaEntity(RayTracing.instance().getTarget());
+                if(targetEnt == null) {
+                    targetEnt = RayTracing.instance().getTargetEntity();
+                }
 
                 if (targetEnt != null) {
                     currenttip = new TipList<String, String>();

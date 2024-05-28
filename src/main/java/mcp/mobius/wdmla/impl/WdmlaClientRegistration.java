@@ -14,48 +14,77 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
     private static final WdmlaClientRegistration INSTANCE = new WdmlaClientRegistration();
 
     //We can't use HierarchyLookup in Java8
-    private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
+    private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockIconProviders;
+    private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockComponentProviders;
     //TODO: use Session
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
+
+    WdmlaClientRegistration() {
+        blockIconProviders = new LinkedHashMap<>();
+        blockComponentProviders = new LinkedHashMap<>();
+    }
 
     public static WdmlaClientRegistration instance() {
         return INSTANCE;
     }
 
+    @Override
+    public void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<?> clazz) {
+        if (clazz == null || provider == null) {
+            throw new RuntimeException(
+                    "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
+        }
+
+        if (!blockIconProviders.containsKey(clazz)) {
+            blockIconProviders.put(clazz, new ArrayList<>());
+        }
+
+        ArrayList<IComponentProvider<BlockAccessor>> providers = blockIconProviders.get(clazz);
+        if (providers.contains(provider)) {
+            throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
+        }
+
+        blockIconProviders.get(clazz).add(provider);
+    }
+
+    @Override
     public void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<?> clazz) {
         if (clazz == null || provider == null) {
             throw new RuntimeException(
                     "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
         }
 
-        if (!dataProviders.containsKey(clazz)) {
-            dataProviders.put(clazz, new ArrayList<>());
+        if (!blockComponentProviders.containsKey(clazz)) {
+            blockComponentProviders.put(clazz, new ArrayList<>());
         }
 
-        ArrayList<IComponentProvider<BlockAccessor>> providers = dataProviders.get(clazz);
+        ArrayList<IComponentProvider<BlockAccessor>> providers = blockComponentProviders.get(clazz);
         if (providers.contains(provider)) {
             throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
         }
 
-        dataProviders.get(clazz).add(provider);
+        blockComponentProviders.get(clazz).add(provider);
     }
 
-    public boolean hasProviders(Object obj) {
-        for (Class<?> clazz : dataProviders.keySet()) {
-            if (clazz.isInstance(obj)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public List<IComponentProvider<BlockAccessor>> getProviders(Object instance) {
+    public List<IComponentProvider<BlockAccessor>> getBlockProviders(Object instance) {
         List<IComponentProvider<BlockAccessor>> returnList = new ArrayList<>();
 
-        for (Class<?> clazz : dataProviders.keySet()) {
+        for (Class<?> clazz : blockComponentProviders.keySet()) {
             if (clazz.isInstance(instance)) {
-                returnList.addAll(dataProviders.get(clazz));
+                returnList.addAll(blockComponentProviders.get(clazz));
+            }
+        }
+
+        return returnList;
+    }
+
+    public List<IComponentProvider<BlockAccessor>> getBlockIconProviders(Object instance) {
+        List<IComponentProvider<BlockAccessor>> returnList = new ArrayList<>();
+
+        for (Class<?> clazz : blockIconProviders.keySet()) {
+            if (clazz.isInstance(instance)) {
+                returnList.addAll(blockIconProviders.get(clazz));
             }
         }
 

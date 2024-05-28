@@ -19,6 +19,10 @@ public interface BlockAccessor extends Accessor {
 
     int getMetadata();
 
+    /**
+     * Be aware, this behaves different from IWailaDataProvider's itemstack argument, which can be swapped with getWailaStack by any provider!
+     * @return an auto fetched itemstack form of the block
+     */
     ItemStack getItemForm();
 
     @Override

@@ -41,4 +41,6 @@ public interface ITooltip extends IComponent {
     ITooltip progress(long current, long max, String progressText);
 
     ITooltip child(@NotNull IComponent child);
+
+    ITooltip clear();
 }

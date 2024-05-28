@@ -1,9 +1,11 @@
 package mcp.mobius.wdmla.test;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
+import mcp.mobius.waila.utils.ModIdentification;
 import mcp.mobius.wdmla.api.BlockAccessor;
 import mcp.mobius.wdmla.api.IComponentProvider;
 import mcp.mobius.wdmla.api.IServerDataProvider;
+import mcp.mobius.wdmla.api.ui.IComponent;
 import mcp.mobius.wdmla.api.ui.ITooltip;
 import mcp.mobius.wdmla.api.ui.sizer.IPadding;
 import mcp.mobius.wdmla.impl.ui.component.TextComponent;
@@ -19,7 +21,24 @@ import net.minecraft.nbt.NBTTagList;
 
 import java.util.Random;
 
+import static mcp.mobius.waila.api.SpecialChars.BLUE;
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+
 public class TestComponentProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
+
+    @Override
+    public ITooltip getIcon(BlockAccessor accessor, ITooltip currentIcon) {
+        //TODO: icon disguise utility
+        currentIcon.clear();
+        ITooltip row = currentIcon.horizontal();
+        ItemStack itemStack = new ItemStack(Blocks.lit_furnace);
+        row.item(itemStack);
+
+        ITooltip row_vertical = row.vertical();
+        row_vertical.text("Furnace");
+        row_vertical.text(BLUE + ITALIC + "Wdmla");
+        return currentIcon;
+    }
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {

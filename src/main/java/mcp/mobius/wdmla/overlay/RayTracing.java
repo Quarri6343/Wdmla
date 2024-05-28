@@ -1,7 +1,6 @@
-package mcp.mobius.waila.overlay;
+package mcp.mobius.wdmla.overlay;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -17,13 +16,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.common.config.Configuration;
 
-import mcp.mobius.waila.api.IWailaDataProvider;
-import mcp.mobius.waila.api.IWailaEntityProvider;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.api.impl.DataAccessorCommon;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.utils.Constants;
 
+/**
+ * RayTracing class from Waila.
+ * Note: WailaStack and WailaEntity are no longer considered when retrieving results!
+ */
 public class RayTracing {
 
     private static RayTracing _instance;
@@ -94,21 +93,7 @@ public class RayTracing {
     }
 
     public Entity getIdentifierEntity() {
-        ArrayList<Entity> ents = new ArrayList<>();
-
-        if (this.target == null) return null;
-
-        if (ModuleRegistrar.instance().hasOverrideEntityProviders(this.target.entityHit)) {
-            for (List<IWailaEntityProvider> listProviders : ModuleRegistrar.instance()
-                    .getOverrideEntityProviders(this.target.entityHit).values()) {
-                for (IWailaEntityProvider provider : listProviders) {
-                    ents.add(provider.getWailaOverride(DataAccessorCommon.instance, ConfigHandler.instance()));
-                }
-            }
-        }
-
-        if (!ents.isEmpty()) return ents.get(0);
-        else return this.target.entityHit;
+        return this.target.entityHit;
     }
 
     public ArrayList<ItemStack> getIdentifierItems() {
@@ -125,41 +110,6 @@ public class RayTracing {
         Block mouseoverBlock = world.getBlock(x, y, z);
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (mouseoverBlock == null) return items;
-
-        if (ModuleRegistrar.instance().hasStackProviders(mouseoverBlock)) {
-            for (List<IWailaDataProvider> providersList : ModuleRegistrar.instance().getStackProviders(mouseoverBlock)
-                    .values()) {
-                for (IWailaDataProvider provider : providersList) {
-                    ItemStack providerStack = provider
-                            .getWailaStack(DataAccessorCommon.instance, ConfigHandler.instance());
-                    if (providerStack != null) {
-
-                        if (providerStack.getItem() == null) return new ArrayList<>();
-
-                        items.add(providerStack);
-                    }
-                }
-            }
-        }
-
-        if (tileEntity != null && ModuleRegistrar.instance().hasStackProviders(tileEntity)) {
-            for (List<IWailaDataProvider> providersList : ModuleRegistrar.instance().getStackProviders(tileEntity)
-                    .values()) {
-
-                for (IWailaDataProvider provider : providersList) {
-                    ItemStack providerStack = provider
-                            .getWailaStack(DataAccessorCommon.instance, ConfigHandler.instance());
-                    if (providerStack != null) {
-
-                        if (providerStack.getItem() == null) return new ArrayList<>();
-
-                        items.add(providerStack);
-                    }
-                }
-            }
-        }
-
-        if (!items.isEmpty()) return items;
 
         if (world.getTileEntity(x, y, z) == null) {
             try {

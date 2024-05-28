@@ -6,6 +6,8 @@ import org.jetbrains.annotations.ApiStatus;
 @ApiStatus.NonExtendable
 public interface IWdmlaClientRegistration {
 
+    void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
+
     void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
 
     boolean isServerConnected();
