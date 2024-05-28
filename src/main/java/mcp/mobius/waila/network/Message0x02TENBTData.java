@@ -1,6 +1,6 @@
 package mcp.mobius.waila.network;
 
-import mcp.mobius.wdmla.impl.ObjectDataCenter;
+import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
 import net.minecraft.nbt.NBTTagCompound;
 
 import io.netty.buffer.ByteBuf;

@@ -2,8 +2,8 @@ package mcp.mobius.waila.overlay;
 
 import java.util.List;
 
-import mcp.mobius.wdmla.overlay.RayTracing;
-import mcp.mobius.wdmla.wailacompat.RayTracingCompat;
+import com.gtnewhorizons.wdmla.overlay.RayTracing;
+import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;

@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import mcp.mobius.wdmla.api.BlockAccessor;
-import mcp.mobius.wdmla.api.IServerDataProvider;
-import mcp.mobius.wdmla.impl.WdmlaCommonRegistration;
-import mcp.mobius.wdmla.impl.BlockAccessorImpl;
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.impl.WdmlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

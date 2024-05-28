@@ -7,9 +7,6 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
-import cpw.mods.fml.common.network.NetworkCheckHandler;
-import cpw.mods.fml.common.versioning.ArtifactVersion;
-import cpw.mods.fml.common.versioning.DefaultArtifactVersion;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.addons.harvestability.MissingHarvestInfo;
 import mcp.mobius.waila.addons.harvestability.proxy.ProxyIguanaTweaks;
@@ -23,14 +20,12 @@ import mcp.mobius.waila.overlay.DecoratorRenderer;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
-import mcp.mobius.wdmla.Wdmla;
-import mcp.mobius.wdmla.overlay.WdmlaTickHandler;
+import com.gtnewhorizons.wdmla.overlay.WdmlaTickHandler;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
-import java.util.Map;
 
 @Mod(
         modid = "Waila",
@@ -48,7 +43,6 @@ public class Waila {
     public static ProxyServer proxy;
     public static Logger log = LogManager.getLogger("Waila");
     public boolean serverPresent = false;
-    private final ArtifactVersion minimumClientJoinVersion = new DefaultArtifactVersion("1.7.3");
 
     /* INIT SEQUENCE */
     @EventHandler
@@ -71,9 +65,8 @@ public class Waila {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new DecoratorRenderer());
             FMLCommonHandler.instance().bus().register(new KeyEvent());
-//            FMLCommonHandler.instance().bus().register(WailaTickHandler.instance());
+            FMLCommonHandler.instance().bus().register(new WdmlaTickHandler());
         }
-        FMLCommonHandler.instance().bus().register(new WdmlaTickHandler());
         FMLCommonHandler.instance().bus().register(new NetworkHandler());
 
         MissingHarvestInfo.init();
@@ -90,10 +83,9 @@ public class Waila {
 
     @Subscribe
     public void loadComplete(FMLLoadCompleteEvent event) {
-        proxy.registerMods();
+        proxy.registerLegacyMods();
         proxy.registerIMCs();
-
-        Wdmla.instance.loadComplete(event);
+        proxy.registerPlugins();
     }
 
     @EventHandler
@@ -133,17 +125,5 @@ public class Waila {
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandDumpHandlers());
-    }
-
-    /**
-     * Block any clients older than 1.7.3 to ensure the vanilla.show_invisible_players property is respected
-     */
-    @SuppressWarnings("unused")
-    @NetworkCheckHandler
-    public boolean checkModList(Map<String, String> versions, Side side) {
-        if (side == Side.CLIENT && versions.containsKey("Waila")) {
-            return minimumClientJoinVersion.compareTo(new DefaultArtifactVersion(versions.get("Waila"))) <= 0;
-        }
-        return true;
     }
 }

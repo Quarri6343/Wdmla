@@ -1,6 +1,6 @@
 package mcp.mobius.waila.handlers.nei;
 
-import mcp.mobius.wdmla.wailacompat.RayTracingCompat;
+import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ import codechicken.nei.recipe.GuiCraftingRecipe;
 import codechicken.nei.recipe.GuiUsageRecipe;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.cbcore.LangUtil;
-import mcp.mobius.wdmla.overlay.RayTracing;
+import com.gtnewhorizons.wdmla.overlay.RayTracing;
 import mcp.mobius.waila.utils.Constants;
 
 public class NEIHandler {
