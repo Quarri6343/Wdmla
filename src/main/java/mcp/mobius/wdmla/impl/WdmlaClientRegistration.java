@@ -5,7 +5,6 @@ import java.util.*;
 import com.google.common.collect.Maps;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.wdmla.api.*;
-import mcp.mobius.wdmla.impl.value.BlockAccessorImpl;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 

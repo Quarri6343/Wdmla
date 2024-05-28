@@ -16,10 +16,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.MetaDataProvider;
@@ -28,27 +25,13 @@ import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.utils.Constants;
 
+//TODO: remove after all compats are added.
 public class WailaTickHandler {
 
     public Tooltip tooltip = null;
     public MetaDataProvider handler = new MetaDataProvider();
 
     private final Minecraft mc = Minecraft.getMinecraft();
-
-    private static WailaTickHandler _instance;
-
-    private WailaTickHandler() {}
-
-    public static WailaTickHandler instance() {
-        if (_instance == null) _instance = new WailaTickHandler();
-        return _instance;
-    }
-
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void tickRender(TickEvent.RenderTickEvent event) {
-        // OverlayRenderer.renderOverlay();
-    }
 
 //    @SubscribeEvent
 //    @SideOnly(Side.CLIENT)

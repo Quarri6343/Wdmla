@@ -1,16 +1,7 @@
 package mcp.mobius.waila;
 
-import java.lang.reflect.Field;
-import java.util.Map;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -30,10 +21,16 @@ import mcp.mobius.waila.network.NetworkHandler;
 import mcp.mobius.waila.network.WailaPacketHandler;
 import mcp.mobius.waila.overlay.DecoratorRenderer;
 import mcp.mobius.waila.overlay.OverlayConfig;
-import mcp.mobius.waila.overlay.WailaTickHandler;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
 import mcp.mobius.wdmla.Wdmla;
+import mcp.mobius.wdmla.overlay.WdmlaTickHandler;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Field;
+import java.util.Map;
 
 @Mod(
         modid = "Waila",
@@ -74,9 +71,9 @@ public class Waila {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new DecoratorRenderer());
             FMLCommonHandler.instance().bus().register(new KeyEvent());
-            FMLCommonHandler.instance().bus().register(WailaTickHandler.instance());
+//            FMLCommonHandler.instance().bus().register(WailaTickHandler.instance());
         }
-        FMLCommonHandler.instance().bus().register(Wdmla.instance);
+        FMLCommonHandler.instance().bus().register(new WdmlaTickHandler());
         FMLCommonHandler.instance().bus().register(new NetworkHandler());
 
         MissingHarvestInfo.init();

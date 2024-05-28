@@ -8,7 +8,7 @@ import java.util.List;
 import mcp.mobius.wdmla.api.BlockAccessor;
 import mcp.mobius.wdmla.api.IServerDataProvider;
 import mcp.mobius.wdmla.impl.WdmlaCommonRegistration;
-import mcp.mobius.wdmla.impl.value.BlockAccessorImpl;
+import mcp.mobius.wdmla.impl.BlockAccessorImpl;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

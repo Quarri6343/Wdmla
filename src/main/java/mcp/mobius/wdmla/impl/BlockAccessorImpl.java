@@ -1,4 +1,4 @@
-package mcp.mobius.wdmla.impl.value;
+package mcp.mobius.wdmla.impl;
 
 import mcp.mobius.wdmla.api.BlockAccessor;
 import net.minecraft.block.Block;
