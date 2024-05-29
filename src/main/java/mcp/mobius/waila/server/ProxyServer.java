@@ -1,8 +1,6 @@
 package mcp.mobius.waila.server;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.addons.agriculture.AgricultureModule;
 import mcp.mobius.waila.addons.buildcraft.BCModule;
@@ -30,10 +28,6 @@ import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.handlers.DecoratorFMP;
 import mcp.mobius.waila.handlers.HUDHandlerFMP;
-import com.gtnewhorizons.wdmla.api.IWdmlaPlugin;
-import com.gtnewhorizons.wdmla.impl.WdmlaClientRegistration;
-import com.gtnewhorizons.wdmla.impl.WdmlaCommonRegistration;
-import com.gtnewhorizons.wdmla.test.TestPlugin;
 
 import java.lang.reflect.Method;
 
@@ -110,14 +104,6 @@ public class ProxyServer {
         if (Loader.isModLoaded("ForgeMultipart")) {
             HUDHandlerFMP.register();
             DecoratorFMP.register();
-        }
-    }
-
-    public void registerPlugins() {
-        IWdmlaPlugin testPlugin = new TestPlugin();
-        testPlugin.register(WdmlaCommonRegistration.instance());
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            testPlugin.registerClient(WdmlaClientRegistration.instance());
         }
     }
 

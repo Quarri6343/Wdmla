@@ -20,7 +20,6 @@ import mcp.mobius.waila.overlay.DecoratorRenderer;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
-import com.gtnewhorizons.wdmla.overlay.WdmlaTickHandler;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,6 +44,7 @@ public class Waila {
     public boolean serverPresent = false;
 
     /* INIT SEQUENCE */
+    //Don't call wdmla in this phase as it does not exist
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.instance().loadDefaultConfig(event);
@@ -65,7 +65,6 @@ public class Waila {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new DecoratorRenderer());
             FMLCommonHandler.instance().bus().register(new KeyEvent());
-            FMLCommonHandler.instance().bus().register(new WdmlaTickHandler());
         }
         FMLCommonHandler.instance().bus().register(new NetworkHandler());
 
@@ -85,7 +84,6 @@ public class Waila {
     public void loadComplete(FMLLoadCompleteEvent event) {
         proxy.registerLegacyMods();
         proxy.registerIMCs();
-        proxy.registerPlugins();
     }
 
     @EventHandler

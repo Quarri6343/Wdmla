@@ -1,16 +1,33 @@
-[
 {
-  "modid": "${modId}",
-  "name": "${modName}",
-  "description": "All your data are belong to us.",
-  "version": "${modVersion}",
-  "mcversion": "${minecraftVersion}",
-  "url": "",
-  "updateUrl": "",
-  "authors": ["ProfMobius"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
+  "modListVersion": 1,
+  "modList": [
+    {
+      "modid": "Waila",
+      "name": "Waila",
+      "description": "All your data are belong to us.",
+      "version": "${modVersion}",
+      "mcversion": "${minecraftVersion}",
+      "url": "",
+      "updateUrl": "",
+      "authorList": ["ProfMobius"],
+      "credits": "The Forge and FML guys, for making this example",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    },
+    {
+      "modid": "${modId}",
+      "name": "${modName}",
+      "description": "All your Waila are belong to DreamMasterXXL.",
+      "version": "${modVersion}",
+      "mcversion": "${minecraftVersion}",
+      "url": "",
+      "updateUrl": "",
+      "authorList": ["Quarri6343"],
+      "credits": "ProfMobius, for making Waila FOSS",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    }
+  ]
 }
-]
