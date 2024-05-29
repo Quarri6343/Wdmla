@@ -13,6 +13,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
+import com.gtnewhorizons.wdmla.impl.WdmlaCommonRegistration;
+
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import io.netty.buffer.ByteBuf;
@@ -41,15 +46,17 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
     public int posY;
     public int posZ;
     public HashSet<String> keys = new HashSet<>();
+    public boolean useNewAPI;
 
     public Message0x01TERequest() {}
 
-    public Message0x01TERequest(TileEntity ent, HashSet<String> keys) {
+    public Message0x01TERequest(TileEntity ent, HashSet<String> keys, boolean useNewAPI) {
         this.dim = ent.getWorldObj().provider.dimensionId;
         this.posX = ent.xCoord;
         this.posY = ent.yCoord;
         this.posZ = ent.zCoord;
         this.keys = keys;
+        this.useNewAPI = useNewAPI;
     }
 
     @Override
@@ -61,6 +68,8 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         target.writeInt(this.keys.size());
 
         for (String key : keys) WailaPacketHandler.INSTANCE.writeString(target, key);
+
+        target.writeBoolean(useNewAPI);
     }
 
     @Override
@@ -75,6 +84,8 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
             int nkeys = dat.readInt();
 
             for (int i = 0; i < nkeys; i++) this.keys.add(WailaPacketHandler.INSTANCE.readString(dat));
+
+            msg.useNewAPI = dat.readBoolean();
 
         } catch (Exception e) {
             WailaExceptionHandler.handleErr(e, this.getClass().toString(), null);
@@ -91,10 +102,38 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         if (entity == null) return;
         try {
             NBTTagCompound tag = new NBTTagCompound();
-            boolean hasNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
-            boolean hasNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
+            boolean hasNBTBlock = WdmlaCommonRegistration.instance().hasProviders(block);
+            boolean hasNBTEntity = WdmlaCommonRegistration.instance().hasProviders(entity);
 
-            if (hasNBTBlock || hasNBTEnt) {
+            boolean hasLegacyNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
+            boolean hasLegacyNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
+            // TODO: BlockAccessorImpl#HandleRequest
+
+            if ((hasNBTBlock || hasNBTEntity) && msg.useNewAPI) {
+                tag.setInteger("x", msg.posX);
+                tag.setInteger("y", msg.posY);
+                tag.setInteger("z", msg.posZ);
+                tag.setString("id", (String) ((HashMap) classToNameMap.get(null)).get(entity.getClass()));
+
+                EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
+                        .get()).playerEntity;
+
+                for (IServerDataProvider<BlockAccessor> provider : WdmlaCommonRegistration.instance()
+                        .getBlockNBTProviders(block, entity)) {
+                    try {
+                        provider.appendServerData(
+                                tag,
+                                new BlockAccessorImpl.Builder().level(world).player(player).block(block)
+                                        .tileEntity(entity).build());
+                    } catch (AbstractMethodError | NoSuchMethodError ame) {
+                        // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+                    }
+                }
+
+            }
+
+            // We will try to use old tooltips regardless of the mode
+            if ((hasLegacyNBTBlock || hasLegacyNBTEnt)) {
                 tag.setInteger("x", msg.posX);
                 tag.setInteger("y", msg.posY);
                 tag.setInteger("z", msg.posZ);

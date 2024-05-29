@@ -1,6 +1,7 @@
 // Add your dependencies here
 
 dependencies {
+    api("org.jetbrains:annotations:24.0.1")
     implementation('com.github.GTNewHorizons:NotEnoughItems:2.5.25-GTNH:dev')
 
     shadowImplementation('au.com.bytecode:opencsv:2.4')

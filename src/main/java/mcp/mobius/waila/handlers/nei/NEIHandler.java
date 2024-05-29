@@ -1,7 +1,5 @@
 package mcp.mobius.waila.handlers.nei;
 
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
@@ -11,6 +9,9 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.lwjgl.input.Keyboard;
 
+import com.gtnewhorizons.wdmla.overlay.RayTracing;
+import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
+
 import codechicken.nei.NEIClientConfig;
 import codechicken.nei.api.API;
 import codechicken.nei.guihook.GuiContainerManager;
@@ -18,7 +19,6 @@ import codechicken.nei.recipe.GuiCraftingRecipe;
 import codechicken.nei.recipe.GuiUsageRecipe;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.cbcore.LangUtil;
-import mcp.mobius.waila.overlay.RayTracing;
 import mcp.mobius.waila.utils.Constants;
 
 public class NEIHandler {
@@ -46,8 +46,11 @@ public class NEIHandler {
 
         if ((RayTracing.instance().getTarget() != null)
                 && (RayTracing.instance().getTarget().typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)) {
-            List<ItemStack> stacks = RayTracing.instance().getIdentifierItems();
-            if (!stacks.isEmpty()) {
+            ItemStack stack = RayTracingCompat.INSTANCE.getWailaStack(RayTracing.instance().getTarget());
+            if (stack == null) {
+                stack = RayTracing.instance().getTargetStack();
+            }
+            if (stack != null) {
                 mc.displayGuiScreen(new GuiInventory(mc.thePlayer));
                 if (firstInventory) {
                     try {
@@ -56,8 +59,8 @@ public class NEIHandler {
                     firstInventory = false;
                 }
 
-                if (recipe) if (!GuiCraftingRecipe.openRecipeGui("item", stacks.get(0).copy())) {
-                    ItemStack target = stacks.get(0).copy();
+                if (recipe) if (!GuiCraftingRecipe.openRecipeGui("item", stack.copy())) {
+                    ItemStack target = stack.copy();
                     target.setItemDamage(0);
                     if (!GuiCraftingRecipe.openRecipeGui("item", target)) {
                         mc.thePlayer.addChatMessage(
@@ -68,8 +71,8 @@ public class NEIHandler {
                     }
                 }
 
-                if (!recipe) if (!GuiUsageRecipe.openRecipeGui("item", stacks.get(0).copy())) {
-                    ItemStack target = stacks.get(0).copy();
+                if (!recipe) if (!GuiUsageRecipe.openRecipeGui("item", stack.copy())) {
+                    ItemStack target = stack.copy();
                     target.setItemDamage(0);
                     if (!GuiUsageRecipe.openRecipeGui("item", target)) {
                         mc.thePlayer.addChatMessage(

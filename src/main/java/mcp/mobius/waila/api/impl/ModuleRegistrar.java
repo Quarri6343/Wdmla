@@ -4,24 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import au.com.bytecode.opencsv.CSVReader;
 import mcp.mobius.waila.Waila;
-import mcp.mobius.waila.api.IWailaBlockDecorator;
-import mcp.mobius.waila.api.IWailaDataProvider;
-import mcp.mobius.waila.api.IWailaEntityProvider;
-import mcp.mobius.waila.api.IWailaFMPDecorator;
-import mcp.mobius.waila.api.IWailaFMPProvider;
-import mcp.mobius.waila.api.IWailaRegistrar;
-import mcp.mobius.waila.api.IWailaSummaryProvider;
-import mcp.mobius.waila.api.IWailaTooltipRenderer;
+import mcp.mobius.waila.api.*;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
 
@@ -52,7 +39,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
     public LinkedHashMap<Class, HashSet<String>> syncedNBTKeys = new LinkedHashMap<>();
 
     public LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> wikiDescriptions = new LinkedHashMap<>();
-    public LinkedHashMap<Class, ArrayList<IWailaSummaryProvider>> summaryProviders = new LinkedHashMap<>();
 
     public LinkedHashMap<String, String> IMCRequests = new LinkedHashMap<>();
 
@@ -281,10 +267,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
         return getProviders(name, this.tailFMPProviders);
     }
 
-    public Map<Integer, List<IWailaSummaryProvider>> getSummaryProvider(Object item) {
-        return getProviders(item, this.summaryProviders);
-    }
-
     public Map<Integer, List<IWailaBlockDecorator>> getBlockDecorators(Object block) {
         return getProviders(block, this.blockClassDecorators);
     }
@@ -394,10 +376,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
 
     private <T> boolean hasProviders(String name, LinkedHashMap<String, ArrayList<T>> target) {
         return target.containsKey(name);
-    }
-
-    public boolean hasSummaryProvider(Class item) {
-        return this.summaryProviders.containsKey(item);
     }
 
     @Deprecated

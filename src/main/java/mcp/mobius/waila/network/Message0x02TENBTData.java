@@ -2,6 +2,8 @@ package mcp.mobius.waila.network;
 
 import net.minecraft.nbt.NBTTagCompound;
 
+import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -35,5 +37,6 @@ public class Message0x02TENBTData extends SimpleChannelInboundHandler<Message0x0
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message0x02TENBTData msg) throws Exception {
         DataAccessorCommon.instance.setNBTData(msg.tag);
+        ObjectDataCenter.setServerData(msg.tag);
     }
 }

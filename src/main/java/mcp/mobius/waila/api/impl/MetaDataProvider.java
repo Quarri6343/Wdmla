@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.config.Configuration;
 
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.IWailaBlock;
@@ -21,6 +22,7 @@ import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.network.Message0x03EntRequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
+import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class MetaDataProvider {
@@ -66,7 +68,9 @@ public class MetaDataProvider {
 
         if (accessor.getTileEntity() != null && Waila.instance.serverPresent
                 && accessor.isTimeElapsed(250)
-                && ConfigHandler.instance().showTooltip()) {
+                && ConfigHandler.instance().showTooltip()
+                && ConfigHandler.instance()
+                        .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FORCE_LEGACY_MODE, false)) {
             accessor.resetTimer();
             HashSet<String> keys = new HashSet<>();
 
@@ -78,7 +82,8 @@ public class MetaDataProvider {
 
             if (!keys.isEmpty() || ModuleRegistrar.instance().hasNBTProviders(block)
                     || ModuleRegistrar.instance().hasNBTProviders(accessor.getTileEntity()))
-                WailaPacketHandler.INSTANCE.sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys));
+                WailaPacketHandler.INSTANCE
+                        .sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys, false));
 
         } else if (accessor.getTileEntity() != null && !Waila.instance.serverPresent
                 && accessor.isTimeElapsed(250)
