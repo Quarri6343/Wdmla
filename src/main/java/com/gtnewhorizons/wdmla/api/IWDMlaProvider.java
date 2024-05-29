@@ -2,7 +2,7 @@ package com.gtnewhorizons.wdmla.api;
 
 import net.minecraft.util.ResourceLocation;
 
-public interface IWdmlaProvider {
+public interface IWDMlaProvider {
 
     /**
      * The unique id of this provider. Providers from different registries can have the same id.

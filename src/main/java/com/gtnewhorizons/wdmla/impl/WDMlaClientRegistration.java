@@ -10,9 +10,9 @@ import com.gtnewhorizons.wdmla.api.*;
 
 import mcp.mobius.waila.Waila;
 
-public class WdmlaClientRegistration implements IWdmlaClientRegistration {
+public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
-    private static final WdmlaClientRegistration INSTANCE = new WdmlaClientRegistration();
+    private static final WDMlaClientRegistration INSTANCE = new WDMlaClientRegistration();
 
     // We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockIconProviders;
@@ -21,12 +21,12 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
 
-    WdmlaClientRegistration() {
+    WDMlaClientRegistration() {
         blockIconProviders = new LinkedHashMap<>();
         blockComponentProviders = new LinkedHashMap<>();
     }
 
-    public static WdmlaClientRegistration instance() {
+    public static WDMlaClientRegistration instance() {
         return INSTANCE;
     }
 

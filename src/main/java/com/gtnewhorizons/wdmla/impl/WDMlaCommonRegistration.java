@@ -11,17 +11,17 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.IWdmlaCommonRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 
-public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
+public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
 
-    private static final WdmlaCommonRegistration INSTANCE = new WdmlaCommonRegistration();
+    private static final WDMlaCommonRegistration INSTANCE = new WDMlaCommonRegistration();
 
     // We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IServerDataProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
     // TODO: use Session
 
-    public static WdmlaCommonRegistration instance() {
+    public static WDMlaCommonRegistration instance() {
         return INSTANCE;
     }
 

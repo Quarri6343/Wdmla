@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.api;
 
-public interface IToggleableProvider extends IWdmlaProvider {
+public interface IToggleableProvider extends IWDMlaProvider {
 
     /**
      * Whether this provider can be disabled in config.

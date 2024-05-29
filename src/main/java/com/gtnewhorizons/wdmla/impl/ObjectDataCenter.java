@@ -29,7 +29,7 @@ public final class ObjectDataCenter {
             return;
         }
 
-        clientHandler = WdmlaClientRegistration.instance().getAccessorHandler(accessor.getAccessorType());
+        clientHandler = WDMlaClientRegistration.instance().getAccessorHandler(accessor.getAccessorType());
         MovingObjectPosition object = accessor.getHitResult();
 
         if (!equals(object, lastObject)) {

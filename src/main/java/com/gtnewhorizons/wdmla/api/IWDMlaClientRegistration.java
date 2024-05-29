@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable
-public interface IWdmlaClientRegistration {
+public interface IWDMlaClientRegistration {
 
     void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
 

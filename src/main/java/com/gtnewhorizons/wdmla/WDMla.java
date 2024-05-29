@@ -10,11 +10,11 @@ import mcp.mobius.waila.Tags;
 
 @Mod(
         modid = "Wdmla",
-        name = "Wdmla",
+        name = "WDMla",
         version = Tags.GRADLETOKEN_VERSION,
         dependencies = "after:Waila",
         acceptableRemoteVersions = "*")
-public class Wdmla {
+public class WDMla {
 
     @SidedProxy(clientSide = "com.gtnewhorizons.wdmla.ClientProxy", serverSide = "com.gtnewhorizons.wdmla.CommonProxy")
     public static CommonProxy proxy;

@@ -38,7 +38,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
     @Override
     public boolean shouldRequestData(BlockAccessor accessor) {
-        for (IServerDataProvider<BlockAccessor> provider : WdmlaCommonRegistration.instance()
+        for (IServerDataProvider<BlockAccessor> provider : WDMlaCommonRegistration.instance()
                 .getBlockNBTProviders(accessor.getBlock(), accessor.getTileEntity())) {
             if (provider.shouldRequestData(accessor)) {
                 return true;
@@ -59,7 +59,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         ITooltip overrideIcon = new VPanelComponent();
 
         boolean hasIconOverride = false;
-        for (IComponentProvider<BlockAccessor> provider : WdmlaClientRegistration.instance()
+        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockIconProviders(accessor.getBlock())) {
             ITooltip providerIcon = provider.getIcon(accessor, overrideIcon);
             if (providerIcon != null) {
@@ -68,7 +68,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
             }
         }
 
-        for (IComponentProvider<BlockAccessor> provider : WdmlaClientRegistration.instance()
+        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockIconProviders(accessor.getTileEntity())) {
             ITooltip providerIcon = provider.getIcon(accessor, overrideIcon);
             if (providerIcon != null) {
@@ -106,12 +106,12 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         tooltip.child(getIcon(accessor));
 
         // step 1: gather wdmla tooltip components
-        for (IComponentProvider<BlockAccessor> provider : WdmlaClientRegistration.instance()
+        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockProviders(accessor.getBlock())) {
             provider.appendTooltip(tooltip, accessor);
         }
 
-        for (IComponentProvider<BlockAccessor> provider : WdmlaClientRegistration.instance()
+        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockProviders(accessor.getTileEntity())) {
             provider.appendTooltip(tooltip, accessor);
         }

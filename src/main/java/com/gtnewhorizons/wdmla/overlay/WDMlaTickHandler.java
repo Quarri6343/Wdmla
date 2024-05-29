@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.Accessor;
 import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
-import com.gtnewhorizons.wdmla.impl.WdmlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.ui.component.RootComponent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 
-public class WdmlaTickHandler {
+public class WDMlaTickHandler {
 
     private static @Nullable RootComponent mainHUD = null;
 
@@ -67,7 +67,7 @@ public class WdmlaTickHandler {
             TileEntity tileEntity = world.getTileEntity(target.blockX, target.blockY, target.blockZ);
             int metadata = world.getBlockMetadata(target.blockX, target.blockY, target.blockZ);
             ItemStack itemForm = RayTracing.instance().getIdentifierStack();
-            accessor = WdmlaClientRegistration.instance().blockAccessor().block(block).tileEntity(tileEntity)
+            accessor = WDMlaClientRegistration.instance().blockAccessor().block(block).tileEntity(tileEntity)
                     .meta(metadata).hit(target).itemForm(itemForm).requireVerification().build();
         }
 
@@ -83,7 +83,7 @@ public class WdmlaTickHandler {
     public RootComponent handle(Accessor accessor) {
         RootComponent root = new RootComponent();
 
-        var handler = WdmlaClientRegistration.instance().getAccessorHandler(accessor.getAccessorType());
+        var handler = WDMlaClientRegistration.instance().getAccessorHandler(accessor.getAccessorType());
         if (!handler.shouldDisplay(accessor)) {
             return null;
         }

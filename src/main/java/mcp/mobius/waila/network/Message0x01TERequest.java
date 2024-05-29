@@ -16,7 +16,7 @@ import net.minecraftforge.common.DimensionManager;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
-import com.gtnewhorizons.wdmla.impl.WdmlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
@@ -102,8 +102,8 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         if (entity == null) return;
         try {
             NBTTagCompound tag = new NBTTagCompound();
-            boolean hasNBTBlock = WdmlaCommonRegistration.instance().hasProviders(block);
-            boolean hasNBTEntity = WdmlaCommonRegistration.instance().hasProviders(entity);
+            boolean hasNBTBlock = WDMlaCommonRegistration.instance().hasProviders(block);
+            boolean hasNBTEntity = WDMlaCommonRegistration.instance().hasProviders(entity);
 
             boolean hasLegacyNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
             boolean hasLegacyNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
@@ -118,7 +118,7 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
                 EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
                         .get()).playerEntity;
 
-                for (IServerDataProvider<BlockAccessor> provider : WdmlaCommonRegistration.instance()
+                for (IServerDataProvider<BlockAccessor> provider : WDMlaCommonRegistration.instance()
                         .getBlockNBTProviders(block, entity)) {
                     try {
                         provider.appendServerData(
