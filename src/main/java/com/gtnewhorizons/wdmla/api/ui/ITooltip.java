@@ -1,16 +1,17 @@
 package com.gtnewhorizons.wdmla.api.ui;
 
+import net.minecraft.item.ItemStack;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
-import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 /**
- * The interface for component which can append child components
- * Provides quick shortcuts to add simple elements
+ * The interface for component which can append child components Provides quick shortcuts to add simple elements
  */
 public interface ITooltip extends IComponent {
 

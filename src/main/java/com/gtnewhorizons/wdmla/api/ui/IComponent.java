@@ -1,7 +1,5 @@
 package com.gtnewhorizons.wdmla.api.ui;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Base UI Component interface
  */

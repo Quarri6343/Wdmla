@@ -1,6 +1,5 @@
 package mcp.mobius.waila.handlers.nei;
 
-import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
@@ -10,6 +9,9 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.lwjgl.input.Keyboard;
 
+import com.gtnewhorizons.wdmla.overlay.RayTracing;
+import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
+
 import codechicken.nei.NEIClientConfig;
 import codechicken.nei.api.API;
 import codechicken.nei.guihook.GuiContainerManager;
@@ -17,7 +19,6 @@ import codechicken.nei.recipe.GuiCraftingRecipe;
 import codechicken.nei.recipe.GuiUsageRecipe;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.cbcore.LangUtil;
-import com.gtnewhorizons.wdmla.overlay.RayTracing;
 import mcp.mobius.waila.utils.Constants;
 
 public class NEIHandler {
@@ -46,7 +47,7 @@ public class NEIHandler {
         if ((RayTracing.instance().getTarget() != null)
                 && (RayTracing.instance().getTarget().typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)) {
             ItemStack stack = RayTracingCompat.INSTANCE.getWailaStack(RayTracing.instance().getTarget());
-            if(stack == null){
+            if (stack == null) {
                 stack = RayTracing.instance().getTargetStack();
             }
             if (stack != null) {

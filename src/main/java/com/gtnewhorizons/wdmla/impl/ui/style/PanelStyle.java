@@ -37,7 +37,7 @@ public class PanelStyle implements IPanelStyle {
 
     @Override
     public int getBorderThickness() {
-        if(borderColor == NO_BORDER) {
+        if (borderColor == NO_BORDER) {
             return 0;
         }
 

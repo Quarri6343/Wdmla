@@ -2,13 +2,14 @@ package com.gtnewhorizons.wdmla.impl.ui.value;
 
 import java.awt.*;
 
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.common.config.Configuration;
 
 import org.jetbrains.annotations.NotNull;
+
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;

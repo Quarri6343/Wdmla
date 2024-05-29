@@ -2,13 +2,13 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.BorderDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
-import org.jetbrains.annotations.NotNull;
-
-import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 
 public abstract class PanelComponent extends TooltipComponent {
 

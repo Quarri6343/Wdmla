@@ -1,8 +1,9 @@
 package com.gtnewhorizons.wdmla.impl.ui.value;
 
+import net.minecraft.client.Minecraft;
+
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import net.minecraft.client.Minecraft;
 
 public class HUDBlockDamage {
 

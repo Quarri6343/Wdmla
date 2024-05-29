@@ -1,13 +1,14 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
+import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.TextDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.TextSize;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
-import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
-import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
-import org.jetbrains.annotations.NotNull;
 
 public class TextComponent extends Component {
 

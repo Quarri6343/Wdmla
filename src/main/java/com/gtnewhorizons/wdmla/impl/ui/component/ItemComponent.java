@@ -2,10 +2,11 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
+import net.minecraft.item.ItemStack;
+
 import com.gtnewhorizons.wdmla.impl.ui.drawable.ItemDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import net.minecraft.item.ItemStack;
 
 public class ItemComponent extends TooltipComponent {
 

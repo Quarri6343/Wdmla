@@ -1,9 +1,10 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import mcp.mobius.waila.overlay.OverlayConfig;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
+
+import mcp.mobius.waila.overlay.OverlayConfig;
 
 public class BackgroundDrawable implements IDrawable {
 

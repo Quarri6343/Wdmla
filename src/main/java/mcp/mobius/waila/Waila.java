@@ -1,7 +1,15 @@
 package mcp.mobius.waila;
 
+import java.lang.reflect.Field;
+
+import net.minecraftforge.common.MinecraftForge;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,11 +28,6 @@ import mcp.mobius.waila.overlay.DecoratorRenderer;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
-import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.lang.reflect.Field;
 
 @Mod(
         modid = "Waila",
@@ -44,7 +47,7 @@ public class Waila {
     public boolean serverPresent = false;
 
     /* INIT SEQUENCE */
-    //Don't call wdmla in this phase as it does not exist
+    // Don't call wdmla in this phase as it does not exist
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.instance().loadDefaultConfig(event);

@@ -1,11 +1,12 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
-import org.jetbrains.annotations.NotNull;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
 public abstract class Component implements IComponent {
 

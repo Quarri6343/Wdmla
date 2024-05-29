@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.api;
 
+import java.util.function.Supplier;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -7,9 +9,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.ApiStatus;
 
-import java.util.function.Supplier;
+import org.jetbrains.annotations.ApiStatus;
 
 public interface BlockAccessor extends Accessor {
 
@@ -20,7 +21,9 @@ public interface BlockAccessor extends Accessor {
     int getMetadata();
 
     /**
-     * Be aware, this behaves different from IWailaDataProvider's itemstack argument, which can be swapped with getWailaStack by any provider!
+     * Be aware, this behaves different from IWailaDataProvider's itemstack argument, which can be swapped with
+     * getWailaStack by any provider!
+     * 
      * @return an auto fetched itemstack form of the block
      */
     ItemStack getItemForm();
@@ -32,6 +35,7 @@ public interface BlockAccessor extends Accessor {
 
     @ApiStatus.NonExtendable
     interface Builder {
+
         Builder level(World level);
 
         Builder player(EntityPlayer player);

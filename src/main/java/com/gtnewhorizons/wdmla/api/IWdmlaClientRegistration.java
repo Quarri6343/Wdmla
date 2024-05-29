@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.api;
 
 import net.minecraft.nbt.NBTTagCompound;
+
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable

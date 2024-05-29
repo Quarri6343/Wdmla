@@ -4,8 +4,6 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.overlay.RayTracing;
-import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +14,9 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.lwjgl.input.Keyboard;
 
+import com.gtnewhorizons.wdmla.overlay.RayTracing;
+import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
+
 import cpw.mods.fml.common.gameevent.TickEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
@@ -25,7 +26,7 @@ import mcp.mobius.waila.cbcore.Layout;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.utils.Constants;
 
-//TODO: remove after all compats are added.
+// TODO: remove after all compats are added.
 public class WailaTickHandler {
 
     public Tooltip tooltip = null;
@@ -33,8 +34,8 @@ public class WailaTickHandler {
 
     private final Minecraft mc = Minecraft.getMinecraft();
 
-//    @SubscribeEvent
-//    @SideOnly(Side.CLIENT)
+    // @SubscribeEvent
+    // @SideOnly(Side.CLIENT)
     public void tickClient(TickEvent.ClientTickEvent event) {
         if (!Keyboard.isKeyDown(KeyEvent.key_show.getKeyCode())
                 && !ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)
@@ -57,7 +58,7 @@ public class WailaTickHandler {
                 DataAccessorCommon accessor = DataAccessorCommon.instance;
                 accessor.set(world, player, target);
                 ItemStack targetStack = RayTracingCompat.INSTANCE.getWailaStack(target);
-                if(targetStack == null) {
+                if (targetStack == null) {
                     targetStack = RayTracing.instance().getTargetStack();
                 }
 
@@ -111,7 +112,7 @@ public class WailaTickHandler {
                 accessor.set(world, player, target);
 
                 Entity targetEnt = RayTracingCompat.INSTANCE.getWailaEntity(RayTracing.instance().getTarget());
-                if(targetEnt == null) {
+                if (targetEnt == null) {
                     targetEnt = RayTracing.instance().getTargetEntity();
                 }
 

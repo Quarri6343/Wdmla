@@ -1,13 +1,15 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import com.gtnewhorizons.wdmla.api.Accessor;
-import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
+
 import org.jetbrains.annotations.Nullable;
 
-//TODO: full implementation
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
+
+// TODO: full implementation
 public final class ObjectDataCenter {
 
     public static int rateLimiter = 250;
@@ -17,8 +19,7 @@ public final class ObjectDataCenter {
     private static NBTTagCompound serverData = new NBTTagCompound();
     private static MovingObjectPosition lastObject;
 
-    private ObjectDataCenter() {
-    }
+    private ObjectDataCenter() {}
 
     public static void set(@Nullable Accessor accessor) {
         ObjectDataCenter.accessor = accessor;
@@ -79,8 +80,9 @@ public final class ObjectDataCenter {
     }
 
     private static boolean equals(MovingObjectPosition mop1, MovingObjectPosition mop2) {
-        if(mop1 != null && mop1.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
-            && mop2 != null && mop2.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+        if (mop1 != null && mop1.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
+                && mop2 != null
+                && mop2.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
             return mop1.blockX == mop2.blockX && mop1.blockY == mop2.blockY && mop1.blockZ == mop2.blockZ;
         }
 

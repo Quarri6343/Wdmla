@@ -20,8 +20,7 @@ import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
 /**
- * RayTracing class from Waila.
- * Note: WailaStack and WailaEntity are no longer considered when retrieving results!
+ * RayTracing class from Waila. Note: WailaStack and WailaEntity are no longer considered when retrieving results!
  */
 public class RayTracing {
 

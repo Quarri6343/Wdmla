@@ -1,12 +1,12 @@
 package com.gtnewhorizons.wdmla.test;
 
-import com.gtnewhorizons.wdmla.api.IWdmlaPlugin;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IWdmlaCommonRegistration;
-import com.gtnewhorizons.wdmla.impl.BlockAccessorClientHandler;
-
-import com.gtnewhorizons.wdmla.api.IWdmlaClientRegistration;
 import net.minecraft.block.BlockFurnace;
+
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IWdmlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWdmlaCommonRegistration;
+import com.gtnewhorizons.wdmla.api.IWdmlaPlugin;
+import com.gtnewhorizons.wdmla.impl.BlockAccessorClientHandler;
 
 public class TestPlugin implements IWdmlaPlugin {
 

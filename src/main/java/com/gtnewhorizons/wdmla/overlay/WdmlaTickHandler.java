@@ -1,14 +1,5 @@
 package com.gtnewhorizons.wdmla.overlay;
 
-import com.gtnewhorizons.wdmla.api.Accessor;
-import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
-import com.gtnewhorizons.wdmla.impl.WdmlaClientRegistration;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import com.gtnewhorizons.wdmla.impl.ui.component.RootComponent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,7 +8,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
 import org.jetbrains.annotations.Nullable;
+
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
+import com.gtnewhorizons.wdmla.impl.WdmlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.component.RootComponent;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import mcp.mobius.waila.api.impl.ConfigHandler;
 
 public class WdmlaTickHandler {
 
@@ -40,8 +43,11 @@ public class WdmlaTickHandler {
         EntityPlayer player = mc.thePlayer;
         GuiScreen currentScreen = mc.currentScreen;
 
-        if(world == null || player == null || !Minecraft.isGuiEnabled()
-                || currentScreen != null || mc.gameSettings.keyBindPlayerList.getIsKeyPressed() || !ConfigHandler.instance().showTooltip()) {
+        if (world == null || player == null
+                || !Minecraft.isGuiEnabled()
+                || currentScreen != null
+                || mc.gameSettings.keyBindPlayerList.getIsKeyPressed()
+                || !ConfigHandler.instance().showTooltip()) {
             mainHUD = null;
             return;
         }
@@ -49,14 +55,14 @@ public class WdmlaTickHandler {
         RayTracing.instance().fire();
         MovingObjectPosition target = RayTracing.instance().getTarget();
 
-        if(target == null) {
+        if (target == null) {
             mainHUD = null;
             return;
         }
 
         Accessor accessor = null;
 
-        if(target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+        if (target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
             Block block = world.getBlock(target.blockX, target.blockY, target.blockZ);
             TileEntity tileEntity = world.getTileEntity(target.blockX, target.blockY, target.blockZ);
             int metadata = world.getBlockMetadata(target.blockX, target.blockY, target.blockZ);

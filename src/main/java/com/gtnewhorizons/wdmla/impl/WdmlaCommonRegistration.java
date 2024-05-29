@@ -1,30 +1,33 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.IWdmlaCommonRegistration;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.IWdmlaCommonRegistration;
 
 public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
 
     private static final WdmlaCommonRegistration INSTANCE = new WdmlaCommonRegistration();
 
-    //We can't use HierarchyLookup in Java8
+    // We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IServerDataProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
-    //TODO: use Session
+    // TODO: use Session
 
     public static WdmlaCommonRegistration instance() {
         return INSTANCE;
     }
 
     @Override
-    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> provider, Class<?> blockOrTileEntityClass) {
+    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> provider,
+            Class<?> blockOrTileEntityClass) {
         if (blockOrTileEntityClass == null || provider == null) {
             throw new RuntimeException(
                     "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
@@ -57,8 +60,7 @@ public class WdmlaCommonRegistration implements IWdmlaCommonRegistration {
         for (Class<?> clazz : dataProviders.keySet()) {
             if (clazz.isInstance(block)) {
                 returnList.addAll(dataProviders.get(clazz));
-            }
-            else if (clazz.isInstance(tileEntity)) {
+            } else if (clazz.isInstance(tileEntity)) {
                 returnList.addAll(dataProviders.get(clazz));
             }
         }

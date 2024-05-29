@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.impl.WdmlaCommonRegistration;
-import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +12,11 @@ import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
+import com.gtnewhorizons.wdmla.impl.WdmlaCommonRegistration;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
@@ -106,7 +107,7 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
 
             boolean hasLegacyNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
             boolean hasLegacyNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
-            //TODO: BlockAccessorImpl#HandleRequest
+            // TODO: BlockAccessorImpl#HandleRequest
 
             if ((hasNBTBlock || hasNBTEntity) && msg.useNewAPI) {
                 tag.setInteger("x", msg.posX);
@@ -117,9 +118,13 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
                 EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
                         .get()).playerEntity;
 
-                for (IServerDataProvider<BlockAccessor> provider : WdmlaCommonRegistration.instance().getBlockNBTProviders(block, entity)) {
+                for (IServerDataProvider<BlockAccessor> provider : WdmlaCommonRegistration.instance()
+                        .getBlockNBTProviders(block, entity)) {
                     try {
-                        provider.appendServerData(tag, new BlockAccessorImpl.Builder().level(world).player(player).block(block).tileEntity(entity).build());
+                        provider.appendServerData(
+                                tag,
+                                new BlockAccessorImpl.Builder().level(world).player(player).block(block)
+                                        .tileEntity(entity).build());
                     } catch (AbstractMethodError | NoSuchMethodError ame) {
                         // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
                     }

@@ -1,25 +1,27 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
-import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 
 public class TooltipComponent extends Component implements ITooltip {
 
     protected List<IComponent> children;
 
-    public static final IPadding DEFAULT_PROGRESS_TEXT_PADDING = new Padding(2,0,3,0);
+    public static final IPadding DEFAULT_PROGRESS_TEXT_PADDING = new Padding(2, 0, 3, 0);
 
     protected TooltipComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground) {
         super(padding, size, foreground);
@@ -34,7 +36,6 @@ public class TooltipComponent extends Component implements ITooltip {
             child.tick(x + padding.getLeft(), y + padding.getTop());
         }
     }
-
 
     @Override
     public ITooltip child(@NotNull IComponent child) {

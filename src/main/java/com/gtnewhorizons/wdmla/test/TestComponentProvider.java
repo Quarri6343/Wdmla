@@ -1,32 +1,34 @@
 package com.gtnewhorizons.wdmla.test;
 
-import mcp.mobius.waila.overlay.DisplayUtil;
+import static mcp.mobius.waila.api.SpecialChars.BLUE;
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+
+import java.util.Random;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.ProgressStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
-import java.util.Random;
-
-import static mcp.mobius.waila.api.SpecialChars.BLUE;
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+import mcp.mobius.waila.overlay.DisplayUtil;
 
 public class TestComponentProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
 
     @Override
     public ITooltip getIcon(BlockAccessor accessor, ITooltip currentIcon) {
-        //TODO: icon disguise utility
+        // TODO: icon disguise utility
         currentIcon.clear();
         ITooltip row = currentIcon.horizontal();
         ItemStack itemStack = new ItemStack(Blocks.lit_furnace);
@@ -47,8 +49,8 @@ public class TestComponentProvider implements IComponentProvider<BlockAccessor>,
             tooltip.vertical().progress(
                     cookTime,
                     10,
-                    new ProgressStyle().filledColor(0xFF4CBB17)
-                            .alternateFilledColor(0xFF4CBB17).borderColor(0xFF555555),
+                    new ProgressStyle().filledColor(0xFF4CBB17).alternateFilledColor(0xFF4CBB17)
+                            .borderColor(0xFF555555),
                     "Smelting: " + cookTime + " / 10 s");
         }
 
@@ -58,8 +60,7 @@ public class TestComponentProvider implements IComponentProvider<BlockAccessor>,
 
         int burnTime = accessor.getServerData().getInteger("BurnTime") / 20;
         if (burnTime > 0) {
-            tooltip.horizontal().text("Burn")
-                    .item(new ItemStack(Blocks.fire), new Padding(), new Size(8,8))
+            tooltip.horizontal().text("Burn").item(new ItemStack(Blocks.fire), new Padding(), new Size(8, 8))
                     .text(": " + burnTime + " " + "Seconds Remaining");
         }
 
@@ -79,20 +80,26 @@ public class TestComponentProvider implements IComponentProvider<BlockAccessor>,
         ITooltip itemSection = tooltip.vertical(new PanelStyle().borderColor(0xff00ffff));
         if (items[0] != null) {
             itemSection.horizontal().text("In: ", new TextStyle(), itemPadding)
-                    .item(items[0], new Padding(), new Size(10, 10))
-                    .text(" " + DisplayUtil.itemDisplayNameShort(items[0]) + " x" + items[0].stackSize, new TextStyle(), itemPadding);
+                    .item(items[0], new Padding(), new Size(10, 10)).text(
+                            " " + DisplayUtil.itemDisplayNameShort(items[0]) + " x" + items[0].stackSize,
+                            new TextStyle(),
+                            itemPadding);
         }
 
         if (items[2] != null) {
             itemSection.horizontal().text("Out: ", new TextStyle(), itemPadding)
-                    .item(items[2], new Padding(), new Size(10, 10))
-                    .text(" " + DisplayUtil.itemDisplayNameShort(items[2]) + " x" + items[2].stackSize, new TextStyle(), itemPadding);
+                    .item(items[2], new Padding(), new Size(10, 10)).text(
+                            " " + DisplayUtil.itemDisplayNameShort(items[2]) + " x" + items[2].stackSize,
+                            new TextStyle(),
+                            itemPadding);
         }
 
         if (items[1] != null) {
             itemSection.horizontal().text("Fuel: ", new TextStyle(), itemPadding)
-                    .item(items[1], new Padding(), new Size(10, 10))
-                    .text(" " + DisplayUtil.itemDisplayNameShort(items[1]) + " x" + items[1].stackSize, new TextStyle(), itemPadding);
+                    .item(items[1], new Padding(), new Size(10, 10)).text(
+                            " " + DisplayUtil.itemDisplayNameShort(items[1]) + " x" + items[1].stackSize,
+                            new TextStyle(),
+                            itemPadding);
         }
 
         int random = accessor.getServerData().getInteger("random");

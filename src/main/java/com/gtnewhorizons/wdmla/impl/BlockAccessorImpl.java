@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import java.util.function.Supplier;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -9,9 +10,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
 
 public class BlockAccessorImpl implements BlockAccessor {
 
@@ -28,7 +30,7 @@ public class BlockAccessorImpl implements BlockAccessor {
     protected boolean verify;
     private final NBTTagCompound serverData;
 
-    //TODO: add metadata (instead of BlockState)
+    // TODO: add metadata (instead of BlockState)
     public BlockAccessorImpl(Builder builder) {
         this.block = builder.block;
         this.tileEntity = builder.tileEntity;

@@ -1,14 +1,7 @@
 package mcp.mobius.waila.addons.harvestability;
 
-import mcp.mobius.waila.addons.harvestability.helpers.*;
-import mcp.mobius.waila.addons.harvestability.proxy.ProxyCreativeBlocks;
-import mcp.mobius.waila.addons.harvestability.proxy.ProxyGregTech;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.IWailaDataProvider;
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.utils.Constants;
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,9 +19,15 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.common.config.Configuration;
 
-import java.util.*;
+import mcp.mobius.waila.addons.harvestability.helpers.*;
+import mcp.mobius.waila.addons.harvestability.proxy.ProxyCreativeBlocks;
+import mcp.mobius.waila.addons.harvestability.proxy.ProxyGregTech;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
+import mcp.mobius.waila.api.IWailaDataProvider;
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
 public class HUDHandlerHarvestability implements IWailaDataProvider {
 
@@ -78,7 +77,7 @@ public class HUDHandlerHarvestability implements IWailaDataProvider {
     }
 
     public void getHarvestability(List<String> stringList, EntityPlayer player, Block block, int meta,
-                                  MovingObjectPosition position, IWailaConfigHandler config, boolean minimalLayout) {
+            MovingObjectPosition position, IWailaConfigHandler config, boolean minimalLayout) {
         boolean isSneaking = player.isSneaking();
         boolean showHarvestLevel = config.getConfig("harvestability.harvestlevel")
                 && (!config.getConfig("harvestability.harvestlevel.sneakingonly") || isSneaking);
@@ -99,16 +98,16 @@ public class HUDHandlerHarvestability implements IWailaDataProvider {
 
             if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ)
                     || BlockHelper.isBlockUnbreakable(
-                    block,
-                    player.worldObj,
-                    position.blockX,
-                    position.blockY,
-                    position.blockZ)) {
+                            block,
+                            player.worldObj,
+                            position.blockX,
+                            position.blockY,
+                            position.blockZ)) {
                 String unbreakableString = ColorHelper.getBooleanColor(false) + Config.NOT_CURRENTLY_HARVESTABLE_STRING
                         + (!minimalLayout
-                        ? EnumChatFormatting.RESET
-                        + StatCollector.translateToLocal("wailaharvestability.harvestable")
-                        : "");
+                                ? EnumChatFormatting.RESET
+                                        + StatCollector.translateToLocal("wailaharvestability.harvestable")
+                                : "");
                 stringList.add(unbreakableString);
                 return;
             }
@@ -167,12 +166,12 @@ public class HUDHandlerHarvestability implements IWailaDataProvider {
 
             String currentlyHarvestable = showCurrentlyHarvestable
                     ? ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                    + (isCurrentlyHarvestable ? Config.CURRENTLY_HARVESTABLE_STRING
-                    : Config.NOT_CURRENTLY_HARVESTABLE_STRING)
-                    + (!minimalLayout
-                    ? EnumChatFormatting.RESET
-                    + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")
-                    : "")
+                            + (isCurrentlyHarvestable ? Config.CURRENTLY_HARVESTABLE_STRING
+                                    : Config.NOT_CURRENTLY_HARVESTABLE_STRING)
+                            + (!minimalLayout
+                                    ? EnumChatFormatting.RESET
+                                            + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")
+                                    : "")
                     : "";
 
             if (!currentlyHarvestable.isEmpty() || !shearability.isEmpty() || !silkTouchability.isEmpty()) {
@@ -192,8 +191,8 @@ public class HUDHandlerHarvestability implements IWailaDataProvider {
                 stringList.add(
                         (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.effectivetool") : "")
                                 + ColorHelper.getBooleanColor(
-                                isEffective && (!isHoldingTinkersTool || canHarvest),
-                                isHoldingTinkersTool && isEffective && !canHarvest)
+                                        isEffective && (!isHoldingTinkersTool || canHarvest),
+                                        isHoldingTinkersTool && isEffective && !canHarvest)
                                 + effectiveToolString);
             }
             if (harvestLevel >= 1 && (showHarvestLevel || showHarvestLevelNum)) {

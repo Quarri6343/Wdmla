@@ -1,10 +1,10 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 import org.jetbrains.annotations.NotNull;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
 /**
  * A Vertical layout panel. Size depends on children.

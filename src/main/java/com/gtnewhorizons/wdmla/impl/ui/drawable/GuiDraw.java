@@ -12,8 +12,9 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import mcp.mobius.waila.utils.WailaExceptionHandler;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class GuiDraw {
 

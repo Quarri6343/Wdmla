@@ -2,20 +2,22 @@ package com.gtnewhorizons.wdmla.impl;
 
 import java.util.*;
 
-import com.google.common.collect.Maps;
-import com.gtnewhorizons.wdmla.api.*;
-import mcp.mobius.waila.Waila;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.google.common.collect.Maps;
+import com.gtnewhorizons.wdmla.api.*;
+
+import mcp.mobius.waila.Waila;
 
 public class WdmlaClientRegistration implements IWdmlaClientRegistration {
 
     private static final WdmlaClientRegistration INSTANCE = new WdmlaClientRegistration();
 
-    //We can't use HierarchyLookup in Java8
+    // We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockIconProviders;
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockComponentProviders;
-    //TODO: use Session
+    // TODO: use Session
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
 
@@ -97,7 +99,7 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
 
     @Override
     public boolean isShowDetailsPressed() {
-        return Minecraft.getMinecraft().thePlayer.isSneaking(); //TODO: ClientProxy.isShowDetailsPressed
+        return Minecraft.getMinecraft().thePlayer.isSneaking(); // TODO: ClientProxy.isShowDetailsPressed
     }
 
     @Override
@@ -109,8 +111,8 @@ public class WdmlaClientRegistration implements IWdmlaClientRegistration {
     public BlockAccessor.Builder blockAccessor() {
         Minecraft mc = Minecraft.getMinecraft();
 
-        return new BlockAccessorImpl.Builder().level(mc.theWorld).player(mc.thePlayer).serverConnected(isServerConnected()).serverData(
-                getServerData()).showDetails(isShowDetailsPressed());
+        return new BlockAccessorImpl.Builder().level(mc.theWorld).player(mc.thePlayer)
+                .serverConnected(isServerConnected()).serverData(getServerData()).showDetails(isShowDetailsPressed());
     }
 
     @Override

@@ -1,13 +1,13 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.api.ui.IDrawable;
-import com.gtnewhorizons.wdmla.api.ui.IProgress;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.impl.ui.style.ProgressStyle;
 import org.jetbrains.annotations.NotNull;
 
+import com.gtnewhorizons.wdmla.api.ui.IDrawable;
+import com.gtnewhorizons.wdmla.api.ui.IProgress;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
+import com.gtnewhorizons.wdmla.impl.ui.style.ProgressStyle;
 
 public class ProgressDrawable implements IDrawable {
 

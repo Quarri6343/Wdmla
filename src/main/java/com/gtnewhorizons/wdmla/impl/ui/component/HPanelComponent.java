@@ -1,9 +1,10 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 import org.jetbrains.annotations.NotNull;
+
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
 /**
  * A Horizontal layout panel. Size depends on children.
@@ -50,7 +51,10 @@ public class HPanelComponent extends PanelComponent {
             w += child.getWidth();
         }
 
-        return padding.getLeft() + w + style.getSpacing() * (children.size() - 1) + padding.getRight() + style.getBorderThickness() * 2;
+        return padding.getLeft() + w
+                + style.getSpacing() * (children.size() - 1)
+                + padding.getRight()
+                + style.getBorderThickness() * 2;
     }
 
     @Override

@@ -2,10 +2,10 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
+import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.ProgressDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 import com.gtnewhorizons.wdmla.impl.ui.value.Progress;
 
 public class ProgressComponent extends TooltipComponent {
