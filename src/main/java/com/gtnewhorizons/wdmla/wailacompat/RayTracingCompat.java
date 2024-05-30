@@ -18,6 +18,9 @@ import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
+/**
+ * Extraction of old Waila Raytracing class
+ */
 public enum RayTracingCompat {
 
     INSTANCE;

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -38,6 +39,11 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
     @Override
     public boolean shouldRequestData(BlockAccessor accessor) {
+        //TODO: support non tile entity block data requesting
+        if(accessor.getTileEntity() == null) {
+            return false;
+        }
+
         //Step 1: check WDMla has providers
         for (IServerDataProvider<BlockAccessor> provider : WDMlaCommonRegistration.instance()
                 .getBlockNBTProviders(accessor.getBlock(), accessor.getTileEntity())) {
@@ -132,7 +138,8 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         }
 
         // TODO: WailaHead, WailaTail support
-        // step 3: append legacy tooltip String at the bottom of the new tooltip
+        // step 3: gather legacy raw tooltip lines (this may include Waila regex representing ItemStack or Progressbar)
+        List<String> legacyTooltips = new ArrayList<>();
         LinkedHashMap<Integer, List<IWailaDataProvider>> legacyProviders = new LinkedHashMap<>();
         if (ModuleRegistrar.instance().hasBodyProviders(accessor.getBlock())) {
             legacyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getBlock()));
@@ -144,10 +151,12 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
             for (IWailaDataProvider dataProvider : providersList) {
                 List<String> tooltips = new ArrayList<>();
                 tooltips = dataProvider.getWailaBody(itemForm, tooltips, legacyAccessor, ConfigHandler.instance());
-                for (String tooltipStr : tooltips) {
-                    tooltip.child(new TextComponent(tooltipStr));
-                }
+                legacyTooltips.addAll(tooltips);
             }
         }
+
+        // step 4: Convert legacy tooltip String to actual various WDMla component
+        ITooltip convertedTooltips = TooltipCompat.computeRenderables(legacyTooltips);
+        tooltip.child(convertedTooltips);
     }
 }
