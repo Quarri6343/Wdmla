@@ -138,4 +138,18 @@ public class GuiDraw {
     public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
         Gui.drawRect(x1, y1, x2, y1 + 1, color);
     }
+
+    public static void drawTexturedModalRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
+        float f = 0.00390625F;
+        float f1 = 0.00390625F;
+        float zLevel = 0.0F;
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.setColorOpaque_F(1, 1, 1);
+        tessellator.addVertexWithUV(x, y + h, zLevel, (u) * f, (v + th) * f1);
+        tessellator.addVertexWithUV(x + w, y + h, zLevel, (u + tw) * f, (v + th) * f1);
+        tessellator.addVertexWithUV(x + w, y, zLevel, (u + tw) * f, (v) * f1);
+        tessellator.addVertexWithUV(x, y, zLevel, (u) * f, (v) * f1);
+        tessellator.draw();
+    }
 }

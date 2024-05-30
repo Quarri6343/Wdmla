@@ -93,37 +93,6 @@ public class DisplayUtil {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
     }
 
-    public static void drawGradientRect(int x, int y, int w, int h, int grad1, int grad2) {
-        float zLevel = 0.0f;
-
-        float f = (float) (grad1 >> 24 & 255) / 255.0F;
-        float f1 = (float) (grad1 >> 16 & 255) / 255.0F;
-        float f2 = (float) (grad1 >> 8 & 255) / 255.0F;
-        float f3 = (float) (grad1 & 255) / 255.0F;
-        float f4 = (float) (grad2 >> 24 & 255) / 255.0F;
-        float f5 = (float) (grad2 >> 16 & 255) / 255.0F;
-        float f6 = (float) (grad2 >> 8 & 255) / 255.0F;
-        float f7 = (float) (grad2 & 255) / 255.0F;
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex(x + w, y, zLevel);
-        tessellator.addVertex(x, y, zLevel);
-        tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex(x, y + h, zLevel);
-        tessellator.addVertex(x + w, y + h, zLevel);
-        tessellator.draw();
-        GL11.glShadeModel(GL11.GL_FLAT);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-    }
-
     public static void drawTexturedModalRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
         float f = 0.00390625F;
         float f1 = 0.00390625F;
@@ -175,21 +144,5 @@ public class DisplayUtil {
 
         if (icon.bu != -1) DisplayUtil.drawTexturedModalRect(x, y, icon.bu, icon.bv, sx, sy, icon.bsu, icon.bsv);
         DisplayUtil.drawTexturedModalRect(x, y, icon.u, icon.v, sx, sy, icon.su, icon.sv);
-    }
-
-    public static void drawThickBeveledBox(int x1, int y1, int x2, int y2, int thickness, int topleftcolor,
-            int botrightcolor, int fillcolor) {
-        if (fillcolor != -1) {
-            Gui.drawRect(x1 + 1, y1 + 1, x2 - 1, y2 - 1, fillcolor);
-        }
-
-        Gui.drawRect(x1, y1, x2 - 1, y1 + thickness, topleftcolor);
-        Gui.drawRect(x1, y1, x1 + thickness, y2 - 1, topleftcolor);
-        Gui.drawRect(x2 - thickness, y1, x2, y2 - 1, botrightcolor);
-        Gui.drawRect(x1, y2 - thickness, x2, y2, botrightcolor);
-    }
-
-    public static void drawVerticalLine(int x1, int y1, int y2, int color) {
-        Gui.drawRect(x1, y1, x1 + 1, y2, color);
     }
 }

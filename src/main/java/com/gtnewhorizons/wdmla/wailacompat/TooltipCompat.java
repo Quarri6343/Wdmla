@@ -8,9 +8,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 /**
  * Replacement of old computeRenderables from Waila Tooltip class
@@ -48,11 +53,13 @@ public class TooltipCompat {
                                 lineComponent.text("health: " + renderMatcher.group("args"));
                                 break;// TODO: implement health component
                             case "waila.stack":
-                                lineComponent.text("item: " + renderMatcher.group("args"));
-                                break;// TODO: implement TTRenderStack -> itemstack component migration
+                                String[] itemArgs = renderMatcher.group("args").split(",");
+                                lineComponent.child(parseItemArgs(itemArgs));
+                                break;
                             case "waila.progress":
-                                lineComponent.text("progress: " + renderMatcher.group("args"));
-                                break;// TODO: implement TTRenderProgressBar -> progress component migration
+                                String[] progressArgs = renderMatcher.group("args").split(",");
+                                lineComponent.child(parseProgressArgs(progressArgs));
+                                break;
                             default:
                                 break;
                             // renderMatcher.group("args").split(",")
@@ -70,5 +77,24 @@ public class TooltipCompat {
             }
         }
         return verticalLayout;
+    }
+
+    private static ItemComponent parseItemArgs(String[] args) {
+        int type = Integer.parseInt(args[0]); // 0 for block, 1 for item
+        String name = args[1]; // Fully qualified name
+        int amount = Integer.parseInt(args[2]);
+        int meta = Integer.parseInt(args[3]);
+
+        ItemStack stack = null;
+        if (type == 0) stack = new ItemStack((Block) Block.blockRegistry.getObject(name), amount, meta);
+        if (type == 1) stack = new ItemStack((Item) Item.itemRegistry.getObject(name), amount, meta);
+
+        return new ItemComponent(stack);
+    }
+
+    private static TexturedProgressComponent parseProgressArgs(String[] args) {
+        int current = Integer.parseInt(args[0]);
+        int max = Integer.parseInt(args[1]);
+        return new TexturedProgressComponent(current, max);
     }
 }
