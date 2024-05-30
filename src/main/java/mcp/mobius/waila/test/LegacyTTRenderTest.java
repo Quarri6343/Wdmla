@@ -2,10 +2,8 @@ package mcp.mobius.waila.test;
 
 import java.util.List;
 
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -17,6 +15,7 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.SpecialChars;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
 /**
  * Test code to see compatibility between old TTRender and WDMla component
@@ -51,7 +50,7 @@ public class LegacyTTRenderTest implements IWailaDataProvider {
         }
 
         String renderStr = "";
-        if(items[1] != null) {
+        if (items[1] != null) {
             ItemStack stack = items[1];
             String name = GameData.getItemRegistry().getNameForObject(stack.getItem());
             renderStr += SpecialChars.getRenderString(
@@ -61,7 +60,7 @@ public class LegacyTTRenderTest implements IWailaDataProvider {
                     String.valueOf(stack.stackSize),
                     String.valueOf(stack.getItemDamage()));
         }
-        if(items[0] != null) {
+        if (items[0] != null) {
             ItemStack stack = items[0];
             String name = GameData.getItemRegistry().getNameForObject(stack.getItem());
             renderStr += SpecialChars.getRenderString(
@@ -74,7 +73,7 @@ public class LegacyTTRenderTest implements IWailaDataProvider {
 
         renderStr += SpecialChars.getRenderString("waila.progress", String.valueOf(cookTime), String.valueOf(200));
 
-        if(items[2] != null) {
+        if (items[2] != null) {
             ItemStack stack = items[2];
             String name = GameData.getItemRegistry().getNameForObject(stack.getItem());
             renderStr += SpecialChars.getRenderString(

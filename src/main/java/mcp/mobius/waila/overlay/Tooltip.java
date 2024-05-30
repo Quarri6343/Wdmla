@@ -29,7 +29,7 @@ import mcp.mobius.waila.overlay.tooltiprenderers.TTRenderString;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
-//TODO: remove when TTRenderer migration is finished
+// TODO: remove when TTRenderer migration is finished
 public class Tooltip {
 
     public static int TabSpacing = 8;

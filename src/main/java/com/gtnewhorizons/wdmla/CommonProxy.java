@@ -31,7 +31,7 @@ public class CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {}
 
     public void registerPlugins() {
-        if(WDMla.testMode == TestMode.WDMla) {
+        if (WDMla.testMode == TestMode.WDMla) {
             IWDMlaPlugin testPlugin = new TestPlugin();
             testPlugin.register(WDMlaCommonRegistration.instance());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {

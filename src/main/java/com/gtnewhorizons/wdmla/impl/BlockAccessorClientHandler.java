@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -16,9 +15,9 @@ import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
+import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
 
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.impl.ConfigHandler;
@@ -39,20 +38,20 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
     @Override
     public boolean shouldRequestData(BlockAccessor accessor) {
-        //TODO: support non tile entity block data requesting
-        if(accessor.getTileEntity() == null) {
+        // TODO: support non tile entity block data requesting
+        if (accessor.getTileEntity() == null) {
             return false;
         }
 
-        //Step 1: check WDMla has providers
+        // Step 1: check WDMla has providers
         for (IServerDataProvider<BlockAccessor> provider : WDMlaCommonRegistration.instance()
                 .getBlockNBTProviders(accessor.getBlock(), accessor.getTileEntity())) {
             if (provider.shouldRequestData(accessor)) {
                 return true;
             }
         }
-        //Step 2: check Waila has providers
-        if(ModuleRegistrar.instance().hasNBTProviders(accessor.getBlock())
+        // Step 2: check Waila has providers
+        if (ModuleRegistrar.instance().hasNBTProviders(accessor.getBlock())
                 || ModuleRegistrar.instance().hasNBTProviders(accessor.getTileEntity())) {
             return true;
         }

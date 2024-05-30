@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.test.TestMode;
+
 import cpw.mods.fml.common.Loader;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.addons.agriculture.AgricultureModule;
@@ -26,12 +27,12 @@ import mcp.mobius.waila.addons.thaumcraft.ThaumcraftModule;
 import mcp.mobius.waila.addons.thermaldynamics.ThermalDynamicsModule;
 import mcp.mobius.waila.addons.thermalexpansion.ThermalExpansionModule;
 import mcp.mobius.waila.addons.twilightforest.TwilightForestModule;
-import mcp.mobius.waila.test.LegacyTTRenderTest;
 import mcp.mobius.waila.addons.vanillamc.HUDHandlerVanilla;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.handlers.DecoratorFMP;
 import mcp.mobius.waila.handlers.HUDHandlerFMP;
+import mcp.mobius.waila.test.LegacyTTRenderTest;
 
 public class ProxyServer {
 
@@ -41,7 +42,7 @@ public class ProxyServer {
 
     public void registerLegacyMods() {
 
-        if(WDMla.testMode == TestMode.Waila) {
+        if (WDMla.testMode == TestMode.Waila) {
             LegacyTTRenderTest.register();
         }
 
