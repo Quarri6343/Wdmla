@@ -19,7 +19,7 @@ import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.SpecialChars;
 
 /**
- * Test code to see old TTRender compatibility
+ * Test code to see compatibility between old TTRender and WDMla component
  */
 public class LegacyTTRenderTest implements IWailaDataProvider {
 

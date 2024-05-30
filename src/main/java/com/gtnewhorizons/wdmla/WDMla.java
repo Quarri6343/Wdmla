@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla;
 
+import com.gtnewhorizons.wdmla.test.TestMode;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -18,6 +19,11 @@ public class WDMla {
 
     @SidedProxy(clientSide = "com.gtnewhorizons.wdmla.ClientProxy", serverSide = "com.gtnewhorizons.wdmla.CommonProxy")
     public static CommonProxy proxy;
+
+    /**
+     * Edit this on dev env to enable test mode
+     */
+    public static TestMode testMode = TestMode.Waila;
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the

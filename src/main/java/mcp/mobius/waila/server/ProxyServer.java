@@ -2,6 +2,8 @@ package mcp.mobius.waila.server;
 
 import java.lang.reflect.Method;
 
+import com.gtnewhorizons.wdmla.WDMla;
+import com.gtnewhorizons.wdmla.test.TestMode;
 import cpw.mods.fml.common.Loader;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.addons.agriculture.AgricultureModule;
@@ -39,7 +41,9 @@ public class ProxyServer {
 
     public void registerLegacyMods() {
 
-        LegacyTTRenderTest.register();
+        if(WDMla.testMode == TestMode.Waila) {
+            LegacyTTRenderTest.register();
+        }
 
         HUDHandlerVanilla.register();
         HUDHandlerHarvestability.register();
