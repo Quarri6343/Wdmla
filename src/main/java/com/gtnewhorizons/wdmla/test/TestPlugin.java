@@ -17,8 +17,6 @@ public class TestPlugin implements IWDMlaPlugin {
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
-        registration.registerAccessorHandler(BlockAccessor.class, new BlockAccessorClientHandler());
-
         registration.registerBlockIcon(new TestComponentProvider(), BlockFurnace.class);
         registration.registerBlockComponent(new TestComponentProvider(), BlockFurnace.class);
     }

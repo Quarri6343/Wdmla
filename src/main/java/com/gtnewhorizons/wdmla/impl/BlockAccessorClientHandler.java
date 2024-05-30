@@ -38,12 +38,19 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
     @Override
     public boolean shouldRequestData(BlockAccessor accessor) {
+        //Step 1: check WDMla has providers
         for (IServerDataProvider<BlockAccessor> provider : WDMlaCommonRegistration.instance()
                 .getBlockNBTProviders(accessor.getBlock(), accessor.getTileEntity())) {
             if (provider.shouldRequestData(accessor)) {
                 return true;
             }
         }
+        //Step 2: check Waila has providers
+        if(ModuleRegistrar.instance().hasNBTProviders(accessor.getBlock())
+                || ModuleRegistrar.instance().hasNBTProviders(accessor.getTileEntity())) {
+            return true;
+        }
+
         return false;
     }
 

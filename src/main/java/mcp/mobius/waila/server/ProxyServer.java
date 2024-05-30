@@ -24,7 +24,7 @@ import mcp.mobius.waila.addons.thaumcraft.ThaumcraftModule;
 import mcp.mobius.waila.addons.thermaldynamics.ThermalDynamicsModule;
 import mcp.mobius.waila.addons.thermalexpansion.ThermalExpansionModule;
 import mcp.mobius.waila.addons.twilightforest.TwilightForestModule;
-import mcp.mobius.waila.addons.vanillamc.HUDHandlerFurnace;
+import mcp.mobius.waila.test.LegacyTTRenderTest;
 import mcp.mobius.waila.addons.vanillamc.HUDHandlerVanilla;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
@@ -39,8 +39,10 @@ public class ProxyServer {
 
     public void registerLegacyMods() {
 
+        LegacyTTRenderTest.register();
+
         HUDHandlerVanilla.register();
-        HUDHandlerFurnace.register();
+        HUDHandlerHarvestability.register();
 
         /* BUILDCRAFT */
         BCModule.register();
@@ -98,8 +100,6 @@ public class ProxyServer {
 
         /* Agriculture */
         AgricultureModule.register();
-
-        HUDHandlerHarvestability.register();
 
         if (Loader.isModLoaded("ForgeMultipart")) {
             HUDHandlerFMP.register();

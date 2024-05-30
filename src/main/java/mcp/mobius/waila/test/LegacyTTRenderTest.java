@@ -1,8 +1,11 @@
-package mcp.mobius.waila.addons.vanillamc;
+package mcp.mobius.waila.test;
 
 import java.util.List;
 
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -15,7 +18,10 @@ import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.SpecialChars;
 
-public class HUDHandlerFurnace implements IWailaDataProvider {
+/**
+ * Test code to see old TTRender compatibility
+ */
+public class LegacyTTRenderTest implements IWailaDataProvider {
 
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
@@ -32,11 +38,21 @@ public class HUDHandlerFurnace implements IWailaDataProvider {
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
             IWailaConfigHandler config) {
         int cookTime = accessor.getNBTData().getShort("CookTime");
-        NBTTagList tag = accessor.getNBTData().getTagList("Items", 10);
+
+        ItemStack[] items = new ItemStack[3];
+        NBTTagList itemsTag = accessor.getNBTData().getTagList("Items", 10);
+        for (int i = 0; i < itemsTag.tagCount(); i++) {
+            NBTTagCompound itemTag = itemsTag.getCompoundTagAt(i);
+            byte slot = itemTag.getByte("Slot");
+
+            if (slot >= 0 && slot < items.length) {
+                items[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+            }
+        }
 
         String renderStr = "";
-        {
-            ItemStack stack = ItemStack.loadItemStackFromNBT(tag.getCompoundTagAt(0));
+        if(items[1] != null) {
+            ItemStack stack = items[1];
             String name = GameData.getItemRegistry().getNameForObject(stack.getItem());
             renderStr += SpecialChars.getRenderString(
                     "waila.stack",
@@ -45,8 +61,8 @@ public class HUDHandlerFurnace implements IWailaDataProvider {
                     String.valueOf(stack.stackSize),
                     String.valueOf(stack.getItemDamage()));
         }
-        {
-            ItemStack stack = ItemStack.loadItemStackFromNBT(tag.getCompoundTagAt(1));
+        if(items[0] != null) {
+            ItemStack stack = items[0];
             String name = GameData.getItemRegistry().getNameForObject(stack.getItem());
             renderStr += SpecialChars.getRenderString(
                     "waila.stack",
@@ -58,8 +74,8 @@ public class HUDHandlerFurnace implements IWailaDataProvider {
 
         renderStr += SpecialChars.getRenderString("waila.progress", String.valueOf(cookTime), String.valueOf(200));
 
-        {
-            ItemStack stack = ItemStack.loadItemStackFromNBT(tag.getCompoundTagAt(2));
+        if(items[2] != null) {
+            ItemStack stack = items[2];
             String name = GameData.getItemRegistry().getNameForObject(stack.getItem());
             renderStr += SpecialChars.getRenderString(
                     "waila.stack",
@@ -87,5 +103,8 @@ public class HUDHandlerFurnace implements IWailaDataProvider {
         return tag;
     }
 
-    public static void register() {}
+    public static void register() {
+        ModuleRegistrar.instance().registerBodyProvider(new LegacyTTRenderTest(), BlockFurnace.class);
+        ModuleRegistrar.instance().registerNBTProvider(new LegacyTTRenderTest(), BlockFurnace.class);
+    }
 }
