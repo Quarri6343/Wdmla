@@ -12,7 +12,9 @@ import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 
+import com.gtnewhorizons.wdmla.impl.ui.component.VanillaIconComponent;
 import mcp.mobius.waila.overlay.DisplayUtil;
+import mcp.mobius.waila.overlay.VanillaIconUI;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,14 +64,10 @@ public class TooltipCompat {
                                 break;
                             default:
                                 break;
-                            // renderMatcher.group("args").split(",")
                         }
-                        // TODO: implement iconrenderer
-                        // } else if (iconMatcher.find()) {
-                        // renderable = new Tooltip.Renderable(
-                        // new TTRenderIcon(iconMatcher.group("type")),
-                        // new Point(offsetX, offsetY));
-                        // this.elements2nd.add(renderable);
+                    } else if (iconMatcher.find()) {
+                        String iconArg = iconMatcher.group("type");
+                        lineComponent.child(parseIconArgs(iconArg));
                     } else {
                         lineComponent.text(DisplayUtil.stripWailaSymbols(cs));
                     }
@@ -96,5 +94,16 @@ public class TooltipCompat {
         int current = Integer.parseInt(args[0]);
         int max = Integer.parseInt(args[1]);
         return new TexturedProgressComponent(current, max);
+    }
+
+    private static VanillaIconComponent parseIconArgs(String arg) {
+        VanillaIconUI iconUI = switch (arg) {
+            case "a" -> VanillaIconUI.HEART;
+            case "b" -> VanillaIconUI.HHEART;
+            case "c" -> VanillaIconUI.EHEART;
+            default -> VanillaIconUI.BUBBLEEXP;
+        };
+        //intentional hardcode to bypass bad enum implementation
+        return new VanillaIconComponent(iconUI);
     }
 }

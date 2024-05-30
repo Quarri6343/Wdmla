@@ -2,6 +2,10 @@ package mcp.mobius.waila.api;
 
 import java.util.regex.Pattern;
 
+/**
+ * Do not remove anything in this class!
+ * It will break compatibility of old addons!
+ */
 public class SpecialChars {
 
     public static String MCStyle = "\u00A7";

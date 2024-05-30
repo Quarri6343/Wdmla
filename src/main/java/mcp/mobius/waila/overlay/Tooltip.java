@@ -24,7 +24,6 @@ import mcp.mobius.waila.api.IWailaTooltipRenderer;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.overlay.tooltiprenderers.TTRenderIcon;
 import mcp.mobius.waila.overlay.tooltiprenderers.TTRenderString;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
@@ -172,9 +171,9 @@ public class Tooltip {
                             this.elements2nd.add(renderable);
                         }
                     } else if (iconMatcher.find()) {
-                        renderable = new Renderable(
-                                new TTRenderIcon(iconMatcher.group("type")),
-                                new Point(offsetX, offsetY));
+//                        renderable = new Renderable(
+//                                new VanillaIconDrawable(iconMatcher.group("type")),
+//                                new Point(offsetX, offsetY));
                         this.elements2nd.add(renderable);
                     } else {
                         if (cs.startsWith(ALIGNRIGHT)) offsetX += columnsWidth.get(c)

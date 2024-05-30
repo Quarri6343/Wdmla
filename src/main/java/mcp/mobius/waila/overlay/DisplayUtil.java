@@ -14,7 +14,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -93,20 +92,6 @@ public class DisplayUtil {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
     }
 
-    public static void drawTexturedModalRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
-        float f = 0.00390625F;
-        float f1 = 0.00390625F;
-        float zLevel = 0.0F;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorOpaque_F(1, 1, 1);
-        tessellator.addVertexWithUV(x, y + h, zLevel, (u) * f, (v + th) * f1);
-        tessellator.addVertexWithUV(x + w, y + h, zLevel, (u + tw) * f, (v + th) * f1);
-        tessellator.addVertexWithUV(x + w, y, zLevel, (u + tw) * f, (v) * f1);
-        tessellator.addVertexWithUV(x, y, zLevel, (u) * f, (v) * f1);
-        tessellator.draw();
-    }
-
     public static void drawString(String text, int x, int y, int colour, boolean shadow) {
         if (shadow) fontRenderer.drawStringWithShadow(text, x, y, colour);
         else fontRenderer.drawString(text, x, y, colour);
@@ -135,14 +120,5 @@ public class DisplayUtil {
     public static String itemDisplayNameShort(ItemStack itemstack) {
         List<String> list = itemDisplayNameMultiline(itemstack);
         return list.get(0);
-    }
-
-    public static void renderIcon(int x, int y, int sx, int sy, IconUI icon) {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(Gui.icons);
-
-        if (icon == null) return;
-
-        if (icon.bu != -1) DisplayUtil.drawTexturedModalRect(x, y, icon.bu, icon.bv, sx, sy, icon.bsu, icon.bsv);
-        DisplayUtil.drawTexturedModalRect(x, y, icon.u, icon.v, sx, sy, icon.su, icon.sv);
     }
 }

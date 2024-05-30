@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import mcp.mobius.waila.overlay.VanillaIconUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -151,5 +152,14 @@ public class GuiDraw {
         tessellator.addVertexWithUV(x + w, y, zLevel, (u + tw) * f, (v) * f1);
         tessellator.addVertexWithUV(x, y, zLevel, (u) * f, (v) * f1);
         tessellator.draw();
+    }
+
+    public static void renderVanillaIcon(int x, int y, int w, int h, VanillaIconUI icon) {
+        Minecraft.getMinecraft().getTextureManager().bindTexture(VanillaIconUI.PATH);
+
+        if (icon == null) return;
+
+        if (icon.bu != -1) drawTexturedModalRect(x, y, icon.bu, icon.bv, w, h, icon.bsu, icon.bsv);
+        drawTexturedModalRect(x, y, icon.u, icon.v, w, h, icon.su, icon.sv);
     }
 }
