@@ -11,14 +11,18 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 
 public class HealthComponent extends TooltipComponent {
 
-    public HealthComponent(String[] args) {
-        super(new ArrayList<>(), new Padding(), new Size(0, 0), new HealthDrawable(args));
-        super.size(getSize(args));
+    private static final int DEFAULT_MAX_HEARTS_PER_LINE = 10;
+
+    public HealthComponent(float health, float maxHealth) {
+        this(DEFAULT_MAX_HEARTS_PER_LINE, health, maxHealth);
     }
 
-    public Size getSize(String[] args) {
-        float maxHeartsPerLine = Float.parseFloat(args[0]);
-        float maxHealth = Float.parseFloat(args[2]);
+    public HealthComponent(int maxHeartsPerLine, float health, float maxHealth) {
+        super(new ArrayList<>(), new Padding(), new Size(0, 0), new HealthDrawable(maxHeartsPerLine, health, maxHealth));
+        super.size(getSize(maxHeartsPerLine, maxHealth));
+    }
+
+    public Size getSize(int maxHeartsPerLine, float maxHealth) {
 
         int heartsPerLine = (int) (Math.min(maxHeartsPerLine, Math.ceil(maxHealth)));
         int nLines = (int) (Math.ceil(maxHealth / maxHeartsPerLine));

@@ -8,21 +8,20 @@ import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 public class HealthDrawable implements IDrawable {
 
-    // TODO: use float as arg
-    private final String[] args;
+    private final int maxHeartsPerLine; // max hearts fit in line
+    private final float health; // number of hearts
+    private final float maxHealth; // number of max hearts
 
-    public HealthDrawable(String[] args) {
-        this.args = args;
+    public HealthDrawable(int maxHeartsPerLine, float health, float maxHealth) {
+        this.maxHeartsPerLine = maxHeartsPerLine;
+        this.health = health;
+        this.maxHealth = maxHealth;
     }
 
     @Override
     public void draw(IArea area) {
-        float maxHeartsPerLine = Float.parseFloat(args[0]); // max hearts fit in line
-        float health = Float.parseFloat(args[1]); // number of hearts
-        float maxhealth = Float.parseFloat(args[2]); // number of max hearts
-
-        int nHearts = MathHelper.ceiling_float_int(maxhealth);
-        int heartsPerLine = (int) (Math.min(maxHeartsPerLine, Math.ceil(maxhealth)));
+        int nHearts = MathHelper.ceiling_float_int(maxHealth);
+        int heartsPerLine = (int) (Math.min(maxHeartsPerLine, Math.ceil(maxHealth)));
 
         int offsetX = area.getX();
         int offsetY = area.getY();

@@ -51,7 +51,7 @@ public class TooltipCompat {
                         switch (renderName) {
                             case "waila.health":
                                 String[] healthArgs = renderMatcher.group("args").split(",");
-                                lineComponent.child(new HealthComponent(healthArgs));
+                                lineComponent.child(parseHealthArgs(healthArgs));
                                 break;
                             case "waila.stack":
                                 String[] itemArgs = renderMatcher.group("args").split(",");
@@ -74,6 +74,14 @@ public class TooltipCompat {
             }
         }
         return verticalLayout;
+    }
+
+    private static HealthComponent parseHealthArgs(String[] args) {
+        float maxHeartsPerLine = Float.parseFloat(args[0]); //for some reason, old api accepts float
+        float health = Float.parseFloat(args[1]);
+        float maxhealth = Float.parseFloat(args[2]);
+
+        return new HealthComponent((int) maxHeartsPerLine, health, maxhealth);
     }
 
     private static ItemComponent parseItemArgs(String[] args) {
