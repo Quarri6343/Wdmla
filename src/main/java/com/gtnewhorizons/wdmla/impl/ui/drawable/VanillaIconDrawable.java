@@ -2,12 +2,7 @@ package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import mcp.mobius.waila.api.IWailaCommonAccessor;
-import mcp.mobius.waila.api.IWailaTooltipRenderer;
-import mcp.mobius.waila.overlay.DisplayUtil;
-import mcp.mobius.waila.overlay.VanillaIconUI;
-
-import java.awt.*;
+import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 public class VanillaIconDrawable implements IDrawable {
 

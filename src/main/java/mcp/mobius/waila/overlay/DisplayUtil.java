@@ -12,9 +12,7 @@ import java.util.regex.Matcher;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
@@ -31,25 +29,6 @@ public class DisplayUtil {
     private static FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
     private static TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
     private static RenderItem renderItem = new RenderItem();
-
-    public static int getDisplayWidth(String s) {
-        if (s == null || s.isEmpty()) return 0;
-
-        int width = 0;
-
-        Matcher renderMatcher = patternRender.matcher(s);
-        while (renderMatcher.find()) {
-            IWailaTooltipRenderer renderer = ModuleRegistrar.instance().getTooltipRenderer(renderMatcher.group("name"));
-            if (renderer != null)
-                width += renderer.getSize(renderMatcher.group("args").split(","), DataAccessorCommon.instance).width;
-        }
-
-        Matcher iconMatcher = patternIcon.matcher(s);
-        while (iconMatcher.find()) width += 8;
-
-        width += fontRenderer.getStringWidth(stripSymbols(s));
-        return width;
-    }
 
     public static Dimension displaySize() {
         Minecraft mc = Minecraft.getMinecraft();

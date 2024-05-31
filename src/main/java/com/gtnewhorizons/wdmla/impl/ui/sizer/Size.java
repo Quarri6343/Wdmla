@@ -6,7 +6,7 @@ import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 
 public class Size implements ISize {
 
-    private final Dimension dim;
+    protected final Dimension dim;
 
     public Size(int width, int height) {
         dim = new Dimension(width, height);

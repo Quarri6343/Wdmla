@@ -86,6 +86,10 @@ public class LegacyTTRenderTest implements IWailaDataProvider {
 
         currenttip.add(renderStr);
 
+        String healthStr = SpecialChars.getRenderString("waila.health", "10", "16.5", "20");
+
+        currenttip.add(healthStr);
+
         return currenttip;
     }
 

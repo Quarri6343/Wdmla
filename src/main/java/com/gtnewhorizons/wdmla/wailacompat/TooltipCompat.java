@@ -7,17 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
-
-import com.gtnewhorizons.wdmla.impl.ui.component.VanillaIconComponent;
-import mcp.mobius.waila.overlay.DisplayUtil;
-import mcp.mobius.waila.overlay.VanillaIconUI;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.component.*;
+import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
+
+import mcp.mobius.waila.overlay.DisplayUtil;
 
 /**
  * Replacement of old computeRenderables from Waila Tooltip class
@@ -52,8 +50,9 @@ public class TooltipCompat {
 
                         switch (renderName) {
                             case "waila.health":
-                                lineComponent.text("health: " + renderMatcher.group("args"));
-                                break;// TODO: implement health component
+                                String[] healthArgs = renderMatcher.group("args").split(",");
+                                lineComponent.child(new HealthComponent(healthArgs));
+                                break;
                             case "waila.stack":
                                 String[] itemArgs = renderMatcher.group("args").split(",");
                                 lineComponent.child(parseItemArgs(itemArgs));
@@ -103,7 +102,7 @@ public class TooltipCompat {
             case "c" -> VanillaIconUI.EHEART;
             default -> VanillaIconUI.BUBBLEEXP;
         };
-        //intentional hardcode to bypass bad enum implementation
+        // intentional hardcode to bypass bad enum implementation
         return new VanillaIconComponent(iconUI);
     }
 }

@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import mcp.mobius.waila.overlay.VanillaIconUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -14,10 +13,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
-public class GuiDraw {
+public final class GuiDraw {
 
     private GuiDraw() {
         throw new AssertionError();
@@ -159,7 +159,9 @@ public class GuiDraw {
 
         if (icon == null) return;
 
-        if (icon.bu != -1) drawTexturedModalRect(x, y, icon.bu, icon.bv, w, h, icon.bsu, icon.bsv);
+        if (icon.bu != -1) {
+            drawTexturedModalRect(x, y, icon.bu, icon.bv, w, h, icon.bsu, icon.bsv);
+        }
         drawTexturedModalRect(x, y, icon.u, icon.v, w, h, icon.su, icon.sv);
     }
 }

@@ -29,7 +29,7 @@ import mcp.mobius.waila.utils.Constants;
 // TODO: remove after all compats are added.
 public class WailaTickHandler {
 
-    public Tooltip tooltip = null;
+//    public Tooltip tooltip = null;
     public MetaDataProvider handler = new MetaDataProvider();
 
     private final Minecraft mc = Minecraft.getMinecraft();
@@ -105,7 +105,7 @@ public class WailaTickHandler {
                     currenttip.addAll(currenttipBody);
                     currenttip.addAll(currenttipTail);
 
-                    this.tooltip = new Tooltip(currenttip, targetStack);
+//                    this.tooltip = new Tooltip(currenttip, targetStack);
                 }
             } else if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
                 DataAccessorCommon accessor = DataAccessorCommon.instance;
@@ -159,7 +159,7 @@ public class WailaTickHandler {
                     currenttip.addAll(currenttipBody);
                     currenttip.addAll(currenttipTail);
 
-                    this.tooltip = new Tooltip(currenttip, false);
+//                    this.tooltip = new Tooltip(currenttip, false);
                 }
             }
         }

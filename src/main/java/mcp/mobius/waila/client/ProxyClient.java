@@ -1,5 +1,11 @@
 package mcp.mobius.waila.client;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.WorldEvent;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.Waila;
@@ -11,13 +17,7 @@ import mcp.mobius.waila.gui.truetyper.TrueTypeFont;
 import mcp.mobius.waila.handlers.HUDHandlerBlocks;
 import mcp.mobius.waila.handlers.HUDHandlerEntities;
 import mcp.mobius.waila.handlers.VanillaTooltipHandler;
-import mcp.mobius.waila.overlay.tooltiprenderers.TTRenderHealth;
 import mcp.mobius.waila.server.ProxyServer;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.WorldEvent;
 
 public class ProxyClient extends ProxyServer {
 
@@ -51,8 +51,6 @@ public class ProxyClient extends ProxyServer {
         ModuleRegistrar.instance().addConfig("General", "general.showents");
         ModuleRegistrar.instance().addConfig("General", "general.showhp");
         ModuleRegistrar.instance().addConfig("General", "general.showcrop");
-
-        ModuleRegistrar.instance().registerTooltipRenderer("waila.health", new TTRenderHealth());
 
         MinecraftForge.EVENT_BUS.register(new WorldUnloadEventHandler());
     }

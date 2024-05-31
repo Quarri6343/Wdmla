@@ -42,8 +42,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
 
     public LinkedHashMap<String, String> IMCRequests = new LinkedHashMap<>();
 
-    public LinkedHashMap<String, IWailaTooltipRenderer> tooltipRenderers = new LinkedHashMap<>();
-
     private ModuleRegistrar() {
         instance = this;
     }
@@ -203,14 +201,9 @@ public class ModuleRegistrar implements IWailaRegistrar {
         this.syncedNBTKeys.get(target).add(key);
     }
 
+    @Deprecated
     @Override
     public void registerTooltipRenderer(String name, IWailaTooltipRenderer renderer) {
-        if (!this.tooltipRenderers.containsKey(name)) this.tooltipRenderers.put(name, renderer);
-        else Waila.log.warn(
-                String.format(
-                        "A renderer named %s already exists (Class : %s). Skipping new renderer.",
-                        name,
-                        renderer.getClass().getName()));
     }
 
     /* PROVIDER GETTERS */
@@ -275,8 +268,9 @@ public class ModuleRegistrar implements IWailaRegistrar {
         return getProviders(name, this.FMPClassDecorators);
     }
 
+    @Deprecated
     public IWailaTooltipRenderer getTooltipRenderer(String name) {
-        return this.tooltipRenderers.get(name);
+        return null;
     }
 
     private <T> Map<Integer, List<T>> getProviders(Object obj, LinkedHashMap<Class, ArrayList<T>> target) {

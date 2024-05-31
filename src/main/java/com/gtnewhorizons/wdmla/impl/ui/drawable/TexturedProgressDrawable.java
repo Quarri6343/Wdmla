@@ -1,11 +1,13 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.IProgress;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
 
 public class TexturedProgressDrawable implements IDrawable {
 

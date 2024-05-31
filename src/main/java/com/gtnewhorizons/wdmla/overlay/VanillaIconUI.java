@@ -1,4 +1,4 @@
-package mcp.mobius.waila.overlay;
+package com.gtnewhorizons.wdmla.overlay;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +10,13 @@ public enum VanillaIconUI {
     EHEART(52, 9, 9, 9),
     BUBBLEEXP(25, 18, 9, 9);
 
+    /**
+     * u, v, sizeU, sizeV
+     */
     public final int u, v, su, sv;
+    /**
+     * backgroundU, backgroundV, backgroundSizeU, backgroundSizeV
+     */
     public final int bu, bv, bsu, bsv;
 
     public static final ResourceLocation PATH = Gui.icons;

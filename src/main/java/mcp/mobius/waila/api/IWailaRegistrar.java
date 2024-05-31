@@ -85,5 +85,6 @@ public interface IWailaRegistrar {
     @Deprecated
     void registerSyncedNBTKey(String key, Class target);
 
+    @Deprecated
     void registerTooltipRenderer(String name, IWailaTooltipRenderer renderer);
 }
