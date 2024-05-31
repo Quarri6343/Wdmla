@@ -7,6 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 
+import com.gtnewhorizons.wdmla.api.ITTRenderParser;
+import com.gtnewhorizons.wdmla.wailacompat.parser.HealthArgsParser;
+import com.gtnewhorizons.wdmla.wailacompat.parser.IconArgsParser;
+import com.gtnewhorizons.wdmla.wailacompat.parser.ItemArgsParser;
+import com.gtnewhorizons.wdmla.wailacompat.parser.ProgressArgsParser;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +27,12 @@ import mcp.mobius.waila.overlay.DisplayUtil;
  */
 public class TooltipCompat {
 
-    public static ITooltip computeRenderables(List<String> legacyTextData) {
+    private final ITTRenderParser healthParser = new HealthArgsParser();
+    private final ITTRenderParser itemParser = new ItemArgsParser();
+    private final ITTRenderParser progressParser = new ProgressArgsParser();
+    private final ITTRenderParser iconParser = new IconArgsParser();
+
+    public ITooltip computeRenderables(List<String> legacyTextData) {
         ITooltip verticalLayout = new VPanelComponent();
 
         ArrayList<ArrayList<String>> lines = new ArrayList<>();
@@ -51,22 +61,22 @@ public class TooltipCompat {
                         switch (renderName) {
                             case "waila.health":
                                 String[] healthArgs = renderMatcher.group("args").split(",");
-                                lineComponent.child(parseHealthArgs(healthArgs));
+                                lineComponent.child(healthParser.parse(healthArgs));
                                 break;
                             case "waila.stack":
                                 String[] itemArgs = renderMatcher.group("args").split(",");
-                                lineComponent.child(parseItemArgs(itemArgs));
+                                lineComponent.child(itemParser.parse(itemArgs));
                                 break;
                             case "waila.progress":
                                 String[] progressArgs = renderMatcher.group("args").split(",");
-                                lineComponent.child(parseProgressArgs(progressArgs));
+                                lineComponent.child(progressParser.parse(progressArgs));
                                 break;
                             default:
                                 break;
                         }
                     } else if (iconMatcher.find()) {
                         String iconArg = iconMatcher.group("type");
-                        lineComponent.child(parseIconArgs(iconArg));
+                        lineComponent.child(iconParser.parse(new String[]{iconArg}));
                     } else {
                         lineComponent.text(DisplayUtil.stripWailaSymbols(cs));
                     }
@@ -74,43 +84,5 @@ public class TooltipCompat {
             }
         }
         return verticalLayout;
-    }
-
-    private static HealthComponent parseHealthArgs(String[] args) {
-        float maxHeartsPerLine = Float.parseFloat(args[0]); //for some reason, old api accepts float
-        float health = Float.parseFloat(args[1]);
-        float maxhealth = Float.parseFloat(args[2]);
-
-        return new HealthComponent((int) maxHeartsPerLine, health, maxhealth);
-    }
-
-    private static ItemComponent parseItemArgs(String[] args) {
-        int type = Integer.parseInt(args[0]); // 0 for block, 1 for item
-        String name = args[1]; // Fully qualified name
-        int amount = Integer.parseInt(args[2]);
-        int meta = Integer.parseInt(args[3]);
-
-        ItemStack stack = null;
-        if (type == 0) stack = new ItemStack((Block) Block.blockRegistry.getObject(name), amount, meta);
-        if (type == 1) stack = new ItemStack((Item) Item.itemRegistry.getObject(name), amount, meta);
-
-        return new ItemComponent(stack);
-    }
-
-    private static TexturedProgressComponent parseProgressArgs(String[] args) {
-        int current = Integer.parseInt(args[0]);
-        int max = Integer.parseInt(args[1]);
-        return new TexturedProgressComponent(current, max);
-    }
-
-    private static VanillaIconComponent parseIconArgs(String arg) {
-        VanillaIconUI iconUI = switch (arg) {
-            case "a" -> VanillaIconUI.HEART;
-            case "b" -> VanillaIconUI.HHEART;
-            case "c" -> VanillaIconUI.EHEART;
-            default -> VanillaIconUI.BUBBLEEXP;
-        };
-        // intentional hardcode to bypass bad enum implementation
-        return new VanillaIconComponent(iconUI);
     }
 }

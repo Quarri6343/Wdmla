@@ -30,6 +30,8 @@ import mcp.mobius.waila.utils.ModIdentification;
 
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 
+    private final TooltipCompat tooltipCompat = new TooltipCompat();
+
     @Override
     public boolean shouldDisplay(BlockAccessor accessor) {
         return true;
@@ -155,7 +157,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         }
 
         // step 4: Convert legacy tooltip String to actual various WDMla component
-        ITooltip convertedTooltips = TooltipCompat.computeRenderables(legacyTooltips);
+        ITooltip convertedTooltips = tooltipCompat.computeRenderables(legacyTooltips);
         tooltip.child(convertedTooltips);
     }
 }
