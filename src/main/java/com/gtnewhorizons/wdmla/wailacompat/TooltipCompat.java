@@ -8,17 +8,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 import com.gtnewhorizons.wdmla.api.ITTRenderParser;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.component.*;
 import com.gtnewhorizons.wdmla.wailacompat.parser.HealthArgsParser;
 import com.gtnewhorizons.wdmla.wailacompat.parser.IconArgsParser;
 import com.gtnewhorizons.wdmla.wailacompat.parser.ItemArgsParser;
 import com.gtnewhorizons.wdmla.wailacompat.parser.ProgressArgsParser;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.*;
-import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 
@@ -76,7 +71,7 @@ public class TooltipCompat {
                         }
                     } else if (iconMatcher.find()) {
                         String iconArg = iconMatcher.group("type");
-                        lineComponent.child(iconParser.parse(new String[]{iconArg}));
+                        lineComponent.child(iconParser.parse(new String[] { iconArg }));
                     } else {
                         lineComponent.text(DisplayUtil.stripWailaSymbols(cs));
                     }

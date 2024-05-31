@@ -140,7 +140,7 @@ public final class GuiDraw {
         Gui.drawRect(x1, y1, x2, y1 + 1, color);
     }
 
-    public static void drawTexturedModalRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
+    public static void drawTexturedModelRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         float zLevel = 0.0F;
@@ -160,8 +160,8 @@ public final class GuiDraw {
         if (icon == null) return;
 
         if (icon.bu != -1) {
-            drawTexturedModalRect(x, y, icon.bu, icon.bv, w, h, icon.bsu, icon.bsv);
+            drawTexturedModelRect(x, y, icon.bu, icon.bv, w, h, icon.bsu, icon.bsv);
         }
-        drawTexturedModalRect(x, y, icon.u, icon.v, w, h, icon.su, icon.sv);
+        drawTexturedModelRect(x, y, icon.u, icon.v, w, h, icon.su, icon.sv);
     }
 }

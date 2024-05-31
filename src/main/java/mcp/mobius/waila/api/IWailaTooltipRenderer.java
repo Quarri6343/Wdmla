@@ -3,8 +3,8 @@ package mcp.mobius.waila.api;
 import java.awt.*;
 
 /**
- * I have switched render system so this class no longer works
- * Contact me(WDMla author) if any mod is still using this, so I can add compatibility module on WDMla side
+ * I have switched render system so this class no longer works Contact me(WDMla author) if any mod is still using this,
+ * so I can add compatibility module on WDMla side
  */
 @Deprecated
 public interface IWailaTooltipRenderer {

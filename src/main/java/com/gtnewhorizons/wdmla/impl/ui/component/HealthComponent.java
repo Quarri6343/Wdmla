@@ -18,7 +18,11 @@ public class HealthComponent extends TooltipComponent {
     }
 
     public HealthComponent(int maxHeartsPerLine, float health, float maxHealth) {
-        super(new ArrayList<>(), new Padding(), new Size(0, 0), new HealthDrawable(maxHeartsPerLine, health, maxHealth));
+        super(
+                new ArrayList<>(),
+                new Padding(),
+                new Size(0, 0),
+                new HealthDrawable(maxHeartsPerLine, health, maxHealth));
         super.size(getSize(maxHeartsPerLine, maxHealth));
     }
 

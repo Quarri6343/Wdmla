@@ -2,12 +2,12 @@ package com.gtnewhorizons.wdmla.impl.ui.value;
 
 import com.gtnewhorizons.wdmla.api.ui.IProgress;
 
-public class Progress implements IProgress {
+public class Progression implements IProgress {
 
     long current;
     long max;
 
-    public Progress(long current, long max) {
+    public Progression(long current, long max) {
         if (current < 0) {
             current = 0;
         }

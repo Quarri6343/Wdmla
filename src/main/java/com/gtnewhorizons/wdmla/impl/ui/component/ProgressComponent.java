@@ -6,7 +6,7 @@ import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.ProgressDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import com.gtnewhorizons.wdmla.impl.ui.value.Progress;
+import com.gtnewhorizons.wdmla.impl.ui.value.Progression;
 
 public class ProgressComponent extends TooltipComponent {
 
@@ -18,7 +18,7 @@ public class ProgressComponent extends TooltipComponent {
                 new ArrayList<>(),
                 new Padding(),
                 new Size(DEFAULT_W, DEFAULT_H),
-                new ProgressDrawable(new Progress(current, max)));
+                new ProgressDrawable(new Progression(current, max)));
     }
 
     public ProgressComponent style(IProgressStyle style) {

@@ -6,6 +6,7 @@ import com.gtnewhorizons.wdmla.impl.ui.component.VanillaIconComponent;
 import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 public class IconArgsParser implements ITTRenderParser {
+
     @Override
     public Component parse(String[] args) {
         VanillaIconUI iconUI = switch (args[0]) {

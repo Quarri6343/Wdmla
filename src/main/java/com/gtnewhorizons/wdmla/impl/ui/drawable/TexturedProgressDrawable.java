@@ -11,9 +11,6 @@ import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 
 public class TexturedProgressDrawable implements IDrawable {
 
-    public static final int TEXTURE_W = 32;
-    public static final int TEXTURE_H = 16;
-
     private final Minecraft mc = Minecraft.getMinecraft();
     private final ResourceLocation texture = new ResourceLocation("waila", "textures/sprites.png");
     private final @NotNull IProgress progress;
@@ -24,11 +21,19 @@ public class TexturedProgressDrawable implements IDrawable {
 
     @Override
     public void draw(IArea area) {
-        int progressPixel = (int) ((progress.getCurrent() * 28) / progress.getMax());
+        int progressPixel = (int) ((progress.getCurrent() * area.getW()) / progress.getMax());
 
         this.mc.getTextureManager().bindTexture(texture);
 
-        GuiDraw.drawTexturedModalRect(area.getX() + 4, area.getY(), 4, 16, 28, 16, 28, 16);
-        GuiDraw.drawTexturedModalRect(area.getX() + 4, area.getY(), 4, 0, progressPixel + 1, 16, progressPixel + 1, 16);
+        GuiDraw.drawTexturedModelRect(area.getX() + 4, area.getY(), 4, 16, area.getW(), area.getH(), 28, 16);
+        GuiDraw.drawTexturedModelRect(
+                area.getX() + 4,
+                area.getY(),
+                4,
+                0,
+                progressPixel + 1,
+                area.getH(),
+                progressPixel + 1,
+                16);
     }
 }

@@ -1,13 +1,15 @@
 package com.gtnewhorizons.wdmla.wailacompat.parser;
 
-import com.gtnewhorizons.wdmla.api.ITTRenderParser;
-import com.gtnewhorizons.wdmla.impl.ui.component.Component;
-import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.gtnewhorizons.wdmla.api.ITTRenderParser;
+import com.gtnewhorizons.wdmla.impl.ui.component.Component;
+import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
+
 public class ItemArgsParser implements ITTRenderParser {
+
     @Override
     public Component parse(String[] args) {
         int type = Integer.parseInt(args[0]); // 0 for block, 1 for item

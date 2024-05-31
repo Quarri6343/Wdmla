@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 import au.com.bytecode.opencsv.CSVReader;
-import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.*;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
@@ -203,8 +202,7 @@ public class ModuleRegistrar implements IWailaRegistrar {
 
     @Deprecated
     @Override
-    public void registerTooltipRenderer(String name, IWailaTooltipRenderer renderer) {
-    }
+    public void registerTooltipRenderer(String name, IWailaTooltipRenderer renderer) {}
 
     /* PROVIDER GETTERS */
 

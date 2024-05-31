@@ -1,6 +1,5 @@
 package mcp.mobius.waila.overlay;
 
-import static mcp.mobius.waila.api.SpecialChars.patternIcon;
 import static mcp.mobius.waila.api.SpecialChars.patternMinecraft;
 import static mcp.mobius.waila.api.SpecialChars.patternRender;
 import static mcp.mobius.waila.api.SpecialChars.patternWaila;
@@ -8,7 +7,6 @@ import static mcp.mobius.waila.api.SpecialChars.patternWaila;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -19,9 +17,6 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
-import mcp.mobius.waila.api.IWailaTooltipRenderer;
-import mcp.mobius.waila.api.impl.DataAccessorCommon;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class DisplayUtil {
