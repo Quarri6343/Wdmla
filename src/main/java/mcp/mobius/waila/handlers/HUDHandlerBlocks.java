@@ -20,6 +20,10 @@ import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.ModIdentification;
 
+/**
+ * This class is required for backward compatibility.
+ * Do not remove it.
+ */
 public class HUDHandlerBlocks implements IWailaDataProvider {
 
     @Override

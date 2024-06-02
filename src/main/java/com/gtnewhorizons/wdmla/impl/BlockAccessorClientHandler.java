@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import mcp.mobius.waila.handlers.HUDHandlerBlocks;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -31,6 +32,7 @@ import mcp.mobius.waila.utils.ModIdentification;
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 
     private final TooltipCompat tooltipCompat = new TooltipCompat();
+    private final HUDHandlerBlocks legacyBlockHandler = new HUDHandlerBlocks();
 
     @Override
     public boolean shouldDisplay(BlockAccessor accessor) {
@@ -138,21 +140,39 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
             itemForm = accessor.getItemForm();
         }
 
-        // TODO: WailaHead, WailaTail support
         // step 3: gather legacy raw tooltip lines (this may include Waila regex representing ItemStack or Progressbar)
         List<String> legacyTooltips = new ArrayList<>();
-        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyProviders = new LinkedHashMap<>();
-        if (ModuleRegistrar.instance().hasBodyProviders(accessor.getBlock())) {
-            legacyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getBlock()));
-        }
-        if (ModuleRegistrar.instance().hasBodyProviders(accessor.getTileEntity())) {
-            legacyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getTileEntity()));
-        }
-        for (List<IWailaDataProvider> providersList : legacyProviders.values()) {
+
+        //some WailaHead Handlers modify item name text so we have to insert dummy item name to avoid crash
+        legacyTooltips = legacyBlockHandler.getWailaHead(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());
+        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyHeadProviders = new LinkedHashMap<>();
+        legacyHeadProviders.putAll(ModuleRegistrar.instance().getHeadProviders(accessor.getBlock()));
+        legacyHeadProviders.putAll(ModuleRegistrar.instance().getHeadProviders(accessor.getTileEntity()));
+        for (List<IWailaDataProvider> providersList : legacyHeadProviders.values()) {
             for (IWailaDataProvider dataProvider : providersList) {
-                List<String> tooltips = new ArrayList<>();
-                tooltips = dataProvider.getWailaBody(itemForm, tooltips, legacyAccessor, ConfigHandler.instance());
-                legacyTooltips.addAll(tooltips);
+                legacyTooltips = dataProvider.getWailaHead(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());
+            }
+        }
+        if(!legacyTooltips.isEmpty()) {
+            legacyTooltips.remove(0);
+        }
+
+        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyBodyProviders = new LinkedHashMap<>();
+        legacyBodyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getBlock()));
+        legacyBodyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getTileEntity()));
+        for (List<IWailaDataProvider> providersList : legacyBodyProviders.values()) {
+            for (IWailaDataProvider dataProvider : providersList) {
+                legacyTooltips = dataProvider.getWailaBody(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());;
+            }
+        }
+
+        //Hopefully no mod edits mod name in Waila...
+        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyTailProviders = new LinkedHashMap<>();
+        legacyTailProviders.putAll(ModuleRegistrar.instance().getTailProviders(accessor.getBlock()));
+        legacyTailProviders.putAll(ModuleRegistrar.instance().getTailProviders(accessor.getTileEntity()));
+        for (List<IWailaDataProvider> providersList : legacyTailProviders.values()) {
+            for (IWailaDataProvider dataProvider : providersList) {
+                legacyTooltips = dataProvider.getWailaTail(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());;
             }
         }
 
