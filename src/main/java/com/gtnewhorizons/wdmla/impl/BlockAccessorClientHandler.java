@@ -1,38 +1,32 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import static mcp.mobius.waila.api.SpecialChars.BLUE;
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-import mcp.mobius.waila.handlers.HUDHandlerBlocks;
-import net.minecraft.item.ItemStack;
-
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
+import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
-
-import mcp.mobius.waila.api.IWailaDataProvider;
-import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
+import net.minecraft.item.ItemStack;
+
+import java.util.HashSet;
+import java.util.List;
+
+import static mcp.mobius.waila.api.SpecialChars.BLUE;
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 
     private final TooltipCompat tooltipCompat = new TooltipCompat();
-    private final HUDHandlerBlocks legacyBlockHandler = new HUDHandlerBlocks();
+    private final DataProviderCompat dataProviderCompat = new DataProviderCompat();
 
     @Override
     public boolean shouldDisplay(BlockAccessor accessor) {
@@ -141,40 +135,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         }
 
         // step 3: gather legacy raw tooltip lines (this may include Waila regex representing ItemStack or Progressbar)
-        List<String> legacyTooltips = new ArrayList<>();
-
-        //some WailaHead Handlers modify item name text so we have to insert dummy item name to avoid crash
-        legacyTooltips = legacyBlockHandler.getWailaHead(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());
-        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyHeadProviders = new LinkedHashMap<>();
-        legacyHeadProviders.putAll(ModuleRegistrar.instance().getHeadProviders(accessor.getBlock()));
-        legacyHeadProviders.putAll(ModuleRegistrar.instance().getHeadProviders(accessor.getTileEntity()));
-        for (List<IWailaDataProvider> providersList : legacyHeadProviders.values()) {
-            for (IWailaDataProvider dataProvider : providersList) {
-                legacyTooltips = dataProvider.getWailaHead(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());
-            }
-        }
-        if(!legacyTooltips.isEmpty()) {
-            legacyTooltips.remove(0);
-        }
-
-        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyBodyProviders = new LinkedHashMap<>();
-        legacyBodyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getBlock()));
-        legacyBodyProviders.putAll(ModuleRegistrar.instance().getBodyProviders(accessor.getTileEntity()));
-        for (List<IWailaDataProvider> providersList : legacyBodyProviders.values()) {
-            for (IWailaDataProvider dataProvider : providersList) {
-                legacyTooltips = dataProvider.getWailaBody(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());;
-            }
-        }
-
-        //Hopefully no mod edits mod name in Waila...
-        LinkedHashMap<Integer, List<IWailaDataProvider>> legacyTailProviders = new LinkedHashMap<>();
-        legacyTailProviders.putAll(ModuleRegistrar.instance().getTailProviders(accessor.getBlock()));
-        legacyTailProviders.putAll(ModuleRegistrar.instance().getTailProviders(accessor.getTileEntity()));
-        for (List<IWailaDataProvider> providersList : legacyTailProviders.values()) {
-            for (IWailaDataProvider dataProvider : providersList) {
-                legacyTooltips = dataProvider.getWailaTail(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());;
-            }
-        }
+        List<String> legacyTooltips = dataProviderCompat.getLegacyTooltips(itemForm, legacyAccessor);
 
         // step 4: Convert legacy tooltip String to actual various WDMla component
         ITooltip convertedTooltips = tooltipCompat.computeRenderables(legacyTooltips);

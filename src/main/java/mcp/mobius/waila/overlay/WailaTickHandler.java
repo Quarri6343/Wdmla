@@ -54,60 +54,7 @@ public class WailaTickHandler {
             List<String> currenttipHead;
             List<String> currenttipBody;
             List<String> currenttipTail;
-            if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-                DataAccessorCommon accessor = DataAccessorCommon.instance;
-                accessor.set(world, player, target);
-                ItemStack targetStack = RayTracingCompat.INSTANCE.getWailaStack(target);
-                if (targetStack == null) {
-                    targetStack = RayTracing.instance().getTargetStack();
-                }
-
-                if (targetStack != null) {
-                    currenttip = new TipList<String, String>();
-                    currenttipHead = new TipList<String, String>();
-                    currenttipBody = new TipList<String, String>();
-                    currenttipTail = new TipList<String, String>();
-
-                    currenttipHead = handler.handleBlockTextData(
-                            targetStack,
-                            world,
-                            player,
-                            target,
-                            accessor,
-                            currenttipHead,
-                            Layout.HEADER);
-                    currenttipBody = handler.handleBlockTextData(
-                            targetStack,
-                            world,
-                            player,
-                            target,
-                            accessor,
-                            currenttipBody,
-                            Layout.BODY);
-                    currenttipTail = handler.handleBlockTextData(
-                            targetStack,
-                            world,
-                            player,
-                            target,
-                            accessor,
-                            currenttipTail,
-                            Layout.FOOTER);
-
-                    if (ConfigHandler.instance()
-                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHIFTBLOCK, false)
-                            && !currenttipBody.isEmpty()
-                            && !accessor.getPlayer().isSneaking()) {
-                        currenttipBody.clear();
-                        currenttipBody.add(ITALIC + "Press shift for more data");
-                    }
-
-                    currenttip.addAll(currenttipHead);
-                    currenttip.addAll(currenttipBody);
-                    currenttip.addAll(currenttipTail);
-
-                    // this.tooltip = new Tooltip(currenttip, targetStack);
-                }
-            } else if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
+            if (target != null && target.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
                 DataAccessorCommon accessor = DataAccessorCommon.instance;
                 accessor.set(world, player, target);
 

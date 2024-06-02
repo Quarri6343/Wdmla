@@ -13,26 +13,14 @@ import cpw.mods.fml.common.registry.GameData;
 public class ModIdentification {
 
     public static HashMap<String, String> modSource_Name = new HashMap<>();
-    public static HashMap<String, String> modSource_ID = new HashMap<>();
 
     public static void init() {
 
         for (ModContainer mod : Loader.instance().getModList()) {
             modSource_Name.put(mod.getSource().getName(), mod.getName());
-            modSource_ID.put(mod.getSource().getName(), mod.getModId());
         }
 
-        // TODO : Update this to match new version (1.7.2)
-        modSource_Name.put("1.6.2.jar", "Minecraft");
-        modSource_Name.put("1.6.3.jar", "Minecraft");
-        modSource_Name.put("1.6.4.jar", "Minecraft");
-        modSource_Name.put("1.7.2.jar", "Minecraft");
         modSource_Name.put("Forge", "Minecraft");
-        modSource_ID.put("1.6.2.jar", "Minecraft");
-        modSource_ID.put("1.6.3.jar", "Minecraft");
-        modSource_ID.put("1.6.4.jar", "Minecraft");
-        modSource_ID.put("1.7.2.jar", "Minecraft");
-        modSource_ID.put("Forge", "Minecraft");
     }
 
     public static String nameFromObject(Object obj) {
