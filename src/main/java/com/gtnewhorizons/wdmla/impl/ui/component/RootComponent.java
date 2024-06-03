@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
@@ -17,6 +18,7 @@ public final class RootComponent extends VPanelComponent {
 
     public RootComponent() {
         super();
+        tag(Identifiers.ROOT);
     }
 
     public void renderHUD() {

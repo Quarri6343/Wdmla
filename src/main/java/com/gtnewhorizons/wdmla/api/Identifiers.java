@@ -11,6 +11,8 @@ public final class Identifiers {
     public static final ResourceLocation ITEM_NAME = MC("item_name");
     public static final ResourceLocation MOD_NAME = MC("mod_name");
 
+    public static final ResourceLocation DEFAULT = MC("default");
+
     public static final ResourceLocation TEST_HEAD = WDMla("test_head");
     public static final ResourceLocation TEST_BODY = WDMla("test_body");
 

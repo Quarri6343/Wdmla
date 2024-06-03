@@ -62,34 +62,9 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         WailaPacketHandler.INSTANCE.sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys, true));
     }
 
-    //TODO: move to CorePlugin
-    public ITooltip getDefaultIcon(BlockAccessor accessor) {
-        // step 1: check whether waila has custom Wailastack or not
-        ItemStack overrideStack = RayTracingCompat.INSTANCE.getWailaStack(accessor.getHitResult());
-
-        // step 2: construct an actual icon
-        ITooltip icon = new VPanelComponent();
-        ITooltip row = icon.horizontal();
-        ItemStack itemStack = overrideStack != null ? overrideStack : accessor.getItemForm();
-        row.child(new ItemComponent(itemStack).tag(Identifiers.ITEM_ICON));
-
-        ITooltip row_vertical = row.vertical();
-        row_vertical.child(new TextComponent(WHITE + DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
-        String modName = ModIdentification.nameFromStack(itemStack);
-        if (modName != null && !modName.isEmpty()) {
-            row_vertical.child(new TextComponent(BLUE + ITALIC + modName).tag(Identifiers.MOD_NAME));
-        }
-
-        return icon;
-    }
-
     @Override
     public void gatherComponents(BlockAccessor accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider) {
-        // step 0: append icon, block name and mod name to tooltip
-        ITooltip earlyTooltip = tooltipProvider.apply(null);
-        earlyTooltip.child(getDefaultIcon(accessor));
-
-        // step 1: gather WDMla tooltip components
+        // step 1: gather WDMla tooltip components including icon, block name and mod name
         //TODO: config filter
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockProviders(accessor.getBlock(), iComponentProvider -> true)) {

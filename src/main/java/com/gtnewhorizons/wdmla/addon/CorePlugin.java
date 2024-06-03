@@ -15,6 +15,7 @@ public class CorePlugin implements IWDMlaPlugin {
     public void registerClient(IWDMlaClientRegistration registration) {
         registration.registerAccessorHandler(BlockAccessor.class, new BlockAccessorClientHandler());
 
+        registration.registerBlockComponent(new DefaultInfoProvider(), Block.class);
         registration.registerBlockComponent(new HarvestToolProvider(), Block.class);
     }
 }
