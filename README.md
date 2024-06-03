@@ -3,11 +3,13 @@
 Still in alpha
 
 # Required Dependencies
-NEI for now
+- NEI (removal is planned)
+- [GTNHLib](https://github.com/GTNewHorizons/GTNHLib/releases/latest)
 
 # Supported mods
 - All mods that Waila supports
 - All mods that supports Waila
+- And more...?
 
 # Permanent Incompatibilities
 - Waila (bundled)

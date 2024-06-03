@@ -1,12 +1,19 @@
 package com.gtnewhorizons.wdmla.impl;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.google.common.base.Preconditions;
+import com.gtnewhorizons.wdmla.WDMla;
+import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
+import com.gtnewhorizons.wdmla.impl.lookup.PairHierarchyLookup;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 
+import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -17,55 +24,67 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
 
     private static final WDMlaCommonRegistration INSTANCE = new WDMlaCommonRegistration();
 
-    // We can't use HierarchyLookup in Java8
-    private final LinkedHashMap<Class<?>, ArrayList<IServerDataProvider<BlockAccessor>>> dataProviders = new LinkedHashMap<>();
+    public final PairHierarchyLookup<IServerDataProvider<BlockAccessor>> blockDataProviders;
     // TODO: use Session
+    public final PriorityStore<ResourceLocation, IWDMlaProvider> priorities;
+
+    private CommonRegistrationSession session;
 
     public static WDMlaCommonRegistration instance() {
         return INSTANCE;
     }
 
-    @Override
-    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> provider,
-            Class<?> blockOrTileEntityClass) {
-        if (blockOrTileEntityClass == null || provider == null) {
-            throw new RuntimeException(
-                    "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
-        }
-
-        if (!dataProviders.containsKey(blockOrTileEntityClass)) {
-            dataProviders.put(blockOrTileEntityClass, new ArrayList<>());
-        }
-
-        ArrayList<IServerDataProvider<BlockAccessor>> providers = dataProviders.get(blockOrTileEntityClass);
-        if (providers.contains(provider)) {
-            throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
-        }
-
-        dataProviders.get(blockOrTileEntityClass).add(provider);
+    WDMlaCommonRegistration() {
+        blockDataProviders = new PairHierarchyLookup<>(new HierarchyLookup<>(Block.class), new HierarchyLookup<>(TileEntity.class));
+        priorities = new PriorityStore<>(IWDMlaProvider::getDefaultPriority, IWDMlaProvider::getUid);
+        priorities.setSortingFunction((store, allKeys) -> {
+            List<ResourceLocation> keys = allKeys.stream()
+//                    .filter(PluginConfig::isPrimaryKey)
+                    .sorted(Comparator.comparingInt(store::byKey))
+                    .collect(Collectors.toCollection(ArrayList::new));
+//            allKeys.stream().filter(Predicate.not(PluginConfig::isPrimaryKey)).forEach($ -> {
+//                int index = keys.indexOf(PluginConfig.getPrimaryKey($));
+//                keys.add(index + 1, $);
+//            });
+            return keys;
+        });
+        priorities.configurable(WDMla.MODID + "/sort-order");
     }
 
-    public boolean hasProviders(Object obj) {
-        for (Class<?> clazz : dataProviders.keySet()) {
-            if (clazz.isInstance(obj)) {
-                return true;
-            }
+    @Override
+    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> dataProvider, Class<?> blockOrTileEntityClass) {
+        if (isSessionActive()) {
+            session.registerBlockDataProvider(dataProvider, blockOrTileEntityClass);
+        } else {
+            blockDataProviders.register(blockOrTileEntityClass, dataProvider);
         }
-        return false;
     }
 
     public List<IServerDataProvider<BlockAccessor>> getBlockNBTProviders(Block block, @Nullable TileEntity tileEntity) {
-        List<IServerDataProvider<BlockAccessor>> returnList = new ArrayList<>();
-
-        for (Class<?> clazz : dataProviders.keySet()) {
-            if (clazz.isInstance(block)) {
-                returnList.addAll(dataProviders.get(clazz));
-            } else if (clazz.isInstance(tileEntity)) {
-                returnList.addAll(dataProviders.get(clazz));
-            }
+        if (tileEntity == null) {
+            return blockDataProviders.first.get(block);
         }
-
-        return returnList;
+        return blockDataProviders.getMerged(block, tileEntity);
     }
 
+    public void loadComplete() {
+        blockDataProviders.loadComplete(priorities);
+        session = null;
+    }
+
+    public void startSession() {
+        if (session == null) {
+            session = new CommonRegistrationSession(this);
+        }
+        session.reset();
+    }
+
+    public void endSession() {
+        Preconditions.checkState(session != null, "Session not started");
+        session.end();
+    }
+
+    public boolean isSessionActive() {
+        return session != null && session.isActive();
+    }
 }

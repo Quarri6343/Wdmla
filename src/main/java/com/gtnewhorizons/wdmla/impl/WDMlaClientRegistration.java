@@ -14,7 +14,6 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     private static final WDMlaClientRegistration INSTANCE = new WDMlaClientRegistration();
 
-    // We can't use HierarchyLookup in Java8
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockIconProviders;
     private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockComponentProviders;
     // TODO: use Session

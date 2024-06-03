@@ -102,14 +102,13 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         if (entity == null) return;
         try {
             NBTTagCompound tag = new NBTTagCompound();
-            boolean hasNBTBlock = WDMlaCommonRegistration.instance().hasProviders(block);
-            boolean hasNBTEntity = WDMlaCommonRegistration.instance().hasProviders(entity);
+            boolean hasNBTBlockOrEntity = WDMlaCommonRegistration.instance().getBlockNBTProviders(block, entity) != null;
 
             boolean hasLegacyNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
             boolean hasLegacyNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
             // TODO: BlockAccessorImpl#HandleRequest
 
-            if ((hasNBTBlock || hasNBTEntity) && msg.useNewAPI) {
+            if ((hasNBTBlockOrEntity) && msg.useNewAPI) {
                 tag.setInteger("x", msg.posX);
                 tag.setInteger("y", msg.posY);
                 tag.setInteger("z", msg.posZ);

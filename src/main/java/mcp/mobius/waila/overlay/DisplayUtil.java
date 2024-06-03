@@ -25,12 +25,6 @@ public class DisplayUtil {
     private static TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
     private static RenderItem renderItem = new RenderItem();
 
-    public static Dimension displaySize() {
-        Minecraft mc = Minecraft.getMinecraft();
-        ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-        return new Dimension(res.getScaledWidth(), res.getScaledHeight());
-    }
-
     public static String stripSymbols(String s) {
         String result = patternRender.matcher(s).replaceAll("");
         result = patternMinecraft.matcher(result).replaceAll("");
@@ -64,11 +58,6 @@ public class DisplayUtil {
     public static void enable2DRender() {
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
-    }
-
-    public static void drawString(String text, int x, int y, int colour, boolean shadow) {
-        if (shadow) fontRenderer.drawStringWithShadow(text, x, y, colour);
-        else fontRenderer.drawString(text, x, y, colour);
     }
 
     public static List<String> itemDisplayNameMultiline(ItemStack itemstack) {

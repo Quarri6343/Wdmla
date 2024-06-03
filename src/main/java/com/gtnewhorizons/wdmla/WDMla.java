@@ -1,22 +1,33 @@
 package com.gtnewhorizons.wdmla;
 
+import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
+import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
+import com.gtnewhorizons.wdmla.test.TestPlugin;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Tags;
 
+import java.util.HashSet;
+
 @Mod(
-        modid = "Wdmla",
+        modid = WDMla.MODID,
         name = "WDMla",
         version = Tags.GRADLETOKEN_VERSION,
         dependencies = "after:Waila",
         acceptableRemoteVersions = "*")
 public class WDMla {
+
+    public static final String MODID = "Wdmla";
+    public static boolean FROZEN;
 
     @SidedProxy(clientSide = "com.gtnewhorizons.wdmla.ClientProxy", serverSide = "com.gtnewhorizons.wdmla.CommonProxy")
     public static CommonProxy proxy;
@@ -24,7 +35,7 @@ public class WDMla {
     /**
      * Edit this on dev env to enable test mode
      */
-    public static TestMode testMode = TestMode.Waila;
+    public static TestMode testMode = TestMode.WDMla;
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
@@ -49,5 +60,18 @@ public class WDMla {
     // register server commands in this event handler (Remove if not needed)
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
+    }
+
+    public static void loadComplete() {
+        if (FROZEN) {
+            return;
+        }
+        FROZEN = true;
+
+        //TODO: put test plugin here
+
+        //TODO: sort config
+        WDMlaCommonRegistration.instance().priorities.sort(new HashSet<>());
+        WDMlaCommonRegistration.instance().loadComplete();
     }
 }

@@ -4,9 +4,9 @@ import com.gtnewhorizons.wdmla.addon.CorePlugin;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+
 import com.gtnewhorizons.wdmla.test.TestMode;
 import com.gtnewhorizons.wdmla.test.TestPlugin;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -25,23 +25,33 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        registerPlugins();
+        WDMlaCommonRegistration common = WDMlaCommonRegistration.instance();
+        common.startSession();
+        //TODO: grab plugins via IMC
+        registerBuiltInServerPlugins(common);
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            registerBuiltInClientPlugins(WDMlaClientRegistration.instance());
+        }
+        common.endSession();
+        WDMla.loadComplete();
     }
 
     public void serverStarting(FMLServerStartingEvent event) {}
 
-    public void registerPlugins() {
+    public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
         if (WDMla.testMode == TestMode.WDMla) {
             IWDMlaPlugin testPlugin = new TestPlugin();
-            testPlugin.register(WDMlaCommonRegistration.instance());
-            if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-                testPlugin.registerClient(WDMlaClientRegistration.instance());
-            }
+            testPlugin.register(commonRegistration);
         }
+    }
 
+    public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
         IWDMlaPlugin corePlugin = new CorePlugin();
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            corePlugin.registerClient(WDMlaClientRegistration.instance());
+        corePlugin.registerClient(clientRegistration);
+
+        if (WDMla.testMode == TestMode.WDMla) {
+            IWDMlaPlugin testPlugin = new TestPlugin();
+            testPlugin.registerClient(clientRegistration);
         }
     }
 }
