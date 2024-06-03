@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.api.ui;
 
+import net.minecraft.util.ResourceLocation;
+
 /**
  * Base UI Component interface
  */
@@ -10,4 +12,8 @@ public interface IComponent {
     int getWidth();
 
     int getHeight();
+
+    IComponent tag(ResourceLocation tag);
+
+    ResourceLocation getTag();
 }

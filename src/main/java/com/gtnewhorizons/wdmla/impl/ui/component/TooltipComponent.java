@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
@@ -140,5 +141,30 @@ public class TooltipComponent extends Component implements ITooltip {
     public ITooltip clear() {
         this.children.clear();
         return this;
+    }
+
+    @Override
+    public ITooltip tag(ResourceLocation tag){
+        this.tag = tag;
+        return this;
+    }
+
+    @Override
+    public boolean replaceChildWithTag(@NotNull ResourceLocation tag, IComponent newChild) {
+        for (int i = 0; i < children.size(); i++) {
+            IComponent child = children.get(i);
+            if(tag.equals(child.getTag())) {
+                children.set(i, newChild);
+                return true;
+            }
+            else if(child instanceof ITooltip tooltipChild) {
+                boolean isReplaced = tooltipChild.replaceChildWithTag(tag, newChild);
+                if(isReplaced) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

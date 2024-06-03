@@ -1,10 +1,9 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.*;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
@@ -64,37 +63,29 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
     @Override
     public ITooltip getIcon(BlockAccessor accessor) {
-        // Step 1: check whether Wdmla has custom icon provider or not
-        ITooltip overrideIcon = new VPanelComponent();
-
-        boolean hasIconOverride = false;
-        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockIconProviders(accessor.getBlock(), iComponentProvider -> true)) {
-            ITooltip providerIcon = provider.getIcon(accessor, overrideIcon);
-            if (providerIcon != null) {
-                overrideIcon = providerIcon;
-                hasIconOverride = true;
-            }
-        }
-
-        if (hasIconOverride) {
-            return overrideIcon;
-        }
-
-        // step 2: check whether waila has custom Wailastack or not
+        // step 1: check whether waila has custom Wailastack or not
         ItemStack overrideStack = RayTracingCompat.INSTANCE.getWailaStack(accessor.getHitResult());
 
-        // step 3: construct an actual icon
+        // step 2: construct an actual icon
         ITooltip icon = new VPanelComponent();
         ITooltip row = icon.horizontal();
         ItemStack itemStack = overrideStack != null ? overrideStack : accessor.getItemForm();
-        row.item(itemStack);
+        row.child(new ItemComponent(itemStack).tag(Identifiers.ITEM_ICON));
 
         ITooltip row_vertical = row.vertical();
-        row_vertical.text(WHITE + DisplayUtil.itemDisplayNameShort(itemStack));
+        row_vertical.child(new TextComponent(WHITE + DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
         String modName = ModIdentification.nameFromStack(itemStack);
         if (modName != null && !modName.isEmpty()) {
-            row_vertical.text(BLUE + ITALIC + modName);
+            row_vertical.child(new TextComponent(BLUE + ITALIC + modName).tag(Identifiers.MOD_NAME));
+        }
+
+        // Step 3: check whether Wdmla has custom icon provider or not
+        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
+                .getBlockIconProviders(accessor.getBlock(), iComponentProvider -> true)) {
+            ITooltip providerIcon = provider.getIcon(accessor, icon);
+            if (providerIcon != null) {
+                icon = providerIcon;
+            }
         }
 
         return icon;

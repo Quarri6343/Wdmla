@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
@@ -16,6 +17,8 @@ public abstract class Component implements IComponent {
 
     // render
     protected IDrawable foreground;
+
+    protected ResourceLocation tag;
 
     protected Component(IPadding padding, ISize size, IDrawable foreground) {
         this.padding = padding;
@@ -46,5 +49,16 @@ public abstract class Component implements IComponent {
     @Override
     public int getHeight() {
         return padding.getTop() + size.getH() + padding.getBottom();
+    }
+
+    @Override
+    public IComponent tag(ResourceLocation tag) {
+        this.tag = tag;
+        return this;
+    }
+
+    @Override
+    public ResourceLocation getTag() {
+        return tag;
     }
 }
