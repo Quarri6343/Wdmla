@@ -7,9 +7,7 @@ public interface IWDMlaProvider {
     /**
      * The unique id of this provider. Providers from different registries can have the same id.
      */
-    default ResourceLocation getUid() {
-        return new ResourceLocation("Wdmla", "dummy");
-    }
+    ResourceLocation getUid();
 
     /**
      * Affects the display order showing in the tooltip.

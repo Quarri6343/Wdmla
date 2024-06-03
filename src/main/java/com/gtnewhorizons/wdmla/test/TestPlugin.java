@@ -10,12 +10,12 @@ public class TestPlugin implements IWDMlaPlugin {
 
     @Override
     public void register(IWDMlaCommonRegistration registration) {
-        registration.registerBlockDataProvider(new TestComponentProvider(), BlockFurnace.class);
+        registration.registerBlockDataProvider(new TestBodyProvider(), BlockFurnace.class);
     }
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
-        registration.registerBlockIcon(new TestComponentProvider(), BlockFurnace.class);
-        registration.registerBlockComponent(new TestComponentProvider(), BlockFurnace.class);
+        registration.registerBlockComponent(new TestHeaderProvider(), BlockFurnace.class);
+        registration.registerBlockComponent(new TestBodyProvider(), BlockFurnace.class);
     }
 }

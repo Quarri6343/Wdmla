@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.overlay;
 
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -106,7 +108,21 @@ public class WDMlaTickHandler {
             return null;
         }
 
-        handler.gatherComponents(accessor, root);
+        if (!WDMlaClientRegistration.instance().isShowDetailsPressed()) {
+            VPanelComponent dummyTooltip = new VPanelComponent();
+            handler.gatherComponents(accessor, $ -> {
+                if ($ == null || Math.abs(WDMlaCommonRegistration.instance().priorities.byValue($)) > 5000) {
+                    return root;
+                } else {
+                    return dummyTooltip;
+                }
+            });
+//            if (!dummyTooltip.isEmpty()) {
+//                root.sneakyDetails = true;
+//            }
+        } else {
+            handler.gatherComponents(accessor, $ -> root);
+        }
 
         return root;
     }

@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.test;
 
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,23 +21,18 @@ import com.gtnewhorizons.wdmla.impl.ui.style.ProgressStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
+import net.minecraft.util.ResourceLocation;
 
-import static mcp.mobius.waila.api.SpecialChars.*;
-
-public class TestComponentProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
+public class TestBodyProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
 
     @Override
-    public ITooltip getIcon(BlockAccessor accessor, ITooltip currentIcon) {
-        // TODO: icon disguise utility
-        currentIcon.clear();
-        ITooltip row = currentIcon.horizontal();
-        ItemStack itemStack = new ItemStack(Blocks.lit_furnace);
-        row.item(itemStack);
+    public ResourceLocation getUid() {
+        return Identifiers.TEST_BODY;
+    }
 
-        ITooltip row_vertical = row.vertical();
-        row_vertical.text(WHITE + "Furnace");
-        row_vertical.text(BLUE + ITALIC + "Wdmla");
-        return currentIcon;
+    @Override
+    public int getDefaultPriority() {
+        return 10;
     }
 
     @Override

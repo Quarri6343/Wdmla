@@ -70,8 +70,11 @@ public class WDMla {
 
         //TODO: put test plugin here
 
-        //TODO: sort config
+        //TODO: sort with config
         WDMlaCommonRegistration.instance().priorities.sort(new HashSet<>());
         WDMlaCommonRegistration.instance().loadComplete();
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            WDMlaClientRegistration.instance().loadComplete();
+        }
     }
 }

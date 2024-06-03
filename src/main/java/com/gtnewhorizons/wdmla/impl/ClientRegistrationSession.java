@@ -17,7 +17,6 @@ import java.util.Objects;
 public class ClientRegistrationSession {
     private final WDMlaClientRegistration registration;
     private boolean active;
-    private final List<Pair<IComponentProvider<BlockAccessor>, Class<? extends Block>>> blockIconProviders = Lists.newArrayList();
     private final List<Pair<IComponentProvider<BlockAccessor>, Class<? extends Block>>> blockComponentProviders = Lists.newArrayList();
 
     public ClientRegistrationSession(WDMlaClientRegistration registration) {
@@ -37,11 +36,6 @@ public class ClientRegistrationSession {
         list.add(new Pair<>(provider, clazz));
     }
 
-    public void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass) {
-        register(provider, blockIconProviders, registration.blockIconProviders, blockClass);
-        tryAddConfig(provider);
-    }
-
     public void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass) {
         register(provider, blockComponentProviders, registration.blockComponentProviders, blockClass);
         tryAddConfig(provider);
@@ -55,7 +49,6 @@ public class ClientRegistrationSession {
     }
 
     public void reset() {
-        blockIconProviders.clear();
         blockComponentProviders.clear();
         active = true;
     }
@@ -63,7 +56,6 @@ public class ClientRegistrationSession {
     public void end() {
         Preconditions.checkState(active, "Session is not active");
         active = false;
-        blockIconProviders.forEach(pair -> registration.registerBlockIcon(pair.first(), pair.second()));
         blockComponentProviders.forEach(pair -> registration.registerBlockComponent(pair.first(), pair.second()));
     }
 

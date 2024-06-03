@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.impl;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.google.common.base.Preconditions;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
@@ -19,29 +20,17 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     private static final WDMlaClientRegistration INSTANCE = new WDMlaClientRegistration();
 
-    public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockIconProviders;
     public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockComponentProviders;
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
     private ClientRegistrationSession session;
 
     WDMlaClientRegistration() {
-        blockIconProviders = new HierarchyLookup<>(Block.class);
         blockComponentProviders = new HierarchyLookup<>(Block.class);
     }
 
     public static WDMlaClientRegistration instance() {
         return INSTANCE;
-    }
-
-    @Override
-    public void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass) {
-        if (isSessionActive()) {
-            session.registerBlockIcon(provider, blockClass);
-        } else {
-            blockIconProviders.register(blockClass, provider);
-//            tryAddConfig(provider);
-        }
     }
 
     @Override
@@ -58,12 +47,6 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
             Block block,
             Predicate<IComponentProvider<? extends Accessor>> filter) {
         return blockComponentProviders.get(block).stream().filter(filter).collect(Collectors.toList());
-    }
-
-    public List<IComponentProvider<BlockAccessor>> getBlockIconProviders(
-            Block block,
-            Predicate<IComponentProvider<? extends Accessor>> filter) {
-        return blockIconProviders.get(block).stream().filter(filter).collect(Collectors.toList());
     }
 
     @Override
@@ -98,6 +81,12 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     @Override
     public AccessorClientHandler<Accessor> getAccessorHandler(Class<? extends Accessor> clazz) {
         return Objects.requireNonNull(accessorHandlers.get(clazz), () -> "No accessor handler for " + clazz);
+    }
+
+    public void loadComplete() {
+        var priorities = WDMlaCommonRegistration.instance().priorities;
+        blockComponentProviders.loadComplete(priorities);
+        session = null;
     }
 
     public void startSession() {

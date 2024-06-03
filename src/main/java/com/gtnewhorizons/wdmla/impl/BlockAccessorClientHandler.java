@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
@@ -61,8 +62,8 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         WailaPacketHandler.INSTANCE.sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys, true));
     }
 
-    @Override
-    public ITooltip getIcon(BlockAccessor accessor) {
+    //TODO: move to CorePlugin
+    public ITooltip getDefaultIcon(BlockAccessor accessor) {
         // step 1: check whether waila has custom Wailastack or not
         ItemStack overrideStack = RayTracingCompat.INSTANCE.getWailaStack(accessor.getHitResult());
 
@@ -79,31 +80,24 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
             row_vertical.child(new TextComponent(BLUE + ITALIC + modName).tag(Identifiers.MOD_NAME));
         }
 
-        // Step 3: check whether Wdmla has custom icon provider or not
-        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockIconProviders(accessor.getBlock(), iComponentProvider -> true)) {
-            ITooltip providerIcon = provider.getIcon(accessor, icon);
-            if (providerIcon != null) {
-                icon = providerIcon;
-            }
-        }
-
         return icon;
     }
 
     @Override
-    public void gatherComponents(BlockAccessor accessor, ITooltip tooltip) {
+    public void gatherComponents(BlockAccessor accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider) {
         // step 0: append icon, block name and mod name to tooltip
-        tooltip.child(getIcon(accessor));
+        ITooltip earlyTooltip = tooltipProvider.apply(null);
+        earlyTooltip.child(getDefaultIcon(accessor));
 
-        // step 1: gather wdmla tooltip components
+        // step 1: gather WDMla tooltip components
         //TODO: config filter
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockProviders(accessor.getBlock(), iComponentProvider -> true)) {
-            provider.appendTooltip(tooltip, accessor);
+            ITooltip middleTooltip = tooltipProvider.apply(provider);
+            provider.appendTooltip(middleTooltip, accessor);
         }
 
-        // step 2: setup legacy DataAccessor with legacy wailastack
+        // step 2: setup legacy DataAccessor with legacy Wailastack
         DataAccessorCommon legacyAccessor = DataAccessorCommon.instance;
         legacyAccessor.set(accessor.getWorld(), accessor.getPlayer(), accessor.getHitResult());
         ItemStack itemForm = RayTracingCompat.INSTANCE.getWailaStack(accessor.getHitResult());
@@ -111,11 +105,12 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
             itemForm = accessor.getItemForm();
         }
 
-        // step 3: gather legacy raw tooltip lines (this may include Waila regex representing ItemStack or Progressbar)
+        // step 3: gather raw tooltip lines from the old Waila api (this may include Waila regex which represents ItemStack or Progressbar)
         List<String> legacyTooltips = dataProviderCompat.getLegacyTooltips(itemForm, legacyAccessor);
 
         // step 4: Convert legacy tooltip String to actual various WDMla component
         ITooltip convertedTooltips = tooltipCompat.computeRenderables(legacyTooltips);
-        tooltip.child(convertedTooltips);
+        ITooltip lateTooltip = tooltipProvider.apply(null);
+        lateTooltip.child(convertedTooltips);
     }
 }
