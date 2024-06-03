@@ -1,8 +1,5 @@
 package com.gtnewhorizons.wdmla.test;
 
-import static mcp.mobius.waila.api.SpecialChars.BLUE;
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
-
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
@@ -24,6 +21,8 @@ import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 
+import static mcp.mobius.waila.api.SpecialChars.*;
+
 public class TestComponentProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
 
     @Override
@@ -35,7 +34,7 @@ public class TestComponentProvider implements IComponentProvider<BlockAccessor>,
         row.item(itemStack);
 
         ITooltip row_vertical = row.vertical();
-        row_vertical.text("Furnace");
+        row_vertical.text(WHITE + "Furnace");
         row_vertical.text(BLUE + ITALIC + "Wdmla");
         return currentIcon;
     }

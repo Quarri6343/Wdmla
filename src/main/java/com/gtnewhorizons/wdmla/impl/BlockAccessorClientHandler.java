@@ -20,8 +20,7 @@ import net.minecraft.item.ItemStack;
 import java.util.HashSet;
 import java.util.List;
 
-import static mcp.mobius.waila.api.SpecialChars.BLUE;
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+import static mcp.mobius.waila.api.SpecialChars.*;
 
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 
@@ -92,7 +91,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         row.item(itemStack);
 
         ITooltip row_vertical = row.vertical();
-        row_vertical.text(DisplayUtil.itemDisplayNameShort(itemStack));
+        row_vertical.text(WHITE + DisplayUtil.itemDisplayNameShort(itemStack));
         String modName = ModIdentification.nameFromStack(itemStack);
         if (modName != null && !modName.isEmpty()) {
             row_vertical.text(BLUE + ITALIC + modName);
