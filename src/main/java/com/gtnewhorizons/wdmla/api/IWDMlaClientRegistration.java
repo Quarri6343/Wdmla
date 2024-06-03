@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.api;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -7,9 +8,9 @@ import org.jetbrains.annotations.ApiStatus;
 @ApiStatus.NonExtendable
 public interface IWDMlaClientRegistration {
 
-    void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
+    void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass);
 
-    void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<?> clazz);
+    void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass);
 
     boolean isServerConnected();
 

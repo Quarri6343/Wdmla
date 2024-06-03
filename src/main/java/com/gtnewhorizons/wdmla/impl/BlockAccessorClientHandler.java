@@ -70,16 +70,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
         boolean hasIconOverride = false;
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockIconProviders(accessor.getBlock())) {
-            ITooltip providerIcon = provider.getIcon(accessor, overrideIcon);
-            if (providerIcon != null) {
-                overrideIcon = providerIcon;
-                hasIconOverride = true;
-            }
-        }
-
-        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockIconProviders(accessor.getTileEntity())) {
+                .getBlockIconProviders(accessor.getBlock(), iComponentProvider -> true)) {
             ITooltip providerIcon = provider.getIcon(accessor, overrideIcon);
             if (providerIcon != null) {
                 overrideIcon = providerIcon;
@@ -116,13 +107,9 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
         tooltip.child(getIcon(accessor));
 
         // step 1: gather wdmla tooltip components
+        //TODO: config filter
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockProviders(accessor.getBlock())) {
-            provider.appendTooltip(tooltip, accessor);
-        }
-
-        for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockProviders(accessor.getTileEntity())) {
+                .getBlockProviders(accessor.getBlock(), iComponentProvider -> true)) {
             provider.appendTooltip(tooltip, accessor);
         }
 

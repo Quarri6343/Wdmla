@@ -30,7 +30,10 @@ public class CommonProxy {
         //TODO: grab plugins via IMC
         registerBuiltInServerPlugins(common);
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            registerBuiltInClientPlugins(WDMlaClientRegistration.instance());
+            WDMlaClientRegistration client = WDMlaClientRegistration.instance();
+            client.startSession();
+            registerBuiltInClientPlugins(client);
+            client.endSession();
         }
         common.endSession();
         WDMla.loadComplete();
@@ -40,18 +43,15 @@ public class CommonProxy {
 
     public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
         if (WDMla.testMode == TestMode.WDMla) {
-            IWDMlaPlugin testPlugin = new TestPlugin();
-            testPlugin.register(commonRegistration);
+            new TestPlugin().register(commonRegistration);
         }
     }
 
     public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
-        IWDMlaPlugin corePlugin = new CorePlugin();
-        corePlugin.registerClient(clientRegistration);
+        new CorePlugin().registerClient(clientRegistration);
 
         if (WDMla.testMode == TestMode.WDMla) {
-            IWDMlaPlugin testPlugin = new TestPlugin();
-            testPlugin.registerClient(clientRegistration);
+            new TestPlugin().registerClient(clientRegistration);
         }
     }
 }

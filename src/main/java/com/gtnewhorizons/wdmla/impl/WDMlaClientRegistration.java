@@ -1,7 +1,12 @@
 package com.gtnewhorizons.wdmla.impl;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import com.google.common.base.Preconditions;
+import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -14,15 +19,15 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     private static final WDMlaClientRegistration INSTANCE = new WDMlaClientRegistration();
 
-    private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockIconProviders;
-    private final LinkedHashMap<Class<?>, ArrayList<IComponentProvider<BlockAccessor>>> blockComponentProviders;
-    // TODO: use Session
+    public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockIconProviders;
+    public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockComponentProviders;
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
+    private ClientRegistrationSession session;
 
     WDMlaClientRegistration() {
-        blockIconProviders = new LinkedHashMap<>();
-        blockComponentProviders = new LinkedHashMap<>();
+        blockIconProviders = new HierarchyLookup<>(Block.class);
+        blockComponentProviders = new HierarchyLookup<>(Block.class);
     }
 
     public static WDMlaClientRegistration instance() {
@@ -30,65 +35,35 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     }
 
     @Override
-    public void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<?> clazz) {
-        if (clazz == null || provider == null) {
-            throw new RuntimeException(
-                    "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
+    public void registerBlockIcon(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass) {
+        if (isSessionActive()) {
+            session.registerBlockIcon(provider, blockClass);
+        } else {
+            blockIconProviders.register(blockClass, provider);
+//            tryAddConfig(provider);
         }
-
-        if (!blockIconProviders.containsKey(clazz)) {
-            blockIconProviders.put(clazz, new ArrayList<>());
-        }
-
-        ArrayList<IComponentProvider<BlockAccessor>> providers = blockIconProviders.get(clazz);
-        if (providers.contains(provider)) {
-            throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
-        }
-
-        blockIconProviders.get(clazz).add(provider);
     }
 
     @Override
-    public void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<?> clazz) {
-        if (clazz == null || provider == null) {
-            throw new RuntimeException(
-                    "Trying to register a null provider or null block ! Please check the stacktrace to know what was the original registration method.");
+    public void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass) {
+        if (isSessionActive()) {
+            session.registerBlockComponent(provider, blockClass);
+        } else {
+            blockComponentProviders.register(blockClass, provider);
+//            tryAddConfig(provider);
         }
-
-        if (!blockComponentProviders.containsKey(clazz)) {
-            blockComponentProviders.put(clazz, new ArrayList<>());
-        }
-
-        ArrayList<IComponentProvider<BlockAccessor>> providers = blockComponentProviders.get(clazz);
-        if (providers.contains(provider)) {
-            throw new RuntimeException("Trying to register the same provider to Wdmla twice !");
-        }
-
-        blockComponentProviders.get(clazz).add(provider);
     }
 
-    public List<IComponentProvider<BlockAccessor>> getBlockProviders(Object instance) {
-        List<IComponentProvider<BlockAccessor>> returnList = new ArrayList<>();
-
-        for (Class<?> clazz : blockComponentProviders.keySet()) {
-            if (clazz.isInstance(instance)) {
-                returnList.addAll(blockComponentProviders.get(clazz));
-            }
-        }
-
-        return returnList;
+    public List<IComponentProvider<BlockAccessor>> getBlockProviders(
+            Block block,
+            Predicate<IComponentProvider<? extends Accessor>> filter) {
+        return blockComponentProviders.get(block).stream().filter(filter).collect(Collectors.toList());
     }
 
-    public List<IComponentProvider<BlockAccessor>> getBlockIconProviders(Object instance) {
-        List<IComponentProvider<BlockAccessor>> returnList = new ArrayList<>();
-
-        for (Class<?> clazz : blockIconProviders.keySet()) {
-            if (clazz.isInstance(instance)) {
-                returnList.addAll(blockIconProviders.get(clazz));
-            }
-        }
-
-        return returnList;
+    public List<IComponentProvider<BlockAccessor>> getBlockIconProviders(
+            Block block,
+            Predicate<IComponentProvider<? extends Accessor>> filter) {
+        return blockIconProviders.get(block).stream().filter(filter).collect(Collectors.toList());
     }
 
     @Override
@@ -123,5 +98,21 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     @Override
     public AccessorClientHandler<Accessor> getAccessorHandler(Class<? extends Accessor> clazz) {
         return Objects.requireNonNull(accessorHandlers.get(clazz), () -> "No accessor handler for " + clazz);
+    }
+
+    public void startSession() {
+        if (session == null) {
+            session = new ClientRegistrationSession(this);
+        }
+        session.reset();
+    }
+
+    public void endSession() {
+        Preconditions.checkState(session != null, "Session not started");
+        session.end();
+    }
+
+    public boolean isSessionActive() {
+        return session != null && session.isActive();
     }
 }
