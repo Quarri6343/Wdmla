@@ -74,7 +74,8 @@ public class DisplayUtil {
 
         if (namelist.get(0) == null || namelist.get(0).isEmpty()) namelist.set(0, "Unnamed");
 
-        namelist.set(0, itemstack.getRarity().rarityColor.toString() + namelist.get(0));
+        String rarityColor = itemstack.getItem() != null ? itemstack.getRarity().rarityColor.toString() : "" ;
+        namelist.set(0, rarityColor + namelist.get(0));
         for (int i = 1; i < namelist.size(); i++) namelist.set(i, "\u00a77" + namelist.get(i));
 
         return namelist;

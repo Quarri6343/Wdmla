@@ -76,6 +76,7 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
             return new ItemStack(doubleplant, 0, meta);
         }
 
+        //fix lit redstone ore has no item form
         if (block instanceof BlockRedstoneOre) {
             return new ItemStack(Blocks.redstone_ore);
         }

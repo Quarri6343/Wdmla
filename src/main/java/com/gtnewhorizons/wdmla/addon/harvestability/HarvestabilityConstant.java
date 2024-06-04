@@ -1,6 +1,9 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class HarvestabilityConstant {
 
@@ -16,4 +19,6 @@ public class HarvestabilityConstant {
 
     public static final String CHECK = "✔";
     public static final String X = "✕";
+    public static final ItemStack SHEARABILITY_ICON = new ItemStack(Items.shears);
+    public static final ItemStack SILKTOUCH_ICON = new ItemStack(Blocks.grass);
 }

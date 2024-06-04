@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import mcp.mobius.waila.api.SpecialChars;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -35,6 +36,11 @@ public final class GuiDraw {
     }
 
     public static void renderStack(IArea area, ItemStack stack) {
+        if(stack.getItem() == null) {
+            drawString(SpecialChars.WHITE + "Err", area.getX(), area.getY(), 0xFFFFFFFF, true);
+            return;
+        }
+
         int x = area.getX();
         int y = area.getY();
         int w = area.getW();

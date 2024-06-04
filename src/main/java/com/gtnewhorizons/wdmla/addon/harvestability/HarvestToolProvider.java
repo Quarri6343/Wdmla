@@ -9,7 +9,6 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
@@ -20,7 +19,6 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemShears;
@@ -36,7 +34,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static mcp.mobius.waila.api.SpecialChars.GREEN;
+import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SHEARABILITY_ICON;
+import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SILKTOUCH_ICON;
 import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
 public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
@@ -71,7 +70,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         boolean forceLegacyMode = ConfigHandler.instance().getConfig("harvestability.forceLegacyMode", false);
 
         if(!forceLegacyMode) {
-            IComponent harvestableDisplay = getHarvestability(player, block, meta, accessor.getHitResult(), ConfigHandler.instance());;
+            IComponent harvestableDisplay = getHarvestability(player, block, meta, accessor.getHitResult(), ConfigHandler.instance());
             IComponent replacedName = new HPanelComponent()
                     .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm()))
                     .child(harvestableDisplay)
@@ -161,7 +160,12 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
                 effectiveToolString = StatCollector
                         .translateToLocal("wailaharvestability.toolclass." + effectiveTool);
             else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
-            harvestabilityComponent.text(ColorHelper.getBooleanColor(true) + effectiveToolString);
+            harvestabilityComponent.text(ColorHelper.getBooleanColor(true) + effectiveToolString + " ");
+        }
+
+        if (harvestLevel >= 1) {
+            harvestabilityComponent.text(ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
+                            + harvestLevel);
         }
 
         boolean isCurrentlyHarvestable = (canHarvest && isAboveMinHarvestLevel)
@@ -171,12 +175,13 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
                 + (isCurrentlyHarvestable ? HarvestabilityConstant.CHECK
                 : HarvestabilityConstant.X);
 
-        String separator = " ";
-        harvestabilityComponent.text(
-                currentlyHarvestable + separator
-                        + silkTouchability
-                        + (!silkTouchability.isEmpty() ? separator : "")
-                        + shearability);
+        harvestabilityComponent.text(currentlyHarvestable);
+        if(!shearability.isEmpty()) {
+            harvestabilityComponent.item(SHEARABILITY_ICON, new Padding(), new Size(10,10));
+        }
+        if(!silkTouchability.isEmpty()) {
+            harvestabilityComponent.item(SILKTOUCH_ICON, new Padding(), new Size(10,10));
+        }
 
         return harvestabilityComponent;
     }
