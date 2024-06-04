@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

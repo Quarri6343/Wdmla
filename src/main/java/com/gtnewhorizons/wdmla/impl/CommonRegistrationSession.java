@@ -1,7 +1,8 @@
 package com.gtnewhorizons.wdmla.impl;
 
+import java.util.List;
+import java.util.Objects;
 
-import akka.japi.Pair;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -9,10 +10,10 @@ import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 
-import java.util.List;
-import java.util.Objects;
+import akka.japi.Pair;
 
 public class CommonRegistrationSession {
+
     private final WDMlaCommonRegistration registration;
     private boolean active;
     private final List<Pair<IServerDataProvider<BlockAccessor>, Class<?>>> blockDataProviders = Lists.newArrayList();
@@ -21,20 +22,15 @@ public class CommonRegistrationSession {
         this.registration = registration;
     }
 
-    private static <T extends IWDMlaProvider, C> void register(
-            T provider,
-            List<Pair<T, Class<? extends C>>> list,
-            IHierarchyLookup<T> lookup,
-            Class<? extends C> clazz) {
-        Preconditions.checkArgument(
-                lookup.isClassAcceptable(clazz),
-                "Class %s is not acceptable",
-                clazz);
+    private static <T extends IWDMlaProvider, C> void register(T provider, List<Pair<T, Class<? extends C>>> list,
+            IHierarchyLookup<T> lookup, Class<? extends C> clazz) {
+        Preconditions.checkArgument(lookup.isClassAcceptable(clazz), "Class %s is not acceptable", clazz);
         Objects.requireNonNull(provider.getUid());
         list.add(new Pair<>(provider, clazz));
     }
 
-    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> dataProvider, Class<?> blockOrBlobkEntityClass) {
+    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> dataProvider,
+            Class<?> blockOrBlobkEntityClass) {
         register(dataProvider, blockDataProviders, registration.blockDataProviders, blockOrBlobkEntityClass);
     }
 

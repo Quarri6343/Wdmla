@@ -4,13 +4,11 @@ import static mcp.mobius.waila.api.SpecialChars.patternMinecraft;
 import static mcp.mobius.waila.api.SpecialChars.patternRender;
 import static mcp.mobius.waila.api.SpecialChars.patternWaila;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
@@ -74,7 +72,7 @@ public class DisplayUtil {
 
         if (namelist.get(0) == null || namelist.get(0).isEmpty()) namelist.set(0, "Unnamed");
 
-        String rarityColor = itemstack.getItem() != null ? itemstack.getRarity().rarityColor.toString() : "" ;
+        String rarityColor = itemstack.getItem() != null ? itemstack.getRarity().rarityColor.toString() : "";
         namelist.set(0, rarityColor + namelist.get(0));
         for (int i = 1; i < namelist.size(); i++) namelist.set(i, "\u00a77" + namelist.get(i));
 

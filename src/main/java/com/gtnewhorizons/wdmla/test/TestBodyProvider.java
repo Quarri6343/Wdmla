@@ -2,15 +2,16 @@ package com.gtnewhorizons.wdmla.test;
 
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
@@ -21,7 +22,6 @@ import com.gtnewhorizons.wdmla.impl.ui.style.ProgressStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
-import net.minecraft.util.ResourceLocation;
 
 public class TestBodyProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
 

@@ -52,10 +52,7 @@ public class HPanelComponent extends PanelComponent {
         }
 
         int totalSpacing = children.isEmpty() ? 0 : style.getSpacing() * (children.size() - 1);
-        return padding.getLeft() + w
-                + totalSpacing
-                + padding.getRight()
-                + style.getBorderThickness() * 2;
+        return padding.getLeft() + w + totalSpacing + padding.getRight() + style.getBorderThickness() * 2;
     }
 
     @Override

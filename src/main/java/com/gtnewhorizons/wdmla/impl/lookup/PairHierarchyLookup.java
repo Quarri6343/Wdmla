@@ -1,5 +1,15 @@
 package com.gtnewhorizons.wdmla.impl.lookup;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Stream;
+
+import net.minecraft.util.ResourceLocation;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -7,18 +17,11 @@ import com.google.common.collect.ImmutableList;
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.PriorityStore;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 
 public class PairHierarchyLookup<T extends IWDMlaProvider> implements IHierarchyLookup<T> {
+
     public final IHierarchyLookup<T> first;
     public final IHierarchyLookup<T> second;
     private final Cache<Pair<Class<?>, Class<?>>, List<T>> mergedCache = CacheBuilder.newBuilder().build();
@@ -41,8 +44,7 @@ public class PairHierarchyLookup<T extends IWDMlaProvider> implements IHierarchy
                 } else if (secondList.isEmpty()) {
                     return firstList;
                 }
-                return Stream
-                        .concat(firstList.stream(), secondList.stream())
+                return Stream.concat(firstList.stream(), secondList.stream())
                         .sorted(Comparator.comparingInt(WDMlaCommonRegistration.instance().priorities::byValue))
                         .collect(collectingAndThen(toList(), ImmutableList::copyOf));
             });

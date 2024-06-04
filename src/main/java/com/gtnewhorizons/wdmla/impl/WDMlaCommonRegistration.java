@@ -5,20 +5,20 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.google.common.base.Preconditions;
-import com.gtnewhorizons.wdmla.WDMla;
-import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
-import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
-import com.gtnewhorizons.wdmla.impl.lookup.PairHierarchyLookup;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
-
 import net.minecraft.util.ResourceLocation;
+
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.base.Preconditions;
+import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
+import com.gtnewhorizons.wdmla.impl.lookup.PairHierarchyLookup;
 
 public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
 
@@ -35,24 +35,26 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
     }
 
     WDMlaCommonRegistration() {
-        blockDataProviders = new PairHierarchyLookup<>(new HierarchyLookup<>(Block.class), new HierarchyLookup<>(TileEntity.class));
+        blockDataProviders = new PairHierarchyLookup<>(
+                new HierarchyLookup<>(Block.class),
+                new HierarchyLookup<>(TileEntity.class));
         priorities = new PriorityStore<>(IWDMlaProvider::getDefaultPriority, IWDMlaProvider::getUid);
         priorities.setSortingFunction((store, allKeys) -> {
             List<ResourceLocation> keys = allKeys.stream()
-//                    .filter(PluginConfig::isPrimaryKey)
-                    .sorted(Comparator.comparingInt(store::byKey))
-                    .collect(Collectors.toCollection(ArrayList::new));
-//            allKeys.stream().filter(Predicate.not(PluginConfig::isPrimaryKey)).forEach($ -> {
-//                int index = keys.indexOf(PluginConfig.getPrimaryKey($));
-//                keys.add(index + 1, $);
-//            });
+                    // .filter(PluginConfig::isPrimaryKey)
+                    .sorted(Comparator.comparingInt(store::byKey)).collect(Collectors.toCollection(ArrayList::new));
+            // allKeys.stream().filter(Predicate.not(PluginConfig::isPrimaryKey)).forEach($ -> {
+            // int index = keys.indexOf(PluginConfig.getPrimaryKey($));
+            // keys.add(index + 1, $);
+            // });
             return keys;
         });
         priorities.configurable(WDMla.MODID + "/sort-order");
     }
 
     @Override
-    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> dataProvider, Class<?> blockOrTileEntityClass) {
+    public void registerBlockDataProvider(IServerDataProvider<BlockAccessor> dataProvider,
+            Class<?> blockOrTileEntityClass) {
         if (isSessionActive()) {
             session.registerBlockDataProvider(dataProvider, blockOrTileEntityClass);
         } else {

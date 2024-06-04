@@ -1,7 +1,8 @@
 package com.gtnewhorizons.wdmla.api;
 
-import com.gtnewhorizons.wdmla.WDMla;
 import net.minecraft.util.ResourceLocation;
+
+import com.gtnewhorizons.wdmla.WDMla;
 
 public final class Identifiers {
 
@@ -17,7 +18,6 @@ public final class Identifiers {
     public static final ResourceLocation TEST_BODY = WDMla("test_body");
 
     public static final ResourceLocation HARVESTABILITY = WDMla("harvestability");
-
 
     public static ResourceLocation WDMla(String path) {
         return new ResourceLocation("Wdmla", path);

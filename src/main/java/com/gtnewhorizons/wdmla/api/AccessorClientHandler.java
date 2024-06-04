@@ -1,8 +1,8 @@
 package com.gtnewhorizons.wdmla.api;
 
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-
 import java.util.function.Function;
+
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 
 public interface AccessorClientHandler<T extends Accessor> {
 
@@ -12,5 +12,5 @@ public interface AccessorClientHandler<T extends Accessor> {
 
     void requestData(T accessor);
 
-    void gatherComponents(T accessor,  Function<IWDMlaProvider, ITooltip> tooltipProvider);
+    void gatherComponents(T accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider);
 }

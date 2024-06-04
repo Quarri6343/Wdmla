@@ -1,11 +1,11 @@
 package com.gtnewhorizons.wdmla;
 
-import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
+import java.util.HashSet;
+
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
-import com.gtnewhorizons.wdmla.test.TestPlugin;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -15,8 +15,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Tags;
-
-import java.util.HashSet;
 
 @Mod(
         modid = WDMla.MODID,
@@ -68,9 +66,9 @@ public class WDMla {
         }
         FROZEN = true;
 
-        //TODO: put test plugin here
+        // TODO: put test plugin here
 
-        //TODO: sort with config
+        // TODO: sort with config
         WDMlaCommonRegistration.instance().priorities.sort(new HashSet<>());
         WDMlaCommonRegistration.instance().loadComplete();
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {

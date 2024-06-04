@@ -1,20 +1,13 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.overlay.DisplayUtil;
+import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SHEARABILITY_ICON;
+import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SILKTOUCH_ICON;
+import static mcp.mobius.waila.api.SpecialChars.WHITE;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,13 +23,24 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IShearable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SHEARABILITY_ICON;
-import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SILKTOUCH_ICON;
-import static mcp.mobius.waila.api.SpecialChars.WHITE;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.overlay.DisplayUtil;
 
 public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
@@ -69,20 +73,30 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
         boolean forceLegacyMode = ConfigHandler.instance().getConfig("harvestability.forceLegacyMode", false);
 
-        if(!forceLegacyMode) {
-            IComponent harvestableDisplay = getHarvestability(player, block, meta, accessor.getHitResult(), ConfigHandler.instance());
+        if (!forceLegacyMode) {
+            IComponent harvestableDisplay = getHarvestability(
+                    player,
+                    block,
+                    meta,
+                    accessor.getHitResult(),
+                    ConfigHandler.instance());
             IComponent replacedName = new HPanelComponent()
-                    .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm()))
-                    .child(harvestableDisplay)
+                    .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay)
                     .tag(Identifiers.ITEM_NAME);
-            if(!tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName)) {
+            if (!tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName)) {
                 throw new RuntimeException("WDMla Harvestability Module couldn't find item name in the tooltip");
             }
-        }
-        else {
+        } else {
             boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
             List<String> stringParts = new ArrayList<>();
-            getLegacyHarvestability(stringParts, player, block, meta, accessor.getHitResult(), ConfigHandler.instance(), minimalLayout);
+            getLegacyHarvestability(
+                    stringParts,
+                    player,
+                    block,
+                    meta,
+                    accessor.getHitResult(),
+                    ConfigHandler.instance(),
+                    minimalLayout);
             if (!stringParts.isEmpty()) {
                 if (minimalLayout) tooltip.text(
                         StringHelper.concatenateStringList(
@@ -95,15 +109,10 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         }
     }
 
-    public IComponent getHarvestability(EntityPlayer player, Block block, int meta,
-                                        MovingObjectPosition position, IWailaConfigHandler config) {
-        if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ)
-                || BlockHelper.isBlockUnbreakable(
-                block,
-                player.worldObj,
-                position.blockX,
-                position.blockY,
-                position.blockZ)) {
+    public IComponent getHarvestability(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
+            IWailaConfigHandler config) {
+        if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
+                .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
             return new TextComponent(ColorHelper.getBooleanColor(false) + HarvestabilityConstant.X);
         }
 
@@ -112,21 +121,15 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         if (meta >= 16) meta = 0;
 
         int harvestLevel = block.getHarvestLevel(meta);
-        String effectiveTool = BlockHelper.getEffectiveToolOf(
-                player.worldObj,
-                position.blockX,
-                position.blockY,
-                position.blockZ,
-                block,
-                meta);
+        String effectiveTool = BlockHelper
+                .getEffectiveToolOf(player.worldObj, position.blockX, position.blockY, position.blockZ, block, meta);
         if (effectiveTool != null && harvestLevel < 0) harvestLevel = 0;
         boolean blockHasEffectiveTools = harvestLevel >= 0 && effectiveTool != null;
 
         String shearability = getShearabilityString(player, block, meta, position, config);
         String silkTouchability = getSilkTouchabilityString(player, block, meta, position, config);
 
-        if (block.getMaterial().isToolNotRequired()
-                && !blockHasEffectiveTools
+        if (block.getMaterial().isToolNotRequired() && !blockHasEffectiveTools
                 && shearability.isEmpty()
                 && silkTouchability.isEmpty())
             return new TextComponent(ColorHelper.getBooleanColor(true) + HarvestabilityConstant.CHECK);
@@ -134,17 +137,15 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         ITooltip harvestabilityComponent = new HPanelComponent();
 
         boolean canHarvest = false;
-        boolean isEffective = false;
         boolean isAboveMinHarvestLevel = false;
         boolean isHoldingTinkersTool = false;
-        boolean isHoldingGTTool = false;
+        boolean isHoldingGTTool;
 
         ItemStack itemHeld = player.getHeldItem();
         if (itemHeld != null) {
             isHoldingTinkersTool = ToolHelper.hasToolTag(itemHeld);
             isHoldingGTTool = ProxyGregTech.isGTTool(itemHeld);
             isAboveMinHarvestLevel = ToolHelper.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
-            isEffective = ToolHelper.isToolEffectiveAgainst(itemHeld, block, meta, effectiveTool);
             if (isHoldingGTTool) {
                 // GT tool don't care net.minecraft.block.material.Material#isToolNotRequired
                 canHarvest = itemHeld.func_150998_b(block);
@@ -154,41 +155,38 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
             }
         }
 
+        ITooltip effectiveToolIconComponent = null;
         if (harvestLevel != -1 && effectiveTool != null) {
-            String effectiveToolString;
-            if (StatCollector.canTranslate("wailaharvestability.toolclass." + effectiveTool))
-                effectiveToolString = StatCollector
-                        .translateToLocal("wailaharvestability.toolclass." + effectiveTool);
-            else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
-            harvestabilityComponent.text(ColorHelper.getBooleanColor(true) + effectiveToolString + " ");
-        }
-
-        if (harvestLevel >= 1) {
-            harvestabilityComponent.text(ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
-                            + harvestLevel);
+            ItemStack effectiveToolIcon;
+            effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel);
+            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).size(new Size(10, 10));
+            harvestabilityComponent.child(effectiveToolIconComponent);
         }
 
         boolean isCurrentlyHarvestable = (canHarvest && isAboveMinHarvestLevel)
                 || (!isHoldingTinkersTool && ForgeHooks.canHarvestBlock(block, player, meta));
 
+        //TODO: resize CHECK
         String currentlyHarvestable = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                + (isCurrentlyHarvestable ? HarvestabilityConstant.CHECK
-                : HarvestabilityConstant.X);
+                + (isCurrentlyHarvestable ? HarvestabilityConstant.CHECK : HarvestabilityConstant.X);
 
-        harvestabilityComponent.text(currentlyHarvestable);
-        if(!shearability.isEmpty()) {
-            harvestabilityComponent.item(SHEARABILITY_ICON, new Padding(), new Size(10,10));
+        if (effectiveToolIconComponent != null) {
+            effectiveToolIconComponent.text(currentlyHarvestable, new TextStyle(), new Padding().left(5).top(6));
+        } else {
+            harvestabilityComponent.text(currentlyHarvestable);
         }
-        if(!silkTouchability.isEmpty()) {
-            harvestabilityComponent.item(SILKTOUCH_ICON, new Padding(), new Size(10,10));
+        if (!shearability.isEmpty()) {
+            harvestabilityComponent.item(SHEARABILITY_ICON, new Padding(), new Size(10, 10));
+        }
+        if (!silkTouchability.isEmpty()) {
+            harvestabilityComponent.item(SILKTOUCH_ICON, new Padding(), new Size(10, 10));
         }
 
         return harvestabilityComponent;
     }
 
-
     public void getLegacyHarvestability(List<String> stringList, EntityPlayer player, Block block, int meta,
-                                        MovingObjectPosition position, IWailaConfigHandler config, boolean minimalLayout) {
+            MovingObjectPosition position, IWailaConfigHandler config, boolean minimalLayout) {
         boolean isSneaking = player.isSneaking();
         boolean showHarvestLevel = config.getConfig("harvestability.harvestlevel")
                 && (!config.getConfig("harvestability.harvestlevel.sneakingonly") || isSneaking);
@@ -209,16 +207,17 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
             if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ)
                     || BlockHelper.isBlockUnbreakable(
-                    block,
-                    player.worldObj,
-                    position.blockX,
-                    position.blockY,
-                    position.blockZ)) {
-                String unbreakableString = ColorHelper.getBooleanColor(false) + HarvestabilityConstant.NOT_CURRENTLY_HARVESTABLE_STRING
+                            block,
+                            player.worldObj,
+                            position.blockX,
+                            position.blockY,
+                            position.blockZ)) {
+                String unbreakableString = ColorHelper.getBooleanColor(false)
+                        + HarvestabilityConstant.NOT_CURRENTLY_HARVESTABLE_STRING
                         + (!minimalLayout
-                        ? EnumChatFormatting.RESET
-                        + StatCollector.translateToLocal("wailaharvestability.harvestable")
-                        : "");
+                                ? EnumChatFormatting.RESET
+                                        + StatCollector.translateToLocal("wailaharvestability.harvestable")
+                                : "");
                 stringList.add(unbreakableString);
                 return;
             }
@@ -277,12 +276,12 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
             String currentlyHarvestable = showCurrentlyHarvestable
                     ? ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                    + (isCurrentlyHarvestable ? HarvestabilityConstant.CURRENTLY_HARVESTABLE_STRING
-                    : HarvestabilityConstant.NOT_CURRENTLY_HARVESTABLE_STRING)
-                    + (!minimalLayout
-                    ? EnumChatFormatting.RESET
-                    + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")
-                    : "")
+                            + (isCurrentlyHarvestable ? HarvestabilityConstant.CURRENTLY_HARVESTABLE_STRING
+                                    : HarvestabilityConstant.NOT_CURRENTLY_HARVESTABLE_STRING)
+                            + (!minimalLayout
+                                    ? EnumChatFormatting.RESET
+                                            + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")
+                                    : "")
                     : "";
 
             if (!currentlyHarvestable.isEmpty() || !shearability.isEmpty() || !silkTouchability.isEmpty()) {
@@ -302,8 +301,8 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
                 stringList.add(
                         (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.effectivetool") : "")
                                 + ColorHelper.getBooleanColor(
-                                isEffective && (!isHoldingTinkersTool || canHarvest),
-                                isHoldingTinkersTool && isEffective && !canHarvest)
+                                        isEffective && (!isHoldingTinkersTool || canHarvest),
+                                        isHoldingTinkersTool && isEffective && !canHarvest)
                                 + effectiveToolString);
             }
             if (harvestLevel >= 1 && (showHarvestLevel || showHarvestLevelNum)) {
@@ -328,7 +327,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
     }
 
     public String getShearabilityString(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
-                                        IWailaConfigHandler config) {
+            IWailaConfigHandler config) {
         boolean isSneaking = player.isSneaking();
         boolean showShearability = config.getConfig("harvestability.shearability")
                 && (!config.getConfig("harvestability.shearability.sneakingonly") || isSneaking);
@@ -346,7 +345,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
     }
 
     public String getSilkTouchabilityString(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
-                                            IWailaConfigHandler config) {
+            IWailaConfigHandler config) {
         boolean isSneaking = player.isSneaking();
         boolean showSilkTouchability = config.getConfig("harvestability.silktouchability")
                 && (!config.getConfig("harvestability.silktouchability.sneakingonly") || isSneaking);

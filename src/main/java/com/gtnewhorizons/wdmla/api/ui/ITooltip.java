@@ -1,8 +1,8 @@
 package com.gtnewhorizons.wdmla.api.ui;
 
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.util.ResourceLocation;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;

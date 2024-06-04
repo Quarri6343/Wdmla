@@ -3,8 +3,8 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.util.ResourceLocation;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
@@ -156,7 +156,7 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
-    public ITooltip tag(ResourceLocation tag){
+    public ITooltip tag(ResourceLocation tag) {
         this.tag = tag;
         return this;
     }
@@ -165,13 +165,12 @@ public class TooltipComponent extends Component implements ITooltip {
     public boolean replaceChildWithTag(@NotNull ResourceLocation tag, IComponent newChild) {
         for (int i = 0; i < children.size(); i++) {
             IComponent child = children.get(i);
-            if(tag.equals(child.getTag())) {
+            if (tag.equals(child.getTag())) {
                 children.set(i, newChild);
                 return true;
-            }
-            else if(child instanceof ITooltip tooltipChild) {
+            } else if (child instanceof ITooltip tooltipChild) {
                 boolean isReplaced = tooltipChild.replaceChildWithTag(tag, newChild);
-                if(isReplaced) {
+                if (isReplaced) {
                     return true;
                 }
             }

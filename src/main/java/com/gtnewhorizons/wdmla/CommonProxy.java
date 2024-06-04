@@ -2,12 +2,11 @@ package com.gtnewhorizons.wdmla;
 
 import com.gtnewhorizons.wdmla.addon.CorePlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
-import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
-
 import com.gtnewhorizons.wdmla.test.TestMode;
 import com.gtnewhorizons.wdmla.test.TestPlugin;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -28,7 +27,7 @@ public class CommonProxy {
     public void postInit(FMLPostInitializationEvent event) {
         WDMlaCommonRegistration common = WDMlaCommonRegistration.instance();
         common.startSession();
-        //TODO: grab plugins via IMC
+        // TODO: grab plugins via IMC
         registerBuiltInServerPlugins(common);
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             WDMlaClientRegistration client = WDMlaClientRegistration.instance();

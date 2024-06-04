@@ -3,16 +3,15 @@ package com.gtnewhorizons.wdmla.impl;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import com.google.common.base.Preconditions;
-import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import com.gtnewhorizons.wdmla.api.*;
+import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 
 import mcp.mobius.waila.Waila;
 
@@ -39,12 +38,11 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
             session.registerBlockComponent(provider, blockClass);
         } else {
             blockComponentProviders.register(blockClass, provider);
-//            tryAddConfig(provider);
+            // tryAddConfig(provider);
         }
     }
 
-    public List<IComponentProvider<BlockAccessor>> getBlockProviders(
-            Block block,
+    public List<IComponentProvider<BlockAccessor>> getBlockProviders(Block block,
             Predicate<IComponentProvider<? extends Accessor>> filter) {
         return blockComponentProviders.get(block).stream().filter(filter).collect(Collectors.toList());
     }

@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import net.minecraft.util.ResourceLocation;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IComponent;

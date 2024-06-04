@@ -1,7 +1,5 @@
 package com.gtnewhorizons.wdmla.overlay;
 
-import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
-import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -16,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 import com.gtnewhorizons.wdmla.api.Accessor;
 import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.impl.ui.component.RootComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -117,9 +117,9 @@ public class WDMlaTickHandler {
                     return dummyTooltip;
                 }
             });
-//            if (!dummyTooltip.isEmpty()) {
-//                root.sneakyDetails = true;
-//            }
+            // if (!dummyTooltip.isEmpty()) {
+            // root.sneakyDetails = true;
+            // }
         } else {
             handler.gatherComponents(accessor, $ -> root);
         }

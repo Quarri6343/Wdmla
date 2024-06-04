@@ -5,24 +5,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
 
 import mcp.mobius.waila.Waila;
-import mcp.mobius.waila.api.IWailaBlock;
-import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaEntityProvider;
 import mcp.mobius.waila.cbcore.Layout;
-import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.network.Message0x03EntRequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
-import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class MetaDataProvider {
@@ -31,7 +24,7 @@ public class MetaDataProvider {
     private final Map<Integer, List<IWailaEntityProvider>> bodyEntityProviders = new TreeMap<>();
     private final Map<Integer, List<IWailaEntityProvider>> tailEntityProviders = new TreeMap<>();
 
-    //TODO: remove once the migration is complete
+    // TODO: remove once the migration is complete
     public List<String> handleEntityTextData(Entity entity, World world, EntityPlayer player, MovingObjectPosition mop,
             DataAccessorCommon accessor, List<String> currenttip, Layout layout) {
 

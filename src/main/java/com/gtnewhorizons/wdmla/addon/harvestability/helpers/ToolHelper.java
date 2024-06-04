@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -112,4 +114,24 @@ public class ToolHelper {
         return block.getMaterial().isToolNotRequired() || tool.func_150998_b(block); // func_150998_b = canHarvestBlock
     }
 
+    // TODO: wrench support
+    public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel) {
+        return switch (effectiveTool) {
+            case "pickaxe" -> getEffectivePickaxeIcon(harvestLevel);
+            case "shovel" -> new ItemStack(Items.wooden_shovel);
+            case "axe" -> new ItemStack(Items.wooden_axe);
+            default -> new ItemStack(Blocks.iron_bars);
+        };
+    }
+
+    // TODO: tic pickaxe support
+    public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
+        return switch (harvestLevel) {
+            case 0 -> new ItemStack(Items.wooden_pickaxe);
+            case 1 -> new ItemStack(Items.stone_pickaxe);
+            case 2 -> new ItemStack(Items.iron_pickaxe);
+            case 3 -> new ItemStack(Items.diamond_pickaxe);
+            default -> new ItemStack(Blocks.iron_bars);
+        };
+    }
 }

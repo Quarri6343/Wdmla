@@ -1,10 +1,13 @@
 package com.gtnewhorizons.wdmla.impl.lookup;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import net.minecraft.util.ResourceLocation;
 
 import com.google.common.base.Preconditions;
 import com.google.common.cache.Cache;
@@ -15,17 +18,14 @@ import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.PriorityStore;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.util.ResourceLocation;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class HierarchyLookup<T extends IWDMlaProvider> implements IHierarchyLookup<T> {
+
     private final Class<?> baseClass;
     private final Cache<Class<?>, List<T>> resultCache = CacheBuilder.newBuilder().build();
     private final boolean singleton;
@@ -59,8 +59,7 @@ public class HierarchyLookup<T extends IWDMlaProvider> implements IHierarchyLook
             return resultCache.get(clazz, () -> {
                 List<T> list = Lists.newArrayList();
                 getInternal(clazz, list);
-                list = list
-                        .stream()
+                list = list.stream()
                         .sorted(Comparator.comparingInt(WDMlaCommonRegistration.instance().priorities::byValue))
                         .collect(collectingAndThen(toList(), ImmutableList::copyOf));
                 if (singleton && !list.isEmpty()) {
@@ -105,20 +104,20 @@ public class HierarchyLookup<T extends IWDMlaProvider> implements IHierarchyLook
             Set<ResourceLocation> set = Sets.newHashSetWithExpectedSize(list.size());
             for (T provider : list) {
                 if (set.contains(provider.getUid())) {
-                    throw new IllegalStateException(String.format("Duplicate UID: %s for %s", provider.getUid(), list.stream()
-                            .filter(p -> p.getUid().equals(provider.getUid()))
-                            .map(p -> p.getClass().getName())
-                            .collect(collectingAndThen(toList(), ImmutableList::copyOf))
-                    ));
+                    throw new IllegalStateException(
+                            String.format(
+                                    "Duplicate UID: %s for %s",
+                                    provider.getUid(),
+                                    list.stream().filter(p -> p.getUid().equals(provider.getUid()))
+                                            .map(p -> p.getClass().getName())
+                                            .collect(collectingAndThen(toList(), ImmutableList::copyOf))));
                 }
                 set.add(provider.getUid());
             }
         });
 
         objects = ImmutableListMultimap.<Class<?>, T>builder()
-                .orderValuesBy(Comparator.comparingInt(priorityStore::byValue))
-                .putAll(objects)
-                .build();
+                .orderValuesBy(Comparator.comparingInt(priorityStore::byValue)).putAll(objects).build();
     }
 
 }

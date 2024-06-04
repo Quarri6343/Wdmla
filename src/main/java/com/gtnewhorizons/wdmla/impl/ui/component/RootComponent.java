@@ -1,8 +1,8 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import org.jetbrains.annotations.NotNull;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.BackgroundDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.BreakProgressDrawable;

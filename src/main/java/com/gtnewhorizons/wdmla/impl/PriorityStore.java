@@ -1,20 +1,20 @@
 package com.gtnewhorizons.wdmla.impl;
 
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Sets;
-import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import org.jetbrains.annotations.Nullable;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import org.jetbrains.annotations.Nullable;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Sets;
+
+import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 public class PriorityStore<K, V> {
 
@@ -24,8 +24,8 @@ public class PriorityStore<K, V> {
     @Nullable
     private String configFile;
     private ImmutableList<K> sortedList = ImmutableList.of();
-    private BiFunction<PriorityStore<K, V>, Collection<K>, List<K>> sortingFunction = (store, allKeys) -> allKeys.stream()
-            .sorted(Comparator.comparingInt(store::byKey))
+    private BiFunction<PriorityStore<K, V>, Collection<K>, List<K>> sortingFunction = (store, allKeys) -> allKeys
+            .stream().sorted(Comparator.comparingInt(store::byKey))
             .collect(collectingAndThen(toList(), ImmutableList::copyOf));
 
     public PriorityStore(ToIntFunction<V> defaultPriorityGetter, Function<V, K> keyGetter) {
@@ -64,33 +64,33 @@ public class PriorityStore<K, V> {
             allKeys = Sets.union(priorities.keySet(), extraKeys);
         }
 
-//        if (!Strings.isNullOrEmpty(configFile)) {
-//            JsonConfig<Map<K, OptionalInt>> config = new JsonConfig<>(
-//                    configFile,
-//                    Codec.unboundedMap(keyCodec, JadeCodecs.OPTIONAL_INT),
-//                    null,
-//                    Map::of);
-//            Map<K, OptionalInt> map = config.get();
-//            for (var e : map.entrySet()) {
-//                if (e.getValue().isPresent()) {
-//                    priorities.put(e.getKey(), e.getValue().getAsInt());
-//                }
-//            }
-//            new Thread(() -> {
-//                boolean changed = false;
-//                TreeMap<K, OptionalInt> newMap = Maps.newTreeMap(Comparator.comparing(Object::toString));
-//                for (K id : priorities.keySet()) {
-//                    if (!map.containsKey(id)) {
-//                        newMap.put(id, OptionalInt.empty());
-//                        changed = true;
-//                    }
-//                }
-//                if (changed) {
-//                    newMap.putAll(map);
-//                    config.write(newMap, false);
-//                }
-//            }).start();
-//        }
+        // if (!Strings.isNullOrEmpty(configFile)) {
+        // JsonConfig<Map<K, OptionalInt>> config = new JsonConfig<>(
+        // configFile,
+        // Codec.unboundedMap(keyCodec, JadeCodecs.OPTIONAL_INT),
+        // null,
+        // Map::of);
+        // Map<K, OptionalInt> map = config.get();
+        // for (var e : map.entrySet()) {
+        // if (e.getValue().isPresent()) {
+        // priorities.put(e.getKey(), e.getValue().getAsInt());
+        // }
+        // }
+        // new Thread(() -> {
+        // boolean changed = false;
+        // TreeMap<K, OptionalInt> newMap = Maps.newTreeMap(Comparator.comparing(Object::toString));
+        // for (K id : priorities.keySet()) {
+        // if (!map.containsKey(id)) {
+        // newMap.put(id, OptionalInt.empty());
+        // changed = true;
+        // }
+        // }
+        // if (changed) {
+        // newMap.putAll(map);
+        // config.write(newMap, false);
+        // }
+        // }).start();
+        // }
 
         sortedList = ImmutableList.copyOf(sortingFunction.apply(this, allKeys));
     }

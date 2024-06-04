@@ -9,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -16,8 +18,6 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.relauncher.Side;
-import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.client.KeyEvent;

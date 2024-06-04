@@ -1,12 +1,13 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import java.util.ArrayList;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.HealthDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 public class HealthComponent extends TooltipComponent {
 

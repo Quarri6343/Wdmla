@@ -6,8 +6,9 @@ import java.util.List;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
-import cpw.mods.fml.common.Loader;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
+
+import cpw.mods.fml.common.Loader;
 
 public class StringHelper {
 

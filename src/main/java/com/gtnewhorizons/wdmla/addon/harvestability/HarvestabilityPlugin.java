@@ -1,13 +1,15 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
-import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
-import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import net.minecraft.block.Block;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraft.block.Block;
+
+import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
+
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
 public class HarvestabilityPlugin implements IWDMlaPlugin {
 

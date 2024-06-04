@@ -1,26 +1,23 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import com.gtnewhorizons.wdmla.api.*;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
-import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
-import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
-import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
-import mcp.mobius.waila.api.impl.DataAccessorCommon;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.network.Message0x01TERequest;
-import mcp.mobius.waila.network.WailaPacketHandler;
-import mcp.mobius.waila.overlay.DisplayUtil;
-import mcp.mobius.waila.utils.ModIdentification;
-import net.minecraft.item.ItemStack;
+import static mcp.mobius.waila.api.SpecialChars.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 
-import static mcp.mobius.waila.api.SpecialChars.*;
+import net.minecraft.item.ItemStack;
+
+import com.gtnewhorizons.wdmla.api.*;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
+import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
+import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
+
+import mcp.mobius.waila.api.impl.DataAccessorCommon;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
+import mcp.mobius.waila.network.Message0x01TERequest;
+import mcp.mobius.waila.network.WailaPacketHandler;
 
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 
@@ -65,7 +62,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
     @Override
     public void gatherComponents(BlockAccessor accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider) {
         // step 1: gather WDMla tooltip components including icon, block name and mod name
-        //TODO: config filter
+        // TODO: config filter
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockProviders(accessor.getBlock(), iComponentProvider -> true)) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
@@ -80,7 +77,8 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
             itemForm = accessor.getItemForm();
         }
 
-        // step 3: gather raw tooltip lines from the old Waila api (this may include Waila regex which represents ItemStack or Progressbar)
+        // step 3: gather raw tooltip lines from the old Waila api (this may include Waila regex which represents
+        // ItemStack or Progressbar)
         List<String> legacyTooltips = dataProviderCompat.getLegacyTooltips(itemForm, legacyAccessor);
 
         // step 4: Convert legacy tooltip String to actual various WDMla component
