@@ -1,6 +1,6 @@
-package mcp.mobius.waila.addons.harvestability;
+package com.gtnewhorizons.wdmla.addon.harvestability;
 
-public class Config {
+public class HarvestabilityConstant {
 
     public static final String MINIMAL_SEPARATOR_STRING = " : ";
 

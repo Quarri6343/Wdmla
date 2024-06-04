@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability.helpers;
+package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -7,7 +7,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
 import cpw.mods.fml.common.Loader;
-import mcp.mobius.waila.addons.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
 public class StringHelper {
 

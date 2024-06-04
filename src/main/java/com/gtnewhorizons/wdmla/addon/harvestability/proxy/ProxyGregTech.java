@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability.proxy;
+package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

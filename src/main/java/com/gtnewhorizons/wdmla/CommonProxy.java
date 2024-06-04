@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla;
 
 import com.gtnewhorizons.wdmla.addon.CorePlugin;
+import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
@@ -49,6 +50,7 @@ public class CommonProxy {
 
     public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
         new CorePlugin().registerClient(clientRegistration);
+        new HarvestabilityPlugin().registerClient(clientRegistration);
 
         if (WDMla.testMode == TestMode.WDMla) {
             new TestPlugin().registerClient(clientRegistration);

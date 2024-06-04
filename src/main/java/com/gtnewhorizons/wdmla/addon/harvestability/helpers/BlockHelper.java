@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability.helpers;
+package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import java.util.HashMap;
 import java.util.Map;

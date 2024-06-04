@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability.helpers;
+package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

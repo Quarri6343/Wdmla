@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability;
+package com.gtnewhorizons.wdmla.addon.harvestability;
 
 import net.minecraft.init.Blocks;
 

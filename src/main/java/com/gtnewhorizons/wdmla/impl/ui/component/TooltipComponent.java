@@ -30,6 +30,18 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
+    public TooltipComponent padding(@NotNull IPadding padding) {
+        this.padding = padding;
+        return this;
+    }
+
+    @Override
+    public TooltipComponent size(@NotNull ISize size) {
+        this.size = size;
+        return this;
+    }
+
+    @Override
     public void tick(int x, int y) {
         foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), size.getW(), size.getH()));
 

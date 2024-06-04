@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability.proxy;
+package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
 import java.lang.reflect.Method;
 

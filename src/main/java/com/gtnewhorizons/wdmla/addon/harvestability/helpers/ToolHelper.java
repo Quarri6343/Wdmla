@@ -1,4 +1,4 @@
-package mcp.mobius.waila.addons.harvestability.helpers;
+package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
