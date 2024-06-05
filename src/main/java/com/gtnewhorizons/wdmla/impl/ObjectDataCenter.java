@@ -56,7 +56,13 @@ public final class ObjectDataCenter {
     }
 
     public static void setServerData(NBTTagCompound tag) {
+
         serverData = tag;
+
+        //player no longer looks at object when the server responded
+        if(accessor == null) {
+            return;
+        }
 
         if (accessor.verifyData(serverData)) {
             accessor.getServerData().func_150296_c().clear();

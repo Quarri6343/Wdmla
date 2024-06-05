@@ -9,6 +9,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
+
 public class ProxyIguanaTweaks {
 
     private static Class<?> HarvestLevels = null;
@@ -44,28 +46,28 @@ public class ProxyIguanaTweaks {
     public static ItemStack getHarvestLevelIcon(int num) {
         if(isVanilla) {
             return switch (num) {
-                case 0 -> creativePickaxes.get(0); //any
-                case 1 -> creativePickaxes.get(2); //iron
-                case 2 -> creativePickaxes.get(16); //redstone
-                case 3 -> creativePickaxes.get(6); //obsidian
-                case 4 -> creativePickaxes.get(19); //cobalt
-                case 5 -> creativePickaxes.get(12); //manyullyn
-                case 6 -> creativePickaxes.get(12); //manyullyn+
+                case 0 -> creativePickaxes.get(ANY);
+                case 1 -> creativePickaxes.get(IRON);
+                case 2 -> creativePickaxes.get(REDSTONE);
+                case 3 -> creativePickaxes.get(OBSIDIAN);
+                case 4 -> creativePickaxes.get(COBALT);
+                case 5 -> creativePickaxes.get(MANYULLYN);
+                case 6 -> creativePickaxes.get(MANYULLYNPLUS);
                 default -> new ItemStack(Blocks.iron_bars);
             };
         }
         else {
             return switch (num) {
-                case 0 -> creativePickaxes.get(0); //any
-                case 1 -> creativePickaxes.get(13); //copper
-                case 2 -> creativePickaxes.get(2); //iron
-                case 3 -> creativePickaxes.get(14); //tin
-                case 4 -> creativePickaxes.get(16); //redstone
-                case 5 -> creativePickaxes.get(6); //obsidian
-                case 6 -> creativePickaxes.get(11); //ardite
-                case 7 -> creativePickaxes.get(10); //cobalt
-                case 8 -> creativePickaxes.get(12); //manyullyn
-                case 9 -> creativePickaxes.get(12); //manyullyn+
+                case 0 -> creativePickaxes.get(ANY);
+                case 1 -> creativePickaxes.get(COPPER);
+                case 2 -> creativePickaxes.get(IRON);
+                case 3 -> creativePickaxes.get(TIN);
+                case 4 -> creativePickaxes.get(REDSTONE);
+                case 5 -> creativePickaxes.get(OBSIDIAN);
+                case 6 -> creativePickaxes.get(ARDITE);
+                case 7 -> creativePickaxes.get(COBALT);
+                case 8 -> creativePickaxes.get(MANYULLYN);
+                case 9 -> creativePickaxes.get(MANYULLYNPLUS);
                 default -> new ItemStack(Blocks.iron_bars);
             };
         }
