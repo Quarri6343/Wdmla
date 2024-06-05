@@ -5,6 +5,7 @@ import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstan
 import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -74,17 +75,20 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         boolean forceLegacyMode = ConfigHandler.instance().getConfig("harvestability.forceLegacyMode", false);
 
         if (!forceLegacyMode) {
-            IComponent harvestableDisplay = getHarvestability(
+            List<IComponent> harvestableDisplay = getHarvestability(
                     player,
                     block,
                     meta,
                     accessor.getHitResult(),
                     ConfigHandler.instance());
             IComponent replacedName = new HPanelComponent()
-                    .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay)
+                    .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay.get(0))
                     .tag(Identifiers.ITEM_NAME);
             if (!tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName)) {
                 throw new RuntimeException("WDMla Harvestability Module couldn't find item name in the tooltip");
+            }
+            if(harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null) {
+                tooltip.child(harvestableDisplay.get(1));
             }
         } else {
             boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
@@ -109,11 +113,17 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         }
     }
 
-    public IComponent getHarvestability(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
+    /**
+     *
+     * @return element1: harvest tool icon to append after item name
+     * <p>
+     * element2: harvestability String if the harvest level is greater than 0
+     */
+    public List<IComponent> getHarvestability(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
             IWailaConfigHandler config) {
         if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
                 .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
-            return new TextComponent(ColorHelper.getBooleanColor(false) + HarvestabilityConstant.X);
+            return Arrays.asList(new TextComponent(ColorHelper.getBooleanColor(false) + HarvestabilityConstant.X));
         }
 
         // needed to stop array index out of bounds exceptions on mob spawners
@@ -132,7 +142,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         if (block.getMaterial().isToolNotRequired() && !blockHasEffectiveTools
                 && shearability.isEmpty()
                 && silkTouchability.isEmpty())
-            return new TextComponent(ColorHelper.getBooleanColor(true) + HarvestabilityConstant.CHECK);
+            return Arrays.asList(new TextComponent(ColorHelper.getBooleanColor(true) + HarvestabilityConstant.CHECK));
 
         ITooltip harvestabilityComponent = new HPanelComponent();
 
@@ -166,7 +176,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         boolean isCurrentlyHarvestable = (canHarvest && isAboveMinHarvestLevel)
                 || (!isHoldingTinkersTool && ForgeHooks.canHarvestBlock(block, player, meta));
 
-        //TODO: resize CHECK
+        //TODO: resize CHECK text
         String currentlyHarvestable = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
                 + (isCurrentlyHarvestable ? HarvestabilityConstant.CHECK : HarvestabilityConstant.X);
 
@@ -182,7 +192,18 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
             harvestabilityComponent.item(SILKTOUCH_ICON, new Padding(), new Size(10, 10));
         }
 
-        return harvestabilityComponent;
+        IComponent harvestLevelText = null;
+        if (harvestLevel >= 1) {
+            String harvestLevelString = "";
+
+            harvestLevelString = StringHelper.stripFormatting(StringHelper.getHarvestLevelName(harvestLevel));
+
+            harvestLevelText = new TextComponent(StatCollector.translateToLocal("wailaharvestability.harvestlevel")
+                    + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
+                    + harvestLevelString);
+        }
+
+        return Arrays.asList(harvestabilityComponent, harvestLevelText);
     }
 
     public void getLegacyHarvestability(List<String> stringList, EntityPlayer player, Block block, int meta,

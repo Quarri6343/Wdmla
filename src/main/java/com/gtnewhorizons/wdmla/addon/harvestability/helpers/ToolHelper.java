@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -124,8 +125,10 @@ public class ToolHelper {
         };
     }
 
-    // TODO: tic pickaxe support
     public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
+        if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
+            return ProxyIguanaTweaks.getHarvestLevelIcon(harvestLevel);
+        }
         return switch (harvestLevel) {
             case 0 -> new ItemStack(Items.wooden_pickaxe);
             case 1 -> new ItemStack(Items.stone_pickaxe);
