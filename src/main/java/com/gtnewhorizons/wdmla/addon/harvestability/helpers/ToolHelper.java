@@ -124,6 +124,8 @@ public class ToolHelper {
                 return new ItemStack(Items.wooden_shovel);
             case "axe":
                 return new ItemStack(Items.wooden_axe);
+            case "sword":
+                return new ItemStack(Items.wooden_sword);
             default:
                 if (ProxyGregTech.isModLoaded) {
                     return ProxyGregTech.getEffectiveGregToolIcon(effectiveTool, harvestLevel);
