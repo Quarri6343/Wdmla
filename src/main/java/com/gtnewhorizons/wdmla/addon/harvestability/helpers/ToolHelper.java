@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -115,19 +116,27 @@ public class ToolHelper {
         return block.getMaterial().isToolNotRequired() || tool.func_150998_b(block); // func_150998_b = canHarvestBlock
     }
 
-    // TODO: wrench support
     public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel) {
-        return switch (effectiveTool) {
-            case "pickaxe" -> getEffectivePickaxeIcon(harvestLevel);
-            case "shovel" -> new ItemStack(Items.wooden_shovel);
-            case "axe" -> new ItemStack(Items.wooden_axe);
-            default -> new ItemStack(Blocks.iron_bars);
-        };
+        switch (effectiveTool) {
+            case "pickaxe":
+                return getEffectivePickaxeIcon(harvestLevel);
+            case "shovel":
+                return new ItemStack(Items.wooden_shovel);
+            case "axe":
+                return new ItemStack(Items.wooden_axe);
+            default:
+                if (ProxyGregTech.isModLoaded) {
+                    return ProxyGregTech.getEffectiveGregToolIcon(effectiveTool, harvestLevel);
+                }
+                else {
+                    return new ItemStack(Blocks.iron_bars);
+                }
+        }
     }
 
     public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
         if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
-            return ProxyIguanaTweaks.getHarvestLevelIcon(harvestLevel);
+            return ProxyIguanaTweaks.getEffectivePickaxeIcon(harvestLevel);
         }
         return switch (harvestLevel) {
             case 0 -> new ItemStack(Items.wooden_pickaxe);

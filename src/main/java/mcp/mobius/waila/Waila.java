@@ -2,6 +2,7 @@ package mcp.mobius.waila;
 
 import java.lang.reflect.Field;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
@@ -80,6 +81,9 @@ public class Waila {
         ModIdentification.init();
         if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
             ProxyIguanaTweaks.init();
+        }
+        if (Loader.isModLoaded(ProxyGregTech.modID)) {
+            ProxyGregTech.init();
         }
     }
 

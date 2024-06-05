@@ -43,7 +43,7 @@ public class ProxyIguanaTweaks {
         return harvestLevelName;
     }
 
-    public static ItemStack getHarvestLevelIcon(int num) {
+    public static ItemStack getEffectivePickaxeIcon(int num) {
         if(isVanilla) {
             return switch (num) {
                 case 0 -> creativePickaxes.get(ANY);
