@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -25,6 +26,8 @@ public class ProxyGregTech {
     public static final String machineUniqueIdentifier = modID + ":" + machineID;
     public static boolean isModLoaded = Loader.isModLoaded(modID);
 
+    private static short Wrench;
+    private static short WireCutter;
     private static ItemStack ironWrench;
     private static ItemStack steelWrench;
     private static ItemStack ironWireCutter;
@@ -41,9 +44,9 @@ public class ProxyGregTech {
             Class<?> GT_MetaGenerated_Tool_01 = Class.forName("gregtech.common.items.GT_MetaGenerated_Tool_01");
 
             Field WrenchField = GT_MetaGenerated_Tool_01.getField("WRENCH");
-            short Wrench = WrenchField.getShort(null);
+            Wrench = WrenchField.getShort(null);
             Field WireCutterField = GT_MetaGenerated_Tool_01.getField("WIRECUTTER");
-            short WireCutter = WireCutterField.getShort(null);
+            WireCutter = WireCutterField.getShort(null);
 
             Object ironMaterial = Materials.getField("Iron").get(null);
             Object steelMaterial = Materials.getField("Steel").get(null);
@@ -71,6 +74,14 @@ public class ProxyGregTech {
 
     public static boolean isGTTool(ItemStack itemStack) {
         return isModLoaded && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("GT.ToolStats");
+    }
+
+    public static boolean isWrench(ItemStack itemStack) {
+        return isGTTool(itemStack) && itemStack.getItemDamage() == Wrench;
+    }
+
+    public static boolean isWireCutter(ItemStack itemStack) {
+        return isGTTool(itemStack) && itemStack.getItemDamage() == WireCutter;
     }
 
     public static ItemStack getEffectiveGregToolIcon(String effectiveTool, int harvestLevel) {

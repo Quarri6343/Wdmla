@@ -4,10 +4,7 @@ import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstan
 import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityConstant.SILKTOUCH_ICON;
 import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import com.gtnewhorizons.wdmla.impl.ui.style.ItemStyle;
 import net.minecraft.block.Block;
@@ -150,14 +147,17 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         boolean canHarvest = false;
         boolean isAboveMinHarvestLevel = false;
         boolean isHoldingTinkersTool = false;
-        boolean isHoldingGTTool;
 
         ItemStack itemHeld = player.getHeldItem();
         if (itemHeld != null) {
             isHoldingTinkersTool = ToolHelper.hasToolTag(itemHeld);
-            isHoldingGTTool = ProxyGregTech.isGTTool(itemHeld);
             isAboveMinHarvestLevel = ToolHelper.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
-            if (isHoldingGTTool) {
+            if(ProxyGregTech.isMachine(block)) {
+                //GT_MetaGenerated_Tool's getDigSpeed is broken
+                canHarvest = Objects.equals(effectiveTool, "wrench") && ProxyGregTech.isWrench(itemHeld)
+                        || Objects.equals(effectiveTool, "cutter") && ProxyGregTech.isWireCutter(itemHeld);
+            }
+            else if (ProxyGregTech.isGTTool(itemHeld)) {
                 // GT tool don't care net.minecraft.block.material.Material#isToolNotRequired
                 canHarvest = itemHeld.func_150998_b(block);
             } else {
@@ -177,7 +177,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         }
 
         boolean isCurrentlyHarvestable = (canHarvest && isAboveMinHarvestLevel)
-                || (!isHoldingTinkersTool && ForgeHooks.canHarvestBlock(block, player, meta));
+                || (!ProxyGregTech.isMachine(block) && !isHoldingTinkersTool && ForgeHooks.canHarvestBlock(block, player, meta));
 
         //TODO: resize CHECK text
         String currentlyHarvestable = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
