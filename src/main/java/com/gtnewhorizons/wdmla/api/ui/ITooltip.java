@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.api.ui;
 
+import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -32,9 +33,9 @@ public interface ITooltip extends IComponent {
 
     ITooltip horizontal();
 
-    ITooltip item(ItemStack stack, IPadding padding, ISize size);
+    ITooltip item(ItemStack stack, IItemStyle style, IPadding padding, ISize size);
 
-    ITooltip item(ItemStack stack, IPadding padding);
+    ITooltip item(ItemStack stack, IPadding padding, ISize size);
 
     ITooltip item(ItemStack stack);
 

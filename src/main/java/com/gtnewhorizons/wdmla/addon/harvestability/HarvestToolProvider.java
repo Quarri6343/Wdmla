@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.impl.ui.style.ItemStyle;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -169,7 +170,9 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         if (harvestLevel != -1 && effectiveTool != null) {
             ItemStack effectiveToolIcon;
             effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel);
-            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).size(new Size(10, 10));
+            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon)
+                    .style(new ItemStyle().drawOverlay(false)) //we don't want durability bar on tool icon
+                    .size(new Size(10, 10));
             harvestabilityComponent.child(effectiveToolIconComponent);
         }
 

@@ -35,7 +35,7 @@ public final class GuiDraw {
         else fontRenderer.drawString(text, x, y, colour);
     }
 
-    public static void renderStack(IArea area, ItemStack stack) {
+    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay) {
         if (stack.getItem() == null) {
             drawString(SpecialChars.WHITE + "Err", area.getX(), area.getY(), 0xFFFFFFFF, true);
             return;
@@ -65,15 +65,17 @@ public final class GuiDraw {
                     stack,
                     (int) (x / xScale),
                     (int) (y / yScale));
-            renderItem.renderItemOverlayIntoGUI(
-                    fontRenderer,
-                    textureManager,
-                    stack,
-                    (int) (x / xScale),
-                    (int) (y / yScale));
+            if(drawOverlay) {
+                renderItem.renderItemOverlayIntoGUI(
+                        fontRenderer,
+                        textureManager,
+                        stack,
+                        (int) (x / xScale),
+                        (int) (y / yScale));
+            }
             net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         } catch (Exception e) {
-            String stackStr = stack != null ? stack.toString() : "NullStack";
+            String stackStr = stack.toString();
             WailaExceptionHandler.handleErr(e, "renderStack | " + stackStr, null);
         } finally {
             GL11.glPopMatrix();

@@ -2,6 +2,9 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
+import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
+import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
+import com.gtnewhorizons.wdmla.impl.ui.drawable.TextDrawable;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.impl.ui.drawable.ItemDrawable;
@@ -15,5 +18,10 @@ public class ItemComponent extends TooltipComponent {
 
     public ItemComponent(ItemStack itemStack) {
         super(new ArrayList<>(), new Padding(), new Size(DEFAULT_W, DEFAULT_H), new ItemDrawable(itemStack));
+    }
+
+    public ItemComponent style(IItemStyle style) {
+        ((ItemDrawable) this.foreground).style(style);
+        return this;
     }
 }

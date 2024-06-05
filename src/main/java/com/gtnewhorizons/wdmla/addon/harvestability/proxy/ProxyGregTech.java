@@ -47,7 +47,7 @@ public class ProxyGregTech {
 
             Object ironMaterial = Materials.getField("Iron").get(null);
             Object steelMaterial = Materials.getField("Steel").get(null);
-            //TODO :hide durability bar
+
             ironWrench =  (ItemStack) getToolWithStatsMethod.invoke(metaTool01, Wrench, 1, ironMaterial, ironMaterial, null);
             steelWrench =  (ItemStack) getToolWithStatsMethod.invoke(metaTool01, Wrench, 1, steelMaterial, steelMaterial, null);
             ironWireCutter = (ItemStack) getToolWithStatsMethod.invoke(metaTool01, WireCutter, 1, ironMaterial, ironMaterial, null);

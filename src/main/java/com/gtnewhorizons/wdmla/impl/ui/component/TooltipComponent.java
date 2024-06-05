@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -72,30 +73,30 @@ public class TooltipComponent extends Component implements ITooltip {
 
     @Override
     public ITooltip vertical(IPanelStyle style, IPadding padding) {
-        IComponent c = new VPanelComponent().style(style).padding(padding);
+        ITooltip c = new VPanelComponent().style(style).padding(padding);
         this.children.add(c);
-        return (ITooltip) c;
+        return c;
     }
 
     @Override
     public ITooltip vertical(IPanelStyle style) {
-        IComponent c = new VPanelComponent().style(style);
+        ITooltip c = new VPanelComponent().style(style);
         this.children.add(c);
-        return (ITooltip) c;
+        return c;
     }
 
     @Override
     public ITooltip vertical() {
-        IComponent c = new VPanelComponent();
+        ITooltip c = new VPanelComponent();
         this.children.add(c);
-        return (ITooltip) c;
+        return c;
     }
 
     @Override
     public ITooltip horizontal(IPanelStyle style, IPadding padding) {
-        IComponent c = new HPanelComponent().style(style).padding(padding);
+        ITooltip c = new HPanelComponent().style(style).padding(padding);
         this.children.add(c);
-        return (ITooltip) c;
+        return c;
     }
 
     @Override
@@ -107,21 +108,21 @@ public class TooltipComponent extends Component implements ITooltip {
 
     @Override
     public ITooltip horizontal() {
-        IComponent c = new HPanelComponent();
+        ITooltip c = new HPanelComponent();
         this.children.add(c);
-        return (ITooltip) c;
+        return c;
     }
 
     @Override
-    public ITooltip item(ItemStack stack, IPadding padding, ISize size) {
-        IComponent c = new ItemComponent(stack).padding(padding).size(size);
+    public ITooltip item(ItemStack stack, IItemStyle style, IPadding padding, ISize size) {
+        IComponent c = new ItemComponent(stack).style(style).padding(padding).size(size);
         this.children.add(c);
         return this;
     }
 
     @Override
-    public ITooltip item(ItemStack stack, IPadding padding) {
-        IComponent c = new ItemComponent(stack).padding(padding);
+    public ITooltip item(ItemStack stack, IPadding padding, ISize size) {
+        IComponent c = new ItemComponent(stack).padding(padding).size(size);
         this.children.add(c);
         return this;
     }
