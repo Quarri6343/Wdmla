@@ -18,6 +18,7 @@ import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
 import cpw.mods.fml.common.Loader;
 
+//TODO: split into ToolHelper and tinkers proxy
 public class ToolHelper {
 
     // tinkers construct

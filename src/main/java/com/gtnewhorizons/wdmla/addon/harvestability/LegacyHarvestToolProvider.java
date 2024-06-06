@@ -22,6 +22,7 @@ import net.minecraftforge.common.ForgeHooks;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: remove once the config migration is complete
 public class LegacyHarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
     @Override
