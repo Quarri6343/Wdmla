@@ -60,27 +60,24 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
             return;
         }
 
-        Block block = accessor.getBlock();
-        int meta = accessor.getMetadata();
-
-        if (ProxyCreativeBlocks.isCreativeBlock(block, meta)) return;
-
-        EntityPlayer player = accessor.getPlayer();
-
-        // for disguised blocks
-        if (accessor.getItemForm().getItem() instanceof ItemBlock && !ProxyGregTech.isOreBlock(block)
-                && !ProxyGregTech.isCasing(block)
-                && !ProxyGregTech.isMachine(block)) {
-            block = Block.getBlockFromItem(accessor.getItemForm().getItem());
-            meta = accessor.getItemForm().getItemDamage();
+        if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())){
+            return;
         }
 
+        Block effectiveBlock = BlockHelper.getEffectiveBlock(accessor.getBlock(), accessor.getItemForm());
+        int effectiveMeta = BlockHelper.getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
+
         List<IComponent> harvestableDisplay = getHarvestability(
-                player,
-                block,
-                meta,
+                accessor.getPlayer(),
+                effectiveBlock,
+                effectiveMeta,
                 accessor.getHitResult(),
                 ConfigHandler.instance());
+
+        updateTooltip(tooltip, accessor, harvestableDisplay);
+    }
+
+    private void updateTooltip(ITooltip tooltip, BlockAccessor accessor, List<IComponent> harvestableDisplay) {
         IComponent replacedName = new HPanelComponent()
                 .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay.get(0))
                 .tag(Identifiers.ITEM_NAME);
@@ -151,14 +148,8 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         if (harvestLevel != -1 && effectiveTool != null) {
             ItemStack effectiveToolIcon;
             effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel);
-            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).style(new ItemStyle().drawOverlay(false)) // we
-                                                                                                                        // don't
-                                                                                                                        // want
-                                                                                                                        // durability
-                                                                                                                        // bar
-                                                                                                                        // on
-                                                                                                                        // tool
-                                                                                                                        // icon
+            //remove durability bar from tool icon
+            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).style(new ItemStyle().drawOverlay(false))
                     .size(new Size(10, 10));
             harvestabilityComponent.child(effectiveToolIconComponent);
         }

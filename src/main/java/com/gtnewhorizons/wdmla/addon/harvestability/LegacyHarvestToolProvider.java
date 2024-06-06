@@ -1,18 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.ForgeHooks;
-
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
@@ -21,9 +8,19 @@ import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.impl.ConfigHandler;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.ForgeHooks;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LegacyHarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
@@ -44,31 +41,26 @@ public class LegacyHarvestToolProvider implements IComponentProvider<BlockAccess
             return;
         }
 
-        Block block = accessor.getBlock();
-        int meta = accessor.getMetadata();
-
-        if (ProxyCreativeBlocks.isCreativeBlock(block, meta)) return;
-
-        EntityPlayer player = accessor.getPlayer();
-
-        // for disguised blocks
-        if (accessor.getItemForm().getItem() instanceof ItemBlock && !ProxyGregTech.isOreBlock(block)
-                && !ProxyGregTech.isCasing(block)
-                && !ProxyGregTech.isMachine(block)) {
-            block = Block.getBlockFromItem(accessor.getItemForm().getItem());
-            meta = accessor.getItemForm().getItemDamage();
+        if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())){
+            return;
         }
 
-        boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
+        Block effectiveBlock = BlockHelper.getEffectiveBlock(accessor.getBlock(), accessor.getItemForm());
+        int effectiveMeta = BlockHelper.getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
+
         List<String> stringParts = new ArrayList<>();
         getLegacyHarvestability(
                 stringParts,
-                player,
-                block,
-                meta,
+                accessor.getPlayer(),
+                effectiveBlock,
+                effectiveMeta,
                 accessor.getHitResult(),
-                ConfigHandler.instance(),
-                minimalLayout);
+                ConfigHandler.instance());
+        updateTooltip(stringParts, tooltip);
+    }
+
+    private void updateTooltip(List<String> stringParts, ITooltip tooltip) {
+        boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
         if (!stringParts.isEmpty()) {
             if (minimalLayout) tooltip.text(
                     StringHelper.concatenateStringList(
@@ -81,7 +73,8 @@ public class LegacyHarvestToolProvider implements IComponentProvider<BlockAccess
     }
 
     public void getLegacyHarvestability(List<String> stringList, EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IWailaConfigHandler config, boolean minimalLayout) {
+            MovingObjectPosition position, IWailaConfigHandler config) {
+        boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
         boolean isSneaking = player.isSneaking();
         boolean showHarvestLevel = config.getConfig("harvestability.harvestlevel")
                 && (!config.getConfig("harvestability.harvestlevel.sneakingonly") || isSneaking);

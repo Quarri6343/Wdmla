@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -85,5 +86,23 @@ public class BlockHelper {
             }
         }
         return "";
+    }
+
+    public static Block getEffectiveBlock(Block block, ItemStack itemForm) {
+        return isDisguised(block, itemForm)
+                ? Block.getBlockFromItem(itemForm.getItem())
+                : block;
+    }
+
+    public static int getEffectiveMeta(Block block, ItemStack itemForm, int meta) {
+        return isDisguised(block, itemForm)
+                ? itemForm.getItemDamage()
+                : meta;
+    }
+
+    public static boolean isDisguised(Block block, ItemStack itemForm) {
+        return itemForm.getItem() instanceof ItemBlock && !ProxyGregTech.isOreBlock(block)
+                && !ProxyGregTech.isCasing(block)
+                && !ProxyGregTech.isMachine(block);
     }
 }
