@@ -18,6 +18,7 @@ public final class Identifiers {
     public static final ResourceLocation TEST_BODY = WDMla("test_body");
 
     public static final ResourceLocation HARVESTABILITY = WDMla("harvestability");
+    public static final ResourceLocation LEGACY_HARVESTABILITY = WDMla("legacy_harvestability");
 
     public static ResourceLocation WDMla(String path) {
         return new ResourceLocation("Wdmla", path);

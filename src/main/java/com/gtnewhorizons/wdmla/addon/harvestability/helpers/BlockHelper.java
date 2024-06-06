@@ -2,12 +2,21 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
+import net.minecraft.item.*;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IShearable;
+
+import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
+
+import mcp.mobius.waila.api.IWailaConfigHandler;
 
 public class BlockHelper {
 
@@ -39,5 +48,42 @@ public class BlockHelper {
 
     public static boolean isBlockUnbreakable(Block block, World world, int x, int y, int z) {
         return block.getBlockHardness(world, x, y, z) == -1.0f;
+    }
+
+    public static String getShearabilityString(EntityPlayer player, Block block, int meta,
+            MovingObjectPosition position, IWailaConfigHandler config) {
+        boolean isSneaking = player.isSneaking();
+        boolean showShearability = config.getConfig("harvestability.shearability")
+                && (!config.getConfig("harvestability.shearability.sneakingonly") || isSneaking);
+
+        if (showShearability && (block instanceof IShearable || block == Blocks.deadbush
+                || (block == Blocks.double_plant && block.getItemDropped(meta, new Random(), 0) == null))) {
+            ItemStack itemHeld = player.getHeldItem();
+            boolean isHoldingShears = itemHeld != null && itemHeld.getItem() instanceof ItemShears;
+            boolean isShearable = isHoldingShears && ((IShearable) block)
+                    .isShearable(itemHeld, player.worldObj, position.blockX, position.blockY, position.blockZ);
+            return ColorHelper.getBooleanColor(isShearable, !isShearable && isHoldingShears)
+                    + HarvestabilityIdentifiers.SHEARABILITY_STRING;
+        }
+        return "";
+    }
+
+    public static String getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
+            MovingObjectPosition position, IWailaConfigHandler config) {
+        boolean isSneaking = player.isSneaking();
+        boolean showSilkTouchability = config.getConfig("harvestability.silktouchability")
+                && (!config.getConfig("harvestability.silktouchability.sneakingonly") || isSneaking);
+
+        if (showSilkTouchability && block
+                .canSilkHarvest(player.worldObj, player, position.blockX, position.blockY, position.blockZ, meta)) {
+            Item itemDropped = block.getItemDropped(meta, new Random(), 0);
+            boolean silkTouchMatters = (itemDropped instanceof ItemBlock && itemDropped != Item.getItemFromBlock(block))
+                    || block.quantityDropped(new Random()) <= 0;
+            if (silkTouchMatters) {
+                boolean hasSilkTouch = EnchantmentHelper.getSilkTouchModifier(player);
+                return ColorHelper.getBooleanColor(hasSilkTouch) + HarvestabilityIdentifiers.SILK_TOUCHABILITY_STRING;
+            }
+        }
+        return "";
     }
 }

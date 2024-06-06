@@ -1,16 +1,15 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.concurrent.ConcurrentHashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * We support GregTech 5 tool stats on our side to support non-GTNH GT5-unofficial
@@ -37,10 +36,11 @@ public class ProxyGregTech {
         try {
             Class<?> GT_MetaGenerated_Tool = Class.forName("gregtech.api.items.GT_MetaGenerated_Tool");
             Field sInstancesField = GT_MetaGenerated_Tool.getField("sInstances");
-            ConcurrentHashMap<String, ?> sInstances = (ConcurrentHashMap<String, ?>)(sInstancesField.get(null));
+            ConcurrentHashMap<String, ?> sInstances = (ConcurrentHashMap<String, ?>) (sInstancesField.get(null));
             Object metaTool01 = sInstances.get("gt.metatool.01");
             Class<?> Materials = Class.forName("gregtech.api.enums.Materials");
-            Method getToolWithStatsMethod = GT_MetaGenerated_Tool.getDeclaredMethod("getToolWithStats", int.class, int.class, Materials, Materials, long[].class);
+            Method getToolWithStatsMethod = GT_MetaGenerated_Tool
+                    .getDeclaredMethod("getToolWithStats", int.class, int.class, Materials, Materials, long[].class);
             Class<?> GT_MetaGenerated_Tool_01 = Class.forName("gregtech.common.items.GT_MetaGenerated_Tool_01");
 
             Field WrenchField = GT_MetaGenerated_Tool_01.getField("WRENCH");
@@ -51,9 +51,12 @@ public class ProxyGregTech {
             Object ironMaterial = Materials.getField("Iron").get(null);
             Object steelMaterial = Materials.getField("Steel").get(null);
 
-            ironWrench =  (ItemStack) getToolWithStatsMethod.invoke(metaTool01, Wrench, 1, ironMaterial, ironMaterial, null);
-            steelWrench =  (ItemStack) getToolWithStatsMethod.invoke(metaTool01, Wrench, 1, steelMaterial, steelMaterial, null);
-            ironWireCutter = (ItemStack) getToolWithStatsMethod.invoke(metaTool01, WireCutter, 1, ironMaterial, ironMaterial, null);
+            ironWrench = (ItemStack) getToolWithStatsMethod
+                    .invoke(metaTool01, Wrench, 1, ironMaterial, ironMaterial, null);
+            steelWrench = (ItemStack) getToolWithStatsMethod
+                    .invoke(metaTool01, Wrench, 1, steelMaterial, steelMaterial, null);
+            ironWireCutter = (ItemStack) getToolWithStatsMethod
+                    .invoke(metaTool01, WireCutter, 1, ironMaterial, ironMaterial, null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +98,7 @@ public class ProxyGregTech {
     public static ItemStack getEffectiveWrenchIcon(int num) {
         return switch (num) {
             case 0, 1, 2 -> ironWrench;
-            case 3, 4 -> steelWrench; //idk does 4 actually exist though.
+            case 3, 4 -> steelWrench; // idk does 4 actually exist though.
             default -> new ItemStack(Blocks.iron_bars);
         };
     }

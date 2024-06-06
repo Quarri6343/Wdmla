@@ -27,7 +27,7 @@ public class HUDBlockDamage {
 
     public IArea computeDrawArea(IArea area) {
         int width = (int) ((area.getW() - 1) * damage);
-        int totalWidth = width > 0 ? width - 1 : 0 ; //consider the edge of tooltip box
+        int totalWidth = width > 0 ? width - 1 : 0; // consider the edge of tooltip box
         return new Area(area.getX() + 1, area.getY(), totalWidth, 2); // TODO: configure Area via config
     }
 }

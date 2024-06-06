@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,6 +12,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeHooks;
+
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
 import cpw.mods.fml.common.Loader;
 
@@ -129,8 +130,7 @@ public class ToolHelper {
             default:
                 if (ProxyGregTech.isModLoaded) {
                     return ProxyGregTech.getEffectiveGregToolIcon(effectiveTool, harvestLevel);
-                }
-                else {
+                } else {
                     return new ItemStack(Blocks.iron_bars);
                 }
         }

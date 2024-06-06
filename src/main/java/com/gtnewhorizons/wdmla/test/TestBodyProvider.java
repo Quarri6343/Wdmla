@@ -2,13 +2,13 @@ package com.gtnewhorizons.wdmla.test;
 
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.api.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 
+import com.gtnewhorizons.wdmla.api.*;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;

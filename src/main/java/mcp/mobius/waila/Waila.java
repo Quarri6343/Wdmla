@@ -2,7 +2,6 @@ package mcp.mobius.waila;
 
 import java.lang.reflect.Field;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
 import cpw.mods.fml.common.*;

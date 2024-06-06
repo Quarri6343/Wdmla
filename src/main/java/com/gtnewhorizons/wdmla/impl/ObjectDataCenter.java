@@ -59,8 +59,8 @@ public final class ObjectDataCenter {
 
         serverData = tag;
 
-        //player no longer looks at object when the server responded
-        if(accessor == null) {
+        // player no longer looks at object when the server responded
+        if (accessor == null) {
             return;
         }
 

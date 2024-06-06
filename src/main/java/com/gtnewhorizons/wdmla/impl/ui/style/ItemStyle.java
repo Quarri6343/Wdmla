@@ -9,7 +9,7 @@ public class ItemStyle implements IItemStyle {
 
     private boolean drawOverlay;
 
-    public ItemStyle(){
+    public ItemStyle() {
         this.drawOverlay = true;
     }
 

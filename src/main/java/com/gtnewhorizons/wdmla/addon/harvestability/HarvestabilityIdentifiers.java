@@ -4,7 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class HarvestabilityConstant {
+public class HarvestabilityIdentifiers {
 
     public static final String MINIMAL_SEPARATOR_STRING = " : ";
 

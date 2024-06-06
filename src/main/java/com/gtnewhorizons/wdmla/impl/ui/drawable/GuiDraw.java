@@ -65,7 +65,7 @@ public final class GuiDraw {
                     stack,
                     (int) (x / xScale),
                     (int) (y / yScale));
-            if(drawOverlay) {
+            if (drawOverlay) {
                 renderItem.renderItemOverlayIntoGUI(
                         fontRenderer,
                         textureManager,

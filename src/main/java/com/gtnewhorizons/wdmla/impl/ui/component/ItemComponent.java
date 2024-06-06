@@ -2,11 +2,9 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
-import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
-import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
-import com.gtnewhorizons.wdmla.impl.ui.drawable.TextDrawable;
 import net.minecraft.item.ItemStack;
 
+import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.ItemDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;

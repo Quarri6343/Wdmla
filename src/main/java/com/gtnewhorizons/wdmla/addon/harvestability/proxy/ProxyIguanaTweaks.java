@@ -1,15 +1,16 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ProxyIguanaTweaks {
 
@@ -44,7 +45,7 @@ public class ProxyIguanaTweaks {
     }
 
     public static ItemStack getEffectivePickaxeIcon(int num) {
-        if(isVanilla) {
+        if (isVanilla) {
             return switch (num) {
                 case 0 -> creativePickaxes.get(ANY);
                 case 1 -> creativePickaxes.get(IRON);
@@ -55,8 +56,7 @@ public class ProxyIguanaTweaks {
                 case 6 -> creativePickaxes.get(MANYULLYNPLUS);
                 default -> new ItemStack(Blocks.iron_bars);
             };
-        }
-        else {
+        } else {
             return switch (num) {
                 case 0 -> creativePickaxes.get(ANY);
                 case 1 -> creativePickaxes.get(COPPER);

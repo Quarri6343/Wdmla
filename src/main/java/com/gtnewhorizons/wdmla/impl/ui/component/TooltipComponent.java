@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,6 +12,7 @@ import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
+import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;

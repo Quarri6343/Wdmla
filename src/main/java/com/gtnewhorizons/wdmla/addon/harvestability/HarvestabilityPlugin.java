@@ -43,5 +43,6 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
             ModuleRegistrar.instance().addConfig("Harvestability", entry.getKey(), "option." + entry.getKey());
         }
         registration.registerBlockComponent(new HarvestToolProvider(), Block.class);
+        registration.registerBlockComponent(new LegacyHarvestToolProvider(), Block.class);
     }
 }

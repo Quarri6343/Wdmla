@@ -3,9 +3,11 @@ package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 /**
  * Tinker's Construct "harvest level -> pickaxe material" table
  * <p>
- * See: <a href="https://github.com/GTNewHorizons/TinkersConstruct/blob/master/src/main/java/tconstruct/tools/TinkerTools.java#L1771">...</a>
+ * See: <a href=
+ * "https://github.com/GTNewHorizons/TinkersConstruct/blob/master/src/main/java/tconstruct/tools/TinkerTools.java#L1771">...</a>
  */
 public class TinkersHarvestMaterialIDs {
+
     public static final int ANY = 0;
     public static final int COPPER = 13;
     public static final int IRON = 2;
