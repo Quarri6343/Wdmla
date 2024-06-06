@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.test;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -22,7 +23,7 @@ public class TestHeaderProvider implements IComponentProvider<BlockAccessor> {
 
     @Override
     public int getDefaultPriority() {
-        return -9000;
+        return TooltipPosition.DEFAULT_INFO + 1000;
     }
 
     @Override

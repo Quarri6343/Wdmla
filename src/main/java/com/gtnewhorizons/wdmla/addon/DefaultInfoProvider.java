@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.addon;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -25,7 +26,7 @@ public class DefaultInfoProvider implements IComponentProvider<BlockAccessor> {
 
     @Override
     public int getDefaultPriority() {
-        return -10000;
+        return TooltipPosition.DEFAULT_INFO;
     }
 
     @Override

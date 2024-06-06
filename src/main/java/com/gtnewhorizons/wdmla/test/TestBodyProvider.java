@@ -2,16 +2,13 @@ package com.gtnewhorizons.wdmla.test;
 
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.api.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
@@ -32,7 +29,7 @@ public class TestBodyProvider implements IComponentProvider<BlockAccessor>, ISer
 
     @Override
     public int getDefaultPriority() {
-        return 10;
+        return TooltipPosition.BODY + 10;
     }
 
     @Override
@@ -103,7 +100,9 @@ public class TestBodyProvider implements IComponentProvider<BlockAccessor>, ISer
 
     @Override
     public void appendServerData(NBTTagCompound data, BlockAccessor accessor) {
-        if (accessor.getTileEntity() != null) accessor.getTileEntity().writeToNBT(data);
+        if (accessor.getTileEntity() != null) {
+            accessor.getTileEntity().writeToNBT(data);
+        }
         data.setInteger("random", new Random().nextInt(11));
     }
 }

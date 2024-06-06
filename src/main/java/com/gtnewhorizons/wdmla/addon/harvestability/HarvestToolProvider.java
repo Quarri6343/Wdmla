@@ -6,6 +6,7 @@ import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
 import java.util.*;
 
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.impl.ui.style.ItemStyle;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -50,7 +51,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
     @Override
     public int getDefaultPriority() {
-        return -8000;
+        return TooltipPosition.HARVESTABILITY_OVERRIDE;
     }
 
     @Override
@@ -202,7 +203,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
             harvestLevelString = StringHelper.stripFormatting(StringHelper.getHarvestLevelName(harvestLevel));
 
             harvestLevelText = new TextComponent(StatCollector.translateToLocal("wailaharvestability.harvestlevel")
-                    + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
+                    + " " + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
                     + harvestLevelString);
         }
 
@@ -344,7 +345,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
 
                 stringList.add(
                         (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.harvestlevel") : "")
-                                + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
+                                + " " + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
                                 + harvestLevelString);
             }
         }
