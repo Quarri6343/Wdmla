@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -28,7 +29,7 @@ public class ToolHelper {
             case SWORD:
                 return new ItemStack(Items.wooden_sword);
             default:
-                if (ProxyGregTech.IS_LOADED) {
+                if (Mods.GREGTECH.isLoaded()) {
                     return ProxyGregTech.getEffectiveGregToolIcon(effectiveTool, harvestLevel);
                 } else {
                     return new ItemStack(Blocks.iron_bars);
@@ -37,7 +38,7 @@ public class ToolHelper {
     }
 
     public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
-        if (ProxyIguanaTweaks.IS_LOADED) {
+        if (Mods.IGUANATWEAKS.isLoaded()) {
             return ProxyIguanaTweaks.getEffectivePickaxeIcon(harvestLevel);
         }
         return switch (harvestLevel) {

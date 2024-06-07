@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 import java.util.List;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
@@ -11,11 +12,11 @@ import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 public class StringHelper {
 
     public static String getHarvestLevelName(int num) {
-        if (ProxyIguanaTweaks.IS_LOADED) {
+        if (Mods.IGUANATWEAKS.isLoaded()) {
             return ProxyIguanaTweaks.getHarvestLevelName(num);
         }
 
-        if (ProxyTinkersConstruct.isModLoaded) {
+        if (Mods.TCONSTUCT.isLoaded()) {
             return ProxyTinkersConstruct.getTicHarvestLevelName(num);
         }
 

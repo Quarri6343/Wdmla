@@ -9,9 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -71,20 +68,12 @@ public class Waila {
             FMLCommonHandler.instance().bus().register(new KeyEvent());
         }
         FMLCommonHandler.instance().bus().register(new NetworkHandler());
-
-        MissingHarvestInfo.init();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.registerHandlers();
         ModIdentification.init();
-        if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
-            ProxyIguanaTweaks.init();
-        }
-        if (Loader.isModLoaded(ProxyGregTech.MODID)) {
-            ProxyGregTech.init();
-        }
     }
 
     @Subscribe

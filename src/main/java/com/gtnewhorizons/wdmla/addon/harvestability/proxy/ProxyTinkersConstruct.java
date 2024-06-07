@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
+import com.gtnewhorizons.wdmla.api.Mods;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -15,29 +16,23 @@ import java.util.Set;
 
 public class ProxyTinkersConstruct {
 
-    // tinkers construct
-    public static final String MODID = "IguanaTweaksTConstruct";
     private static Class<?> HarvestTool = null;
     private static Class<?> DualHarvestTool = null;
     private static Method getHarvestType = null;
     private static Method getSecondHarvestType = null;
     private static Method getHarvestLevelName = null;
-    public static boolean isModLoaded;
 
     public static void init() {
-        if (Loader.isModLoaded(MODID)) {
-            try {
-                HarvestTool = Class.forName("tconstruct.library.tools.HarvestTool");
-                DualHarvestTool = Class.forName("tconstruct.library.tools.DualHarvestTool");
-                getHarvestType = HarvestTool.getDeclaredMethod("getHarvestType");
-                getSecondHarvestType = DualHarvestTool.getDeclaredMethod("getSecondHarvestType");
-                getHarvestType.setAccessible(true);
-                getSecondHarvestType.setAccessible(true);
-                Class<?> HarvestLevels = Class.forName("tconstruct.library.util.HarvestLevels");
-                getHarvestLevelName = HarvestLevels.getDeclaredMethod("getHarvestLevelName", int.class);
-                isModLoaded = true;
-            } catch (Exception ignore) {
-            }
+        try {
+            HarvestTool = Class.forName("tconstruct.library.tools.HarvestTool");
+            DualHarvestTool = Class.forName("tconstruct.library.tools.DualHarvestTool");
+            getHarvestType = HarvestTool.getDeclaredMethod("getHarvestType");
+            getSecondHarvestType = DualHarvestTool.getDeclaredMethod("getSecondHarvestType");
+            getHarvestType.setAccessible(true);
+            getSecondHarvestType.setAccessible(true);
+            Class<?> HarvestLevels = Class.forName("tconstruct.library.util.HarvestLevels");
+            getHarvestLevelName = HarvestLevels.getDeclaredMethod("getHarvestLevelName", int.class);
+        } catch (Exception ignore) {
         }
     }
 
@@ -72,14 +67,13 @@ public class ProxyTinkersConstruct {
     }
 
     public static boolean isToolEffectiveAgainst(ItemStack tool, Block block, int metadata, String effectiveToolClass) {
-        if (isModLoaded && HarvestTool.isInstance(tool.getItem())) {
+        if (Mods.TCONSTUCT.isLoaded() && HarvestTool.isInstance(tool.getItem())) {
             Item item = tool.getItem();
             List<String> harvestTypes = new ArrayList<String>();
             try {
                 harvestTypes.add((String) getHarvestType.invoke(item));
             } catch (Exception e) {
                 e.printStackTrace();
-                isModLoaded = false;
             }
 
             if (DualHarvestTool.isInstance(item)) {
@@ -87,7 +81,6 @@ public class ProxyTinkersConstruct {
                     harvestTypes.add((String) getSecondHarvestType.invoke(item));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    isModLoaded = false;
                 }
             }
 

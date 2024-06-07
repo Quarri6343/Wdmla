@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -16,14 +17,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class ProxyGregTech {
 
-    public static final String MODID = "gregtech";
     public static final String ORE_BLOCK_ID = "gt.blockores";
-    public static final String ORE_BLOCK_UNIQUE_IDENTIFIER = MODID + ":" + ORE_BLOCK_ID;
+    public static final String ORE_BLOCK_UNIQUE_IDENTIFIER = Mods.GREGTECH.modID + ":" + ORE_BLOCK_ID;
     public static final String CASING_ID = "gt.blockcasings";
-    public static final String CASING_UNIQUE_IDENTIFIER = MODID + ":" + CASING_ID;
+    public static final String CASING_UNIQUE_IDENTIFIER = Mods.GREGTECH.modID + ":" + CASING_ID;
     public static final String MACHINE_ID = "gt.blockmachines";
-    public static final String MACHINE_UNIQUE_IDENTIFIER = MODID + ":" + MACHINE_ID;
-    public static final boolean IS_LOADED = Loader.isModLoaded(MODID);
+    public static final String MACHINE_UNIQUE_IDENTIFIER = Mods.GREGTECH.modID + ":" + MACHINE_ID;
 
     private static short Wrench;
     private static short WireCutter;
@@ -64,19 +63,19 @@ public class ProxyGregTech {
     }
 
     public static boolean isOreBlock(Block block) {
-        return IS_LOADED && GameRegistry.findUniqueIdentifierFor(block).toString().equals(ORE_BLOCK_UNIQUE_IDENTIFIER);
+        return Mods.GREGTECH.isLoaded() && GameRegistry.findUniqueIdentifierFor(block).toString().equals(ORE_BLOCK_UNIQUE_IDENTIFIER);
     }
 
     public static boolean isCasing(Block block) {
-        return IS_LOADED && GameRegistry.findUniqueIdentifierFor(block).toString().equals(CASING_UNIQUE_IDENTIFIER);
+        return Mods.GREGTECH.isLoaded() && GameRegistry.findUniqueIdentifierFor(block).toString().equals(CASING_UNIQUE_IDENTIFIER);
     }
 
     public static boolean isMachine(Block block) {
-        return IS_LOADED && GameRegistry.findUniqueIdentifierFor(block).toString().equals(MACHINE_UNIQUE_IDENTIFIER);
+        return Mods.GREGTECH.isLoaded() && GameRegistry.findUniqueIdentifierFor(block).toString().equals(MACHINE_UNIQUE_IDENTIFIER);
     }
 
     public static boolean isGTTool(ItemStack itemStack) {
-        return IS_LOADED && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("GT.ToolStats");
+        return Mods.GREGTECH.isLoaded() && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("GT.ToolStats");
     }
 
     public static boolean isWrench(ItemStack itemStack) {

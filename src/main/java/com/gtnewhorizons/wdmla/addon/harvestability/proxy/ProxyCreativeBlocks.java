@@ -2,16 +2,15 @@ package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
 import java.lang.reflect.Method;
 
+import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.block.Block;
-
-import cpw.mods.fml.common.Loader;
 
 public class ProxyCreativeBlocks {
 
     private static Method isCreativeBlock = null;
 
     static {
-        if (Loader.isModLoaded("CreativeBlocks")) {
+        if (Mods.CREATIVEBLOCKS.isLoaded()) {
             try {
                 Class<?> creativeBlocks = Class.forName("squeek.creativeblocks.CreativeBlocks");
                 isCreativeBlock = creativeBlocks.getDeclaredMethod("isCreativeBlock", Block.class, int.class);

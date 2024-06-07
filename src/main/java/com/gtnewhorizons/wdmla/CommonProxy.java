@@ -2,11 +2,11 @@ package com.gtnewhorizons.wdmla;
 
 import com.gtnewhorizons.wdmla.addon.CorePlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
+import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
 import com.gtnewhorizons.wdmla.test.TestPlugin;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -21,7 +21,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-
+        MissingHarvestInfo.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
