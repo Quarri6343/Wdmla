@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.impl;
 
 import java.util.function.Supplier;
 
+import com.gtnewhorizons.wdmla.api.AccessorImpl;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -15,33 +16,21 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 
-public class BlockAccessorImpl implements BlockAccessor {
+public class BlockAccessorImpl extends AccessorImpl implements BlockAccessor {
 
     private final Block block;
     private final @Nullable Supplier<TileEntity> tileEntity;
     private final int metadata;
     private final ItemStack itemForm;
 
-    private final World world;
-    private final EntityPlayer player;
-    private final MovingObjectPosition hit;
-    private final boolean serverConnected;
-    private final boolean showDetails;
-    protected boolean verify;
-    private final NBTTagCompound serverData;
+    //TODO: implement handleRequest(see Jade)
 
-    // TODO: add metadata (instead of BlockState)
     public BlockAccessorImpl(Builder builder) {
+        super(builder.level, builder.player, builder.hit, builder.connected, builder.showDetails, builder.serverData);
         this.block = builder.block;
         this.tileEntity = builder.tileEntity;
         this.metadata = builder.metadata;
         this.itemForm = builder.itemForm;
-        this.world = builder.level;
-        this.player = builder.player;
-        this.hit = builder.hit;
-        this.serverConnected = builder.connected;
-        this.showDetails = builder.showDetails;
-        this.serverData = builder.serverData;
     }
 
     @Override
@@ -62,40 +51,6 @@ public class BlockAccessorImpl implements BlockAccessor {
     @Override
     public ItemStack getItemForm() {
         return itemForm;
-    }
-
-    @Override
-    public World getWorld() {
-        return world;
-    }
-
-    @Override
-    public EntityPlayer getPlayer() {
-        return player;
-    }
-
-    @Override
-    public NBTTagCompound getServerData() {
-        return serverData;
-    }
-
-    @Override
-    public MovingObjectPosition getHitResult() {
-        return hit;
-    }
-
-    @Override
-    public boolean isServerConnected() {
-        return serverConnected;
-    }
-
-    @Override
-    public boolean showDetails() {
-        return showDetails;
-    }
-
-    public void requireVerification() {
-        verify = true;
     }
 
     @Override
