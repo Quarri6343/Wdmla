@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -43,7 +44,7 @@ import mcp.mobius.waila.overlay.DisplayUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
+public class HarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {

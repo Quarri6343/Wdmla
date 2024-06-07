@@ -20,7 +20,7 @@ import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 
-public class TestBodyProvider implements IComponentProvider<BlockAccessor>, IServerDataProvider<BlockAccessor> {
+public class TestBodyProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
     @Override
     public ResourceLocation getUid() {

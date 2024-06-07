@@ -5,6 +5,7 @@ import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO: remove once the config migration is complete
-public class LegacyHarvestToolProvider implements IComponentProvider<BlockAccessor> {
+public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {
