@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -8,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeHooks;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,11 @@ public class ProxyTinkersConstruct {
     private static Class<?> DualHarvestTool = null;
     private static Method getHarvestType = null;
     private static Method getSecondHarvestType = null;
-    public static boolean tinkersConstructLoaded = false;
-    public static final boolean isModLoaded = Loader.isModLoaded(MODID);
+    private static Method getHarvestLevelName = null;
+    public static boolean isModLoaded;
 
     public static void init() {
-        if (isModLoaded) {
+        if (Loader.isModLoaded(MODID)) {
             try {
                 HarvestTool = Class.forName("tconstruct.library.tools.HarvestTool");
                 DualHarvestTool = Class.forName("tconstruct.library.tools.DualHarvestTool");
@@ -33,9 +33,10 @@ public class ProxyTinkersConstruct {
                 getSecondHarvestType = DualHarvestTool.getDeclaredMethod("getSecondHarvestType");
                 getHarvestType.setAccessible(true);
                 getSecondHarvestType.setAccessible(true);
-                tinkersConstructLoaded = true;
-            } catch (Exception e) {
-                return;
+                Class<?> HarvestLevels = Class.forName("tconstruct.library.util.HarvestLevels");
+                getHarvestLevelName = HarvestLevels.getDeclaredMethod("getHarvestLevelName", int.class);
+                isModLoaded = true;
+            } catch (Exception ignore) {
             }
         }
     }
@@ -71,14 +72,14 @@ public class ProxyTinkersConstruct {
     }
 
     public static boolean isToolEffectiveAgainst(ItemStack tool, Block block, int metadata, String effectiveToolClass) {
-        if (tinkersConstructLoaded && HarvestTool.isInstance(tool.getItem())) {
+        if (isModLoaded && HarvestTool.isInstance(tool.getItem())) {
             Item item = tool.getItem();
             List<String> harvestTypes = new ArrayList<String>();
             try {
                 harvestTypes.add((String) getHarvestType.invoke(item));
             } catch (Exception e) {
                 e.printStackTrace();
-                tinkersConstructLoaded = false;
+                isModLoaded = false;
             }
 
             if (DualHarvestTool.isInstance(item)) {
@@ -86,7 +87,7 @@ public class ProxyTinkersConstruct {
                     harvestTypes.add((String) getSecondHarvestType.invoke(item));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    tinkersConstructLoaded = false;
+                    isModLoaded = false;
                 }
             }
 
@@ -108,5 +109,15 @@ public class ProxyTinkersConstruct {
         }
 
         return canTinkersToolHarvestBlock || ForgeHooks.canToolHarvestBlock(block, metadata, tool);
+    }
+
+    public static String getTicHarvestLevelName(int num) {
+        String name = "Err";
+        try {
+            name =  (String) getHarvestLevelName.invoke(null, num);
+        } catch (IllegalAccessException | InvocationTargetException ignore) {
+        }
+
+        return name;
     }
 }

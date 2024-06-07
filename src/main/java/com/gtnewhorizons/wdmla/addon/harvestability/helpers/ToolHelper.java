@@ -6,10 +6,12 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.ForgeHooks;
 
 public class ToolHelper {
+    public static final String PICKAXE = "pickaxe";
+    public static final String SHOVEL = "shovel";
+    public static final String AXE = "axe";
+    public static final String SWORD = "sword";
 
     public static boolean canToolHarvestBlock(ItemStack tool, Block block, int metadata) {
         return block.getMaterial().isToolNotRequired() || tool.func_150998_b(block); // func_150998_b = canHarvestBlock
@@ -17,16 +19,16 @@ public class ToolHelper {
 
     public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel) {
         switch (effectiveTool) {
-            case "pickaxe":
+            case PICKAXE:
                 return getEffectivePickaxeIcon(harvestLevel);
-            case "shovel":
+            case SHOVEL:
                 return new ItemStack(Items.wooden_shovel);
-            case "axe":
+            case AXE:
                 return new ItemStack(Items.wooden_axe);
-            case "sword":
+            case SWORD:
                 return new ItemStack(Items.wooden_sword);
             default:
-                if (ProxyGregTech.isModLoaded) {
+                if (ProxyGregTech.IS_LOADED) {
                     return ProxyGregTech.getEffectiveGregToolIcon(effectiveTool, harvestLevel);
                 } else {
                     return new ItemStack(Blocks.iron_bars);
@@ -35,7 +37,7 @@ public class ToolHelper {
     }
 
     public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
-        if (ProxyIguanaTweaks.isModLoaded) {
+        if (ProxyIguanaTweaks.IS_LOADED) {
             return ProxyIguanaTweaks.getEffectivePickaxeIcon(harvestLevel);
         }
         return switch (harvestLevel) {

@@ -82,7 +82,7 @@ public class Waila {
         if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
             ProxyIguanaTweaks.init();
         }
-        if (Loader.isModLoaded(ProxyGregTech.modID)) {
+        if (Loader.isModLoaded(ProxyGregTech.MODID)) {
             ProxyGregTech.init();
         }
     }

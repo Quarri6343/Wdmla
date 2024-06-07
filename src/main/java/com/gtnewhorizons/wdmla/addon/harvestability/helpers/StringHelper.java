@@ -1,35 +1,22 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 
-import cpw.mods.fml.common.Loader;
-
 public class StringHelper {
 
-    public static Class<?> HarvestLevels = null;
-    public static Method getHarvestLevelName = null;
-    static {
-        try {
-            HarvestLevels = Class.forName("tconstruct.library.util.HarvestLevels");
-            getHarvestLevelName = HarvestLevels.getDeclaredMethod("getHarvestLevelName", int.class);
-        } catch (Exception e) {}
-    }
-
     public static String getHarvestLevelName(int num) {
-        if (getHarvestLevelName != null) {
-            try {
-                return (String) getHarvestLevelName.invoke(null, num);
-            } catch (Exception e) {}
+        if (ProxyIguanaTweaks.IS_LOADED) {
+            return ProxyIguanaTweaks.getHarvestLevelName(num);
         }
 
-        if (ProxyIguanaTweaks.isModLoaded) {
-            return ProxyIguanaTweaks.getHarvestLevelName(num);
+        if (ProxyTinkersConstruct.isModLoaded) {
+            return ProxyTinkersConstruct.getTicHarvestLevelName(num);
         }
 
         String unlocalized = "wailaharvestability.harvestlevel" + (num + 1);

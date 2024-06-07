@@ -8,14 +8,13 @@ import cpw.mods.fml.common.Loader;
 
 public class ProxyCreativeBlocks {
 
-    private static Class<?> CreativeBlocks = null;
     private static Method isCreativeBlock = null;
 
     static {
         if (Loader.isModLoaded("CreativeBlocks")) {
             try {
-                CreativeBlocks = Class.forName("squeek.creativeblocks.CreativeBlocks");
-                isCreativeBlock = CreativeBlocks.getDeclaredMethod("isCreativeBlock", Block.class, int.class);
+                Class<?> creativeBlocks = Class.forName("squeek.creativeblocks.CreativeBlocks");
+                isCreativeBlock = creativeBlocks.getDeclaredMethod("isCreativeBlock", Block.class, int.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }

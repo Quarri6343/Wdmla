@@ -6,10 +6,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class OreHelper {
 
-    public static boolean isBlockAnOre(Block block) {
-        return isBlockAnOre(block, 0);
-    }
-
     public static boolean isBlockAnOre(Block block, int metadata) {
         return isItemAnOre(new ItemStack(block, 1, metadata));
     }

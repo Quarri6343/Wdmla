@@ -19,13 +19,17 @@ import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
 
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.PICKAXE;
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.SHOVEL;
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.AXE;
+
 public class BlockHelper {
 
-    private static final HashMap<String, ItemStack> testTools = new HashMap<String, ItemStack>();
+    private static final HashMap<String, ItemStack> testTools = new HashMap<>();
     static {
-        testTools.put("pickaxe", new ItemStack(Items.wooden_pickaxe));
-        testTools.put("shovel", new ItemStack(Items.wooden_shovel));
-        testTools.put("axe", new ItemStack(Items.wooden_axe));
+        testTools.put(PICKAXE, new ItemStack(Items.wooden_pickaxe));
+        testTools.put(SHOVEL, new ItemStack(Items.wooden_shovel));
+        testTools.put(AXE, new ItemStack(Items.wooden_axe));
     }
 
     public static String getEffectiveToolOf(World world, int x, int y, int z, Block block, int metadata) {

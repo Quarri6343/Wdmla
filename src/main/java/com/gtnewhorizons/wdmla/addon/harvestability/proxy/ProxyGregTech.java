@@ -16,14 +16,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class ProxyGregTech {
 
-    public static final String modID = "gregtech";
-    public static final String oreBlockID = "gt.blockores";
-    public static final String oreBlockUniqueIdentifier = modID + ":" + oreBlockID;
-    public static final String casingID = "gt.blockcasings";
-    public static final String casingUniqueIdentifier = modID + ":" + casingID;
-    public static final String machineID = "gt.blockmachines";
-    public static final String machineUniqueIdentifier = modID + ":" + machineID;
-    public static final boolean isModLoaded = Loader.isModLoaded(modID);
+    public static final String MODID = "gregtech";
+    public static final String ORE_BLOCK_ID = "gt.blockores";
+    public static final String ORE_BLOCK_UNIQUE_IDENTIFIER = MODID + ":" + ORE_BLOCK_ID;
+    public static final String CASING_ID = "gt.blockcasings";
+    public static final String CASING_UNIQUE_IDENTIFIER = MODID + ":" + CASING_ID;
+    public static final String MACHINE_ID = "gt.blockmachines";
+    public static final String MACHINE_UNIQUE_IDENTIFIER = MODID + ":" + MACHINE_ID;
+    public static final boolean IS_LOADED = Loader.isModLoaded(MODID);
 
     private static short Wrench;
     private static short WireCutter;
@@ -64,19 +64,19 @@ public class ProxyGregTech {
     }
 
     public static boolean isOreBlock(Block block) {
-        return isModLoaded && GameRegistry.findUniqueIdentifierFor(block).toString().equals(oreBlockUniqueIdentifier);
+        return IS_LOADED && GameRegistry.findUniqueIdentifierFor(block).toString().equals(ORE_BLOCK_UNIQUE_IDENTIFIER);
     }
 
     public static boolean isCasing(Block block) {
-        return isModLoaded && GameRegistry.findUniqueIdentifierFor(block).toString().equals(casingUniqueIdentifier);
+        return IS_LOADED && GameRegistry.findUniqueIdentifierFor(block).toString().equals(CASING_UNIQUE_IDENTIFIER);
     }
 
     public static boolean isMachine(Block block) {
-        return isModLoaded && GameRegistry.findUniqueIdentifierFor(block).toString().equals(machineUniqueIdentifier);
+        return IS_LOADED && GameRegistry.findUniqueIdentifierFor(block).toString().equals(MACHINE_UNIQUE_IDENTIFIER);
     }
 
     public static boolean isGTTool(ItemStack itemStack) {
-        return isModLoaded && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("GT.ToolStats");
+        return IS_LOADED && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("GT.ToolStats");
     }
 
     public static boolean isWrench(ItemStack itemStack) {
