@@ -1,5 +1,6 @@
 package mcp.mobius.waila.client;
 
+import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.config.Configuration;
@@ -61,14 +62,14 @@ public class KeyEvent {
                     ConfigHandler.instance()
                             .setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, !status);
                 } else if (key_recipe.isPressed()) {
-                    if (Loader.isModLoaded("NotEnoughItems")) {
+                    if (Mods.NOTENOUGHITEMS.isLoaded()) {
                         try {
                             Class.forName("mcp.mobius.waila.handlers.nei.NEIHandler")
                                     .getDeclaredMethod("openRecipeGUI", boolean.class).invoke(null, true);
                         } catch (Exception ignored) {}
                     }
                 } else if (key_usage.isPressed()) {
-                    if (Loader.isModLoaded("NotEnoughItems")) {
+                    if (Mods.NOTENOUGHITEMS.isLoaded()) {
                         try {
                             Class.forName("mcp.mobius.waila.handlers.nei.NEIHandler")
                                     .getDeclaredMethod("openRecipeGUI", boolean.class).invoke(null, false);

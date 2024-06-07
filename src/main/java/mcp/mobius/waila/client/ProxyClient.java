@@ -1,5 +1,6 @@
 package mcp.mobius.waila.client;
 
+import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,7 +29,7 @@ public class ProxyClient extends ProxyServer {
 
         LangUtil.loadLangDir("waila");
 
-        if (Loader.isModLoaded("NotEnoughItems")) {
+        if (Mods.NOTENOUGHITEMS.isLoaded()) {
             try {
                 Class.forName("mcp.mobius.waila.handlers.nei.NEIHandler").getDeclaredMethod("register").invoke(null);
             } catch (Exception e) {

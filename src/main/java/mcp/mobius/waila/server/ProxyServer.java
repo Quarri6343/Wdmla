@@ -3,6 +3,7 @@ package mcp.mobius.waila.server;
 import java.lang.reflect.Method;
 
 import com.gtnewhorizons.wdmla.WDMla;
+import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
 import cpw.mods.fml.common.Loader;
@@ -104,7 +105,7 @@ public class ProxyServer {
         /* Agriculture */
         AgricultureModule.register();
 
-        if (Loader.isModLoaded("ForgeMultipart")) {
+        if (Mods.FORGEMULTIPARTS.isLoaded()) {
             HUDHandlerFMP.register();
             DecoratorFMP.register();
         }

@@ -3,7 +3,7 @@ package com.gtnewhorizons.wdmla.impl.ui.style;
 import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
 
 /**
- * reserved class for future
+ * reserved class for further customization
  */
 public class ItemStyle implements IItemStyle {
 
