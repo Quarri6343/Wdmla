@@ -44,6 +44,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
                 return true;
             }
         }
+
         // Step 2: check Waila has providers
         if (ModuleRegistrar.instance().hasNBTProviders(accessor.getBlock())
                 || ModuleRegistrar.instance().hasNBTProviders(accessor.getTileEntity())) {
@@ -56,7 +57,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
     @Override
     public void requestData(BlockAccessor accessor) {
         HashSet<String> keys = new HashSet<>();
-        WailaPacketHandler.INSTANCE.sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys, true));
+        WailaPacketHandler.INSTANCE.sendToServer(new Message0x01TERequest(accessor.getTileEntity(), keys));
     }
 
     @Override

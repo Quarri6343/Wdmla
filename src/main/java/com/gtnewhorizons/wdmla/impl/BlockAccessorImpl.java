@@ -1,17 +1,26 @@
 package com.gtnewhorizons.wdmla.impl;
 
+import java.util.HashMap;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.gtnewhorizons.wdmla.api.AccessorImpl;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import io.netty.channel.ChannelHandlerContext;
+import mcp.mobius.waila.network.Message0x01TERequest;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
+import net.minecraftforge.common.DimensionManager;
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -23,14 +32,34 @@ public class BlockAccessorImpl extends AccessorImpl implements BlockAccessor {
     private final int metadata;
     private final ItemStack itemForm;
 
-    //TODO: implement handleRequest(see Jade)
-
     public BlockAccessorImpl(Builder builder) {
         super(builder.level, builder.player, builder.hit, builder.connected, builder.showDetails, builder.serverData);
         this.block = builder.block;
         this.tileEntity = builder.tileEntity;
         this.metadata = builder.metadata;
         this.itemForm = builder.itemForm;
+    }
+
+    public static void handleRequest(ChannelHandlerContext ctx, NBTTagCompound tag, Message0x01TERequest msg) {
+        World world = DimensionManager.getWorld(msg.dim);
+        TileEntity entity = world.getTileEntity(msg.posX, msg.posY, msg.posZ);
+        Block block = world.getBlock(msg.posX, msg.posY, msg.posZ);
+        int meta = world.getBlockMetadata(msg.posX, msg.posY, msg.posZ);
+        EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
+                .get()).playerEntity;
+
+        for (IServerDataProvider<BlockAccessor> provider : WDMlaCommonRegistration.instance()
+                .getBlockNBTProviders(block, entity)) {
+            try {
+                provider.appendServerData(
+                        tag,
+                        new BlockAccessorImpl.Builder().level(world).player(player).block(block)
+                                .tileEntity(entity).meta(meta).build());
+            } catch (AbstractMethodError | NoSuchMethodError ame) {
+                // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+            }
+        }
+
     }
 
     @Override
