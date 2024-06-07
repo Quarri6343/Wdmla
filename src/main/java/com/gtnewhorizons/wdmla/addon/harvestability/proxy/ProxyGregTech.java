@@ -23,7 +23,7 @@ public class ProxyGregTech {
     public static final String casingUniqueIdentifier = modID + ":" + casingID;
     public static final String machineID = "gt.blockmachines";
     public static final String machineUniqueIdentifier = modID + ":" + machineID;
-    public static boolean isModLoaded = Loader.isModLoaded(modID);
+    public static final boolean isModLoaded = Loader.isModLoaded(modID);
 
     private static short Wrench;
     private static short WireCutter;

@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -143,12 +144,12 @@ public class LegacyHarvestToolProvider implements IComponentProvider<BlockAccess
 
             ItemStack itemHeld = player.getHeldItem();
             if (itemHeld != null) {
-                isHoldingTinkersTool = ToolHelper.hasToolTag(itemHeld);
+                isHoldingTinkersTool = ProxyTinkersConstruct.hasToolTag(itemHeld);
                 isHoldingGTTool = ProxyGregTech.isGTTool(itemHeld);
                 isAboveMinHarvestLevel = (showCurrentlyHarvestable || showHarvestLevel)
-                        && ToolHelper.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
+                        && ProxyTinkersConstruct.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
                 isEffective = showEffectiveTool
-                        && ToolHelper.isToolEffectiveAgainst(itemHeld, block, meta, effectiveTool);
+                        && ProxyTinkersConstruct.isToolEffectiveAgainst(itemHeld, block, meta, effectiveTool);
                 if (isHoldingGTTool) {
                     // GT tool don't care net.minecraft.block.material.Material#isToolNotRequired
                     canHarvest = itemHeld.func_150998_b(block);

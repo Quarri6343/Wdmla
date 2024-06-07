@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -144,11 +145,11 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
     }
 
     private static boolean isHoldingTinkersTool(ItemStack itemHeld) {
-        return itemHeld != null && ToolHelper.hasToolTag(itemHeld);
+        return itemHeld != null && ProxyTinkersConstruct.hasToolTag(itemHeld);
     }
 
     private static boolean isAboveMinHarvestLevel(ItemStack itemHeld, Block block, int meta, int harvestLevel) {
-        return itemHeld != null && ToolHelper.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
+        return itemHeld != null && ProxyTinkersConstruct.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
     }
 
     private static boolean isHeldToolCorrect(EntityPlayer player, Block block, int meta, ItemStack itemHeld, String effectiveTool, boolean isHoldingTinkersTool) {

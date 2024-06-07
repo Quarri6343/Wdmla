@@ -28,7 +28,9 @@ public class StringHelper {
             } catch (Exception e) {}
         }
 
-        if (Loader.isModLoaded("IguanaTweaksTConstruct")) return ProxyIguanaTweaks.getHarvestLevelName(num);
+        if (ProxyIguanaTweaks.isModLoaded) {
+            return ProxyIguanaTweaks.getHarvestLevelName(num);
+        }
 
         String unlocalized = "wailaharvestability.harvestlevel" + (num + 1);
 

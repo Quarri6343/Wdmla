@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -14,10 +15,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ProxyIguanaTweaks {
 
+    public static final String MODID = "IguanaTweaksTConstruct";
     private static Class<?> HarvestLevels = null;
     private static Method proxyGetHarvestLevelName;
     private static boolean isVanilla = false;
     private static final List<ItemStack> creativePickaxes = new ArrayList<>();
+    public static final boolean isModLoaded = Loader.isModLoaded(MODID);
 
     public static void init() {
         try {
