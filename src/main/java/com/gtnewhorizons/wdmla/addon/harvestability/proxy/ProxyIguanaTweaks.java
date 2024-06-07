@@ -1,24 +1,19 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
-import cpw.mods.fml.common.Loader;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct.creativePickaxes;
+import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
 
 public class ProxyIguanaTweaks {
 
     private static Class<?> HarvestLevels = null;
     private static Method proxyGetHarvestLevelName;
     private static boolean isVanilla = false;
-    private static final List<ItemStack> creativePickaxes = new ArrayList<>();
 
     public static void init() {
         try {
@@ -27,7 +22,6 @@ public class ProxyIguanaTweaks {
             Field vanillaField = HarvestLevels.getDeclaredField("vanilla");
             vanillaField.setAccessible(true);
             isVanilla = vanillaField.getBoolean(null);
-            GameRegistry.findItem("TConstruct", "pickaxe").getSubItems(null, null, creativePickaxes);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,6 +42,7 @@ public class ProxyIguanaTweaks {
     public static ItemStack getEffectivePickaxeIcon(int num) {
         if (isVanilla) {
             return switch (num) {
+                //it is same with TConstruct, but it is defined in IguanaTweaks side
                 case 0 -> creativePickaxes.get(ANY);
                 case 1 -> creativePickaxes.get(IRON);
                 case 2 -> creativePickaxes.get(REDSTONE);

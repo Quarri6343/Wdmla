@@ -5,6 +5,7 @@ dependencies {
     api("com.github.GTNewHorizons:GTNHLib:0.2.9:dev")
     implementation('com.github.GTNewHorizons:NotEnoughItems:2.5.25-GTNH:dev')
 
+//    devOnlyNonPublishable("com.github.GTNewHorizons:TinkersConstruct:1.12.2-GTNH:dev")
 //    devOnlyNonPublishable("com.github.GTNewHorizons:IguanaTweaksTConstruct:2.5.0:dev")
 
     //dependencies required for GregTech

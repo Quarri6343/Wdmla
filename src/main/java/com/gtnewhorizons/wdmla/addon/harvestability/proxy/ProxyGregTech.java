@@ -24,6 +24,9 @@ public class ProxyGregTech {
     public static final String MACHINE_ID = "gt.blockmachines";
     public static final String MACHINE_UNIQUE_IDENTIFIER = Mods.GREGTECH.modID + ":" + MACHINE_ID;
 
+    public static final String TOOL_WRENCH = "wrench";
+    public static final String TOOL_WIRE_CUTTER = "cutter";
+
     private static short Wrench;
     private static short WireCutter;
     private static ItemStack ironWrench;

@@ -2,7 +2,9 @@ package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
 import com.gtnewhorizons.wdmla.api.Mods;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
+
 public class ProxyTinkersConstruct {
 
     private static Class<?> HarvestTool = null;
@@ -21,6 +25,7 @@ public class ProxyTinkersConstruct {
     private static Method getHarvestType = null;
     private static Method getSecondHarvestType = null;
     private static Method getHarvestLevelName = null;
+    public static final List<ItemStack> creativePickaxes = new ArrayList<>();
 
     public static void init() {
         try {
@@ -32,6 +37,7 @@ public class ProxyTinkersConstruct {
             getSecondHarvestType.setAccessible(true);
             Class<?> HarvestLevels = Class.forName("tconstruct.library.util.HarvestLevels");
             getHarvestLevelName = HarvestLevels.getDeclaredMethod("getHarvestLevelName", int.class);
+            GameRegistry.findItem("TConstruct", "pickaxe").getSubItems(null, null, creativePickaxes);
         } catch (Exception ignore) {
         }
     }
@@ -112,5 +118,18 @@ public class ProxyTinkersConstruct {
         }
 
         return name;
+    }
+
+    public static ItemStack getEffectivePickaxeIcon(int num) {
+        return switch (num) {
+            case 0 -> creativePickaxes.get(ANY);
+            case 1 -> creativePickaxes.get(IRON);
+            case 2 -> creativePickaxes.get(REDSTONE);
+            case 3 -> creativePickaxes.get(OBSIDIAN);
+            case 4 -> creativePickaxes.get(COBALT);
+            case 5 -> creativePickaxes.get(MANYULLYN);
+            case 6 -> creativePickaxes.get(MANYULLYNPLUS);
+            default -> new ItemStack(Blocks.iron_bars);
+        };
     }
 }

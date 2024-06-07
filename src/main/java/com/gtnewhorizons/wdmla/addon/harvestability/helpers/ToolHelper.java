@@ -2,17 +2,19 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class ToolHelper {
-    public static final String PICKAXE = "pickaxe";
-    public static final String SHOVEL = "shovel";
-    public static final String AXE = "axe";
-    public static final String SWORD = "sword";
+    public static final String TOOL_PICKAXE = "pickaxe";
+    public static final String TOOL_SHOVEL = "shovel";
+    public static final String TOOL_AXE = "axe";
+    public static final String TOOL_SWORD = "sword";
 
     public static boolean canToolHarvestBlock(ItemStack tool, Block block, int metadata) {
         return block.getMaterial().isToolNotRequired() || tool.func_150998_b(block); // func_150998_b = canHarvestBlock
@@ -20,13 +22,13 @@ public class ToolHelper {
 
     public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel) {
         switch (effectiveTool) {
-            case PICKAXE:
+            case TOOL_PICKAXE:
                 return getEffectivePickaxeIcon(harvestLevel);
-            case SHOVEL:
+            case TOOL_SHOVEL:
                 return new ItemStack(Items.wooden_shovel);
-            case AXE:
+            case TOOL_AXE:
                 return new ItemStack(Items.wooden_axe);
-            case SWORD:
+            case TOOL_SWORD:
                 return new ItemStack(Items.wooden_sword);
             default:
                 if (Mods.GREGTECH.isLoaded()) {
@@ -41,6 +43,13 @@ public class ToolHelper {
         if (Mods.IGUANATWEAKS.isLoaded()) {
             return ProxyIguanaTweaks.getEffectivePickaxeIcon(harvestLevel);
         }
+        else if(Mods.TCONSTUCT.isLoaded()) {
+            return ProxyTinkersConstruct.getEffectivePickaxeIcon(harvestLevel);
+        }
+        return getVanillaEffectivePickaxeIcon(harvestLevel);
+    }
+
+    private static @NotNull ItemStack getVanillaEffectivePickaxeIcon(int harvestLevel) {
         return switch (harvestLevel) {
             case 0 -> new ItemStack(Items.wooden_pickaxe);
             case 1 -> new ItemStack(Items.stone_pickaxe);

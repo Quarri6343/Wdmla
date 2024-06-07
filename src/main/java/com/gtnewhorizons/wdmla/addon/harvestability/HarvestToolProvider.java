@@ -157,8 +157,8 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
         if (itemHeld != null) {
             if (ProxyGregTech.isMachine(block)) {
                 // GT_MetaGenerated_Tool's getDigSpeed is broken
-                canHarvest = Objects.equals(effectiveTool, "wrench") && ProxyGregTech.isWrench(itemHeld)
-                        || Objects.equals(effectiveTool, "cutter") && ProxyGregTech.isWireCutter(itemHeld);
+                canHarvest = Objects.equals(effectiveTool, ProxyGregTech.TOOL_WRENCH) && ProxyGregTech.isWrench(itemHeld)
+                        || Objects.equals(effectiveTool, ProxyGregTech.TOOL_WIRE_CUTTER) && ProxyGregTech.isWireCutter(itemHeld);
             } else if (ProxyGregTech.isGTTool(itemHeld)) {
                 // GT tool don't care net.minecraft.block.material.Material#isToolNotRequired
                 canHarvest = itemHeld.func_150998_b(block);
@@ -192,7 +192,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
     }
 
     private static @NotNull ITooltip assembleHarvestabilityIcon(ITooltip effectiveToolIconComponent, boolean isCurrentlyHarvestable, String shearability, String silkTouchability) {
-        ITooltip harvestabilityComponent = new HPanelComponent();
+        ITooltip harvestabilityComponent = new HPanelComponent().tag(Identifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
         String currentlyHarvestableIcon = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
                 + (isCurrentlyHarvestable ? HarvestabilityIdentifiers.CHECK : HarvestabilityIdentifiers.X);
@@ -219,7 +219,7 @@ public class HarvestToolProvider implements IComponentProvider<BlockAccessor> {
             harvestLevelText = new TextComponent(
                     StatCollector.translateToLocal("wailaharvestability.harvestlevel")
                             + ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                            + harvestLevelString);
+                            + harvestLevelString).tag(Identifiers.HARVESTABILITY_TEXT);
         }
         return harvestLevelText;
     }
