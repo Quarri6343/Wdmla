@@ -1,7 +1,12 @@
 package mcp.mobius.waila.api.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import mcp.mobius.waila.api.ITaggedList;
 

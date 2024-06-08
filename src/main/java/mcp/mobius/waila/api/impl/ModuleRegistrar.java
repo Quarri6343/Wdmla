@@ -1,8 +1,19 @@
 package mcp.mobius.waila.api.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import mcp.mobius.waila.api.*;
+import mcp.mobius.waila.api.IWailaBlockDecorator;
+import mcp.mobius.waila.api.IWailaDataProvider;
+import mcp.mobius.waila.api.IWailaEntityProvider;
+import mcp.mobius.waila.api.IWailaFMPDecorator;
+import mcp.mobius.waila.api.IWailaFMPProvider;
+import mcp.mobius.waila.api.IWailaRegistrar;
+import mcp.mobius.waila.api.IWailaTooltipRenderer;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
 

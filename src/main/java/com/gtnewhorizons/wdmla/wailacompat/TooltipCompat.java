@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 
 import com.gtnewhorizons.wdmla.api.ITTRenderParser;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.*;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.wailacompat.parser.HealthArgsParser;
 import com.gtnewhorizons.wdmla.wailacompat.parser.IconArgsParser;
 import com.gtnewhorizons.wdmla.wailacompat.parser.ItemArgsParser;

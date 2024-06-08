@@ -12,7 +12,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.BlockHelper;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ColorHelper;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.OreHelper;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.StringHelper;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;

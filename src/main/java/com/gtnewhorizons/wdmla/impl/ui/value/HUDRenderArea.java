@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.value;
 
-import java.awt.*;
+import java.awt.Point;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;

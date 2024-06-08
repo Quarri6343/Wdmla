@@ -1,6 +1,8 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -11,7 +13,13 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
-import com.gtnewhorizons.wdmla.api.*;
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.EntityAccessorImpl;
+import com.gtnewhorizons.wdmla.api.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 
 import mcp.mobius.waila.Waila;

@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.sizer;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 

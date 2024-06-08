@@ -1,8 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_AXE;
-import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_PICKAXE;
-import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_SHOVEL;
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +11,11 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemShears;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;

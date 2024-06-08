@@ -1,8 +1,6 @@
 package mcp.mobius.waila.overlay;
 
-import static mcp.mobius.waila.api.SpecialChars.patternMinecraft;
-import static mcp.mobius.waila.api.SpecialChars.patternRender;
-import static mcp.mobius.waila.api.SpecialChars.patternWaila;
+import static mcp.mobius.waila.api.SpecialChars.*;
 
 import java.util.ArrayList;
 import java.util.List;

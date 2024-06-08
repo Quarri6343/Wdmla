@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.sizer;
 
-import java.awt.*;
+import java.awt.Point;
 
 import org.jetbrains.annotations.NotNull;
 
