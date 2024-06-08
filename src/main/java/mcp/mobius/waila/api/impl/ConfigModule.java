@@ -1,7 +1,10 @@
 package mcp.mobius.waila.api.impl;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
+
 import java.util.HashMap;
 
+@BackwardCompatibility
 public class ConfigModule {
 
     String modName;

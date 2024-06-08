@@ -8,8 +8,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.ITaggedList;
 
+@BackwardCompatibility
 public class TipList<E, T> extends ArrayList<E> implements ITaggedList<E, T> {
 
     Map<E, Set<T>> tags = new HashMap<>();

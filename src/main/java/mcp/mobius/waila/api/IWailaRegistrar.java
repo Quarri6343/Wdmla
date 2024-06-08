@@ -20,6 +20,7 @@ package mcp.mobius.waila.api;
  * @author ProfMobius
  *
  */
+@BackwardCompatibility
 public interface IWailaRegistrar {
 
     /* Add a config option in the section modname with displayed text configtext and access key keyname */

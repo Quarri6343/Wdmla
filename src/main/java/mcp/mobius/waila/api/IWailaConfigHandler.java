@@ -11,6 +11,7 @@ import java.util.Set;
  * @author ProfMobius
  *
  */
+@BackwardCompatibility
 public interface IWailaConfigHandler {
 
     /**

@@ -1,5 +1,6 @@
 package mcp.mobius.waila.api.impl;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -10,6 +11,7 @@ import net.minecraft.world.World;
 import mcp.mobius.waila.api.IWailaFMPAccessor;
 import mcp.mobius.waila.utils.NBTUtil;
 
+@BackwardCompatibility
 public class DataAccessorFMP implements IWailaFMPAccessor {
 
     String id;

@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
  * @author ProfMobius
  *
  */
+@BackwardCompatibility
 public interface IWailaFMPProvider {
 
     /**

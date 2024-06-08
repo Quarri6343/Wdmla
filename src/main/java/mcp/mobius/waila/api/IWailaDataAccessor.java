@@ -19,7 +19,6 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author ProfMobius
  *
  */
-
 public interface IWailaDataAccessor {
 
     World getWorld();

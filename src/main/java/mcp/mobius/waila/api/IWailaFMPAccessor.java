@@ -16,7 +16,7 @@ import net.minecraft.world.World;
  * @author ProfMobius
  *
  */
-
+@BackwardCompatibility
 public interface IWailaFMPAccessor {
 
     World getWorld();

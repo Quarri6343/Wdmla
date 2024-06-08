@@ -19,6 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * Available data depends on what it is called upon (ie : getEntity() will return null if looking at a block, etc).<br>
  *
  */
+@BackwardCompatibility
 public interface IWailaCommonAccessor {
 
     World getWorld();

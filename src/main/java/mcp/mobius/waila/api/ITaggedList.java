@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+@BackwardCompatibility
 public interface ITaggedList<E, T> extends List<E> {
 
     boolean add(E e, T tag);

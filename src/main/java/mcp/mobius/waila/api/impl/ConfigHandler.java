@@ -2,6 +2,7 @@ package mcp.mobius.waila.api.impl;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+@BackwardCompatibility
 public class ConfigHandler implements IWailaConfigHandler {
 
     /* SINGLETON */
