@@ -4,6 +4,7 @@ import net.minecraft.util.ResourceLocation;
 
 public final class Identifiers {
 
+    //component tag
     public static final ResourceLocation ROOT = MC("root");
 
     public static final ResourceLocation ITEM_ICON = MC("item_icon");
@@ -13,6 +14,8 @@ public final class Identifiers {
     public static final ResourceLocation HARVESTABILITY_ICON = WDMla("harvestability_icon");
     public static final ResourceLocation HARVESTABILITY_TEXT = WDMla("harvestability_text");
 
+
+    //provider Uid
     public static final ResourceLocation DEFAULT = MC("default");
 
     public static final ResourceLocation TEST_HEAD = WDMla("test_head");

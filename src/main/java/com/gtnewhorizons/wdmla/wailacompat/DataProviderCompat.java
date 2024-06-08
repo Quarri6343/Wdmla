@@ -1,32 +1,24 @@
 package com.gtnewhorizons.wdmla.wailacompat;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaEntityProvider;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.handlers.HUDHandlerBlocks;
-import mcp.mobius.waila.handlers.HUDHandlerEntities;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class DataProviderCompat {
-
-    private final HUDHandlerBlocks legacyBlockHandler = new HUDHandlerBlocks();
-    private final HUDHandlerEntities legacyEntityHandler = new HUDHandlerEntities();
-
     public List<String> getLegacyBlockTooltips(ItemStack itemForm, DataAccessorCommon legacyAccessor) {
         List<String> legacyTooltips = new ArrayList<>();
         try {
             // some WailaHead Handlers modify item name text, so we have to insert dummy item name to avoid crash
-            legacyTooltips = legacyBlockHandler
-                    .getWailaHead(itemForm, legacyTooltips, legacyAccessor, ConfigHandler.instance());
+            HUDHandlerCompat.getBlocksWailaHead(itemForm, legacyTooltips, legacyAccessor);
             LinkedHashMap<Integer, List<IWailaDataProvider>> legacyHeadProviders = new LinkedHashMap<>();
             legacyHeadProviders.putAll(ModuleRegistrar.instance().getHeadProviders(legacyAccessor.getBlock()));
             legacyHeadProviders.putAll(ModuleRegistrar.instance().getHeadProviders(legacyAccessor.getTileEntity()));
@@ -71,8 +63,7 @@ public class DataProviderCompat {
         List<String> legacyTooltips = new ArrayList<>();
         try {
             // some WailaHead Handlers modify item name text, so we have to insert dummy item name to avoid crash
-            legacyTooltips = legacyEntityHandler
-                    .getWailaHead(entity, legacyTooltips, legacyAccessor, ConfigHandler.instance());
+            HUDHandlerCompat.getEntitiesWailaHead(entity, legacyTooltips);
             for (List<IWailaEntityProvider> providersList : ModuleRegistrar.instance()
                     .getHeadEntityProviders(legacyAccessor.getEntity()).values()) {
                 for (IWailaEntityProvider dataProvider : providersList) {
