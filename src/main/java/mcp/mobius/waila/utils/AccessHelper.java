@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -19,6 +20,7 @@ import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaEntityProvider;
 
+@BackwardCompatibility
 public class AccessHelper {
 
     public static Field getDeclaredField(String classname, String fieldname) {

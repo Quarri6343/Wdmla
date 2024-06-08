@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTSizeTracker;
@@ -13,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.nbt.NBTTagShort;
 
+@BackwardCompatibility
 public class NBTUtil {
 
     public static NBTBase getTag(String key, NBTTagCompound tag) {

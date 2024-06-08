@@ -1,15 +1,7 @@
 package mcp.mobius.waila;
 
-import java.lang.reflect.Field;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLModContainer;
 import cpw.mods.fml.common.Mod;
@@ -22,18 +14,21 @@ import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.client.KeyEvent;
-import mcp.mobius.waila.commands.CommandDumpHandlers;
 import mcp.mobius.waila.network.NetworkHandler;
 import mcp.mobius.waila.network.WailaPacketHandler;
 import mcp.mobius.waila.overlay.DecoratorRenderer;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Field;
 
 @Mod(
         modid = "Waila",
@@ -122,10 +117,5 @@ public class Waila {
                 ModuleRegistrar.instance().addIMCRequest(imcMessage.getStringValue(), imcMessage.getSender());
             }
         }
-    }
-
-    @EventHandler
-    public void serverStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandDumpHandlers());
     }
 }

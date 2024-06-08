@@ -7,8 +7,8 @@ Still in alpha
 - [GTNHLib](https://github.com/GTNewHorizons/GTNHLib/releases/latest)
 
 # Supported mods
-- All mods that Waila supports
-- All mods that supports Waila
+- Most of the mods that Waila supports
+- Most of the mods that supports Waila
 - And more...?
 
 # Permanent Incompatibilities
