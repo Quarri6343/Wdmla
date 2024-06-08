@@ -1,7 +1,15 @@
 package mcp.mobius.waila;
 
+import java.lang.reflect.Field;
+
+import net.minecraftforge.common.MinecraftForge;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLModContainer;
 import cpw.mods.fml.common.Mod;
@@ -24,11 +32,6 @@ import mcp.mobius.waila.overlay.DecoratorRenderer;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
-import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.lang.reflect.Field;
 
 @Mod(
         modid = "Waila",

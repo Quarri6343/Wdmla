@@ -3,10 +3,10 @@ package mcp.mobius.waila.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import org.apache.logging.log4j.Level;
 
 import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.api.BackwardCompatibility;
 
 @BackwardCompatibility
 public class WailaExceptionHandler {

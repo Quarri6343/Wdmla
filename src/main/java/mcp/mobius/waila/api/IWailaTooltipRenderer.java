@@ -4,8 +4,7 @@ import java.awt.Dimension;
 
 /**
  * I have switched render system so this class no longer works.<br>
- * Contact me(WDMla author) if any mod is still using this,
- * so I can add compatibility module on WDMla side
+ * Contact me(WDMla author) if any mod is still using this, so I can add compatibility module on WDMla side
  */
 @Deprecated
 public interface IWailaTooltipRenderer {

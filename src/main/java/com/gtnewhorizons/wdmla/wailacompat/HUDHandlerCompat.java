@@ -1,18 +1,19 @@
 package com.gtnewhorizons.wdmla.wailacompat;
 
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.overlay.DisplayUtil;
-import mcp.mobius.waila.utils.Constants;
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+import static mcp.mobius.waila.api.SpecialChars.WHITE;
+
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 
-import java.util.List;
-
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
-import static mcp.mobius.waila.api.SpecialChars.WHITE;
+import mcp.mobius.waila.api.IWailaDataAccessor;
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.overlay.DisplayUtil;
+import mcp.mobius.waila.utils.Constants;
 
 public class HUDHandlerCompat {
 

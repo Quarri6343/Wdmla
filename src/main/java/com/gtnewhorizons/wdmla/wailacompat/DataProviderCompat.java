@@ -1,21 +1,23 @@
 package com.gtnewhorizons.wdmla.wailacompat;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaEntityProvider;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
+import mcp.mobius.waila.api.impl.TipList;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 public class DataProviderCompat {
+
     public List<String> getLegacyBlockTooltips(ItemStack itemForm, DataAccessorCommon legacyAccessor) {
-        List<String> legacyTooltips = new ArrayList<>();
+        List<String> legacyTooltips = new TipList<String, String>();
         try {
             // some WailaHead Handlers modify item name text, so we have to insert dummy item name to avoid crash
             HUDHandlerCompat.getBlocksWailaHead(itemForm, legacyTooltips, legacyAccessor);
@@ -60,7 +62,7 @@ public class DataProviderCompat {
     }
 
     public List<String> getLegacyEntityTooltips(Entity entity, DataAccessorCommon legacyAccessor) {
-        List<String> legacyTooltips = new ArrayList<>();
+        List<String> legacyTooltips = new TipList<String, String>();
         try {
             // some WailaHead Handlers modify item name text, so we have to insert dummy item name to avoid crash
             HUDHandlerCompat.getEntitiesWailaHead(entity, legacyTooltips);

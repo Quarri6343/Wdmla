@@ -1,18 +1,19 @@
 package mcp.mobius.waila.api.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Set;
+
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Set;
 
 @BackwardCompatibility
 public class ConfigHandler implements IWailaConfigHandler {
@@ -162,10 +163,10 @@ public class ConfigHandler implements IWailaConfigHandler {
         OverlayConfig.scale = config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SCALE, 100).getInt()
                 / 100.0f;
 
-//        HUDHandlerEntities.nhearts = config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NHEARTS, 20)
-//                .getInt();
-//        HUDHandlerEntities.maxhpfortext = config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MAXHP, 40)
-//                .getInt();
+        // HUDHandlerEntities.nhearts = config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NHEARTS, 20)
+        // .getInt();
+        // HUDHandlerEntities.maxhpfortext = config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MAXHP, 40)
+        // .getInt();
 
         config.getCategory(Constants.CATEGORY_MODULES).setComment(
                 "Those are the config keys defined in modules.\nServer side, it is used to enforce keys client side using the next section.");
