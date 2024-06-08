@@ -92,6 +92,12 @@ public final class ObjectDataCenter {
             return mop1.blockX == mop2.blockX && mop1.blockY == mop2.blockY && mop1.blockZ == mop2.blockZ;
         }
 
+        if (mop1 != null && mop1.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY
+                && mop2 != null
+                && mop2.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
+            return mop1.entityHit.getEntityId() == mop2.entityHit.getEntityId();
+        }
+
         return false;
     }
 }

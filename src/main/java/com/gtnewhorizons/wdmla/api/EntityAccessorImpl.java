@@ -1,12 +1,22 @@
 package com.gtnewhorizons.wdmla.api;
 
-import java.util.function.Supplier;
-
+import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import io.netty.channel.ChannelHandlerContext;
+import mcp.mobius.waila.network.Message0x03EntRequest;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetHandlerPlayServer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
+
+import java.util.function.Supplier;
 
 public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
 
@@ -15,6 +25,28 @@ public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
     public EntityAccessorImpl(Builder builder) {
         super(builder.level, builder.player, builder.hit, builder.connected, builder.showDetails, builder.serverData);
         entity = builder.entity;
+    }
+
+    public static void handleRequest(ChannelHandlerContext ctx, NBTTagCompound tag, Message0x03EntRequest msg) {
+        World world = DimensionManager.getWorld(msg.dim);
+        if (world == null) return;
+        Entity entity = world.getEntityByID(msg.id);
+        if (entity == null) return;
+        EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
+                .get()).playerEntity;
+
+        for (IServerDataProvider<EntityAccessor> provider : WDMlaCommonRegistration.instance()
+                .getEntityNBTProviders(entity)) {
+            try {
+                provider.appendServerData(
+                        tag,
+                        new EntityAccessorImpl.Builder().level(world).player(player).entity(entity).build());
+            } catch (AbstractMethodError | NoSuchMethodError ame) {
+                // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
+            }
+        }
+
+        tag.setInteger("EntityId", entity.getEntityId());
     }
 
     @Override

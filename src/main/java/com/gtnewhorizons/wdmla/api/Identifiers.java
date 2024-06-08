@@ -17,6 +17,7 @@ public final class Identifiers {
 
     public static final ResourceLocation TEST_HEAD = WDMla("test_head");
     public static final ResourceLocation TEST_BODY = WDMla("test_body");
+    public static final ResourceLocation TEST_ENTITY = WDMla("test_entity");
 
     public static final ResourceLocation HARVESTABILITY = WDMla("harvestability");
     public static final ResourceLocation LEGACY_HARVESTABILITY = WDMla("legacy_harvestability");

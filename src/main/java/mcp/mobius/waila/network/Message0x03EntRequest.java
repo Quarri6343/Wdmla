@@ -3,6 +3,8 @@ package mcp.mobius.waila.network;
 import java.util.HashSet;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.EntityAccessorImpl;
+import com.gtnewhorizons.wdmla.wailacompat.EntRequestCompat;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -60,40 +62,13 @@ public class Message0x03EntRequest extends SimpleChannelInboundHandler<Message0x
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Message0x03EntRequest msg) throws Exception {
-        World world = DimensionManager.getWorld(msg.dim);
-        if (world == null) return;
-        Entity entity = world.getEntityByID(msg.id);
-        if (entity == null) return;
-        try {
-            NBTTagCompound tag = new NBTTagCompound();
+    protected void channelRead0(ChannelHandlerContext ctx, Message0x03EntRequest msg) {
+        NBTTagCompound tag = new NBTTagCompound();
 
-            EntityPlayerMP player = ((NetHandlerPlayServer) ctx.channel().attr(NetworkRegistry.NET_HANDLER)
-                    .get()).playerEntity;
+        EntityAccessorImpl.handleRequest(ctx, tag, msg);
+        EntRequestCompat.handleRequest(ctx, tag, msg);
 
-            if (ModuleRegistrar.instance().hasNBTEntityProviders(entity)) {
-                for (List<IWailaEntityProvider> providersList : ModuleRegistrar.instance().getNBTEntityProviders(entity)
-                        .values()) {
-                    for (IWailaEntityProvider provider : providersList) {
-                        try {
-                            tag = provider.getNBTData(player, entity, tag, world);
-                        } catch (AbstractMethodError ame) {
-                            tag = AccessHelper.getNBTData(provider, entity, tag);
-                        }
-                    }
-                }
-
-            } else {
-                entity.writeToNBT(tag);
-                tag = NBTUtil.createTag(tag, msg.keys);
-            }
-
-            tag.setInteger("WailaEntityID", entity.getEntityId());
-
-            WailaPacketHandler.INSTANCE.sendTo(new Message0x04EntNBTData(tag), WailaPacketHandler.getPlayer(ctx));
-        } catch (Throwable e) {
-            WailaExceptionHandler.handleErr(e, entity.getClass().toString(), null);
-        }
+        WailaPacketHandler.INSTANCE.sendTo(new Message0x04EntNBTData(tag), WailaPacketHandler.getPlayer(ctx));
     }
 
 }

@@ -18,7 +18,7 @@ public class EntityHealthProvider implements IEntityComponentProvider {
 
     @Override
     public int getDefaultPriority() {
-        return -8000;
+        return TooltipPosition.HEAD;
     }
 
     @Override
