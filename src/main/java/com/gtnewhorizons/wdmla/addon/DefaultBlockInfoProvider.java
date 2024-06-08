@@ -2,10 +2,10 @@ package com.gtnewhorizons.wdmla.addon;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
-import com.gtnewhorizons.wdmla.api.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import com.gtnewhorizons.wdmla.api.*;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
@@ -14,7 +14,7 @@ import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 
-public class DefaultInfoProvider implements IBlockComponentProvider {
+public class DefaultBlockInfoProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {

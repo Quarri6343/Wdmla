@@ -10,13 +10,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaEntityAccessor;
 import mcp.mobius.waila.api.IWailaEntityProvider;
+import mcp.mobius.waila.utils.ModIdentification;
 
+/**
+ * This class is required for backward compatibility. Do not remove it.
+ */
 public class HUDHandlerEntities implements IWailaEntityProvider {
 
     public static int nhearts = 20;
@@ -73,7 +74,7 @@ public class HUDHandlerEntities implements IWailaEntityProvider {
     public List<String> getWailaTail(Entity entity, List<String> currenttip, IWailaEntityAccessor accessor,
             IWailaConfigHandler config) {
         try {
-            currenttip.add(BLUE + ITALIC + getEntityMod(entity));
+            currenttip.add(BLUE + ITALIC + ModIdentification.nameFromEntity(entity));
         } catch (Exception e) {
             currenttip.add(BLUE + ITALIC + "Unknown");
         }
@@ -83,18 +84,6 @@ public class HUDHandlerEntities implements IWailaEntityProvider {
     @Override
     public NBTTagCompound getNBTData(EntityPlayerMP player, Entity te, NBTTagCompound tag, World world) {
         return tag;
-    }
-
-    private static String getEntityMod(Entity entity) {
-        String modName;
-        try {
-            EntityRegistration er = EntityRegistry.instance().lookupModSpawn(entity.getClass(), true);
-            ModContainer modC = er.getContainer();
-            modName = modC.getName();
-        } catch (NullPointerException e) {
-            modName = "Minecraft";
-        }
-        return modName;
     }
 
 }

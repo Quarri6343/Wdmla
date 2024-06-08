@@ -1,10 +1,13 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_AXE;
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_PICKAXE;
+import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_SHOVEL;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,12 +19,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
-
-import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_PICKAXE;
-import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_SHOVEL;
-import static com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper.TOOL_AXE;
 
 public class BlockHelper {
 
@@ -93,15 +93,11 @@ public class BlockHelper {
     }
 
     public static Block getEffectiveBlock(Block block, ItemStack itemForm) {
-        return isDisguised(block, itemForm)
-                ? Block.getBlockFromItem(itemForm.getItem())
-                : block;
+        return isDisguised(block, itemForm) ? Block.getBlockFromItem(itemForm.getItem()) : block;
     }
 
     public static int getEffectiveMeta(Block block, ItemStack itemForm, int meta) {
-        return isDisguised(block, itemForm)
-                ? itemForm.getItemDamage()
-                : meta;
+        return isDisguised(block, itemForm) ? itemForm.getItemDamage() : meta;
     }
 
     public static boolean isDisguised(Block block, ItemStack itemForm) {

@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Objects;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IToggleableProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
@@ -20,6 +22,8 @@ public class ClientRegistrationSession {
     private final WDMlaClientRegistration registration;
     private boolean active;
     private final List<Pair<IComponentProvider<BlockAccessor>, Class<? extends Block>>> blockComponentProviders = Lists
+            .newArrayList();
+    private final List<Pair<IComponentProvider<EntityAccessor>, Class<? extends Entity>>> entityComponentProviders = Lists
             .newArrayList();
 
     public ClientRegistrationSession(WDMlaClientRegistration registration) {
@@ -38,6 +42,12 @@ public class ClientRegistrationSession {
         tryAddConfig(provider);
     }
 
+    public void registerEntityComponent(IComponentProvider<EntityAccessor> provider,
+            Class<? extends Entity> entityClass) {
+        register(provider, entityComponentProviders, registration.entityComponentProviders, entityClass);
+        tryAddConfig(provider);
+    }
+
     private void tryAddConfig(IToggleableProvider provider) {
         // ResourceLocation key = provider.getUid();
         // if (!provider.isRequired()) {
@@ -47,6 +57,7 @@ public class ClientRegistrationSession {
 
     public void reset() {
         blockComponentProviders.clear();
+        entityComponentProviders.clear();
         active = true;
     }
 
@@ -54,6 +65,7 @@ public class ClientRegistrationSession {
         Preconditions.checkState(active, "Session is not active");
         active = false;
         blockComponentProviders.forEach(pair -> registration.registerBlockComponent(pair.first(), pair.second()));
+        entityComponentProviders.forEach(pair -> registration.registerEntityComponent(pair.first(), pair.second()));
     }
 
     public boolean isActive() {

@@ -71,6 +71,11 @@ public class WDMlaTickHandler {
             ItemStack itemForm = RayTracing.instance().getIdentifierStack();
             accessor = WDMlaClientRegistration.instance().blockAccessor().block(block).tileEntity(tileEntity)
                     .meta(metadata).hit(target).itemForm(itemForm).requireVerification().build();
+        } else if (target.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
+            /* off */
+            accessor = WDMlaClientRegistration.instance().entityAccessor().hit(target).entity(target.entityHit)
+                    .requireVerification().build();
+            /* on */
         }
 
         ObjectDataCenter.set(accessor);

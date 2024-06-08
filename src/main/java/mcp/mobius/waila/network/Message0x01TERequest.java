@@ -1,17 +1,19 @@
 package mcp.mobius.waila.network;
 
+import java.util.HashSet;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+
 import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
 import com.gtnewhorizons.wdmla.wailacompat.TERequestCompat;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 
-import java.util.HashSet;
-
-//TODO: split packet for WDMla and Waila
+// TODO: split packet for WDMla and Waila
 public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x01TERequest> implements IWailaMessage {
 
     public int dim;

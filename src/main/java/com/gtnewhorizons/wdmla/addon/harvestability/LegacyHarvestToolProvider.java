@@ -1,17 +1,8 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.TooltipPosition;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.impl.ConfigHandler;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,10 +12,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.gtnewhorizons.wdmla.addon.harvestability.helpers.*;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 
-//TODO: remove once the config migration is complete
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.impl.ConfigHandler;
+
+// TODO: remove once the config migration is complete
 public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     @Override
@@ -44,12 +45,13 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
             return;
         }
 
-        if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())){
+        if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())) {
             return;
         }
 
         Block effectiveBlock = BlockHelper.getEffectiveBlock(accessor.getBlock(), accessor.getItemForm());
-        int effectiveMeta = BlockHelper.getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
+        int effectiveMeta = BlockHelper
+                .getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
 
         List<String> stringParts = new ArrayList<>();
         getLegacyHarvestability(

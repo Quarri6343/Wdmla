@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.google.common.base.Preconditions;
@@ -20,16 +21,29 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     private static final WDMlaClientRegistration INSTANCE = new WDMlaClientRegistration();
 
     public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockComponentProviders;
+    public final HierarchyLookup<IComponentProvider<EntityAccessor>> entityComponentProviders;
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
     private ClientRegistrationSession session;
 
     WDMlaClientRegistration() {
         blockComponentProviders = new HierarchyLookup<>(Block.class);
+        entityComponentProviders = new HierarchyLookup<>(Entity.class);
     }
 
     public static WDMlaClientRegistration instance() {
         return INSTANCE;
+    }
+
+    @Override
+    public void registerEntityComponent(IComponentProvider<EntityAccessor> provider,
+            Class<? extends Entity> entityClass) {
+        if (isSessionActive()) {
+            session.registerEntityComponent(provider, entityClass);
+        } else {
+            entityComponentProviders.register(entityClass, provider);
+            // tryAddConfig(provider);
+        }
     }
 
     @Override
@@ -45,6 +59,11 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     public List<IComponentProvider<BlockAccessor>> getBlockProviders(Block block,
             Predicate<IComponentProvider<? extends Accessor>> filter) {
         return blockComponentProviders.get(block).stream().filter(filter).collect(Collectors.toList());
+    }
+
+    public List<IComponentProvider<EntityAccessor>> getEntityProviders(Entity entity,
+            Predicate<IComponentProvider<? extends Accessor>> filter) {
+        return entityComponentProviders.get(entity).stream().filter(filter).collect(Collectors.toList());
     }
 
     @Override
@@ -70,6 +89,13 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
                 .serverConnected(isServerConnected()).serverData(getServerData()).showDetails(isShowDetailsPressed());
     }
 
+    public EntityAccessor.Builder entityAccessor() {
+        Minecraft mc = Minecraft.getMinecraft();
+
+        return new EntityAccessorImpl.Builder().level(mc.theWorld).player(mc.thePlayer)
+                .serverConnected(isServerConnected()).serverData(getServerData()).showDetails(isShowDetailsPressed());
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public <T extends Accessor> void registerAccessorHandler(Class<T> clazz, AccessorClientHandler<T> handler) {
@@ -84,6 +110,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     public void loadComplete() {
         var priorities = WDMlaCommonRegistration.instance().priorities;
         blockComponentProviders.loadComplete(priorities);
+        entityComponentProviders.loadComplete(priorities);
         session = null;
     }
 

@@ -1,14 +1,7 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import java.util.HashMap;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import com.gtnewhorizons.wdmla.api.AccessorImpl;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import io.netty.channel.ChannelHandlerContext;
-import mcp.mobius.waila.network.Message0x01TERequest;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,11 +12,17 @@ import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.DimensionManager;
+
 import org.jetbrains.annotations.Nullable;
 
+import com.gtnewhorizons.wdmla.api.AccessorImpl;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+
+import cpw.mods.fml.common.network.NetworkRegistry;
+import io.netty.channel.ChannelHandlerContext;
+import mcp.mobius.waila.network.Message0x01TERequest;
 
 public class BlockAccessorImpl extends AccessorImpl implements BlockAccessor {
 
@@ -53,8 +52,8 @@ public class BlockAccessorImpl extends AccessorImpl implements BlockAccessor {
             try {
                 provider.appendServerData(
                         tag,
-                        new BlockAccessorImpl.Builder().level(world).player(player).block(block)
-                                .tileEntity(entity).meta(meta).build());
+                        new BlockAccessorImpl.Builder().level(world).player(player).block(block).tileEntity(entity)
+                                .meta(meta).build());
             } catch (AbstractMethodError | NoSuchMethodError ame) {
                 // tag = AccessHelper.getNBTData(provider, entity, tag, world, msg.posX, msg.posY, msg.posZ);
             }

@@ -1,13 +1,9 @@
 package com.gtnewhorizons.wdmla.wailacompat;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import io.netty.channel.ChannelHandlerContext;
-import mcp.mobius.waila.api.IWailaDataProvider;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.network.Message0x01TERequest;
-import mcp.mobius.waila.utils.AccessHelper;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,9 +12,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import io.netty.channel.ChannelHandlerContext;
+import mcp.mobius.waila.api.IWailaDataProvider;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
+import mcp.mobius.waila.network.Message0x01TERequest;
+import mcp.mobius.waila.utils.AccessHelper;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class TERequestCompat {
 
@@ -73,8 +74,7 @@ public class TERequestCompat {
             tag.setInteger("WailaY", msg.posY);
             tag.setInteger("WailaZ", msg.posZ);
             tag.setString("WailaID", (String) ((HashMap) classToNameMap.get(null)).get(entity.getClass()));
-        }
-        catch (Throwable e) {
+        } catch (Throwable e) {
             WailaExceptionHandler.handleErr(e, entity.getClass().toString(), null);
         }
     }

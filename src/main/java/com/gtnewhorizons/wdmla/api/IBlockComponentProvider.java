@@ -1,4 +1,4 @@
 package com.gtnewhorizons.wdmla.api;
 
-public interface IBlockComponentProvider extends IComponentProvider<BlockAccessor>{
+public interface IBlockComponentProvider extends IComponentProvider<BlockAccessor> {
 }

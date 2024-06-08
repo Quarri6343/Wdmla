@@ -4,10 +4,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameData;
 
 public class ModIdentification {
@@ -50,5 +52,17 @@ public class ModIdentification {
         } catch (NullPointerException e) {
             return "";
         }
+    }
+
+    public static String nameFromEntity(Entity entity) {
+        String modName;
+        try {
+            EntityRegistry.EntityRegistration er = EntityRegistry.instance().lookupModSpawn(entity.getClass(), true);
+            ModContainer modC = er.getContainer();
+            modName = modC.getName();
+        } catch (NullPointerException e) {
+            modName = "Minecraft";
+        }
+        return modName;
     }
 }

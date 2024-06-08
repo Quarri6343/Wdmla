@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,14 +16,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.BlockHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ColorHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.StringHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
@@ -41,8 +43,6 @@ import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.DisplayUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class HarvestToolProvider implements IBlockComponentProvider {
 
@@ -63,12 +63,13 @@ public class HarvestToolProvider implements IBlockComponentProvider {
             return;
         }
 
-        if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())){
+        if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())) {
             return;
         }
 
         Block effectiveBlock = BlockHelper.getEffectiveBlock(accessor.getBlock(), accessor.getItemForm());
-        int effectiveMeta = BlockHelper.getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
+        int effectiveMeta = BlockHelper
+                .getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
 
         List<IComponent> harvestableDisplay = getHarvestability(
                 accessor.getPlayer(),
@@ -125,9 +126,19 @@ public class HarvestToolProvider implements IBlockComponentProvider {
 
         ITooltip effectiveToolIconComponent = getEffectiveToolIcon(harvestLevel, effectiveTool);
 
-        boolean isCurrentlyHarvestable = isCurrentlyHarvestable(player, block, meta, itemHeld, effectiveTool, harvestLevel);
+        boolean isCurrentlyHarvestable = isCurrentlyHarvestable(
+                player,
+                block,
+                meta,
+                itemHeld,
+                effectiveTool,
+                harvestLevel);
 
-        ITooltip harvestabilityIcon = assembleHarvestabilityIcon(effectiveToolIconComponent, isCurrentlyHarvestable, shearability, silkTouchability);
+        ITooltip harvestabilityIcon = assembleHarvestabilityIcon(
+                effectiveToolIconComponent,
+                isCurrentlyHarvestable,
+                shearability,
+                silkTouchability);
         IComponent harvestLevelText = assembleHarvestLevelText(harvestLevel, isCurrentlyHarvestable);
         return Arrays.asList(harvestabilityIcon, harvestLevelText);
     }
@@ -138,11 +149,10 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         return harvestLevel;
     }
 
-    private static boolean canInstaBreak(int harvestLevel, String effectiveTool, Block block, boolean canShear, boolean canSilkTouch) {
+    private static boolean canInstaBreak(int harvestLevel, String effectiveTool, Block block, boolean canShear,
+            boolean canSilkTouch) {
         boolean blockHasEffectiveTools = harvestLevel >= 0 && effectiveTool != null;
-        return block.getMaterial().isToolNotRequired() && !blockHasEffectiveTools
-                && !canShear
-                && !canSilkTouch;
+        return block.getMaterial().isToolNotRequired() && !blockHasEffectiveTools && !canShear && !canSilkTouch;
     }
 
     private static boolean isHoldingTinkersTool(ItemStack itemHeld) {
@@ -153,13 +163,16 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         return itemHeld != null && ProxyTinkersConstruct.canToolHarvestLevel(itemHeld, block, meta, harvestLevel);
     }
 
-    private static boolean isHeldToolCorrect(EntityPlayer player, Block block, int meta, ItemStack itemHeld, String effectiveTool, boolean isHoldingTinkersTool) {
+    private static boolean isHeldToolCorrect(EntityPlayer player, Block block, int meta, ItemStack itemHeld,
+            String effectiveTool, boolean isHoldingTinkersTool) {
         boolean canHarvest = false;
         if (itemHeld != null) {
             if (ProxyGregTech.isMachine(block)) {
                 // GT_MetaGenerated_Tool's getDigSpeed is broken
-                canHarvest = Objects.equals(effectiveTool, ProxyGregTech.TOOL_WRENCH) && ProxyGregTech.isWrench(itemHeld)
-                        || Objects.equals(effectiveTool, ProxyGregTech.TOOL_WIRE_CUTTER) && ProxyGregTech.isWireCutter(itemHeld);
+                canHarvest = Objects.equals(effectiveTool, ProxyGregTech.TOOL_WRENCH)
+                        && ProxyGregTech.isWrench(itemHeld)
+                        || Objects.equals(effectiveTool, ProxyGregTech.TOOL_WIRE_CUTTER)
+                                && ProxyGregTech.isWireCutter(itemHeld);
             } else if (ProxyGregTech.isGTTool(itemHeld)) {
                 // GT tool don't care net.minecraft.block.material.Material#isToolNotRequired
                 canHarvest = itemHeld.func_150998_b(block);
@@ -175,7 +188,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         ITooltip effectiveToolIconComponent = null;
         if (harvestLevel != -1 && effectiveTool != null) {
             ItemStack effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel);
-            //remove durability bar from tool icon
+            // remove durability bar from tool icon
             effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).style(new ItemStyle().drawOverlay(false))
                     .size(new Size(10, 10));
         }
@@ -183,16 +196,23 @@ public class HarvestToolProvider implements IBlockComponentProvider {
     }
 
     private static boolean isCurrentlyHarvestable(EntityPlayer player, Block block, int meta, ItemStack itemHeld,
-                                                  String effectiveTool, int harvestLevel) {
+            String effectiveTool, int harvestLevel) {
         boolean isHoldingTinkersTool = isHoldingTinkersTool(itemHeld);
-        boolean isHeldToolCorrect = isHeldToolCorrect(player, block, meta, itemHeld, effectiveTool, isHoldingTinkersTool);
+        boolean isHeldToolCorrect = isHeldToolCorrect(
+                player,
+                block,
+                meta,
+                itemHeld,
+                effectiveTool,
+                isHoldingTinkersTool);
         boolean isAboveMinHarvestLevel = isAboveMinHarvestLevel(itemHeld, block, meta, harvestLevel);
         return (isHeldToolCorrect && isAboveMinHarvestLevel)
                 || (!ProxyGregTech.isMachine(block) && !isHoldingTinkersTool
-                && ForgeHooks.canHarvestBlock(block, player, meta));
+                        && ForgeHooks.canHarvestBlock(block, player, meta));
     }
 
-    private static @NotNull ITooltip assembleHarvestabilityIcon(ITooltip effectiveToolIconComponent, boolean isCurrentlyHarvestable, String shearability, String silkTouchability) {
+    private static @NotNull ITooltip assembleHarvestabilityIcon(ITooltip effectiveToolIconComponent,
+            boolean isCurrentlyHarvestable, String shearability, String silkTouchability) {
         ITooltip harvestabilityComponent = new HPanelComponent().tag(Identifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
         String currentlyHarvestableIcon = ColorHelper.getBooleanColor(isCurrentlyHarvestable)

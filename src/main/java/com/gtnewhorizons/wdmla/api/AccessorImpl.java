@@ -4,9 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Optional;
 
 public abstract class AccessorImpl implements Accessor {
 
@@ -18,7 +15,8 @@ public abstract class AccessorImpl implements Accessor {
     protected boolean verify;
     private final NBTTagCompound serverData;
 
-    public AccessorImpl(World world, EntityPlayer player, MovingObjectPosition hit, boolean serverConnected, boolean showDetails, NBTTagCompound serverData) {
+    public AccessorImpl(World world, EntityPlayer player, MovingObjectPosition hit, boolean serverConnected,
+            boolean showDetails, NBTTagCompound serverData) {
         this.world = world;
         this.player = player;
         this.hit = hit;
@@ -26,7 +24,6 @@ public abstract class AccessorImpl implements Accessor {
         this.serverConnected = serverConnected;
         this.serverData = serverData == null ? new NBTTagCompound() : (NBTTagCompound) serverData.copy();
     }
-
 
     @Override
     public World getWorld() {

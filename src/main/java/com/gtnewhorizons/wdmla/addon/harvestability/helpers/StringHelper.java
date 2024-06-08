@@ -2,12 +2,12 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.api.Mods;
 
 public class StringHelper {
 

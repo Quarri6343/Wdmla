@@ -1,13 +1,14 @@
 package com.gtnewhorizons.wdmla.api;
 
+import java.util.function.Supplier;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.ApiStatus;
 
-import java.util.function.Supplier;
+import org.jetbrains.annotations.ApiStatus;
 
 public interface EntityAccessor extends Accessor {
 
@@ -20,6 +21,7 @@ public interface EntityAccessor extends Accessor {
 
     @ApiStatus.NonExtendable
     interface Builder {
+
         Builder level(World level);
 
         Builder player(EntityPlayer player);

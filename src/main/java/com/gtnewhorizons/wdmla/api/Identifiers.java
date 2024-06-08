@@ -10,6 +10,7 @@ public final class Identifiers {
 
     public static final ResourceLocation ITEM_ICON = MC("item_icon");
     public static final ResourceLocation ITEM_NAME = MC("item_name");
+    public static final ResourceLocation ENTITY_NAME = MC("entity_name");
     public static final ResourceLocation MOD_NAME = MC("mod_name");
     public static final ResourceLocation HARVESTABILITY_ICON = WDMla("harvestability_icon");
     public static final ResourceLocation HARVESTABILITY_TEXT = WDMla("harvestability_text");

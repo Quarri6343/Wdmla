@@ -1,19 +1,19 @@
 package com.gtnewhorizons.wdmla.api;
 
+import java.util.function.Supplier;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import java.util.function.Supplier;
-
 public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
 
     private final Supplier<Entity> entity;
 
     public EntityAccessorImpl(Builder builder) {
-        super(builder.level, builder.player, builder.hit, builder.showDetails, builder.connected, builder.serverData);
+        super(builder.level, builder.player, builder.hit, builder.connected, builder.showDetails, builder.serverData);
         entity = builder.entity;
     }
 

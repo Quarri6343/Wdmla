@@ -1,12 +1,12 @@
 package mcp.mobius.waila.client;
 
-import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 
-import cpw.mods.fml.common.Loader;
+import com.gtnewhorizons.wdmla.api.Mods;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
@@ -39,10 +39,6 @@ public class ProxyClient extends ProxyServer {
         } else {
             MinecraftForge.EVENT_BUS.register(new VanillaTooltipHandler());
         }
-
-        ModuleRegistrar.instance().registerHeadProvider(new HUDHandlerEntities(), Entity.class);
-        ModuleRegistrar.instance().registerBodyProvider(new HUDHandlerEntities(), Entity.class);
-        ModuleRegistrar.instance().registerTailProvider(new HUDHandlerEntities(), Entity.class);
 
         ModuleRegistrar.instance().addConfig("General", "general.showents");
         ModuleRegistrar.instance().addConfig("General", "general.showhp");

@@ -2,8 +2,9 @@ package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
 import java.lang.reflect.Method;
 
-import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.block.Block;
+
+import com.gtnewhorizons.wdmla.api.Mods;
 
 public class ProxyCreativeBlocks {
 

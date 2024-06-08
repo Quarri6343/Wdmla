@@ -1,14 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
-import com.gtnewhorizons.wdmla.api.Mods;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.ForgeHooks;
+import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,7 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.ForgeHooks;
+
+import com.gtnewhorizons.wdmla.api.Mods;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ProxyTinkersConstruct {
 
@@ -38,8 +39,7 @@ public class ProxyTinkersConstruct {
             Class<?> HarvestLevels = Class.forName("tconstruct.library.util.HarvestLevels");
             getHarvestLevelName = HarvestLevels.getDeclaredMethod("getHarvestLevelName", int.class);
             GameRegistry.findItem("TConstruct", "pickaxe").getSubItems(null, null, creativePickaxes);
-        } catch (Exception ignore) {
-        }
+        } catch (Exception ignore) {}
     }
 
     public static boolean hasToolTag(ItemStack itemStack) {
@@ -94,7 +94,7 @@ public class ProxyTinkersConstruct {
         }
         return ForgeHooks.isToolEffective(tool, block, metadata)
                 || (toolHasAnyToolClass(tool) ? isToolOfClass(tool, effectiveToolClass)
-                : tool.getItem().getDigSpeed(tool, block, metadata) > 1.5f);
+                        : tool.getItem().getDigSpeed(tool, block, metadata) > 1.5f);
     }
 
     public static boolean canToolHarvestLevel(ItemStack tool, Block block, int metadata, int harvestLevel) {
@@ -102,8 +102,7 @@ public class ProxyTinkersConstruct {
 
         NBTTagCompound toolTag = getToolTag(tool);
         if (toolTag != null) {
-            int toolHarvestLevel = Math
-                    .max(getPrimaryHarvestLevel(toolTag), getSecondaryHarvestLevel(toolTag));
+            int toolHarvestLevel = Math.max(getPrimaryHarvestLevel(toolTag), getSecondaryHarvestLevel(toolTag));
             canTinkersToolHarvestBlock = toolHarvestLevel >= harvestLevel;
         }
 
@@ -113,9 +112,8 @@ public class ProxyTinkersConstruct {
     public static String getTicHarvestLevelName(int num) {
         String name = "Err";
         try {
-            name =  (String) getHarvestLevelName.invoke(null, num);
-        } catch (IllegalAccessException | InvocationTargetException ignore) {
-        }
+            name = (String) getHarvestLevelName.invoke(null, num);
+        } catch (IllegalAccessException | InvocationTargetException ignore) {}
 
         return name;
     }

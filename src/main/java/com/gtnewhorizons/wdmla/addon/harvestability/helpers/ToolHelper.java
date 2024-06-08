@@ -1,16 +1,19 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.Mods;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
 import org.jetbrains.annotations.NotNull;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.api.Mods;
+
 public class ToolHelper {
+
     public static final String TOOL_PICKAXE = "pickaxe";
     public static final String TOOL_SHOVEL = "shovel";
     public static final String TOOL_AXE = "axe";
@@ -42,8 +45,7 @@ public class ToolHelper {
     public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
         if (Mods.IGUANATWEAKS.isLoaded()) {
             return ProxyIguanaTweaks.getEffectivePickaxeIcon(harvestLevel);
-        }
-        else if(Mods.TCONSTUCT.isLoaded()) {
+        } else if (Mods.TCONSTUCT.isLoaded()) {
             return ProxyTinkersConstruct.getEffectivePickaxeIcon(harvestLevel);
         }
         return getVanillaEffectivePickaxeIcon(harvestLevel);

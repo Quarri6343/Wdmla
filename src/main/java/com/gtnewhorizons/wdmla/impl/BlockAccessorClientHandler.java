@@ -1,7 +1,5 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import static mcp.mobius.waila.api.SpecialChars.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
@@ -80,7 +78,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
         // step 3: gather raw tooltip lines from the old Waila api (this may include Waila regex which represents
         // ItemStack or Progressbar)
-        List<String> legacyTooltips = dataProviderCompat.getLegacyTooltips(itemForm, legacyAccessor);
+        List<String> legacyTooltips = dataProviderCompat.getLegacyBlockTooltips(itemForm, legacyAccessor);
 
         // step 4: Convert legacy tooltip String to actual various WDMla component
         ITooltip convertedTooltips = tooltipCompat.computeRenderables(legacyTooltips);
