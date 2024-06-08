@@ -43,7 +43,7 @@ public class CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {}
 
     public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
-        if (WDMla.testMode == TestMode.WDMla) {
+        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
             new TestPlugin().register(commonRegistration);
         }
     }
@@ -52,7 +52,7 @@ public class CommonProxy {
         new CorePlugin().registerClient(clientRegistration);
         new HarvestabilityPlugin().registerClient(clientRegistration);
 
-        if (WDMla.testMode == TestMode.WDMla) {
+        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
             new TestPlugin().registerClient(clientRegistration);
         }
     }

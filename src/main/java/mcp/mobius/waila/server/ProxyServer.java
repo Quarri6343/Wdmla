@@ -41,7 +41,7 @@ public class ProxyServer {
 
     public void registerLegacyMods() {
 
-        if (WDMla.testMode == TestMode.Waila) {
+        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.Waila) {
             LegacyTTRenderTest.register();
         }
 

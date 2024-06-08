@@ -15,6 +15,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Tags;
+import net.minecraft.launchwrapper.Launch;
 
 @Mod(
         modid = WDMla.MODID,
@@ -31,7 +32,7 @@ public class WDMla {
     public static CommonProxy proxy;
 
     /**
-     * Edit this on dev env to enable test mode
+     * Edit this on dev env to switch test mode
      */
     public static TestMode testMode = TestMode.WDMla;
 
@@ -74,5 +75,9 @@ public class WDMla {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             WDMlaClientRegistration.instance().loadComplete();
         }
+    }
+
+    public static boolean isDevEnv() {
+        return (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
     }
 }
