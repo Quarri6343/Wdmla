@@ -22,5 +22,6 @@ public class CorePlugin implements IWDMlaPlugin {
 
         registration.registerBlockComponent(new DefaultBlockInfoProvider(), Block.class);
         registration.registerEntityComponent(new DefaultEntityInfoProvider(), Entity.class);
+        registration.registerEntityComponent(new EntityHealthProvider(), Entity.class);
     }
 }

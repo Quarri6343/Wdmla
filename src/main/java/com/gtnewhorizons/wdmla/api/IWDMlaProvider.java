@@ -20,6 +20,6 @@ public interface IWDMlaProvider {
      * on -8000. You can add your own default component between them.
      */
     default int getDefaultPriority() {
-        return 0;
+        return TooltipPosition.BODY;
     }
 }

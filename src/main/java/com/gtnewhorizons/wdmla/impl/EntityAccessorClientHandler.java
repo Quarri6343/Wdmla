@@ -54,7 +54,7 @@ public class EntityAccessorClientHandler implements AccessorClientHandler<Entity
             provider.appendTooltip(middleTooltip, accessor);
         }
 
-        // step 2: setup legacy DataAccessor with legacy Wailastack
+        // step 2: setup legacy DataAccessor with legacy WailaEntity
         DataAccessorCommon legacyAccessor = DataAccessorCommon.instance;
         legacyAccessor.set(accessor.getWorld(), accessor.getPlayer(), accessor.getHitResult());
         Entity entity = RayTracingCompat.INSTANCE.getWailaEntity(RayTracing.instance().getTarget());

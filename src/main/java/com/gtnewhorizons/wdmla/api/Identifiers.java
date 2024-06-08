@@ -2,8 +2,6 @@ package com.gtnewhorizons.wdmla.api;
 
 import net.minecraft.util.ResourceLocation;
 
-import com.gtnewhorizons.wdmla.WDMla;
-
 public final class Identifiers {
 
     public static final ResourceLocation ROOT = MC("root");
@@ -22,6 +20,7 @@ public final class Identifiers {
 
     public static final ResourceLocation HARVESTABILITY = WDMla("harvestability");
     public static final ResourceLocation LEGACY_HARVESTABILITY = WDMla("legacy_harvestability");
+    public static final ResourceLocation ENTITY_HEALTH = MC("entity_health");
 
     public static ResourceLocation WDMla(String path) {
         return new ResourceLocation("Wdmla", path);
