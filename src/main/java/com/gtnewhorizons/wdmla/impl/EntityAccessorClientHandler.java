@@ -1,5 +1,11 @@
 package com.gtnewhorizons.wdmla.impl;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.function.Function;
+
+import net.minecraft.entity.Entity;
+
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
@@ -10,14 +16,10 @@ import com.gtnewhorizons.wdmla.overlay.RayTracing;
 import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
+
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.network.Message0x03EntRequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
-import net.minecraft.entity.Entity;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.function.Function;
 
 public class EntityAccessorClientHandler implements AccessorClientHandler<EntityAccessor> {
 

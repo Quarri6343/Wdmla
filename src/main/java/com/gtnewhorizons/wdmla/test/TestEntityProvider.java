@@ -1,17 +1,19 @@
 package com.gtnewhorizons.wdmla.test;
 
+import java.util.Random;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.Random;
 
 public class TestEntityProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
+
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         int random = accessor.getServerData().getInteger("random");

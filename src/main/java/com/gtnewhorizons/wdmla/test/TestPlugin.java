@@ -1,11 +1,11 @@
 package com.gtnewhorizons.wdmla.test;
 
 import net.minecraft.block.BlockFurnace;
+import net.minecraft.entity.passive.EntityPig;
 
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import net.minecraft.entity.passive.EntityPig;
 
 public class TestPlugin implements IWDMlaPlugin {
 

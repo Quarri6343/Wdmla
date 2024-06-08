@@ -1,7 +1,8 @@
 package mcp.mobius.waila.network;
 
-import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

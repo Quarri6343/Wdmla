@@ -1,12 +1,7 @@
 package mcp.mobius.waila.api.impl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.*;
 
-import au.com.bytecode.opencsv.CSVReader;
 import mcp.mobius.waila.api.*;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
@@ -36,8 +31,6 @@ public class ModuleRegistrar implements IWailaRegistrar {
     public LinkedHashMap<String, ArrayList<IWailaFMPDecorator>> FMPClassDecorators = new LinkedHashMap<>();
 
     public LinkedHashMap<Class, HashSet<String>> syncedNBTKeys = new LinkedHashMap<>();
-
-    public LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> wikiDescriptions = new LinkedHashMap<>();
 
     public LinkedHashMap<String, String> IMCRequests = new LinkedHashMap<>();
 
@@ -374,56 +367,5 @@ public class ModuleRegistrar implements IWailaRegistrar {
     public boolean hasSyncedNBTKeys(Object target) {
         for (Class clazz : this.syncedNBTKeys.keySet()) if (clazz.isInstance(target)) return true;
         return false;
-    }
-
-    /* ----------------- */
-    public boolean hasDocTextModID(String modid) {
-        return this.wikiDescriptions.containsKey(modid);
-    }
-
-    public boolean hasDocTextItem(String modid, String item) {
-        if (this.hasDocTextModID(modid)) return this.wikiDescriptions.get(modid).containsKey(item);
-        return false;
-    }
-
-    public boolean hasDocTextMeta(String modid, String item, String meta) {
-        if (this.hasDocTextItem(modid, item)) return this.wikiDescriptions.get(modid).get(item).containsKey(meta);
-        return false;
-    }
-
-    public LinkedHashMap<String, String> getDocText(String modid, String name) {
-        return this.wikiDescriptions.get(modid).get(name);
-    }
-
-    public String getDocText(String modid, String name, String meta) {
-        return this.wikiDescriptions.get(modid).get(name).get(meta);
-    }
-
-    public boolean hasDocTextSpecificMeta(String modid, String name, String meta) {
-        for (String s : this.getDocText(modid, name).keySet()) if (s.equals(meta)) return true;
-        return false;
-    }
-
-    public String getDoxTextWildcardMatch(String modid, String name) {
-        Set<String> keys = this.wikiDescriptions.get(modid).keySet();
-        for (String s : keys) {
-            String regexed = s;
-            regexed = regexed.replace(".", "\\.");
-            regexed = regexed.replace("*", ".*");
-
-            if (name.matches(s)) return s;
-        }
-        return null;
-    }
-
-    private List<String[]> readFileAsString(String filePath) throws IOException {
-        InputStream in = getClass().getResourceAsStream(filePath);
-        BufferedReader input = new BufferedReader(new InputStreamReader(in));
-        CSVReader reader = new CSVReader(input);
-
-        List<String[]> myEntries = reader.readAll();
-        reader.close();
-
-        return myEntries;
     }
 }

@@ -8,8 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.config.Configuration;
 
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.input.Keyboard;
 
 import com.gtnewhorizons.wdmla.api.Accessor;
 import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
@@ -23,6 +25,8 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.client.KeyEvent;
+import mcp.mobius.waila.utils.Constants;
 
 public class WDMlaTickHandler {
 
@@ -39,6 +43,12 @@ public class WDMlaTickHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickClient(TickEvent.ClientTickEvent event) {
+        if (!Keyboard.isKeyDown(KeyEvent.key_show.getKeyCode())
+                && !ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)
+                && ConfigHandler.instance()
+                        .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, false)) {
+            ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, false);
+        }
 
         Minecraft mc = Minecraft.getMinecraft();
         World world = mc.theWorld;

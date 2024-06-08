@@ -2,6 +2,8 @@ package com.gtnewhorizons.wdmla;
 
 import java.util.HashSet;
 
+import net.minecraft.launchwrapper.Launch;
+
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
@@ -15,7 +17,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Tags;
-import net.minecraft.launchwrapper.Launch;
 
 @Mod(
         modid = WDMla.MODID,

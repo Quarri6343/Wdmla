@@ -1,22 +1,21 @@
 package com.gtnewhorizons.wdmla.api;
 
-import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
-import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import io.netty.channel.ChannelHandlerContext;
-import mcp.mobius.waila.network.Message0x03EntRequest;
-import net.minecraft.block.Block;
+import java.util.function.Supplier;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
-import java.util.function.Supplier;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+
+import cpw.mods.fml.common.network.NetworkRegistry;
+import io.netty.channel.ChannelHandlerContext;
+import mcp.mobius.waila.network.Message0x03EntRequest;
 
 public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
 

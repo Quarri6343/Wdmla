@@ -1,16 +1,7 @@
 package com.gtnewhorizons.wdmla.wailacompat;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import io.netty.channel.ChannelHandlerContext;
-import mcp.mobius.waila.api.IWailaEntityProvider;
-import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.network.Message0x01TERequest;
-import mcp.mobius.waila.network.Message0x03EntRequest;
-import mcp.mobius.waila.network.Message0x04EntNBTData;
-import mcp.mobius.waila.network.WailaPacketHandler;
-import mcp.mobius.waila.utils.AccessHelper;
-import mcp.mobius.waila.utils.NBTUtil;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +9,14 @@ import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
-import java.util.List;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import io.netty.channel.ChannelHandlerContext;
+import mcp.mobius.waila.api.IWailaEntityProvider;
+import mcp.mobius.waila.api.impl.ModuleRegistrar;
+import mcp.mobius.waila.network.Message0x03EntRequest;
+import mcp.mobius.waila.utils.AccessHelper;
+import mcp.mobius.waila.utils.NBTUtil;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class EntRequestCompat {
 

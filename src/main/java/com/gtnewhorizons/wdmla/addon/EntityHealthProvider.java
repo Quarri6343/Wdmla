@@ -1,16 +1,17 @@
 package com.gtnewhorizons.wdmla.addon;
 
+import static mcp.mobius.waila.api.SpecialChars.GRAY;
+import static mcp.mobius.waila.api.SpecialChars.WHITE;
+
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
+
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.HealthComponent;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
-
-import static mcp.mobius.waila.api.SpecialChars.GRAY;
-import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
 public class EntityHealthProvider implements IEntityComponentProvider {
 
