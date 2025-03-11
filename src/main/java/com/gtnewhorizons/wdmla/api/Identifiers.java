@@ -25,6 +25,12 @@ public final class Identifiers {
     public static final ResourceLocation LEGACY_HARVESTABILITY = WDMla("legacy_harvestability");
     public static final ResourceLocation ENTITY_HEALTH = MC("entity_health");
 
+    // config
+    public static final String CONFIG_GENERAL = "wdmla_general";
+
+    public static final String CONFIG_KEY_FORCELEGACY = "OldWailaMode";
+    public static final String CONFIG_COMMENT_FORCELEGACY = "Disable modern WDMla features. This will make the system ignore all settings below";
+
     public static ResourceLocation WDMla(String path) {
         return new ResourceLocation("wdmla", path);
     }

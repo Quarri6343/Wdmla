@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -58,7 +59,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
-        boolean forceLegacyMode = ConfigHandler.instance().getConfig("harvestability.forceLegacyMode", false);
+        boolean forceLegacyMode = WDMlaConfig.instance().forceLegacyMode.getBoolean();
         if (forceLegacyMode) {
             return;
         }

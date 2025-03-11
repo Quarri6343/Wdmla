@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla;
 import com.gtnewhorizons.wdmla.addon.CorePlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
@@ -15,10 +16,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 
+import java.io.File;
+
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-
+        File wdmlaConfigDir = new File(event.getModConfigurationDirectory().getPath(), "WDMla");
+        File generalConfig = new File(wdmlaConfigDir, "general.cfg");
+        new WDMlaConfig(generalConfig);
     }
 
     public void init(FMLInitializationEvent event) {

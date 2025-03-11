@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -44,7 +45,7 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
-        boolean forceLegacyMode = ConfigHandler.instance().getConfig("harvestability.forceLegacyMode", false);
+        boolean forceLegacyMode = WDMlaConfig.instance().forceLegacyMode.getBoolean();
         if (!forceLegacyMode) {
             return;
         }

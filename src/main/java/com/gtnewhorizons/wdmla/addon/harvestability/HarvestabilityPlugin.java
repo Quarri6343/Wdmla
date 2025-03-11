@@ -16,7 +16,6 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
     public static HashMap<String, Boolean> configOptions = new HashMap<String, Boolean>();
 
     static {
-        configOptions.put("harvestability.forceLegacyMode", false);
         configOptions.put("harvestability.harvestlevel", true);
         configOptions.put("harvestability.harvestlevelnum", false);
         configOptions.put("harvestability.effectivetool", true);
