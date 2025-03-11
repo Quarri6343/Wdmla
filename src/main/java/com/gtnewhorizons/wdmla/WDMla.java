@@ -23,10 +23,11 @@ import mcp.mobius.waila.Tags;
         name = "WDMla",
         version = Tags.GRADLETOKEN_VERSION,
         dependencies = "after:Waila",
-        acceptableRemoteVersions = "*")
+        acceptableRemoteVersions = "*",
+        guiFactory = "mcp.mobius.waila.gui.screens.GuiFactory")
 public class WDMla {
 
-    public static final String MODID = "Wdmla";
+    public static final String MODID = "wdmla";
     public static boolean FROZEN;
 
     @SidedProxy(clientSide = "com.gtnewhorizons.wdmla.ClientProxy", serverSide = "com.gtnewhorizons.wdmla.CommonProxy")

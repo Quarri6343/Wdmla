@@ -26,7 +26,7 @@ public final class Identifiers {
     public static final ResourceLocation ENTITY_HEALTH = MC("entity_health");
 
     public static ResourceLocation WDMla(String path) {
-        return new ResourceLocation("Wdmla", path);
+        return new ResourceLocation("wdmla", path);
     }
 
     private static ResourceLocation MC(String path) {
