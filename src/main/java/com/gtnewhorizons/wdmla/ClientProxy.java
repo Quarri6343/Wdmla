@@ -4,11 +4,15 @@ import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.Mods;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.overlay.WDMlaTickHandler;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mcp.mobius.waila.api.impl.ConfigHandler;
 
 public class ClientProxy extends CommonProxy {
 
@@ -16,6 +20,7 @@ public class ClientProxy extends CommonProxy {
     public void init(FMLInitializationEvent event) {
         super.init(event);
         FMLCommonHandler.instance().bus().register(new WDMlaTickHandler());
+        FMLCommonHandler.instance().bus().register(this);
     }
 
     @Override
@@ -29,6 +34,15 @@ public class ClientProxy extends CommonProxy {
         }
         if (Mods.GREGTECH.isLoaded()) {
             ProxyGregTech.init();
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.modID.equals(WDMla.MODID)) {
+            WDMlaConfig.instance().save();
+            ConfigHandler.instance().config.save();
         }
     }
 }

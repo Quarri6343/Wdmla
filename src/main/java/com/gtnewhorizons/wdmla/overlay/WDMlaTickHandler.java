@@ -123,21 +123,7 @@ public class WDMlaTickHandler {
             return null;
         }
 
-        if (!WDMlaClientRegistration.instance().isShowDetailsPressed()) {
-            VPanelComponent dummyTooltip = new VPanelComponent();
-            handler.gatherComponents(accessor, $ -> {
-                if ($ == null || Math.abs(WDMlaCommonRegistration.instance().priorities.byValue($)) > 5000) {
-                    return root;
-                } else {
-                    return dummyTooltip;
-                }
-            });
-            // if (!dummyTooltip.isEmpty()) {
-            // root.sneakyDetails = true;
-            // }
-        } else {
-            handler.gatherComponents(accessor, $ -> root);
-        }
+        handler.gatherComponents(accessor, $ -> root);
 
         return root;
     }

@@ -1,6 +1,7 @@
 package mcp.mobius.waila.gui.screens.config;
 
 import com.google.common.collect.Lists;
+import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import cpw.mods.fml.client.config.GuiConfig;
@@ -21,7 +22,7 @@ public class ModsMenuScreenConfig extends GuiConfig {
                         new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_GENERAL)),
                         new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
                         new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES))),
-                "wdmla",
+                WDMla.MODID,
                 "config",
                 false,
                 false,
