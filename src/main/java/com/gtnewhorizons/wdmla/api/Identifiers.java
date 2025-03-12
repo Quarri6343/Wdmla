@@ -28,7 +28,7 @@ public final class Identifiers {
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
 
-    public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(CONFIG_GENERAL, "OldWailaMode", false, "Disable modern WDMla features. This will make the system ignore all settings below");
+    public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(CONFIG_GENERAL, "LegacyMode", false, "Disables modern WDMla features. This will make the system ignore all settings below");
 
     public static ResourceLocation WDMla(String path) {
         return new ResourceLocation("wdmla", path);

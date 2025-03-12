@@ -27,7 +27,6 @@ public final class Constants {
     public static String CFG_WAILA_NHEARTS = "waila.cfg.heartsperline";
     public static String CFG_WAILA_MAXHP = "waila.cfg.maxhpbeforetext";
     public static String CFG_WAILA_NEWFILTERS = "waila.cfg.newfilters";
-    public static String CFG_WAILA_FORCE_LEGACY_MODE = "waila.cfg.forcelegacymode";
 
     public static String CFG_WAILA_ALPHA = "waila.cfg.alpha";
     public static String CFG_WAILA_BGCOLOR = "waila.cfg.bgcolor";

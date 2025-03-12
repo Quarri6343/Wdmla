@@ -71,7 +71,7 @@ public class BlockHelper {
             boolean isShearable = isHoldingShears && ((IShearable) block)
                     .isShearable(itemHeld, player.worldObj, position.blockX, position.blockY, position.blockZ);
             return ColorHelper.getBooleanColor(isShearable, !isShearable && isHoldingShears)
-                    + HarvestabilityIdentifiers.SHEARABILITY_STRING;
+                    + config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_STRING);
         }
         return "";
     }
@@ -89,7 +89,7 @@ public class BlockHelper {
                     || block.quantityDropped(new Random()) <= 0;
             if (silkTouchMatters) {
                 boolean hasSilkTouch = EnchantmentHelper.getSilkTouchModifier(player);
-                return ColorHelper.getBooleanColor(hasSilkTouch) + HarvestabilityIdentifiers.SILK_TOUCHABILITY_STRING;
+                return ColorHelper.getBooleanColor(hasSilkTouch) + config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
             }
         }
         return "";

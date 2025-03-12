@@ -8,7 +8,6 @@ import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 import java.io.File;
 

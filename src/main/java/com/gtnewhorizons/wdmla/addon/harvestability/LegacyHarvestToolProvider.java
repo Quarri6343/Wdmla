@@ -69,11 +69,12 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     private void updateTooltip(List<String> stringParts, ITooltip tooltip, IPluginConfig config) {
         boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
+        String separator = config.getString(HarvestabilityIdentifiers.CONFIG_MINIMAL_SEPARATOR_STRING);
         if (!stringParts.isEmpty()) {
             if (minimalLayout) tooltip.text(
                     StringHelper.concatenateStringList(
                             stringParts,
-                            EnumChatFormatting.RESET + HarvestabilityIdentifiers.MINIMAL_SEPARATOR_STRING));
+                            EnumChatFormatting.RESET + separator));
             else for (String stringPart : stringParts) {
                 tooltip.text(stringPart);
             }
@@ -109,7 +110,7 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                             position.blockY,
                             position.blockZ)) {
                 String unbreakableString = ColorHelper.getBooleanColor(false)
-                        + HarvestabilityIdentifiers.NOT_CURRENTLY_HARVESTABLE_STRING
+                        + config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING)
                         + (!minimalLayout
                                 ? EnumChatFormatting.RESET
                                         + StatCollector.translateToLocal("wailaharvestability.harvestable")
@@ -172,8 +173,8 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
             String currentlyHarvestable = showCurrentlyHarvestable
                     ? ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                            + (isCurrentlyHarvestable ? HarvestabilityIdentifiers.CURRENTLY_HARVESTABLE_STRING
-                                    : HarvestabilityIdentifiers.NOT_CURRENTLY_HARVESTABLE_STRING)
+                            + (isCurrentlyHarvestable ? config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING)
+                                    : config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING))
                             + (!minimalLayout
                                     ? EnumChatFormatting.RESET
                                             + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")
