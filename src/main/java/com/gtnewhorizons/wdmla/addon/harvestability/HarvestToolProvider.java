@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -42,8 +41,6 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.ItemStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.DisplayUtil;
 
 public class HarvestToolProvider implements IBlockComponentProvider {
@@ -78,7 +75,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
                 effectiveBlock,
                 effectiveMeta,
                 accessor.getHitResult(),
-                ConfigHandler.instance());
+                config);
 
         updateTooltip(tooltip, accessor, harvestableDisplay);
     }
@@ -102,7 +99,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
      *         element2: harvestability String if the harvest level is greater than 0
      */
     public List<IComponent> getHarvestability(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
-            IWailaConfigHandler config) {
+            IPluginConfig config) {
         if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
                 .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
             return Arrays.asList(new TextComponent(ColorHelper.getBooleanColor(false) + HarvestabilityIdentifiers.X));

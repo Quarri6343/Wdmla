@@ -5,25 +5,6 @@ import com.gtnewhorizons.wdmla.api.IPluginConfig;
 
 public class HarvestabilityConfigProvider implements IConfigProvider {
 
-//    static {
-//        configOptions.put("harvestability.harvestlevel", true);
-//        configOptions.put("harvestability.harvestlevelnum", false);
-//        configOptions.put("harvestability.effectivetool", true);
-//        configOptions.put("harvestability.currentlyharvestable", true);
-//        configOptions.put("harvestability.harvestlevel.sneakingonly", false);
-//        configOptions.put("harvestability.harvestlevelnum.sneakingonly", false);
-//        configOptions.put("harvestability.effectivetool.sneakingonly", false);
-//        configOptions.put("harvestability.currentlyharvestable.sneakingonly", false);
-//        configOptions.put("harvestability.oresonly", false);
-//        configOptions.put("harvestability.minimal", false);
-//        configOptions.put("harvestability.unharvestableonly", false);
-//        configOptions.put("harvestability.toolrequiredonly", true);
-//        configOptions.put("harvestability.shearability", true);
-//        configOptions.put("harvestability.shearability.sneakingonly", false);
-//        configOptions.put("harvestability.silktouchability", true);
-//        configOptions.put("harvestability.silktouchability.sneakingonly", false);
-//    }
-
     @Override
     public String categoryName() {
         return HarvestabilityIdentifiers.CONFIG_CATEGORY;
@@ -31,7 +12,22 @@ public class HarvestabilityConfigProvider implements IConfigProvider {
 
     @Override
     public void loadConfig(IPluginConfig config) {
-        config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY).setComment("Waila Harvestability");
+        config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY).setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_COMMENT);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_SNEAKING_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM_SNEAKING_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL_SNEAKING_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE_SNEAKING_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_ORES_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_UNHARVESTABLE_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_TOOL_REQUIRED_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_SNEAKING_ONLY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_SNEAKING_ONLY);
     }
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,10 +59,10 @@ public class BlockHelper {
     }
 
     public static String getShearabilityString(EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IWailaConfigHandler config) {
+            MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
-        boolean showShearability = config.getConfig("harvestability.shearability")
-                && (!config.getConfig("harvestability.shearability.sneakingonly") || isSneaking);
+        boolean showShearability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY)
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_SNEAKING_ONLY) || isSneaking);
 
         if (showShearability && (block instanceof IShearable || block == Blocks.deadbush
                 || (block == Blocks.double_plant && block.getItemDropped(meta, new Random(), 0) == null))) {
@@ -76,10 +77,10 @@ public class BlockHelper {
     }
 
     public static String getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IWailaConfigHandler config) {
+            MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
-        boolean showSilkTouchability = config.getConfig("harvestability.silktouchability")
-                && (!config.getConfig("harvestability.silktouchability.sneakingonly") || isSneaking);
+        boolean showSilkTouchability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY)
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_SNEAKING_ONLY) || isSneaking);
 
         if (showSilkTouchability && block
                 .canSilkHarvest(player.worldObj, player, position.blockX, position.blockY, position.blockZ, meta)) {

@@ -3,8 +3,8 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.ConfigEntry;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,9 +27,6 @@ import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.impl.ConfigHandler;
 
 // TODO: remove once the config migration is complete
 public class LegacyHarvestToolProvider implements IBlockComponentProvider {
@@ -66,12 +63,12 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                 effectiveBlock,
                 effectiveMeta,
                 accessor.getHitResult(),
-                ConfigHandler.instance());
-        updateTooltip(stringParts, tooltip);
+                config);
+        updateTooltip(stringParts, tooltip, config);
     }
 
-    private void updateTooltip(List<String> stringParts, ITooltip tooltip) {
-        boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
+    private void updateTooltip(List<String> stringParts, ITooltip tooltip, IPluginConfig config) {
+        boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
         if (!stringParts.isEmpty()) {
             if (minimalLayout) tooltip.text(
                     StringHelper.concatenateStringList(
@@ -84,20 +81,20 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     public void getLegacyHarvestability(List<String> stringList, EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IWailaConfigHandler config) {
-        boolean minimalLayout = ConfigHandler.instance().getConfig("harvestability.minimal", false);
+            MovingObjectPosition position, IPluginConfig config) {
+        boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
         boolean isSneaking = player.isSneaking();
-        boolean showHarvestLevel = config.getConfig("harvestability.harvestlevel")
-                && (!config.getConfig("harvestability.harvestlevel.sneakingonly") || isSneaking);
-        boolean showHarvestLevelNum = config.getConfig("harvestability.harvestlevelnum")
-                && (!config.getConfig("harvestability.harvestlevelnum.sneakingonly") || isSneaking);
-        boolean showEffectiveTool = config.getConfig("harvestability.effectivetool")
-                && (!config.getConfig("harvestability.effectivetool.sneakingonly") || isSneaking);
-        boolean showCurrentlyHarvestable = config.getConfig("harvestability.currentlyharvestable")
-                && (!config.getConfig("harvestability.currentlyharvestable.sneakingonly") || isSneaking);
-        boolean hideWhileHarvestable = config.getConfig("harvestability.unharvestableonly", false);
-        boolean showOresOnly = config.getConfig("harvestability.oresonly", false);
-        boolean toolRequiredOnly = config.getConfig("harvestability.toolrequiredonly");
+        boolean showHarvestLevel = config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL)
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_SNEAKING_ONLY) || isSneaking);
+        boolean showHarvestLevelNum = config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM)
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM_SNEAKING_ONLY) || isSneaking);
+        boolean showEffectiveTool = config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL)
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL_SNEAKING_ONLY) || isSneaking);
+        boolean showCurrentlyHarvestable = config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE)
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE_SNEAKING_ONLY) || isSneaking);
+        boolean hideWhileHarvestable = config.getBoolean(HarvestabilityIdentifiers.CONFIG_UNHARVESTABLE_ONLY);
+        boolean showOresOnly = config.getBoolean(HarvestabilityIdentifiers.CONFIG_ORES_ONLY);
+        boolean toolRequiredOnly = config.getBoolean(HarvestabilityIdentifiers.CONFIG_TOOL_REQUIRED_ONLY);
 
         if (showHarvestLevel || showEffectiveTool || showCurrentlyHarvestable) {
             if (showOresOnly && !OreHelper.isBlockAnOre(block, meta)) {
