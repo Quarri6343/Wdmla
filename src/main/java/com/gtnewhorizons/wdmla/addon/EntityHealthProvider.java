@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon;
 import static mcp.mobius.waila.api.SpecialChars.GRAY;
 import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +29,7 @@ public class EntityHealthProvider implements IEntityComponentProvider {
     }
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
+    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
         if (!(accessor.getEntity() instanceof EntityLivingBase livingEntity)) {
             return;
         }

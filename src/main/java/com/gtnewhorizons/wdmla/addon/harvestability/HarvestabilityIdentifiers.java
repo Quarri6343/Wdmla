@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
+import com.gtnewhorizons.wdmla.api.ConfigEntry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -20,4 +21,7 @@ public class HarvestabilityIdentifiers {
     public static final String X = "✕";
     public static final ItemStack SHEARABILITY_ICON = new ItemStack(Items.shears);
     public static final ItemStack SILKTOUCH_ICON = new ItemStack(Blocks.grass);
+
+    public static final String CONFIG_CATEGORY = "harvestability";
+    public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL = new ConfigEntry<>(CONFIG_CATEGORY, "HarvestLevel", true, "");
 }

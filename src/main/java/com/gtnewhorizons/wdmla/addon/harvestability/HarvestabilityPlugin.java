@@ -15,6 +15,7 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
 
     public static HashMap<String, Boolean> configOptions = new HashMap<String, Boolean>();
 
+    //pending removal
     static {
         configOptions.put("harvestability.harvestlevel", true);
         configOptions.put("harvestability.harvestlevelnum", false);
@@ -36,6 +37,7 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
+        //pending removal
         for (Map.Entry<String, Boolean> entry : configOptions.entrySet()) {
             // hacky way to set default values to anything but true
             ConfigHandler.instance().getConfig(entry.getKey(), entry.getValue());
@@ -43,5 +45,6 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
         }
         registration.registerBlockComponent(new HarvestToolProvider(), Block.class);
         registration.registerBlockComponent(new LegacyHarvestToolProvider(), Block.class);
+        registration.registerConfigComponent(new HarvestabilityConfigProvider());
     }
 }

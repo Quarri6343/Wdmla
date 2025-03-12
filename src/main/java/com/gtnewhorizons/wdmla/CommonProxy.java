@@ -20,11 +20,7 @@ import java.io.File;
 
 public class CommonProxy {
 
-    public void preInit(FMLPreInitializationEvent event) {
-        File wdmlaConfigDir = new File(event.getModConfigurationDirectory().getPath(), "WDMla");
-        File generalConfig = new File(wdmlaConfigDir, "general.cfg");
-        new WDMlaConfig(generalConfig);
-    }
+    public void preInit(FMLPreInitializationEvent event) {}
 
     public void init(FMLInitializationEvent event) {
         MissingHarvestInfo.init();
@@ -33,13 +29,16 @@ public class CommonProxy {
     public void postInit(FMLPostInitializationEvent event) {
         WDMlaCommonRegistration common = WDMlaCommonRegistration.instance();
         common.startSession();
-        // TODO: grab plugins via IMC
+        // TODO: grab external plugins via IMC
         registerBuiltInServerPlugins(common);
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             WDMlaClientRegistration client = WDMlaClientRegistration.instance();
             client.startSession();
             registerBuiltInClientPlugins(client);
             client.endSession();
+
+            WDMlaConfig.instance().reloadConfig();
+            WDMlaConfig.instance().save();
         }
         common.endSession();
         WDMla.loadComplete();

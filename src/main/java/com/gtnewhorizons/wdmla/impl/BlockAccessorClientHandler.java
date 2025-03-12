@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -65,11 +66,10 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
     @Override
     public void gatherComponents(BlockAccessor accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider) {
         // step 1: gather WDMla tooltip components including icon, block name and mod name
-        // TODO: config filter
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
                 .getBlockProviders(accessor.getBlock(), iComponentProvider -> true)) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
-            provider.appendTooltip(middleTooltip, accessor);
+            provider.appendTooltip(middleTooltip, accessor, WDMlaConfig.instance());
         }
 
         // step 2: setup legacy DataAccessor with legacy Wailastack

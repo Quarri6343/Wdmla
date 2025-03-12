@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.addon;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -30,7 +31,7 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
     }
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         // step 1: check whether waila has custom Wailastack or not
         ItemStack overrideStack = RayTracingCompat.INSTANCE.getWailaStack(accessor.getHitResult());
 

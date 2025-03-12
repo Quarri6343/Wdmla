@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.entity.Entity;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -55,7 +56,7 @@ public class EntityAccessorClientHandler implements AccessorClientHandler<Entity
         for (IComponentProvider<EntityAccessor> provider : WDMlaClientRegistration.instance()
                 .getEntityProviders(accessor.getEntity(), iComponentProvider -> true)) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
-            provider.appendTooltip(middleTooltip, accessor);
+            provider.appendTooltip(middleTooltip, accessor, WDMlaConfig.instance());
         }
 
         // step 2: setup legacy DataAccessor with legacy WailaEntity

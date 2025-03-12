@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.test;
 
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,7 +38,7 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
     }
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         int cookTime = accessor.getServerData().getShort("CookTime");
         if (cookTime != 0) {
             cookTime = Math.round(cookTime / 20.0f);
