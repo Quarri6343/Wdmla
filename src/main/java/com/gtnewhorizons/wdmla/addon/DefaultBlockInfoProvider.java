@@ -2,12 +2,12 @@ package com.gtnewhorizons.wdmla.addon;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -38,12 +38,12 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
         // step 2: construct an actual icon
         ITooltip row = tooltip.horizontal();
         ItemStack itemStack = overrideStack != null ? overrideStack : accessor.getItemForm();
-        if(config.getBoolean(Identifiers.CONFIG_SHOW_ICON)) {
+        if (config.getBoolean(Identifiers.CONFIG_SHOW_ICON)) {
             row.child(new ItemComponent(itemStack).tag(Identifiers.ITEM_ICON));
         }
 
         ITooltip row_vertical = row.vertical();
-        if(config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME)) {
+        if (config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME)) {
             row_vertical.child(
                     new TextComponent(WHITE + DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
         }

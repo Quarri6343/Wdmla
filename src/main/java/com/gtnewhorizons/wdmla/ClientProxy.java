@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla;
 
+import java.io.File;
+
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
@@ -14,8 +16,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-
-import java.io.File;
 
 public class ClientProxy extends CommonProxy {
 

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,8 +22,7 @@ import net.minecraftforge.common.IShearable;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-
-import mcp.mobius.waila.api.IWailaConfigHandler;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 
 public class BlockHelper {
 
@@ -89,7 +87,8 @@ public class BlockHelper {
                     || block.quantityDropped(new Random()) <= 0;
             if (silkTouchMatters) {
                 boolean hasSilkTouch = EnchantmentHelper.getSilkTouchModifier(player);
-                return ColorHelper.getBooleanColor(hasSilkTouch) + config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
+                return ColorHelper.getBooleanColor(hasSilkTouch)
+                        + config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
             }
         }
         return "";

@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -21,6 +20,7 @@ import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessorImpl;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 
@@ -143,7 +143,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
         return session != null && session.isActive();
     }
 
-    public void registerConfigComponent(IConfigProvider provider){
+    public void registerConfigComponent(IConfigProvider provider) {
         configProviders.add(provider);
     }
 }

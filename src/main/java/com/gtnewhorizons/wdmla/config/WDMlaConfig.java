@@ -1,15 +1,17 @@
 package com.gtnewhorizons.wdmla.config;
 
+import java.io.File;
+
+import net.minecraftforge.common.config.Configuration;
+
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
 import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.config.Configuration;
-
-import java.io.File;
 
 /**
  * the new configuration file added by WDMla

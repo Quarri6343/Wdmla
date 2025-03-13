@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -13,6 +12,7 @@ import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;

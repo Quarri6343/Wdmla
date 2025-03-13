@@ -3,8 +3,6 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.api.ConfigEntry;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,6 +22,7 @@ import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -43,7 +42,8 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-        boolean forceLegacyMode = config.getBoolean(Identifiers.CONFIG_FORCE_LEGACY) || config.getBoolean(HarvestabilityIdentifiers.CONFIG_FORCE_LEGACY);
+        boolean forceLegacyMode = config.getBoolean(Identifiers.CONFIG_FORCE_LEGACY)
+                || config.getBoolean(HarvestabilityIdentifiers.CONFIG_FORCE_LEGACY);
         if (!forceLegacyMode) {
             return;
         }
@@ -71,10 +71,8 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
         boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
         String separator = config.getString(HarvestabilityIdentifiers.CONFIG_MINIMAL_SEPARATOR_STRING);
         if (!stringParts.isEmpty()) {
-            if (minimalLayout) tooltip.text(
-                    StringHelper.concatenateStringList(
-                            stringParts,
-                            EnumChatFormatting.RESET + separator));
+            if (minimalLayout)
+                tooltip.text(StringHelper.concatenateStringList(stringParts, EnumChatFormatting.RESET + separator));
             else for (String stringPart : stringParts) {
                 tooltip.text(stringPart);
             }
@@ -92,7 +90,8 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
         boolean showEffectiveTool = config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL)
                 && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL_SNEAKING_ONLY) || isSneaking);
         boolean showCurrentlyHarvestable = config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE_SNEAKING_ONLY) || isSneaking);
+                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE_SNEAKING_ONLY)
+                        || isSneaking);
         boolean hideWhileHarvestable = config.getBoolean(HarvestabilityIdentifiers.CONFIG_UNHARVESTABLE_ONLY);
         boolean showOresOnly = config.getBoolean(HarvestabilityIdentifiers.CONFIG_ORES_ONLY);
         boolean toolRequiredOnly = config.getBoolean(HarvestabilityIdentifiers.CONFIG_TOOL_REQUIRED_ONLY);
@@ -172,9 +171,10 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
             if (hideWhileHarvestable && isCurrentlyHarvestable) return;
 
             String currentlyHarvestable = showCurrentlyHarvestable
-                    ? ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                            + (isCurrentlyHarvestable ? config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING)
-                                    : config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING))
+                    ? ColorHelper.getBooleanColor(isCurrentlyHarvestable) + (isCurrentlyHarvestable
+                            ? config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING)
+                            : config.getString(
+                                    HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING))
                             + (!minimalLayout
                                     ? EnumChatFormatting.RESET
                                             + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")

@@ -16,8 +16,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 
-import java.io.File;
-
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {}

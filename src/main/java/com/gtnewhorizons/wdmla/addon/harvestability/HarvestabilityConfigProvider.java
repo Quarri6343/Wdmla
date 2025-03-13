@@ -14,7 +14,8 @@ public class HarvestabilityConfigProvider implements IConfigProvider {
     public void loadConfig(IPluginConfig config) {
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_FORCE_LEGACY);
 
-        config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY).setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_COMMENT);
+        config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY)
+                .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_COMMENT);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL);

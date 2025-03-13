@@ -143,7 +143,8 @@ public class ConfigHandler implements IWailaConfigHandler {
     public void loadDefaultConfig(FMLPreInitializationEvent event) {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
-        config.getCategory(Configuration.CATEGORY_GENERAL).setComment("These are the original Waila configs which are shared between old and new apis");
+        config.getCategory(Configuration.CATEGORY_GENERAL)
+                .setComment("These are the original Waila configs which are shared between old and new apis");
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, true);
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, false);
