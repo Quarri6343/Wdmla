@@ -35,6 +35,13 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
         getCategory(Identifiers.CONFIG_GENERAL).setComment("These are the WDMla exclusive settings");
         getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
+
+        getBoolean(Identifiers.CONFIG_SHOW_ICON);
+        getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME);
+        getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME);
+        getBoolean(Identifiers.CONFIG_SHOW_ENTITY_NAME);
+        getBoolean(Identifiers.CONFIG_SHOW_ENTITY_HEALTH);
+        getInteger(Identifiers.CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT);
     }
 
     public boolean getBoolean(ConfigEntry<Boolean> entry) {

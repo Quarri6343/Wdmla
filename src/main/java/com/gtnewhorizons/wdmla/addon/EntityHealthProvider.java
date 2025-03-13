@@ -16,8 +16,6 @@ import com.gtnewhorizons.wdmla.impl.ui.component.HealthComponent;
 
 public class EntityHealthProvider implements IEntityComponentProvider {
 
-    public static final float MAX_HP_FOR_TEXT = 40.0f;
-
     @Override
     public int getDefaultPriority() {
         return TooltipPosition.HEAD;
@@ -30,14 +28,15 @@ public class EntityHealthProvider implements IEntityComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        if (!(accessor.getEntity() instanceof EntityLivingBase livingEntity)) {
+        if (!(accessor.getEntity() instanceof EntityLivingBase livingEntity) || !config.getBoolean(Identifiers.CONFIG_SHOW_ENTITY_HEALTH)) {
             return;
         }
 
         float health = livingEntity.getHealth() / 2.0f;
         float maxhp = livingEntity.getMaxHealth() / 2.0f;
 
-        if (livingEntity.getMaxHealth() > MAX_HP_FOR_TEXT) tooltip.text(
+        int maxHPForText = config.getInteger(Identifiers.CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT);
+        if (livingEntity.getMaxHealth() > maxHPForText) tooltip.text(
                 String.format(
                         "HP : " + WHITE + "%.0f" + GRAY + " / " + WHITE + "%.0f",
                         livingEntity.getHealth(),

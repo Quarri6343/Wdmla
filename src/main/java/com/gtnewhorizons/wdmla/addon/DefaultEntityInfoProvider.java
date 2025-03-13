@@ -28,10 +28,14 @@ public class DefaultEntityInfoProvider implements IEntityComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        tooltip.child(
-                new TextComponent(WHITE + accessor.getEntity().getCommandSenderName()).tag(Identifiers.ENTITY_NAME));
-        tooltip.child(
-                new TextComponent(BLUE + ITALIC + ModIdentification.nameFromEntity(accessor.getEntity()))
-                        .tag(Identifiers.MOD_NAME));
+        if(config.getBoolean(Identifiers.CONFIG_SHOW_ENTITY_NAME)) {
+            tooltip.child(
+                    new TextComponent(WHITE + accessor.getEntity().getCommandSenderName()).tag(Identifiers.ENTITY_NAME));
+        }
+        if(config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
+            tooltip.child(
+                    new TextComponent(BLUE + ITALIC + ModIdentification.nameFromEntity(accessor.getEntity()))
+                            .tag(Identifiers.MOD_NAME));
+        }
     }
 }

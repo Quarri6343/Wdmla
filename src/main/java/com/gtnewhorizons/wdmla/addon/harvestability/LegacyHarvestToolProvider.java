@@ -43,7 +43,7 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-        boolean forceLegacyMode = config.getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
+        boolean forceLegacyMode = config.getBoolean(Identifiers.CONFIG_FORCE_LEGACY) || config.getBoolean(HarvestabilityIdentifiers.CONFIG_FORCE_LEGACY);
         if (!forceLegacyMode) {
             return;
         }

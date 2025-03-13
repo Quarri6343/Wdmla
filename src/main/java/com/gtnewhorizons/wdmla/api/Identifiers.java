@@ -27,8 +27,15 @@ public final class Identifiers {
 
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
+    public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(CONFIG_GENERAL, "LegacyMode", false, "Disables all modern WDMla features. This will make the system ignore all settings in this category");
 
-    public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(CONFIG_GENERAL, "LegacyMode", false, "Disables modern WDMla features. This will make the system ignore all settings below");
+    public static final String CONFIG_GENERAL_CORE = "wdmla_general.core_plugin";
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_ICON = new ConfigEntry<>(CONFIG_GENERAL_CORE, "ShowIcon", true, "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_BLOCK_NAME = new ConfigEntry<>(CONFIG_GENERAL_CORE, "ShowBlockName", true, "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_MOD_NAME = new ConfigEntry<>(CONFIG_GENERAL_CORE, "ShowModName", true, "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_NAME = new ConfigEntry<>(CONFIG_GENERAL_CORE, "ShowEntityName", true, "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_HEALTH = new ConfigEntry<>(CONFIG_GENERAL_CORE, "ShowEntityHealth", true, "");
+    public static final ConfigEntry<Integer> CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT = new ConfigEntry<>(CONFIG_GENERAL_CORE, "MaxEntityHealthForText", 40, "If the maximum health of an entity is above this value, texts will be shown instead of heart icons");
 
     public static ResourceLocation WDMla(String path) {
         return new ResourceLocation("wdmla", path);

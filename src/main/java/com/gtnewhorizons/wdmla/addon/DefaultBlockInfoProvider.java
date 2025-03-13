@@ -38,13 +38,17 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
         // step 2: construct an actual icon
         ITooltip row = tooltip.horizontal();
         ItemStack itemStack = overrideStack != null ? overrideStack : accessor.getItemForm();
-        row.child(new ItemComponent(itemStack).tag(Identifiers.ITEM_ICON));
+        if(config.getBoolean(Identifiers.CONFIG_SHOW_ICON)) {
+            row.child(new ItemComponent(itemStack).tag(Identifiers.ITEM_ICON));
+        }
 
         ITooltip row_vertical = row.vertical();
-        row_vertical.child(
-                new TextComponent(WHITE + DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
+        if(config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME)) {
+            row_vertical.child(
+                    new TextComponent(WHITE + DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
+        }
         String modName = ModIdentification.nameFromStack(itemStack);
-        if (modName != null && !modName.isEmpty()) {
+        if (modName != null && !modName.isEmpty() && config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
             row_vertical.child(new TextComponent(BLUE + ITALIC + modName).tag(Identifiers.MOD_NAME));
         }
     }

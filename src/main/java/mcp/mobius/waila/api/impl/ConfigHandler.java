@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
@@ -144,6 +143,7 @@ public class ConfigHandler implements IWailaConfigHandler {
     public void loadDefaultConfig(FMLPreInitializationEvent event) {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
+        config.getCategory(Configuration.CATEGORY_GENERAL).setComment("These are the original Waila configs which are shared between old and new apis");
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, true);
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, false);
@@ -172,7 +172,7 @@ public class ConfigHandler implements IWailaConfigHandler {
         // .getInt();
 
         config.getCategory(Constants.CATEGORY_MODULES).setComment(
-                "Those are the config keys defined in modules.\nServer side, it is used to enforce keys client side using the next section.");
+                "Those are the config keys defined in modules [using the old api].\nServer side, it is used to enforce keys client side using the next section.");
         config.getCategory(Constants.CATEGORY_SERVER).setComment(
                 "Any key set to true here will ensure that the client is using the configuration set in the 'module' section above.\nThis is useful for enforcing false to 'cheating' keys like silverfish.");
 
