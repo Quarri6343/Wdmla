@@ -94,16 +94,16 @@ public class BlockHelper {
         return "";
     }
 
-    public static Block getEffectiveBlock(Block block, ItemStack itemForm) {
-        return isDisguised(block, itemForm) ? Block.getBlockFromItem(itemForm.getItem()) : block;
+    public static Block getEffectiveBlock(Block block, ItemStack itemForm, int meta) {
+        return isDisguised(block, itemForm, meta) ? Block.getBlockFromItem(itemForm.getItem()) : block;
     }
 
     public static int getEffectiveMeta(Block block, ItemStack itemForm, int meta) {
-        return isDisguised(block, itemForm) ? itemForm.getItemDamage() : meta;
+        return isDisguised(block, itemForm, meta) ? itemForm.getItemDamage() : meta;
     }
 
-    public static boolean isDisguised(Block block, ItemStack itemForm) {
-        return itemForm.getItem() instanceof ItemBlock && !ProxyGregTech.isOreBlock(block)
+    public static boolean isDisguised(Block block, ItemStack itemForm, int meta) {
+        return itemForm.getItem() instanceof ItemBlock && !ProxyGregTech.isOreBlock(block, meta)
                 && !ProxyGregTech.isCasing(block)
                 && !ProxyGregTech.isMachine(block);
     }

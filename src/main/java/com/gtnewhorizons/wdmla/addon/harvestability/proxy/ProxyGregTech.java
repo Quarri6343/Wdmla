@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,8 +20,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class ProxyGregTech {
 
-    public static final String ORE_BLOCK_ID = "gt.blockores";
-    public static final String ORE_BLOCK_UNIQUE_IDENTIFIER = Mods.GREGTECH.modID + ":" + ORE_BLOCK_ID;
     public static final String CASING_ID = "gt.blockcasings";
     public static final String CASING_UNIQUE_IDENTIFIER = Mods.GREGTECH.modID + ":" + CASING_ID;
     public static final String MACHINE_ID = "gt.blockmachines";
@@ -65,9 +66,35 @@ public class ProxyGregTech {
         }
     }
 
-    public static boolean isOreBlock(Block block) {
-        return Mods.GREGTECH.isLoaded()
-                && GameRegistry.findUniqueIdentifierFor(block).toString().equals(ORE_BLOCK_UNIQUE_IDENTIFIER);
+    /**
+     * Use a nested class so that ProxyGregTech can load without loading GTMethods. This allows us to keep GTUTIL_IS_ORE
+     * static final without hacky code (MethodHandles have zero runtime cost if they're stored in a static final field).
+     */
+    private static class GTMethods {
+
+        public static final MethodHandle GTUTIL_IS_ORE;
+
+        static {
+            try {
+                GTUTIL_IS_ORE = MethodHandles.lookup().findStatic(
+                        Class.forName("gregtech.api.util.GTUtility"),
+                        "isOre",
+                        MethodType.methodType(boolean.class, Block.class, int.class));
+            } catch (NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static boolean isOreBlock(Block block, int meta) {
+        if (!Mods.GREGTECH.isLoaded()) return false;
+
+        try {
+            // loads GTMethods
+            return (boolean) GTMethods.GTUTIL_IS_ORE.invokeExact(block, meta);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static boolean isCasing(Block block) {
