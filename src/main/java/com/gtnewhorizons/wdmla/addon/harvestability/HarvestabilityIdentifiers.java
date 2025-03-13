@@ -10,7 +10,7 @@ public class HarvestabilityIdentifiers {
             CONFIG_CATEGORY,
             "LegacyMode",
             false,
-            "If this is enabled the old WailaHarvestability style and config will be used");
+            "If this option is enabled the old WailaHarvestability style and config will be used");
 
     public static final String CONFIG_CATEGORY_LEGACY = "harvestability.legacy";
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL = new ConfigEntry<>(

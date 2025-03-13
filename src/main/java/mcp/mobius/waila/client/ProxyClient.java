@@ -1,5 +1,6 @@
 package mcp.mobius.waila.client;
 
+import mcp.mobius.waila.handlers.nei.NEIHandler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
@@ -28,12 +29,7 @@ public class ProxyClient extends ProxyServer {
         LangUtil.loadLangDir("waila");
 
         if (Mods.NOTENOUGHITEMS.isLoaded()) {
-            try {
-                Class.forName("mcp.mobius.waila.handlers.nei.NEIHandler").getDeclaredMethod("register").invoke(null);
-            } catch (Exception e) {
-                Waila.log.error("Failed to hook into NEI properly. Reverting to Vanilla tooltip handler");
-                MinecraftForge.EVENT_BUS.register(new VanillaTooltipHandler());
-            }
+            NEIHandler.register();
         } else {
             MinecraftForge.EVENT_BUS.register(new VanillaTooltipHandler());
         }

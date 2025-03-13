@@ -1,5 +1,6 @@
 package mcp.mobius.waila.client;
 
+import mcp.mobius.waila.handlers.nei.NEIHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.config.Configuration;
@@ -44,38 +45,29 @@ public class KeyEvent {
             if (mc.currentScreen == null) {
                 mc.displayGuiScreen(new ScreenConfig(null));
             }
-        } else if (showKey && ConfigHandler.instance()
+            return;
+        }
+        if (showKey && ConfigHandler.instance()
                 .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)) {
-                    boolean status = ConfigHandler.instance()
-                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
-                    ConfigHandler.instance()
-                            .setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, !status);
-                } else
-            if (showKey && !ConfigHandler.instance()
-                    .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)) {
-                        ConfigHandler.instance()
-                                .setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
-                    } else
-                if (key_liquid.isPressed()) {
-                    boolean status = ConfigHandler.instance()
-                            .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, true);
-                    ConfigHandler.instance()
-                            .setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, !status);
-                } else if (key_recipe.isPressed()) {
-                    if (Mods.NOTENOUGHITEMS.isLoaded()) {
-                        try {
-                            Class.forName("mcp.mobius.waila.handlers.nei.NEIHandler")
-                                    .getDeclaredMethod("openRecipeGUI", boolean.class).invoke(null, true);
-                        } catch (Exception ignored) {}
-                    }
-                } else if (key_usage.isPressed()) {
-                    if (Mods.NOTENOUGHITEMS.isLoaded()) {
-                        try {
-                            Class.forName("mcp.mobius.waila.handlers.nei.NEIHandler")
-                                    .getDeclaredMethod("openRecipeGUI", boolean.class).invoke(null, false);
-                        } catch (Exception ignored) {}
-                    }
-                }
+            boolean status = ConfigHandler.instance()
+                    .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
+            ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, !status);
+        } else if (showKey && !ConfigHandler.instance()
+                .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)) {
+            ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
+        } else
+        if (key_liquid.isPressed()) {
+            boolean status = ConfigHandler.instance()
+                    .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, true);
+            ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, !status);
+        } else if (key_recipe.isPressed()) {
+            if (Mods.NOTENOUGHITEMS.isLoaded()) {
+                NEIHandler.openRecipeGUI(true);
+            }
+        } else if (key_usage.isPressed()) {
+            if (Mods.NOTENOUGHITEMS.isLoaded()) {
+                NEIHandler.openRecipeGUI(false);
+            }
+        }
     }
-
 }
