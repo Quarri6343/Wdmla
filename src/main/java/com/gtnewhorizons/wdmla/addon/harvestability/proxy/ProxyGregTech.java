@@ -28,8 +28,8 @@ public class ProxyGregTech {
     public static final String TOOL_WRENCH = "wrench";
     public static final String TOOL_WIRE_CUTTER = "cutter";
 
-    private static short Wrench;
-    private static short WireCutter;
+    private static int wrench;
+    private static int wireCutter;
     private static ItemStack ironWrench;
     private static ItemStack steelWrench;
     private static ItemStack ironWireCutter;
@@ -37,29 +37,30 @@ public class ProxyGregTech {
     @SuppressWarnings("unchecked")
     public static void init() {
         try {
-            Class<?> GT_MetaGenerated_Tool = Class.forName("gregtech.api.items.GT_MetaGenerated_Tool");
+            Class<?> GT_MetaGenerated_Tool = Class.forName("gregtech.api.items.MetaGeneratedTool");
             Field sInstancesField = GT_MetaGenerated_Tool.getField("sInstances");
             ConcurrentHashMap<String, ?> sInstances = (ConcurrentHashMap<String, ?>) (sInstancesField.get(null));
             Object metaTool01 = sInstances.get("gt.metatool.01");
             Class<?> Materials = Class.forName("gregtech.api.enums.Materials");
             Method getToolWithStatsMethod = GT_MetaGenerated_Tool
                     .getDeclaredMethod("getToolWithStats", int.class, int.class, Materials, Materials, long[].class);
-            Class<?> GT_MetaGenerated_Tool_01 = Class.forName("gregtech.common.items.GT_MetaGenerated_Tool_01");
+            Class<?> GT_MetaGenerated_Tool_01 = Class.forName("gregtech.common.items.IDMetaTool01");
 
-            Field WrenchField = GT_MetaGenerated_Tool_01.getField("WRENCH");
-            Wrench = WrenchField.getShort(null);
-            Field WireCutterField = GT_MetaGenerated_Tool_01.getField("WIRECUTTER");
-            WireCutter = WireCutterField.getShort(null);
+            Field idField = GT_MetaGenerated_Tool_01.getField("ID");
+            Object wrenchConstant = Enum.valueOf((Class<Enum>) GT_MetaGenerated_Tool_01, "WRENCH");
+            wrench = idField.getInt(wrenchConstant);
+            Object wireCutterConstant = Enum.valueOf((Class<Enum>) GT_MetaGenerated_Tool_01, "WIRECUTTER");
+            wireCutter = idField.getInt(wireCutterConstant);
 
             Object ironMaterial = Materials.getField("Iron").get(null);
             Object steelMaterial = Materials.getField("Steel").get(null);
 
             ironWrench = (ItemStack) getToolWithStatsMethod
-                    .invoke(metaTool01, Wrench, 1, ironMaterial, ironMaterial, null);
+                    .invoke(metaTool01, wrench, 1, ironMaterial, ironMaterial, null);
             steelWrench = (ItemStack) getToolWithStatsMethod
-                    .invoke(metaTool01, Wrench, 1, steelMaterial, steelMaterial, null);
+                    .invoke(metaTool01, wrench, 1, steelMaterial, steelMaterial, null);
             ironWireCutter = (ItemStack) getToolWithStatsMethod
-                    .invoke(metaTool01, WireCutter, 1, ironMaterial, ironMaterial, null);
+                    .invoke(metaTool01, wireCutter, 1, ironMaterial, ironMaterial, null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,11 +114,11 @@ public class ProxyGregTech {
     }
 
     public static boolean isWrench(ItemStack itemStack) {
-        return isGTTool(itemStack) && itemStack.getItemDamage() == Wrench;
+        return isGTTool(itemStack) && itemStack.getItemDamage() == wrench;
     }
 
     public static boolean isWireCutter(ItemStack itemStack) {
-        return isGTTool(itemStack) && itemStack.getItemDamage() == WireCutter;
+        return isGTTool(itemStack) && itemStack.getItemDamage() == wireCutter;
     }
 
     public static ItemStack getEffectiveGregToolIcon(String effectiveTool, int harvestLevel) {
