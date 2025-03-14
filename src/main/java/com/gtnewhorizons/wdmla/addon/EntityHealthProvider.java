@@ -28,8 +28,7 @@ public class EntityHealthProvider implements IEntityComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        if (!(accessor.getEntity() instanceof EntityLivingBase livingEntity)
-                || !config.getBoolean(Identifiers.CONFIG_SHOW_ENTITY_HEALTH)) {
+        if (!(accessor.getEntity() instanceof EntityLivingBase livingEntity)) {
             return;
         }
 

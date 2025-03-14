@@ -52,7 +52,6 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
             // });
             return keys;
         });
-        priorities.configurable(WDMla.MODID + "/sort-order");
     }
 
     @Override
@@ -87,7 +86,9 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
     }
 
     public void loadComplete() {
+        blockDataProviders.invalidate();
         blockDataProviders.loadComplete(priorities);
+        entityDataProviders.invalidate();
         entityDataProviders.loadComplete(priorities);
         session = null;
     }

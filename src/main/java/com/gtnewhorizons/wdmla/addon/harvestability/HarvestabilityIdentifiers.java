@@ -1,18 +1,14 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
+import com.gtnewhorizons.wdmla.api.Identifiers;
 
 public class HarvestabilityIdentifiers {
 
-    public static final String CONFIG_CATEGORY = "harvestability";
+    public static final String CONFIG_CATEGORY = Identifiers.CONFIG_PLUGINS + ".harvestability";
     public static final String CONFIG_CATEGORY_COMMENT = "Waila Harvestability";
-    public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(
-            CONFIG_CATEGORY,
-            "LegacyMode",
-            false,
-            "If this option is enabled the old WailaHarvestability style and config will be used");
 
-    public static final String CONFIG_CATEGORY_LEGACY = "harvestability.legacy";
+    public static final String CONFIG_CATEGORY_LEGACY = CONFIG_CATEGORY + ".legacy";
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL = new ConfigEntry<>(
             CONFIG_CATEGORY_LEGACY,
             "HarvestLevel",
@@ -120,7 +116,7 @@ public class HarvestabilityIdentifiers {
             "\u2712",
             "");
 
-    public static final String CONFIG_CATEGORY_MODERN = "harvestability.modern";
+    public static final String CONFIG_CATEGORY_MODERN = CONFIG_CATEGORY + ".modern";
     public static final ConfigEntry<String> CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
             CONFIG_CATEGORY_MODERN,
             "CurrentlyHarvestableString",

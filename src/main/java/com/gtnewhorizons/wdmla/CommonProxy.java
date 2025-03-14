@@ -20,7 +20,6 @@ import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 public class CommonProxy {
@@ -59,13 +58,9 @@ public class CommonProxy {
     }
 
     public static void loadComplete() {
-        if (WDMla.FROZEN) {
-            return;
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            WDMlaCommonRegistration.instance().priorities.sort();
         }
-        WDMla.FROZEN = true;
-
-        // TODO: sort with config
-        WDMlaCommonRegistration.instance().priorities.sort(new HashSet<>());
         WDMlaCommonRegistration.instance().loadComplete();
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             WDMlaClientRegistration.instance().loadComplete();

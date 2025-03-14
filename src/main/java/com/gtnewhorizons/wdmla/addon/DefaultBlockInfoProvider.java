@@ -22,7 +22,7 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {
-        return Identifiers.DEFAULT;
+        return Identifiers.DEFAULT_BLOCK;
     }
 
     @Override

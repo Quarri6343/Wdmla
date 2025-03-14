@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiButton;
@@ -40,16 +41,12 @@ public class ModsMenuScreenConfig extends GuiConfig {
     }
 
     private static List<IConfigElement> getMainCategories() {
-        List<IConfigElement> categories = new ArrayList<>();
-
-        categories.add(new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_GENERAL)));
-        categories
-                .add(new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)));
-        for (IConfigProvider configProvider : WDMlaClientRegistration.instance().configProviders) {
-            categories.add(new ConfigElement<>(WDMlaConfig.instance().getCategory(configProvider.categoryName())));
-        }
-        categories.add(new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES)));
-
-        return categories;
+        return Arrays.asList(
+                new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_GENERAL)),
+                new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PLUGINS)),
+                new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PROVIDER)),
+                new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
+                new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES))
+        );
     }
 }

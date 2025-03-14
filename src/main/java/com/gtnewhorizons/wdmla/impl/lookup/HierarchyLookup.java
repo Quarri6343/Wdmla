@@ -49,7 +49,6 @@ public class HierarchyLookup<T extends IWDMlaProvider> implements IHierarchyLook
     public void register(Class<?> clazz, T provider) {
         Preconditions.checkArgument(isClassAcceptable(clazz), "Class %s is not acceptable", clazz);
         Objects.requireNonNull(provider.getUid());
-        WDMlaCommonRegistration.instance().priorities.put(provider);
         objects.put(clazz, provider);
     }
 

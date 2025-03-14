@@ -1,7 +1,14 @@
 package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.IComponentProvider;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
@@ -34,6 +41,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         for (IConfigProvider configProvider : WDMlaClientRegistration.instance().configProviders) {
             configProvider.loadConfig(this);
         }
+        reloadProviderConfigs();
 
         getCategory(Identifiers.CONFIG_GENERAL).setComment("These are the WDMla exclusive settings");
         getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
@@ -42,7 +50,6 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME);
         getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME);
         getBoolean(Identifiers.CONFIG_SHOW_ENTITY_NAME);
-        getBoolean(Identifiers.CONFIG_SHOW_ENTITY_HEALTH);
         getInteger(Identifiers.CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT);
     }
 
@@ -56,5 +63,33 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
     public String getString(ConfigEntry<String> entry) {
         return get(entry.category, entry.key, entry.defaultValue, entry.comment).getString();
+    }
+
+    public void reloadProviderConfigs() {
+        for (IComponentProvider<?> provider : WDMlaClientRegistration.instance().getAllProvidersWithoutInfo()) {
+            isProviderEnabled(provider);
+            WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));
+        }
+    }
+
+    //TODO:split provider config file
+    public boolean isProviderEnabled(IComponentProvider<?> provider) {
+        return getBoolean(
+                new ConfigEntry<>(
+                        Identifiers.CONFIG_PROVIDER + "." + provider.getUid().getResourceDomain() + "." + provider.getUid().getResourcePath(),
+                        Identifiers.CONFIG_PROVIDER_ENABLED,
+                        true,
+                        ""
+                ));
+    }
+
+    public int getProviderPriority(IComponentProvider<?> provider) {
+        return getInteger(
+                new ConfigEntry<>(
+                        Identifiers.CONFIG_PROVIDER + "." + provider.getUid().getResourceDomain() + "." + provider.getUid().getResourcePath(),
+                        Identifiers.CONFIG_PROVIDER_PRIORITY,
+                        provider.getDefaultPriority(),
+                        ""
+                ));
     }
 }

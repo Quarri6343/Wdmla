@@ -5,25 +5,27 @@ import net.minecraft.util.ResourceLocation;
 public final class Identifiers {
 
     // component tag
-    public static final ResourceLocation ROOT = MC("root");
+    public static final ResourceLocation ROOT = Core("root");
 
-    public static final ResourceLocation ITEM_ICON = MC("item_icon");
-    public static final ResourceLocation ITEM_NAME = MC("item_name");
-    public static final ResourceLocation ENTITY_NAME = MC("entity_name");
-    public static final ResourceLocation MOD_NAME = MC("mod_name");
-    public static final ResourceLocation HARVESTABILITY_ICON = WDMla("harvestability_icon");
-    public static final ResourceLocation HARVESTABILITY_TEXT = WDMla("harvestability_text");
+    public static final ResourceLocation ITEM_ICON = Core("item_icon");
+    public static final ResourceLocation ITEM_NAME = Core("item_name");
+    public static final ResourceLocation ENTITY_NAME = Core("entity_name");
+    public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");
+    public static final ResourceLocation MOD_NAME = Core("mod_name");
+
+    public static final ResourceLocation HARVESTABILITY_ICON = Harvestability("harvestability_icon");
+    public static final ResourceLocation HARVESTABILITY_TEXT = Harvestability("harvestability_text");
 
     // provider Uid
-    public static final ResourceLocation DEFAULT = MC("default");
+    public static final ResourceLocation DEFAULT_BLOCK = Core("default_block");
+    public static final ResourceLocation DEFAULT_ENTITY = Core("default_entity");
 
-    public static final ResourceLocation TEST_HEAD = WDMla("test_head");
-    public static final ResourceLocation TEST_BODY = WDMla("test_body");
-    public static final ResourceLocation TEST_ENTITY = WDMla("test_entity");
+    public static final ResourceLocation TEST_HEAD = Test("head");
+    public static final ResourceLocation TEST_BODY = Test("body");
+    public static final ResourceLocation TEST_ENTITY = Test("entity");
 
-    public static final ResourceLocation HARVESTABILITY = WDMla("harvestability");
-    public static final ResourceLocation LEGACY_HARVESTABILITY = WDMla("legacy_harvestability");
-    public static final ResourceLocation ENTITY_HEALTH = MC("entity_health");
+    public static final ResourceLocation HARVESTABILITY = Harvestability("harvestability");
+    public static final ResourceLocation LEGACY_HARVESTABILITY = Harvestability("legacy_harvestability");
 
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
@@ -33,40 +35,49 @@ public final class Identifiers {
             false,
             "Disables all modern WDMla features. This will make the system ignore all settings in this category");
 
-    public static final String CONFIG_GENERAL_CORE = "wdmla_general.core_plugin";
+    public static final String CONFIG_PROVIDER = "plugin_providers";
+    public static final String CONFIG_PROVIDER_ENABLED = "Enabled";
+    public static final String CONFIG_PROVIDER_PRIORITY = "Priority";
+
+    public static final String CONFIG_PLUGINS = "plugin_settings";
+
+    public static final String CONFIG_Plugins_CORE = CONFIG_PLUGINS + ".core";
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ICON = new ConfigEntry<>(
-            CONFIG_GENERAL_CORE,
+            CONFIG_Plugins_CORE,
             "ShowIcon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_BLOCK_NAME = new ConfigEntry<>(
-            CONFIG_GENERAL_CORE,
+            CONFIG_Plugins_CORE,
             "ShowBlockName",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_MOD_NAME = new ConfigEntry<>(
-            CONFIG_GENERAL_CORE,
+            CONFIG_Plugins_CORE,
             "ShowModName",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_NAME = new ConfigEntry<>(
-            CONFIG_GENERAL_CORE,
+            CONFIG_Plugins_CORE,
             "ShowEntityName",
             true,
             "");
-    public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_HEALTH = new ConfigEntry<>(
-            CONFIG_GENERAL_CORE,
-            "ShowEntityHealth",
-            true,
-            "");
     public static final ConfigEntry<Integer> CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT = new ConfigEntry<>(
-            CONFIG_GENERAL_CORE,
+            CONFIG_Plugins_CORE,
             "MaxEntityHealthForText",
             40,
             "If the maximum health of an entity is above this value, texts will be shown instead of heart icons");
 
-    public static ResourceLocation WDMla(String path) {
-        return new ResourceLocation("wdmla", path);
+    public static ResourceLocation Core(String path) {
+        return new ResourceLocation("core", path);
+    }
+
+    public static ResourceLocation Test(String path) {
+        return new ResourceLocation("test", path);
+    }
+
+    public static ResourceLocation Harvestability(String path) {
+        return new ResourceLocation("harvestability", path);
     }
 
     private static ResourceLocation MC(String path) {

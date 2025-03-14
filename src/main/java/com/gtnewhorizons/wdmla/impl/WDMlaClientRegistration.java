@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -32,6 +33,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockComponentProviders;
     public final HierarchyLookup<IComponentProvider<EntityAccessor>> entityComponentProviders;
+    private final List<IComponentProvider<?>> allProviders;
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
 
@@ -42,6 +44,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     WDMlaClientRegistration() {
         blockComponentProviders = new HierarchyLookup<>(Block.class);
         entityComponentProviders = new HierarchyLookup<>(Entity.class);
+        allProviders = new ArrayList<>();
     }
 
     public static WDMlaClientRegistration instance() {
@@ -55,7 +58,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
             session.registerEntityComponent(provider, entityClass);
         } else {
             entityComponentProviders.register(entityClass, provider);
-            // tryAddConfig(provider);
+            allProviders.add(provider);
         }
     }
 
@@ -65,7 +68,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
             session.registerBlockComponent(provider, blockClass);
         } else {
             blockComponentProviders.register(blockClass, provider);
-            // tryAddConfig(provider);
+            allProviders.add(provider);
         }
     }
 
@@ -77,6 +80,10 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     public List<IComponentProvider<EntityAccessor>> getEntityProviders(Entity entity,
             Predicate<IComponentProvider<? extends Accessor>> filter) {
         return entityComponentProviders.get(entity).stream().filter(filter).collect(Collectors.toList());
+    }
+
+    public ImmutableList<IComponentProvider<?>> getAllProvidersWithoutInfo() {
+        return ImmutableList.copyOf(allProviders);
     }
 
     @Override
@@ -122,7 +129,9 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     public void loadComplete() {
         var priorities = WDMlaCommonRegistration.instance().priorities;
+        blockComponentProviders.invalidate();
         blockComponentProviders.loadComplete(priorities);
+        entityComponentProviders.invalidate();
         entityComponentProviders.loadComplete(priorities);
         session = null;
     }

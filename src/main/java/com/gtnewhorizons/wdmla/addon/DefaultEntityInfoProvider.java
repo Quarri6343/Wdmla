@@ -18,7 +18,7 @@ public class DefaultEntityInfoProvider implements IEntityComponentProvider {
 
     @Override
     public ResourceLocation getUid() {
-        return Identifiers.DEFAULT;
+        return Identifiers.DEFAULT_ENTITY;
     }
 
     @Override

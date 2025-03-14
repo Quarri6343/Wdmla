@@ -67,7 +67,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
     public void gatherComponents(BlockAccessor accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider) {
         // step 1: gather WDMla tooltip components including icon, block name and mod name
         for (IComponentProvider<BlockAccessor> provider : WDMlaClientRegistration.instance()
-                .getBlockProviders(accessor.getBlock(), iComponentProvider -> true)) {
+                .getBlockProviders(accessor.getBlock(), iComponentProvider -> WDMlaConfig.instance().isProviderEnabled(iComponentProvider))) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
             provider.appendTooltip(middleTooltip, accessor, WDMlaConfig.instance());
         }

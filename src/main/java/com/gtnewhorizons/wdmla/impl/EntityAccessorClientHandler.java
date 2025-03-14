@@ -54,7 +54,7 @@ public class EntityAccessorClientHandler implements AccessorClientHandler<Entity
     public void gatherComponents(EntityAccessor accessor, Function<IWDMlaProvider, ITooltip> tooltipProvider) {
         // step 1: gather WDMla tooltip components including icon, block name and mod name
         for (IComponentProvider<EntityAccessor> provider : WDMlaClientRegistration.instance()
-                .getEntityProviders(accessor.getEntity(), iComponentProvider -> true)) {
+                .getEntityProviders(accessor.getEntity(), iComponentProvider -> WDMlaConfig.instance().isProviderEnabled(iComponentProvider))) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
             provider.appendTooltip(middleTooltip, accessor, WDMlaConfig.instance());
         }

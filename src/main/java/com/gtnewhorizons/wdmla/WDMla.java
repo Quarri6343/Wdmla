@@ -21,7 +21,6 @@ import net.minecraft.launchwrapper.Launch;
 public class WDMla {
 
     public static final String MODID = "wdmla";
-    public static boolean FROZEN;
 
     @SidedProxy(clientSide = "com.gtnewhorizons.wdmla.ClientProxy", serverSide = "com.gtnewhorizons.wdmla.CommonProxy")
     public static CommonProxy proxy;
