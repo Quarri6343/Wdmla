@@ -55,7 +55,6 @@ public class Waila {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.instance().loadDefaultConfig(event);
-        OverlayConfig.updateColors();
         MinecraftForge.EVENT_BUS.register(new DecoratorRenderer());
         WailaPacketHandler.INSTANCE.ordinal();
     }

@@ -143,6 +143,18 @@ public class ConfigHandler implements IWailaConfigHandler {
     public void loadDefaultConfig(FMLPreInitializationEvent event) {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
+        syncDefaultConfig();
+        config.save();
+        OverlayConfig.updateColors();
+    }
+
+    public void reloadDefaultConfig() {
+        config.save();
+        syncDefaultConfig();
+        OverlayConfig.updateColors();
+    }
+
+    public void syncDefaultConfig() {
         config.getCategory(Configuration.CATEGORY_GENERAL)
                 .setComment("These are the original Waila configs which are shared between old and new apis");
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
@@ -176,7 +188,5 @@ public class ConfigHandler implements IWailaConfigHandler {
                 "Those are the config keys defined in modules [using the old api].\nServer side, it is used to enforce keys client side using the next section.");
         config.getCategory(Constants.CATEGORY_SERVER).setComment(
                 "Any key set to true here will ensure that the client is using the configuration set in the 'module' section above.\nThis is useful for enforcing false to 'cheating' keys like silverfish.");
-
-        config.save();
     }
 }
