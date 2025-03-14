@@ -1,5 +1,6 @@
 package mcp.mobius.waila.client;
 
+import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
 import mcp.mobius.waila.handlers.nei.NEIHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -13,7 +14,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.gui.screens.config.ScreenConfig;
 import mcp.mobius.waila.utils.Constants;
 
 public class KeyEvent {
@@ -43,7 +43,7 @@ public class KeyEvent {
         if (key_cfg.isPressed()) {
             Minecraft mc = Minecraft.getMinecraft();
             if (mc.currentScreen == null) {
-                mc.displayGuiScreen(new ScreenConfig(null));
+                mc.displayGuiScreen(new ModsMenuScreenConfig(null));
             }
             return;
         }

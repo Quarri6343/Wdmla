@@ -1,4 +1,4 @@
-package mcp.mobius.waila.gui.screens.config;
+package com.gtnewhorizons.wdmla.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,6 @@ import net.minecraftforge.common.config.Configuration;
 import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 
 import cpw.mods.fml.client.config.GuiConfig;

@@ -1,4 +1,4 @@
-package mcp.mobius.waila.gui.screens;
+package com.gtnewhorizons.wdmla.config;
 
 import java.util.Set;
 
@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
 import cpw.mods.fml.client.IModGuiFactory;
-import mcp.mobius.waila.gui.screens.config.ModsMenuScreenConfig;
 
 @SuppressWarnings("unused")
 public class GuiFactory implements IModGuiFactory {

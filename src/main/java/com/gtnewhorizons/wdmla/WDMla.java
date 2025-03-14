@@ -17,7 +17,7 @@ import net.minecraft.launchwrapper.Launch;
         version = Tags.GRADLETOKEN_VERSION,
         dependencies = "after:Waila",
         acceptableRemoteVersions = "*",
-        guiFactory = "mcp.mobius.waila.gui.screens.GuiFactory")
+        guiFactory = "com.gtnewhorizons.wdmla.config.GuiFactory")
 public class WDMla {
 
     public static final String MODID = "wdmla";

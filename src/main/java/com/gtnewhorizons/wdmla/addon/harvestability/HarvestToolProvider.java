@@ -86,7 +86,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
                 .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay.get(0))
                 .tag(Identifiers.ITEM_NAME);
         if (!tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName)) {
-            throw new RuntimeException("WDMla Harvestability Module couldn't find item name in the tooltip");
+            return;
         }
         if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null) {
             tooltip.child(harvestableDisplay.get(1));
