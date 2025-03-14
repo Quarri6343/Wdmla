@@ -1,6 +1,5 @@
 package mcp.mobius.waila.client;
 
-import mcp.mobius.waila.handlers.nei.NEIHandler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
@@ -8,13 +7,13 @@ import net.minecraftforge.event.world.WorldEvent;
 import com.gtnewhorizons.wdmla.api.Mods;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.gui.truetyper.FontLoader;
 import mcp.mobius.waila.gui.truetyper.TrueTypeFont;
 import mcp.mobius.waila.handlers.VanillaTooltipHandler;
+import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.server.ProxyServer;
 
 public class ProxyClient extends ProxyServer {

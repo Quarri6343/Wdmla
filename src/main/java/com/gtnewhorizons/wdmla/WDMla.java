@@ -1,6 +1,9 @@
 package com.gtnewhorizons.wdmla;
 
+import net.minecraft.launchwrapper.Launch;
+
 import com.gtnewhorizons.wdmla.test.TestMode;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -9,7 +12,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import mcp.mobius.waila.Tags;
-import net.minecraft.launchwrapper.Launch;
 
 @Mod(
         modid = WDMla.MODID,

@@ -11,7 +11,6 @@ import com.google.common.collect.Lists;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.IToggleableProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 

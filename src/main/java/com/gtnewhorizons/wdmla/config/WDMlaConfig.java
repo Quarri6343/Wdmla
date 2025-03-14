@@ -1,21 +1,16 @@
 package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
+import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -72,7 +67,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         }
     }
 
-    //TODO:split provider config file
+    // TODO:split provider config file
     public boolean isProviderEnabled(IComponentProvider<?> provider) {
         if (provider.isRequired()) {
             return true;
@@ -80,20 +75,24 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
         return getBoolean(
                 new ConfigEntry<>(
-                        Identifiers.CONFIG_PROVIDER + "." + provider.getUid().getResourceDomain() + "." + provider.getUid().getResourcePath(),
+                        Identifiers.CONFIG_PROVIDER + "."
+                                + provider.getUid().getResourceDomain()
+                                + "."
+                                + provider.getUid().getResourcePath(),
                         Identifiers.CONFIG_PROVIDER_ENABLED,
                         provider.enabledByDefault(),
-                        ""
-                ));
+                        ""));
     }
 
     public int getProviderPriority(IComponentProvider<?> provider) {
         return getInteger(
                 new ConfigEntry<>(
-                        Identifiers.CONFIG_PROVIDER + "." + provider.getUid().getResourceDomain() + "." + provider.getUid().getResourcePath(),
+                        Identifiers.CONFIG_PROVIDER + "."
+                                + provider.getUid().getResourceDomain()
+                                + "."
+                                + provider.getUid().getResourcePath(),
                         Identifiers.CONFIG_PROVIDER_PRIORITY,
                         provider.getDefaultPriority(),
-                        ""
-                ));
+                        ""));
     }
 }

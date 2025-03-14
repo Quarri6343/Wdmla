@@ -1,7 +1,5 @@
 package mcp.mobius.waila.client;
 
-import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
-import mcp.mobius.waila.handlers.nei.NEIHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.config.Configuration;
@@ -9,11 +7,13 @@ import net.minecraftforge.common.config.Configuration;
 import org.lwjgl.input.Keyboard;
 
 import com.gtnewhorizons.wdmla.api.Mods;
+import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.utils.Constants;
 
 public class KeyEvent {
@@ -54,20 +54,20 @@ public class KeyEvent {
             ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, !status);
         } else if (showKey && !ConfigHandler.instance()
                 .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)) {
-            ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
-        } else
-        if (key_liquid.isPressed()) {
-            boolean status = ConfigHandler.instance()
-                    .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, true);
-            ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, !status);
-        } else if (key_recipe.isPressed()) {
-            if (Mods.NOTENOUGHITEMS.isLoaded()) {
-                NEIHandler.openRecipeGUI(true);
+                    ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
+                } else
+            if (key_liquid.isPressed()) {
+                boolean status = ConfigHandler.instance()
+                        .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, true);
+                ConfigHandler.instance().setConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_LIQUID, !status);
+            } else if (key_recipe.isPressed()) {
+                if (Mods.NOTENOUGHITEMS.isLoaded()) {
+                    NEIHandler.openRecipeGUI(true);
+                }
+            } else if (key_usage.isPressed()) {
+                if (Mods.NOTENOUGHITEMS.isLoaded()) {
+                    NEIHandler.openRecipeGUI(false);
+                }
             }
-        } else if (key_usage.isPressed()) {
-            if (Mods.NOTENOUGHITEMS.isLoaded()) {
-                NEIHandler.openRecipeGUI(false);
-            }
-        }
     }
 }

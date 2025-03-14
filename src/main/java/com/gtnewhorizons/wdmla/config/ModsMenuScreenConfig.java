@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,9 +9,7 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.WDMla;
-import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.IConfigElement;
@@ -46,7 +43,6 @@ public class ModsMenuScreenConfig extends GuiConfig {
                 new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PLUGINS)),
                 new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PROVIDER)),
                 new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
-                new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES))
-        );
+                new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES)));
     }
 }

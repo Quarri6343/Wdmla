@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla;
 
+import java.lang.reflect.Method;
+import java.util.LinkedHashMap;
+
 import com.gtnewhorizons.wdmla.addon.CorePlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
@@ -19,9 +22,6 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
 
-import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
-
 public class CommonProxy {
 
     private LinkedHashMap<String, String> imcRequests = new LinkedHashMap<>();
@@ -33,7 +33,7 @@ public class CommonProxy {
         FMLCommonHandler.instance().bus().register(this);
 
         if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
-            //testing IMC
+            // testing IMC
             FMLInterModComms.sendMessage(WDMla.MODID, "registerPlugin", "com.gtnewhorizons.wdmla.test.TestPlugin");
         }
     }

@@ -66,7 +66,8 @@ public class HarvestToolProvider implements IBlockComponentProvider {
             return;
         }
 
-        Block effectiveBlock = BlockHelper.getEffectiveBlock(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
+        Block effectiveBlock = BlockHelper
+                .getEffectiveBlock(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
         int effectiveMeta = BlockHelper
                 .getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
 

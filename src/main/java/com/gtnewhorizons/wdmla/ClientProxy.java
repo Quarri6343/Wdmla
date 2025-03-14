@@ -5,7 +5,6 @@ import java.io.File;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.overlay.WDMlaTickHandler;
@@ -52,7 +51,7 @@ public class ClientProxy extends CommonProxy {
         if (event.modID.equals(WDMla.MODID)) {
             WDMlaConfig.instance().save();
             WDMlaConfig.instance().reloadConfig();
-            loadComplete(); //sort priorities
+            loadComplete(); // sort priorities
 
             ConfigHandler.instance().config.save();
         }
