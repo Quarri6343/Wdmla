@@ -41,6 +41,11 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     @Override
+    public boolean enabledByDefault() {
+        return false;
+    }
+
+    @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())) {
             return;

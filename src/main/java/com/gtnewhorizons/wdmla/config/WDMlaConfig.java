@@ -74,11 +74,15 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
     //TODO:split provider config file
     public boolean isProviderEnabled(IComponentProvider<?> provider) {
+        if (provider.isRequired()) {
+            return true;
+        }
+
         return getBoolean(
                 new ConfigEntry<>(
                         Identifiers.CONFIG_PROVIDER + "." + provider.getUid().getResourceDomain() + "." + provider.getUid().getResourcePath(),
                         Identifiers.CONFIG_PROVIDER_ENABLED,
-                        true,
+                        provider.enabledByDefault(),
                         ""
                 ));
     }

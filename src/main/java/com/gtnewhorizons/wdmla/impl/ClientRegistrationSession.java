@@ -39,20 +39,11 @@ public class ClientRegistrationSession {
 
     public void registerBlockComponent(IComponentProvider<BlockAccessor> provider, Class<? extends Block> blockClass) {
         register(provider, blockComponentProviders, registration.blockComponentProviders, blockClass);
-        tryAddConfig(provider);
     }
 
     public void registerEntityComponent(IComponentProvider<EntityAccessor> provider,
             Class<? extends Entity> entityClass) {
         register(provider, entityComponentProviders, registration.entityComponentProviders, entityClass);
-        tryAddConfig(provider);
-    }
-
-    private void tryAddConfig(IToggleableProvider provider) {
-        // ResourceLocation key = provider.getUid();
-        // if (!provider.isRequired()) {
-        // configIds.add(key);
-        // }
     }
 
     public void reset() {

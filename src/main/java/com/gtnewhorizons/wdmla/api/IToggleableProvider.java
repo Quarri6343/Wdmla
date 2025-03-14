@@ -12,5 +12,4 @@ public interface IToggleableProvider extends IWDMlaProvider {
     default boolean enabledByDefault() {
         return true;
     }
-
 }
