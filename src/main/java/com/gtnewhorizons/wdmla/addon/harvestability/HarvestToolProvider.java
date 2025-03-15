@@ -106,7 +106,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
             return Arrays.asList(
                     new TextComponent(
                             ColorHelper.getBooleanColor(false)
-                                    + config.getString(CONFIG_NEW_NOT_CURRENTLY_HARVESTABLE_STRING)));
+                                    + config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
         }
 
         // needed to stop array index out of bounds exceptions on mob spawners
@@ -124,7 +124,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
             return Arrays.asList(
                     new TextComponent(
                             ColorHelper.getBooleanColor(true)
-                                    + config.getString(CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING)));
+                                    + config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING)));
         }
 
         ItemStack itemHeld = player.getHeldItem();
@@ -222,23 +222,25 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         ITooltip harvestabilityComponent = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
         String currentlyHarvestableIcon = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                + (isCurrentlyHarvestable ? config.getString(CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING)
-                        : config.getString(CONFIG_NEW_NOT_CURRENTLY_HARVESTABLE_STRING));
+                + (isCurrentlyHarvestable ? config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING)
+                        : config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING));
 
-        if (effectiveToolIconComponent != null) {
-            effectiveToolIconComponent.text(currentlyHarvestableIcon, new TextStyle(), new Padding().left(5).top(6));
-            harvestabilityComponent.child(effectiveToolIconComponent);
-        } else {
-            harvestabilityComponent.text(currentlyHarvestableIcon);
+        if(config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_ICON)) {
+            if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON)) {
+                effectiveToolIconComponent.text(currentlyHarvestableIcon, new TextStyle(), new Padding().left(5).top(6));
+                harvestabilityComponent.child(effectiveToolIconComponent);
+            } else {
+                harvestabilityComponent.text(currentlyHarvestableIcon);
+            }
         }
-        if (!shearability.isEmpty()) {
+        if (!shearability.isEmpty() && config.getBoolean(CONFIG_MODERN_SHOW_SHEARABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SHEARABILITY_ITEM).split(":");
             if (parts.length == 2) {
                 harvestabilityComponent
                         .item(GameRegistry.findItemStack(parts[0], parts[1], 1), new Padding(), new Size(10, 10));
             }
         }
-        if (!silkTouchability.isEmpty()) {
+        if (!silkTouchability.isEmpty() && config.getBoolean(CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SILKTOUCHABILITY_ITEM).split(":");
             if (parts.length == 2) {
                 harvestabilityComponent

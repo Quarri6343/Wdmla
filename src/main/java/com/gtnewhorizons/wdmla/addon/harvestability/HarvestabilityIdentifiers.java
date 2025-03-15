@@ -126,12 +126,12 @@ public class HarvestabilityIdentifiers {
 
     public static final String CONFIG_CATEGORY_MODERN = CONFIG_CATEGORY + ".modern";
     public static final String CONFIG_CATEGORY_MODERN_COMMENT = "Only available on modern mode provider";
-    public static final ConfigEntry<String> CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
+    public static final ConfigEntry<String> CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
             CONFIG_CATEGORY_MODERN,
             "CurrentlyHarvestableString",
             "✔",
             "The string below the Harvest Tool icon after the item name");
-    public static final ConfigEntry<String> CONFIG_NEW_NOT_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
+    public static final ConfigEntry<String> CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
             CONFIG_CATEGORY_MODERN,
             "NotCurrentlyHarvestableString",
             "✕",
@@ -151,6 +151,26 @@ public class HarvestabilityIdentifiers {
             "HarvestLevelNum",
             false,
             "Shows the Harvest Level number text without enabling legacy mode");
+    public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_HARVESTABLE_ICON = new ConfigEntry<>(
+            CONFIG_CATEGORY_MODERN,
+            "ShowHarvestableIcon",
+            true,
+            "");
+    public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON = new ConfigEntry<>(
+            CONFIG_CATEGORY_MODERN,
+            "ShowHarvestableToolIcon",
+            true,
+            "");
+    public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_SHEARABILITY_ICON = new ConfigEntry<>(
+            CONFIG_CATEGORY_MODERN,
+            "ShowShearabilityIcon",
+            true,
+            "");
+    public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON = new ConfigEntry<>(
+            CONFIG_CATEGORY_MODERN,
+            "ShowSilkTouchabilityIcon",
+            true,
+            "");
 
     public static final String CONFIG_CATEGORY_MODERN_TINKERS = CONFIG_CATEGORY_MODERN + ".tinkersconstruct";
     public static final String CONFIG_CATEGORY_MODERN_TINKERS_COMMENT = "IDs of the TiC effective pickaxe material corresponding to the harvest level.\n" +

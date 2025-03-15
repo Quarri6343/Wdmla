@@ -42,11 +42,15 @@ public class HarvestabilityConfigProvider implements IConfigProvider {
 
         config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY_MODERN)
                 .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_MODERN_COMMENT);
-        config.getString(HarvestabilityIdentifiers.CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING);
-        config.getString(HarvestabilityIdentifiers.CONFIG_NEW_NOT_CURRENTLY_HARVESTABLE_STRING);
+        config.getString(HarvestabilityIdentifiers.CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING);
+        config.getString(HarvestabilityIdentifiers.CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING);
         config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_ITEM);
         config.getString(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_ITEM);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_HARVEST_LEVEL_NUM);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_HARVESTABLE_ICON);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_SHEARABILITY_ICON);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON);
 
         config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY_MODERN_TINKERS)
                 .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_MODERN_TINKERS_COMMENT);
