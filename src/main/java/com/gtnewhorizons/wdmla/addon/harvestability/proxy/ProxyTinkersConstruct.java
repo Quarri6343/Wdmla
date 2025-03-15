@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -118,15 +120,25 @@ public class ProxyTinkersConstruct {
         return name;
     }
 
-    public static ItemStack getEffectivePickaxeIcon(int num) {
+    /**
+     * Gets the icon of the effective Pickaxe from config.
+     * Important note: the default config value is tuned for Iguana Tweaks with vanilla mode disabled.
+     * You have to edit the config in order to play with vanilla mode or TiC alone
+     * See: <a href=
+     * "https://github.com/GTNewHorizons/TinkersConstruct/blob/master/src/main/java/tconstruct/tools/TinkerTools.java#L1771">...</a>
+     */
+    public static ItemStack getEffectivePickaxeIcon(int num, IPluginConfig config) {
         return switch (num) {
-            case 0 -> creativePickaxes.get(ANY);
-            case 1 -> creativePickaxes.get(IRON);
-            case 2 -> creativePickaxes.get(REDSTONE);
-            case 3 -> creativePickaxes.get(OBSIDIAN);
-            case 4 -> creativePickaxes.get(COBALT);
-            case 5 -> creativePickaxes.get(MANYULLYN);
-            case 6 -> creativePickaxes.get(MANYULLYNPLUS);
+            case 0 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_0));
+            case 1 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_1));
+            case 2 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_2));
+            case 3 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_3));
+            case 4 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_4));
+            case 5 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_5));
+            case 6 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_6));
+            case 7 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_7));
+            case 8 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_8));
+            case 9 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_9));
             default -> new ItemStack(Blocks.iron_bars);
         };
     }

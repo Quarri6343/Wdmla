@@ -78,17 +78,17 @@ public class HarvestToolProvider implements IBlockComponentProvider {
                 accessor.getHitResult(),
                 config);
 
-        updateTooltip(tooltip, accessor, harvestableDisplay);
+        updateTooltip(tooltip, accessor, harvestableDisplay, config);
     }
 
-    private void updateTooltip(ITooltip tooltip, BlockAccessor accessor, List<IComponent> harvestableDisplay) {
+    private void updateTooltip(ITooltip tooltip, BlockAccessor accessor, List<IComponent> harvestableDisplay, IPluginConfig config) {
         IComponent replacedName = new HPanelComponent()
                 .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay.get(0))
                 .tag(Identifiers.ITEM_NAME);
         if (!tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName)) {
             return;
         }
-        if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null) {
+        if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null && config.getBoolean(CONFIG_MODERN_HARVEST_LEVEL_NUM)) {
             tooltip.child(harvestableDisplay.get(1));
         }
     }
@@ -129,7 +129,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
 
         ItemStack itemHeld = player.getHeldItem();
 
-        ITooltip effectiveToolIconComponent = getEffectiveToolIcon(harvestLevel, effectiveTool);
+        ITooltip effectiveToolIconComponent = getEffectiveToolIcon(harvestLevel, effectiveTool, config);
 
         boolean isCurrentlyHarvestable = isCurrentlyHarvestable(
                 player,
@@ -190,10 +190,10 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         return canHarvest;
     }
 
-    private static @Nullable ITooltip getEffectiveToolIcon(int harvestLevel, String effectiveTool) {
+    private static @Nullable ITooltip getEffectiveToolIcon(int harvestLevel, String effectiveTool, IPluginConfig config) {
         ITooltip effectiveToolIconComponent = null;
         if (harvestLevel != -1 && effectiveTool != null) {
-            ItemStack effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel);
+            ItemStack effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel, config);
             // remove durability bar from tool icon
             effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).style(new ItemStyle().drawOverlay(false))
                     .size(new Size(10, 10));

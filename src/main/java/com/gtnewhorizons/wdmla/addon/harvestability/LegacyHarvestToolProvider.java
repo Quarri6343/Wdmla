@@ -27,7 +27,6 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 
-// TODO: remove once the config migration is complete
 public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     @Override

@@ -139,22 +139,22 @@ public class ConfigHandler implements IWailaConfigHandler {
     }
 
     /* Default config loading */
-
     public void loadDefaultConfig(FMLPreInitializationEvent event) {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
-        syncDefaultConfig();
+        loadDefaultConfigInternal();
         config.save();
         OverlayConfig.updateColors();
     }
 
+    //new helper method
     public void reloadDefaultConfig() {
         config.save();
-        syncDefaultConfig();
+        loadDefaultConfigInternal();
         OverlayConfig.updateColors();
     }
 
-    public void syncDefaultConfig() {
+    private void loadDefaultConfigInternal() {
         config.getCategory(Configuration.CATEGORY_GENERAL)
                 .setComment("These are the original Waila configs which are shared between old and new apis");
         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);

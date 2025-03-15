@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,10 +24,10 @@ public class ToolHelper {
         return block.getMaterial().isToolNotRequired() || tool.func_150998_b(block); // func_150998_b = canHarvestBlock
     }
 
-    public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel) {
+    public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel, IPluginConfig config) {
         switch (effectiveTool) {
             case TOOL_PICKAXE:
-                return getEffectivePickaxeIcon(harvestLevel);
+                return getEffectivePickaxeIcon(harvestLevel, config);
             case TOOL_SHOVEL:
                 return new ItemStack(Items.wooden_shovel);
             case TOOL_AXE:
@@ -42,11 +43,9 @@ public class ToolHelper {
         }
     }
 
-    public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
-        if (Mods.IGUANATWEAKS.isLoaded()) {
-            return ProxyIguanaTweaks.getEffectivePickaxeIcon(harvestLevel);
-        } else if (Mods.TCONSTUCT.isLoaded()) {
-            return ProxyTinkersConstruct.getEffectivePickaxeIcon(harvestLevel);
+    public static ItemStack getEffectivePickaxeIcon(int harvestLevel, IPluginConfig config) {
+        if (Mods.TCONSTUCT.isLoaded()) {
+            return ProxyTinkersConstruct.getEffectivePickaxeIcon(harvestLevel, config);
         }
         return getVanillaEffectivePickaxeIcon(harvestLevel);
     }
