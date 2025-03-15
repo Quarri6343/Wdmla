@@ -21,13 +21,13 @@ public class StemHeaderProvider implements IBlockComponentProvider {
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         if(accessor.getBlock().equals(Blocks.pumpkin_stem)) {
             IComponent replacedName = new HPanelComponent()
-                    .text(LangUtil.translateG("hud.item.pumpkinstem"), new TextStyle().color(ColorCodes.WHITE), new Padding())
+                    .text(LangUtil.translateG("hud.item.pumpkinstem"), new TextStyle().color(ColorCodes.INFO), new Padding())
                     .tag(Identifiers.ITEM_NAME);
             tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
         }
         else if(accessor.getBlock().equals(Blocks.melon_stem)) {
             IComponent replacedName = new HPanelComponent()
-                    .text(LangUtil.translateG("hud.item.melonstem"), new TextStyle().color(ColorCodes.WHITE), new Padding())
+                    .text(LangUtil.translateG("hud.item.melonstem"), new TextStyle().color(ColorCodes.INFO), new Padding())
                     .tag(Identifiers.ITEM_NAME);
             tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
         }

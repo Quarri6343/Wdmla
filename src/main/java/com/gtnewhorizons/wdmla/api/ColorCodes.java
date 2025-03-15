@@ -5,7 +5,8 @@ public final class ColorCodes {
     //text color(no alpha)
     public static final int DEFAULT_TEXT = 0xA0A0A0;
     public static final int RED = 0xFF0000;
-    public static final int WHITE = 0xFFFFFF;
+    public static final int INFO = 0xFFFFFF;
+    public static final int SUCCESS = 0xFF55FF55;
 
     //other color(has alpha)
     public static final int NO_BORDER = 0x00000000;

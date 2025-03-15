@@ -31,6 +31,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new RedstoneWireProvider(), BlockRedstoneWire.class);
         registration.registerBlockComponent(new CropHeaderProvider(), BlockCrops.class);
         registration.registerBlockComponent(new StemHeaderProvider(), BlockStem.class);
+        registration.registerBlockComponent(new GeneralGrowthRateProvider(), BlockCrops.class);
+        registration.registerBlockComponent(new GeneralGrowthRateProvider(), BlockStem.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
@@ -59,7 +61,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
             tooltip.child(
                     new HPanelComponent()
                             .text(String.format("%s: ", LangUtil.translateG("hud.msg.power")))
-                            .text(String.format("%s", accessor.getMetadata()), new TextStyle().color(ColorCodes.WHITE), new Padding())
+                            .text(String.format("%s", accessor.getMetadata()), new TextStyle().color(ColorCodes.INFO), new Padding())
             );
         }
 

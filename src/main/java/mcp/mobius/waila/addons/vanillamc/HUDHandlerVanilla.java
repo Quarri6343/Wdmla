@@ -25,11 +25,6 @@ import mcp.mobius.waila.cbcore.LangUtil;
 public class HUDHandlerVanilla implements IWailaDataProvider {
 
     static Block mobSpawner = Blocks.mob_spawner;
-    static Block crops = Blocks.wheat;
-    static Block melonStem = Blocks.melon_stem;
-    static Block pumpkinStem = Blocks.pumpkin_stem;
-    static Block carrot = Blocks.carrots;
-    static Block potato = Blocks.potatoes;
     static Block lever = Blocks.lever;
     static Block repeaterIdle = Blocks.unpowered_repeater;
     static Block repeaterActv = Blocks.powered_repeater;
@@ -113,20 +108,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
             IWailaConfigHandler config) {
         Block block = accessor.getBlock();
-        /* Crops */
-        boolean iscrop = crops.getClass().isInstance(block); // Done to cover all inheriting mods
-        if (config.getConfig("general.showcrop"))
-            if (iscrop || block == melonStem || block == pumpkinStem) {
-                float growthValue = (accessor.getMetadata() / 7.0F) * 100.0F;
-                if (growthValue < 100.0)
-                    currenttip.add(String.format("%s : %.0f %%", LangUtil.translateG("hud.msg.growth"), growthValue));
-                else currenttip.add(
-                        String.format(
-                                "%s : %s",
-                                LangUtil.translateG("hud.msg.growth"),
-                                LangUtil.translateG("hud.msg.mature")));
-                return currenttip;
-            }
 
         if (block == cocoa && config.getConfig("general.showcrop")) {
 
@@ -203,7 +184,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
 
         ModuleRegistrar.instance().registerStackProvider(provider, doubleplant.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, BlockRedstoneOre.class);
-        ModuleRegistrar.instance().registerStackProvider(provider, crops.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, leave.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, leave2.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, log.getClass());
@@ -215,12 +195,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerStackProvider(provider, BlockWoodSlab.class);
 
         ModuleRegistrar.instance().registerHeadProvider(provider, mobSpawner.getClass());
-        ModuleRegistrar.instance().registerHeadProvider(provider, melonStem.getClass());
-        ModuleRegistrar.instance().registerHeadProvider(provider, pumpkinStem.getClass());
-
-        ModuleRegistrar.instance().registerBodyProvider(provider, crops.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, melonStem.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, pumpkinStem.getClass());
 
         ModuleRegistrar.instance().registerBodyProvider(provider, lever.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, repeaterIdle.getClass());
@@ -232,11 +206,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerBodyProvider(provider, netherwart.getClass());
 
         ModuleRegistrar.instance().registerNBTProvider(provider, mobSpawner.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, crops.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, melonStem.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, pumpkinStem.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, carrot.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, potato.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, lever.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, repeaterIdle.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, repeaterActv.getClass());

@@ -16,8 +16,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import static mcp.mobius.waila.api.SpecialChars.WHITE;
-
 public class SilverFishBlockProvider implements IBlockComponentProvider {
 
     @Override
@@ -32,7 +30,7 @@ public class SilverFishBlockProvider implements IBlockComponentProvider {
             default -> new ItemStack(Blocks.stone);
         };
         IComponent replacedName = new HPanelComponent()
-                .text(DisplayUtil.itemDisplayNameShort(dummyStack), new TextStyle().color(ColorCodes.WHITE), new Padding())
+                .text(DisplayUtil.itemDisplayNameShort(dummyStack), new TextStyle().color(ColorCodes.INFO), new Padding())
                 .tag(Identifiers.ITEM_NAME);
         tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }

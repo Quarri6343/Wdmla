@@ -10,6 +10,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation REDSTONE_WIRE = MC("redstone_wire");
     public static final ResourceLocation CROP_HEADER = MC("crop_header");
     public static final ResourceLocation STEM_HEADER = MC("stem_header");
+    public static final ResourceLocation GROWTH_RATE_HEADER = MC("growth_rate");
 
     // config
 

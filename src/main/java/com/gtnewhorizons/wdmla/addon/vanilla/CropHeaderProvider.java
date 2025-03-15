@@ -25,7 +25,7 @@ public class CropHeaderProvider implements IBlockComponentProvider {
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         if(accessor.getBlock().equals(Blocks.wheat)) {
             IComponent replacedName = new HPanelComponent()
-                    .text(LangUtil.translateG("hud.item.wheatcrop"), new TextStyle().color(ColorCodes.WHITE), new Padding())
+                    .text(LangUtil.translateG("hud.item.wheatcrop"), new TextStyle().color(ColorCodes.INFO), new Padding())
                     .tag(Identifiers.ITEM_NAME);
             tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
         }
