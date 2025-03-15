@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
-import com.gtnewhorizons.wdmla.api.ColorCodes;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
 
@@ -12,7 +12,7 @@ public class TextStyle implements ITextStyle {
 
     public TextStyle() {
         this.alignment = ComponentAlignment.TOPLEFT;
-        this.color = ColorCodes.DEFAULT_TEXT;
+        this.color = ColorPalette.NORMAL;
         this.shadow = DEFAULT_SHADOW;
     }
 

@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.api.ColorCodes;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
@@ -27,7 +27,7 @@ public class BreakProgressDrawable implements IDrawable {
             progressAlpha = progressAlpha.fade();
         }
 
-        int color = progressAlpha.apply(ColorCodes.BREAK_PROGRESS_DEFAULT); // TODO: change color with harvestability
+        int color = progressAlpha.apply(ColorPalette.BREAK_PROGRESS_DEFAULT); // TODO: change color with harvestability
 
         GuiDraw.drawGradientRect(savedDamage.computeDrawArea(area), color, color);
     }

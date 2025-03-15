@@ -1,18 +1,14 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.ColorCodes;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
-import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
@@ -43,8 +39,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            ItemStack redstone = new ItemStack(Items.redstone);
-            tooltip.replaceChildWithTag(Identifiers.ITEM_ICON, new ItemComponent(redstone).tag(Identifiers.ITEM_ICON));
+            ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Items.redstone));
         }
 
         @Override
@@ -65,7 +60,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
             tooltip.child(
                     new HPanelComponent()
                             .text(String.format("%s: ", LangUtil.translateG("hud.msg.power")))
-                            .text(String.format("%s", accessor.getMetadata()), new TextStyle().color(ColorCodes.INFO), new Padding())
+                            .child(ThemeHelper.INSTANCE.info(String.format("%s", accessor.getMetadata())))
             );
         }
 

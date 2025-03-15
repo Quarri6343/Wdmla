@@ -1,17 +1,11 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.ColorCodes;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
-import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
-import mcp.mobius.waila.overlay.DisplayUtil;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -29,10 +23,7 @@ public class SilverFishBlockProvider implements IBlockComponentProvider {
             case 5 -> new ItemStack(Blocks.stonebrick, 1, 3);
             default -> new ItemStack(Blocks.stone);
         };
-        IComponent replacedName = new HPanelComponent()
-                .text(DisplayUtil.itemDisplayNameShort(dummyStack), new TextStyle().color(ColorCodes.INFO), new Padding())
-                .tag(Identifiers.ITEM_NAME);
-        tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
+        ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, dummyStack);
     }
 
     @Override

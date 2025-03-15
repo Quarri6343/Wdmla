@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.api.ColorCodes;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
@@ -24,7 +24,7 @@ public class BorderDrawable implements IDrawable {
     @Override
     public void draw(IArea area) {
         int color = this.style.getBorderColor();
-        if (this.style.getBorderColor() != ColorCodes.NO_BORDER) {
+        if (this.style.getBorderColor() != ColorPalette.NO_BORDER) {
             GuiDraw.drawHorizontalLine(area.getX(), area.getY(), area.getEX() - 1, color);
             GuiDraw.drawHorizontalLine(area.getX(), area.getEY() - 1, area.getEX() - 1, color);
             GuiDraw.drawVerticalLine(area.getX(), area.getY(), area.getEY() - 1, color);

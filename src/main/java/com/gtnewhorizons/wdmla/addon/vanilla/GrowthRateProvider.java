@@ -1,10 +1,11 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.ColorCodes;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
@@ -37,14 +38,14 @@ public class GrowthRateProvider implements IBlockComponentProvider {
             tooltip.child(
                     new HPanelComponent()
                             .text(String.format("%s: ", LangUtil.translateG("hud.msg.growth")))
-                            .text(String.format("%.0f %%", growthValue), new TextStyle().color(ColorCodes.INFO), new Padding())
+                            .child(ThemeHelper.INSTANCE.info(String.format("%.0f %%", growthValue)))
             );
         }
         else {
             tooltip.child(
                     new HPanelComponent()
                             .text(String.format("%s: ", LangUtil.translateG("hud.msg.growth")))
-                            .text(String.format("%s", LangUtil.translateG("hud.msg.mature")), new TextStyle().color(ColorCodes.SUCCESS), new Padding())
+                            .child(ThemeHelper.INSTANCE.success(String.format("%s", LangUtil.translateG("hud.msg.mature"))))
             );
         }
     }

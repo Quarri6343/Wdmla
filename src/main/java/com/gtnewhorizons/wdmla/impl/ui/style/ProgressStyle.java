@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
-import com.gtnewhorizons.wdmla.api.ColorCodes;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
 
 public class ProgressStyle implements IProgressStyle {
@@ -11,10 +11,10 @@ public class ProgressStyle implements IProgressStyle {
     private int alternateFilledColor;
 
     public ProgressStyle() {
-        this.borderColor = ColorCodes.PROGRESS_DEFAULT_BORDER;
-        this.backgroundColor = ColorCodes.PROGRESS_DEFAULT_BACKGROUND;
-        this.filledColor = ColorCodes.PROGRESS_DEFAULT_FILLED;
-        this.alternateFilledColor = ColorCodes.PROGRESS_DEFAULT_FILLED_ALTERNATE;
+        this.borderColor = ColorPalette.PROGRESS_DEFAULT_BORDER;
+        this.backgroundColor = ColorPalette.PROGRESS_DEFAULT_BACKGROUND;
+        this.filledColor = ColorPalette.PROGRESS_DEFAULT_FILLED;
+        this.alternateFilledColor = ColorPalette.PROGRESS_DEFAULT_FILLED_ALTERNATE;
     }
 
     public ProgressStyle borderColor(int borderColor) {
