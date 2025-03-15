@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.utils.Constants;
 import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -21,6 +23,7 @@ import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
+import net.minecraftforge.common.config.Configuration;
 
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 
@@ -29,8 +32,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
 
     @Override
     public boolean shouldDisplay(BlockAccessor accessor) {
-        return true;
-        // TODO: config
+        return ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SHOW, true);
     }
 
     @Override

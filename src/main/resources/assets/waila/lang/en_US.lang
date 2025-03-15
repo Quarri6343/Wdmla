@@ -35,6 +35,7 @@ waila.keybind.liquid=[Waila] Show liquids
 waila.keybind.recipe=[Waila] Show recipe
 waila.keybind.usage=[Waila] Show usage
 waila.keybind.testing=[Waila] Testing
+waila.keybind.details=Show details
 
 client.msg.norecipe=No recipe found.
 client.msg.nousage=No usage found.

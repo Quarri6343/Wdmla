@@ -9,6 +9,7 @@ public final class Constants {
     public static String BIND_WAILA_LIQUID = "waila.keybind.liquid";
     public static String BIND_WAILA_RECIPE = "waila.keybind.recipe";
     public static String BIND_WAILA_USAGE = "waila.keybind.usage";
+    public static String BIND_WAILA_DETAILS = "waila.keybind.details";
 
     public static String CFG_NEI_SHOW = "world.highlight_tips";
     public static String BIND_NEI_SHOW = "keys.world.highlight_tips";
