@@ -82,12 +82,15 @@ public class HarvestToolProvider implements IBlockComponentProvider {
     }
 
     private void updateTooltip(ITooltip tooltip, BlockAccessor accessor, List<IComponent> harvestableDisplay, IPluginConfig config) {
-        IComponent replacedName = new HPanelComponent()
-                .text(WHITE + DisplayUtil.itemDisplayNameShort(accessor.getItemForm())).child(harvestableDisplay.get(0))
-                .tag(Identifiers.ITEM_NAME);
-        if (!tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName)) {
+        IComponent oldItemName = tooltip.getChildWithTag(Identifiers.ITEM_NAME);
+        if(oldItemName == null) {
             return;
         }
+        IComponent replacedName = new HPanelComponent()
+                .child(oldItemName)
+                .child(harvestableDisplay.get(0))
+                .tag(Identifiers.ITEM_NAME);
+        tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
         if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null && config.getBoolean(CONFIG_MODERN_HARVEST_LEVEL_NUM)) {
             tooltip.child(harvestableDisplay.get(1));
         }

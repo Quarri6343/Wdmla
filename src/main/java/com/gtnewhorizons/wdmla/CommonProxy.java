@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import com.gtnewhorizons.wdmla.addon.CorePlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
+import com.gtnewhorizons.wdmla.addon.vanilla.VanillaPlugin;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
@@ -75,6 +76,7 @@ public class CommonProxy {
 
     public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
         new CorePlugin().registerClient(clientRegistration);
+        new VanillaPlugin().registerClient(clientRegistration);
         new HarvestabilityPlugin().registerClient(clientRegistration);
     }
 

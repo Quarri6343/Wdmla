@@ -163,6 +163,23 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
+    public IComponent getChildWithTag(ResourceLocation tag) {
+        for (int i = 0; i < children.size(); i++) {
+            IComponent child = children.get(i);
+            if (tag.equals(child.getTag())) {
+                return child;
+            } else if (child instanceof ITooltip tooltipChild) {
+                IComponent nestedChild = tooltipChild.getChildWithTag(tag);
+                if (nestedChild != null) {
+                    return nestedChild;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     public boolean replaceChildWithTag(@NotNull ResourceLocation tag, IComponent newChild) {
         for (int i = 0; i < children.size(); i++) {
             IComponent child = children.get(i);

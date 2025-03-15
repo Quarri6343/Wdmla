@@ -36,7 +36,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         for (IConfigProvider configProvider : WDMlaClientRegistration.instance().configProviders) {
             configProvider.loadConfig(this);
         }
-        reloadProviderConfigs();
+        reloadComponentProviderConfigs();
 
         getCategory(Identifiers.CONFIG_GENERAL).setComment("These are the WDMla exclusive settings");
         getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
@@ -60,7 +60,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         return get(entry.category, entry.key, entry.defaultValue, entry.comment).getString();
     }
 
-    public void reloadProviderConfigs() {
+    public void reloadComponentProviderConfigs() {
         for (IComponentProvider<?> provider : WDMlaClientRegistration.instance().getAllProvidersWithoutInfo()) {
             isProviderEnabled(provider);
             WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));
@@ -85,6 +85,10 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
     }
 
     public int getProviderPriority(IComponentProvider<?> provider) {
+        if(provider.isPriorityFixed()) {
+            return provider.getDefaultPriority();
+        }
+
         return getInteger(
                 new ConfigEntry<>(
                         Identifiers.CONFIG_PROVIDER + "."

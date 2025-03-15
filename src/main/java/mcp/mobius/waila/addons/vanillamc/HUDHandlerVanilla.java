@@ -39,7 +39,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     static Block jukebox = Blocks.jukebox;
     static Block cocoa = Blocks.cocoa;
     static Block netherwart = Blocks.nether_wart;
-    static Block silverfish = Blocks.monster_egg;
     static Block doubleplant = Blocks.double_plant;
     static Block leave = Blocks.leaves;
     static Block leave2 = Blocks.leaves2;
@@ -52,16 +51,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         Block block = accessor.getBlock();
-
-        if (block == silverfish && config.getConfig("vanilla.silverfish")) {
-            int metadata = accessor.getMetadata();
-            return switch (metadata) {
-                case 0 -> new ItemStack(Blocks.stone);
-                case 1 -> new ItemStack(Blocks.cobblestone);
-                case 2 -> new ItemStack(Blocks.brick_block);
-                default -> null;
-            };
-        }
 
         if (block == redstone) {
             return new ItemStack(Items.redstone);
@@ -234,13 +223,11 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.repeater");
         ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.comparator");
         ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.redstone");
-        ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.silverfish");
         ModuleRegistrar.instance().addConfigRemote("VanillaMC", "vanilla.jukebox");
         ModuleRegistrar.instance().addConfigRemote("VanillaMC", "vanilla.show_invisible_players");
 
         IWailaDataProvider provider = new HUDHandlerVanilla();
 
-        ModuleRegistrar.instance().registerStackProvider(provider, silverfish.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, redstone.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, doubleplant.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, BlockRedstoneOre.class);
@@ -289,7 +276,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerNBTProvider(provider, jukebox.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, cocoa.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, netherwart.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, silverfish.getClass());
     }
 
 }

@@ -69,8 +69,4 @@ public final class Identifiers {
     public static ResourceLocation Test(String path) {
         return new ResourceLocation("test", path);
     }
-
-    private static ResourceLocation MC(String path) {
-        return new ResourceLocation(path);
-    }
 }

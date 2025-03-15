@@ -52,4 +52,9 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
             row_vertical.child(new TextComponent(BLUE + ITALIC + modName).tag(Identifiers.MOD_NAME));
         }
     }
+
+    @Override
+    public boolean isPriorityFixed() {
+        return true;
+    }
 }

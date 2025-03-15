@@ -49,5 +49,7 @@ public interface ITooltip extends IComponent {
 
     ITooltip tag(ResourceLocation tag);
 
+    IComponent getChildWithTag(ResourceLocation tag);
+
     boolean replaceChildWithTag(ResourceLocation tag, IComponent newChild);
 }

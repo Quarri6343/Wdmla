@@ -27,6 +27,11 @@ public class DefaultEntityInfoProvider implements IEntityComponentProvider {
     }
 
     @Override
+    public boolean isPriorityFixed() {
+        return true;
+    }
+
+    @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
         if (config.getBoolean(Identifiers.CONFIG_SHOW_ENTITY_NAME)) {
             tooltip.child(

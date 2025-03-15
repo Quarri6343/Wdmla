@@ -22,4 +22,8 @@ public interface IWDMlaProvider {
     default int getDefaultPriority() {
         return TooltipPosition.BODY;
     }
+
+    default boolean isPriorityFixed() {
+        return false;
+    }
 }
