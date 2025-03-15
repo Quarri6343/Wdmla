@@ -47,7 +47,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {
-        return Identifiers.HARVESTABILITY;
+        return HarvestabilityIdentifiers.HARVESTABILITY;
     }
 
     @Override
@@ -219,7 +219,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
 
     private static @NotNull ITooltip assembleHarvestabilityIcon(ITooltip effectiveToolIconComponent,
             boolean isCurrentlyHarvestable, String shearability, String silkTouchability, IPluginConfig config) {
-        ITooltip harvestabilityComponent = new HPanelComponent().tag(Identifiers.HARVESTABILITY_ICON);
+        ITooltip harvestabilityComponent = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
         String currentlyHarvestableIcon = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
                 + (isCurrentlyHarvestable ? config.getString(CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING)
@@ -255,7 +255,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
             harvestLevelText = new TextComponent(
                     StatCollector.translateToLocal("wailaharvestability.harvestlevel")
                             + ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                            + harvestLevelString).tag(Identifiers.HARVESTABILITY_TEXT);
+                            + harvestLevelString).tag(HarvestabilityIdentifiers.HARVESTABILITY_TEXT);
         }
         return harvestLevelText;
     }

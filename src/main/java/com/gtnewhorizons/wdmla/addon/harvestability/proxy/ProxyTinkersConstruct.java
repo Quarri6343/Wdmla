@@ -1,7 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.TinkersHarvestMaterialIDs.*;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

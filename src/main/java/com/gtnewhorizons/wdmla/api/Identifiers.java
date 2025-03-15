@@ -13,9 +13,6 @@ public final class Identifiers {
     public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");
     public static final ResourceLocation MOD_NAME = Core("mod_name");
 
-    public static final ResourceLocation HARVESTABILITY_ICON = Harvestability("harvestability_icon");
-    public static final ResourceLocation HARVESTABILITY_TEXT = Harvestability("harvestability_text");
-
     // provider Uid
     public static final ResourceLocation DEFAULT_BLOCK = Core("default_block");
     public static final ResourceLocation DEFAULT_ENTITY = Core("default_entity");
@@ -23,9 +20,6 @@ public final class Identifiers {
     public static final ResourceLocation TEST_HEAD = Test("head");
     public static final ResourceLocation TEST_BODY = Test("body");
     public static final ResourceLocation TEST_ENTITY = Test("entity");
-
-    public static final ResourceLocation HARVESTABILITY = Harvestability("harvestability");
-    public static final ResourceLocation LEGACY_HARVESTABILITY = Harvestability("legacy_harvestability");
 
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
@@ -74,10 +68,6 @@ public final class Identifiers {
 
     public static ResourceLocation Test(String path) {
         return new ResourceLocation("test", path);
-    }
-
-    public static ResourceLocation Harvestability(String path) {
-        return new ResourceLocation("harvestability", path);
     }
 
     private static ResourceLocation MC(String path) {

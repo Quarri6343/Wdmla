@@ -2,13 +2,21 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import net.minecraft.util.ResourceLocation;
 
 public class HarvestabilityIdentifiers {
+
+    public static final ResourceLocation HARVESTABILITY_ICON = Harvestability("harvestability_icon");
+    public static final ResourceLocation HARVESTABILITY_TEXT = Harvestability("harvestability_text");
+
+    public static final ResourceLocation HARVESTABILITY = Harvestability("modern");
+    public static final ResourceLocation LEGACY_HARVESTABILITY = Harvestability("legacy");
 
     public static final String CONFIG_CATEGORY = Identifiers.CONFIG_PLUGINS + ".harvestability";
     public static final String CONFIG_CATEGORY_COMMENT = "Waila Harvestability";
 
     public static final String CONFIG_CATEGORY_LEGACY = CONFIG_CATEGORY + ".legacy";
+    public static final String CONFIG_CATEGORY_LEGACY_COMMENT = "Only available on legacy mode provider";
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL = new ConfigEntry<>(
             CONFIG_CATEGORY_LEGACY,
             "HarvestLevel",
@@ -117,6 +125,7 @@ public class HarvestabilityIdentifiers {
             "");
 
     public static final String CONFIG_CATEGORY_MODERN = CONFIG_CATEGORY + ".modern";
+    public static final String CONFIG_CATEGORY_MODERN_COMMENT = "Only available on modern mode provider";
     public static final ConfigEntry<String> CONFIG_NEW_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
             CONFIG_CATEGORY_MODERN,
             "CurrentlyHarvestableString",
@@ -196,4 +205,8 @@ public class HarvestabilityIdentifiers {
             "HarvestLevel9",
             12,
             "default: manyullynplus");
+
+    public static ResourceLocation Harvestability(String path) {
+        return new ResourceLocation("harvestability", path);
+    }
 }
