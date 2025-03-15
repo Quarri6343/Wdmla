@@ -6,6 +6,7 @@ public class VanillaIdentifiers {
 
     // provider Uid
     public static final ResourceLocation SILVERFISH = MC("silverfish");
+    public static final ResourceLocation REDSTONE_WIRE = MC("redstone_wire");
 
     // config
 

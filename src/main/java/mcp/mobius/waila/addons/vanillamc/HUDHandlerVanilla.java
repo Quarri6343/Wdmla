@@ -35,7 +35,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     static Block repeaterActv = Blocks.powered_repeater;
     static Block comparatorIdl = Blocks.unpowered_comparator;
     static Block comparatorAct = Blocks.powered_comparator;
-    static Block redstone = Blocks.redstone_wire;
     static Block jukebox = Blocks.jukebox;
     static Block cocoa = Blocks.cocoa;
     static Block netherwart = Blocks.nether_wart;
@@ -51,10 +50,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         Block block = accessor.getBlock();
-
-        if (block == redstone) {
-            return new ItemStack(Items.redstone);
-        }
 
         if (block == doubleplant && (accessor.getMetadata() & 8) != 0) {
             int x = accessor.getPosition().blockX;
@@ -113,11 +108,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
             String name = currenttip.get(0);
             String mobname = ((TileEntityMobSpawner) accessor.getTileEntity()).func_145881_a().getEntityNameToSpawn();
             currenttip.set(0, String.format("%s (%s)", name, mobname));
-        }
-
-        if (block == redstone) {
-            String name = currenttip.get(0).replaceFirst(String.format(" %s", accessor.getMetadata()), "");
-            currenttip.set(0, name);
         }
 
         if (block == melonStem) {
@@ -196,11 +186,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
             return currenttip;
         }
 
-        if (config.getConfig("vanilla.redstone")) if (block == redstone) {
-            currenttip.add(String.format("%s : %s", LangUtil.translateG("hud.msg.power"), accessor.getMetadata()));
-            return currenttip;
-        }
-
         return currenttip;
     }
 
@@ -228,7 +213,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
 
         IWailaDataProvider provider = new HUDHandlerVanilla();
 
-        ModuleRegistrar.instance().registerStackProvider(provider, redstone.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, doubleplant.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, BlockRedstoneOre.class);
         ModuleRegistrar.instance().registerStackProvider(provider, crops.getClass());
@@ -255,8 +239,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerBodyProvider(provider, repeaterActv.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, comparatorIdl.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, comparatorAct.getClass());
-        ModuleRegistrar.instance().registerHeadProvider(provider, redstone.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, redstone.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, jukebox.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, cocoa.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, netherwart.getClass());
@@ -272,7 +254,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerNBTProvider(provider, repeaterActv.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, comparatorIdl.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, comparatorAct.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, redstone.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, jukebox.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, cocoa.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, netherwart.getClass());

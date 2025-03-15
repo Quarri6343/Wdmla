@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
+import com.gtnewhorizons.wdmla.api.ColorCodes;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 
@@ -10,7 +11,7 @@ public class PanelStyle implements IPanelStyle {
     private int spacing;
 
     public PanelStyle() {
-        this.borderColor = NO_BORDER;
+        this.borderColor = ColorCodes.NO_BORDER;
         this.alignment = ComponentAlignment.TOPLEFT;
         this.spacing = DEFAULT_SPACE;
     }
@@ -37,7 +38,7 @@ public class PanelStyle implements IPanelStyle {
 
     @Override
     public int getBorderThickness() {
-        if (borderColor == NO_BORDER) {
+        if (borderColor == ColorCodes.NO_BORDER) {
             return 0;
         }
 

@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import com.gtnewhorizons.wdmla.api.ColorCodes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -37,7 +38,7 @@ public final class GuiDraw {
 
     public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay) {
         if (stack.getItem() == null) {
-            drawString(SpecialChars.WHITE + "Err", area.getX(), area.getY(), 0xFFFFFFFF, true);
+            drawString(SpecialChars.WHITE + "Err", area.getX(), area.getY(), ColorCodes.WHITE, true);
             return;
         }
 
