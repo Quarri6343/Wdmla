@@ -31,8 +31,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     static Block comparatorIdl = Blocks.unpowered_comparator;
     static Block comparatorAct = Blocks.powered_comparator;
     static Block jukebox = Blocks.jukebox;
-    static Block cocoa = Blocks.cocoa;
-    static Block netherwart = Blocks.nether_wart;
     static Block doubleplant = Blocks.double_plant;
     static Block leave = Blocks.leaves;
     static Block leave2 = Blocks.leaves2;
@@ -109,31 +107,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
             IWailaConfigHandler config) {
         Block block = accessor.getBlock();
 
-        if (block == cocoa && config.getConfig("general.showcrop")) {
-
-            float growthValue = ((accessor.getMetadata() >> 2) / 2.0F) * 100.0F;
-            if (growthValue < 100.0)
-                currenttip.add(String.format("%s : %.0f %%", LangUtil.translateG("hud.msg.growth"), growthValue));
-            else currenttip.add(
-                    String.format(
-                            "%s : %s",
-                            LangUtil.translateG("hud.msg.growth"),
-                            LangUtil.translateG("hud.msg.mature")));
-            return currenttip;
-        }
-
-        if (block == netherwart && config.getConfig("general.showcrop")) {
-            float growthValue = (accessor.getMetadata() / 3.0F) * 100.0F;
-            if (growthValue < 100.0)
-                currenttip.add(String.format("%s : %.0f %%", LangUtil.translateG("hud.msg.growth"), growthValue));
-            else currenttip.add(
-                    String.format(
-                            "%s : %s",
-                            LangUtil.translateG("hud.msg.growth"),
-                            LangUtil.translateG("hud.msg.mature")));
-            return currenttip;
-        }
-
         if (config.getConfig("vanilla.leverstate")) if (block == lever) {
             String redstoneOn = (accessor.getMetadata() & 8) == 0 ? LangUtil.translateG("hud.msg.off")
                     : LangUtil.translateG("hud.msg.on");
@@ -202,8 +175,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerBodyProvider(provider, comparatorIdl.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, comparatorAct.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, jukebox.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, cocoa.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, netherwart.getClass());
 
         ModuleRegistrar.instance().registerNBTProvider(provider, mobSpawner.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, lever.getClass());
@@ -212,8 +183,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerNBTProvider(provider, comparatorIdl.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, comparatorAct.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, jukebox.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, cocoa.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, netherwart.getClass());
     }
 
 }

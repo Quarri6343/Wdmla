@@ -14,7 +14,9 @@ import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.block.BlockStem;
@@ -31,8 +33,10 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new RedstoneWireProvider(), BlockRedstoneWire.class);
         registration.registerBlockComponent(new CropHeaderProvider(), BlockCrops.class);
         registration.registerBlockComponent(new StemHeaderProvider(), BlockStem.class);
-        registration.registerBlockComponent(new GeneralGrowthRateProvider(), BlockCrops.class);
-        registration.registerBlockComponent(new GeneralGrowthRateProvider(), BlockStem.class);
+        registration.registerBlockComponent(new GrowthRateProvider(), BlockCrops.class);
+        registration.registerBlockComponent(new GrowthRateProvider(), BlockStem.class);
+        registration.registerBlockComponent(new GrowthRateProvider(), BlockCocoa.class);
+        registration.registerBlockComponent(new GrowthRateProvider(), BlockNetherWart.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
