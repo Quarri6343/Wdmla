@@ -6,7 +6,10 @@ public class VanillaIdentifiers {
 
     // provider Uid
     public static final ResourceLocation SILVERFISH = MC("silverfish");
+    public static final ResourceLocation REDSTONE_WIRE_HEADER = MC("redstone_wire_header");
     public static final ResourceLocation REDSTONE_WIRE = MC("redstone_wire");
+    public static final ResourceLocation CROP_HEADER = MC("crop_header");
+    public static final ResourceLocation STEM_HEADER = MC("stem_header");
 
     // config
 

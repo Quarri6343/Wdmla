@@ -65,10 +65,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
             return new ItemStack(Blocks.redstone_ore);
         }
 
-        if (block == crops) {
-            return new ItemStack(Items.wheat);
-        }
-
         if ((block == leave || block == leave2) && (accessor.getMetadata() > 3)) {
             return new ItemStack(block, 1, accessor.getMetadata() - 4);
         }
@@ -110,14 +106,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
             currenttip.set(0, String.format("%s (%s)", name, mobname));
         }
 
-        if (block == melonStem) {
-            currenttip.set(0, SpecialChars.WHITE + "Melon stem");
-        }
-
-        if (block == pumpkinStem) {
-            currenttip.set(0, SpecialChars.WHITE + "Pumpkin stem");
-        }
-
         return currenttip;
     }
 
@@ -128,7 +116,7 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         /* Crops */
         boolean iscrop = crops.getClass().isInstance(block); // Done to cover all inheriting mods
         if (config.getConfig("general.showcrop"))
-            if (iscrop || block == melonStem || block == pumpkinStem || block == carrot || block == potato) {
+            if (iscrop || block == melonStem || block == pumpkinStem) {
                 float growthValue = (accessor.getMetadata() / 7.0F) * 100.0F;
                 if (growthValue < 100.0)
                     currenttip.add(String.format("%s : %.0f %%", LangUtil.translateG("hud.msg.growth"), growthValue));

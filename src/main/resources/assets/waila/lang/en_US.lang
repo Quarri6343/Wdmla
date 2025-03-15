@@ -97,6 +97,10 @@ hud.msg.record=Record
 hud.msg.offers=Offers
 hud.msg.demands=Demands
 
+hud.item.wheatcrop=Wheat Crops
+hud.item.pumpkinstem=Pumpkin Stem
+hud.item.melonstem=Melon Stem
+
 option.appeng.monitorcontent=Monitor's content
 option.bb.content=Barrel's content
 option.bc.tankamount=Liquid amount

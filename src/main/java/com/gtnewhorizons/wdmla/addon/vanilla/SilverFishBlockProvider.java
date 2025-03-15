@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.ColorCodes;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -8,6 +9,8 @@ import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
+import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -29,7 +32,7 @@ public class SilverFishBlockProvider implements IBlockComponentProvider {
             default -> new ItemStack(Blocks.stone);
         };
         IComponent replacedName = new HPanelComponent()
-                .text(WHITE + DisplayUtil.itemDisplayNameShort(dummyStack))
+                .text(DisplayUtil.itemDisplayNameShort(dummyStack), new TextStyle().color(ColorCodes.WHITE), new Padding())
                 .tag(Identifiers.ITEM_NAME);
         tooltip.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }

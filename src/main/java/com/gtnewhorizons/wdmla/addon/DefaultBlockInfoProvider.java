@@ -2,6 +2,9 @@ package com.gtnewhorizons.wdmla.addon;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.api.ColorCodes;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
+import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -45,7 +48,7 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
         ITooltip row_vertical = row.vertical();
         if (config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME)) {
             row_vertical.child(
-                    new TextComponent(WHITE + DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
+                    new TextComponent(DisplayUtil.itemDisplayNameShort(itemStack)).style(new TextStyle().color(ColorCodes.WHITE)).tag(Identifiers.ITEM_NAME));
         }
         String modName = ModIdentification.nameFromStack(itemStack);
         if (modName != null && !modName.isEmpty() && config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
