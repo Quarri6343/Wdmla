@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class SilverFishBlockProvider implements IBlockComponentProvider {
+public class SilverFishBlockHeaderProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -28,7 +28,7 @@ public class SilverFishBlockProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {
-        return VanillaIdentifiers.SILVERFISH;
+        return VanillaIdentifiers.SILVERFISH_HEADER;
     }
 
     @Override

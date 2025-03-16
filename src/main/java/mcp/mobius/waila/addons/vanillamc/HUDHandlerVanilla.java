@@ -30,8 +30,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     static Block repeaterActv = Blocks.powered_repeater;
     static Block comparatorIdl = Blocks.unpowered_comparator;
     static Block comparatorAct = Blocks.powered_comparator;
-    static Block jukebox = Blocks.jukebox;
-    static Block doubleplant = Blocks.double_plant;
     static Block leave = Blocks.leaves;
     static Block leave2 = Blocks.leaves2;
     static Block log = Blocks.log;
@@ -43,20 +41,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         Block block = accessor.getBlock();
-
-        if (block == doubleplant && (accessor.getMetadata() & 8) != 0) {
-            int x = accessor.getPosition().blockX;
-            int y = accessor.getPosition().blockY - 1;
-            int z = accessor.getPosition().blockZ;
-            int meta = accessor.getWorld().getBlockMetadata(x, y, z);
-
-            return new ItemStack(doubleplant, 0, meta);
-        }
-
-        // fix lit redstone ore has no item form
-        if (block instanceof BlockRedstoneOre) {
-            return new ItemStack(Blocks.redstone_ore);
-        }
 
         if ((block == leave || block == leave2) && (accessor.getMetadata() > 3)) {
             return new ItemStack(block, 1, accessor.getMetadata() - 4);
@@ -155,7 +139,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
 
         IWailaDataProvider provider = new HUDHandlerVanilla();
 
-        ModuleRegistrar.instance().registerStackProvider(provider, doubleplant.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, BlockRedstoneOre.class);
         ModuleRegistrar.instance().registerStackProvider(provider, leave.getClass());
         ModuleRegistrar.instance().registerStackProvider(provider, leave2.getClass());
@@ -174,7 +157,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerBodyProvider(provider, repeaterActv.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, comparatorIdl.getClass());
         ModuleRegistrar.instance().registerBodyProvider(provider, comparatorAct.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, jukebox.getClass());
 
         ModuleRegistrar.instance().registerNBTProvider(provider, mobSpawner.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, lever.getClass());
@@ -182,7 +164,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
         ModuleRegistrar.instance().registerNBTProvider(provider, repeaterActv.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, comparatorIdl.getClass());
         ModuleRegistrar.instance().registerNBTProvider(provider, comparatorAct.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, jukebox.getClass());
     }
 
 }

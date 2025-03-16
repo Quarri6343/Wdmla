@@ -10,12 +10,19 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockNetherWart;
+import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.block.BlockRedstoneWire;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.block.BlockStem;
+import net.minecraft.block.BlockStoneSlab;
+import net.minecraft.block.BlockWoodSlab;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -24,15 +31,21 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
-        registration.registerBlockComponent(new SilverFishBlockProvider(), BlockSilverfish.class);
+        registration.registerBlockComponent(new SilverFishBlockHeaderProvider(), BlockSilverfish.class);
         registration.registerBlockComponent(new RedstoneWireHeaderProvider(), BlockRedstoneWire.class);
         registration.registerBlockComponent(new RedstoneWireProvider(), BlockRedstoneWire.class);
-        registration.registerBlockComponent(new CropHeaderProvider(), BlockCrops.class);
-        registration.registerBlockComponent(new StemHeaderProvider(), BlockStem.class);
+        registration.registerBlockComponent(new GrowableHeaderProvider(), BlockCrops.class);
+        registration.registerBlockComponent(new GrowableHeaderProvider(), BlockStem.class);
         registration.registerBlockComponent(new GrowthRateProvider(), BlockCrops.class);
         registration.registerBlockComponent(new GrowthRateProvider(), BlockStem.class);
         registration.registerBlockComponent(new GrowthRateProvider(), BlockCocoa.class);
         registration.registerBlockComponent(new GrowthRateProvider(), BlockNetherWart.class);
+        registration.registerBlockComponent(new RedstoneOreHeaderProvider(), BlockRedstoneOre.class);
+        registration.registerBlockComponent(new DoublePlantHeaderProvider(), BlockDoublePlant.class);
+        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockAnvil.class);
+        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockSapling.class);
+        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockStoneSlab.class);
+        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockWoodSlab.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
@@ -67,6 +80,45 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public ResourceLocation getUid() {
             return VanillaIdentifiers.REDSTONE_WIRE;
+        }
+    }
+
+    public static class RedstoneOreHeaderProvider implements IBlockComponentProvider {
+
+        @Override
+        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            //override lit redstone
+            ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Blocks.redstone_ore));
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return VanillaIdentifiers.REDSTONE_ORE_HEADER;
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return TooltipPosition.CORE_OVERRIDE;
+        }
+    }
+
+    public static class DroppedItemHeaderProvider implements IBlockComponentProvider {
+
+        @Override
+        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            ItemStack newStack = new ItemStack(accessor.getBlock(), 1, accessor.getBlock().damageDropped(accessor.getMetadata()));
+            ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, newStack);
+            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, newStack);
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return VanillaIdentifiers.DROPPED_ITEM_HEADER;
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return TooltipPosition.CORE_OVERRIDE;
         }
     }
 }

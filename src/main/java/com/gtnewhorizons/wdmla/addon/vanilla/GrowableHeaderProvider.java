@@ -12,8 +12,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-//crops are wheat, carrot and potato like blocks which inherits BlockCrops
-public class CropHeaderProvider implements IBlockComponentProvider {
+//includes crops and stems
+public class GrowableHeaderProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -26,11 +26,17 @@ public class CropHeaderProvider implements IBlockComponentProvider {
         else if(accessor.getBlock().equals(Blocks.potatoes)) {
             ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Items.potato));
         }
+        else if(accessor.getBlock().equals(Blocks.pumpkin_stem)) {
+            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, LangUtil.translateG("hud.item.pumpkinstem"));
+        }
+        else if(accessor.getBlock().equals(Blocks.melon_stem)) {
+            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, LangUtil.translateG("hud.item.melonstem"));
+        }
     }
 
     @Override
     public ResourceLocation getUid() {
-        return VanillaIdentifiers.CROP_HEADER;
+        return VanillaIdentifiers.GROWABLE_HEADER;
     }
 
     @Override
