@@ -5,7 +5,6 @@ import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
-import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
@@ -13,12 +12,12 @@ import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
-import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
+import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -87,21 +86,51 @@ public class ThemeHelper {
         }
     }
 
-    public IComponent itemProcess(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress) {
-        ITooltip hPanel = new HPanelComponent();
-        for (ItemStack inputStack : input) {
-            if(inputStack != null) {
-                hPanel.item(inputStack);
+    public IComponent itemProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress, @Nullable IComponent legacyModeProgressText, boolean showDetails) {
+        if(!WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
+            ITooltip hPanel = new HPanelComponent();
+            for (ItemStack inputStack : input) {
+                if(inputStack != null) {
+                    hPanel.item(inputStack);
+                }
             }
-        }
-        hPanel.child(new TexturedProgressComponent(currentProgress, maxProgress));
-        for (ItemStack outputStack : output) {
-            if(outputStack != null) {
-                hPanel.item(outputStack);
+            hPanel.child(new TexturedProgressComponent(currentProgress, maxProgress));
+            for (ItemStack outputStack : output) {
+                if(outputStack != null) {
+                    hPanel.item(outputStack);
+                }
             }
+            return hPanel;
         }
+        else {
+            ITooltip vPanel = new VPanelComponent();
+            if (showDetails) {
+                for (ItemStack inputStack : input) {
+                    if(inputStack != null) {
+                        vPanel.horizontal()
+                                .text(String.format("%s: ", LangUtil.translateG("hud.msg.in")))
+                                .child(ThemeHelper.INSTANCE.info(String.format("%dx %s", inputStack.stackSize, DisplayUtil.itemDisplayNameShort(inputStack))));
+                    }
+                }
+                for (ItemStack outputStack : output) {
+                    if(outputStack != null) {
+                        vPanel.horizontal()
+                                .text(String.format("%s: ", LangUtil.translateG("hud.msg.out")))
+                                .child(ThemeHelper.INSTANCE.info(String.format("%dx %s", outputStack.stackSize, DisplayUtil.itemDisplayNameShort(outputStack))));
+                    }
+                }
+            }
+            if (legacyModeProgressText != null) {
+                vPanel.child(legacyModeProgressText);
+            }
 
-        return hPanel;
+            if(vPanel.childrenSize() != 0) {
+                return vPanel;
+            }
+            else {
+                return null;
+            }
+        }
     }
 
     public IComponent amount(long current, long max, IComponent content) {

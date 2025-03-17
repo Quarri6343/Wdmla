@@ -24,7 +24,6 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
-import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 
@@ -40,6 +39,7 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
         return TooltipPosition.BODY + 10;
     }
 
+    //TODO: test every method in ThemeHelper in different items
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         int cookTime = accessor.getServerData().getShort("CookTime");
@@ -62,11 +62,11 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
         }
 
         if (!accessor.showDetails()) {
-            if (!allEmpty) {
-                tooltip.child(ThemeHelper.INSTANCE.itemProcess(Arrays.asList(items[0], items[1]), Arrays.asList(items[2]), cookTime, 10));
-            }
             return;
         }
+
+        int random = accessor.getServerData().getInteger("random");
+        tooltip.child(new TextComponent("Recieved Server Data: " + random));
 
         if (cookTime != 0) {
             tooltip.vertical().child(
@@ -109,9 +109,6 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
             }
             tooltip.child(itemSection);
         }
-
-        int random = accessor.getServerData().getInteger("random");
-        tooltip.child(new TextComponent("Recieved Server Data: " + random));
     }
 
     @Override

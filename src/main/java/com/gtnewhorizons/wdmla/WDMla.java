@@ -30,7 +30,7 @@ public class WDMla {
     /**
      * Edit this on dev env to switch test mode
      */
-    public static TestMode testMode = TestMode.WDMla;
+    public static TestMode testMode = TestMode.NONE;
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the

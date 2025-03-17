@@ -4,6 +4,7 @@ import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -14,6 +15,7 @@ import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLog;
@@ -60,6 +62,12 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneRepeater.class);
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneComparator.class);
         registration.registerBlockComponent(new MobSpawnerHeaderProvider(), BlockMobSpawner.class);
+        registration.registerBlockComponent(new FurnaceProvider(), BlockFurnace.class);
+    }
+
+    @Override
+    public void register(IWDMlaCommonRegistration registration) {
+        registration.registerBlockDataProvider(new FurnaceProvider(), BlockFurnace.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {

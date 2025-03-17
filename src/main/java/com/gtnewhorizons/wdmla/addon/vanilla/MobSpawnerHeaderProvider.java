@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
+//TODO: move NEI part to mod Plugin
 public class MobSpawnerHeaderProvider implements IBlockComponentProvider {
 
     private HashMap entityIDs;

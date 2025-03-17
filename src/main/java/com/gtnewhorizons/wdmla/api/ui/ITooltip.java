@@ -30,6 +30,8 @@ public interface ITooltip extends IComponent {
 
     ITooltip child(@NotNull IComponent child);
 
+    int childrenSize();
+
     ITooltip clear();
 
     ITooltip tag(ResourceLocation tag);

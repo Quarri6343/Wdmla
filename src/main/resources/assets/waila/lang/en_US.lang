@@ -95,6 +95,8 @@ hud.msg.substractor=Substractor
 hud.msg.record=Record
 hud.msg.tick=tick
 hud.msg.ticks=ticks
+hud.msg.progress= Progress:
+hud.msg.progress.seconds= %ds / %ds
 
 hud.msg.offers=Offers
 hud.msg.demands=Demands
