@@ -14,7 +14,10 @@ import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockNetherWart;
+import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.BlockSapling;
@@ -46,6 +49,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockSapling.class);
         registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockStoneSlab.class);
         registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockWoodSlab.class);
+        registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockLeaves.class);
+        registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockLog.class);
+        registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockQuartz.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
@@ -95,26 +101,6 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public ResourceLocation getUid() {
             return VanillaIdentifiers.REDSTONE_ORE_HEADER;
-        }
-
-        @Override
-        public int getDefaultPriority() {
-            return TooltipPosition.HEAD;
-        }
-    }
-
-    public static class DroppedItemHeaderProvider implements IBlockComponentProvider {
-
-        @Override
-        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            ItemStack newStack = new ItemStack(accessor.getBlock(), 1, accessor.getBlock().damageDropped(accessor.getMetadata()));
-            ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, newStack);
-            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, newStack);
-        }
-
-        @Override
-        public ResourceLocation getUid() {
-            return VanillaIdentifiers.DROPPED_ITEM_HEADER;
         }
 
         @Override
