@@ -25,18 +25,10 @@ import mcp.mobius.waila.cbcore.LangUtil;
 public class HUDHandlerVanilla implements IWailaDataProvider {
 
     static Block mobSpawner = Blocks.mob_spawner;
-    static Block lever = Blocks.lever;
-    static Block repeaterIdle = Blocks.unpowered_repeater;
-    static Block repeaterActv = Blocks.powered_repeater;
-    static Block comparatorIdl = Blocks.unpowered_comparator;
-    static Block comparatorAct = Blocks.powered_comparator;
 
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        Block block = accessor.getBlock();
-
         return null;
-
     }
 
     @Override
@@ -58,29 +50,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
             IWailaConfigHandler config) {
-        Block block = accessor.getBlock();
-
-        if (config.getConfig("vanilla.leverstate")) if (block == lever) {
-            String redstoneOn = (accessor.getMetadata() & 8) == 0 ? LangUtil.translateG("hud.msg.off")
-                    : LangUtil.translateG("hud.msg.on");
-            currenttip.add(String.format("%s : %s", LangUtil.translateG("hud.msg.state"), redstoneOn));
-            return currenttip;
-        }
-
-        if (config.getConfig("vanilla.repeater")) if ((block == repeaterIdle) || (block == repeaterActv)) {
-            int tick = (accessor.getMetadata() >> 2) + 1;
-            if (tick == 1) currenttip.add(String.format("%s : %s tick", LangUtil.translateG("hud.msg.delay"), tick));
-            else currenttip.add(String.format("%s : %s ticks", LangUtil.translateG("hud.msg.delay"), tick));
-            return currenttip;
-        }
-
-        if (config.getConfig("vanilla.comparator")) if ((block == comparatorIdl) || (block == comparatorAct)) {
-            String mode = ((accessor.getMetadata() >> 2) & 1) == 0 ? LangUtil.translateG("hud.msg.comparator")
-                    : LangUtil.translateG("hud.msg.substractor");
-            currenttip.add("Mode : " + mode);
-            return currenttip;
-        }
-
         return currenttip;
     }
 
@@ -99,10 +68,6 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
 
     public static void register() {
         ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.spawntype");
-        ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.leverstate");
-        ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.repeater");
-        ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.comparator");
-        ModuleRegistrar.instance().addConfig("VanillaMC", "vanilla.redstone");
         ModuleRegistrar.instance().addConfigRemote("VanillaMC", "vanilla.jukebox");
         ModuleRegistrar.instance().addConfigRemote("VanillaMC", "vanilla.show_invisible_players");
 
@@ -110,18 +75,7 @@ public class HUDHandlerVanilla implements IWailaDataProvider {
 
         ModuleRegistrar.instance().registerHeadProvider(provider, mobSpawner.getClass());
 
-        ModuleRegistrar.instance().registerBodyProvider(provider, lever.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, repeaterIdle.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, repeaterActv.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, comparatorIdl.getClass());
-        ModuleRegistrar.instance().registerBodyProvider(provider, comparatorAct.getClass());
-
         ModuleRegistrar.instance().registerNBTProvider(provider, mobSpawner.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, lever.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, repeaterIdle.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, repeaterActv.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, comparatorIdl.getClass());
-        ModuleRegistrar.instance().registerNBTProvider(provider, comparatorAct.getClass());
     }
 
 }

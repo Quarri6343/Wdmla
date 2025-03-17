@@ -93,6 +93,8 @@ hud.msg.delay=Delay
 hud.msg.comparator=Comparator
 hud.msg.substractor=Substractor
 hud.msg.record=Record
+hud.msg.tick=tick
+hud.msg.ticks=ticks
 
 hud.msg.offers=Offers
 hud.msg.demands=Demands

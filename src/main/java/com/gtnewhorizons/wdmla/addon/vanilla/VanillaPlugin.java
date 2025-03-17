@@ -15,10 +15,13 @@ import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.BlockQuartz;
+import net.minecraft.block.BlockRedstoneComparator;
 import net.minecraft.block.BlockRedstoneOre;
+import net.minecraft.block.BlockRedstoneRepeater;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockSilverfish;
@@ -52,6 +55,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockLeaves.class);
         registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockLog.class);
         registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockQuartz.class);
+        registration.registerBlockComponent(new RedstoneStateProvider(), BlockLever.class);
+        registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneRepeater.class);
+        registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneComparator.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
