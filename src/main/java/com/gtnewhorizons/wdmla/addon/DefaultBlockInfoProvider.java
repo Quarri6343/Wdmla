@@ -47,12 +47,18 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
 
         ITooltip row_vertical = row.vertical();
         if (config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME)) {
-            row_vertical.child(
+            row_vertical.horizontal().tag(Identifiers.ITEM_NAME_ROW).child(
                     ThemeHelper.INSTANCE.title(DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
         }
         String modName = ModIdentification.nameFromStack(itemStack);
-        if (modName != null && !modName.isEmpty() && config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
-            row_vertical.child(new TextComponent(BLUE + ITALIC + modName).tag(Identifiers.MOD_NAME));
+        if (config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
+            if(modName != null) {
+                row_vertical.child(new TextComponent(ITALIC + modName).style(new TextStyle().color(ColorPalette.MOD_NAME)).tag(Identifiers.MOD_NAME));
+            }
+            else {
+                //reserve for replacement
+                row_vertical.child(new TextComponent("").style(new TextStyle().color(ColorPalette.MOD_NAME)).tag(Identifiers.MOD_NAME));
+            }
         }
     }
 

@@ -62,7 +62,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public int getDefaultPriority() {
-            return TooltipPosition.CORE_OVERRIDE;
+            return TooltipPosition.HEAD;
         }
     }
 
@@ -88,7 +88,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             //override lit redstone
-            ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Blocks.redstone_ore));
+            ItemStack redstoneOre = new ItemStack(Blocks.redstone_ore);
+            ThemeHelper.INSTANCE.overrideTooltipHeader(tooltip, redstoneOre);
         }
 
         @Override
@@ -98,7 +99,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public int getDefaultPriority() {
-            return TooltipPosition.CORE_OVERRIDE;
+            return TooltipPosition.HEAD;
         }
     }
 
@@ -118,7 +119,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public int getDefaultPriority() {
-            return TooltipPosition.CORE_OVERRIDE;
+            return TooltipPosition.HEAD;
         }
     }
 }

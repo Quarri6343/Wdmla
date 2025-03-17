@@ -9,6 +9,7 @@ public final class ColorPalette {
     public static final int WARNING = 0xFFFFF3CD;
     public static final int DANGER = 0xFFFF5555;
     public static final int FAILURE = 0xFFAA0000;
+    public static final int MOD_NAME = 0xFF5555FF;
 
     //other color(has alpha)
     public static final int NO_BORDER = 0x00000000;

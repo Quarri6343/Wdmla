@@ -8,6 +8,7 @@ public final class Identifiers {
     public static final ResourceLocation ROOT = Core("root");
 
     public static final ResourceLocation ITEM_ICON = Core("item_icon");
+    public static final ResourceLocation ITEM_NAME_ROW = Core("item_name_row");
     public static final ResourceLocation ITEM_NAME = Core("item_name");
     public static final ResourceLocation ENTITY_NAME = Core("entity_name");
     public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");

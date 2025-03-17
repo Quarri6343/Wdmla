@@ -12,7 +12,10 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import mcp.mobius.waila.overlay.DisplayUtil;
+import mcp.mobius.waila.utils.ModIdentification;
 import net.minecraft.item.ItemStack;
+
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 /**
  * We don't implement the actual "bundles of layout configuration" for now (@see Jade).
@@ -34,6 +37,21 @@ public class ThemeHelper {
                 .text(newName, new TextStyle().color(ColorPalette.TITLE), new Padding())
                 .tag(Identifiers.ITEM_NAME);
         root.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
+    }
+
+    public void overrideTooltipModName(ITooltip root, ItemStack newItemStack) {
+        overrideTooltipModName(root, ModIdentification.nameFromStack(newItemStack));
+    }
+
+    public void overrideTooltipModName(ITooltip root, String newName) {
+        IComponent replacedModName = new TextComponent(ITALIC + newName).style(new TextStyle().color(ColorPalette.MOD_NAME)).tag(Identifiers.MOD_NAME);
+        root.replaceChildWithTag(Identifiers.MOD_NAME, replacedModName);
+    }
+
+    public void overrideTooltipHeader(ITooltip root, ItemStack newItemStack) {
+        overrideTooltipIcon(root, newItemStack);
+        overrideTooltipTitle(root, newItemStack);
+        overrideTooltipModName(root, newItemStack);
     }
 
     public IComponent info(String content) {

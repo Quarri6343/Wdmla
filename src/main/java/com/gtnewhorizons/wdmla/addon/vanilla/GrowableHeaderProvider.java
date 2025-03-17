@@ -41,6 +41,6 @@ public class GrowableHeaderProvider implements IBlockComponentProvider {
 
     @Override
     public int getDefaultPriority() {
-        return TooltipPosition.CORE_OVERRIDE;
+        return TooltipPosition.HEAD;
     }
 }
