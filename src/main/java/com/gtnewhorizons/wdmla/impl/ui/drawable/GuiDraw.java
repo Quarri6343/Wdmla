@@ -1,6 +1,8 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -67,12 +69,26 @@ public final class GuiDraw {
                     (int) (x / xScale),
                     (int) (y / yScale));
             if (drawOverlay) {
-                renderItem.renderItemOverlayIntoGUI(
-                        fontRenderer,
-                        textureManager,
-                        stack,
-                        (int) (x / xScale),
-                        (int) (y / yScale));
+                String stackSize = String.valueOf(stack.stackSize);
+                if(stack.stackSize > 0) {
+                    renderItem.renderItemOverlayIntoGUI(
+                            fontRenderer,
+                            textureManager,
+                            stack,
+                            (int) (x / xScale),
+                            (int) (y / yScale),
+                            stackSize);
+                }
+                else if (WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_GHOST_PRODUCT) && !WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
+                    stackSize = SpecialChars.YELLOW + stack.stackSize;
+                    renderItem.renderItemOverlayIntoGUI(
+                            fontRenderer,
+                            textureManager,
+                            stack,
+                            (int) (x / xScale),
+                            (int) (y / yScale),
+                            stackSize);
+                }
             }
             net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         } catch (Exception e) {

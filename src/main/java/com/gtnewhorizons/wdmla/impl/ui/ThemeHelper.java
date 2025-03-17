@@ -32,7 +32,7 @@ public class ThemeHelper {
     public static final ThemeHelper INSTANCE = new ThemeHelper();
 
     public void overrideTooltipIcon(ITooltip root, ItemStack newItemStack) {
-        root.replaceChildWithTag(Identifiers.ITEM_ICON, new ItemComponent(newItemStack).tag(Identifiers.ITEM_ICON));
+        root.replaceChildWithTag(Identifiers.ITEM_ICON, new ItemComponent(newItemStack).doDrawOverlay(false).tag(Identifiers.ITEM_ICON));
     }
 
     public void overrideTooltipTitle(ITooltip root, ItemStack newItemStack) {

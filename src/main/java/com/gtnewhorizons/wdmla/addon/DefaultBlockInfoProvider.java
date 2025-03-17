@@ -42,7 +42,7 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
         ITooltip row = tooltip.horizontal();
         ItemStack itemStack = overrideStack != null ? overrideStack : accessor.getItemForm();
         if (config.getBoolean(Identifiers.CONFIG_SHOW_ICON)) {
-            row.child(new ItemComponent(itemStack).tag(Identifiers.ITEM_ICON));
+            row.child(new ItemComponent(itemStack).doDrawOverlay(false).tag(Identifiers.ITEM_ICON));
         }
 
         ITooltip row_vertical = row.vertical();

@@ -14,6 +14,7 @@ import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
+import com.gtnewhorizons.wdmla.test.TestPlugin;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -71,10 +72,18 @@ public class CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {}
 
     public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
+        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
+            new TestPlugin().register(commonRegistration);
+        }
 
+        new VanillaPlugin().register(commonRegistration);
     }
 
     public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
+        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
+            new TestPlugin().registerClient(clientRegistration);
+        }
+
         new CorePlugin().registerClient(clientRegistration);
         new VanillaPlugin().registerClient(clientRegistration);
         new HarvestabilityPlugin().registerClient(clientRegistration);

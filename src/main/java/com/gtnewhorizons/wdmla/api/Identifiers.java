@@ -29,6 +29,11 @@ public final class Identifiers {
             "LegacyMode",
             false,
             "Disables all modern WDMla features. This will make the system ignore all settings in this category");
+    public static final ConfigEntry<Boolean> CONFIG_GHOST_PRODUCT = new ConfigEntry<>(
+            CONFIG_GENERAL,
+            "GhostProduct",
+            true,
+            "Shows the ghost product on process");
 
     public static final String CONFIG_PROVIDER = "plugin_providers";
     public static final String CONFIG_PROVIDER_ENABLED = "Enabled";

@@ -8,6 +8,7 @@ import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.overlay.DisplayUtil;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //TODO: move NEI part to mod Plugin
@@ -32,7 +34,7 @@ public class MobSpawnerHeaderProvider implements IBlockComponentProvider {
             entityIDsMap.setAccessible(true);
             entityIDs = (HashMap)entityIDsMap.get(null);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+            WailaExceptionHandler.handleErr(e, this.getClass().getName(), new ArrayList<>());
         }
     }
 

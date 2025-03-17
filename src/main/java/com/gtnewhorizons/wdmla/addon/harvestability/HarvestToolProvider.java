@@ -233,14 +233,14 @@ public class HarvestToolProvider implements IBlockComponentProvider {
             String[] parts = config.getString(CONFIG_SHEARABILITY_ITEM).split(":");
             if (parts.length == 2) {
                 harvestabilityComponent
-                        .item(GameRegistry.findItemStack(parts[0], parts[1], 1), new Padding(), new Size(10, 10));
+                        .child(new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false).size(new Size(10, 10)));
             }
         }
         if (!silkTouchability.isEmpty() && config.getBoolean(CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SILKTOUCHABILITY_ITEM).split(":");
             if (parts.length == 2) {
                 harvestabilityComponent
-                        .item(GameRegistry.findItemStack(parts[0], parts[1], 1), new Padding(), new Size(10, 10));
+                        .child(new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false).size(new Size(10, 10)));
             }
         }
         return harvestabilityComponent;

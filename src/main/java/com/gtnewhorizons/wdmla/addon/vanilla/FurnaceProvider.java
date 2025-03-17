@@ -4,6 +4,7 @@ import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -11,6 +12,7 @@ import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import joptsimple.internal.Strings;
 import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
@@ -37,6 +39,14 @@ public class FurnaceProvider implements IBlockComponentProvider, IServerDataProv
                 if(items[slot] != null) {
                     allEmpty = false;
                 }
+            }
+        }
+
+        if(items[0] != null && items[2] == null) {
+            ItemStack resultStack = FurnaceRecipes.smelting().getSmeltingResult(items[0]);
+            if(resultStack != null) {
+                items[2] = resultStack.copy();
+                items[2].stackSize = 0;
             }
         }
 
