@@ -28,6 +28,7 @@ import net.minecraft.block.BlockRedstoneRepeater;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockSilverfish;
+import net.minecraft.block.BlockSkull;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockWoodSlab;
@@ -63,6 +64,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneComparator.class);
         registration.registerBlockComponent(new MobSpawnerHeaderProvider(), BlockMobSpawner.class);
         registration.registerBlockComponent(new FurnaceProvider(), BlockFurnace.class);
+        registration.registerBlockComponent(new PlayerHeadProvider(), BlockSkull.class);
     }
 
     @Override
