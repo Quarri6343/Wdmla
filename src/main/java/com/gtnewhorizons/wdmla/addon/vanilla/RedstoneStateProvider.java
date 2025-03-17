@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.vanilla;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
@@ -18,12 +19,12 @@ public class RedstoneStateProvider implements IBlockComponentProvider {
         Block block = accessor.getBlock();
 
         if (block == Blocks.lever) {
-            String redstoneOn = (accessor.getMetadata() & 8) == 0 ? LangUtil.translateG("hud.msg.off")
-                    : LangUtil.translateG("hud.msg.on");;
+            IComponent redstoneOn = (accessor.getMetadata() & 8) == 0 ? ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.off"))
+                    : ThemeHelper.INSTANCE.success(LangUtil.translateG("hud.msg.on"));
             tooltip.child(
                     new HPanelComponent()
                             .text(String.format("%s: ", LangUtil.translateG("hud.msg.state")))
-                            .child(ThemeHelper.INSTANCE.info(redstoneOn))
+                            .child(redstoneOn)
             );
         }
         else if ((block == Blocks.unpowered_repeater) || (block == Blocks.powered_repeater)) {

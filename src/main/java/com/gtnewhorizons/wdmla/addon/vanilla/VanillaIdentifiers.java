@@ -15,6 +15,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation DROPPED_ITEM_HEADER = MC("dropped_item_header");
     public static final ResourceLocation CUSTOM_META_HEADER = MC("custom_meta_header");
     public static final ResourceLocation REDSTONE_STATE = MC("redstone_state");
+    public static final ResourceLocation MOB_SPAWNER_HEADER = MC("mob_spawner_header");
 
     // config
 

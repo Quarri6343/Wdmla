@@ -26,7 +26,6 @@ import mcp.mobius.waila.addons.thaumcraft.ThaumcraftModule;
 import mcp.mobius.waila.addons.thermaldynamics.ThermalDynamicsModule;
 import mcp.mobius.waila.addons.thermalexpansion.ThermalExpansionModule;
 import mcp.mobius.waila.addons.twilightforest.TwilightForestModule;
-import mcp.mobius.waila.addons.vanillamc.HUDHandlerVanilla;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.handlers.DecoratorFMP;
@@ -44,8 +43,6 @@ public class ProxyServer {
         if (WDMla.isDevEnv() && WDMla.testMode == TestMode.Waila) {
             LegacyTTRenderTest.register();
         }
-
-        HUDHandlerVanilla.register();
 
         /* BUILDCRAFT */
         BCModule.register();

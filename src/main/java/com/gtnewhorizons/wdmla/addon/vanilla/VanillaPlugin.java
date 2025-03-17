@@ -17,6 +17,7 @@ import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockRedstoneComparator;
@@ -58,6 +59,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockLever.class);
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneRepeater.class);
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneComparator.class);
+        registration.registerBlockComponent(new MobSpawnerHeaderProvider(), BlockMobSpawner.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
