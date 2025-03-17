@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.api.ui.style;
 
-public interface IProgressStyle {
+public interface IAmountStyle {
 
     int getBorderColor();
 

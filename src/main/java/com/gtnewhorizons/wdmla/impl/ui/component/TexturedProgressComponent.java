@@ -2,10 +2,10 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
-import com.gtnewhorizons.wdmla.impl.ui.drawable.TexturedProgressDrawable;
+import com.gtnewhorizons.wdmla.impl.ui.drawable.ProgressionDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import com.gtnewhorizons.wdmla.impl.ui.value.Progression;
+import com.gtnewhorizons.wdmla.impl.ui.value.FilledAmount;
 
 // TODO: full implementation to use any texture
 public class TexturedProgressComponent extends TooltipComponent {
@@ -18,6 +18,6 @@ public class TexturedProgressComponent extends TooltipComponent {
                 new ArrayList<>(),
                 new Padding().horizontal(2),
                 new Size(DEFAULT_W, DEFAULT_H),
-                new TexturedProgressDrawable(new Progression(current, max)));
+                new ProgressionDrawable(new FilledAmount(current, max)));
     }
 }

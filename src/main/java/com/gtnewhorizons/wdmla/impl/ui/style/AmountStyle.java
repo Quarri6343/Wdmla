@@ -1,38 +1,38 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
-import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
+import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 
-public class ProgressStyle implements IProgressStyle {
+public class AmountStyle implements IAmountStyle {
 
     private int borderColor;
     private int backgroundColor;
     private int filledColor;
     private int alternateFilledColor;
 
-    public ProgressStyle() {
-        this.borderColor = ColorPalette.PROGRESS_DEFAULT_BORDER;
-        this.backgroundColor = ColorPalette.PROGRESS_DEFAULT_BACKGROUND;
-        this.filledColor = ColorPalette.PROGRESS_DEFAULT_FILLED;
-        this.alternateFilledColor = ColorPalette.PROGRESS_DEFAULT_FILLED_ALTERNATE;
+    public AmountStyle() {
+        this.borderColor = ColorPalette.AMOUNT_DEFAULT_BORDER;
+        this.backgroundColor = ColorPalette.AMOUNT_DEFAULT_BACKGROUND;
+        this.filledColor = ColorPalette.AMOUNT_DEFAULT_FILLED;
+        this.alternateFilledColor = ColorPalette.AMOUNT_DEFAULT_FILLED_ALTERNATE;
     }
 
-    public ProgressStyle borderColor(int borderColor) {
+    public AmountStyle borderColor(int borderColor) {
         this.borderColor = borderColor;
         return this;
     }
 
-    public ProgressStyle backgroundColor(int backgroundColor) {
+    public AmountStyle backgroundColor(int backgroundColor) {
         this.backgroundColor = backgroundColor;
         return this;
     }
 
-    public ProgressStyle filledColor(int filledColor) {
+    public AmountStyle filledColor(int filledColor) {
         this.filledColor = filledColor;
         return this;
     }
 
-    public ProgressStyle alternateFilledColor(int alternateFilledColor) {
+    public AmountStyle alternateFilledColor(int alternateFilledColor) {
         this.alternateFilledColor = alternateFilledColor;
         return this;
     }

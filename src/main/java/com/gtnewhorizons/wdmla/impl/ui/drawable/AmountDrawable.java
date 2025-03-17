@@ -3,23 +3,23 @@ package com.gtnewhorizons.wdmla.impl.ui.drawable;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
-import com.gtnewhorizons.wdmla.api.ui.IProgress;
+import com.gtnewhorizons.wdmla.api.ui.IFilledAmount;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
+import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.impl.ui.style.ProgressStyle;
+import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 
-public class ProgressDrawable implements IDrawable {
+public class AmountDrawable implements IDrawable {
 
-    private final @NotNull IProgress progress;
-    private @NotNull IProgressStyle style;
+    private final @NotNull IFilledAmount progress;
+    private @NotNull IAmountStyle style;
 
-    public ProgressDrawable(@NotNull IProgress progress) {
+    public AmountDrawable(@NotNull IFilledAmount progress) {
         this.progress = progress;
-        this.style = new ProgressStyle();
+        this.style = new AmountStyle();
     }
 
-    public ProgressDrawable style(IProgressStyle style) {
+    public AmountDrawable style(IAmountStyle style) {
         this.style = style;
         return this;
     }

@@ -1,7 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
 import static com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers.*;
-import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,11 +36,8 @@ import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import com.gtnewhorizons.wdmla.impl.ui.style.ItemStyle;
-import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import mcp.mobius.waila.overlay.DisplayUtil;
 
 public class HarvestToolProvider implements IBlockComponentProvider {
 
@@ -195,7 +191,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         if (harvestLevel != -1 && effectiveTool != null) {
             ItemStack effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel, config);
             // remove durability bar from tool icon
-            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).style(new ItemStyle().drawOverlay(false))
+            effectiveToolIconComponent = new ItemComponent(effectiveToolIcon).doDrawOverlay(false)
                     .size(new Size(10, 10));
         }
         return effectiveToolIconComponent;
@@ -227,7 +223,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
 
         if(config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_ICON)) {
             if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON)) {
-                effectiveToolIconComponent.text(currentlyHarvestableIcon, new TextStyle(), new Padding().left(5).top(6));
+                effectiveToolIconComponent.text(currentlyHarvestableIcon, new Padding().left(5).top(6));
                 harvestabilityComponent.child(effectiveToolIconComponent);
             } else {
                 harvestabilityComponent.text(currentlyHarvestableIcon);

@@ -12,10 +12,6 @@ import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
-import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
-import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
-import com.gtnewhorizons.wdmla.api.ui.style.IProgressStyle;
-import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 
@@ -23,7 +19,7 @@ public class TooltipComponent extends Component implements ITooltip {
 
     protected List<IComponent> children;
 
-    public static final IPadding DEFAULT_PROGRESS_TEXT_PADDING = new Padding(2, 0, 3, 0);
+    public static final IPadding DEFAULT_AMOUNT_TEXT_PADDING = new Padding(2, 0, 3, 0);
 
     protected TooltipComponent(List<IComponent> children, IPadding padding, ISize size, IDrawable foreground) {
         super(padding, size, foreground);
@@ -58,8 +54,8 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
-    public ITooltip text(String text, ITextStyle style, IPadding padding) {
-        IComponent c = new TextComponent(text).style(style).padding(padding);
+    public ITooltip text(String text, IPadding padding) {
+        IComponent c = new TextComponent(text).padding(padding);
         this.children.add(c);
         return this;
     }
@@ -72,20 +68,6 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
-    public ITooltip vertical(IPanelStyle style, IPadding padding) {
-        ITooltip c = new VPanelComponent().style(style).padding(padding);
-        this.children.add(c);
-        return c;
-    }
-
-    @Override
-    public ITooltip vertical(IPanelStyle style) {
-        ITooltip c = new VPanelComponent().style(style);
-        this.children.add(c);
-        return c;
-    }
-
-    @Override
     public ITooltip vertical() {
         ITooltip c = new VPanelComponent();
         this.children.add(c);
@@ -93,31 +75,10 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
-    public ITooltip horizontal(IPanelStyle style, IPadding padding) {
-        ITooltip c = new HPanelComponent().style(style).padding(padding);
-        this.children.add(c);
-        return c;
-    }
-
-    @Override
-    public ITooltip horizontal(IPanelStyle style) {
-        Component c = new HPanelComponent().style(style);
-        this.children.add(c);
-        return (ITooltip) c;
-    }
-
-    @Override
     public ITooltip horizontal() {
         ITooltip c = new HPanelComponent();
         this.children.add(c);
         return c;
-    }
-
-    @Override
-    public ITooltip item(ItemStack stack, IItemStyle style, IPadding padding, ISize size) {
-        IComponent c = new ItemComponent(stack).style(style).padding(padding).size(size);
-        this.children.add(c);
-        return this;
     }
 
     @Override
@@ -135,17 +96,9 @@ public class TooltipComponent extends Component implements ITooltip {
     }
 
     @Override
-    public ITooltip progress(long current, long max, IProgressStyle style, String progressText) {
-        ITooltip c = new ProgressComponent(current, max).style(style);
-        c.child(new TextComponent(progressText).padding(DEFAULT_PROGRESS_TEXT_PADDING));
-        this.children.add(c);
-        return this;
-    }
-
-    @Override
-    public ITooltip progress(long current, long max, String progressText) {
-        ITooltip c = new ProgressComponent(current, max);
-        c.child(new TextComponent(progressText).padding(DEFAULT_PROGRESS_TEXT_PADDING));
+    public ITooltip amount(long current, long max, String amountText) {
+        ITooltip c = new AmountComponent(current, max);
+        c.child(new TextComponent(amountText).padding(DEFAULT_AMOUNT_TEXT_PADDING));
         this.children.add(c);
         return this;
     }

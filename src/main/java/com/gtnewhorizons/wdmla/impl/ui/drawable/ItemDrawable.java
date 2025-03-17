@@ -6,26 +6,24 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import com.gtnewhorizons.wdmla.api.ui.style.IItemStyle;
-import com.gtnewhorizons.wdmla.impl.ui.style.ItemStyle;
 
 public class ItemDrawable implements IDrawable {
 
     private final @NotNull ItemStack item;
-    private @NotNull IItemStyle style;
+
+    private boolean doDrawOverlay = true;
 
     public ItemDrawable(@NotNull ItemStack item) {
         this.item = item;
-        this.style = new ItemStyle();
     }
 
-    public ItemDrawable style(IItemStyle style) {
-        this.style = style;
+    public ItemDrawable doDrawOverlay(boolean flag) {
+        this.doDrawOverlay = flag;
         return this;
     }
 
     @Override
     public void draw(IArea area) {
-        GuiDraw.renderStack(area, item, style.getDrawOverlay());
+        GuiDraw.renderStack(area, item, doDrawOverlay);
     }
 }

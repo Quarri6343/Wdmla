@@ -5,20 +5,28 @@ import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
+import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
+import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 import net.minecraft.item.ItemStack;
 
+import java.util.List;
+
+import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
 import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 /**
- * We don't implement the actual "bundles of layout configuration" for now (@see Jade).
+ * We haven't implemented the actual "bundles of layout configuration" yet (@see Jade).
  * This class is just meant to unify layout settings between providers
  */
 public class ThemeHelper {
@@ -34,7 +42,7 @@ public class ThemeHelper {
 
     public void overrideTooltipTitle(ITooltip root, String newName) {
         IComponent replacedName = new HPanelComponent()
-                .text(newName, new TextStyle().color(ColorPalette.TITLE), new Padding())
+                .child(new TextComponent(newName).style(new TextStyle().color(ColorPalette.TITLE)))
                 .tag(Identifiers.ITEM_NAME);
         root.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }
@@ -77,5 +85,28 @@ public class ThemeHelper {
         else {
             return new TextComponent(content).style(new TextStyle().color(ColorPalette.get(type)));
         }
+    }
+
+    public IComponent itemProcess(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress) {
+        ITooltip hPanel = new HPanelComponent();
+        for (ItemStack inputStack : input) {
+            if(inputStack != null) {
+                hPanel.item(inputStack);
+            }
+        }
+        hPanel.child(new TexturedProgressComponent(currentProgress, maxProgress));
+        for (ItemStack outputStack : output) {
+            if(outputStack != null) {
+                hPanel.item(outputStack);
+            }
+        }
+
+        return hPanel;
+    }
+
+    public IComponent amount(long current, long max, IComponent content) {
+        ITooltip amountTooltip = new AmountComponent(current, max);
+        amountTooltip.child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(content));
+        return amountTooltip;
     }
 }
