@@ -34,9 +34,6 @@ public class NEIHandler {
         // We mute the default keybind for displaying the tooltip
         NEIClientConfig.getSetting(Constants.BIND_NEI_SHOW).setIntValue(Keyboard.KEY_NONE);
         NEIClientConfig.getSetting(Constants.CFG_NEI_SHOW).setBooleanValue(false);
-
-        GuiContainerManager.addInputHandler(new HandlerEnchants());
-        API.addKeyBind(Constants.BIND_SCREEN_ENCH, Keyboard.KEY_I);
     }
 
     public static boolean firstInventory = true;

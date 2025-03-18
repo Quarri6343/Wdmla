@@ -10,15 +10,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.cbcore.LangUtil;
-import mcp.mobius.waila.gui.truetyper.FontLoader;
-import mcp.mobius.waila.gui.truetyper.TrueTypeFont;
 import mcp.mobius.waila.handlers.VanillaTooltipHandler;
 import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.server.ProxyServer;
 
 public class ProxyClient extends ProxyServer {
-
-    TrueTypeFont minecraftiaFont;
 
     public ProxyClient() {}
 
@@ -42,9 +38,7 @@ public class ProxyClient extends ProxyServer {
 
     @Override
     public Object getFont() {
-        if (minecraftiaFont == null)
-            minecraftiaFont = FontLoader.createFont(new ResourceLocation("waila", "fonts/Minecraftia.ttf"), 14, true);
-        return this.minecraftiaFont;
+        return null;
     }
 
     public static class WorldUnloadEventHandler {
