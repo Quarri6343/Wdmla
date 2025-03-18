@@ -16,6 +16,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy {
 
@@ -27,7 +28,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-        FMLCommonHandler.instance().bus().register(new WDMlaTickHandler());
+        WDMlaTickHandler tickHandler = new WDMlaTickHandler();
+        FMLCommonHandler.instance().bus().register(tickHandler);
+        MinecraftForge.EVENT_BUS.register(tickHandler);
         FMLCommonHandler.instance().bus().register(this);
     }
 

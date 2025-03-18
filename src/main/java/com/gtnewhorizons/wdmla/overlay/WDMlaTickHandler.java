@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.config.Configuration;
 
 import org.jetbrains.annotations.Nullable;
@@ -32,7 +33,7 @@ public class WDMlaTickHandler {
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void tickRender(TickEvent.RenderTickEvent event) {
+    public void tickRender(RenderGameOverlayEvent.Text event) {
         if (mainHUD != null) {
             mainHUD.renderHUD();
         }
@@ -41,6 +42,10 @@ public class WDMlaTickHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void tickClient(TickEvent.ClientTickEvent event) {
+        if (event.phase == TickEvent.Phase.START) {
+            return;
+        }
+
         if (!Keyboard.isKeyDown(KeyEvent.key_show.getKeyCode())
                 && !ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MODE, false)
                 && ConfigHandler.instance()
