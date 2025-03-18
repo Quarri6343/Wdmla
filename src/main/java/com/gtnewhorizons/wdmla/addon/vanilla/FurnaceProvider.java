@@ -1,23 +1,22 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-import joptsimple.internal.Strings;
-import mcp.mobius.waila.cbcore.LangUtil;
+import java.util.Arrays;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.Arrays;
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
+import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+
+import mcp.mobius.waila.cbcore.LangUtil;
 
 public class FurnaceProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
@@ -36,15 +35,15 @@ public class FurnaceProvider implements IBlockComponentProvider, IServerDataProv
 
             if (slot >= 0 && slot < items.length) {
                 items[slot] = ItemStack.loadItemStackFromNBT(itemTag);
-                if(items[slot] != null) {
+                if (items[slot] != null) {
                     allEmpty = false;
                 }
             }
         }
 
-        if(items[0] != null && items[2] == null) {
+        if (items[0] != null && items[2] == null) {
             ItemStack resultStack = FurnaceRecipes.smelting().getSmeltingResult(items[0]);
-            if(resultStack != null) {
+            if (resultStack != null) {
                 items[2] = resultStack.copy();
                 items[2].stackSize = 0;
             }
@@ -52,14 +51,19 @@ public class FurnaceProvider implements IBlockComponentProvider, IServerDataProv
 
         if (!allEmpty) {
             IComponent legacyProcessText = null;
-            if(cookTime != 0) {
+            if (cookTime != 0) {
                 legacyProcessText = ThemeHelper.INSTANCE.value(
                         LangUtil.translateG("hud.msg.progress"),
                         String.format(LangUtil.translateG("hud.msg.progress.seconds"), cookTime, 10));
             }
-            IComponent progressComponent = ThemeHelper.INSTANCE.itemProgress(Arrays.asList(items[0], items[1]),
-                    Arrays.asList(items[2]), cookTime, 10, legacyProcessText, accessor.showDetails());
-            if(progressComponent != null) {
+            IComponent progressComponent = ThemeHelper.INSTANCE.itemProgress(
+                    Arrays.asList(items[0], items[1]),
+                    Arrays.asList(items[2]),
+                    cookTime,
+                    10,
+                    legacyProcessText,
+                    accessor.showDetails());
+            if (progressComponent != null) {
                 tooltip.child(progressComponent);
             }
         }

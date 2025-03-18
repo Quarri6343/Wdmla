@@ -1,8 +1,9 @@
 package com.gtnewhorizons.wdmla.addon.harvestability;
 
+import net.minecraft.util.ResourceLocation;
+
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
 import com.gtnewhorizons.wdmla.api.Identifiers;
-import net.minecraft.util.ResourceLocation;
 
 public class HarvestabilityIdentifiers {
 
@@ -173,8 +174,8 @@ public class HarvestabilityIdentifiers {
             "");
 
     public static final String CONFIG_CATEGORY_MODERN_TINKERS = CONFIG_CATEGORY_MODERN + ".tinkersconstruct";
-    public static final String CONFIG_CATEGORY_MODERN_TINKERS_COMMENT = "IDs of the TiC effective pickaxe material corresponding to the harvest level.\n" +
-            "Note that the default values are tuned for GTNH Iguana tweaks (TiC itself only has the harvest level up to 6)";
+    public static final String CONFIG_CATEGORY_MODERN_TINKERS_COMMENT = "IDs of the TiC effective pickaxe material corresponding to the harvest level.\n"
+            + "Note that the default values are tuned for GTNH Iguana tweaks (TiC itself only has the harvest level up to 6)";
     public static final ConfigEntry<Integer> CONFIG_TINKERS_PICKAXE_ICON_0 = new ConfigEntry<>(
             CONFIG_CATEGORY_MODERN_TINKERS,
             "HarvestLevel0",

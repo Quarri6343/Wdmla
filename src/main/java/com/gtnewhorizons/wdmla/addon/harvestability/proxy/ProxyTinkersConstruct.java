@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -15,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeHooks;
 
+import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Mods;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -119,9 +119,8 @@ public class ProxyTinkersConstruct {
     }
 
     /**
-     * Gets the icon of the effective Pickaxe from config.
-     * Important note: the default config value is tuned for Iguana Tweaks with vanilla mode disabled.
-     * You have to edit the config in order to play with vanilla mode or TiC alone
+     * Gets the icon of the effective Pickaxe from config. Important note: the default config value is tuned for Iguana
+     * Tweaks with vanilla mode disabled. You have to edit the config in order to play with vanilla mode or TiC alone
      * See: <a href=
      * "https://github.com/GTNewHorizons/TinkersConstruct/blob/master/src/main/java/tconstruct/tools/TinkerTools.java#L1771">...</a>
      */

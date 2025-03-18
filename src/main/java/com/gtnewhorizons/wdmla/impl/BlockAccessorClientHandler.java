@@ -4,9 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.utils.Constants;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -19,11 +18,12 @@ import com.gtnewhorizons.wdmla.wailacompat.DataProviderCompat;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import com.gtnewhorizons.wdmla.wailacompat.TooltipCompat;
 
+import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.network.WailaPacketHandler;
-import net.minecraftforge.common.config.Configuration;
+import mcp.mobius.waila.utils.Constants;
 
 public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAccessor> {
 

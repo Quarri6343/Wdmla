@@ -1,5 +1,14 @@
 package com.gtnewhorizons.wdmla.impl.ui;
 
+import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import org.jetbrains.annotations.Nullable;
+
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
@@ -13,26 +22,23 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
+
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
-import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
-import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 /**
- * We haven't implemented the actual "bundles of layout configuration" yet (@see Jade).
- * This class is just meant to unify layout settings between providers
+ * We haven't implemented the actual "bundles of layout configuration" yet (@see Jade). This class is just meant to
+ * unify layout settings between providers
  */
 public class ThemeHelper {
+
     public static final ThemeHelper INSTANCE = new ThemeHelper();
 
     public void overrideTooltipIcon(ITooltip root, ItemStack newItemStack) {
-        root.replaceChildWithTag(Identifiers.ITEM_ICON, new ItemComponent(newItemStack).doDrawOverlay(false).tag(Identifiers.ITEM_ICON));
+        root.replaceChildWithTag(
+                Identifiers.ITEM_ICON,
+                new ItemComponent(newItemStack).doDrawOverlay(false).tag(Identifiers.ITEM_ICON));
     }
 
     public void overrideTooltipTitle(ITooltip root, ItemStack newItemStack) {
@@ -51,7 +57,8 @@ public class ThemeHelper {
     }
 
     public void overrideTooltipModName(ITooltip root, String newName) {
-        IComponent replacedModName = new TextComponent(ITALIC + newName).style(new TextStyle().color(ColorPalette.MOD_NAME)).tag(Identifiers.MOD_NAME);
+        IComponent replacedModName = new TextComponent(ITALIC + newName)
+                .style(new TextStyle().color(ColorPalette.MOD_NAME)).tag(Identifiers.MOD_NAME);
         root.replaceChildWithTag(Identifiers.MOD_NAME, replacedModName);
     }
 
@@ -81,37 +88,43 @@ public class ThemeHelper {
         return new TextComponent(content).style(new TextStyle().color(ColorPalette.get(type)));
     }
 
-    public IComponent itemProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress, @Nullable IComponent legacyModeProgressText, boolean showDetails) {
-        if(!WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
+    public IComponent itemProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress,
+            @Nullable IComponent legacyModeProgressText, boolean showDetails) {
+        if (!WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
             ITooltip hPanel = new HPanelComponent();
             for (ItemStack inputStack : input) {
-                if(inputStack != null) {
+                if (inputStack != null) {
                     hPanel.item(inputStack);
                 }
             }
             hPanel.child(new TexturedProgressComponent(currentProgress, maxProgress));
             for (ItemStack outputStack : output) {
-                if(outputStack != null) {
+                if (outputStack != null) {
                     hPanel.item(outputStack);
                 }
             }
             return hPanel;
-        }
-        else {
+        } else {
             ITooltip vPanel = new VPanelComponent();
             if (showDetails) {
                 for (ItemStack inputStack : input) {
-                    if(inputStack != null) {
-                        vPanel.horizontal()
-                                .text(String.format("%s: ", LangUtil.translateG("hud.msg.in")))
-                                .child(ThemeHelper.INSTANCE.info(String.format("%dx %s", inputStack.stackSize, DisplayUtil.itemDisplayNameShort(inputStack))));
+                    if (inputStack != null) {
+                        vPanel.horizontal().text(String.format("%s: ", LangUtil.translateG("hud.msg.in"))).child(
+                                ThemeHelper.INSTANCE.info(
+                                        String.format(
+                                                "%dx %s",
+                                                inputStack.stackSize,
+                                                DisplayUtil.itemDisplayNameShort(inputStack))));
                     }
                 }
                 for (ItemStack outputStack : output) {
-                    if(outputStack != null) {
-                        vPanel.horizontal()
-                                .text(String.format("%s: ", LangUtil.translateG("hud.msg.out")))
-                                .child(ThemeHelper.INSTANCE.info(String.format("%dx %s", outputStack.stackSize, DisplayUtil.itemDisplayNameShort(outputStack))));
+                    if (outputStack != null) {
+                        vPanel.horizontal().text(String.format("%s: ", LangUtil.translateG("hud.msg.out"))).child(
+                                ThemeHelper.INSTANCE.info(
+                                        String.format(
+                                                "%dx %s",
+                                                outputStack.stackSize,
+                                                DisplayUtil.itemDisplayNameShort(outputStack))));
                     }
                 }
             }
@@ -119,10 +132,9 @@ public class ThemeHelper {
                 vPanel.child(legacyModeProgressText);
             }
 
-            if(vPanel.childrenSize() != 0) {
+            if (vPanel.childrenSize() != 0) {
                 return vPanel;
-            }
-            else {
+            } else {
                 return null;
             }
         }
@@ -135,8 +147,6 @@ public class ThemeHelper {
     }
 
     public IComponent value(String entry, String value) {
-        return new HPanelComponent()
-                .text(String.format("%s: ", entry))
-                .child(ThemeHelper.INSTANCE.info(value));
+        return new HPanelComponent().text(String.format("%s: ", entry)).child(ThemeHelper.INSTANCE.info(value));
     }
 }

@@ -16,7 +16,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.overlay.OverlayConfig;
 
 public class ClientProxy extends CommonProxy {
 

@@ -36,8 +36,8 @@ public class KeyEvent {
                 key_recipe = new KeyBinding(Constants.BIND_WAILA_RECIPE, Keyboard.KEY_NUMPAD3, "Waila"));
         ClientRegistry.registerKeyBinding(
                 key_usage = new KeyBinding(Constants.BIND_WAILA_USAGE, Keyboard.KEY_NUMPAD4, "Waila"));
-        ClientRegistry
-                .registerKeyBinding(key_details = new KeyBinding(Constants.BIND_WAILA_DETAILS, Keyboard.KEY_LSHIFT, "WDMla"));
+        ClientRegistry.registerKeyBinding(
+                key_details = new KeyBinding(Constants.BIND_WAILA_DETAILS, Keyboard.KEY_LSHIFT, "WDMla"));
     }
 
     @SubscribeEvent

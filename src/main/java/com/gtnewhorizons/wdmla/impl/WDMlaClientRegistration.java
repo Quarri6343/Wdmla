@@ -7,11 +7,12 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import mcp.mobius.waila.client.KeyEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+
+import org.lwjgl.input.Keyboard;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
@@ -27,7 +28,7 @@ import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 
 import mcp.mobius.waila.Waila;
-import org.lwjgl.input.Keyboard;
+import mcp.mobius.waila.client.KeyEvent;
 
 public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 

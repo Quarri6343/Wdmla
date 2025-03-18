@@ -147,7 +147,7 @@ public class ConfigHandler implements IWailaConfigHandler {
         OverlayConfig.updateColors();
     }
 
-    //new helper method
+    // new helper method
     public void reloadDefaultConfig() {
         config.save();
         loadDefaultConfigInternal();

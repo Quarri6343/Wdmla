@@ -1,16 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
-import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
-import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
-import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import com.gtnewhorizons.wdmla.api.TooltipPosition;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockCocoa;
@@ -37,6 +26,19 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
+import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
+
+import mcp.mobius.waila.cbcore.LangUtil;
 
 public class VanillaPlugin implements IWDMlaPlugin {
 
@@ -98,10 +100,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             tooltip.child(
-                    new HPanelComponent()
-                            .text(String.format("%s: ", LangUtil.translateG("hud.msg.power")))
-                            .child(ThemeHelper.INSTANCE.info(String.format("%s", accessor.getMetadata())))
-            );
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.power")))
+                            .child(ThemeHelper.INSTANCE.info(String.format("%s", accessor.getMetadata()))));
         }
 
         @Override
@@ -114,7 +114,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            //override lit redstone
+            // override lit redstone
             ItemStack redstoneOre = new ItemStack(Blocks.redstone_ore);
             ThemeHelper.INSTANCE.overrideTooltipHeader(tooltip, redstoneOre);
         }

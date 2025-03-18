@@ -1,13 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.proxy;
 
-import static com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct.creativePickaxes;
-
 import java.lang.reflect.Method;
-
-import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 
 public class ProxyIguanaTweaks {
 

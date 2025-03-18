@@ -86,7 +86,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
     }
 
     public int getProviderPriority(IComponentProvider<?> provider) {
-        if(provider.isPriorityFixed()) {
+        if (provider.isPriorityFixed()) {
             return provider.getDefaultPriority();
         }
 

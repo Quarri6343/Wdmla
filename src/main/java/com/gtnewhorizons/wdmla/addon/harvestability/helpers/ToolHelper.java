@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -9,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Mods;
 
 public class ToolHelper {

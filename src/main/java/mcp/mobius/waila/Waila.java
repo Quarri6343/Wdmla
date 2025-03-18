@@ -29,7 +29,6 @@ import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.network.NetworkHandler;
 import mcp.mobius.waila.network.WailaPacketHandler;
 import mcp.mobius.waila.overlay.DecoratorRenderer;
-import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.server.ProxyServer;
 import mcp.mobius.waila.utils.ModIdentification;
 

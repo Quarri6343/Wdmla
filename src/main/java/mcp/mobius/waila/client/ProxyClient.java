@@ -1,6 +1,5 @@
 package mcp.mobius.waila.client;
 
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 

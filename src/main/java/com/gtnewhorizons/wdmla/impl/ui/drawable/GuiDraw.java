@@ -1,8 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -15,7 +12,10 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 import mcp.mobius.waila.api.SpecialChars;
@@ -70,7 +70,7 @@ public final class GuiDraw {
                     (int) (y / yScale));
             if (drawOverlay) {
                 String stackSize = String.valueOf(stack.stackSize);
-                if(stack.stackSize > 0) {
+                if (stack.stackSize > 0) {
                     renderItem.renderItemOverlayIntoGUI(
                             fontRenderer,
                             textureManager,
@@ -78,17 +78,17 @@ public final class GuiDraw {
                             (int) (x / xScale),
                             (int) (y / yScale),
                             stackSize);
-                }
-                else if (WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_GHOST_PRODUCT) && !WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
-                    stackSize = SpecialChars.YELLOW + stack.stackSize;
-                    renderItem.renderItemOverlayIntoGUI(
-                            fontRenderer,
-                            textureManager,
-                            stack,
-                            (int) (x / xScale),
-                            (int) (y / yScale),
-                            stackSize);
-                }
+                } else if (WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_GHOST_PRODUCT)
+                        && !WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
+                            stackSize = SpecialChars.YELLOW + stack.stackSize;
+                            renderItem.renderItemOverlayIntoGUI(
+                                    fontRenderer,
+                                    textureManager,
+                                    stack,
+                                    (int) (x / xScale),
+                                    (int) (y / yScale),
+                                    stackSize);
+                        }
             }
             net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         } catch (Exception e) {

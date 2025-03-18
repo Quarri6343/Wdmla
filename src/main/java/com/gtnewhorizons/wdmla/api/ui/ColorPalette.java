@@ -11,9 +11,9 @@ public final class ColorPalette {
     public static final int FAILURE = 0xFFAA0000;
     public static final int MOD_NAME = 0xFF5555FF;
 
-    //other color(has alpha)
+    // other color(has alpha)
     public static final int NO_BORDER = 0x00000000;
-    //TODO:config
+    // TODO:config
     public static final int AMOUNT_DEFAULT_BORDER = 0xFF555555;
     public static final int AMOUNT_DEFAULT_BACKGROUND = 0xFFFFFFFF;
     public static final int AMOUNT_DEFAULT_FILLED = 0xFFD7D7D7;

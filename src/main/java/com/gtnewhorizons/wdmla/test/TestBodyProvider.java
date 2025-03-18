@@ -1,11 +1,7 @@
 package com.gtnewhorizons.wdmla.test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,7 +16,9 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
@@ -39,7 +37,7 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
         return TooltipPosition.BODY + 10;
     }
 
-    //TODO: test every method in ThemeHelper in different items
+    // TODO: test every method in ThemeHelper in different items
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         int cookTime = accessor.getServerData().getShort("CookTime");
@@ -55,7 +53,7 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
 
             if (slot >= 0 && slot < items.length) {
                 items[slot] = ItemStack.loadItemStackFromNBT(itemTag);
-                if(items[slot] != null) {
+                if (items[slot] != null) {
                     allEmpty = false;
                 }
             }
@@ -70,12 +68,7 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
 
         if (cookTime != 0) {
             tooltip.vertical().child(
-                    ThemeHelper.INSTANCE.amount(
-                            cookTime,
-                            10,
-                            new TextComponent("Smelting: " + cookTime + " / 10 s")
-                    )
-            );
+                    ThemeHelper.INSTANCE.amount(cookTime, 10, new TextComponent("Smelting: " + cookTime + " / 10 s")));
         }
 
         int burnTime = accessor.getServerData().getInteger("BurnTime") / 20;
@@ -88,24 +81,18 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
             IPadding itemPadding = new Padding().vertical(2);
             ITooltip itemSection = new VPanelComponent().style(new PanelStyle().borderColor(0xff00ffff));
             if (items[0] != null) {
-                itemSection.horizontal().text("In: ", itemPadding)
-                        .item(items[0], new Padding(), new Size(10, 10)).text(
-                                " " + DisplayUtil.itemDisplayNameShort(items[0]),
-                                itemPadding);
+                itemSection.horizontal().text("In: ", itemPadding).item(items[0], new Padding(), new Size(10, 10))
+                        .text(" " + DisplayUtil.itemDisplayNameShort(items[0]), itemPadding);
             }
 
             if (items[2] != null) {
-                itemSection.horizontal().text("Out: ", itemPadding)
-                        .item(items[2], new Padding(), new Size(10, 10)).text(
-                                " " + DisplayUtil.itemDisplayNameShort(items[2]),
-                                itemPadding);
+                itemSection.horizontal().text("Out: ", itemPadding).item(items[2], new Padding(), new Size(10, 10))
+                        .text(" " + DisplayUtil.itemDisplayNameShort(items[2]), itemPadding);
             }
 
             if (items[1] != null) {
-                itemSection.horizontal().text("Fuel: ", itemPadding)
-                        .item(items[1], new Padding(), new Size(10, 10)).text(
-                                " " + DisplayUtil.itemDisplayNameShort(items[1]),
-                                itemPadding);
+                itemSection.horizontal().text("Fuel: ", itemPadding).item(items[1], new Padding(), new Size(10, 10))
+                        .text(" " + DisplayUtil.itemDisplayNameShort(items[1]), itemPadding);
             }
             tooltip.child(itemSection);
         }

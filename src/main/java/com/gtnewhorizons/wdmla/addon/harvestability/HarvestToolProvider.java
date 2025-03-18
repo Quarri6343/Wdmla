@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,12 +29,14 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import mcp.mobius.waila.cbcore.LangUtil;
 
 public class HarvestToolProvider implements IBlockComponentProvider {
 
@@ -83,23 +83,23 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         }
 
         ((ITooltip) itemNameRow).child(harvestableDisplay.get(0));
-        if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null && config.getBoolean(CONFIG_MODERN_HARVEST_LEVEL_NUM)) {
+        if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null
+                && config.getBoolean(CONFIG_MODERN_HARVEST_LEVEL_NUM)) {
             tooltip.child(harvestableDisplay.get(1));
         }
     }
 
     /**
      * @return element1: harvest tool icon to append after item name
-     * <p>
-     * element2: harvestability String if the harvest level is greater than 0
+     *         <p>
+     *         element2: harvestability String if the harvest level is greater than 0
      */
     public List<IComponent> getHarvestability(EntityPlayer player, Block block, int meta, MovingObjectPosition position,
-                                              IPluginConfig config) {
+            IPluginConfig config) {
         if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
                 .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
             return Arrays.asList(
-                    ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING))
-            );
+                    ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
         }
 
         // needed to stop array index out of bounds exceptions on mob spawners
@@ -114,9 +114,8 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         IComponent silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position, config);
 
         if (canInstaBreak(harvestLevel, effectiveTool, block, shearability != null, silkTouchability != null)) {
-            return Arrays.asList(
-                    ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
-            );
+            return Arrays
+                    .asList(ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING)));
         }
 
         ItemStack itemHeld = player.getHeldItem();
@@ -148,7 +147,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
     }
 
     private static boolean canInstaBreak(int harvestLevel, String effectiveTool, Block block, boolean canShear,
-                                         boolean canSilkTouch) {
+            boolean canSilkTouch) {
         boolean blockHasEffectiveTools = harvestLevel >= 0 && effectiveTool != null;
         return block.getMaterial().isToolNotRequired() && !blockHasEffectiveTools && !canShear && !canSilkTouch;
     }
@@ -162,7 +161,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
     }
 
     private static boolean isHeldToolCorrect(EntityPlayer player, Block block, int meta, ItemStack itemHeld,
-                                             String effectiveTool, boolean isHoldingTinkersTool) {
+            String effectiveTool, boolean isHoldingTinkersTool) {
         boolean canHarvest = false;
         if (itemHeld != null) {
             if (ProxyGregTech.isMachine(block)) {
@@ -170,7 +169,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
                 canHarvest = Objects.equals(effectiveTool, ProxyGregTech.TOOL_WRENCH)
                         && ProxyGregTech.isWrench(itemHeld)
                         || Objects.equals(effectiveTool, ProxyGregTech.TOOL_WIRE_CUTTER)
-                        && ProxyGregTech.isWireCutter(itemHeld);
+                                && ProxyGregTech.isWireCutter(itemHeld);
             } else if (ProxyGregTech.isGTTool(itemHeld)) {
                 // GT tool don't care net.minecraft.block.material.Material#isToolNotRequired
                 canHarvest = itemHeld.func_150998_b(block);
@@ -182,7 +181,8 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         return canHarvest;
     }
 
-    private static @Nullable ITooltip getEffectiveToolIcon(int harvestLevel, String effectiveTool, IPluginConfig config) {
+    private static @Nullable ITooltip getEffectiveToolIcon(int harvestLevel, String effectiveTool,
+            IPluginConfig config) {
         ITooltip effectiveToolIconComponent = null;
         if (harvestLevel != -1 && effectiveTool != null) {
             ItemStack effectiveToolIcon = ToolHelper.getEffectiveToolIcon(effectiveTool, harvestLevel, config);
@@ -194,7 +194,7 @@ public class HarvestToolProvider implements IBlockComponentProvider {
     }
 
     private static boolean isCurrentlyHarvestable(EntityPlayer player, Block block, int meta, ItemStack itemHeld,
-                                                  String effectiveTool, int harvestLevel) {
+            String effectiveTool, int harvestLevel) {
         boolean isHoldingTinkersTool = isHoldingTinkersTool(itemHeld);
         boolean isHeldToolCorrect = isHeldToolCorrect(
                 player,
@@ -206,20 +206,22 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         boolean isAboveMinHarvestLevel = isAboveMinHarvestLevel(itemHeld, block, meta, harvestLevel);
         return (isHeldToolCorrect && isAboveMinHarvestLevel)
                 || (!ProxyGregTech.isMachine(block) && !isHoldingTinkersTool
-                && ForgeHooks.canHarvestBlock(block, player, meta));
+                        && ForgeHooks.canHarvestBlock(block, player, meta));
     }
 
     private static @NotNull ITooltip assembleHarvestabilityIcon(ITooltip effectiveToolIconComponent,
-                                                                boolean isCurrentlyHarvestable, IComponent shearability, IComponent silkTouchability, IPluginConfig config) {
+            boolean isCurrentlyHarvestable, IComponent shearability, IComponent silkTouchability,
+            IPluginConfig config) {
         ITooltip harvestabilityComponent = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
-        IComponent currentlyHarvestableIcon =
-                (isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
+        IComponent currentlyHarvestableIcon = (isCurrentlyHarvestable
+                ? ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
                 : ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
 
         if (config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_ICON)) {
             if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON)) {
-                effectiveToolIconComponent.child(new HPanelComponent().padding(new Padding().left(5).top(6)).child(currentlyHarvestableIcon));
+                effectiveToolIconComponent.child(
+                        new HPanelComponent().padding(new Padding().left(5).top(6)).child(currentlyHarvestableIcon));
                 harvestabilityComponent.child(effectiveToolIconComponent);
             } else {
                 harvestabilityComponent.child(currentlyHarvestableIcon);
@@ -228,15 +230,17 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         if (shearability != null && config.getBoolean(CONFIG_MODERN_SHOW_SHEARABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SHEARABILITY_ITEM).split(":");
             if (parts.length == 2) {
-                harvestabilityComponent
-                        .child(new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false).size(new Size(10, 10)));
+                harvestabilityComponent.child(
+                        new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false)
+                                .size(new Size(10, 10)));
             }
         }
         if (silkTouchability != null && config.getBoolean(CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SILKTOUCHABILITY_ITEM).split(":");
             if (parts.length == 2) {
-                harvestabilityComponent
-                        .child(new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false).size(new Size(10, 10)));
+                harvestabilityComponent.child(
+                        new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false)
+                                .size(new Size(10, 10)));
             }
         }
         return harvestabilityComponent;
@@ -247,8 +251,9 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         if (harvestLevel >= 1) {
             String harvestLevelString = StringHelper.stripFormatting(StringHelper.getHarvestLevelName(harvestLevel));
             harvestLevelText = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_TEXT)
-                    .text(String.format("%s: ", LangUtil.translateG("wailaharvestability.harvestlevel")))
-                    .child(isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(harvestLevelString) : ThemeHelper.INSTANCE.failure(harvestLevelString));
+                    .text(String.format("%s: ", LangUtil.translateG("wailaharvestability.harvestlevel"))).child(
+                            isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(harvestLevelString)
+                                    : ThemeHelper.INSTANCE.failure(harvestLevelString));
         }
         return harvestLevelText;
     }

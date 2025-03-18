@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +23,8 @@ import net.minecraftforge.common.IShearable;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 public class BlockHelper {
 
@@ -71,13 +71,14 @@ public class BlockHelper {
             boolean isShearable = isHoldingShears && ((IShearable) block)
                     .isShearable(itemHeld, player.worldObj, position.blockX, position.blockY, position.blockZ);
             String shearableString = config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_STRING);
-            return isShearable ? ThemeHelper.INSTANCE.success(shearableString) : ThemeHelper.INSTANCE.failure(shearableString);
+            return isShearable ? ThemeHelper.INSTANCE.success(shearableString)
+                    : ThemeHelper.INSTANCE.failure(shearableString);
         }
         return null;
     }
 
     public static IComponent getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
-                                                       MovingObjectPosition position, IPluginConfig config) {
+            MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
         boolean showSilkTouchability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY)
                 && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_SNEAKING_ONLY) || isSneaking);
@@ -90,7 +91,8 @@ public class BlockHelper {
             if (silkTouchMatters) {
                 boolean hasSilkTouch = EnchantmentHelper.getSilkTouchModifier(player);
                 String silkTouchString = config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
-                return hasSilkTouch ? ThemeHelper.INSTANCE.success(silkTouchString) : ThemeHelper.INSTANCE.failure(silkTouchString);
+                return hasSilkTouch ? ThemeHelper.INSTANCE.success(silkTouchString)
+                        : ThemeHelper.INSTANCE.failure(silkTouchString);
             }
         }
         return null;
