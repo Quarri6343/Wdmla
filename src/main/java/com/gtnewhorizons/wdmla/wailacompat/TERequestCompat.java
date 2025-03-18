@@ -35,7 +35,13 @@ public class TERequestCompat {
 
     public static void handleRequest(ChannelHandlerContext ctx, NBTTagCompound tag, Message0x01TERequest msg) {
         World world = DimensionManager.getWorld(msg.dim);
+        if (world == null) {
+            return;
+        }
         TileEntity entity = world.getTileEntity(msg.posX, msg.posY, msg.posZ);
+        if (entity == null) {
+            return;
+        }
         Block block = world.getBlock(msg.posX, msg.posY, msg.posZ);
         boolean hasLegacyNBTBlock = ModuleRegistrar.instance().hasNBTProviders(block);
         boolean hasLegacyNBTEnt = ModuleRegistrar.instance().hasNBTProviders(entity);
