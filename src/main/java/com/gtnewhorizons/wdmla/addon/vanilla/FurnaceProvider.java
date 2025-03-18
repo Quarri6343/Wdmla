@@ -53,10 +53,9 @@ public class FurnaceProvider implements IBlockComponentProvider, IServerDataProv
         if (!allEmpty) {
             IComponent legacyProcessText = null;
             if(cookTime != 0) {
-                legacyProcessText = new HPanelComponent()
-                        .text(LangUtil.translateG("hud.msg.progress"))
-                        .text(Strings.EMPTY)
-                        .child(ThemeHelper.INSTANCE.info(String.format(LangUtil.translateG("hud.msg.progress.seconds"), cookTime, 10)));
+                legacyProcessText = ThemeHelper.INSTANCE.value(
+                        LangUtil.translateG("hud.msg.progress"),
+                        String.format(LangUtil.translateG("hud.msg.progress.seconds"), cookTime, 10));
             }
             IComponent progressComponent = ThemeHelper.INSTANCE.itemProgress(Arrays.asList(items[0], items[1]),
                     Arrays.asList(items[2]), cookTime, 10, legacyProcessText, accessor.showDetails());

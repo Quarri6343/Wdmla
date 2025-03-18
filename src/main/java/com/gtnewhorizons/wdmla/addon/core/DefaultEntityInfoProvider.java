@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.addon;
+package com.gtnewhorizons.wdmla.addon.core;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 

@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import net.minecraft.util.EnumChatFormatting;
 
+//TODO:migrate with theme
 public class ColorHelper {
 
     private static final EnumChatFormatting booleanColorRange[] = { EnumChatFormatting.DARK_RED, EnumChatFormatting.RED,

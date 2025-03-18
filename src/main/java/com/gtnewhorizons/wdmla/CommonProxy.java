@@ -3,7 +3,7 @@ package com.gtnewhorizons.wdmla;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 
-import com.gtnewhorizons.wdmla.addon.CorePlugin;
+import com.gtnewhorizons.wdmla.addon.core.CorePlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
 import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
 import com.gtnewhorizons.wdmla.addon.vanilla.VanillaPlugin;

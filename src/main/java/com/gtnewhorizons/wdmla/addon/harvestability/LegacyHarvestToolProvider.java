@@ -194,7 +194,7 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                             .translateToLocal("wailaharvestability.toolclass." + effectiveTool);
                 else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
                 stringList.add(
-                        (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.effectivetool") : "")
+                        (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.effectivetool") + ": " : "")
                                 + ColorHelper.getBooleanColor(
                                         isEffective && (!isHoldingTinkersTool || canHarvest),
                                         isHoldingTinkersTool && isEffective && !canHarvest)
@@ -214,7 +214,7 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                 else if (showHarvestLevelNum) harvestLevelString = harvestLevelNum;
 
                 stringList.add(
-                        (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.harvestlevel") : "") + " "
+                        (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.harvestlevel") + ": " : "")
                                 + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
                                 + harvestLevelString);
             }

@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.addon;
+package com.gtnewhorizons.wdmla.addon.core;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -21,6 +21,7 @@ public class CorePlugin implements IWDMlaPlugin {
         registration.registerAccessorHandler(EntityAccessor.class, new EntityAccessorClientHandler());
 
         registration.registerBlockComponent(new DefaultBlockInfoProvider(), Block.class);
+        registration.registerBlockComponent(new HardnessProvider(), Block.class);
         registration.registerEntityComponent(new DefaultEntityInfoProvider(), Entity.class);
         registration.registerEntityComponent(new EntityHealthProvider(), Entity.class);
     }

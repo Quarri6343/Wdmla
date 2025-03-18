@@ -11,12 +11,13 @@ public final class Identifiers {
     public static final ResourceLocation ITEM_NAME_ROW = Core("item_name_row");
     public static final ResourceLocation ITEM_NAME = Core("item_name");
     public static final ResourceLocation ENTITY_NAME = Core("entity_name");
-    public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");
     public static final ResourceLocation MOD_NAME = Core("mod_name");
 
     // provider Uid
     public static final ResourceLocation DEFAULT_BLOCK = Core("default_block");
     public static final ResourceLocation DEFAULT_ENTITY = Core("default_entity");
+    public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");
+    public static final ResourceLocation HARDNESS = Core("hardness");
 
     public static final ResourceLocation TEST_HEAD = Test("head");
     public static final ResourceLocation TEST_BODY = Test("body");

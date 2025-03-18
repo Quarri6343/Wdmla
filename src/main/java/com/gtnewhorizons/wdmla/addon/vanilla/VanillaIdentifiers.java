@@ -21,7 +21,6 @@ public class VanillaIdentifiers {
     public static final ResourceLocation BEACON = MC("beacon");
 
     // config
-
     private static ResourceLocation MC(String path) {
         return new ResourceLocation(path);
     }

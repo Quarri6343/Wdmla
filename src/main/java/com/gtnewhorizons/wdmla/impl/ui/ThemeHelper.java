@@ -138,4 +138,10 @@ public class ThemeHelper {
         amountTooltip.child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(content));
         return amountTooltip;
     }
+
+    public IComponent value(String entry, String value) {
+        return new HPanelComponent()
+                .text(String.format("%s: ", entry))
+                .child(ThemeHelper.INSTANCE.info(value));
+    }
 }
