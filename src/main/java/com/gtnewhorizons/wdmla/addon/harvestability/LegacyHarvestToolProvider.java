@@ -3,6 +3,11 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +18,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.BlockHelper;
-import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ColorHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.OreHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.StringHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper;
@@ -25,6 +29,7 @@ import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import org.apache.commons.lang3.StringUtils;
 
 public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
@@ -54,31 +59,30 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
         int effectiveMeta = BlockHelper
                 .getEffectiveMeta(accessor.getBlock(), accessor.getItemForm(), accessor.getMetadata());
 
-        List<String> stringParts = new ArrayList<>();
-        getLegacyHarvestability(
-                stringParts,
+        List<IComponent> strings = getLegacyHarvestability(
                 accessor.getPlayer(),
                 effectiveBlock,
                 effectiveMeta,
                 accessor.getHitResult(),
                 config);
-        updateTooltip(stringParts, tooltip, config);
+        updateTooltip(strings, tooltip, config);
     }
 
-    private void updateTooltip(List<String> stringParts, ITooltip tooltip, IPluginConfig config) {
+    private void updateTooltip(List<IComponent> stringParts, ITooltip tooltip, IPluginConfig config) {
         boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
         String separator = config.getString(HarvestabilityIdentifiers.CONFIG_MINIMAL_SEPARATOR_STRING);
         if (!stringParts.isEmpty()) {
             if (minimalLayout)
-                tooltip.text(StringHelper.concatenateStringList(stringParts, EnumChatFormatting.RESET + separator));
-            else for (String stringPart : stringParts) {
-                tooltip.text(stringPart);
+                tooltip.child(StringHelper.concatenateStringList(stringParts, EnumChatFormatting.RESET + separator));
+            else for (IComponent stringPart : stringParts) {
+                tooltip.child(stringPart);
             }
         }
     }
 
-    public void getLegacyHarvestability(List<String> stringList, EntityPlayer player, Block block, int meta,
+    public List<IComponent> getLegacyHarvestability(EntityPlayer player, Block block, int meta,
             MovingObjectPosition position, IPluginConfig config) {
+        List<IComponent> components = new ArrayList<>();
         boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
         boolean isSneaking = player.isSneaking();
         boolean showHarvestLevel = config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL)
@@ -96,7 +100,7 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
 
         if (showHarvestLevel || showEffectiveTool || showCurrentlyHarvestable) {
             if (showOresOnly && !OreHelper.isBlockAnOre(block, meta)) {
-                return;
+                return components;
             }
 
             if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ)
@@ -106,14 +110,13 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                             position.blockX,
                             position.blockY,
                             position.blockZ)) {
-                String unbreakableString = ColorHelper.getBooleanColor(false)
-                        + config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING)
-                        + (!minimalLayout
-                                ? EnumChatFormatting.RESET
-                                        + StatCollector.translateToLocal("wailaharvestability.harvestable")
-                                : "");
-                stringList.add(unbreakableString);
-                return;
+                ITooltip unBreakablePanel = new HPanelComponent();
+                unBreakablePanel.child(ThemeHelper.INSTANCE.failure(config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING)));
+                if(!minimalLayout) {
+                    unBreakablePanel.text(LangUtil.translateG("wailaharvestability.harvestable"));
+                }
+                components.add(unBreakablePanel);
+                return components;
             }
 
             // needed to stop array index out of bounds exceptions on mob spawners
@@ -131,14 +134,14 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
             if (effectiveTool != null && harvestLevel < 0) harvestLevel = 0;
             boolean blockHasEffectiveTools = harvestLevel >= 0 && effectiveTool != null;
 
-            String shearability = BlockHelper.getShearabilityString(player, block, meta, position, config);
-            String silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position, config);
+            IComponent shearability = BlockHelper.getShearabilityString(player, block, meta, position, config);
+            IComponent silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position, config);
 
             if (toolRequiredOnly && block.getMaterial().isToolNotRequired()
                     && !blockHasEffectiveTools
-                    && shearability.isEmpty()
-                    && silkTouchability.isEmpty())
-                return;
+                    && shearability == null
+                    && silkTouchability == null)
+                return components;
 
             boolean canHarvest = false;
             boolean isEffective = false;
@@ -166,26 +169,36 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
             boolean isCurrentlyHarvestable = (canHarvest && isAboveMinHarvestLevel)
                     || (!isHoldingTinkersTool && ForgeHooks.canHarvestBlock(block, player, meta));
 
-            if (hideWhileHarvestable && isCurrentlyHarvestable) return;
+            if (hideWhileHarvestable && isCurrentlyHarvestable) return components;
 
-            String currentlyHarvestable = showCurrentlyHarvestable
-                    ? ColorHelper.getBooleanColor(isCurrentlyHarvestable) + (isCurrentlyHarvestable
-                            ? config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING)
-                            : config.getString(
-                                    HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING))
-                            + (!minimalLayout
-                                    ? EnumChatFormatting.RESET
-                                            + StatCollector.translateToLocal("wailaharvestability.currentlyharvestable")
-                                    : "")
-                    : "";
+            ITooltip currentlyHarvestable = null;
+            if (showCurrentlyHarvestable) {
+                currentlyHarvestable = new HPanelComponent();
+                if(isCurrentlyHarvestable) {
+                    String icon = config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING);
+                    currentlyHarvestable.child(ThemeHelper.INSTANCE.success(icon));
+                }
+                else {
+                    String icon = config.getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING);
+                    currentlyHarvestable.child(ThemeHelper.INSTANCE.failure(icon));
+                }
+                if (!minimalLayout) {
+                    String suffix = LangUtil.translateG("wailaharvestability.currentlyharvestable");
+                    currentlyHarvestable.text(suffix);
+                }
+            }
 
-            if (!currentlyHarvestable.isEmpty() || !shearability.isEmpty() || !silkTouchability.isEmpty()) {
-                String separator = (!shearability.isEmpty() || !silkTouchability.isEmpty() ? " " : "");
-                stringList.add(
-                        currentlyHarvestable + separator
-                                + silkTouchability
-                                + (!silkTouchability.isEmpty() ? separator : "")
-                                + shearability);
+            if (currentlyHarvestable != null || shearability != null || silkTouchability == null) {
+                String separator = StringUtils.SPACE;
+                if (silkTouchability != null) {
+                    currentlyHarvestable.text(separator);
+                    currentlyHarvestable.child(silkTouchability);
+                }
+                if (shearability != null) {
+                    currentlyHarvestable.text(separator);
+                    currentlyHarvestable.child(shearability);
+                }
+                components.add(currentlyHarvestable);
             }
             if (harvestLevel != -1 && showEffectiveTool && effectiveTool != null) {
                 String effectiveToolString;
@@ -193,12 +206,17 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                     effectiveToolString = StatCollector
                             .translateToLocal("wailaharvestability.toolclass." + effectiveTool);
                 else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
-                stringList.add(
-                        (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.effectivetool") + ": " : "")
-                                + ColorHelper.getBooleanColor(
-                                        isEffective && (!isHoldingTinkersTool || canHarvest),
-                                        isHoldingTinkersTool && isEffective && !canHarvest)
-                                + effectiveToolString);
+                ITooltip effectiveToolPanel = new HPanelComponent();
+                if(!minimalLayout) {
+                    effectiveToolPanel.child(new TextComponent(LangUtil.translateG("wailaharvestability.effectivetool") + ": "));
+                }
+                if(isEffective && (!isHoldingTinkersTool || canHarvest)) {
+                    effectiveToolPanel.child(ThemeHelper.INSTANCE.success(effectiveToolString));
+                }
+                else {
+                    effectiveToolPanel.child(ThemeHelper.INSTANCE.failure(effectiveToolString));
+                }
+                components.add(effectiveToolPanel);
             }
             if (harvestLevel >= 1 && (showHarvestLevel || showHarvestLevelNum)) {
                 String harvestLevelString = "";
@@ -213,11 +231,20 @@ public class LegacyHarvestToolProvider implements IBlockComponentProvider {
                         + (showHarvestLevelNum ? String.format(" (%d)", harvestLevel) : "");
                 else if (showHarvestLevelNum) harvestLevelString = harvestLevelNum;
 
-                stringList.add(
-                        (!minimalLayout ? StatCollector.translateToLocal("wailaharvestability.harvestlevel") + ": " : "")
-                                + ColorHelper.getBooleanColor(isAboveMinHarvestLevel && canHarvest)
-                                + harvestLevelString);
+                ITooltip harvestText = new HPanelComponent();
+                if(!minimalLayout) {
+                    harvestText.text(StatCollector.translateToLocal("wailaharvestability.harvestlevel") + ": ");
+                }
+                if(isAboveMinHarvestLevel && canHarvest) {
+                    harvestText.child(ThemeHelper.INSTANCE.success(harvestLevelString));
+                }
+                else {
+                    harvestText.child(ThemeHelper.INSTANCE.failure(harvestLevelString));
+                }
+                components.add(harvestText);
             }
         }
+
+        return components;
     }
 }

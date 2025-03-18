@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,7 +58,7 @@ public class BlockHelper {
         return block.getBlockHardness(world, x, y, z) == -1.0f;
     }
 
-    public static String getShearabilityString(EntityPlayer player, Block block, int meta,
+    public static IComponent getShearabilityString(EntityPlayer player, Block block, int meta,
             MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
         boolean showShearability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY)
@@ -68,14 +70,14 @@ public class BlockHelper {
             boolean isHoldingShears = itemHeld != null && itemHeld.getItem() instanceof ItemShears;
             boolean isShearable = isHoldingShears && ((IShearable) block)
                     .isShearable(itemHeld, player.worldObj, position.blockX, position.blockY, position.blockZ);
-            return ColorHelper.getBooleanColor(isShearable, !isShearable && isHoldingShears)
-                    + config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_STRING);
+            String shearableString = config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_STRING);
+            return isShearable ? ThemeHelper.INSTANCE.success(shearableString) : ThemeHelper.INSTANCE.failure(shearableString);
         }
-        return "";
+        return null;
     }
 
-    public static String getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IPluginConfig config) {
+    public static IComponent getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
+                                                       MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
         boolean showSilkTouchability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY)
                 && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_SNEAKING_ONLY) || isSneaking);
@@ -87,11 +89,11 @@ public class BlockHelper {
                     || block.quantityDropped(new Random()) <= 0;
             if (silkTouchMatters) {
                 boolean hasSilkTouch = EnchantmentHelper.getSilkTouchModifier(player);
-                return ColorHelper.getBooleanColor(hasSilkTouch)
-                        + config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
+                String silkTouchString = config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
+                return hasSilkTouch ? ThemeHelper.INSTANCE.success(silkTouchString) : ThemeHelper.INSTANCE.failure(silkTouchString);
             }
         }
-        return "";
+        return null;
     }
 
     public static Block getEffectiveBlock(Block block, ItemStack itemForm, int meta) {

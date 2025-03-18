@@ -78,12 +78,7 @@ public class ThemeHelper {
     }
 
     public IComponent color(String content, MessageType type) {
-        if(WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
-            return new TextComponent(content).style(new TextStyle().color(ColorPalette.get(MessageType.NORMAL)));
-        }
-        else {
-            return new TextComponent(content).style(new TextStyle().color(ColorPalette.get(type)));
-        }
+        return new TextComponent(content).style(new TextStyle().color(ColorPalette.get(type)));
     }
 
     public IComponent itemProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress, @Nullable IComponent legacyModeProgressText, boolean showDetails) {

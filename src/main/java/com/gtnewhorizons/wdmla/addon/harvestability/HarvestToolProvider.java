@@ -13,14 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.BlockHelper;
-import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ColorHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.StringHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.helpers.ToolHelper;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyCreativeBlocks;
@@ -35,7 +33,6 @@ import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 
@@ -76,10 +73,10 @@ public class HarvestToolProvider implements IBlockComponentProvider {
                 accessor.getHitResult(),
                 config);
 
-        updateTooltip(tooltip, accessor, harvestableDisplay, config);
+        updateTooltip(tooltip, harvestableDisplay, config);
     }
 
-    private void updateTooltip(ITooltip tooltip, BlockAccessor accessor, List<IComponent> harvestableDisplay, IPluginConfig config) {
+    private void updateTooltip(ITooltip tooltip, List<IComponent> harvestableDisplay, IPluginConfig config) {
         IComponent itemNameRow = tooltip.getChildWithTag(Identifiers.ITEM_NAME_ROW);
         if (!(itemNameRow instanceof ITooltip)) {
             return;
@@ -101,9 +98,8 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
                 .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
             return Arrays.asList(
-                    new TextComponent(
-                            ColorHelper.getBooleanColor(false)
-                                    + config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
+                    ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING))
+            );
         }
 
         // needed to stop array index out of bounds exceptions on mob spawners
@@ -114,14 +110,13 @@ public class HarvestToolProvider implements IBlockComponentProvider {
                 .getEffectiveToolOf(player.worldObj, position.blockX, position.blockY, position.blockZ, block, meta);
         int harvestLevel = getHarvestLevel(block, meta, effectiveTool);
 
-        String shearability = BlockHelper.getShearabilityString(player, block, meta, position, config);
-        String silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position, config);
+        IComponent shearability = BlockHelper.getShearabilityString(player, block, meta, position, config);
+        IComponent silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position, config);
 
-        if (canInstaBreak(harvestLevel, effectiveTool, block, !shearability.isEmpty(), !silkTouchability.isEmpty())) {
+        if (canInstaBreak(harvestLevel, effectiveTool, block, shearability != null, silkTouchability != null)) {
             return Arrays.asList(
-                    new TextComponent(
-                            ColorHelper.getBooleanColor(true)
-                                    + config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING)));
+                    ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
+            );
         }
 
         ItemStack itemHeld = player.getHeldItem();
@@ -215,29 +210,29 @@ public class HarvestToolProvider implements IBlockComponentProvider {
     }
 
     private static @NotNull ITooltip assembleHarvestabilityIcon(ITooltip effectiveToolIconComponent,
-                                                                boolean isCurrentlyHarvestable, String shearability, String silkTouchability, IPluginConfig config) {
+                                                                boolean isCurrentlyHarvestable, IComponent shearability, IComponent silkTouchability, IPluginConfig config) {
         ITooltip harvestabilityComponent = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
-        String currentlyHarvestableIcon = ColorHelper.getBooleanColor(isCurrentlyHarvestable)
-                + (isCurrentlyHarvestable ? config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING)
-                : config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING));
+        IComponent currentlyHarvestableIcon =
+                (isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
+                : ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
 
         if (config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_ICON)) {
             if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON)) {
-                effectiveToolIconComponent.text(currentlyHarvestableIcon, new Padding().left(5).top(6));
+                effectiveToolIconComponent.child(new HPanelComponent().padding(new Padding().left(5).top(6)).child(currentlyHarvestableIcon));
                 harvestabilityComponent.child(effectiveToolIconComponent);
             } else {
-                harvestabilityComponent.text(currentlyHarvestableIcon);
+                harvestabilityComponent.child(currentlyHarvestableIcon);
             }
         }
-        if (!shearability.isEmpty() && config.getBoolean(CONFIG_MODERN_SHOW_SHEARABILITY_ICON)) {
+        if (shearability != null && config.getBoolean(CONFIG_MODERN_SHOW_SHEARABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SHEARABILITY_ITEM).split(":");
             if (parts.length == 2) {
                 harvestabilityComponent
                         .child(new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false).size(new Size(10, 10)));
             }
         }
-        if (!silkTouchability.isEmpty() && config.getBoolean(CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON)) {
+        if (silkTouchability != null && config.getBoolean(CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON)) {
             String[] parts = config.getString(CONFIG_SILKTOUCHABILITY_ITEM).split(":");
             if (parts.length == 2) {
                 harvestabilityComponent
@@ -251,11 +246,9 @@ public class HarvestToolProvider implements IBlockComponentProvider {
         IComponent harvestLevelText = null;
         if (harvestLevel >= 1) {
             String harvestLevelString = StringHelper.stripFormatting(StringHelper.getHarvestLevelName(harvestLevel));
-            harvestLevelText = new TextComponent(
-                    String.format("%s: %s",
-                            LangUtil.translateG("wailaharvestability.harvestlevel"),
-                            ColorHelper.getBooleanColor(isCurrentlyHarvestable) + harvestLevelString)
-            ).tag(HarvestabilityIdentifiers.HARVESTABILITY_TEXT);
+            harvestLevelText = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_TEXT)
+                    .text(String.format("%s: ", LangUtil.translateG("wailaharvestability.harvestlevel")))
+                    .child(isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(harvestLevelString) : ThemeHelper.INSTANCE.failure(harvestLevelString));
         }
         return harvestLevelText;
     }

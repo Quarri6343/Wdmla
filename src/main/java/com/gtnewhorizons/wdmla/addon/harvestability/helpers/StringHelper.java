@@ -2,6 +2,9 @@ package com.gtnewhorizons.wdmla.addon.harvestability.helpers;
 
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
@@ -27,14 +30,15 @@ public class StringHelper {
         return String.valueOf(num);
     }
 
-    public static String concatenateStringList(List<String> strings, String separator) {
-        StringBuilder sb = new StringBuilder();
+    public static IComponent concatenateStringList(List<IComponent> strings, String separator) {
+        ITooltip sb = new HPanelComponent();
         String sep = "";
-        for (String s : strings) {
-            sb.append(sep).append(s);
+        for (IComponent s : strings) {
+            sb.text(sep);
+            sb.child(s);
             sep = separator;
         }
-        return sb.toString();
+        return sb;
     }
 
     public static String stripFormatting(String str) {
