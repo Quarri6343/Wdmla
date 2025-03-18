@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.vanilla;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.mojang.authlib.GameProfile;
@@ -11,7 +12,7 @@ import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class PlayerHeadProvider implements IBlockComponentProvider {
+public class PlayerHeadHeaderProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -30,6 +31,11 @@ public class PlayerHeadProvider implements IBlockComponentProvider {
 
     @Override
     public ResourceLocation getUid() {
-        return VanillaIdentifiers.PLAYER_HEAD;
+        return VanillaIdentifiers.PLAYER_HEAD_HEADER;
+    }
+
+    @Override
+    public int getDefaultPriority() {
+        return TooltipPosition.HEAD;
     }
 }

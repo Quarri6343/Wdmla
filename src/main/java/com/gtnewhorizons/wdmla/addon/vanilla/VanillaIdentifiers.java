@@ -17,7 +17,8 @@ public class VanillaIdentifiers {
     public static final ResourceLocation REDSTONE_STATE = MC("redstone_state");
     public static final ResourceLocation MOB_SPAWNER_HEADER = MC("mob_spawner_header");
     public static final ResourceLocation FURNACE = MC("furnace");
-    public static final ResourceLocation PLAYER_HEAD = MC("player_Head");
+    public static final ResourceLocation PLAYER_HEAD_HEADER = MC("player_head_header");
+    public static final ResourceLocation BEACON = MC("beacon");
 
     // config
 

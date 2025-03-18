@@ -54,6 +54,7 @@ hud.msg.mode=Mode
 hud.msg.maxpower=Max Power
 hud.msg.trigger=Trigger
 hud.msg.maxio=Max IO
+hud.msg.level=Level
 
 hud.msg.send=Send
 hud.msg.recv=Recv
@@ -95,8 +96,11 @@ hud.msg.substractor=Substractor
 hud.msg.record=Record
 hud.msg.tick=tick
 hud.msg.ticks=ticks
-hud.msg.progress= Progress:
-hud.msg.progress.seconds= %ds / %ds
+hud.msg.progress=Progress:
+hud.msg.progress.seconds=%ds / %ds
+
+hud.msg.beacon.primary=First Effect
+hud.msg.beacon.secondary=Second Effect
 
 hud.msg.offers=Offers
 hud.msg.demands=Demands

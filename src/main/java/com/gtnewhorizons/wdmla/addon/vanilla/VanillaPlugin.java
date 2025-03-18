@@ -12,6 +12,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.block.BlockAnvil;
+import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
@@ -64,12 +65,14 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneComparator.class);
         registration.registerBlockComponent(new MobSpawnerHeaderProvider(), BlockMobSpawner.class);
         registration.registerBlockComponent(new FurnaceProvider(), BlockFurnace.class);
-        registration.registerBlockComponent(new PlayerHeadProvider(), BlockSkull.class);
+        registration.registerBlockComponent(new PlayerHeadHeaderProvider(), BlockSkull.class);
+        registration.registerBlockComponent(new BeaconProvider(), BlockBeacon.class);
     }
 
     @Override
     public void register(IWDMlaCommonRegistration registration) {
         registration.registerBlockDataProvider(new FurnaceProvider(), BlockFurnace.class);
+        registration.registerBlockDataProvider(new BeaconProvider(), BlockBeacon.class);
     }
 
     public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
