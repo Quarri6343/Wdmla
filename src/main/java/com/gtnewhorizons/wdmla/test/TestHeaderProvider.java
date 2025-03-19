@@ -15,7 +15,8 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 
-public class TestHeaderProvider implements IBlockComponentProvider {
+public enum TestHeaderProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {

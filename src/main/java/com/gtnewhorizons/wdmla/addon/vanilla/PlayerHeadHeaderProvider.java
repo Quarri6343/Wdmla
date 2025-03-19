@@ -13,7 +13,8 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.mojang.authlib.GameProfile;
 
-public class PlayerHeadHeaderProvider implements IBlockComponentProvider {
+public enum PlayerHeadHeaderProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

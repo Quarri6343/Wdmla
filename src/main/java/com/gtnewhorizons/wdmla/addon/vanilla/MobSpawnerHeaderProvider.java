@@ -22,11 +22,12 @@ import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 // TODO: move NEI part to mod Plugin
-public class MobSpawnerHeaderProvider implements IBlockComponentProvider {
+public enum MobSpawnerHeaderProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     private HashMap entityIDs;
 
-    public MobSpawnerHeaderProvider() {
+    MobSpawnerHeaderProvider() {
         if (!Mods.NEI) {
             return;
         }

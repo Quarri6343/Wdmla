@@ -18,7 +18,8 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class FurnaceProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

@@ -10,7 +10,8 @@ import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
-public class DroppedItemHeaderProvider implements IBlockComponentProvider {
+public enum DroppedItemHeaderProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

@@ -10,7 +10,8 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.util.ResourceLocation;
 
-public class BlastResistanceProvider implements IBlockComponentProvider {
+public enum BlastResistanceProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

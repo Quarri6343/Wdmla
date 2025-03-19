@@ -11,7 +11,8 @@ import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
-public class DoublePlantHeaderProvider implements IBlockComponentProvider {
+public enum DoublePlantHeaderProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

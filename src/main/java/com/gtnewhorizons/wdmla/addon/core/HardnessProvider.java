@@ -12,7 +12,8 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class HardnessProvider implements IBlockComponentProvider {
+public enum HardnessProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

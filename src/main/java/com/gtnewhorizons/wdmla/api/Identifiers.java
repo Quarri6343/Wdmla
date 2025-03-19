@@ -54,29 +54,29 @@ public final class Identifiers {
 
     public static final String CONFIG_PLUGINS = "plugin_settings";
 
-    public static final String CONFIG_Plugins_CORE = CONFIG_PLUGINS + ".core";
+    public static final String CONFIG_PLUGINS_CORE = CONFIG_PLUGINS + ".core";
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ICON = new ConfigEntry<>(
-            CONFIG_Plugins_CORE,
+            CONFIG_PLUGINS_CORE,
             "ShowIcon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_BLOCK_NAME = new ConfigEntry<>(
-            CONFIG_Plugins_CORE,
+            CONFIG_PLUGINS_CORE,
             "ShowBlockName",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_MOD_NAME = new ConfigEntry<>(
-            CONFIG_Plugins_CORE,
+            CONFIG_PLUGINS_CORE,
             "ShowModName",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_NAME = new ConfigEntry<>(
-            CONFIG_Plugins_CORE,
+            CONFIG_PLUGINS_CORE,
             "ShowEntityName",
             true,
             "");
     public static final ConfigEntry<Integer> CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT = new ConfigEntry<>(
-            CONFIG_Plugins_CORE,
+            CONFIG_PLUGINS_CORE,
             "MaxEntityHealthForText",
             40,
             "If the maximum health of an entity is above this value, texts will be shown instead of heart icons");

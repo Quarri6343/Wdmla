@@ -14,7 +14,8 @@ import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.HealthComponent;
 
-public class EntityHealthProvider implements IEntityComponentProvider {
+public enum EntityHealthProvider implements IEntityComponentProvider {
+    INSTANCE;
 
     @Override
     public int getDefaultPriority() {

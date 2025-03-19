@@ -45,41 +45,42 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
-        registration.registerBlockComponent(new SilverFishBlockHeaderProvider(), BlockSilverfish.class);
-        registration.registerBlockComponent(new RedstoneWireHeaderProvider(), BlockRedstoneWire.class);
-        registration.registerBlockComponent(new RedstoneWireProvider(), BlockRedstoneWire.class);
-        registration.registerBlockComponent(new GrowableHeaderProvider(), BlockCrops.class);
-        registration.registerBlockComponent(new GrowableHeaderProvider(), BlockStem.class);
-        registration.registerBlockComponent(new GrowthRateProvider(), BlockCrops.class);
-        registration.registerBlockComponent(new GrowthRateProvider(), BlockStem.class);
-        registration.registerBlockComponent(new GrowthRateProvider(), BlockCocoa.class);
-        registration.registerBlockComponent(new GrowthRateProvider(), BlockNetherWart.class);
-        registration.registerBlockComponent(new RedstoneOreHeaderProvider(), BlockRedstoneOre.class);
-        registration.registerBlockComponent(new DoublePlantHeaderProvider(), BlockDoublePlant.class);
-        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockAnvil.class);
-        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockSapling.class);
-        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockStoneSlab.class);
-        registration.registerBlockComponent(new DroppedItemHeaderProvider(), BlockWoodSlab.class);
-        registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockLeaves.class);
-        registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockLog.class);
-        registration.registerBlockComponent(new CustomMetaDataHeaderProvider(), BlockQuartz.class);
-        registration.registerBlockComponent(new RedstoneStateProvider(), BlockLever.class);
-        registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneRepeater.class);
-        registration.registerBlockComponent(new RedstoneStateProvider(), BlockRedstoneComparator.class);
-        registration.registerBlockComponent(new MobSpawnerHeaderProvider(), BlockMobSpawner.class);
-        registration.registerBlockComponent(new FurnaceProvider(), BlockFurnace.class);
-        registration.registerBlockComponent(new PlayerHeadHeaderProvider(), BlockSkull.class);
-        registration.registerBlockComponent(new BeaconProvider(), BlockBeacon.class);
-        registration.registerBlockComponent(new BedProvider(), BlockBed.class);
+        registration.registerBlockComponent(SilverFishBlockHeaderProvider.INSTANCE, BlockSilverfish.class);
+        registration.registerBlockComponent(RedstoneWireHeaderProvider.INSTANCE, BlockRedstoneWire.class);
+        registration.registerBlockComponent(RedstoneWireProvider.INSTANCE, BlockRedstoneWire.class);
+        registration.registerBlockComponent(GrowableHeaderProvider.INSTANCE, BlockCrops.class);
+        registration.registerBlockComponent(GrowableHeaderProvider.INSTANCE, BlockStem.class);
+        registration.registerBlockComponent(GrowthRateProvider.INSTANCE, BlockCrops.class);
+        registration.registerBlockComponent(GrowthRateProvider.INSTANCE, BlockStem.class);
+        registration.registerBlockComponent(GrowthRateProvider.INSTANCE, BlockCocoa.class);
+        registration.registerBlockComponent(GrowthRateProvider.INSTANCE, BlockNetherWart.class);
+        registration.registerBlockComponent(RedstoneOreHeaderProvider.INSTANCE, BlockRedstoneOre.class);
+        registration.registerBlockComponent(DoublePlantHeaderProvider.INSTANCE, BlockDoublePlant.class);
+        registration.registerBlockComponent(DroppedItemHeaderProvider.INSTANCE, BlockAnvil.class);
+        registration.registerBlockComponent(DroppedItemHeaderProvider.INSTANCE, BlockSapling.class);
+        registration.registerBlockComponent(DroppedItemHeaderProvider.INSTANCE, BlockStoneSlab.class);
+        registration.registerBlockComponent(DroppedItemHeaderProvider.INSTANCE, BlockWoodSlab.class);
+        registration.registerBlockComponent(CustomMetaDataHeaderProvider.INSTANCE, BlockLeaves.class);
+        registration.registerBlockComponent(CustomMetaDataHeaderProvider.INSTANCE, BlockLog.class);
+        registration.registerBlockComponent(CustomMetaDataHeaderProvider.INSTANCE, BlockQuartz.class);
+        registration.registerBlockComponent(RedstoneStateProvider.INSTANCE, BlockLever.class);
+        registration.registerBlockComponent(RedstoneStateProvider.INSTANCE, BlockRedstoneRepeater.class);
+        registration.registerBlockComponent(RedstoneStateProvider.INSTANCE, BlockRedstoneComparator.class);
+        registration.registerBlockComponent(MobSpawnerHeaderProvider.INSTANCE, BlockMobSpawner.class);
+        registration.registerBlockComponent(FurnaceProvider.INSTANCE, BlockFurnace.class);
+        registration.registerBlockComponent(PlayerHeadHeaderProvider.INSTANCE, BlockSkull.class);
+        registration.registerBlockComponent(BeaconProvider.INSTANCE, BlockBeacon.class);
+        registration.registerBlockComponent(BedProvider.INSTANCE, BlockBed.class);
     }
 
     @Override
     public void register(IWDMlaCommonRegistration registration) {
-        registration.registerBlockDataProvider(new FurnaceProvider(), BlockFurnace.class);
-        registration.registerBlockDataProvider(new BeaconProvider(), BlockBeacon.class);
+        registration.registerBlockDataProvider(FurnaceProvider.INSTANCE, BlockFurnace.class);
+        registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
     }
 
-    public static class RedstoneWireHeaderProvider implements IBlockComponentProvider {
+    public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
+        INSTANCE;
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -97,7 +98,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         }
     }
 
-    public static class RedstoneWireProvider implements IBlockComponentProvider {
+    public enum RedstoneWireProvider implements IBlockComponentProvider {
+        INSTANCE;
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -112,7 +114,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         }
     }
 
-    public static class RedstoneOreHeaderProvider implements IBlockComponentProvider {
+    public enum RedstoneOreHeaderProvider implements IBlockComponentProvider {
+        INSTANCE;
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

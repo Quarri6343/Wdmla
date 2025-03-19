@@ -14,15 +14,15 @@ public class TestPlugin implements IWDMlaPlugin {
 
     @Override
     public void register(IWDMlaCommonRegistration registration) {
-        registration.registerBlockDataProvider(new TestNBTBlockProvider(), BlockCommandBlock.class);
-        registration.registerEntityDataProvider(new TestEntityProvider(), EntityPig.class);
+        registration.registerBlockDataProvider(TestNBTBlockProvider.INSTANCE, BlockCommandBlock.class);
+        registration.registerEntityDataProvider(TestEntityProvider.INSTANCE, EntityPig.class);
     }
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
-        registration.registerBlockComponent(new TestHeaderProvider(), BlockCommandBlock.class);
-        registration.registerBlockComponent(new TestNBTBlockProvider(), BlockCommandBlock.class);
-        registration.registerBlockComponent(new TestThemeBlockProvider(), BlockDirt.class);
-        registration.registerEntityComponent(new TestEntityProvider(), EntityPig.class);
+        registration.registerBlockComponent(TestHeaderProvider.INSTANCE, BlockCommandBlock.class);
+        registration.registerBlockComponent(TestNBTBlockProvider.INSTANCE, BlockCommandBlock.class);
+        registration.registerBlockComponent(TestThemeBlockProvider.INSTANCE, BlockDirt.class);
+        registration.registerEntityComponent(TestEntityProvider.INSTANCE, EntityPig.class);
     }
 }

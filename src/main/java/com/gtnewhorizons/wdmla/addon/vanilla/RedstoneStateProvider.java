@@ -14,7 +14,8 @@ import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class RedstoneStateProvider implements IBlockComponentProvider {
+public enum RedstoneStateProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

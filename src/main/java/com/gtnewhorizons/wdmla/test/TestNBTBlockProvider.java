@@ -26,7 +26,8 @@ import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 
-public class TestNBTBlockProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+public enum TestNBTBlockProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {

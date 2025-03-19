@@ -13,7 +13,8 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 
-public class TestEntityProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
+public enum TestEntityProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {

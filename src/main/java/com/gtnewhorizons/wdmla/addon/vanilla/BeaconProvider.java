@@ -14,7 +14,8 @@ import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class BeaconProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

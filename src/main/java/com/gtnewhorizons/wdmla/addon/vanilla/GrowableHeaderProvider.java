@@ -15,7 +15,8 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.cbcore.LangUtil;
 
 // includes crops and stems
-public class GrowableHeaderProvider implements IBlockComponentProvider {
+public enum GrowableHeaderProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

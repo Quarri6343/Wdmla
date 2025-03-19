@@ -13,7 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
 
-public class TestThemeBlockProvider implements IBlockComponentProvider {
+public enum TestThemeBlockProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {

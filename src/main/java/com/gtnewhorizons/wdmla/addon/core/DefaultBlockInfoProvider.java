@@ -24,7 +24,8 @@ import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 
-public class DefaultBlockInfoProvider implements IBlockComponentProvider {
+public enum DefaultBlockInfoProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {

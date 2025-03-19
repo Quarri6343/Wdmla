@@ -33,7 +33,8 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class LegacyHarvestToolProvider implements IBlockComponentProvider {
+public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {

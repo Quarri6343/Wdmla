@@ -9,8 +9,8 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
-        registration.registerBlockComponent(new HarvestToolProvider(), Block.class);
-        registration.registerBlockComponent(new LegacyHarvestToolProvider(), Block.class);
+        registration.registerBlockComponent(HarvestToolProvider.INSTANCE, Block.class);
+        registration.registerBlockComponent(LegacyHarvestToolProvider.INSTANCE, Block.class);
         registration.registerConfigComponent(new HarvestabilityConfigProvider());
     }
 }

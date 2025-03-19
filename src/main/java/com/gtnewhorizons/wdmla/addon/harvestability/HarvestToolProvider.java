@@ -38,7 +38,8 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class HarvestToolProvider implements IBlockComponentProvider {
+public enum HarvestToolProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {

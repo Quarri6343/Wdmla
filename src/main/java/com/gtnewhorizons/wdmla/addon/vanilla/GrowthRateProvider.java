@@ -13,7 +13,8 @@ import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public class GrowthRateProvider implements IBlockComponentProvider {
+public enum GrowthRateProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {

@@ -9,7 +9,8 @@ import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class BedProvider implements IBlockComponentProvider {
+public enum BedProvider implements IBlockComponentProvider {
+    INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -30,7 +31,7 @@ public class BedProvider implements IBlockComponentProvider {
             appendCannotSleep(tooltip);
         }
 
-        //we don't suggest player can sleep at this point because we can't check most of the conditions from client side
+        //we don't suggest player can sleep at this point because we don't check most of the conditions
     }
 
     private void appendCannotSleep(ITooltip tooltip) {

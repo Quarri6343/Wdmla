@@ -14,7 +14,8 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 
 import mcp.mobius.waila.utils.ModIdentification;
 
-public class DefaultEntityInfoProvider implements IEntityComponentProvider {
+public enum DefaultEntityInfoProvider implements IEntityComponentProvider {
+    INSTANCE;
 
     @Override
     public ResourceLocation getUid() {
