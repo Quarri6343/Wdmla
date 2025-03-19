@@ -82,6 +82,14 @@ public class ThemeHelper {
         return color(content, MessageType.SUCCESS);
     }
 
+    public IComponent warning(String content) {
+        return color(content, MessageType.WARNING);
+    }
+
+    public IComponent danger(String content) {
+        return color(content, MessageType.DANGER);
+    }
+
     public IComponent failure(String content) {
         return color(content, MessageType.FAILURE);
     }

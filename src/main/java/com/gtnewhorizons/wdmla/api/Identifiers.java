@@ -21,8 +21,9 @@ public final class Identifiers {
     public static final ResourceLocation HARDNESS = Core("hardness");
 
     public static final ResourceLocation TEST_HEAD = Test("head");
-    public static final ResourceLocation TEST_BODY = Test("body");
+    public static final ResourceLocation TEST_NBT_BLOCK = Test("nbt_block");
     public static final ResourceLocation TEST_ENTITY = Test("entity");
+    public static final ResourceLocation TEST_THEME_BLOCK = Test("theme_block");
 
     // theme
     public static final ResourceLocation DEFAULT_THEME = Core("Waila");

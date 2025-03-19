@@ -24,7 +24,7 @@ public class TestHeaderProvider implements IBlockComponentProvider {
 
     @Override
     public int getDefaultPriority() {
-        return TooltipPosition.DEFAULT_INFO + 1000;
+        return TooltipPosition.HEAD;
     }
 
     @Override

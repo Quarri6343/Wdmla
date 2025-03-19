@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.test;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -25,11 +26,11 @@ import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 
-public class TestBodyProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+public class TestNBTBlockProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
     @Override
     public ResourceLocation getUid() {
-        return Identifiers.TEST_BODY;
+        return Identifiers.TEST_NBT_BLOCK;
     }
 
     @Override
@@ -37,7 +38,6 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
         return TooltipPosition.BODY + 10;
     }
 
-    // TODO: test every method in ThemeHelper in different items
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         int cookTime = accessor.getServerData().getShort("CookTime");
@@ -67,7 +67,7 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
         tooltip.child(new TextComponent("Recieved Server Data: " + random));
 
         if (cookTime != 0) {
-            tooltip.vertical().child(
+            tooltip.child(
                     ThemeHelper.INSTANCE.amount(cookTime, 10, new TextComponent("Smelting: " + cookTime + " / 10 s")));
         }
 
@@ -100,9 +100,19 @@ public class TestBodyProvider implements IBlockComponentProvider, IServerDataPro
 
     @Override
     public void appendServerData(NBTTagCompound data, BlockAccessor accessor) {
-        if (accessor.getTileEntity() != null) {
-            accessor.getTileEntity().writeToNBT(data);
+        ItemStack[] dummyItemStacks = {new ItemStack(Items.potato), new ItemStack(Items.coal), new ItemStack(Items.baked_potato)};
+        NBTTagList nbttaglist = new NBTTagList();
+        for (int i = 0; i < 3; ++i)
+        {
+            NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+            nbttagcompound1.setByte("Slot", (byte)i);
+            dummyItemStacks[i].writeToNBT(nbttagcompound1);
+            nbttaglist.appendTag(nbttagcompound1);
         }
+        data.setTag("Items", nbttaglist);
+
+        data.setShort("CookTime", (short)5);
+        data.setInteger("BurnTime", 5);
         data.setInteger("random", new Random().nextInt(11));
     }
 }
