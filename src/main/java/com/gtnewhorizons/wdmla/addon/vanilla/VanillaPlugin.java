@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
+import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
@@ -69,6 +70,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(new FurnaceProvider(), BlockFurnace.class);
         registration.registerBlockComponent(new PlayerHeadHeaderProvider(), BlockSkull.class);
         registration.registerBlockComponent(new BeaconProvider(), BlockBeacon.class);
+        registration.registerBlockComponent(new BedProvider(), BlockBed.class);
     }
 
     @Override

@@ -19,6 +19,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation FURNACE = MC("furnace");
     public static final ResourceLocation PLAYER_HEAD_HEADER = MC("player_head_header");
     public static final ResourceLocation BEACON = MC("beacon");
+    public static final ResourceLocation BED = MC("bed");
 
     // config
     private static ResourceLocation MC(String path) {

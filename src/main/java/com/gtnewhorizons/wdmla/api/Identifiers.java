@@ -19,6 +19,7 @@ public final class Identifiers {
     public static final ResourceLocation DEFAULT_ENTITY = Core("default_entity");
     public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");
     public static final ResourceLocation HARDNESS = Core("hardness");
+    public static final ResourceLocation BLAST_RESISTANCE = Core("blast_resistance");
 
     public static final ResourceLocation TEST_HEAD = Test("head");
     public static final ResourceLocation TEST_NBT_BLOCK = Test("nbt_block");
