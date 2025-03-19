@@ -1,10 +1,11 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-
-import mcp.mobius.waila.overlay.OverlayConfig;
 
 public class BackgroundDrawable implements IDrawable {
 
@@ -14,9 +15,10 @@ public class BackgroundDrawable implements IDrawable {
         int y = area.getY();
         int w = area.getW();
         int h = area.getH();
-        int bg = OverlayConfig.bgcolor;
-        int grad1 = OverlayConfig.gradient1;
-        int grad2 = OverlayConfig.gradient2;
+        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        int bg = theme.bgColor;
+        int grad1 = theme.bgGradient1;
+        int grad2 = theme.bgGradient2;
 
         GuiDraw.drawGradientRect(new Area(x + 1, y, w - 1, 1), bg, bg);
         GuiDraw.drawGradientRect(new Area(x + 1, y + h, w - 1, 1), bg, bg);

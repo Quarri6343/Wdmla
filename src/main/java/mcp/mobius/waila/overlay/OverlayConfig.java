@@ -1,10 +1,12 @@
 package mcp.mobius.waila.overlay;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraftforge.common.config.Configuration;
 
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
+@BackwardCompatibility
 public class OverlayConfig {
 
     public static int posX;

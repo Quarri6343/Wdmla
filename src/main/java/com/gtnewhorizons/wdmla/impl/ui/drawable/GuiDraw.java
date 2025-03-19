@@ -40,7 +40,7 @@ public final class GuiDraw {
 
     public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay) {
         if (stack.getItem() == null) {
-            drawString(SpecialChars.WHITE + "Err", area.getX(), area.getY(), ColorPalette.INFO, true);
+            drawString("Err", area.getX(), area.getY(), ColorPalette.INFO, true);
             return;
         }
 

@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
+import java.util.Arrays;
 
 import net.minecraftforge.common.config.Configuration;
 
@@ -41,6 +42,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         getCategory(Identifiers.CONFIG_GENERAL).setComment("These are the WDMla exclusive settings");
         getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
         getBoolean(Identifiers.CONFIG_GHOST_PRODUCT);
+        getEnum(Identifiers.CONFIG_CURRENT_THEME);
 
         getBoolean(Identifiers.CONFIG_SHOW_ICON);
         getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME);
@@ -59,6 +61,21 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
     public String getString(ConfigEntry<String> entry) {
         return get(entry.category, entry.key, entry.defaultValue, entry.comment).getString();
+    }
+
+    public <T extends Enum<T>> T getEnum(ConfigEntry<T> entry) {
+        Class<T> enumType = entry.defaultValue.getDeclaringClass();
+        return T.valueOf(
+                enumType,
+                getString(
+                        entry.key,
+                        entry.category,
+                        entry.defaultValue.toString(),
+                        entry.comment,
+                        Arrays.stream(enumType.getEnumConstants())
+                                .map(Enum::toString)
+                                .toArray(String[]::new)));
+
     }
 
     public void reloadComponentProviderConfigs() {

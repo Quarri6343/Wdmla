@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
-import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 
 public class AmountStyle implements IAmountStyle {
@@ -10,11 +9,11 @@ public class AmountStyle implements IAmountStyle {
     private int filledColor;
     private int alternateFilledColor;
 
-    public AmountStyle() {
-        this.borderColor = ColorPalette.AMOUNT_DEFAULT_BORDER;
-        this.backgroundColor = ColorPalette.AMOUNT_DEFAULT_BACKGROUND;
-        this.filledColor = ColorPalette.AMOUNT_DEFAULT_FILLED;
-        this.alternateFilledColor = ColorPalette.AMOUNT_DEFAULT_FILLED_ALTERNATE;
+    public AmountStyle(int borderColor, int backgroundColor, int filledColor, int alternateFilledColor) {
+        this.borderColor = borderColor;
+        this.backgroundColor = backgroundColor;
+        this.filledColor = filledColor;
+        this.alternateFilledColor = alternateFilledColor;
     }
 
     public AmountStyle borderColor(int borderColor) {

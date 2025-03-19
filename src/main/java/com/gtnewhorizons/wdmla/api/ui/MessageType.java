@@ -7,5 +7,6 @@ public enum MessageType {
     SUCCESS,
     WARNING,
     DANGER,
-    FAILURE;
+    FAILURE,
+    MOD_NAME;
 }

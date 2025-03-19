@@ -72,17 +72,10 @@ public class CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {}
 
     public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
-        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
-            new TestPlugin().register(commonRegistration);
-        }
-
         new VanillaPlugin().register(commonRegistration);
     }
 
     public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
-        if (WDMla.isDevEnv() && WDMla.testMode == TestMode.WDMla) {
-            new TestPlugin().registerClient(clientRegistration);
-        }
 
         new CorePlugin().registerClient(clientRegistration);
         new VanillaPlugin().registerClient(clientRegistration);

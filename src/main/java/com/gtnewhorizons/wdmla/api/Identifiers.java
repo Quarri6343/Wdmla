@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.api;
 
+import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 import net.minecraft.util.ResourceLocation;
 
 public final class Identifiers {
@@ -23,6 +24,10 @@ public final class Identifiers {
     public static final ResourceLocation TEST_BODY = Test("body");
     public static final ResourceLocation TEST_ENTITY = Test("entity");
 
+    // theme
+    public static final ResourceLocation DEFAULT_THEME = Core("Waila");
+    public static final ResourceLocation THEME_JADE = Core("Jade");
+
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
     public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(
@@ -35,6 +40,11 @@ public final class Identifiers {
             "GhostProduct",
             true,
             "Shows the ghost product on process");
+    public static final ConfigEntry<DefaultThemes> CONFIG_CURRENT_THEME = new ConfigEntry<>(
+            CONFIG_GENERAL,
+            "Theme",
+            DefaultThemes.WAILA,
+            "Current Tooltips Theme");
 
     public static final String CONFIG_PROVIDER = "plugin_providers";
     public static final String CONFIG_PROVIDER_ENABLED = "Enabled";

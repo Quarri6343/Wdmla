@@ -2,6 +2,9 @@ package com.gtnewhorizons.wdmla.addon.core;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.api.ui.MessageType;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -52,14 +55,15 @@ public class DefaultBlockInfoProvider implements IBlockComponentProvider {
         }
         String modName = ModIdentification.nameFromStack(itemStack);
         if (config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
+            Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
             if (modName != null) {
                 row_vertical.child(
-                        new TextComponent(ITALIC + modName).style(new TextStyle().color(ColorPalette.MOD_NAME))
+                        new TextComponent(ITALIC + modName).style(new TextStyle().color(theme.textColor(MessageType.MOD_NAME)))
                                 .tag(Identifiers.MOD_NAME));
             } else {
                 // reserve for replacement
                 row_vertical.child(
-                        new TextComponent("").style(new TextStyle().color(ColorPalette.MOD_NAME))
+                        new TextComponent("").style(new TextStyle().color(theme.textColor(MessageType.MOD_NAME)))
                                 .tag(Identifiers.MOD_NAME));
             }
         }

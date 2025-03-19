@@ -5,12 +5,12 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.Theme;
 import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
@@ -46,8 +46,9 @@ public class ThemeHelper {
     }
 
     public void overrideTooltipTitle(ITooltip root, String newName) {
+        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
         IComponent replacedName = new HPanelComponent()
-                .child(new TextComponent(newName).style(new TextStyle().color(ColorPalette.TITLE)))
+                .child(new TextComponent(newName).style(new TextStyle().color(theme.textColor(MessageType.TITLE))))
                 .tag(Identifiers.ITEM_NAME);
         root.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }
@@ -57,8 +58,9 @@ public class ThemeHelper {
     }
 
     public void overrideTooltipModName(ITooltip root, String newName) {
+        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
         IComponent replacedModName = new TextComponent(ITALIC + newName)
-                .style(new TextStyle().color(ColorPalette.MOD_NAME)).tag(Identifiers.MOD_NAME);
+                .style(new TextStyle().color(theme.textColor(MessageType.MOD_NAME))).tag(Identifiers.MOD_NAME);
         root.replaceChildWithTag(Identifiers.MOD_NAME, replacedModName);
     }
 
@@ -85,7 +87,8 @@ public class ThemeHelper {
     }
 
     public IComponent color(String content, MessageType type) {
-        return new TextComponent(content).style(new TextStyle().color(ColorPalette.get(type)));
+        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        return new TextComponent(content).style(new TextStyle().color(theme.textColor(type)));
     }
 
     public IComponent itemProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress,

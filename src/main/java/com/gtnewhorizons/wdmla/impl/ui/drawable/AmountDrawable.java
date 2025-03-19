@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
@@ -16,7 +19,8 @@ public class AmountDrawable implements IDrawable {
 
     public AmountDrawable(@NotNull IFilledAmount progress) {
         this.progress = progress;
-        this.style = new AmountStyle();
+        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        this.style = theme.amountStyle;
     }
 
     public AmountDrawable style(IAmountStyle style) {
