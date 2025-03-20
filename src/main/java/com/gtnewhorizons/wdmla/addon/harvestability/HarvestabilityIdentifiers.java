@@ -7,173 +7,172 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 
 public class HarvestabilityIdentifiers {
 
+    // component tag
     public static final ResourceLocation HARVESTABILITY_ICON = Harvestability("harvestability_icon");
     public static final ResourceLocation HARVESTABILITY_TEXT = Harvestability("harvestability_text");
 
+    // provider Uid
     public static final ResourceLocation HARVESTABILITY = Harvestability("modern");
     public static final ResourceLocation LEGACY_HARVESTABILITY = Harvestability("legacy");
 
-    public static final String CONFIG_CATEGORY = Identifiers.CONFIG_PLUGINS + ".harvestability";
+    // config
+    public static final String CONFIG_CATEGORY = Identifiers.CONFIG_PROVIDER + ".harvestability";
     public static final String CONFIG_CATEGORY_COMMENT = "Waila Harvestability";
 
-    public static final String CONFIG_CATEGORY_LEGACY = CONFIG_CATEGORY + ".legacy";
-    public static final String CONFIG_CATEGORY_LEGACY_COMMENT = "Only available on legacy mode provider";
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "HarvestLevel",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL_NUM = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "HarvestLevelNum",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_EFFECTIVE_TOOL = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "EffectiveTool",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_CURRENTLY_HARVESTABLE = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "CurrentlyHarvestable",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL_SNEAKING_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "HarvestLevelSneakingOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL_NUM_SNEAKING_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "HarvestLevelNumSneakingOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_EFFECTIVE_TOOL_SNEAKING_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "EffectiveToolSneakingOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_CURRENTLY_HARVESTABLE_SNEAKING_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "CurrentlyHarvestableSneakingOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_ORES_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "OresOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_MINIMAL = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "Minimal",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_UNHARVESTABLE_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "UnharvestableOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_TOOL_REQUIRED_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "ToolRequiredOnly",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHEARABILITY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "Shearability",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHEARABILITY_SNEAKING_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "ShearabilitySneakingOnly",
             false,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SILKTOUCHABILITY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "SilkTouchability",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SILKTOUCHABILITY_SNEAKING_ONLY = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "SilkTouchabilitySneakingOnly",
             false,
             "");
 
     public static final ConfigEntry<String> CONFIG_MINIMAL_SEPARATOR_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "MinimalSeparatorString",
             " : ",
             "");
     public static final ConfigEntry<String> CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "CurrentlyHarvestableString",
             "\u2714",
             "");
     public static final ConfigEntry<String> CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "NotCurrentlyHarvestableString",
             "\u2718",
             "");
     public static final ConfigEntry<String> CONFIG_SHEARABILITY_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "ShearabilityString",
             "\u2702",
             "");
     public static final ConfigEntry<String> CONFIG_SILK_TOUCHABILITY_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_LEGACY,
+            LegacyHarvestToolProvider.INSTANCE,
             "SilkTouchabilityString",
             "\u2712",
             "");
 
-    public static final String CONFIG_CATEGORY_MODERN = CONFIG_CATEGORY + ".modern";
-    public static final String CONFIG_CATEGORY_MODERN_COMMENT = "Only available on modern mode provider";
     public static final ConfigEntry<String> CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "CurrentlyHarvestableString",
             "✔",
             "The string below the Harvest Tool icon after the item name");
     public static final ConfigEntry<String> CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "NotCurrentlyHarvestableString",
             "✕",
             "The string below the Harvest Tool icon after the item name");
     public static final ConfigEntry<String> CONFIG_SHEARABILITY_ITEM = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "ShearabilityItem",
             "minecraft:shears",
             "The icon after an item represents the item is shearable");
     public static final ConfigEntry<String> CONFIG_SILKTOUCHABILITY_ITEM = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "SilkTouchabilityItem",
             "minecraft:grass",
             "The icon after an item represents the item can be harvested by silk touch");
     public static final ConfigEntry<Boolean> CONFIG_MODERN_HARVEST_LEVEL_NUM = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "HarvestLevelNum",
             false,
             "Shows the Harvest Level number text without enabling legacy mode");
     public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_HARVESTABLE_ICON = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "ShowHarvestableIcon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "ShowHarvestableToolIcon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_SHEARABILITY_ICON = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "ShowShearabilityIcon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON = new ConfigEntry<>(
-            CONFIG_CATEGORY_MODERN,
+            HarvestToolProvider.INSTANCE,
             "ShowSilkTouchabilityIcon",
             true,
             "");
 
-    public static final String CONFIG_CATEGORY_MODERN_TINKERS = CONFIG_CATEGORY_MODERN + ".tinkersconstruct";
+    public static final String CONFIG_CATEGORY_MODERN_TINKERS = HarvestToolProvider.INSTANCE.getConfigCategory() + ".tinkersconstruct";
     public static final String CONFIG_CATEGORY_MODERN_TINKERS_COMMENT = "IDs of the TiC effective pickaxe material corresponding to the harvest level.\n"
             + "Note that the default values are tuned for GTNH Iguana tweaks (TiC itself only has the harvest level up to 6)";
     public static final ConfigEntry<Integer> CONFIG_TINKERS_PICKAXE_ICON_0 = new ConfigEntry<>(

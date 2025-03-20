@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.api;
 
+import com.gtnewhorizons.wdmla.addon.core.DefaultBlockInfoProvider;
+import com.gtnewhorizons.wdmla.addon.core.DefaultEntityInfoProvider;
 import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 import net.minecraft.util.ResourceLocation;
 
@@ -26,10 +28,6 @@ public final class Identifiers {
     public static final ResourceLocation TEST_ENTITY = Test("entity");
     public static final ResourceLocation TEST_THEME_BLOCK = Test("theme_block");
 
-    // theme
-    public static final ResourceLocation DEFAULT_THEME = Core("Waila");
-    public static final ResourceLocation THEME_JADE = Core("Jade");
-
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
     public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(
@@ -48,35 +46,32 @@ public final class Identifiers {
             DefaultThemes.WAILA,
             "Current Tooltips Theme");
 
-    public static final String CONFIG_PROVIDER = "plugin_providers";
+    public static final String CONFIG_PROVIDER = "wdmla_providers";
     public static final String CONFIG_PROVIDER_ENABLED = "Enabled";
     public static final String CONFIG_PROVIDER_PRIORITY = "Priority";
 
-    public static final String CONFIG_PLUGINS = "plugin_settings";
-
-    public static final String CONFIG_PLUGINS_CORE = CONFIG_PLUGINS + ".core";
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ICON = new ConfigEntry<>(
-            CONFIG_PLUGINS_CORE,
+            DefaultBlockInfoProvider.INSTANCE,
             "ShowIcon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_BLOCK_NAME = new ConfigEntry<>(
-            CONFIG_PLUGINS_CORE,
+            DefaultBlockInfoProvider.INSTANCE,
             "ShowBlockName",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_MOD_NAME = new ConfigEntry<>(
-            CONFIG_PLUGINS_CORE,
+            DefaultBlockInfoProvider.INSTANCE,
             "ShowModName",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_NAME = new ConfigEntry<>(
-            CONFIG_PLUGINS_CORE,
+            DefaultEntityInfoProvider.INSTANCE,
             "ShowEntityName",
             true,
             "");
     public static final ConfigEntry<Integer> CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT = new ConfigEntry<>(
-            CONFIG_PLUGINS_CORE,
+            DefaultEntityInfoProvider.INSTANCE,
             "MaxEntityHealthForText",
             40,
             "If the maximum health of an entity is above this value, texts will be shown instead of heart icons");

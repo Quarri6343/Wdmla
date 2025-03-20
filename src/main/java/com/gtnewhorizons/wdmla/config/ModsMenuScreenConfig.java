@@ -40,7 +40,6 @@ public class ModsMenuScreenConfig extends GuiConfig {
     private static List<IConfigElement> getMainCategories() {
         return Arrays.asList(
                 new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_GENERAL)),
-                new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PLUGINS)),
                 new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PROVIDER)),
                 new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
                 new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES)));

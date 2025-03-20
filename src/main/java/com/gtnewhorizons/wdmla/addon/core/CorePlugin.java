@@ -25,5 +25,7 @@ public class CorePlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(BlastResistanceProvider.INSTANCE, Block.class);
         registration.registerEntityComponent(DefaultEntityInfoProvider.INSTANCE, Entity.class);
         registration.registerEntityComponent(EntityHealthProvider.INSTANCE, Entity.class);
+
+        registration.registerConfigComponent(new CoreConfigProvider());
     }
 }

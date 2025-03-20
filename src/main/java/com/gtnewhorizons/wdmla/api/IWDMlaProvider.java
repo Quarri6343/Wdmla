@@ -26,4 +26,11 @@ public interface IWDMlaProvider {
     default boolean isPriorityFixed() {
         return false;
     }
+
+    default String getConfigCategory() {
+        return Identifiers.CONFIG_PROVIDER + "."
+                + getUid().getResourceDomain()
+                + "."
+                + getUid().getResourcePath();
+    }
 }

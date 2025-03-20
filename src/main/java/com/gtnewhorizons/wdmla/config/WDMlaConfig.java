@@ -43,12 +43,6 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
         getBoolean(Identifiers.CONFIG_GHOST_PRODUCT);
         getEnum(Identifiers.CONFIG_CURRENT_THEME);
-
-        getBoolean(Identifiers.CONFIG_SHOW_ICON);
-        getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME);
-        getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME);
-        getBoolean(Identifiers.CONFIG_SHOW_ENTITY_NAME);
-        getInteger(Identifiers.CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT);
     }
 
     public boolean getBoolean(ConfigEntry<Boolean> entry) {
@@ -93,10 +87,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
         return getBoolean(
                 new ConfigEntry<>(
-                        Identifiers.CONFIG_PROVIDER + "."
-                                + provider.getUid().getResourceDomain()
-                                + "."
-                                + provider.getUid().getResourcePath(),
+                        provider.getConfigCategory(),
                         Identifiers.CONFIG_PROVIDER_ENABLED,
                         provider.enabledByDefault(),
                         ""));
@@ -109,10 +100,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
         return getInteger(
                 new ConfigEntry<>(
-                        Identifiers.CONFIG_PROVIDER + "."
-                                + provider.getUid().getResourceDomain()
-                                + "."
-                                + provider.getUid().getResourcePath(),
+                        provider.getConfigCategory(),
                         Identifiers.CONFIG_PROVIDER_PRIORITY,
                         provider.getDefaultPriority(),
                         ""));

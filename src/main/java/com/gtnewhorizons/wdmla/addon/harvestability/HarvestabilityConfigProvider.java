@@ -6,17 +6,10 @@ import com.gtnewhorizons.wdmla.api.IPluginConfig;
 public class HarvestabilityConfigProvider implements IConfigProvider {
 
     @Override
-    public String categoryName() {
-        return HarvestabilityIdentifiers.CONFIG_CATEGORY;
-    }
-
-    @Override
     public void loadConfig(IPluginConfig config) {
         config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY)
                 .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_COMMENT);
 
-        config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY_LEGACY)
-                .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_LEGACY_COMMENT);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL);
@@ -40,8 +33,6 @@ public class HarvestabilityConfigProvider implements IConfigProvider {
         config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_STRING);
         config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
 
-        config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY_MODERN)
-                .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_MODERN_COMMENT);
         config.getString(HarvestabilityIdentifiers.CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING);
         config.getString(HarvestabilityIdentifiers.CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING);
         config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_ITEM);

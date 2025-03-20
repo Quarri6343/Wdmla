@@ -13,4 +13,11 @@ public class ConfigEntry<T> {
         this.defaultValue = defaultValue;
         this.comment = comment;
     }
+
+    public ConfigEntry(IWDMlaProvider provider, String key, T defaultValue, String comment) {
+        this.category = provider.getConfigCategory();
+        this.key = key;
+        this.defaultValue = defaultValue;
+        this.comment = comment;
+    }
 }
