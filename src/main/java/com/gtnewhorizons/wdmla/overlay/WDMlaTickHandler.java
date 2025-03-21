@@ -33,8 +33,8 @@ public class WDMlaTickHandler {
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void tickRender(RenderGameOverlayEvent.Text event) {
-        if (mainHUD != null) {
+    public void tickRender(RenderGameOverlayEvent.Post event) {
+        if (event.type == RenderGameOverlayEvent.ElementType.ALL && mainHUD != null) {
             mainHUD.renderHUD();
         }
     }

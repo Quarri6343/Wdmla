@@ -5,6 +5,8 @@ dependencies {
     api("com.github.GTNewHorizons:GTNHLib:0.6.14:dev")
     implementation('com.github.GTNewHorizons:NotEnoughItems:2.7.29-GTNH:dev')
 
+//    api("com.github.GTNewHorizons:Angelica:1.0.0-beta39:dev")
+
 //    devOnlyNonPublishable("com.github.GTNewHorizons:TinkersConstruct:1.12.2-GTNH:dev")
 //    devOnlyNonPublishable("com.github.GTNewHorizons:IguanaTweaksTConstruct:2.5.0:dev")
 
