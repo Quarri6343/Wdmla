@@ -1,9 +1,5 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -19,27 +15,10 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 // TODO: move NEI part to mod Plugin
 public enum MobSpawnerHeaderProvider implements IBlockComponentProvider {
     INSTANCE;
-
-    private HashMap entityIDs;
-
-    MobSpawnerHeaderProvider() {
-        if (!Mods.NEI) {
-            return;
-        }
-
-        try {
-            Field entityIDsMap = EntityList.class.getDeclaredField("stringToIDMapping");
-            entityIDsMap.setAccessible(true);
-            entityIDs = (HashMap) entityIDsMap.get(null);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            WailaExceptionHandler.handleErr(e, this.getClass().getName(), new ArrayList<>());
-        }
-    }
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
@@ -50,7 +29,7 @@ public enum MobSpawnerHeaderProvider implements IBlockComponentProvider {
 
             // @see codechicken.nei.ItemMobSpawner
             if (Mods.NEI) {
-                Object entityID = entityIDs.get(mobName);
+                Object entityID = EntityList.stringToIDMapping.get(mobName);
                 if (entityID == null) {
                     return;
                 }
