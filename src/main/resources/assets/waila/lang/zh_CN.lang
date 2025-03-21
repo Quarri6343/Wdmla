@@ -20,6 +20,7 @@ choice.toggledmaintained=切换/保持显示信息
 choice.showliquids=流体
 choice.shifttoggledblock=潜行切换方块信息
 choice.shifttoggledents=潜行切换实体信息
+choice.forcelegacymode=强制旧版模式
 screen.button.configureaspect=自定义外观...
 
 enchant.title.name=附魔名称
@@ -34,6 +35,7 @@ waila.keybind.liquid=[Waila]显示流体
 waila.keybind.recipe=[Waila]显示合成
 waila.keybind.usage=[Waila]显示可参与合成
 waila.keybind.testing=[Waila]测试中
+waila.keybind.details=显示详细信息
 
 client.msg.norecipe=未发现合成表.
 client.msg.nousage=未发现可参与合成.
@@ -91,9 +93,26 @@ hud.msg.delay=延迟
 hud.msg.comparator=比较器
 hud.msg.substractor=减法器
 hud.msg.record=记录
+hud.msg.tick=刻
+hud.msg.ticks=刻
+hud.msg.progress=进度
+hud.msg.progress.seconds=%d秒 / %d秒
+hud.msg.level=等级
+hud.msg.hardness=硬度
+hud.msg.blast_resistance=爆炸抗性
+hud.msg.yes=是
+hud.msg.no=否
+
+hud.msg.beacon.primary=主效果
+hud.msg.beacon.secondary=副效果
+hud.msg.bed.cansleep=可睡眠
 
 hud.msg.offers=提供
 hud.msg.demands=需求
+
+hud.item.wheatcrop=小麦作物
+hud.item.pumpkinstem=南瓜茎
+hud.item.melonstem=西瓜茎
 
 option.appeng.monitorcontent=显示内容
 option.bb.content=桶中容有
@@ -135,6 +154,7 @@ option.bcapi.consump=显示最大能量
 option.bcapi.trigger=显示触发能量
 option.pr.showio=显示逻辑门IO
 option.pr.showdata=显示逻辑门数据
+option.pr.showsignal=显示导线信号强度
 option.extrautilities.fluidamount=显示流体量
 option.openblocks.fluidamount=显示流体量
 option.railcraft.fluidamount=显示流体量
@@ -149,3 +169,40 @@ option.general.showcrop=显示作物生长状态
 option.thaumcraft.aspects=显示要素
 
 nei.options.keys.showenchant=显示附魔值
+
+# waila harvestability
+
+# tools
+wailaharvestability.toolclass.pickaxe=镐
+wailaharvestability.toolclass.shovel=铲
+wailaharvestability.toolclass.axe=斧
+wailaharvestability.toolclass.chisel=凿
+wailaharvestability.toolclass.scoop=捕蜂网
+wailaharvestability.toolclass.crowbar=撬棍
+wailaharvestability.toolclass.sword=剑
+wailaharvestability.toolclass.wrench=扳手
+wailaharvestability.toolclass.cutter=剪线钳
+
+# tooltips
+wailaharvestability.effectivetool=所需工具 : 
+wailaharvestability.harvestlevel=挖掘等级 : 
+wailaharvestability.currentlyharvestable= 目前能否挖掘
+wailaharvestability.harvestable= 能否挖掘
+
+# options
+option.harvestability.harvestlevel=挖掘等级
+option.harvestability.effectivetool=所需工具
+option.harvestability.currentlyharvestable=能否挖掘
+option.harvestability.oresonly=仅显示矿石挖掘信息
+option.harvestability.harvestlevel.sneakingonly=仅潜行时显示: 挖掘等级
+option.harvestability.effectivetool.sneakingonly=仅潜行时显示: 所需工具
+option.harvestability.currentlyharvestable.sneakingonly=仅潜行时显示: 能否挖掘
+option.harvestability.minimal=缩小模式
+option.harvestability.unharvestableonly=仅显示能否挖掘
+option.harvestability.toolrequiredonly=仅显示所需工具
+option.harvestability.shearability=能否用剪刀采集
+option.harvestability.shearability.sneakingonly=仅潜行时显示: 能否用剪刀采集
+option.harvestability.silktouchability=能否精准采集
+option.harvestability.silktouchability.sneakingonly=仅潜行时显示: 能否精准采集
+option.harvestability.harvestlevelnum=采集等级
+option.harvestability.harvestlevelnum.sneakingonly=仅潜行时显示: 采集等级
