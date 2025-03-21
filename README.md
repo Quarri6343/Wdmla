@@ -30,6 +30,10 @@ Still in alpha
   - wawla.furnace.fuel
   - wawla.furnace.burntime
   - wawla.showHead
+  - wawla.info.showhardness
+  - wawla.info.showResistance
+  - wawla.showEquipment
+  - wawla.showMobArmor
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 

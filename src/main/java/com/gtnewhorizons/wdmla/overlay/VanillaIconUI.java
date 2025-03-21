@@ -8,6 +8,9 @@ public enum VanillaIconUI {
     HEART(52, 0, 9, 9, 52, 9, 9, 9),
     HHEART(61, 0, 9, 9, 52, 9, 9, 9),
     EHEART(52, 9, 9, 9),
+    ARMOR(34, 9, 9, 9, 16, 9, 9, 9),
+    HARMOR(24, 9, 9, 9, 16, 9, 9, 9),
+    EARMOR(16, 9, 9, 9),
     BUBBLEEXP(25, 18, 9, 9);
 
     /**

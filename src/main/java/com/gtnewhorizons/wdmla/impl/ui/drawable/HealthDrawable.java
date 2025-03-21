@@ -33,12 +33,12 @@ public class HealthDrawable implements IDrawable {
                 offsetX += 8;
             }
 
-            if ((iheart > health) && (iheart < health + 1)) {
+            if ((iheart > health) && (iheart <= health + 0.5f)) {
                 GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaIconUI.HHEART);
                 offsetX += 8;
             }
 
-            if (iheart >= health + 1) {
+            if (iheart > health + 0.5f) {
                 GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaIconUI.EHEART);
                 offsetX += 8;
             }
