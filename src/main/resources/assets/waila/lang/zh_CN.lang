@@ -34,7 +34,7 @@ waila.keybind.wailadisplay=[Waila]显示/隐藏
 waila.keybind.liquid=[Waila]显示流体
 waila.keybind.recipe=[Waila]显示合成
 waila.keybind.usage=[Waila]显示可参与合成
-waila.keybind.testing=[Waila]测试中
+waila.keybind.testing=[Waila]测试
 waila.keybind.details=显示详细信息
 
 client.msg.norecipe=未发现合成表.
