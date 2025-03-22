@@ -175,7 +175,7 @@ nei.options.keys.showenchant=显示附魔值
 
 # tools
 wailaharvestability.toolclass.pickaxe=镐
-wailaharvestability.toolclass.shovel=铲
+wailaharvestability.toolclass.shovel=锹
 wailaharvestability.toolclass.axe=斧
 wailaharvestability.toolclass.chisel=凿
 wailaharvestability.toolclass.scoop=捕蜂网
