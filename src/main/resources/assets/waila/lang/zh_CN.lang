@@ -122,7 +122,8 @@ option.enderstorage.colors=颜色
 option.ic2.inputeumach=最大EU输入[机器]
 option.ic2.inputeuother=最大EU输入[其它]
 option.ic2.inputeu=最大EU输入
-option.ic2.outputeu=大EU输出
+option.ic2.outputeu=最大EU输出
+
 option.ic2.storage=已存储电力
 option.ic2.consump=显示消耗
 option.ic2.tradeomat=显示贸易机需求
