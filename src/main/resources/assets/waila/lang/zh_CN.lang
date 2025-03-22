@@ -20,6 +20,7 @@ choice.toggledmaintained=切换/保持显示信息
 choice.showliquids=流体
 choice.shifttoggledblock=潜行切换方块信息
 choice.shifttoggledents=潜行切换实体信息
+choice.forcelegacymode=强制旧版模式
 screen.button.configureaspect=自定义外观...
 
 enchant.title.name=附魔名称
@@ -33,7 +34,8 @@ waila.keybind.wailadisplay=[Waila]显示/隐藏
 waila.keybind.liquid=[Waila]显示流体
 waila.keybind.recipe=[Waila]显示合成
 waila.keybind.usage=[Waila]显示可参与合成
-waila.keybind.testing=[Waila]测试中
+waila.keybind.testing=[Waila]测试
+waila.keybind.details=显示详细信息
 
 client.msg.norecipe=未发现合成表.
 client.msg.nousage=未发现可参与合成.
@@ -62,7 +64,7 @@ hud.msg.frequency=频率
 
 hud.msg.owner=主人
 hud.msg.public=公共
-hud.msg.restricted=限定
+hud.msg.restricted=受限
 hud.msg.private=私用
 
 hud.msg.white=白色
@@ -70,8 +72,8 @@ hud.msg.orange=橙色
 hud.msg.magenta=品红色
 hud.msg.lblue=淡蓝色
 hud.msg.yellow=黄色
-hud.msg.lime=柠檬色
-hud.msg.pink=粉色
+hud.msg.lime=黄绿色
+hud.msg.pink=粉红色
 hud.msg.gray=灰色
 hud.msg.lgray=淡灰色
 hud.msg.cyan=青色
@@ -90,10 +92,27 @@ hud.msg.state=状态
 hud.msg.delay=延迟
 hud.msg.comparator=比较器
 hud.msg.substractor=减法器
-hud.msg.record=记录
+hud.msg.record=音乐唱片
+hud.msg.tick=刻
+hud.msg.ticks=刻
+hud.msg.progress=进度
+hud.msg.progress.seconds=%d秒 / %d秒
+hud.msg.level=等级
+hud.msg.hardness=硬度
+hud.msg.blast_resistance=爆炸抗性
+hud.msg.yes=是
+hud.msg.no=否
+
+hud.msg.beacon.primary=主效果
+hud.msg.beacon.secondary=副效果
+hud.msg.bed.cansleep=可睡眠
 
 hud.msg.offers=提供
 hud.msg.demands=需求
+
+hud.item.wheatcrop=小麦作物
+hud.item.pumpkinstem=南瓜茎
+hud.item.melonstem=西瓜茎
 
 option.appeng.monitorcontent=显示内容
 option.bb.content=桶中容有
@@ -103,7 +122,8 @@ option.enderstorage.colors=颜色
 option.ic2.inputeumach=最大EU输入[机器]
 option.ic2.inputeuother=最大EU输入[其它]
 option.ic2.inputeu=最大EU输入
-option.ic2.outputeu=大EU输出
+option.ic2.outputeu=最大EU输出
+
 option.ic2.storage=已存储电力
 option.ic2.consump=显示消耗
 option.ic2.tradeomat=显示贸易机需求
@@ -121,7 +141,7 @@ option.vanilla.spawntype=刷怪笼类型
 option.vanilla.growthvalue=生长状态
 option.vanilla.leverstate=拉杆状态
 option.vanilla.repeater=中继器延时
-option.vanilla.comparator=比较急模式
+option.vanilla.comparator=比较器模式
 option.vanilla.redstone=红石充能
 option.vanilla.jukebox=唱片内容
 option.vanilla.silverfish=隐藏蠹虫
@@ -135,6 +155,7 @@ option.bcapi.consump=显示最大能量
 option.bcapi.trigger=显示触发能量
 option.pr.showio=显示逻辑门IO
 option.pr.showdata=显示逻辑门数据
+option.pr.showsignal=显示导线信号强度
 option.extrautilities.fluidamount=显示流体量
 option.openblocks.fluidamount=显示流体量
 option.railcraft.fluidamount=显示流体量
@@ -142,10 +163,47 @@ option.secretrooms.hide=隐藏伪装方块
 option.carpenters.hide=隐藏伪装方块
 option.stevescarts.showall=显示数据
 option.stevescarts.colorblind=色盲模式
-option.stevescarts.shifttoggle=潜行触发
+option.stevescarts.shifttoggle=潜行切换
 option.general.showents=显示实体
 option.general.showhp=显示实体生命值
 option.general.showcrop=显示作物生长状态
 option.thaumcraft.aspects=显示要素
 
 nei.options.keys.showenchant=显示附魔值
+
+# waila harvestability
+
+# tools
+wailaharvestability.toolclass.pickaxe=镐
+wailaharvestability.toolclass.shovel=锹
+wailaharvestability.toolclass.axe=斧
+wailaharvestability.toolclass.chisel=凿
+wailaharvestability.toolclass.scoop=捕蜂网
+wailaharvestability.toolclass.crowbar=撬棍
+wailaharvestability.toolclass.sword=剑
+wailaharvestability.toolclass.wrench=扳手
+wailaharvestability.toolclass.cutter=剪线钳
+
+# tooltips
+wailaharvestability.effectivetool=所需工具 : 
+wailaharvestability.harvestlevel=挖掘等级 : 
+wailaharvestability.currentlyharvestable= 目前能否挖掘
+wailaharvestability.harvestable= 能否挖掘
+
+# options
+option.harvestability.harvestlevel=挖掘等级
+option.harvestability.effectivetool=所需工具
+option.harvestability.currentlyharvestable=能否挖掘
+option.harvestability.oresonly=仅显示矿石挖掘信息
+option.harvestability.harvestlevel.sneakingonly=仅潜行时显示: 挖掘等级
+option.harvestability.effectivetool.sneakingonly=仅潜行时显示: 所需工具
+option.harvestability.currentlyharvestable.sneakingonly=仅潜行时显示: 能否挖掘
+option.harvestability.minimal=极简模式
+option.harvestability.unharvestableonly=仅显示能否挖掘
+option.harvestability.toolrequiredonly=仅显示所需工具
+option.harvestability.shearability=能否用剪刀采集
+option.harvestability.shearability.sneakingonly=仅潜行时显示: 能否用剪刀采集
+option.harvestability.silktouchability=能否精准采集
+option.harvestability.silktouchability.sneakingonly=仅潜行时显示: 能否精准采集
+option.harvestability.harvestlevelnum=采集等级
+option.harvestability.harvestlevelnum.sneakingonly=仅潜行时显示: 采集等级
