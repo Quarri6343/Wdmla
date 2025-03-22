@@ -64,7 +64,7 @@ hud.msg.frequency=频率
 
 hud.msg.owner=主人
 hud.msg.public=公共
-hud.msg.restricted=限定
+hud.msg.restricted=受限
 hud.msg.private=私用
 
 hud.msg.white=白色
