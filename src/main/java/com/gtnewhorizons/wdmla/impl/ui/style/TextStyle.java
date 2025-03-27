@@ -5,6 +5,7 @@ import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import mcp.mobius.waila.overlay.OverlayConfig;
 
@@ -16,7 +17,7 @@ public class TextStyle implements ITextStyle {
 
     public TextStyle() {
         this.alignment = ComponentAlignment.TOPLEFT;
-        this.color = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get().textColor(MessageType.NORMAL);
+        this.color = General.currentTheme.get().textColor(MessageType.NORMAL);
         this.shadow = DEFAULT_SHADOW;
     }
 

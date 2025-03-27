@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.impl.ui.style;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 public class AmountStyle implements IAmountStyle {
@@ -20,7 +21,7 @@ public class AmountStyle implements IAmountStyle {
     }
 
     public AmountStyle() {
-        IAmountStyle style = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get().amountStyle;
+        IAmountStyle style = General.currentTheme.get().amountStyle;
         this.borderColor = style.getBorderColor();
         this.backgroundColor = style.getBackgroundColor();
         this.filledColor = style.getFilledColor();

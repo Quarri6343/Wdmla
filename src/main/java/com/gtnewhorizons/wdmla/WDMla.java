@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.launchwrapper.Launch;
 
 import com.gtnewhorizons.wdmla.test.TestMode;
@@ -21,6 +24,14 @@ import mcp.mobius.waila.Tags;
         acceptableRemoteVersions = "*",
         guiFactory = "com.gtnewhorizons.wdmla.config.GuiFactory")
 public class WDMla {
+
+    static {
+        try {
+            ConfigurationManager.registerConfig(General.class);
+        } catch (ConfigException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static final String MODID = "wdmla";
 

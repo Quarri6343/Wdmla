@@ -6,6 +6,7 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 import java.util.List;
 
 import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
@@ -46,7 +47,7 @@ public class ThemeHelper {
     }
 
     public void overrideTooltipTitle(ITooltip root, String newName) {
-        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        Theme theme = General.currentTheme.get();
         IComponent replacedName = new HPanelComponent()
                 .child(new TextComponent(newName).style(new TextStyle().color(theme.textColor(MessageType.TITLE))))
                 .tag(Identifiers.ITEM_NAME);
@@ -58,7 +59,7 @@ public class ThemeHelper {
     }
 
     public void overrideTooltipModName(ITooltip root, String newName) {
-        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        Theme theme = General.currentTheme.get();
         IComponent replacedModName = new TextComponent(ITALIC + newName)
                 .style(new TextStyle().color(theme.textColor(MessageType.MOD_NAME))).tag(Identifiers.MOD_NAME);
         root.replaceChildWithTag(Identifiers.MOD_NAME, replacedModName);
@@ -95,13 +96,13 @@ public class ThemeHelper {
     }
 
     public IComponent color(String content, MessageType type) {
-        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        Theme theme = General.currentTheme.get();
         return new TextComponent(content).style(new TextStyle().color(theme.textColor(type)));
     }
 
     public IComponent itemProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress,
             @Nullable IComponent legacyModeProgressText, boolean showDetails) {
-        if (!WDMlaConfig.instance().getBoolean(Identifiers.CONFIG_FORCE_LEGACY)) {
+        if (!General.forceLegacy) {
             ITooltip hPanel = new HPanelComponent();
             for (ItemStack inputStack : input) {
                 if (inputStack != null) {

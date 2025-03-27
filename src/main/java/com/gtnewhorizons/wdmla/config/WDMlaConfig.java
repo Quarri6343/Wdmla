@@ -38,13 +38,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
             configProvider.loadConfig(this);
         }
         getCategory(Identifiers.CONFIG_PROVIDER).setLanguageKey(Identifiers.CONFIG_PROVIDER_LANGKEY);
-        reloadComponentProviderConfigs();
-
-        getCategory(Identifiers.CONFIG_GENERAL).setLanguageKey(Identifiers.CONFIG_GENERAL_LANGKEY);
-        getCategory(Identifiers.CONFIG_GENERAL).setComment(Identifiers.CONFIG_GENERAL_COMMENT);
-        getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
-        getBoolean(Identifiers.CONFIG_GHOST_PRODUCT);
-        getEnum(Identifiers.CONFIG_CURRENT_THEME);
+        reloadProviderAutogenConfigs();
     }
 
     public boolean getBoolean(ConfigEntry<Boolean> entry) {
@@ -74,7 +68,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
 
     }
 
-    public void reloadComponentProviderConfigs() {
+    public void reloadProviderAutogenConfigs() {
         for (IComponentProvider<?> provider : WDMlaClientRegistration.instance().getAllProvidersWithoutInfo()) {
             isProviderEnabled(provider);
             WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));

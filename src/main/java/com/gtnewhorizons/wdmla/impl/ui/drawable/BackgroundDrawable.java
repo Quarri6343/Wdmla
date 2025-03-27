@@ -4,6 +4,7 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
@@ -12,7 +13,7 @@ public class BackgroundDrawable implements IDrawable {
     private final Theme theme;
 
     public BackgroundDrawable() {
-        this.theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        this.theme = General.currentTheme.get();
     }
 
     @Override

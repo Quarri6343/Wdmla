@@ -26,6 +26,11 @@ public final class ColorPalette {
     public static final int AMOUNT_FILLED_WAILA = 0xFFD7D7D7;
     public static final int AMOUNT_FILLED_ALTERNATE_WAILA = 0xFFD7D7D7;
 
+    //temporary fix for overlay config does not exist during config load
+    public static final int BG_COLOR_WAILA = 0x9E100010;
+    public static final int BG_GRADIENT1_WAILA = 0x9E5000ff;
+    public static final int BG_GRADIENT2_WAILA = 0x9E28007f;
+
     public static final int BG_COLOR_JADE = 0xB3131313;
     public static final int BG_GRADIENT1_JADE = 0xB3383838;
     public static final int BG_GRADIENT2_JADE = 0xB3242424;

@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +31,7 @@ public class BreakProgressDrawable implements IDrawable {
             progressAlpha = progressAlpha.fade();
         }
 
-        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+        Theme theme = General.currentTheme.get();
         int color = progressAlpha.apply(theme.breakProgress_default); // TODO: change color with harvestability
 
         GuiDraw.drawGradientRect(savedDamage.computeDrawArea(area), color, color);

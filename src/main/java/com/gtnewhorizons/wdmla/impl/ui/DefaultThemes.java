@@ -9,9 +9,9 @@ import mcp.mobius.waila.overlay.OverlayConfig;
 
 public enum DefaultThemes {
     WAILA(
-            OverlayConfig.bgcolor,
-            OverlayConfig.gradient1,
-            OverlayConfig.gradient2,
+            ColorPalette.BG_COLOR_WAILA,
+            ColorPalette.BG_GRADIENT1_WAILA,
+            ColorPalette.BG_GRADIENT2_WAILA,
             new TextColors(OverlayConfig.fontcolor, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS,
                     ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
             new PanelStyle(2, 2)),

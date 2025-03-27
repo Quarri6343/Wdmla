@@ -3,6 +3,8 @@ package com.gtnewhorizons.wdmla.config;
 import java.util.Arrays;
 import java.util.List;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -19,7 +21,7 @@ import mcp.mobius.waila.utils.Constants;
 @SuppressWarnings({ "unused", "rawtypes" })
 public class ModsMenuScreenConfig extends GuiConfig {
 
-    public ModsMenuScreenConfig(GuiScreen parent) {
+    public ModsMenuScreenConfig(GuiScreen parent) throws ConfigException {
         super(parent, getMainCategories(), WDMla.MODID, "config", false, false, "WDMla");
     }
 
@@ -37,11 +39,14 @@ public class ModsMenuScreenConfig extends GuiConfig {
         }
     }
 
-    private static List<IConfigElement> getMainCategories() {
-        return Arrays.asList(
-                new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_GENERAL)),
-                new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PROVIDER)),
-                new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
-                new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES)));
+    private static List<IConfigElement> getMainCategories() throws ConfigException {
+        List<IConfigElement> categories = ConfigurationManager.getConfigElementsMulti(true, General.class);
+        categories.addAll(
+                Arrays.asList(
+                        new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PROVIDER)),
+                        new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
+                        new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES)))
+        );
+        return categories;
     }
 }

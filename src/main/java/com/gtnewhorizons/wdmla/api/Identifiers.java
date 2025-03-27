@@ -31,25 +31,6 @@ public final class Identifiers {
     public static final ResourceLocation TEST_THEME_BLOCK = Test("theme_block");
 
     // config
-    public static final String CONFIG_GENERAL = "wdmla_general";
-    public static final String CONFIG_GENERAL_LANGKEY = "option.general.category";
-    public static final String CONFIG_GENERAL_COMMENT = "These are WDMla exclusive settings";
-    public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(
-            CONFIG_GENERAL,
-            "option.general.forcelegacy",
-            false,
-            "Disables all modern WDMla features. This will make the system ignore all settings in this category");
-    public static final ConfigEntry<Boolean> CONFIG_GHOST_PRODUCT = new ConfigEntry<>(
-            CONFIG_GENERAL,
-            "option.general.ghostproduct",
-            true,
-            "Shows the ghost product on process");
-    public static final ConfigEntry<DefaultThemes> CONFIG_CURRENT_THEME = new ConfigEntry<>(
-            CONFIG_GENERAL,
-            "option.general.theme",
-            DefaultThemes.WAILA,
-            "Current theme of tooltips");
-
     public static final String CONFIG_PROVIDER = "wdmla_providers";
     public static final String CONFIG_PROVIDER_LANGKEY = "option.provider.category";
     public static final String CONFIG_PROVIDER_ENABLED = "option.provider.enabled";

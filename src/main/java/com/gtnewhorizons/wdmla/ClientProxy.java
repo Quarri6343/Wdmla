@@ -21,7 +21,8 @@ import net.minecraftforge.common.MinecraftForge;
 public class ClientProxy extends CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-        File wdmlaConfig = new File(event.getModConfigurationDirectory().getPath(), "WDMla.cfg");
+        File wdmlaConfigFolder = new File(event.getModConfigurationDirectory().getPath(), "WDMla");
+        File wdmlaConfig = new File(wdmlaConfigFolder, "WDMla.cfg");
         new WDMlaConfig(wdmlaConfig);
     }
 
