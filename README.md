@@ -36,6 +36,8 @@ Still in alpha
   - wawla.showMobArmor
   - wawla.pets.showOwner
   - wawla.pets.sitting
+  - wawla.pets.age
+  - wawla.pets.cooldown
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 

@@ -23,6 +23,7 @@ import net.minecraft.block.BlockSkull;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockWoodSlab;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -73,6 +74,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerBlockComponent(BedProvider.INSTANCE, BlockBed.class);
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
+        registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
 
         registration.registerConfigComponent(new VanillaConfigProvider());
     }

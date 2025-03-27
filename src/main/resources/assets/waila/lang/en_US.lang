@@ -95,6 +95,7 @@ hud.msg.substractor=Substractor
 hud.msg.record=Record
 hud.msg.tick=tick
 hud.msg.ticks=ticks
+hud.msg.seconds=s
 hud.msg.progress=Progress
 hud.msg.progress.seconds=%ds / %ds
 hud.msg.level=Level
@@ -107,6 +108,8 @@ hud.msg.beacon.primary=First Effect
 hud.msg.beacon.secondary=Second Effect
 hud.msg.bed.cansleep=Can Sleep
 hud.msg.pet.sit=Sitting
+hud.msg.animal.growth=Growing Time
+hud.msg.animal.breedcooldown=Breeding CD
 
 hud.msg.offers=Offers
 hud.msg.demands=Demands

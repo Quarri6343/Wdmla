@@ -22,6 +22,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation BEACON = MC("beacon");
     public static final ResourceLocation BED = MC("bed");
     public static final ResourceLocation PET = MC("pet");
+    public static final ResourceLocation ANIMAL = MC("animal");
 
     // config
     public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_SIT = new ConfigEntry<>(
@@ -32,6 +33,16 @@ public class VanillaIdentifiers {
     public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_OWNER = new ConfigEntry<>(
             PetProvider.INSTANCE,
             "ShowPetOwner",
+            true,
+            "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_ANIMAL_GROWTH = new ConfigEntry<>(
+            AnimalProvider.INSTANCE,
+            "ShowAnimalGrowth",
+            true,
+            "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_ANIMAL_BREED_COOLDOWN = new ConfigEntry<>(
+            AnimalProvider.INSTANCE,
+            "ShowAnimalBreedCooldown",
             true,
             "");
 
