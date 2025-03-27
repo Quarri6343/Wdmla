@@ -1,12 +1,12 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.google.common.base.Objects;
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import joptsimple.internal.Strings;
 import mcp.mobius.waila.cbcore.LangUtil;
@@ -23,12 +23,12 @@ public enum PetProvider implements IEntityComponentProvider, IServerDataProvider
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
         if (accessor.getEntity() instanceof EntityTameable pet && pet.isTamed()
-                && WDMlaConfig.instance().getBoolean(VanillaIdentifiers.CONFIG_SHOW_PET_SIT)) {
+                && AddonsConfig.vanilla.pet.showPetSit) {
             tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.pet.sit"), String.valueOf(pet.isSitting())));
         }
 
         String ownerUUID = accessor.getServerData().getString("OwnerUUID");
-        if (Objects.equal(ownerUUID, Strings.EMPTY) || !WDMlaConfig.instance().getBoolean(VanillaIdentifiers.CONFIG_SHOW_PET_OWNER)) {
+        if (Objects.equal(ownerUUID, Strings.EMPTY) || !AddonsConfig.vanilla.pet.showPetOwner) {
             return;
         }
 

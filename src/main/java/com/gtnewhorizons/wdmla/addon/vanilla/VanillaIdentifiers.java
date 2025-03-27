@@ -1,9 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
-import com.gtnewhorizons.wdmla.api.ConfigEntry;
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.config.Configuration;
 
 public class VanillaIdentifiers {
 
@@ -26,29 +23,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation PET = MC("pet");
     public static final ResourceLocation ANIMAL = MC("animal");
 
-    // config
-    public static final String CONFIG_MINECRAFT = Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + "minecraft";
-    public static final String CONFIG_MINECRAFT_LANGKEY = "option.vanilla.category";
-    public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_SIT = new ConfigEntry<>(
-            PetProvider.INSTANCE,
-            "option.vanilla.show.petsitting",
-            true,
-            "");
-    public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_OWNER = new ConfigEntry<>(
-            PetProvider.INSTANCE,
-            "option.vanilla.show.petowner",
-            true,
-            "");
-    public static final ConfigEntry<Boolean> CONFIG_SHOW_ANIMAL_GROWTH = new ConfigEntry<>(
-            AnimalProvider.INSTANCE,
-            "option.vanilla.show.animalgrowth",
-            true,
-            "");
-    public static final ConfigEntry<Boolean> CONFIG_SHOW_ANIMAL_BREED_COOLDOWN = new ConfigEntry<>(
-            AnimalProvider.INSTANCE,
-            "option.vanilla.show.breedcooldown",
-            true,
-            "");
+    public static final String NAMESPACE_MINECRAFT = "minecraft";
 
     private static ResourceLocation MC(String path) {
         return new ResourceLocation(path);

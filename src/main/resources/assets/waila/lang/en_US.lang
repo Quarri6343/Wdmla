@@ -156,7 +156,7 @@ option.autogen.priority=Priority
 option.addon.category=Addon Options
 
 # core options
-option.core.category=Core Plugin
+option.core.category=Core
 option.core.show.icon=Show Block Icon
 option.core.show.blockname=Show Block Name
 option.core.show.modname=Show Mod Name
@@ -169,9 +169,9 @@ option.vanilla.show.petsitting=Show is Pet Sitting
 option.vanilla.show.petowner=Show Pet Owner
 option.vanilla.show.animalgrowth=Show Animal Growth
 option.vanilla.show.breedcooldown=Show Animal Breed Cooldown
-option.vanilla.leverstate=Lever state
-option.vanilla.repeater=Repeater delay
-option.vanilla.comparator=Comparator mode
+option.vanilla.leverstate=Show Lever State
+option.vanilla.repeater=Show Repeater Delay
+option.vanilla.comparator=Show Comparator Mode
 
 # waila harvestability options
 option.harvestability.category=Waila Harvestability

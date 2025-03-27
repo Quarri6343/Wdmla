@@ -1,10 +1,10 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -21,7 +21,7 @@ public enum AnimalProvider implements IEntityComponentProvider {
     }
 
     private void ageTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        if(!WDMlaConfig.instance().getBoolean(VanillaIdentifiers.CONFIG_SHOW_ANIMAL_GROWTH)) {
+        if(!AddonsConfig.vanilla.animal.showAnimalGrowth) {
             return;
         }
 
@@ -35,7 +35,7 @@ public enum AnimalProvider implements IEntityComponentProvider {
     }
 
     private void breedCooldownTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        if(!WDMlaConfig.instance().getBoolean(VanillaIdentifiers.CONFIG_SHOW_ANIMAL_BREED_COOLDOWN)) {
+        if(!AddonsConfig.vanilla.animal.showBreedCooldown) {
             return;
         }
 

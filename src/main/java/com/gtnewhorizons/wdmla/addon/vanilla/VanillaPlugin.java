@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -42,6 +44,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraftforge.common.config.Configuration;
 
 public class VanillaPlugin implements IWDMlaPlugin {
 
@@ -76,7 +79,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
 
-        registration.registerConfigComponent(new VanillaConfigProvider());
+        WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
+                .setLanguageKey("option.vanilla.category");
     }
 
     @Override

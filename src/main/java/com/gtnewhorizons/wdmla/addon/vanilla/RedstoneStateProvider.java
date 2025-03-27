@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -21,14 +22,14 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         Block block = accessor.getBlock();
 
-        if (block == Blocks.lever) {
+        if (block == Blocks.lever && AddonsConfig.vanilla.redstoneState.showLeverState) {
             IComponent redstoneOn = (accessor.getMetadata() & 8) == 0
                     ? ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.off"))
                     : ThemeHelper.INSTANCE.success(LangUtil.translateG("hud.msg.on"));
             tooltip.child(
                     new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.state")))
                             .child(redstoneOn));
-        } else if ((block == Blocks.unpowered_repeater) || (block == Blocks.powered_repeater)) {
+        } else if (((block == Blocks.unpowered_repeater) || (block == Blocks.powered_repeater)) && AddonsConfig.vanilla.redstoneState.showRepeaterDelay) {
             int tick = (accessor.getMetadata() >> 2) + 1;
             tooltip.child(
                     new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.delay"))).child(
@@ -37,7 +38,7 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
                                             "%s %s",
                                             tick,
                                             LangUtil.translateG("hud.msg.tick")))));
-        } else if ((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator)) {
+        } else if (((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator)) && AddonsConfig.vanilla.redstoneState.showComparatorMode) {
             String mode = ((accessor.getMetadata() >> 2) & 1) == 0 ? LangUtil.translateG("hud.msg.comparator")
                     : LangUtil.translateG("hud.msg.substractor");
             tooltip.child(
