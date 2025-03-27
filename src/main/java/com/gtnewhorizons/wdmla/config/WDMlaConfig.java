@@ -39,7 +39,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         }
         reloadComponentProviderConfigs();
 
-        getCategory(Identifiers.CONFIG_GENERAL).setComment("These are the WDMla exclusive settings");
+        getCategory(Identifiers.CONFIG_GENERAL).setComment(Identifiers.CONFIG_GENERAL_COMMENT);
         getBoolean(Identifiers.CONFIG_FORCE_LEGACY);
         getBoolean(Identifiers.CONFIG_GHOST_PRODUCT);
         getEnum(Identifiers.CONFIG_CURRENT_THEME);

@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.impl.ui.drawable;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
@@ -10,7 +11,6 @@ import com.gtnewhorizons.wdmla.api.ui.IFilledAmount;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 
 public class AmountDrawable implements IDrawable {
 
@@ -19,8 +19,7 @@ public class AmountDrawable implements IDrawable {
 
     public AmountDrawable(@NotNull IFilledAmount progress) {
         this.progress = progress;
-        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
-        this.style = theme.amountStyle;
+        this.style = new AmountStyle();
     }
 
     public AmountDrawable style(IAmountStyle style) {

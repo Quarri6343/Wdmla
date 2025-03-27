@@ -1,19 +1,31 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 public class PanelStyle implements IPanelStyle {
 
     private int borderColor;
     private ComponentAlignment alignment;
-    private int spacing;
+    private final int spacing;
+    private final int borderThickness;
 
-    public PanelStyle() {
+    public PanelStyle(int spacing, int borderThickness) {
         this.borderColor = ColorPalette.NO_BORDER;
         this.alignment = ComponentAlignment.TOPLEFT;
-        this.spacing = DEFAULT_SPACE;
+        this.spacing = spacing;
+        this.borderThickness = borderThickness;
+    }
+
+    public PanelStyle() {
+        IPanelStyle theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get().panelStyle;
+        this.borderColor = ColorPalette.NO_BORDER;
+        this.alignment = ComponentAlignment.TOPLEFT;
+        this.spacing = theme.getSpacing();
+        this.borderThickness = theme.getBorderThickness();
     }
 
     public PanelStyle borderColor(int borderColor) {
@@ -23,11 +35,6 @@ public class PanelStyle implements IPanelStyle {
 
     public PanelStyle alignment(ComponentAlignment alignment) {
         this.alignment = alignment;
-        return this;
-    }
-
-    public PanelStyle spacing(int spacing) {
-        this.spacing = spacing;
         return this;
     }
 
@@ -42,7 +49,7 @@ public class PanelStyle implements IPanelStyle {
             return 0;
         }
 
-        return DEFAULT_BORDER_THICKNESS;
+        return borderThickness;
     }
 
     @Override

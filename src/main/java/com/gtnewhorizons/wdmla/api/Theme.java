@@ -2,7 +2,7 @@ package com.gtnewhorizons.wdmla.api;
 
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
-import mcp.mobius.waila.overlay.OverlayConfig;
+import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
 public final class Theme {
 
@@ -13,10 +13,11 @@ public final class Theme {
     public AmountStyle amountStyle;
     public int breakProgress_default;
     public int breakProgress_failure;
+    public PanelStyle panelStyle;
 
     public Theme(int bgColor, int bgGradient1, int bgGradient2,
                  AmountStyle amountStyle, TextColors textColors,
-                 int breakProgress_default, int breakProgress_failure) {
+                 int breakProgress_default, int breakProgress_failure, PanelStyle panelStyle) {
         this.bgColor = bgColor;
         this.bgGradient1 = bgGradient1;
         this.bgGradient2 = bgGradient2;
@@ -24,6 +25,7 @@ public final class Theme {
         this.amountStyle = amountStyle;
         this.breakProgress_default = breakProgress_default;
         this.breakProgress_failure = breakProgress_failure;
+        this.panelStyle = panelStyle;
     }
 
     public int textColor(MessageType type) {

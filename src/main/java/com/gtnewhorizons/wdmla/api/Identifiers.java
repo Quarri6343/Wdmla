@@ -32,6 +32,7 @@ public final class Identifiers {
 
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
+    public static final String CONFIG_GENERAL_COMMENT = "These are WDMla exclusive settings";
     public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(
             CONFIG_GENERAL,
             "LegacyMode",

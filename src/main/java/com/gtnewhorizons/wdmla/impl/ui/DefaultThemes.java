@@ -4,6 +4,7 @@ import com.gtnewhorizons.wdmla.api.TextColors;
 import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
+import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import mcp.mobius.waila.overlay.OverlayConfig;
 
 public enum DefaultThemes {
@@ -12,23 +13,26 @@ public enum DefaultThemes {
             OverlayConfig.gradient1,
             OverlayConfig.gradient2,
             new TextColors(OverlayConfig.fontcolor, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS,
-                    ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME)),
+                    ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
+            new PanelStyle(2, 2)),
     JADE(
             ColorPalette.BG_COLOR_JADE,
             ColorPalette.BG_GRADIENT1_JADE,
             ColorPalette.BG_GRADIENT2_JADE,
             new TextColors(ColorPalette.DEFAULT_JADE, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS_JADE,
-                    ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME)),
+                    ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
+            new PanelStyle(1, 2)),
     TOP(
             ColorPalette.BG_COLOR_TOP,
             ColorPalette.BG_GRADIENT1_TOP,
             ColorPalette.BG_GRADIENT2_TOP,
             new TextColors(ColorPalette.DEFAULT_TOP, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS_TOP,
-                    ColorPalette.WARNING_TOP, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME));
+                    ColorPalette.WARNING_TOP, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
+            new PanelStyle(2, 2));
 
     private Theme theme;
 
-    DefaultThemes(int bgColor, int gradient1, int gradient2, TextColors textColors){
+    DefaultThemes(int bgColor, int gradient1, int gradient2, TextColors textColors, PanelStyle panelStyle){
         this.theme = new Theme(bgColor, gradient1, gradient2,
                 new AmountStyle(ColorPalette.AMOUNT_BORDER_WAILA,
                         ColorPalette.AMOUNT_BACKGROUND_WAILA,
@@ -36,7 +40,8 @@ public enum DefaultThemes {
                         ColorPalette.AMOUNT_FILLED_ALTERNATE_WAILA),
                 textColors,
                 ColorPalette.BREAK_PROGRESS_DEFAULT,
-                ColorPalette.BREAK_PROGRESS_FAILURE);
+                ColorPalette.BREAK_PROGRESS_FAILURE,
+                panelStyle);
     }
 
     public Theme get() {

@@ -9,13 +9,18 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
 public class BackgroundDrawable implements IDrawable {
 
+    private final Theme theme;
+
+    public BackgroundDrawable() {
+        this.theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
+    }
+
     @Override
     public void draw(IArea area) {
         int x = area.getX();
         int y = area.getY();
         int w = area.getW();
         int h = area.getH();
-        Theme theme = WDMlaConfig.instance().getEnum(Identifiers.CONFIG_CURRENT_THEME).get();
         int bg = theme.bgColor;
         int grad1 = theme.bgGradient1;
         int grad2 = theme.bgGradient2;
