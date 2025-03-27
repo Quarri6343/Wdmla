@@ -8,7 +8,7 @@ public class HarvestabilityConfigProvider implements IConfigProvider {
     @Override
     public void loadConfig(IPluginConfig config) {
         config.getCategory(HarvestabilityIdentifiers.CONFIG_CATEGORY)
-                .setComment(HarvestabilityIdentifiers.CONFIG_CATEGORY_COMMENT);
+                .setLanguageKey(HarvestabilityIdentifiers.CONFIG_CATEGORY_LANGKEY);
 
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM);
@@ -38,8 +38,8 @@ public class HarvestabilityConfigProvider implements IConfigProvider {
         config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_ITEM);
         config.getString(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_ITEM);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_HARVEST_LEVEL_NUM);
-        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_HARVESTABLE_ICON);
-        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_CURRENTLY_HARVESTABLE_ICON);
+        config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_EFFECTIVE_TOOL_ICON);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_SHEARABILITY_ICON);
         config.getBoolean(HarvestabilityIdentifiers.CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON);
 

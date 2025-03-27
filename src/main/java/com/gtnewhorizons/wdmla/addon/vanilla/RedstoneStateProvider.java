@@ -34,16 +34,14 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
                     new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.delay"))).child(
                             ThemeHelper.INSTANCE.info(
                                     String.format(
-                                            "%s%s",
+                                            "%s %s",
                                             tick,
-                                            (tick == 1 ? LangUtil.translateG("hud.msg.tick")
-                                                    : LangUtil.translateG("hud.msg.ticks"))))));
+                                            LangUtil.translateG("hud.msg.tick")))));
         } else if ((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator)) {
             String mode = ((accessor.getMetadata() >> 2) & 1) == 0 ? LangUtil.translateG("hud.msg.comparator")
                     : LangUtil.translateG("hud.msg.substractor");
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.mode")))
-                            .child(ThemeHelper.INSTANCE.info(mode)));
+                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.mode"), mode));
         }
     }
 

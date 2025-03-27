@@ -219,8 +219,8 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
                 ? ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
                 : ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
 
-        if (config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_ICON)) {
-            if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_SHOW_HARVESTABLE_TOOL_ICON)) {
+        if (config.getBoolean(CONFIG_MODERN_CURRENTLY_HARVESTABLE_ICON)) {
+            if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_EFFECTIVE_TOOL_ICON)) {
                 effectiveToolIconComponent.child(
                         new HPanelComponent().padding(new Padding().left(5).top(6)).child(currentlyHarvestableIcon));
                 harvestabilityComponent.child(effectiveToolIconComponent);

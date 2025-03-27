@@ -1,3 +1,5 @@
+#refactoring in progress
+
 screen.button.waila=Waila
 screen.button.modules=Modules
 screen.label.scale=Scale
@@ -93,8 +95,7 @@ hud.msg.delay=Delay
 hud.msg.comparator=Comparator
 hud.msg.substractor=Substractor
 hud.msg.record=Record
-hud.msg.tick=tick
-hud.msg.ticks=ticks
+hud.msg.tick=t
 hud.msg.seconds=s
 hud.msg.progress=Progress
 hud.msg.progress.seconds=%ds / %ds
@@ -118,6 +119,70 @@ hud.item.wheatcrop=Wheat Crops
 hud.item.pumpkinstem=Pumpkin Stem
 hud.item.melonstem=Melon Stem
 
+
+# waila harvestability
+
+# tools
+wailaharvestability.toolclass.pickaxe=Pickaxe
+wailaharvestability.toolclass.shovel=Shovel
+wailaharvestability.toolclass.axe=Axe
+wailaharvestability.toolclass.chisel=Chisel
+wailaharvestability.toolclass.scoop=Scoop
+wailaharvestability.toolclass.crowbar=Crowbar
+wailaharvestability.toolclass.sword=Sword
+wailaharvestability.toolclass.wrench=Wrench
+wailaharvestability.toolclass.cutter=Wire Cutter
+
+# tooltips
+wailaharvestability.effectivetool=Effective Tool
+wailaharvestability.harvestlevel=Harvest Level
+wailaharvestability.currentlyharvestable= Currently Harvestable
+wailaharvestability.harvestable= Harvestable
+
+
+# options
+
+# vanilla plugin options
+option.vanilla.spawntype=Spawner type
+option.vanilla.growthvalue=Growth value
+option.vanilla.leverstate=Lever state
+option.vanilla.repeater=Repeater delay
+option.vanilla.comparator=Comparator mode
+option.vanilla.redstone=Redstone power
+option.vanilla.jukebox=Jukebox disk
+option.vanilla.silverfish=Hide silverfish
+
+# waila harvestability options
+option.harvestability.category=Waila Harvestability
+option.harvestability.harvestlevel=Harvest Level
+option.harvestability.effectivetool=Effective Tool
+option.harvestability.currentlyharvestable=Currently Harvestable
+option.harvestability.oresonly=Ores Only
+option.harvestability.harvestlevel.sneakingonly=Sneak Only: Harvest Level
+option.harvestability.effectivetool.sneakingonly=Sneak Only: Effective Tool
+option.harvestability.currentlyharvestable.sneakingonly=Sneak Only: Harvestable
+option.harvestability.minimal=Minimal Mode
+option.harvestability.unharvestableonly=Unharvestable Only
+option.harvestability.toolrequiredonly=Tool Required Only
+option.harvestability.shearability=Shearability
+option.harvestability.shearability.sneakingonly=Sneak Only: Shearability
+option.harvestability.silktouchability=Silk Touchability
+option.harvestability.silktouchability.sneakingonly=Sneak Only: Silk Touchability
+option.harvestability.harvestlevelnum=Harvest Level No.
+option.harvestability.harvestlevelnum.sneakingonly=Sneak only: Harvest Level No.
+option.harvestability.minimalseparator.string=Separator String in Minimal Mode
+option.harvestability.currentlyharvestable.string=Currently Harvestable String
+option.harvestability.notcurrentlyharvestable.string=Not Currently Harvestable String
+option.harvestability.shearability.string=Shearability String
+option.harvestability.silktouchability.string=Silk Touchability String
+option.harvestability.shearability.item=Item for Shearability Icon
+option.harvestability.silktouchability.item=Item for Silk Touchability Icon
+option.harvestability.currentlyHarvestable.icon=Currently Harvestable Icon
+option.harvestability.effectivetool.icon=Effective Tool Icon
+option.harvestability.shearability.icon=Shearability Icon
+option.harvestability.silktouchability.icon=Silk Touchability Icon
+
+# options in the untouched sections
 option.appeng.monitorcontent=Monitor's content
 option.bb.content=Barrel's content
 option.bc.tankamount=Liquid amount
@@ -140,14 +205,6 @@ option.thermalexpansion.tesssendrecv=Tesseract mode
 option.thermalexpansion.tessfreq=Tesseract frequency
 option.thermalexpansion.owner=Show owner
 option.thermalexpansion.conditemmode=Show Itemduct mode
-option.vanilla.spawntype=Spawner type
-option.vanilla.growthvalue=Growth value
-option.vanilla.leverstate=Lever state
-option.vanilla.repeater=Repeater delay
-option.vanilla.comparator=Comparator mode
-option.vanilla.redstone=Redstone power
-option.vanilla.jukebox=Jukebox disk
-option.vanilla.silverfish=Hide silverfish
 option.etb.displaydata=Show socket data
 option.enderio.inout=Show input/output
 option.enderio.storage=Show stored MJ
@@ -171,42 +228,3 @@ option.general.showents=Show entities
 option.general.showhp=Show entities health
 option.general.showcrop=Show crop growth
 option.thaumcraft.aspects=Show aspects
-
-nei.options.keys.showenchant=Show enchanting values
-
-# waila harvestability
-
-# tools
-wailaharvestability.toolclass.pickaxe=Pickaxe
-wailaharvestability.toolclass.shovel=Shovel
-wailaharvestability.toolclass.axe=Axe
-wailaharvestability.toolclass.chisel=Chisel
-wailaharvestability.toolclass.scoop=Scoop
-wailaharvestability.toolclass.crowbar=Crowbar
-wailaharvestability.toolclass.sword=Sword
-wailaharvestability.toolclass.wrench=Wrench
-wailaharvestability.toolclass.cutter=Wire Cutter
-
-# tooltips
-wailaharvestability.effectivetool=Effective Tool
-wailaharvestability.harvestlevel=Harvest Level
-wailaharvestability.currentlyharvestable= Currently Harvestable
-wailaharvestability.harvestable= Harvestable
-
-# options
-option.harvestability.harvestlevel=Harvest level
-option.harvestability.effectivetool=Effective tool
-option.harvestability.currentlyharvestable=Currently harvestable
-option.harvestability.oresonly=Ores only
-option.harvestability.harvestlevel.sneakingonly=Sneak only: Harvest level
-option.harvestability.effectivetool.sneakingonly=Sneak only: Effective tool
-option.harvestability.currentlyharvestable.sneakingonly=Sneak only: Harvestable
-option.harvestability.minimal=Minimal mode
-option.harvestability.unharvestableonly=Unharvestable only
-option.harvestability.toolrequiredonly=Tool required only
-option.harvestability.shearability=Shearability
-option.harvestability.shearability.sneakingonly=Sneak only: Shearability
-option.harvestability.silktouchability=Silk Touchability
-option.harvestability.silktouchability.sneakingonly=Sneak only: Silk Touchability
-option.harvestability.harvestlevelnum=Harvest level no.
-option.harvestability.harvestlevelnum.sneakingonly=Sneak only: Harvest level no.

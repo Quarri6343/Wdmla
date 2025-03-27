@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.api;
 public class ConfigEntry<T> {
 
     public final String category;
+    //config entry key & language key
     public final String key;
     public final T defaultValue;
     public final String comment;
