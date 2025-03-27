@@ -142,6 +142,25 @@ wailaharvestability.harvestable= Harvestable
 
 # options
 
+# general options
+option.general.category=WDMla General
+option.general.forcelegacy=Legacy Mode
+option.general.ghostproduct=Ghost Product
+option.general.theme=Current Theme
+
+# provider base options
+option.provider.category=WDMla Providers
+option.provider.enabled=Enabled
+option.provider.priority=Priority
+
+# core options
+option.core.category=Core
+option.core.show.icon=Show Block Icon
+option.core.show.blockname=Show Block Name
+option.core.show.modname=Show Mod Name
+option.core.show.entityname=Show Entity Name
+option.core.maxentityhealth=Maximum Number of Hearts Displayed
+
 # vanilla plugin options
 option.vanilla.spawntype=Spawner type
 option.vanilla.growthvalue=Growth value

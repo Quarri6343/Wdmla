@@ -32,50 +32,55 @@ public final class Identifiers {
 
     // config
     public static final String CONFIG_GENERAL = "wdmla_general";
+    public static final String CONFIG_GENERAL_LANGKEY = "option.general.category";
     public static final String CONFIG_GENERAL_COMMENT = "These are WDMla exclusive settings";
     public static final ConfigEntry<Boolean> CONFIG_FORCE_LEGACY = new ConfigEntry<>(
             CONFIG_GENERAL,
-            "LegacyMode",
+            "option.general.forcelegacy",
             false,
             "Disables all modern WDMla features. This will make the system ignore all settings in this category");
     public static final ConfigEntry<Boolean> CONFIG_GHOST_PRODUCT = new ConfigEntry<>(
             CONFIG_GENERAL,
-            "GhostProduct",
+            "option.general.ghostproduct",
             true,
             "Shows the ghost product on process");
     public static final ConfigEntry<DefaultThemes> CONFIG_CURRENT_THEME = new ConfigEntry<>(
             CONFIG_GENERAL,
-            "Theme",
+            "option.general.theme",
             DefaultThemes.WAILA,
-            "Current Tooltips Theme");
+            "Current theme of tooltips");
 
     public static final String CONFIG_PROVIDER = "wdmla_providers";
-    public static final String CONFIG_PROVIDER_ENABLED = "Enabled";
-    public static final String CONFIG_PROVIDER_PRIORITY = "Priority";
+    public static final String CONFIG_PROVIDER_LANGKEY = "option.provider.category";
+    public static final String CONFIG_PROVIDER_ENABLED = "option.provider.enabled";
+    public static final String CONFIG_PROVIDER_PRIORITY = "option.provider.priority";
+
+    public static final String CONFIG_CORE_CATEGORY = CONFIG_PROVIDER + ".core";
+    public static final String CONFIG_CORE_LANGKEY = "option.core.category";
 
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ICON = new ConfigEntry<>(
             DefaultBlockInfoProvider.INSTANCE,
-            "ShowIcon",
+            "option.core.show.icon",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_BLOCK_NAME = new ConfigEntry<>(
             DefaultBlockInfoProvider.INSTANCE,
-            "ShowBlockName",
+            "option.core.show.blockname",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_MOD_NAME = new ConfigEntry<>(
             DefaultBlockInfoProvider.INSTANCE,
-            "ShowModName",
+            "option.core.show.modname",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ENTITY_NAME = new ConfigEntry<>(
             DefaultEntityInfoProvider.INSTANCE,
-            "ShowEntityName",
+            "option.core.show.entityname",
             true,
             "");
     public static final ConfigEntry<Integer> CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT = new ConfigEntry<>(
             DefaultEntityInfoProvider.INSTANCE,
-            "MaxEntityHealthForText",
+            "option.core.maxentityhealth",
             40,
             "If the maximum health of an entity is above this value, texts will be shown instead of heart icons");
 

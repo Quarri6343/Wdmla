@@ -8,6 +8,7 @@ public class CoreConfigProvider implements IConfigProvider {
 
     @Override
     public void loadConfig(IPluginConfig config) {
+        config.getCategory(Identifiers.CONFIG_CORE_CATEGORY).setLanguageKey(Identifiers.CONFIG_CORE_LANGKEY);
         config.getBoolean(Identifiers.CONFIG_SHOW_ICON);
         config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME);
         config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME);
