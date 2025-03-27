@@ -37,7 +37,8 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         for (IConfigProvider configProvider : WDMlaClientRegistration.instance().configProviders) {
             configProvider.loadConfig(this);
         }
-        getCategory(Identifiers.CONFIG_PROVIDER).setLanguageKey(Identifiers.CONFIG_PROVIDER_LANGKEY);
+        getCategory(Identifiers.CONFIG_AUTOGEN).setLanguageKey("option.autogen.category");
+        getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE).setLanguageKey("option.core.category");
         reloadProviderAutogenConfigs();
     }
 
@@ -84,7 +85,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         return getBoolean(
                 new ConfigEntry<>(
                         provider.getConfigCategory(),
-                        Identifiers.CONFIG_PROVIDER_ENABLED,
+                        "option.autogen.enabled",
                         provider.enabledByDefault(),
                         ""));
     }
@@ -97,7 +98,7 @@ public class WDMlaConfig extends Configuration implements IPluginConfig {
         return getInteger(
                 new ConfigEntry<>(
                         provider.getConfigCategory(),
-                        Identifiers.CONFIG_PROVIDER_PRIORITY,
+                        "option.autogen.priority",
                         provider.getDefaultPriority(),
                         ""));
     }

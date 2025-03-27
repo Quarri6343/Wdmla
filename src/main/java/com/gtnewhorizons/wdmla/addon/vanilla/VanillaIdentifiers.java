@@ -1,7 +1,9 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.gtnewhorizons.wdmla.api.ConfigEntry;
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Configuration;
 
 public class VanillaIdentifiers {
 
@@ -25,7 +27,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation ANIMAL = MC("animal");
 
     // config
-    public static final String CONFIG_MINECRAFT = "minecraft";
+    public static final String CONFIG_MINECRAFT = Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + "minecraft";
     public static final String CONFIG_MINECRAFT_LANGKEY = "option.vanilla.category";
     public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_SIT = new ConfigEntry<>(
             PetProvider.INSTANCE,

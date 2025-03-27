@@ -1,6 +1,7 @@
 package com.gtnewhorizons.wdmla.api;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Configuration;
 
 public interface IWDMlaProvider {
 
@@ -28,9 +29,9 @@ public interface IWDMlaProvider {
     }
 
     default String getConfigCategory() {
-        return Identifiers.CONFIG_PROVIDER + "."
+        return Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER
                 + getUid().getResourceDomain()
-                + "."
+                + Configuration.CATEGORY_SPLITTER
                 + getUid().getResourcePath();
     }
 }

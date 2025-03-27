@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.addon.core;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
@@ -34,12 +35,12 @@ public enum DefaultEntityInfoProvider implements IEntityComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        if (config.getBoolean(Identifiers.CONFIG_SHOW_ENTITY_NAME)) {
+        if (AddonsConfig.core.defaultEntity.showEntityName) {
             tooltip.child(
                     new TextComponent(WHITE + accessor.getEntity().getCommandSenderName())
                             .tag(Identifiers.ENTITY_NAME));
         }
-        if (config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
+        if (AddonsConfig.core.defaultEntity.showModName) {
             tooltip.child(
                     new TextComponent(BLUE + ITALIC + ModIdentification.nameFromEntity(accessor.getEntity()))
                             .tag(Identifiers.MOD_NAME));

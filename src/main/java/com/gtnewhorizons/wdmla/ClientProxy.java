@@ -22,7 +22,7 @@ public class ClientProxy extends CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         File wdmlaConfigFolder = new File(event.getModConfigurationDirectory().getPath(), "WDMla");
-        File wdmlaConfig = new File(wdmlaConfigFolder, "WDMla.cfg");
+        File wdmlaConfig = new File(wdmlaConfigFolder, "addons_autogen.cfg");
         new WDMlaConfig(wdmlaConfig);
     }
 

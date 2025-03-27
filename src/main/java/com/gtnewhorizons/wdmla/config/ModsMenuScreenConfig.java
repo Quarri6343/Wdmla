@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -40,10 +41,11 @@ public class ModsMenuScreenConfig extends GuiConfig {
     }
 
     private static List<IConfigElement> getMainCategories() throws ConfigException {
-        List<IConfigElement> categories = ConfigurationManager.getConfigElementsMulti(true, General.class);
+        List<IConfigElement> categories = ConfigurationManager.getConfigElementsMulti(true,
+                General.class, AddonsConfig.class);
         categories.addAll(
                 Arrays.asList(
-                        new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_PROVIDER)),
+                        new ConfigElement<>(WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN)),
                         new ConfigElement<>(ConfigHandler.instance().config.getCategory(Configuration.CATEGORY_GENERAL)),
                         new ConfigElement<>(ConfigHandler.instance().config.getCategory(Constants.CATEGORY_MODULES)))
         );

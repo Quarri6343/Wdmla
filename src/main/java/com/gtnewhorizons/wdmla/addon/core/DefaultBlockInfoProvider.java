@@ -2,10 +2,10 @@ package com.gtnewhorizons.wdmla.addon.core;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,7 +14,6 @@ import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
-import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
@@ -46,17 +45,17 @@ public enum DefaultBlockInfoProvider implements IBlockComponentProvider {
         // step 2: construct an actual icon
         ITooltip row = tooltip.horizontal();
         ItemStack itemStack = overrideStack != null ? overrideStack : accessor.getItemForm();
-        if (config.getBoolean(Identifiers.CONFIG_SHOW_ICON)) {
+        if (AddonsConfig.core.defaultBlock.showIcon) {
             row.child(new ItemComponent(itemStack).doDrawOverlay(false).tag(Identifiers.ITEM_ICON));
         }
 
         ITooltip row_vertical = row.vertical();
-        if (config.getBoolean(Identifiers.CONFIG_SHOW_BLOCK_NAME)) {
+        if (AddonsConfig.core.defaultBlock.showBlockName) {
             row_vertical.horizontal().tag(Identifiers.ITEM_NAME_ROW).child(
                     ThemeHelper.INSTANCE.title(DisplayUtil.itemDisplayNameShort(itemStack)).tag(Identifiers.ITEM_NAME));
         }
         String modName = ModIdentification.nameFromStack(itemStack);
-        if (config.getBoolean(Identifiers.CONFIG_SHOW_MOD_NAME)) {
+        if (AddonsConfig.core.defaultBlock.showModName) {
             Theme theme = General.currentTheme.get();
             if (modName != null) {
                 row_vertical.child(

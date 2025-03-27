@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.core;
 import static mcp.mobius.waila.api.SpecialChars.GRAY;
 import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
@@ -36,7 +37,7 @@ public enum EntityHealthProvider implements IEntityComponentProvider {
         float health = livingEntity.getHealth() / 2.0f;
         float maxhp = livingEntity.getMaxHealth() / 2.0f;
 
-        int maxHPForText = config.getInteger(Identifiers.CONFIG_MAX_ENTITY_HEALTH_FOR_TEXT);
+        int maxHPForText = AddonsConfig.core.defaultEntity.maxEntityHealth;
         if (livingEntity.getMaxHealth() > maxHPForText) tooltip.text(
                 String.format(
                         "HP : " + WHITE + "%.0f" + GRAY + " / " + WHITE + "%.0f",

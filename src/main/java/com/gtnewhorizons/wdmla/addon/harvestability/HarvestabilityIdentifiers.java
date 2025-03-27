@@ -16,7 +16,7 @@ public class HarvestabilityIdentifiers {
     public static final ResourceLocation LEGACY_HARVESTABILITY = Harvestability("legacy");
 
     // config
-    public static final String CONFIG_CATEGORY = Identifiers.CONFIG_PROVIDER + ".harvestability";
+    public static final String CONFIG_CATEGORY = Identifiers.CONFIG_AUTOGEN + ".harvestability";
     public static final String CONFIG_CATEGORY_LANGKEY = "option.harvestability.category";
 
     public static final ConfigEntry<Boolean> CONFIG_HARVEST_LEVEL = new ConfigEntry<>(
