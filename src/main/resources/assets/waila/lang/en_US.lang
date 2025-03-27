@@ -162,14 +162,14 @@ option.core.show.entityname=Show Entity Name
 option.core.maxentityhealth=Maximum Number of Hearts Displayed
 
 # vanilla plugin options
-option.vanilla.spawntype=Spawner type
-option.vanilla.growthvalue=Growth value
+option.vanilla.category=Minecraft
+option.vanilla.show.petsitting=Show is Pet Sitting
+option.vanilla.show.petowner=Show Pet Owner
+option.vanilla.show.animalgrowth=Show Animal Growth
+option.vanilla.show.breedcooldown=Show Animal Breed Cooldown
 option.vanilla.leverstate=Lever state
 option.vanilla.repeater=Repeater delay
 option.vanilla.comparator=Comparator mode
-option.vanilla.redstone=Redstone power
-option.vanilla.jukebox=Jukebox disk
-option.vanilla.silverfish=Hide silverfish
 
 # waila harvestability options
 option.harvestability.category=Waila Harvestability

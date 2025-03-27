@@ -7,6 +7,7 @@ public class VanillaConfigProvider implements IConfigProvider {
 
     @Override
     public void loadConfig(IPluginConfig config) {
+        config.getCategory(VanillaIdentifiers.CONFIG_MINECRAFT).setLanguageKey(VanillaIdentifiers.CONFIG_MINECRAFT_LANGKEY);
         config.getBoolean(VanillaIdentifiers.CONFIG_SHOW_PET_SIT);
         config.getBoolean(VanillaIdentifiers.CONFIG_SHOW_PET_OWNER);
     }

@@ -25,24 +25,26 @@ public class VanillaIdentifiers {
     public static final ResourceLocation ANIMAL = MC("animal");
 
     // config
+    public static final String CONFIG_MINECRAFT = "minecraft";
+    public static final String CONFIG_MINECRAFT_LANGKEY = "option.vanilla.category";
     public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_SIT = new ConfigEntry<>(
             PetProvider.INSTANCE,
-            "ShowPetSitting",
+            "option.vanilla.show.petsitting",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_OWNER = new ConfigEntry<>(
             PetProvider.INSTANCE,
-            "ShowPetOwner",
+            "option.vanilla.show.petowner",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ANIMAL_GROWTH = new ConfigEntry<>(
             AnimalProvider.INSTANCE,
-            "ShowAnimalGrowth",
+            "option.vanilla.show.animalgrowth",
             true,
             "");
     public static final ConfigEntry<Boolean> CONFIG_SHOW_ANIMAL_BREED_COOLDOWN = new ConfigEntry<>(
             AnimalProvider.INSTANCE,
-            "ShowAnimalBreedCooldown",
+            "option.vanilla.show.breedcooldown",
             true,
             "");
 
