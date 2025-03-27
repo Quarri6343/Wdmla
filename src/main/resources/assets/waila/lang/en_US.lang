@@ -106,6 +106,7 @@ hud.msg.no=No
 hud.msg.beacon.primary=First Effect
 hud.msg.beacon.secondary=Second Effect
 hud.msg.bed.cansleep=Can Sleep
+hud.msg.pet.sit=Sitting
 
 hud.msg.offers=Offers
 hud.msg.demands=Demands

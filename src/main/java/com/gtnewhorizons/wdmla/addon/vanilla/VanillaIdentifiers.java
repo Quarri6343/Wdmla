@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.addon.vanilla;
 
+import com.gtnewhorizons.wdmla.api.ConfigEntry;
 import net.minecraft.util.ResourceLocation;
 
 public class VanillaIdentifiers {
@@ -20,8 +21,20 @@ public class VanillaIdentifiers {
     public static final ResourceLocation PLAYER_HEAD_HEADER = MC("player_head_header");
     public static final ResourceLocation BEACON = MC("beacon");
     public static final ResourceLocation BED = MC("bed");
+    public static final ResourceLocation PET = MC("pet");
 
     // config
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_SIT = new ConfigEntry<>(
+            PetProvider.INSTANCE,
+            "ShowPetSitting",
+            true,
+            "");
+    public static final ConfigEntry<Boolean> CONFIG_SHOW_PET_OWNER = new ConfigEntry<>(
+            PetProvider.INSTANCE,
+            "ShowPetOwner",
+            true,
+            "");
+
     private static ResourceLocation MC(String path) {
         return new ResourceLocation(path);
     }

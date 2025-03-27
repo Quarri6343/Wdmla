@@ -34,9 +34,11 @@ Still in alpha
   - wawla.info.showResistance
   - wawla.showEquipment
   - wawla.showMobArmor
+  - wawla.pets.showOwner
+  - wawla.pets.sitting
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 
   - Backported many codes under same license
 - [The One Probe](https://github.com/McJtyMods/TheOneProbe)
-  - Backported HUD codes under [MIT license](https://github.com/McJtyMods/TheOneProbe/blob/1.20/LICENCE)
+  - Backported HUD component codes under [MIT license](https://github.com/McJtyMods/TheOneProbe/blob/1.20/LICENCE)

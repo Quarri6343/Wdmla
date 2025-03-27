@@ -14,7 +14,7 @@ public final class ColorPalette {
 
     public static final int DEFAULT_JADE = 0xFFA0A0A0; //gray(same with waila)
     public static final int SUCCESS_JADE = 0xFF55FF55; //green
-    public static final int DEFAULT_TOP = 0xFFFFFFFF; //white
+    public static final int DEFAULT_TOP = 0xFFA0A0A0; //gray
     public static final int SUCCESS_TOP = 0xFF55FF55; //green
     public static final int WARNING_TOP = 0xFFFFFF55; //yellow
 
