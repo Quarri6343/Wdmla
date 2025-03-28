@@ -114,7 +114,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.power")))
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.power")))
                             .child(ThemeHelper.INSTANCE.info(String.format("%s", accessor.getMetadata()))));
         }
 

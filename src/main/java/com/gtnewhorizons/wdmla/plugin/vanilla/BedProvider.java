@@ -35,8 +35,8 @@ public enum BedProvider implements IBlockComponentProvider {
 
     private void appendCannotSleep(ITooltip tooltip) {
         tooltip.horizontal()
-                .text(String.format("%s: ", LangUtil.translateG("hud.msg.bed.cansleep")))
-                .child(ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.no")));
+                .text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.bed.cansleep")))
+                .child(ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.wdmla.no")));
     }
 
     @Override

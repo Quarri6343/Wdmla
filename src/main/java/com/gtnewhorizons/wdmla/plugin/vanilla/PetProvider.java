@@ -23,7 +23,7 @@ public enum PetProvider implements IEntityComponentProvider, IServerDataProvider
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if (accessor.getEntity() instanceof EntityTameable pet && pet.isTamed()
                 && PluginsConfig.vanilla.pet.showPetSit) {
-            tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.pet.sit"), String.valueOf(pet.isSitting())));
+            tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.pet.sit"), String.valueOf(pet.isSitting())));
         }
 
         String ownerUUID = accessor.getServerData().getString("OwnerUUID");
@@ -36,7 +36,7 @@ public enum PetProvider implements IEntityComponentProvider, IServerDataProvider
             return;
         }
 
-        tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.owner"), ownerString));
+        tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.owner"), ownerString));
     }
 
     @Override

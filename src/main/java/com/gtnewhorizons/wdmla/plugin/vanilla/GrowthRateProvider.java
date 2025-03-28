@@ -33,12 +33,12 @@ public enum GrowthRateProvider implements IBlockComponentProvider {
     private static void appendGrowthRate(ITooltip tooltip, float growthValue) {
         if (growthValue < 100.0) {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.growth")))
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.growth")))
                             .child(ThemeHelper.INSTANCE.info(String.format("%.0f %%", growthValue))));
         } else {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.growth"))).child(
-                            ThemeHelper.INSTANCE.success(String.format("%s", LangUtil.translateG("hud.msg.mature")))));
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.growth"))).child(
+                            ThemeHelper.INSTANCE.success(String.format("%s", LangUtil.translateG("hud.msg.wdmla.mature")))));
         }
     }
 

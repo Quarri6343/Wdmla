@@ -23,25 +23,25 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
 
         if (block == Blocks.lever && PluginsConfig.vanilla.redstoneState.showLeverState) {
             IComponent redstoneOn = (accessor.getMetadata() & 8) == 0
-                    ? ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.off"))
-                    : ThemeHelper.INSTANCE.success(LangUtil.translateG("hud.msg.on"));
+                    ? ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.wdmla.off"))
+                    : ThemeHelper.INSTANCE.success(LangUtil.translateG("hud.msg.wdmla.on"));
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.state")))
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.state")))
                             .child(redstoneOn));
         } else if (((block == Blocks.unpowered_repeater) || (block == Blocks.powered_repeater)) && PluginsConfig.vanilla.redstoneState.showRepeaterDelay) {
             int tick = (accessor.getMetadata() >> 2) + 1;
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.delay"))).child(
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.delay"))).child(
                             ThemeHelper.INSTANCE.info(
                                     String.format(
                                             "%s %s",
                                             tick,
-                                            LangUtil.translateG("hud.msg.tick")))));
+                                            LangUtil.translateG("hud.msg.wdmla.tick")))));
         } else if (((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator)) && PluginsConfig.vanilla.redstoneState.showComparatorMode) {
-            String mode = ((accessor.getMetadata() >> 2) & 1) == 0 ? LangUtil.translateG("hud.msg.comparator")
-                    : LangUtil.translateG("hud.msg.substractor");
+            String mode = ((accessor.getMetadata() >> 2) & 1) == 0 ? LangUtil.translateG("hud.msg.wdmla.comparator")
+                    : LangUtil.translateG("hud.msg.wdmla.substractor");
             tooltip.child(
-                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.mode"), mode));
+                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.mode"), mode));
         }
     }
 

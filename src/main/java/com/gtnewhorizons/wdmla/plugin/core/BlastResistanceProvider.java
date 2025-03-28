@@ -16,7 +16,7 @@ public enum BlastResistanceProvider implements IBlockComponentProvider {
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         float blastResistance = accessor.getBlock().getExplosionResistance(null);
         tooltip.child(
-                ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.blast_resistance"), String.format("%.0f", blastResistance)));
+                ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.blast_resistance"), String.format("%.0f", blastResistance)));
     }
 
     @Override

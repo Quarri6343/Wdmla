@@ -22,7 +22,7 @@ public enum HardnessProvider implements IBlockComponentProvider {
                 accessor.getHitResult().blockY,
                 accessor.getHitResult().blockZ);
         tooltip.child(
-                ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.hardness"), String.format("%.0f", hardness)));
+                ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.hardness"), String.format("%.0f", hardness)));
     }
 
     @Override

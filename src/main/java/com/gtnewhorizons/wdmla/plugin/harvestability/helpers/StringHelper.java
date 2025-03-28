@@ -23,7 +23,7 @@ public class StringHelper {
             return ProxyTinkersConstruct.getTicHarvestLevelName(num);
         }
 
-        String unlocalized = "hud.msg.harvestlevel" + (num + 1);
+        String unlocalized = "hud.msg.wdmla.harvestlevel" + (num + 1);
 
         if (StatCollector.canTranslate(unlocalized)) return StatCollector.translateToLocal(unlocalized);
 

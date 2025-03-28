@@ -30,7 +30,7 @@ public class WDMlaConfig extends Configuration {
     }
 
     public void reloadConfig() {
-        getCategory(Identifiers.CONFIG_AUTOGEN).setLanguageKey("option.autogen.category");
+        getCategory(Identifiers.CONFIG_AUTOGEN).setLanguageKey("option.wdmla.autogen.category");
         getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE).setLanguageKey("provider.wdmla.core.category");
         reloadProviderAutogenConfigs();
     }
@@ -51,7 +51,7 @@ public class WDMlaConfig extends Configuration {
 
         return get(
                 provider.getConfigCategory(),
-                "option.autogen.enabled",
+                "option.wdmla.autogen.enabled",
                 provider.enabledByDefault(),
                 "").getBoolean();
     }
@@ -63,7 +63,7 @@ public class WDMlaConfig extends Configuration {
 
         return get(
                         provider.getConfigCategory(),
-                        "option.autogen.priority",
+                        "option.wdmla.autogen.priority",
                         provider.getDefaultPriority(),
                         "").getInt();
     }

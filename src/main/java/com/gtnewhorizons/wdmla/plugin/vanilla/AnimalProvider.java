@@ -27,8 +27,8 @@ public enum AnimalProvider implements IEntityComponentProvider {
         if(accessor.getEntity() instanceof EntityAnimal animal && animal.isChild() && animal.getGrowingAge() != 0) {
             int absTimeToGrowInSeconds = Math.abs(animal.getGrowingAge() / 20);
             tooltip.child(
-                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.animal.growth"),
-                            absTimeToGrowInSeconds + StringUtils.EMPTY + LangUtil.translateG("hud.msg.seconds"))
+                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.animal.growth"),
+                            absTimeToGrowInSeconds + StringUtils.EMPTY + LangUtil.translateG("hud.msg.wdmla.seconds"))
             );
         }
     }
@@ -41,8 +41,8 @@ public enum AnimalProvider implements IEntityComponentProvider {
         if(accessor.getEntity() instanceof EntityAnimal animal && !animal.isChild() && animal.getGrowingAge() != 0) {
             int absTimeBreedCooldownInSeconds = Math.abs(animal.getGrowingAge() / 20);
             tooltip.child(
-                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.animal.breedcooldown"),
-                            absTimeBreedCooldownInSeconds + StringUtils.EMPTY + LangUtil.translateG("hud.msg.seconds"))
+                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.animal.breedcooldown"),
+                            absTimeBreedCooldownInSeconds + StringUtils.EMPTY + LangUtil.translateG("hud.msg.wdmla.seconds"))
             );
         }
     }

@@ -4,7 +4,7 @@ import com.gtnewhorizon.gtnhlib.config.Config;
 import com.gtnewhorizons.wdmla.WDMla;
 
 @Config(modid = WDMla.MODID, category = "plugins", configSubDirectory = "WDMla", filename = "plugins")
-@Config.LangKey("option.plugin.category")
+@Config.LangKey("option.wdmla.plugin.category")
 public class PluginsConfig {
 
     public static final Core core = new Core();
@@ -22,15 +22,15 @@ public class PluginsConfig {
         @Config.LangKey("provider.wdmla.core.default.block")
         public static class DefaultBlock {
 
-            @Config.LangKey("option.core.show.icon")
+            @Config.LangKey("option.wdmla.core.show.icon")
             @Config.DefaultBoolean(true)
             public boolean showIcon;
 
-            @Config.LangKey("option.core.show.blockname")
+            @Config.LangKey("option.wdmla.core.show.blockname")
             @Config.DefaultBoolean(true)
             public boolean showBlockName;
 
-            @Config.LangKey("option.core.show.modname")
+            @Config.LangKey("option.wdmla.core.show.modname")
             @Config.DefaultBoolean(true)
             public boolean showModName;
         }
@@ -38,11 +38,11 @@ public class PluginsConfig {
         @Config.LangKey("provider.wdmla.core.default.entity")
         public static class DefaultEntity {
 
-            @Config.LangKey("option.core.show.entityname")
+            @Config.LangKey("option.wdmla.core.show.entityname")
             @Config.DefaultBoolean(true)
             public boolean showEntityName;
 
-            @Config.LangKey("option.core.show.modname")
+            @Config.LangKey("option.wdmla.core.show.modname")
             @Config.DefaultBoolean(true)
             public boolean showModName;
         }
@@ -57,36 +57,36 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.minecraft.redstone.state")
         public static class RedstoneState {
-            @Config.LangKey("option.vanilla.leverstate")
+            @Config.LangKey("option.wdmla.vanilla.leverstate")
             @Config.DefaultBoolean(true)
             public boolean showLeverState;
 
-            @Config.LangKey("option.vanilla.repeater")
+            @Config.LangKey("option.wdmla.vanilla.repeater")
             @Config.DefaultBoolean(true)
             public boolean showRepeaterDelay;
 
-            @Config.LangKey("option.vanilla.comparator")
+            @Config.LangKey("option.wdmla.vanilla.comparator")
             @Config.DefaultBoolean(true)
             public boolean showComparatorMode;
         }
         @Config.LangKey("provider.wdmla.minecraft.pet")
         public static class Pet {
-            @Config.LangKey("option.vanilla.show.petsitting")
+            @Config.LangKey("option.wdmla.vanilla.show.petsitting")
             @Config.DefaultBoolean(true)
             public boolean showPetSit;
 
-            @Config.LangKey("option.vanilla.show.petowner")
+            @Config.LangKey("option.wdmla.vanilla.show.petowner")
             @Config.DefaultBoolean(true)
             public boolean showPetOwner;
         }
 
         @Config.LangKey("provider.wdmla.minecraft.animal")
         public static class Animal {
-            @Config.LangKey("option.vanilla.show.animalgrowth")
+            @Config.LangKey("option.wdmla.vanilla.show.animalgrowth")
             @Config.DefaultBoolean(true)
             public boolean showAnimalGrowth;
 
-            @Config.LangKey("option.vanilla.show.breedcooldown")
+            @Config.LangKey("option.wdmla.vanilla.show.breedcooldown")
             @Config.DefaultBoolean(true)
             public boolean showBreedCooldown;
         }
@@ -101,87 +101,87 @@ public class PluginsConfig {
         @Config.LangKey("provider.wdmla.harvestability.legacy")
         public static class Legacy {
 
-            @Config.LangKey("option.harvestability.harvestlevel")
+            @Config.LangKey("option.wdmla.harvestability.harvestlevel")
             @Config.DefaultBoolean(true)
             public boolean harvestLevel;
 
-            @Config.LangKey("option.harvestability.harvestlevelnum")
+            @Config.LangKey("option.wdmla.harvestability.harvestlevelnum")
             @Config.DefaultBoolean(false)
             public boolean harvestLevelNum;
 
-            @Config.LangKey("option.harvestability.effectivetool")
+            @Config.LangKey("option.wdmla.harvestability.effectivetool")
             @Config.DefaultBoolean(true)
             public boolean effectiveTool;
 
-            @Config.LangKey("option.harvestability.currentlyharvestable")
+            @Config.LangKey("option.wdmla.harvestability.currentlyharvestable")
             @Config.DefaultBoolean(true)
             public boolean currentlyHarvestable;
 
-            @Config.LangKey("option.harvestability.harvestlevel.sneakingonly")
+            @Config.LangKey("option.wdmla.harvestability.harvestlevel.sneakingonly")
             @Config.DefaultBoolean(false)
             public boolean harvestLevelSneakingOnly;
 
-            @Config.LangKey("option.harvestability.harvestlevelnum.sneakingonly")
+            @Config.LangKey("option.wdmla.harvestability.harvestlevelnum.sneakingonly")
             @Config.DefaultBoolean(false)
             public boolean harvestLevelNumSneakingOnly;
 
-            @Config.LangKey("option.harvestability.effectivetool.sneakingonly")
+            @Config.LangKey("option.wdmla.harvestability.effectivetool.sneakingonly")
             @Config.DefaultBoolean(false)
             public boolean effectiveToolSneakingOnly;
 
-            @Config.LangKey("option.harvestability.currentlyharvestable.sneakingonly")
+            @Config.LangKey("option.wdmla.harvestability.currentlyharvestable.sneakingonly")
             @Config.DefaultBoolean(false)
             public boolean currentlyHarvestableSneakingOnly;
 
-            @Config.LangKey("option.harvestability.oresonly")
+            @Config.LangKey("option.wdmla.harvestability.oresonly")
             @Config.DefaultBoolean(false)
             public boolean oresOnly;
 
-            @Config.LangKey("option.harvestability.minimal")
+            @Config.LangKey("option.wdmla.harvestability.minimal")
             @Config.DefaultBoolean(false)
             public boolean minimal;
 
-            @Config.LangKey("option.harvestability.unharvestableonly")
+            @Config.LangKey("option.wdmla.harvestability.unharvestableonly")
             @Config.DefaultBoolean(false)
             public boolean unHarvestableOnly;
 
-            @Config.LangKey("option.harvestability.toolrequiredonly")
+            @Config.LangKey("option.wdmla.harvestability.toolrequiredonly")
             @Config.DefaultBoolean(true)
             public boolean toolRequiredOnly;
 
-            @Config.LangKey("option.harvestability.shearability")
+            @Config.LangKey("option.wdmla.harvestability.shearability")
             @Config.DefaultBoolean(true)
             public boolean shearability;
 
-            @Config.LangKey("option.harvestability.shearability.sneakingonly")
+            @Config.LangKey("option.wdmla.harvestability.shearability.sneakingonly")
             @Config.DefaultBoolean(false)
             public boolean shearabilitySneakingOnly;
 
-            @Config.LangKey("option.harvestability.silktouchability")
+            @Config.LangKey("option.wdmla.harvestability.silktouchability")
             @Config.DefaultBoolean(true)
             public boolean silkTouchability;
 
-            @Config.LangKey("option.harvestability.silktouchability.sneakingonly")
+            @Config.LangKey("option.wdmla.harvestability.silktouchability.sneakingonly")
             @Config.DefaultBoolean(false)
             public boolean silkTouchabilitySneakingOnly;
 
-            @Config.LangKey("option.harvestability.minimalseparator.string")
+            @Config.LangKey("option.wdmla.harvestability.minimalseparator.string")
             @Config.DefaultString(" : ")
             public String minimalSeparatorString;
 
-            @Config.LangKey("option.harvestability.currentlyharvestable.string")
+            @Config.LangKey("option.wdmla.harvestability.currentlyharvestable.string")
             @Config.DefaultString("\u2714")
             public String currentlyHarvestableString;
 
-            @Config.LangKey("option.harvestability.notcurrentlyharvestable.string")
+            @Config.LangKey("option.wdmla.harvestability.notcurrentlyharvestable.string")
             @Config.DefaultString("\u2718")
             public String notcurrentlyHarvestableString;
 
-            @Config.LangKey("option.harvestability.shearability.string")
+            @Config.LangKey("option.wdmla.harvestability.shearability.string")
             @Config.DefaultString("\u2702")
             public String shearabilityString;
 
-            @Config.LangKey("option.harvestability.silktouchability.string")
+            @Config.LangKey("option.wdmla.harvestability.silktouchability.string")
             @Config.DefaultString("\u2712")
             public String silkTouchabilityString;
         }
@@ -236,44 +236,44 @@ public class PluginsConfig {
                 public int harvestLevel9;
             }
 
-            @Config.LangKey("option.harvestability.currentlyharvestable.string")
+            @Config.LangKey("option.wdmla.harvestability.currentlyharvestable.string")
             @Config.DefaultString("✔")
             @Config.Comment("The string below the Harvest Tool icon after the item name")
             public String currentlyHarvestableString;
 
-            @Config.LangKey("option.harvestability.notcurrentlyharvestable.string")
+            @Config.LangKey("option.wdmla.harvestability.notcurrentlyharvestable.string")
             @Config.DefaultString("✕")
             @Config.Comment("The string below the Harvest Tool icon after the item name")
             public String notCurrentlyHarvestableString;
 
-            @Config.LangKey("option.harvestability.shearability.item")
+            @Config.LangKey("option.wdmla.harvestability.shearability.item")
             @Config.DefaultString("minecraft:shears")
             @Config.Comment("The icon after an item represents that the item is shearable")
             public String shearabilityItem;
 
-            @Config.LangKey("option.harvestability.silktouchability.item")
+            @Config.LangKey("option.wdmla.harvestability.silktouchability.item")
             @Config.DefaultString("minecraft:grass")
             @Config.Comment("The icon after an item represents that the item can be harvested by silk touch")
             public String silkTouchabilityItem;
 
-            @Config.LangKey("option.harvestability.harvestlevelnum")
+            @Config.LangKey("option.wdmla.harvestability.harvestlevelnum")
             @Config.DefaultBoolean(false)
             @Config.Comment("Shows the Harvest Level number text without enabling legacy mode")
             public boolean modernHarvestLevelNum;
 
-            @Config.LangKey("option.harvestability.currentlyHarvestable.icon")
+            @Config.LangKey("option.wdmla.harvestability.currentlyHarvestable.icon")
             @Config.DefaultBoolean(true)
             public boolean modernCurrentlyHarvestableIcon;
 
-            @Config.LangKey("option.harvestability.effectivetool.icon")
+            @Config.LangKey("option.wdmla.harvestability.effectivetool.icon")
             @Config.DefaultBoolean(true)
             public boolean modernEffectiveToolIcon;
 
-            @Config.LangKey("option.harvestability.shearability.icon")
+            @Config.LangKey("option.wdmla.harvestability.shearability.icon")
             @Config.DefaultBoolean(true)
             public boolean modernShowShearabilityIcon;
 
-            @Config.LangKey("option.harvestability.silktouchability.icon")
+            @Config.LangKey("option.wdmla.harvestability.silktouchability.icon")
             @Config.DefaultBoolean(true)
             public boolean modernShowSilkTouchabilityIcon;
         }

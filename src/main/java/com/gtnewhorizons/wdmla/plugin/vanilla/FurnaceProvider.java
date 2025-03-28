@@ -53,8 +53,8 @@ public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvi
             IComponent legacyProcessText = null;
             if (cookTime != 0) {
                 legacyProcessText = ThemeHelper.INSTANCE.value(
-                        LangUtil.translateG("hud.msg.progress"),
-                        String.format(LangUtil.translateG("hud.msg.progress.seconds"), cookTime, 10));
+                        LangUtil.translateG("hud.msg.wdmla.progress"),
+                        String.format(LangUtil.translateG("hud.msg.wdmla.progress.seconds"), cookTime, 10));
             }
             IComponent progressComponent = ThemeHelper.INSTANCE.itemProgress(
                     Arrays.asList(items[0], items[1]),

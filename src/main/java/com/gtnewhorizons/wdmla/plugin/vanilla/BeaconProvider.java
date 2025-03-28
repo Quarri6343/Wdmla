@@ -20,13 +20,13 @@ public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvid
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         int levels = accessor.getServerData().getInteger("Levels");
         tooltip.child(
-                new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.level")))
+                new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.level")))
                         .child(ThemeHelper.INSTANCE.info(String.format("%d", levels))));
 
         int primary = accessor.getServerData().getInteger("Primary");
         if (primary > 0) {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.beacon.primary")))
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.beacon.primary")))
                             .child(
                                     ThemeHelper.INSTANCE
                                             .info(LangUtil.translateG(Potion.potionTypes[primary].getName()))));
@@ -35,7 +35,7 @@ public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvid
         int secondary = accessor.getServerData().getInteger("Secondary");
         if (secondary > 0) {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.beacon.secondary")))
+                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.beacon.secondary")))
                             .child(
                                     ThemeHelper.INSTANCE
                                             .info(LangUtil.translateG(Potion.potionTypes[secondary].getName()))));
