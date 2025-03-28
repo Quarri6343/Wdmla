@@ -31,9 +31,9 @@ public class OverlayConfig {
                 + ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_GRADIENT2, 0);
         OverlayConfig.fontcolor = ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FONTCOLOR, 0);
 
-        DefaultThemes.NONE.get().bgColor = OverlayConfig.bgcolor;
-        DefaultThemes.NONE.get().bgGradient1 = OverlayConfig.gradient1;
-        DefaultThemes.NONE.get().bgGradient2 = OverlayConfig.gradient2;
-        DefaultThemes.NONE.get().textColors._default = OverlayConfig.fontcolor;
+        DefaultThemes.CUSTOM.get().bgColor = OverlayConfig.bgcolor;
+        DefaultThemes.CUSTOM.get().bgGradient1 = OverlayConfig.gradient1;
+        DefaultThemes.CUSTOM.get().bgGradient2 = OverlayConfig.gradient2;
+        DefaultThemes.CUSTOM.get().textColors._default = OverlayConfig.fontcolor;
     }
 }

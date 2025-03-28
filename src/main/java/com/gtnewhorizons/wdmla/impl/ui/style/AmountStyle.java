@@ -1,10 +1,7 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
-import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 public class AmountStyle implements IAmountStyle {
 
@@ -21,11 +18,10 @@ public class AmountStyle implements IAmountStyle {
     }
 
     public AmountStyle() {
-        IAmountStyle style = General.currentTheme.get().amountStyle;
-        this.borderColor = style.getBorderColor();
-        this.backgroundColor = style.getBackgroundColor();
-        this.filledColor = style.getFilledColor();
-        this.alternateFilledColor = style.getAlternateFilledColor();
+        this.borderColor = ColorPalette.AMOUNT_BORDER_WAILA;
+        this.backgroundColor = ColorPalette.AMOUNT_BACKGROUND_WAILA;
+        this.filledColor = ColorPalette.AMOUNT_FILLED_WAILA;
+        this.alternateFilledColor =ColorPalette.AMOUNT_FILLED_ALTERNATE_WAILA;
     }
 
     public AmountStyle borderColor(int borderColor) {

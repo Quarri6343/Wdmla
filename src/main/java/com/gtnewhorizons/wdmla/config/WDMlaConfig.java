@@ -2,6 +2,9 @@ package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
 
+import com.gtnewhorizons.wdmla.api.TextColors;
+import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
@@ -33,6 +36,7 @@ public class WDMlaConfig extends Configuration {
         getCategory(Identifiers.CONFIG_AUTOGEN).setLanguageKey("option.wdmla.autogen.category");
         getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE).setLanguageKey("provider.wdmla.core.category");
         reloadProviderAutogenConfigs();
+        reloadTheme();
     }
 
     public void reloadProviderAutogenConfigs() {
@@ -66,5 +70,19 @@ public class WDMlaConfig extends Configuration {
                         "option.wdmla.autogen.priority",
                         provider.getDefaultPriority(),
                         "").getInt();
+    }
+
+    private void reloadTheme() {
+        Theme custom = DefaultThemes.CUSTOM.get();
+        custom.textColors = new TextColors(
+                0,
+                General.textColor.info,
+                General.textColor.title,
+                General.textColor.success,
+                General.textColor.warning,
+                General.textColor.danger,
+                General.textColor.failure,
+                General.textColor.modName
+        );
     }
 }

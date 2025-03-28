@@ -7,7 +7,7 @@ import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
 public enum DefaultThemes {
-    NONE(
+    CUSTOM(
             0,
             0,
             0,
@@ -33,13 +33,7 @@ public enum DefaultThemes {
 
     DefaultThemes(int bgColor, int gradient1, int gradient2, TextColors textColors, PanelStyle panelStyle){
         this.theme = new Theme(bgColor, gradient1, gradient2,
-                new AmountStyle(ColorPalette.AMOUNT_BORDER_WAILA,
-                        ColorPalette.AMOUNT_BACKGROUND_WAILA,
-                        ColorPalette.AMOUNT_FILLED_WAILA,
-                        ColorPalette.AMOUNT_FILLED_ALTERNATE_WAILA),
                 textColors,
-                ColorPalette.BREAK_PROGRESS_DEFAULT,
-                ColorPalette.BREAK_PROGRESS_FAILURE,
                 panelStyle);
     }
 
