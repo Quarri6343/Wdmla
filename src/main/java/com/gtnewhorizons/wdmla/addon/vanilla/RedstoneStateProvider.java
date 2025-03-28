@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -19,7 +18,7 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         Block block = accessor.getBlock();
 
         if (block == Blocks.lever && AddonsConfig.vanilla.redstoneState.showLeverState) {

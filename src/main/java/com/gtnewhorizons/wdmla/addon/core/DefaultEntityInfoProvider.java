@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -34,7 +33,7 @@ public enum DefaultEntityInfoProvider implements IEntityComponentProvider {
     }
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if (AddonsConfig.core.defaultEntity.showEntityName) {
             tooltip.child(
                     new TextComponent(WHITE + accessor.getEntity().getCommandSenderName())

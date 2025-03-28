@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.addon.vanilla;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.cbcore.LangUtil;
@@ -13,7 +12,7 @@ public enum BedProvider implements IBlockComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         EntityPlayer player = accessor.getPlayer();
 
         if (player.isPlayerSleeping() || !player.isEntityAlive()) {

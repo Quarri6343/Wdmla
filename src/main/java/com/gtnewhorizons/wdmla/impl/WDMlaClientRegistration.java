@@ -23,7 +23,6 @@ import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessorImpl;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.IConfigProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 
@@ -39,8 +38,6 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     private final List<IComponentProvider<?>> allProviders;
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
-
-    public final List<IConfigProvider> configProviders = new ArrayList<>();
 
     private ClientRegistrationSession session;
 
@@ -153,9 +150,5 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     public boolean isSessionActive() {
         return session != null && session.isActive();
-    }
-
-    public void registerConfigComponent(IConfigProvider provider) {
-        configProviders.add(provider);
     }
 }

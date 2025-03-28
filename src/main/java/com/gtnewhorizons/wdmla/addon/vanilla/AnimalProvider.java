@@ -3,7 +3,6 @@ package com.gtnewhorizons.wdmla.addon.vanilla;
 import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.cbcore.LangUtil;
@@ -15,12 +14,12 @@ public enum AnimalProvider implements IEntityComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-        ageTooltip(tooltip, accessor, config);
-        breedCooldownTooltip(tooltip, accessor, config);
+    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
+        ageTooltip(tooltip, accessor);
+        breedCooldownTooltip(tooltip, accessor);
     }
 
-    private void ageTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
+    private void ageTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if(!AddonsConfig.vanilla.animal.showAnimalGrowth) {
             return;
         }
@@ -34,7 +33,7 @@ public enum AnimalProvider implements IEntityComponentProvider {
         }
     }
 
-    private void breedCooldownTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
+    private void breedCooldownTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if(!AddonsConfig.vanilla.animal.showBreedCooldown) {
             return;
         }

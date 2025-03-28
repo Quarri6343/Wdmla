@@ -80,7 +80,7 @@ public class BlockAccessorClientHandler implements AccessorClientHandler<BlockAc
                 accessor.getBlock(),
                 iComponentProvider -> WDMlaConfig.instance().isProviderEnabled(iComponentProvider))) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
-            provider.appendTooltip(middleTooltip, accessor, WDMlaConfig.instance());
+            provider.appendTooltip(middleTooltip, accessor);
         }
 
         // step 3: gather raw tooltip lines from the old Waila api (this may include Waila regex which represents

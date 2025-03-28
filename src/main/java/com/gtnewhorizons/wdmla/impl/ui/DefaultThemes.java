@@ -8,10 +8,10 @@ import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
 public enum DefaultThemes {
     NONE(
-            ColorPalette.BG_COLOR_WAILA,
-            ColorPalette.BG_GRADIENT1_WAILA,
-            ColorPalette.BG_GRADIENT2_WAILA,
-            new TextColors(ColorPalette.DEFAULT, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS,
+            0,
+            0,
+            0,
+            new TextColors(0, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS,
                     ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
             new PanelStyle(2, 2)),
     JADE(

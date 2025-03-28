@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -19,7 +18,7 @@ public enum GrowableHeaderProvider implements IBlockComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (accessor.getBlock().equals(Blocks.wheat)) {
             ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, LangUtil.translateG("hud.item.wheatcrop"));
         } else if (accessor.getBlock().equals(Blocks.carrots)) {

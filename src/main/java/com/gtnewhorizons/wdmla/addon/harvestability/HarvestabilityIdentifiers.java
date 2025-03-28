@@ -2,8 +2,6 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 
 import net.minecraft.util.ResourceLocation;
 
-import com.gtnewhorizons.wdmla.api.ConfigEntry;
-
 public class HarvestabilityIdentifiers {
 
     // component tag

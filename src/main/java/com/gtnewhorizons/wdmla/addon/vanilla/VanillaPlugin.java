@@ -34,7 +34,6 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
@@ -94,7 +93,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         INSTANCE;
 
         @Override
-        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Items.redstone));
         }
 
@@ -113,7 +112,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         INSTANCE;
 
         @Override
-        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             tooltip.child(
                     new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.power")))
                             .child(ThemeHelper.INSTANCE.info(String.format("%s", accessor.getMetadata()))));
@@ -129,7 +128,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         INSTANCE;
 
         @Override
-        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+        public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             // override lit redstone
             ItemStack redstoneOre = new ItemStack(Blocks.redstone_ore);
             ThemeHelper.INSTANCE.overrideTooltipHeader(tooltip, redstoneOre);

@@ -26,6 +26,4 @@ public interface IWDMlaClientRegistration {
     <T extends Accessor> void registerAccessorHandler(Class<T> clazz, AccessorClientHandler<T> handler);
 
     AccessorClientHandler<Accessor> getAccessorHandler(Class<? extends Accessor> clazz);
-
-    void registerConfigComponent(IConfigProvider provider);
 }

@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.test;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -22,7 +21,7 @@ public enum TestThemeBlockProvider implements IBlockComponentProvider {
     }
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         tooltip.text("normal");
         tooltip.child(ThemeHelper.INSTANCE.info("This is info"));
         tooltip.child(ThemeHelper.INSTANCE.title("This is title"));

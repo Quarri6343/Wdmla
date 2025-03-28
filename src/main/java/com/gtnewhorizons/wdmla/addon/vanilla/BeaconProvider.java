@@ -6,7 +6,6 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -18,7 +17,7 @@ public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvid
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         int levels = accessor.getServerData().getInteger("Levels");
         tooltip.child(
                 new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.level")))

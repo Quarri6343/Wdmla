@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Mods;
 
 public class ToolHelper {
@@ -23,10 +22,10 @@ public class ToolHelper {
         return block.getMaterial().isToolNotRequired() || tool.func_150998_b(block); // func_150998_b = canHarvestBlock
     }
 
-    public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel, IPluginConfig config) {
+    public static ItemStack getEffectiveToolIcon(String effectiveTool, int harvestLevel) {
         switch (effectiveTool) {
             case TOOL_PICKAXE:
-                return getEffectivePickaxeIcon(harvestLevel, config);
+                return getEffectivePickaxeIcon(harvestLevel);
             case TOOL_SHOVEL:
                 return new ItemStack(Items.wooden_shovel);
             case TOOL_AXE:
@@ -42,9 +41,9 @@ public class ToolHelper {
         }
     }
 
-    public static ItemStack getEffectivePickaxeIcon(int harvestLevel, IPluginConfig config) {
+    public static ItemStack getEffectivePickaxeIcon(int harvestLevel) {
         if (Mods.TCONSTUCT.isLoaded()) {
-            return ProxyTinkersConstruct.getEffectivePickaxeIcon(harvestLevel, config);
+            return ProxyTinkersConstruct.getEffectivePickaxeIcon(harvestLevel);
         }
         return getVanillaEffectivePickaxeIcon(harvestLevel);
     }

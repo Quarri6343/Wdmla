@@ -21,9 +21,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
@@ -60,7 +58,7 @@ public class BlockHelper {
     }
 
     public static IComponent getShearabilityString(EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IPluginConfig config) {
+            MovingObjectPosition position) {
         boolean isSneaking = player.isSneaking();
         boolean showShearability = AddonsConfig.harvestability.legacy.shearability
                 && (!AddonsConfig.harvestability.legacy.shearabilitySneakingOnly || isSneaking);
@@ -79,7 +77,7 @@ public class BlockHelper {
     }
 
     public static IComponent getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IPluginConfig config) {
+            MovingObjectPosition position) {
         boolean isSneaking = player.isSneaking();
         boolean showSilkTouchability = AddonsConfig.harvestability.legacy.silkTouchability
                 && (!AddonsConfig.harvestability.legacy.silkTouchabilitySneakingOnly || isSneaking);

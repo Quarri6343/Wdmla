@@ -24,7 +24,6 @@ import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -53,7 +52,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())) {
             return;
         }
@@ -67,12 +66,11 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                 accessor.getPlayer(),
                 effectiveBlock,
                 effectiveMeta,
-                accessor.getHitResult(),
-                config);
-        updateTooltip(strings, tooltip, config);
+                accessor.getHitResult());
+        updateTooltip(strings, tooltip);
     }
 
-    private void updateTooltip(List<IComponent> stringParts, ITooltip tooltip, IPluginConfig config) {
+    private void updateTooltip(List<IComponent> stringParts, ITooltip tooltip) {
         boolean minimalLayout = AddonsConfig.harvestability.legacy.minimal;
         String separator = AddonsConfig.harvestability.legacy.minimalSeparatorString;
         if (!stringParts.isEmpty()) {
@@ -85,7 +83,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     public List<IComponent> getLegacyHarvestability(EntityPlayer player, Block block, int meta,
-            MovingObjectPosition position, IPluginConfig config) {
+            MovingObjectPosition position) {
         List<IComponent> components = new ArrayList<>();
         boolean minimalLayout = AddonsConfig.harvestability.legacy.minimal;
         boolean isSneaking = player.isSneaking();
@@ -140,8 +138,8 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
             if (effectiveTool != null && harvestLevel < 0) harvestLevel = 0;
             boolean blockHasEffectiveTools = harvestLevel >= 0 && effectiveTool != null;
 
-            IComponent shearability = BlockHelper.getShearabilityString(player, block, meta, position, config);
-            IComponent silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position, config);
+            IComponent shearability = BlockHelper.getShearabilityString(player, block, meta, position);
+            IComponent silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position);
 
             if (toolRequiredOnly && block.getMaterial().isToolNotRequired()
                     && !blockHasEffectiveTools

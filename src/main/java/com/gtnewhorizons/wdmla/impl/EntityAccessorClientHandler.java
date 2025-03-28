@@ -57,7 +57,7 @@ public class EntityAccessorClientHandler implements AccessorClientHandler<Entity
                 accessor.getEntity(),
                 iComponentProvider -> WDMlaConfig.instance().isProviderEnabled(iComponentProvider))) {
             ITooltip middleTooltip = tooltipProvider.apply(provider);
-            provider.appendTooltip(middleTooltip, accessor, WDMlaConfig.instance());
+            provider.appendTooltip(middleTooltip, accessor);
         }
 
         // step 2: setup legacy DataAccessor with legacy WailaEntity

@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -17,7 +16,7 @@ public enum TestEntityProvider implements IEntityComponentProvider, IServerDataP
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         int random = accessor.getServerData().getInteger("random");
         tooltip.child(new TextComponent("Recieved Server Entity Data: " + random));
     }

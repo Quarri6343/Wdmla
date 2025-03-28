@@ -7,7 +7,6 @@ import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -17,7 +16,7 @@ public enum PlayerHeadHeaderProvider implements IBlockComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (accessor.getTileEntity() instanceof TileEntitySkull && accessor.getServerData().hasKey("Owner")) {
             GameProfile profile = NBTUtil.func_152459_a(accessor.getServerData().getCompoundTag("Owner"));
             if (profile == null) {

@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import com.gtnewhorizon.gtnhlib.compat.Mods;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
@@ -21,7 +20,7 @@ public enum MobSpawnerHeaderProvider implements IBlockComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (accessor.getTileEntity() instanceof TileEntityMobSpawner spawnerTile) {
             String spawnerName = DisplayUtil.itemDisplayNameShort(accessor.getItemForm());
             String mobName = spawnerTile.func_145881_a().getEntityNameToSpawn();

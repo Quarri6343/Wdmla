@@ -14,8 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeHooks;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityIdentifiers;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Mods;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -125,7 +123,7 @@ public class ProxyTinkersConstruct {
      * See: <a href=
      * "https://github.com/GTNewHorizons/TinkersConstruct/blob/master/src/main/java/tconstruct/tools/TinkerTools.java#L1771">...</a>
      */
-    public static ItemStack getEffectivePickaxeIcon(int num, IPluginConfig config) {
+    public static ItemStack getEffectivePickaxeIcon(int num) {
         AddonsConfig.Harvestability.Modern.TinkersConstruct tiCConfig = AddonsConfig.harvestability.modern.tinkersConstruct;
         return switch (num) {
             case 0 -> creativePickaxes.get(tiCConfig.harvestLevel0);

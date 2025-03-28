@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.addon.core;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -15,7 +14,7 @@ public enum EntityArmorProvider implements IEntityComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         float armorValue = ((EntityLiving) accessor.getEntity()).getTotalArmorValue() / 2.0f;
         if (armorValue > 0) {
             if(accessor.getEntity() instanceof EntityPlayer) {

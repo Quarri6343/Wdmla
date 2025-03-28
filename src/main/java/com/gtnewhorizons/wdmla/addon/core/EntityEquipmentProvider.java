@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.addon.core;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.api.IPluginConfig;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
@@ -14,7 +13,7 @@ public enum EntityEquipmentProvider implements IEntityComponentProvider {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
+    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if(!accessor.showDetails()) {
             return;
         }
