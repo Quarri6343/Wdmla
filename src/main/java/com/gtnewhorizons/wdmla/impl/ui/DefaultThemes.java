@@ -7,7 +7,7 @@ import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
 public enum DefaultThemes {
-    WAILA(
+    NONE(
             ColorPalette.BG_COLOR_WAILA,
             ColorPalette.BG_GRADIENT1_WAILA,
             ColorPalette.BG_GRADIENT2_WAILA,
@@ -18,14 +18,14 @@ public enum DefaultThemes {
             ColorPalette.BG_COLOR_JADE,
             ColorPalette.BG_GRADIENT1_JADE,
             ColorPalette.BG_GRADIENT2_JADE,
-            new TextColors(ColorPalette.DEFAULT_JADE, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS_JADE,
+            new TextColors(ColorPalette.DEFAULT, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS_JADE,
                     ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
-            new PanelStyle(1, 2)),
+            new PanelStyle(1, 2)), //Jade has tight spacing than others
     TOP(
             ColorPalette.BG_COLOR_TOP,
             ColorPalette.BG_GRADIENT1_TOP,
             ColorPalette.BG_GRADIENT2_TOP,
-            new TextColors(ColorPalette.DEFAULT_TOP, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS_TOP,
+            new TextColors(ColorPalette.DEFAULT, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS_TOP,
                     ColorPalette.WARNING_TOP, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
             new PanelStyle(2, 2));
 

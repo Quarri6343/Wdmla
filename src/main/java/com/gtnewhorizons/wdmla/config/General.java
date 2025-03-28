@@ -20,7 +20,7 @@ public class General {
     public static boolean ghostProduct;
 
     @Config.LangKey("option.general.theme")
-    @Config.DefaultEnum("WAILA")
-    @Config.Comment("Current theme of tooltips")
+    @Config.DefaultEnum("NONE")
+    @Config.Comment("Current theme of tooltips. If other than NONE is selected, some values will be overridden")
     public static DefaultThemes currentTheme;
 }

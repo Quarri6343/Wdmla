@@ -1,5 +1,6 @@
 package mcp.mobius.waila.overlay;
 
+import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraftforge.common.config.Configuration;
 
@@ -29,5 +30,10 @@ public class OverlayConfig {
         OverlayConfig.gradient2 = OverlayConfig.alpha
                 + ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_GRADIENT2, 0);
         OverlayConfig.fontcolor = ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_FONTCOLOR, 0);
+
+        DefaultThemes.NONE.get().bgColor = OverlayConfig.bgcolor;
+        DefaultThemes.NONE.get().bgGradient1 = OverlayConfig.gradient1;
+        DefaultThemes.NONE.get().bgGradient2 = OverlayConfig.gradient2;
+        DefaultThemes.NONE.get().textColors._default = OverlayConfig.fontcolor;
     }
 }

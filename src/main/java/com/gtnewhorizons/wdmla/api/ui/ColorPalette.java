@@ -13,9 +13,7 @@ public final class ColorPalette {
     public static final int FAILURE = 0xFFAA0000;
     public static final int MOD_NAME = 0xFF5555FF;
 
-    public static final int DEFAULT_JADE = 0xFFA0A0A0; //gray(same with waila)
     public static final int SUCCESS_JADE = 0xFF55FF55; //green
-    public static final int DEFAULT_TOP = 0xFFA0A0A0; //gray
     public static final int SUCCESS_TOP = 0xFF55FF55; //green
     public static final int WARNING_TOP = 0xFFFFFF55; //yellow
 
@@ -27,7 +25,6 @@ public final class ColorPalette {
     public static final int AMOUNT_FILLED_WAILA = 0xFFD7D7D7;
     public static final int AMOUNT_FILLED_ALTERNATE_WAILA = 0xFFD7D7D7;
 
-    //temporary fix for overlay config does not exist during config load
     public static final int BG_COLOR_WAILA = 0x9E100010;
     public static final int BG_GRADIENT1_WAILA = 0x9E5000ff;
     public static final int BG_GRADIENT2_WAILA = 0x9E28007f;
