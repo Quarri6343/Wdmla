@@ -1,29 +1,78 @@
-#refactoring in progress
-client.msg.norecipe=No recipe found.
-client.msg.nousage=No usage found.
+# refactoring in progress
+
+# chat messages
+chat.msg.waila.norecipe=No recipe found.
+chat.msg.waila.nousage=No usage found.
+
+
+# tooltip messages
+
+# block
+hud.msg.wheatcrop=Wheat Crops
+hud.msg.pumpkinstem=Pumpkin Stem
+hud.msg.melonstem=Melon Stem
+
+# tool
+hud.msg.toolclass.pickaxe=Pickaxe
+hud.msg.toolclass.shovel=Shovel
+hud.msg.toolclass.axe=Axe
+hud.msg.toolclass.chisel=Chisel
+hud.msg.toolclass.scoop=Scoop
+hud.msg.toolclass.crowbar=Crowbar
+hud.msg.toolclass.sword=Sword
+hud.msg.toolclass.wrench=Wrench
+hud.msg.toolclass.cutter=Wire Cutter
+
+# time
+hud.msg.tick=t
+hud.msg.seconds=s
+hud.msg.progress.seconds=%ds / %ds
+
+# information
+hud.msg.growth=Growth
+hud.msg.state=State
+hud.msg.delay=Delay
+hud.msg.progress=Progress
+hud.msg.level=Level
+hud.msg.hardness=Hardness
+hud.msg.blast.resistance=Blast Resistance
+hud.msg.mode=Mode
+hud.msg.out=Out
+hud.msg.in=In
+hud.msg.effectivetool=Effective Tool
+hud.msg.harvestlevel=Harvest Level
+hud.msg.currentlyharvestable=Currently Harvestable
+hud.msg.harvestable= Harvestable
+
+# state
+hud.msg.mature=Mature
+hud.msg.off=Off
+hud.msg.on=On
+hud.msg.comparator=Comparator
+hud.msg.substractor=Substractor
+hud.msg.yes=Yes
+hud.msg.no=No
+
+
+# tooltip messages in legacy modules(unsorted)
 
 hud.msg.none=<None>
 hud.msg.empty=<Empty>
 hud.msg.output=Output
 hud.msg.input=Input
-hud.msg.out=Out
-hud.msg.in=In
 hud.msg.power=Power
 hud.msg.storage=Storage
 hud.msg.stored=Stored
 hud.msg.any=Any
-hud.msg.mode=Mode
 hud.msg.maxpower=Max Power
 hud.msg.trigger=Trigger
 hud.msg.maxio=Max IO
-
 hud.msg.send=Send
 hud.msg.recv=Recv
 hud.msg.item=Item
 hud.msg.fluid=Fluid
 hud.msg.energ=Energy
 hud.msg.frequency=Frequency
-
 hud.msg.owner=Owner
 hud.msg.public=Public
 hud.msg.restricted=Restricted
@@ -45,59 +94,6 @@ hud.msg.brown=Brown
 hud.msg.green=Green
 hud.msg.red=Red
 hud.msg.black=Black
-
-hud.msg.growth=Growth
-hud.msg.mature=Mature
-hud.msg.off=Off
-hud.msg.on=On
-hud.msg.state=State
-hud.msg.delay=Delay
-hud.msg.comparator=Comparator
-hud.msg.substractor=Substractor
-hud.msg.record=Record
-hud.msg.tick=t
-hud.msg.seconds=s
-hud.msg.progress=Progress
-hud.msg.progress.seconds=%ds / %ds
-hud.msg.level=Level
-hud.msg.hardness=Hardness
-hud.msg.blast_resistance=Blast Resistance
-hud.msg.yes=Yes
-hud.msg.no=No
-
-hud.msg.beacon.primary=First Effect
-hud.msg.beacon.secondary=Second Effect
-hud.msg.bed.cansleep=Can Sleep
-hud.msg.pet.sit=Sitting
-hud.msg.animal.growth=Growing Time
-hud.msg.animal.breedcooldown=Breeding CD
-
-hud.msg.offers=Offers
-hud.msg.demands=Demands
-
-hud.item.wheatcrop=Wheat Crops
-hud.item.pumpkinstem=Pumpkin Stem
-hud.item.melonstem=Melon Stem
-
-
-# waila harvestability
-
-# tools
-wailaharvestability.toolclass.pickaxe=Pickaxe
-wailaharvestability.toolclass.shovel=Shovel
-wailaharvestability.toolclass.axe=Axe
-wailaharvestability.toolclass.chisel=Chisel
-wailaharvestability.toolclass.scoop=Scoop
-wailaharvestability.toolclass.crowbar=Crowbar
-wailaharvestability.toolclass.sword=Sword
-wailaharvestability.toolclass.wrench=Wrench
-wailaharvestability.toolclass.cutter=Wire Cutter
-
-# tooltips
-wailaharvestability.effectivetool=Effective Tool
-wailaharvestability.harvestlevel=Harvest Level
-wailaharvestability.currentlyharvestable= Currently Harvestable
-wailaharvestability.harvestable= Harvestable
 
 
 # provider names (auto generated key)

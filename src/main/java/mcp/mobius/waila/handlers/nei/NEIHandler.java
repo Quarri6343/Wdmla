@@ -62,7 +62,7 @@ public class NEIHandler {
                     if (!GuiCraftingRecipe.openRecipeGui("item", target)) {
                         mc.thePlayer.addChatMessage(
                                 new ChatComponentTranslation(
-                                        "\u00a7f\u00a7o" + LangUtil.translateG("client.msg.norecipe")));
+                                        "\u00a7f\u00a7o" + LangUtil.translateG("chat.msg.waila.norecipe")));
                         mc.displayGuiScreen(null);
                         mc.setIngameFocus();
                     }
@@ -74,7 +74,7 @@ public class NEIHandler {
                     if (!GuiUsageRecipe.openRecipeGui("item", target)) {
                         mc.thePlayer.addChatMessage(
                                 new ChatComponentTranslation(
-                                        "\u00a7f\u00a7o" + LangUtil.translateG("client.msg.nousage")));
+                                        "\u00a7f\u00a7o" + LangUtil.translateG("chat.msg.waila.nousage")));
                         mc.displayGuiScreen(null);
                         mc.setIngameFocus();
                     }

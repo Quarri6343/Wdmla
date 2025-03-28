@@ -117,7 +117,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                         ThemeHelper.INSTANCE.failure(
                                 PluginsConfig.harvestability.legacy.notcurrentlyHarvestableString));
                 if (!minimalLayout) {
-                    unBreakablePanel.text(LangUtil.translateG("wailaharvestability.harvestable"));
+                    unBreakablePanel.text(LangUtil.translateG("hud.msg.harvestable"));
                 }
                 components.add(unBreakablePanel);
                 return components;
@@ -186,7 +186,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                     currentlyHarvestable.child(ThemeHelper.INSTANCE.failure(icon));
                 }
                 if (!minimalLayout) {
-                    String suffix = LangUtil.translateG("wailaharvestability.currentlyharvestable");
+                    String suffix = LangUtil.translateG("hud.msg.currentlyharvestable");
                     currentlyHarvestable.text(suffix);
                 }
             }
@@ -205,14 +205,14 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
             }
             if (harvestLevel != -1 && showEffectiveTool && effectiveTool != null) {
                 String effectiveToolString;
-                if (StatCollector.canTranslate("wailaharvestability.toolclass." + effectiveTool))
+                if (StatCollector.canTranslate("hud.msg.toolclass." + effectiveTool))
                     effectiveToolString = StatCollector
-                            .translateToLocal("wailaharvestability.toolclass." + effectiveTool);
+                            .translateToLocal("hud.msg.toolclass." + effectiveTool);
                 else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
                 ITooltip effectiveToolPanel = new HPanelComponent();
                 if (!minimalLayout) {
                     effectiveToolPanel
-                            .child(new TextComponent(LangUtil.translateG("wailaharvestability.effectivetool") + ": "));
+                            .child(new TextComponent(LangUtil.translateG("hud.msg.effectivetool") + ": "));
                 }
                 if (isEffective && (!isHoldingTinkersTool || canHarvest)) {
                     effectiveToolPanel.child(ThemeHelper.INSTANCE.success(effectiveToolString));
@@ -236,7 +236,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
 
                 ITooltip harvestText = new HPanelComponent();
                 if (!minimalLayout) {
-                    harvestText.text(StatCollector.translateToLocal("wailaharvestability.harvestlevel") + ": ");
+                    harvestText.text(StatCollector.translateToLocal("hud.msg.harvestlevel") + ": ");
                 }
                 if (isAboveMinHarvestLevel && canHarvest) {
                     harvestText.child(ThemeHelper.INSTANCE.success(harvestLevelString));

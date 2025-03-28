@@ -245,7 +245,7 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
         if (harvestLevel >= 1) {
             String harvestLevelString = StringHelper.stripFormatting(StringHelper.getHarvestLevelName(harvestLevel));
             harvestLevelText = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_TEXT)
-                    .text(String.format("%s: ", LangUtil.translateG("wailaharvestability.harvestlevel"))).child(
+                    .text(String.format("%s: ", LangUtil.translateG("hud.msg.harvestlevel"))).child(
                             isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(harvestLevelString)
                                     : ThemeHelper.INSTANCE.failure(harvestLevelString));
         }
