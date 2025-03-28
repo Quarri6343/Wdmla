@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -85,7 +86,7 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
 
         ((ITooltip) itemNameRow).child(harvestableDisplay.get(0));
         if (harvestableDisplay.size() > 1 && harvestableDisplay.get(1) != null
-                && config.getBoolean(CONFIG_MODERN_HARVEST_LEVEL_NUM)) {
+                && AddonsConfig.harvestability.modern.modernHarvestLevelNum) {
             tooltip.child(harvestableDisplay.get(1));
         }
     }
@@ -100,7 +101,7 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
         if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
                 .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
             return Arrays.asList(
-                    ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
+                    ThemeHelper.INSTANCE.failure(AddonsConfig.harvestability.modern.notCurrentlyHarvestableString));
         }
 
         // needed to stop array index out of bounds exceptions on mob spawners
@@ -116,7 +117,7 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
 
         if (canInstaBreak(harvestLevel, effectiveTool, block, shearability != null, silkTouchability != null)) {
             return Arrays
-                    .asList(ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING)));
+                    .asList(ThemeHelper.INSTANCE.success(AddonsConfig.harvestability.modern.currentlyHarvestableString));
         }
 
         ItemStack itemHeld = player.getHeldItem();
@@ -216,11 +217,11 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
         ITooltip harvestabilityComponent = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_ICON);
         // TODO: resize CHECK text
         IComponent currentlyHarvestableIcon = (isCurrentlyHarvestable
-                ? ThemeHelper.INSTANCE.success(config.getString(CONFIG_MODERN_CURRENTLY_HARVESTABLE_STRING))
-                : ThemeHelper.INSTANCE.failure(config.getString(CONFIG_MODERN_NOT_CURRENTLY_HARVESTABLE_STRING)));
+                ? ThemeHelper.INSTANCE.success(AddonsConfig.harvestability.modern.currentlyHarvestableString)
+                : ThemeHelper.INSTANCE.failure(AddonsConfig.harvestability.modern.notCurrentlyHarvestableString));
 
-        if (config.getBoolean(CONFIG_MODERN_CURRENTLY_HARVESTABLE_ICON)) {
-            if (effectiveToolIconComponent != null && config.getBoolean(CONFIG_MODERN_EFFECTIVE_TOOL_ICON)) {
+        if (AddonsConfig.harvestability.modern.modernCurrentlyHarvestableIcon) {
+            if (effectiveToolIconComponent != null && AddonsConfig.harvestability.modern.modernEffectiveToolIcon) {
                 effectiveToolIconComponent.child(
                         new HPanelComponent().padding(new Padding().left(5).top(6)).child(currentlyHarvestableIcon));
                 harvestabilityComponent.child(effectiveToolIconComponent);
@@ -228,16 +229,16 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
                 harvestabilityComponent.child(currentlyHarvestableIcon);
             }
         }
-        if (shearability != null && config.getBoolean(CONFIG_MODERN_SHOW_SHEARABILITY_ICON)) {
-            String[] parts = config.getString(CONFIG_SHEARABILITY_ITEM).split(":");
+        if (shearability != null && AddonsConfig.harvestability.modern.modernShowShearabilityIcon) {
+            String[] parts = AddonsConfig.harvestability.modern.shearabilityItem.split(":");
             if (parts.length == 2) {
                 harvestabilityComponent.child(
                         new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false)
                                 .size(new Size(10, 10)));
             }
         }
-        if (silkTouchability != null && config.getBoolean(CONFIG_MODERN_SHOW_SILKTOUCHABILITY_ICON)) {
-            String[] parts = config.getString(CONFIG_SILKTOUCHABILITY_ITEM).split(":");
+        if (silkTouchability != null && AddonsConfig.harvestability.modern.modernShowSilkTouchabilityIcon) {
+            String[] parts = AddonsConfig.harvestability.modern.silkTouchabilityItem.split(":");
             if (parts.length == 2) {
                 harvestabilityComponent.child(
                         new ItemComponent(GameRegistry.findItemStack(parts[0], parts[1], 1)).doDrawOverlay(false)

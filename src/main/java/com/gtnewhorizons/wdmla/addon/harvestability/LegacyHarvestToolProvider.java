@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.addon.harvestability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -72,8 +73,8 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     private void updateTooltip(List<IComponent> stringParts, ITooltip tooltip, IPluginConfig config) {
-        boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
-        String separator = config.getString(HarvestabilityIdentifiers.CONFIG_MINIMAL_SEPARATOR_STRING);
+        boolean minimalLayout = AddonsConfig.harvestability.legacy.minimal;
+        String separator = AddonsConfig.harvestability.legacy.minimalSeparatorString;
         if (!stringParts.isEmpty()) {
             if (minimalLayout)
                 tooltip.child(StringHelper.concatenateStringList(stringParts, EnumChatFormatting.RESET + separator));
@@ -86,20 +87,20 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
     public List<IComponent> getLegacyHarvestability(EntityPlayer player, Block block, int meta,
             MovingObjectPosition position, IPluginConfig config) {
         List<IComponent> components = new ArrayList<>();
-        boolean minimalLayout = config.getBoolean(HarvestabilityIdentifiers.CONFIG_MINIMAL);
+        boolean minimalLayout = AddonsConfig.harvestability.legacy.minimal;
         boolean isSneaking = player.isSneaking();
-        boolean showHarvestLevel = config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_SNEAKING_ONLY) || isSneaking);
-        boolean showHarvestLevelNum = config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_HARVEST_LEVEL_NUM_SNEAKING_ONLY) || isSneaking);
-        boolean showEffectiveTool = config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_EFFECTIVE_TOOL_SNEAKING_ONLY) || isSneaking);
-        boolean showCurrentlyHarvestable = config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_CURRENTLY_HARVESTABLE_SNEAKING_ONLY)
+        boolean showHarvestLevel = AddonsConfig.harvestability.legacy.harvestLevel
+                && (!AddonsConfig.harvestability.legacy.harvestLevelSneakingOnly || isSneaking);
+        boolean showHarvestLevelNum = AddonsConfig.harvestability.legacy.harvestLevelNum
+                && (!AddonsConfig.harvestability.legacy.harvestLevelNumSneakingOnly || isSneaking);
+        boolean showEffectiveTool = AddonsConfig.harvestability.legacy.effectiveTool
+                && (!AddonsConfig.harvestability.legacy.effectiveToolSneakingOnly || isSneaking);
+        boolean showCurrentlyHarvestable = AddonsConfig.harvestability.legacy.currentlyHarvestable
+                && (!AddonsConfig.harvestability.legacy.currentlyHarvestableSneakingOnly
                         || isSneaking);
-        boolean hideWhileHarvestable = config.getBoolean(HarvestabilityIdentifiers.CONFIG_UNHARVESTABLE_ONLY);
-        boolean showOresOnly = config.getBoolean(HarvestabilityIdentifiers.CONFIG_ORES_ONLY);
-        boolean toolRequiredOnly = config.getBoolean(HarvestabilityIdentifiers.CONFIG_TOOL_REQUIRED_ONLY);
+        boolean hideWhileHarvestable = AddonsConfig.harvestability.legacy.unHarvestableOnly;
+        boolean showOresOnly = AddonsConfig.harvestability.legacy.oresOnly;
+        boolean toolRequiredOnly = AddonsConfig.harvestability.legacy.toolRequiredOnly;
 
         if (showHarvestLevel || showEffectiveTool || showCurrentlyHarvestable) {
             if (showOresOnly && !OreHelper.isBlockAnOre(block, meta)) {
@@ -116,8 +117,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                 ITooltip unBreakablePanel = new HPanelComponent();
                 unBreakablePanel.child(
                         ThemeHelper.INSTANCE.failure(
-                                config.getString(
-                                        HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING)));
+                                AddonsConfig.harvestability.legacy.notcurrentlyHarvestableString));
                 if (!minimalLayout) {
                     unBreakablePanel.text(LangUtil.translateG("wailaharvestability.harvestable"));
                 }
@@ -181,12 +181,10 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
             if (showCurrentlyHarvestable) {
                 currentlyHarvestable = new HPanelComponent();
                 if (isCurrentlyHarvestable) {
-                    String icon = config
-                            .getString(HarvestabilityIdentifiers.CONFIG_LEGACY_CURRENTLY_HARVESTABLE_STRING);
+                    String icon = AddonsConfig.harvestability.legacy.currentlyHarvestableString;
                     currentlyHarvestable.child(ThemeHelper.INSTANCE.success(icon));
                 } else {
-                    String icon = config
-                            .getString(HarvestabilityIdentifiers.CONFIG_LEGACY_NOT_CURRENTLY_HARVESTABLE_STRING);
+                    String icon = AddonsConfig.harvestability.legacy.notcurrentlyHarvestableString;
                     currentlyHarvestable.child(ThemeHelper.INSTANCE.failure(icon));
                 }
                 if (!minimalLayout) {

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,8 +62,8 @@ public class BlockHelper {
     public static IComponent getShearabilityString(EntityPlayer player, Block block, int meta,
             MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
-        boolean showShearability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_SNEAKING_ONLY) || isSneaking);
+        boolean showShearability = AddonsConfig.harvestability.legacy.shearability
+                && (!AddonsConfig.harvestability.legacy.shearabilitySneakingOnly || isSneaking);
 
         if (showShearability && (block instanceof IShearable || block == Blocks.deadbush
                 || (block == Blocks.double_plant && block.getItemDropped(meta, new Random(), 0) == null))) {
@@ -70,7 +71,7 @@ public class BlockHelper {
             boolean isHoldingShears = itemHeld != null && itemHeld.getItem() instanceof ItemShears;
             boolean isShearable = isHoldingShears && ((IShearable) block)
                     .isShearable(itemHeld, player.worldObj, position.blockX, position.blockY, position.blockZ);
-            String shearableString = config.getString(HarvestabilityIdentifiers.CONFIG_SHEARABILITY_STRING);
+            String shearableString = AddonsConfig.harvestability.legacy.shearabilityString;
             return isShearable ? ThemeHelper.INSTANCE.success(shearableString)
                     : ThemeHelper.INSTANCE.failure(shearableString);
         }
@@ -80,8 +81,8 @@ public class BlockHelper {
     public static IComponent getSilkTouchabilityString(EntityPlayer player, Block block, int meta,
             MovingObjectPosition position, IPluginConfig config) {
         boolean isSneaking = player.isSneaking();
-        boolean showSilkTouchability = config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY)
-                && (!config.getBoolean(HarvestabilityIdentifiers.CONFIG_SILKTOUCHABILITY_SNEAKING_ONLY) || isSneaking);
+        boolean showSilkTouchability = AddonsConfig.harvestability.legacy.silkTouchability
+                && (!AddonsConfig.harvestability.legacy.silkTouchabilitySneakingOnly || isSneaking);
 
         if (showSilkTouchability && block
                 .canSilkHarvest(player.worldObj, player, position.blockX, position.blockY, position.blockZ, meta)) {
@@ -90,7 +91,7 @@ public class BlockHelper {
                     || block.quantityDropped(new Random()) <= 0;
             if (silkTouchMatters) {
                 boolean hasSilkTouch = EnchantmentHelper.getSilkTouchModifier(player);
-                String silkTouchString = config.getString(HarvestabilityIdentifiers.CONFIG_SILK_TOUCHABILITY_STRING);
+                String silkTouchString = AddonsConfig.harvestability.legacy.silkTouchabilityString;
                 return hasSilkTouch ? ThemeHelper.INSTANCE.success(silkTouchString)
                         : ThemeHelper.INSTANCE.failure(silkTouchString);
             }

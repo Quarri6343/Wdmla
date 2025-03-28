@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.gtnewhorizons.wdmla.addon.AddonsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -125,17 +126,18 @@ public class ProxyTinkersConstruct {
      * "https://github.com/GTNewHorizons/TinkersConstruct/blob/master/src/main/java/tconstruct/tools/TinkerTools.java#L1771">...</a>
      */
     public static ItemStack getEffectivePickaxeIcon(int num, IPluginConfig config) {
+        AddonsConfig.Harvestability.Modern.TinkersConstruct tiCConfig = AddonsConfig.harvestability.modern.tinkersConstruct;
         return switch (num) {
-            case 0 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_0));
-            case 1 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_1));
-            case 2 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_2));
-            case 3 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_3));
-            case 4 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_4));
-            case 5 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_5));
-            case 6 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_6));
-            case 7 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_7));
-            case 8 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_8));
-            case 9 -> creativePickaxes.get(config.getInteger(HarvestabilityIdentifiers.CONFIG_TINKERS_PICKAXE_ICON_9));
+            case 0 -> creativePickaxes.get(tiCConfig.harvestLevel0);
+            case 1 -> creativePickaxes.get(tiCConfig.harvestLevel1);
+            case 2 -> creativePickaxes.get(tiCConfig.harvestLevel2);
+            case 3 -> creativePickaxes.get(tiCConfig.harvestLevel3);
+            case 4 -> creativePickaxes.get(tiCConfig.harvestLevel4);
+            case 5 -> creativePickaxes.get(tiCConfig.harvestLevel5);
+            case 6 -> creativePickaxes.get(tiCConfig.harvestLevel6);
+            case 7 -> creativePickaxes.get(tiCConfig.harvestLevel7);
+            case 8 -> creativePickaxes.get(tiCConfig.harvestLevel8);
+            case 9 -> creativePickaxes.get(tiCConfig.harvestLevel9);
             default -> new ItemStack(Blocks.iron_bars);
         };
     }

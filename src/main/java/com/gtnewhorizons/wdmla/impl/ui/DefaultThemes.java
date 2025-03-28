@@ -5,14 +5,13 @@ import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
-import mcp.mobius.waila.overlay.OverlayConfig;
 
 public enum DefaultThemes {
     WAILA(
             ColorPalette.BG_COLOR_WAILA,
             ColorPalette.BG_GRADIENT1_WAILA,
             ColorPalette.BG_GRADIENT2_WAILA,
-            new TextColors(OverlayConfig.fontcolor, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS,
+            new TextColors(ColorPalette.DEFAULT, ColorPalette.INFO, ColorPalette.TITLE, ColorPalette.SUCCESS,
                     ColorPalette.WARNING, ColorPalette.DANGER, ColorPalette.FAILURE, ColorPalette.MOD_NAME),
             new PanelStyle(2, 2)),
     JADE(

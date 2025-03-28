@@ -4,6 +4,7 @@ public final class ColorPalette {
 
     //text colors
     //access through theme
+    public static final int DEFAULT = 0xFFA0A0A0;
     public static final int INFO = 0xFFFFFFFF;
     public static final int TITLE = 0xFFFFFFFF;
     public static final int SUCCESS = 0xFF00AA00; //dark green
