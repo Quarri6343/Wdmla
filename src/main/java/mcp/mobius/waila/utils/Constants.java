@@ -1,5 +1,8 @@
 package mcp.mobius.waila.utils;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
+
+@BackwardCompatibility
 public final class Constants {
 
     public static String BIND_SCREEN_ENCH = "showenchant";

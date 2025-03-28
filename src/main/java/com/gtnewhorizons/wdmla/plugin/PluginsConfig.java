@@ -45,11 +45,6 @@ public class PluginsConfig {
             @Config.LangKey("option.core.show.modname")
             @Config.DefaultBoolean(true)
             public boolean showModName;
-
-            @Config.LangKey("option.core.maxentityhealth")
-            @Config.DefaultInt(40)
-            @Config.Comment("If the maximum health of an entity is above this value, texts will be shown instead of heart icons")
-            public int maxEntityHealth;
         }
     }
 

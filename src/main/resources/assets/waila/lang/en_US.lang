@@ -1,44 +1,4 @@
 #refactoring in progress
-
-screen.button.waila=Waila
-screen.button.modules=Modules
-screen.label.scale=Scale
-screen.label.dragtuto=Drag the HUD to setup its position.
-
-screen.button.default=Default
-screen.button.cancel=Cancel
-screen.button.ok=Ok
-screen.button.yes=Yes
-screen.button.no=No
-screen.button.back=Back
-screen.button.hidden=Hidden
-screen.button.visible=Visible
-screen.button.maintained=Maintained
-screen.button.toggled=Toggled
-
-choice.showhidewaila=Show/Hide Waila
-choice.showhideidmeta=Show ID:Metadata
-choice.toggledmaintained=Toggled/Maintained
-choice.showliquids=Liquids
-choice.shifttoggledblock=Sneak toggle blocks
-choice.shifttoggledents=Sneak toggle entities
-choice.forcelegacymode=Force legacy mode
-screen.button.configureaspect=Configure aspect...
-
-enchant.title.name=Name
-enchant.title.minlvl=Min lvl
-enchant.title.maxlvl=Max lvl
-enchant.title.weight=Weight
-enchant.label.enchantability=Enchantability
-
-waila.keybind.wailaconfig=[Waila] Config screen
-waila.keybind.wailadisplay=[Waila] Show/Hide
-waila.keybind.liquid=[Waila] Show liquids
-waila.keybind.recipe=[Waila] Show recipe
-waila.keybind.usage=[Waila] Show usage
-waila.keybind.testing=[Waila] Testing
-waila.keybind.details=Show details
-
 client.msg.norecipe=No recipe found.
 client.msg.nousage=No usage found.
 
@@ -194,7 +154,6 @@ option.core.show.icon=Show Block Icon
 option.core.show.blockname=Show Block Name
 option.core.show.modname=Show Mod Name
 option.core.show.entityname=Show Entity Name
-option.core.maxentityhealth=Maximum Number of Hearts Displayed
 
 # vanilla plugin options
 option.vanilla.show.petsitting=Show is Pet Sitting
@@ -280,3 +239,34 @@ option.general.showents=Show entities
 option.general.showhp=Show entities health
 option.general.showcrop=Show crop growth
 option.thaumcraft.aspects=Show aspects
+
+
+# legacy key section
+# can't touch naming rule of these otherwise Waila.cfg and Waila KeyBind will be ignored
+waila.cfg.show=Show/Hide Waila
+waila.cfg.metadata=Show ID:Metadata
+waila.cfg.showmode=Toggled/Maintained
+waila.cfg.liquid=Display Liquids
+waila.cfg.shiftblock=Unused(Sneak Toggle Blocks)
+waila.cfg.shiftents=Unused(Sneak Toggle Entities)
+# following config keys did not exist in Waila since they were hardcoded in screen
+waila.cfg.posx=Tooltips X Position
+waila.cfg.posy=Tooltips Y Position
+waila.cfg.scale=Tooltips Scale
+waila.cfg.alpha=Background Alpha
+waila.cfg.bgcolor=Background Color
+waila.cfg.gradient1=Background Gradient 1
+waila.cfg.gradient2=Background Gradient 2
+waila.cfg.fontcolor=Default Text Color
+waila.cfg.heartsperline=Hearts Per Line
+waila.cfg.maxhpbeforetext=Maximum Number of Hearts Displayed
+waila.cfg.keybind=Unused(Keybind)
+waila.cfg.newfilters=Add Filter For NEI
+
+waila.keybind.wailaconfig=[Waila] Config screen
+waila.keybind.wailadisplay=[Waila] Show/Hide
+waila.keybind.liquid=[Waila] Show liquids
+waila.keybind.recipe=[Waila] Show recipe
+waila.keybind.usage=[Waila] Show usage
+waila.keybind.testing=[Waila] Testing
+waila.keybind.details=Show details
