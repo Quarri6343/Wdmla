@@ -30,7 +30,7 @@ public final class Identifiers {
     public static final String NAMESPACE_CORE = "core";
     public static final String NAMESPACE_TEST = "test";
 
-    public static final String CONFIG_AUTOGEN = "addons_autogen";
+    public static final String CONFIG_AUTOGEN = "plugins_autogen";
 
     public static ResourceLocation Core(String path) {
         return new ResourceLocation(NAMESPACE_CORE, path);

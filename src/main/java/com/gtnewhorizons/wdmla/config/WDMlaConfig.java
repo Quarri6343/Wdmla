@@ -31,12 +31,13 @@ public class WDMlaConfig extends Configuration {
 
     public void reloadConfig() {
         getCategory(Identifiers.CONFIG_AUTOGEN).setLanguageKey("option.autogen.category");
-        getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE).setLanguageKey("option.core.category");
+        getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE).setLanguageKey("provider.wdmla.core.category");
         reloadProviderAutogenConfigs();
     }
 
     public void reloadProviderAutogenConfigs() {
         for (IComponentProvider<?> provider : WDMlaClientRegistration.instance().getAllProvidersWithoutInfo()) {
+            getCategory(provider.getConfigCategory()).setLanguageKey(provider.getLangKey());
             isProviderEnabled(provider);
             WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));
         }

@@ -7,6 +7,7 @@ public interface IWDMlaProvider {
 
     /**
      * The unique id of this provider. Providers from different registries can have the same id.
+     * The Resource Domain is the mod category that the provider belongs, and Resource Path is expected to be snake_case
      */
     ResourceLocation getUid();
 
@@ -33,5 +34,16 @@ public interface IWDMlaProvider {
                 + getUid().getResourceDomain()
                 + Configuration.CATEGORY_SPLITTER
                 + getUid().getResourcePath();
+    }
+
+    /**
+     * The language key of this provider name displayed in config screen
+     * @return
+     */
+    default String getLangKey() {
+        return "provider.wdmla" + Configuration.CATEGORY_SPLITTER
+                + getUid().getResourceDomain()
+                + Configuration.CATEGORY_SPLITTER
+                + getUid().getResourcePath().replace("_", ".");
     }
 }

@@ -3,17 +3,16 @@ package com.gtnewhorizons.wdmla;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 
-import com.gtnewhorizons.wdmla.addon.core.CorePlugin;
-import com.gtnewhorizons.wdmla.addon.harvestability.HarvestabilityPlugin;
-import com.gtnewhorizons.wdmla.addon.harvestability.MissingHarvestInfo;
-import com.gtnewhorizons.wdmla.addon.vanilla.VanillaPlugin;
+import com.gtnewhorizons.wdmla.plugin.core.CorePlugin;
+import com.gtnewhorizons.wdmla.plugin.harvestability.HarvestabilityPlugin;
+import com.gtnewhorizons.wdmla.plugin.harvestability.MissingHarvestInfo;
+import com.gtnewhorizons.wdmla.plugin.vanilla.VanillaPlugin;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
-import com.gtnewhorizons.wdmla.test.TestPlugin;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;

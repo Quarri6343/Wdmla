@@ -2,7 +2,7 @@ package com.gtnewhorizons.wdmla;
 
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
-import com.gtnewhorizons.wdmla.addon.AddonsConfig;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.launchwrapper.Launch;
 
@@ -29,7 +29,7 @@ public class WDMla {
     static {
         try {
             ConfigurationManager.registerConfig(General.class);
-            ConfigurationManager.registerConfig(AddonsConfig.class);
+            ConfigurationManager.registerConfig(PluginsConfig.class);
         } catch (ConfigException e) {
             throw new RuntimeException(e);
         }

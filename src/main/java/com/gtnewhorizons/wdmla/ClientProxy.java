@@ -2,9 +2,9 @@ package com.gtnewhorizons.wdmla;
 
 import java.io.File;
 
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyIguanaTweaks;
-import com.gtnewhorizons.wdmla.addon.harvestability.proxy.ProxyTinkersConstruct;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.overlay.WDMlaTickHandler;
@@ -22,7 +22,7 @@ public class ClientProxy extends CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         File wdmlaConfigFolder = new File(event.getModConfigurationDirectory().getPath(), "WDMla");
-        File wdmlaConfig = new File(wdmlaConfigFolder, "addons_autogen.cfg");
+        File wdmlaConfig = new File(wdmlaConfigFolder, "plugins_autogen.cfg");
         new WDMlaConfig(wdmlaConfig);
     }
 

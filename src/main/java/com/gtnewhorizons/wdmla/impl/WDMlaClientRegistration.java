@@ -1,12 +1,15 @@
 package com.gtnewhorizons.wdmla.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -35,7 +38,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockComponentProviders;
     public final HierarchyLookup<IComponentProvider<EntityAccessor>> entityComponentProviders;
-    private final List<IComponentProvider<?>> allProviders;
+    private final Set<IComponentProvider<?>> allProviders;
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
 
@@ -44,7 +47,7 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     WDMlaClientRegistration() {
         blockComponentProviders = new HierarchyLookup<>(Block.class);
         entityComponentProviders = new HierarchyLookup<>(Entity.class);
-        allProviders = new ArrayList<>();
+        allProviders = new HashSet<>();
     }
 
     public static WDMlaClientRegistration instance() {
@@ -82,8 +85,8 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
         return entityComponentProviders.get(entity).stream().filter(filter).collect(Collectors.toList());
     }
 
-    public ImmutableList<IComponentProvider<?>> getAllProvidersWithoutInfo() {
-        return ImmutableList.copyOf(allProviders);
+    public ImmutableSet<IComponentProvider<?>> getAllProvidersWithoutInfo() {
+        return ImmutableSet.copyOf(allProviders);
     }
 
     @Override
