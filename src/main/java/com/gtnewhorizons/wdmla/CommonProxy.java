@@ -22,6 +22,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.overlay.OverlayConfig;
 
 public class CommonProxy {
 
@@ -53,6 +54,7 @@ public class CommonProxy {
 
             WDMlaConfig.instance().reloadConfig();
             WDMlaConfig.instance().save();
+            OverlayConfig.updateColors();
         }
         common.endSession();
         loadComplete();

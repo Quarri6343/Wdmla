@@ -29,8 +29,7 @@ import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 
 /**
- * We haven't implemented the actual "bundles of layout configuration" yet (@see Jade). This class is just meant to
- * unify layout settings between providers
+ * Use this class to unify common layout settings
  */
 public class ThemeHelper {
 
@@ -159,6 +158,6 @@ public class ThemeHelper {
     }
 
     public IComponent value(String entry, String value) {
-        return new HPanelComponent().text(String.format("%s: ", entry)).child(ThemeHelper.INSTANCE.info(value));
+        return new HPanelComponent().text(String.format("%s: ", entry)).child(info(value));
     }
 }

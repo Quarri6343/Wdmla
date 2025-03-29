@@ -38,6 +38,9 @@ Still in alpha
   - wawla.pets.sitting
   - wawla.pets.age
   - wawla.pets.cooldown
+  - wawla.horse.showjump
+  - wawla.horse.showspeed
+  - wawla.tnt.fuse
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 

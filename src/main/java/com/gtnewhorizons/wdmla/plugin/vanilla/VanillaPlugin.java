@@ -25,7 +25,9 @@ import net.minecraft.block.BlockSkull;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockWoodSlab;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -40,7 +42,6 @@ import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraftforge.common.config.Configuration;
@@ -77,6 +78,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(BedProvider.INSTANCE, BlockBed.class);
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
+        registration.registerEntityComponent(HorseProvider.INSTANCE, EntityHorse.class);
+        registration.registerEntityComponent(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
 
         WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
                 .setLanguageKey("provider.wdmla.minecraft.category");
@@ -87,6 +90,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(FurnaceProvider.INSTANCE, BlockFurnace.class);
         registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
+        registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
     }
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
@@ -114,8 +118,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.power")))
-                            .child(ThemeHelper.INSTANCE.info(String.format("%s", accessor.getMetadata()))));
+                    ThemeHelper.INSTANCE.value(
+                            LangUtil.translateG("hud.msg.wdmla.power"),
+                            String.format("%s", accessor.getMetadata())));
         }
 
         @Override

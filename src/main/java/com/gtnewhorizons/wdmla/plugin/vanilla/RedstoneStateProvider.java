@@ -31,12 +31,9 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
         } else if (((block == Blocks.unpowered_repeater) || (block == Blocks.powered_repeater)) && PluginsConfig.vanilla.redstoneState.showRepeaterDelay) {
             int tick = (accessor.getMetadata() >> 2) + 1;
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.delay"))).child(
-                            ThemeHelper.INSTANCE.info(
-                                    String.format(
-                                            "%s %s",
-                                            tick,
-                                            LangUtil.translateG("hud.msg.wdmla.tick")))));
+                    ThemeHelper.INSTANCE.value(
+                    LangUtil.translateG("hud.msg.wdmla.delay"),
+                    String.format("%d %s", tick, LangUtil.translateG("hud.msg.wdmla.tick"))));
         } else if (((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator)) && PluginsConfig.vanilla.redstoneState.showComparatorMode) {
             String mode = ((accessor.getMetadata() >> 2) & 1) == 0 ? LangUtil.translateG("hud.msg.wdmla.comparator")
                     : LangUtil.translateG("hud.msg.wdmla.substractor");

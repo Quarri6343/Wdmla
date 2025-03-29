@@ -22,6 +22,8 @@ public class VanillaIdentifiers {
     public static final ResourceLocation BED = MC("bed");
     public static final ResourceLocation PET = MC("pet");
     public static final ResourceLocation ANIMAL = MC("animal");
+    public static final ResourceLocation HORSE = MC("horse");
+    public static final ResourceLocation PRIMED_TNT = MC("primed_tnt");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 

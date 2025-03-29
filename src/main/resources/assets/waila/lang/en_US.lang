@@ -25,6 +25,8 @@ hud.msg.wdmla.toolclass.cutter=Wire Cutter
 hud.msg.wdmla.tick=t
 hud.msg.wdmla.seconds=s
 hud.msg.wdmla.progress.seconds=%ds / %ds
+hud.msg.wdmla.blocks=blocks
+hud.msg.wdmla.blockspersecond=blocks/sec
 
 # information
 hud.msg.wdmla.growth=Growth
@@ -40,8 +42,13 @@ hud.msg.wdmla.in=In
 hud.msg.wdmla.effectivetool=Effective Tool
 hud.msg.wdmla.harvestlevel=Harvest Level
 hud.msg.wdmla.currentlyharvestable=Currently Harvestable
-hud.msg.wdmla.harvestable= Harvestable
+hud.msg.wdmla.harvestable=Harvestable
 hud.msg.wdmla.power=Power
+hud.msg.wdmla.jumpStrength=Jump Strength
+hud.msg.wdmla.speed=Speed
+hud.msg.wdmla.fuse=Fuse
+hud.msg.wdmla.animal.growth=Growing Time
+hud.msg.wdmla.animal.breedcooldown=Breeding CD
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -52,7 +59,7 @@ hud.msg.wdmla.substractor=Substractor
 hud.msg.wdmla.yes=Yes
 hud.msg.wdmla.no=No
 
-# tooltip messages in legacy modules(unsorted)
+# tooltip messages in legacy modules(unsorted, it will be deleted soon)
 # don't add entries to here
 
 hud.msg.none=<None>
@@ -123,6 +130,8 @@ provider.wdmla.minecraft.redstone.wire=Redstone Wire
 provider.wdmla.minecraft.furnace=Furnace
 provider.wdmla.minecraft.mob.spawner.header=Mob Spawner Header
 provider.wdmla.minecraft.beacon=Beacon
+provider.wdmla.minecraft.horse=Horse
+provider.wdmla.minecraft.primed.tnt=Primed TNT
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
@@ -196,7 +205,7 @@ option.wdmla.harvestability.effectivetool.icon=Effective Tool Icon
 option.wdmla.harvestability.shearability.icon=Shearability Icon
 option.wdmla.harvestability.silktouchability.icon=Silk Touchability Icon
 
-# options in the untouched sections
+# options in the untouched sections(unsorted, it will be deleted soon)
 # don't add entries to here
 option.appeng.monitorcontent=Monitor's content
 option.bb.content=Barrel's content
@@ -239,9 +248,6 @@ option.carpenters.hide=Hide camo blocks
 option.stevescarts.showall=Show data
 option.stevescarts.colorblind=Colorblind mode
 option.stevescarts.shifttoggle=Shift toggle
-option.general.showents=Show entities
-option.general.showhp=Show entities health
-option.general.showcrop=Show crop growth
 option.thaumcraft.aspects=Show aspects
 
 
