@@ -1,5 +1,3 @@
-# refactoring in progress
-
 # chat messages
 chat.msg.waila.norecipe=未发现合成表.
 chat.msg.waila.nousage=未发现可参与合成.
@@ -8,59 +6,68 @@ chat.msg.waila.nousage=未发现可参与合成.
 # tooltip messages
 
 # block
-hud.msg.wheatcrop=小麦作物
-hud.msg.pumpkinstem=南瓜茎
-hud.msg.melonstem=西瓜茎
+hud.msg.wdmla.wheatcrop=小麦作物
+hud.msg.wdmla.pumpkinstem=南瓜茎
+hud.msg.wdmla.melonstem=西瓜茎
 
 # tool
-hud.msg.toolclass.pickaxe=镐
-hud.msg.toolclass.shovel=锹
-hud.msg.toolclass.axe=斧
-hud.msg.toolclass.chisel=凿子
-hud.msg.toolclass.scoop=捕蜂网
-hud.msg.toolclass.crowbar=撬棍
-hud.msg.toolclass.sword=剑
-hud.msg.toolclass.wrench=扳手
-hud.msg.toolclass.cutter=剪线钳
+hud.msg.wdmla.toolclass.pickaxe=镐
+hud.msg.wdmla.toolclass.shovel=锹
+hud.msg.wdmla.toolclass.axe=斧
+hud.msg.wdmla.toolclass.chisel=凿子
+hud.msg.wdmla.toolclass.scoop=捕蜂网
+hud.msg.wdmla.toolclass.crowbar=撬棍
+hud.msg.wdmla.toolclass.sword=剑
+hud.msg.wdmla.toolclass.wrench=扳手
+hud.msg.wdmla.toolclass.cutter=剪线钳
 
-# time
-hud.msg.tick=刻
-hud.msg.seconds=秒
-hud.msg.progress.seconds=%d秒 / %d秒
+# unit
+hud.msg.wdmla.tick=刻
+hud.msg.wdmla.seconds=秒
+hud.msg.wdmla.progress.seconds=%d秒 / %d秒
+hud.msg.wdmla.blocks=方块
+hud.msg.wdmla.blockspersecond=方块/秒
 
 # information
-hud.msg.growth=生长状态
-hud.msg.state=状态
-hud.msg.delay=延迟
-hud.msg.progress=进度
-hud.msg.level=等级
-hud.msg.hardness=硬度
-hud.msg.blast.resistance=爆炸抗性
-hud.msg.mode=模式
-hud.msg.out=输出
-hud.msg.in=输入
-hud.msg.effectivetool=所需工具
-hud.msg.harvestlevel=挖掘等级
-hud.msg.currentlyharvestable=当前可挖掘
-hud.msg.harvestable=可采集
+hud.msg.wdmla.growth=生长状态
+hud.msg.wdmla.state=状态
+hud.msg.wdmla.delay=延迟
+hud.msg.wdmla.progress=进度
+hud.msg.wdmla.level=等级
+hud.msg.wdmla.hardness=硬度
+hud.msg.wdmla.blast.resistance=爆炸抗性
+hud.msg.wdmla.mode=模式
+hud.msg.wdmla.out=输出
+hud.msg.wdmla.in=输入
+hud.msg.wdmla.effectivetool=所需工具 :
+hud.msg.wdmla.harvestlevel=挖掘等级 :
+hud.msg.wdmla.currentlyharvestable= 目前能否挖掘
+hud.msg.wdmla.harvestable= 能否挖掘
+hud.msg.wdmla.power=能量
+hud.msg.wdmla.jumpStrength=跳跃强度
+hud.msg.wdmla.speed=速度
+hud.msg.wdmla.fuse=引信时长
+hud.msg.wdmla.animal.growth=成长时间
+hud.msg.wdmla.animal.breedcooldown=繁殖冷却
+hud.msg.wdmla.primary=主效果
+hud.msg.wdmla.secondary=副效果
 
 # state
-hud.msg.mature=成熟
-hud.msg.off=关闭
-hud.msg.on=开启
-hud.msg.comparator=比较器
-hud.msg.substractor=减法器
-hud.msg.yes=是
-hud.msg.no=否
+hud.msg.wdmla.mature=成熟
+hud.msg.wdmla.off=关闭
+hud.msg.wdmla.on=开启
+hud.msg.wdmla.comparator=比较器模式
+hud.msg.wdmla.substractor=减法器模式
+hud.msg.wdmla.yes=是
+hud.msg.wdmla.no=否
 
-
-# tooltip messages in legacy modules(unsorted)
+# tooltip messages in legacy modules(unsorted, it will be deleted soon)
+# don't add entries to here
 
 hud.msg.none=<无>
 hud.msg.empty=<空>
 hud.msg.output=输出
 hud.msg.input=输入
-hud.msg.power=能量
 hud.msg.storage=存储
 hud.msg.stored=已存储
 hud.msg.any=任意
@@ -125,71 +132,83 @@ provider.wdmla.minecraft.redstone.wire=红石线
 provider.wdmla.minecraft.furnace=熔炉
 provider.wdmla.minecraft.mob.spawner.header=刷怪笼标题
 provider.wdmla.minecraft.beacon=信标
+provider.wdmla.minecraft.horse=马
+provider.wdmla.minecraft.primed.tnt=被激活的TNT
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
 provider.wdmla.harvestability.modern=现代模式
 
+
 # options
 
 # general options
-option.general.category=WDMla 通用设置
-option.general.forcelegacy=旧版模式
-option.general.ghostproduct=虚像物品
-option.general.theme=主题预设
+option.wdmla.general.category=WDMla 通用设置
+option.wdmla.general.forcelegacy=传统模式
+option.wdmla.general.ghostproduct=虚像物品
+option.wdmla.general.theme=主题预设
+option.wdmla.textcolor.category=文本颜色
+option.wdmla.general.textcolor.info=信息颜色
+option.wdmla.general.textcolor.title=标题颜色
+option.wdmla.general.textcolor.success=成功颜色
+option.wdmla.general.textcolor.warning=警告颜色
+option.wdmla.general.textcolor.danger=危险颜色
+option.wdmla.general.textcolor.failure=失败颜色
+option.wdmla.general.textcolor.modname=模组名称颜色
 
 # plugin autogen options
-option.autogen.category=自动生成插件选项
-option.autogen.enabled=启用
-option.autogen.priority=优先级
+option.wdmla.autogen.category=自动生成插件选项
+option.wdmla.autogen.enabled=启用
+option.wdmla.autogen.priority=优先级
 
-option.plugin.category=插件选项
+option.wdmla.plugin.category=插件选项
 
 # core options
-option.core.show.icon=显示方块图标
-option.core.show.blockname=显示方块名称
-option.core.show.modname=显示模组名称
-option.core.show.entityname=显示实体名称
+option.wdmla.core.show.icon=显示方块图标
+option.wdmla.core.show.blockname=显示方块名称
+option.wdmla.core.show.modname=显示模组名称
+option.wdmla.core.show.entityname=显示实体名称
 
 # vanilla plugin options
-option.vanilla.show.petsitting=显示宠物坐下状态
-option.vanilla.show.petowner=显示宠物主人
-option.vanilla.show.animalgrowth=显示动物成长进度
-option.vanilla.show.breedcooldown=显示动物繁殖冷却
-option.vanilla.leverstate=拉杆状态
-option.vanilla.repeater=中继器延时
-option.vanilla.comparator=比较器模式
+option.wdmla.vanilla.show.petsitting=显示宠物坐下状态
+option.wdmla.vanilla.show.petowner=显示宠物主人
+option.wdmla.vanilla.show.animalgrowth=显示动物成长进度
+option.wdmla.vanilla.show.breedcooldown=显示动物繁殖冷却
+option.wdmla.vanilla.leverstate=显示拉杆状态
+option.wdmla.vanilla.repeater=显示中继器延时
+option.wdmla.vanilla.comparator=显示比较器模式
 
 # waila harvestability options
-option.harvestability.harvestlevel=挖掘等级
-option.harvestability.effectivetool=所需工具
-option.harvestability.currentlyharvestable=能否挖掘
-option.harvestability.oresonly=仅显示矿石挖掘信息
-option.harvestability.harvestlevel.sneakingonly=仅潜行时显示: 挖掘等级
-option.harvestability.effectivetool.sneakingonly=仅潜行时显示: 所需工具
-option.harvestability.currentlyharvestable.sneakingonly=仅潜行时显示: 能否挖掘
-option.harvestability.minimal=极简模式
-option.harvestability.unharvestableonly=仅显示能否挖掘
-option.harvestability.toolrequiredonly=仅显示所需工具
-option.harvestability.shearability=能否用剪刀采集
-option.harvestability.shearability.sneakingonly=仅潜行时显示: 能否用剪刀采集
-option.harvestability.silktouchability=能否精准采集
-option.harvestability.silktouchability.sneakingonly=仅潜行时显示: 能否精准采集
-option.harvestability.harvestlevelnum=采集等级
-option.harvestability.harvestlevelnum.sneakingonly=仅潜行时显示: 采集等级
-option.harvestability.minimalseparator.string=极简模式分隔符文本
-option.harvestability.currentlyharvestable.string=能否挖掘提示文本
-option.harvestability.notcurrentlyharvestable.string=无法挖掘提示文本
-option.harvestability.shearability.string=剪刀采集提示文本
-option.harvestability.silktouchability.string=精准采集提示文本
-option.harvestability.shearability.item=剪刀采集图标物品
-option.harvestability.silktouchability.item=精准采集图标物品
-option.harvestability.currentlyHarvestable.icon=能否挖掘图标
-option.harvestability.effectivetool.icon=有效工具图标
-option.harvestability.shearability.icon=剪刀采集图标
-option.harvestability.silktouchability.icon=精准采集图标
+option.wdmla.harvestability.harvestlevel=挖掘等级
+option.wdmla.harvestability.effectivetool=所需工具
+option.wdmla.harvestability.currentlyharvestable=能否挖掘
+option.wdmla.harvestability.oresonly=仅显示矿石挖掘信息
+option.wdmla.harvestability.harvestlevel.sneakingonly=仅潜行时显示: 挖掘等级
+option.wdmla.harvestability.effectivetool.sneakingonly=仅潜行时显示: 所需工具
+option.wdmla.harvestability.currentlyharvestable.sneakingonly=仅潜行时显示: 能否挖掘
+option.wdmla.harvestability.minimal=极简模式
+option.wdmla.harvestability.unharvestableonly=仅显示不可采集
+option.wdmla.harvestability.toolrequiredonly=仅需工具时显示
+option.wdmla.harvestability.shearability=能否用剪刀采集
+option.wdmla.harvestability.shearability.sneakingonly=仅潜行时显示: 能否用剪刀采集
+option.wdmla.harvestability.silktouchability=能否精准采集
+option.wdmla.harvestability.silktouchability.sneakingonly=仅潜行时显示: 能否精准采集
+option.wdmla.harvestability.harvestlevelnum=采集等级
+option.wdmla.harvestability.harvestlevelnum.sneakingonly=仅潜行时显示: 采集等级
+option.wdmla.harvestability.minimalseparator.string=极简模式分隔符文本
+option.wdmla.harvestability.currentlyharvestable.string=可采集提示文本
+option.wdmla.harvestability.notcurrentlyharvestable.string=不可采集提示文本
+option.wdmla.harvestability.shearability.string=剪刀采集提示文本
+option.wdmla.harvestability.silktouchability.string=精准采集提示文本
+option.wdmla.harvestability.shearability.item=剪刀采集图标物品
+option.wdmla.harvestability.silktouchability.item=精准采集图标物品
+option.wdmla.harvestability.currentlyHarvestable.icon=当前可采集图标
+option.wdmla.harvestability.effectivetool.icon=有效工具图标
+option.wdmla.harvestability.shearability.icon=剪刀采集图标
+option.wdmla.harvestability.silktouchability.icon=精准采集图标
 
-# options in the untouched sections
+# options in the untouched sections(unsorted, it will be deleted soon)
+# don't add entries to here
 option.appeng.monitorcontent=显示内容
 option.bb.content=桶中容有
 option.bc.tankamount=流体量
@@ -231,9 +250,6 @@ option.carpenters.hide=隐藏伪装方块
 option.stevescarts.showall=显示数据
 option.stevescarts.colorblind=色盲模式
 option.stevescarts.shifttoggle=潜行切换
-option.general.showents=显示实体
-option.general.showhp=显示实体生命值
-option.general.showcrop=显示作物生长状态
 option.thaumcraft.aspects=显示要素
 
 
