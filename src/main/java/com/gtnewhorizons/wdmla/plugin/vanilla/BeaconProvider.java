@@ -26,7 +26,7 @@ public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvid
         int primary = accessor.getServerData().getInteger("Primary");
         if (primary > 0) {
             tooltip.child(
-                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.beacon.primary"),
+                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.primary"),
                             LangUtil.translateG(Potion.potionTypes[primary].getName()))
             );
         }
@@ -34,7 +34,7 @@ public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvid
         int secondary = accessor.getServerData().getInteger("Secondary");
         if (secondary > 0) {
             tooltip.child(
-                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.beacon.secondary"),
+                    ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.secondary"),
                             LangUtil.translateG(Potion.potionTypes[secondary].getName()))
             );
         }

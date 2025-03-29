@@ -49,6 +49,8 @@ hud.msg.wdmla.speed=Speed
 hud.msg.wdmla.fuse=Fuse
 hud.msg.wdmla.animal.growth=Growing Time
 hud.msg.wdmla.animal.breedcooldown=Breeding CD
+hud.msg.wdmla.primary=Primary
+hud.msg.wdmla.secondary=Secondary
 
 # state
 hud.msg.wdmla.mature=Mature
