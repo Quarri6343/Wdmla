@@ -1,67 +1,85 @@
-screen.button.waila=Waila
-screen.button.modules=模块
-screen.label.scale=缩放
-screen.label.dragtuto=拖拽抬头显示(HUD)标签为其设置位置.
+# chat messages
+chat.msg.waila.norecipe=未发现合成表.
+chat.msg.waila.nousage=未发现可参与合成.
 
-screen.button.default=默认
-screen.button.cancel=取消
-screen.button.ok=确定
-screen.button.yes=是
-screen.button.no=否
-screen.button.back=返回
-screen.button.hidden=隐藏
-screen.button.visible=可见
-screen.button.maintained=保持
-screen.button.toggled=切换
 
-choice.showhidewaila=显示/隐藏Waila
-choice.showhideidmeta=显示ID:Metadata
-choice.toggledmaintained=切换/保持显示信息
-choice.showliquids=流体
-choice.shifttoggledblock=潜行切换方块信息
-choice.shifttoggledents=潜行切换实体信息
-choice.forcelegacymode=强制旧版模式
-screen.button.configureaspect=自定义外观...
+# tooltip messages
 
-enchant.title.name=附魔名称
-enchant.title.minlvl=最低等级
-enchant.title.maxlvl=最高等级
-enchant.title.weight=权重
-enchant.label.enchantability=附魔能力
+# block
+hud.msg.wdmla.wheatcrop=小麦作物
+hud.msg.wdmla.pumpkinstem=南瓜茎
+hud.msg.wdmla.melonstem=西瓜茎
 
-waila.keybind.wailaconfig=[Waila]配置屏幕
-waila.keybind.wailadisplay=[Waila]显示/隐藏
-waila.keybind.liquid=[Waila]显示流体
-waila.keybind.recipe=[Waila]显示合成
-waila.keybind.usage=[Waila]显示可参与合成
-waila.keybind.testing=[Waila]测试
-waila.keybind.details=显示详细信息
+# tool
+hud.msg.wdmla.toolclass.pickaxe=镐
+hud.msg.wdmla.toolclass.shovel=锹
+hud.msg.wdmla.toolclass.axe=斧
+hud.msg.wdmla.toolclass.chisel=凿子
+hud.msg.wdmla.toolclass.scoop=捕蜂网
+hud.msg.wdmla.toolclass.crowbar=撬棍
+hud.msg.wdmla.toolclass.sword=剑
+hud.msg.wdmla.toolclass.wrench=扳手
+hud.msg.wdmla.toolclass.cutter=剪线钳
 
-client.msg.norecipe=未发现合成表.
-client.msg.nousage=未发现可参与合成.
+# unit
+hud.msg.wdmla.tick=刻
+hud.msg.wdmla.seconds=秒
+hud.msg.wdmla.progress.seconds=%d秒 / %d秒
+hud.msg.wdmla.blocks=方块
+hud.msg.wdmla.blockspersecond=方块/秒
+
+# information
+hud.msg.wdmla.growth=生长状态
+hud.msg.wdmla.state=状态
+hud.msg.wdmla.delay=延迟
+hud.msg.wdmla.progress=进度
+hud.msg.wdmla.level=等级
+hud.msg.wdmla.hardness=硬度
+hud.msg.wdmla.blast.resistance=爆炸抗性
+hud.msg.wdmla.mode=模式
+hud.msg.wdmla.out=输出
+hud.msg.wdmla.in=输入
+hud.msg.wdmla.effectivetool=所需工具 :
+hud.msg.wdmla.harvestlevel=挖掘等级 :
+hud.msg.wdmla.currentlyharvestable= 目前能否挖掘
+hud.msg.wdmla.harvestable= 能否挖掘
+hud.msg.wdmla.power=能量
+hud.msg.wdmla.jumpStrength=跳跃强度
+hud.msg.wdmla.speed=速度
+hud.msg.wdmla.fuse=引信时长
+hud.msg.wdmla.animal.growth=成长时间
+hud.msg.wdmla.animal.breedcooldown=繁殖冷却
+hud.msg.wdmla.primary=主效果
+hud.msg.wdmla.secondary=副效果
+
+# state
+hud.msg.wdmla.mature=成熟
+hud.msg.wdmla.off=关闭
+hud.msg.wdmla.on=开启
+hud.msg.wdmla.comparator=比较器模式
+hud.msg.wdmla.substractor=减法器模式
+hud.msg.wdmla.yes=是
+hud.msg.wdmla.no=否
+
+# tooltip messages in legacy modules(unsorted, it will be deleted soon)
+# don't add entries to here
 
 hud.msg.none=<无>
 hud.msg.empty=<空>
 hud.msg.output=输出
 hud.msg.input=输入
-hud.msg.out=输出
-hud.msg.in=输入
-hud.msg.power=能量
 hud.msg.storage=存储
 hud.msg.stored=已存储
 hud.msg.any=任意
-hud.msg.mode=模式
 hud.msg.maxpower=最大能量
 hud.msg.trigger=触发
 hud.msg.maxio=最大输入输出
-
 hud.msg.send=发送
 hud.msg.recv=接收
 hud.msg.item=物品
 hud.msg.fluid=流体
 hud.msg.energ=能量
 hud.msg.frequency=频率
-
 hud.msg.owner=主人
 hud.msg.public=公共
 hud.msg.restricted=受限
@@ -84,36 +102,113 @@ hud.msg.green=绿色
 hud.msg.red=红色
 hud.msg.black=黑色
 
-hud.msg.growth=生长状态
-hud.msg.mature=成熟
-hud.msg.off=关闭
-hud.msg.on=开启
-hud.msg.state=状态
-hud.msg.delay=延迟
-hud.msg.comparator=比较器
-hud.msg.substractor=减法器
-hud.msg.record=音乐唱片
-hud.msg.tick=刻
-hud.msg.ticks=刻
-hud.msg.progress=进度
-hud.msg.progress.seconds=%d秒 / %d秒
-hud.msg.level=等级
-hud.msg.hardness=硬度
-hud.msg.blast_resistance=爆炸抗性
-hud.msg.yes=是
-hud.msg.no=否
 
-hud.msg.beacon.primary=主效果
-hud.msg.beacon.secondary=副效果
-hud.msg.bed.cansleep=可睡眠
+# provider names (auto generated key)
 
-hud.msg.offers=提供
-hud.msg.demands=需求
+provider.wdmla.core.category=核心
+provider.wdmla.core.hardness=方块硬度
+provider.wdmla.core.equipment=实体装备
+provider.wdmla.core.entity.health=实体生命值
+provider.wdmla.core.default.block=默认方块
+provider.wdmla.core.blast.resistance=爆炸抗性
+provider.wdmla.core.default.entity=默认实体
+provider.wdmla.core.armor=实体护甲值
 
-hud.item.wheatcrop=小麦作物
-hud.item.pumpkinstem=南瓜茎
-hud.item.melonstem=西瓜茎
+provider.wdmla.minecraft.category=Minecraft
+provider.wdmla.minecraft.custom.meta.header=自定义元数据方块标题
+provider.wdmla.minecraft.redstone.ore=红石矿石
+provider.wdmla.minecraft.dropped.item.header=掉落物形式方块标题
+provider.wdmla.minecraft.pet=宠物
+provider.wdmla.minecraft.animal=动物
+provider.wdmla.minecraft.silverfish.header=蠹虫标题
+provider.wdmla.minecraft.redstone.state=红石状态相关
+provider.wdmla.minecraft.growable.header=可生长作物标题
+provider.wdmla.minecraft.double.plant.header=双层植物标题
+provider.wdmla.minecraft.player.head.header=玩家头颅标题
+provider.wdmla.minecraft.growth.rate=生长速率
+provider.wdmla.minecraft.bed=床
+provider.wdmla.minecraft.redstone.wire.header=红石线标题
+provider.wdmla.minecraft.redstone.wire=红石线
+provider.wdmla.minecraft.furnace=熔炉
+provider.wdmla.minecraft.mob.spawner.header=刷怪笼标题
+provider.wdmla.minecraft.beacon=信标
+provider.wdmla.minecraft.horse=马
+provider.wdmla.minecraft.primed.tnt=被激活的TNT
 
+provider.wdmla.harvestability.category=Waila Harvestability
+provider.wdmla.harvestability.legacy=旧版模式
+provider.wdmla.harvestability.modern=现代模式
+
+
+# options
+
+# general options
+option.wdmla.general.category=WDMla 通用设置
+option.wdmla.general.forcelegacy=传统模式
+option.wdmla.general.ghostproduct=虚像物品
+option.wdmla.general.theme=主题预设
+option.wdmla.textcolor.category=文本颜色
+option.wdmla.general.textcolor.info=信息颜色
+option.wdmla.general.textcolor.title=标题颜色
+option.wdmla.general.textcolor.success=成功颜色
+option.wdmla.general.textcolor.warning=警告颜色
+option.wdmla.general.textcolor.danger=危险颜色
+option.wdmla.general.textcolor.failure=失败颜色
+option.wdmla.general.textcolor.modname=模组名称颜色
+
+# plugin autogen options
+option.wdmla.autogen.category=自动生成插件选项
+option.wdmla.autogen.enabled=启用
+option.wdmla.autogen.priority=优先级
+
+option.wdmla.plugin.category=插件选项
+
+# core options
+option.wdmla.core.show.icon=显示方块图标
+option.wdmla.core.show.blockname=显示方块名称
+option.wdmla.core.show.modname=显示模组名称
+option.wdmla.core.show.entityname=显示实体名称
+
+# vanilla plugin options
+option.wdmla.vanilla.show.petsitting=显示宠物坐下状态
+option.wdmla.vanilla.show.petowner=显示宠物主人
+option.wdmla.vanilla.show.animalgrowth=显示动物成长进度
+option.wdmla.vanilla.show.breedcooldown=显示动物繁殖冷却
+option.wdmla.vanilla.leverstate=显示拉杆状态
+option.wdmla.vanilla.repeater=显示中继器延时
+option.wdmla.vanilla.comparator=显示比较器模式
+
+# waila harvestability options
+option.wdmla.harvestability.harvestlevel=挖掘等级
+option.wdmla.harvestability.effectivetool=所需工具
+option.wdmla.harvestability.currentlyharvestable=能否挖掘
+option.wdmla.harvestability.oresonly=仅显示矿石挖掘信息
+option.wdmla.harvestability.harvestlevel.sneakingonly=仅潜行时显示: 挖掘等级
+option.wdmla.harvestability.effectivetool.sneakingonly=仅潜行时显示: 所需工具
+option.wdmla.harvestability.currentlyharvestable.sneakingonly=仅潜行时显示: 能否挖掘
+option.wdmla.harvestability.minimal=极简模式
+option.wdmla.harvestability.unharvestableonly=仅显示不可采集
+option.wdmla.harvestability.toolrequiredonly=仅需工具时显示
+option.wdmla.harvestability.shearability=能否用剪刀采集
+option.wdmla.harvestability.shearability.sneakingonly=仅潜行时显示: 能否用剪刀采集
+option.wdmla.harvestability.silktouchability=能否精准采集
+option.wdmla.harvestability.silktouchability.sneakingonly=仅潜行时显示: 能否精准采集
+option.wdmla.harvestability.harvestlevelnum=采集等级
+option.wdmla.harvestability.harvestlevelnum.sneakingonly=仅潜行时显示: 采集等级
+option.wdmla.harvestability.minimalseparator.string=极简模式分隔符文本
+option.wdmla.harvestability.currentlyharvestable.string=可采集提示文本
+option.wdmla.harvestability.notcurrentlyharvestable.string=不可采集提示文本
+option.wdmla.harvestability.shearability.string=剪刀采集提示文本
+option.wdmla.harvestability.silktouchability.string=精准采集提示文本
+option.wdmla.harvestability.shearability.item=剪刀采集图标物品
+option.wdmla.harvestability.silktouchability.item=精准采集图标物品
+option.wdmla.harvestability.currentlyHarvestable.icon=当前可采集图标
+option.wdmla.harvestability.effectivetool.icon=有效工具图标
+option.wdmla.harvestability.shearability.icon=剪刀采集图标
+option.wdmla.harvestability.silktouchability.icon=精准采集图标
+
+# options in the untouched sections(unsorted, it will be deleted soon)
+# don't add entries to here
 option.appeng.monitorcontent=显示内容
 option.bb.content=桶中容有
 option.bc.tankamount=流体量
@@ -123,7 +218,6 @@ option.ic2.inputeumach=最大EU输入[机器]
 option.ic2.inputeuother=最大EU输入[其它]
 option.ic2.inputeu=最大EU输入
 option.ic2.outputeu=最大EU输出
-
 option.ic2.storage=已存储电力
 option.ic2.consump=显示消耗
 option.ic2.tradeomat=显示贸易机需求
@@ -137,14 +231,6 @@ option.thermalexpansion.tesssendrecv=超立方体模式
 option.thermalexpansion.tessfreq=超立方体频率
 option.thermalexpansion.owner=显示主人
 option.thermalexpansion.conditemmode=显示物品管道模式
-option.vanilla.spawntype=刷怪笼类型
-option.vanilla.growthvalue=生长状态
-option.vanilla.leverstate=拉杆状态
-option.vanilla.repeater=中继器延时
-option.vanilla.comparator=比较器模式
-option.vanilla.redstone=红石充能
-option.vanilla.jukebox=唱片内容
-option.vanilla.silverfish=隐藏蠹虫
 option.etb.displaydata=显示插槽数据
 option.enderio.inout=显示输入输出
 option.enderio.storage=显示已存储MJ
@@ -164,46 +250,35 @@ option.carpenters.hide=隐藏伪装方块
 option.stevescarts.showall=显示数据
 option.stevescarts.colorblind=色盲模式
 option.stevescarts.shifttoggle=潜行切换
-option.general.showents=显示实体
-option.general.showhp=显示实体生命值
-option.general.showcrop=显示作物生长状态
 option.thaumcraft.aspects=显示要素
 
-nei.options.keys.showenchant=显示附魔值
 
-# waila harvestability
+# legacy key section
+# can't touch naming rule of these otherwise Waila.cfg and Waila KeyBind will be ignored
+waila.cfg.show=显示/隐藏Waila
+waila.cfg.metadata=显示ID: 元数据
+waila.cfg.showmode=切换/保持显示模式
+waila.cfg.liquid=显示流体
+waila.cfg.shiftblock=未使用(潜行切换方块)
+waila.cfg.shiftents=未使用(潜行切换实体)
+# following config keys did not exist in Waila since they were hardcoded in screen
+waila.cfg.posx=提示框X坐标
+waila.cfg.posy=提示框Y坐标
+waila.cfg.scale=提示框缩放比例
+waila.cfg.alpha=背景透明度
+waila.cfg.bgcolor=背景颜色
+waila.cfg.gradient1=渐变颜色1
+waila.cfg.gradient2=渐变颜色2
+waila.cfg.fontcolor=默认文字颜色
+waila.cfg.heartsperline=每行心数
+waila.cfg.maxhpbeforetext=最大显示心数
+waila.cfg.keybind=未使用(按键绑定)
+waila.cfg.newfilters=为NEI添加过滤
 
-# tools
-wailaharvestability.toolclass.pickaxe=镐
-wailaharvestability.toolclass.shovel=锹
-wailaharvestability.toolclass.axe=斧
-wailaharvestability.toolclass.chisel=凿
-wailaharvestability.toolclass.scoop=捕蜂网
-wailaharvestability.toolclass.crowbar=撬棍
-wailaharvestability.toolclass.sword=剑
-wailaharvestability.toolclass.wrench=扳手
-wailaharvestability.toolclass.cutter=剪线钳
-
-# tooltips
-wailaharvestability.effectivetool=所需工具 : 
-wailaharvestability.harvestlevel=挖掘等级 : 
-wailaharvestability.currentlyharvestable= 目前能否挖掘
-wailaharvestability.harvestable= 能否挖掘
-
-# options
-option.harvestability.harvestlevel=挖掘等级
-option.harvestability.effectivetool=所需工具
-option.harvestability.currentlyharvestable=能否挖掘
-option.harvestability.oresonly=仅显示矿石挖掘信息
-option.harvestability.harvestlevel.sneakingonly=仅潜行时显示: 挖掘等级
-option.harvestability.effectivetool.sneakingonly=仅潜行时显示: 所需工具
-option.harvestability.currentlyharvestable.sneakingonly=仅潜行时显示: 能否挖掘
-option.harvestability.minimal=极简模式
-option.harvestability.unharvestableonly=仅显示能否挖掘
-option.harvestability.toolrequiredonly=仅显示所需工具
-option.harvestability.shearability=能否用剪刀采集
-option.harvestability.shearability.sneakingonly=仅潜行时显示: 能否用剪刀采集
-option.harvestability.silktouchability=能否精准采集
-option.harvestability.silktouchability.sneakingonly=仅潜行时显示: 能否精准采集
-option.harvestability.harvestlevelnum=采集等级
-option.harvestability.harvestlevelnum.sneakingonly=仅潜行时显示: 采集等级
+waila.keybind.wailaconfig=[Waila]配置屏幕
+waila.keybind.wailadisplay=[Waila]显示/隐藏
+waila.keybind.liquid=[Waila]显示流体
+waila.keybind.recipe=[Waila]显示合成
+waila.keybind.usage=[Waila]显示可参与合成
+waila.keybind.testing=[Waila]测试
+waila.keybind.details=显示详细信息
