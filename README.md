@@ -41,6 +41,7 @@ Still in alpha
   - wawla.horse.showjump
   - wawla.horse.showspeed
   - wawla.tnt.fuse
+  - wawla.showProfession
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 

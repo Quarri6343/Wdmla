@@ -21,6 +21,14 @@ hud.msg.wdmla.toolclass.sword=Sword
 hud.msg.wdmla.toolclass.wrench=Wrench
 hud.msg.wdmla.toolclass.cutter=Wire Cutter
 
+# profession
+hud.msg.wdmla.villager.profession.farmer=Farmer
+hud.msg.wdmla.villager.profession.librarian=Librarian
+hud.msg.wdmla.villager.profession.priest=Priest
+hud.msg.wdmla.villager.profession.blacksmith=Blacksmith
+hud.msg.wdmla.villager.profession.butcher=Butcher
+hud.msg.wdmla.villager.profession.nodata=No Data
+
 # unit
 hud.msg.wdmla.tick=t
 hud.msg.wdmla.seconds=s
@@ -51,6 +59,7 @@ hud.msg.wdmla.animal.growth=Growing Time
 hud.msg.wdmla.animal.breedcooldown=Breeding CD
 hud.msg.wdmla.primary=Primary
 hud.msg.wdmla.secondary=Secondary
+hud.msg.wdmla.item=Item
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -134,6 +143,8 @@ provider.wdmla.minecraft.mob.spawner.header=Mob Spawner Header
 provider.wdmla.minecraft.beacon=Beacon
 provider.wdmla.minecraft.horse=Horse
 provider.wdmla.minecraft.primed.tnt=Primed TNT
+provider.wdmla.minecraft.item.frame=Item Frame
+provider.wdmla.minecraft.villager.profession=Villager Profession
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy

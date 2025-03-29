@@ -25,10 +25,12 @@ import net.minecraft.block.BlockSkull;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockWoodSlab;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -80,6 +82,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
         registration.registerEntityComponent(HorseProvider.INSTANCE, EntityHorse.class);
         registration.registerEntityComponent(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
+        registration.registerEntityComponent(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
+        registration.registerEntityComponent(VillagerProfessionProvider.INSTANCE, EntityVillager.class);
 
         WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
                 .setLanguageKey("provider.wdmla.minecraft.category");
