@@ -22,7 +22,7 @@ public class PluginsConfig {
         @Config.LangKey("provider.wdmla.core.default.block")
         public static class DefaultBlock {
 
-            @Config.LangKey("option.wdmla.core.show.icon")
+            @Config.LangKey("option.wdmla.core.show.blockicon")
             @Config.DefaultBoolean(true)
             public boolean showIcon;
 
@@ -37,6 +37,10 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.core.default.entity")
         public static class DefaultEntity {
+
+            @Config.LangKey("option.wdmla.core.show.entity")
+            @Config.DefaultBoolean(true)
+            public boolean showEntity;
 
             @Config.LangKey("option.wdmla.core.show.entityname")
             @Config.DefaultBoolean(true)

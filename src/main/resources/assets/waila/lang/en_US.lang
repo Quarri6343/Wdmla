@@ -57,9 +57,12 @@ hud.msg.wdmla.speed=Speed
 hud.msg.wdmla.fuse=Fuse
 hud.msg.wdmla.animal.growth=Growing Time
 hud.msg.wdmla.animal.breedcooldown=Breeding CD
-hud.msg.wdmla.primary=Primary
-hud.msg.wdmla.secondary=Secondary
+hud.msg.wdmla.primary=First Effect
+hud.msg.wdmla.secondary=Second Effect
 hud.msg.wdmla.item=Item
+hud.msg.wdmla.sitting=Sitting
+hud.msg.wdmla.owner=Owner
+hud.msg.wdmla.cansleep=Can Sleep
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -175,9 +178,10 @@ option.wdmla.autogen.priority=Priority
 option.wdmla.plugin.category=Plugin Options
 
 # core options
-option.wdmla.core.show.icon=Show Block Icon
+option.wdmla.core.show.blockicon=Show Block Icon
 option.wdmla.core.show.blockname=Show Block Name
 option.wdmla.core.show.modname=Show Mod Name
+option.wdmla.core.show.entity=Render Entity
 option.wdmla.core.show.entityname=Show Entity Name
 
 # vanilla plugin options
