@@ -16,6 +16,7 @@ import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import io.netty.channel.ChannelHandlerContext;
 import mcp.mobius.waila.network.Message0x03EntRequest;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
 
@@ -51,6 +52,12 @@ public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
     @Override
     public Entity getEntity() {
         return entity.get();
+    }
+
+    @NotNull
+    @Override
+    public Object getTarget() {
+        return getEntity();
     }
 
     @Override

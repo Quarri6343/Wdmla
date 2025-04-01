@@ -5,8 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,6 +31,8 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
     public final PairHierarchyLookup<IServerDataProvider<BlockAccessor>> blockDataProviders;
     public final HierarchyLookup<IServerDataProvider<EntityAccessor>> entityDataProviders;
     public final PriorityStore<ResourceLocation, IWDMlaProvider> priorities;
+
+    public final WrappedHierarchyLookup<IServerExtensionProvider<ItemStack>> itemStorageProviders;
 
     private CommonRegistrationSession session;
 
@@ -51,6 +56,8 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
             // });
             return keys;
         });
+
+        itemStorageProviders = WrappedHierarchyLookup.forAccessor();
     }
 
     @Override
@@ -89,6 +96,8 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
         blockDataProviders.loadComplete(priorities);
         entityDataProviders.invalidate();
         entityDataProviders.loadComplete(priorities);
+        itemStorageProviders.invalidate();
+        itemStorageProviders.loadComplete(priorities);
         session = null;
     }
 
@@ -106,5 +115,10 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
 
     public boolean isSessionActive() {
         return session != null && session.isActive();
+    }
+
+    @Override
+    public <T> void registerItemStorage(IServerExtensionProvider<ItemStack> provider, Class<? extends T> clazz) {
+        itemStorageProviders.register(clazz, provider);
     }
 }

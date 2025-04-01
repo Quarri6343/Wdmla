@@ -71,6 +71,12 @@ public class BlockAccessorImpl extends AccessorImpl implements BlockAccessor {
         return tileEntity == null ? null : tileEntity.get();
     }
 
+    @Nullable
+    @Override
+    public Object getTarget() {
+        return getTileEntity();
+    }
+
     @Override
     public int getMetadata() {
         return metadata;

@@ -2,12 +2,15 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
+import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLever;
@@ -95,6 +98,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
+
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockChest.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockEnderChest.class);
     }
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {

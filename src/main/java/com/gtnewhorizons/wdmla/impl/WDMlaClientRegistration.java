@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -10,15 +9,18 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableSet;
+import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.ItemView;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.gtnewhorizons.wdmla.api.Accessor;
 import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
@@ -39,6 +41,8 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     public final HierarchyLookup<IComponentProvider<BlockAccessor>> blockComponentProviders;
     public final HierarchyLookup<IComponentProvider<EntityAccessor>> entityComponentProviders;
     private final Set<IComponentProvider<?>> allProviders;
+
+    public final Map<ResourceLocation, IClientExtensionProvider<ItemStack, ItemView>> itemStorageProviders = Maps.newHashMap();
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
 
@@ -87,6 +91,12 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
 
     public ImmutableSet<IComponentProvider<?>> getAllProvidersWithoutInfo() {
         return ImmutableSet.copyOf(allProviders);
+    }
+
+    @Override
+    public void registerItemStorageClient(IClientExtensionProvider<ItemStack, ItemView> provider) {
+        Objects.requireNonNull(provider.getUid());
+        itemStorageProviders.put(provider.getUid(), provider);
     }
 
     @Override
