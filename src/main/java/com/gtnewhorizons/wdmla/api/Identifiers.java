@@ -29,6 +29,7 @@ public final class Identifiers {
     public static final ResourceLocation TEST_NBT_BLOCK = Test("nbt_block");
     public static final ResourceLocation TEST_ENTITY = Test("entity");
     public static final ResourceLocation TEST_THEME_BLOCK = Test("theme_block");
+    public static final ResourceLocation TEST_ITEM_STORAGE = Test("item_storage");
 
     public static final String NAMESPACE_CORE = "core";
     public static final String NAMESPACE_UNIVERSAL = "universal";

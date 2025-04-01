@@ -3,7 +3,6 @@ package com.gtnewhorizons.wdmla.api.view;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import org.jetbrains.annotations.Nullable;

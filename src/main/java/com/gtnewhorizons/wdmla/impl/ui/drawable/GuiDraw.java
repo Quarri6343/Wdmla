@@ -39,7 +39,7 @@ public final class GuiDraw {
         else fontRenderer.drawString(text, x, y, colour);
     }
 
-    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay) {
+    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay, String stackSizeOverride) {
         if (stack.getItem() == null) {
             drawString("Err", area.getX(), area.getY(), ColorPalette.INFO, true);
             return;
@@ -70,7 +70,6 @@ public final class GuiDraw {
                     (int) (x / xScale),
                     (int) (y / yScale));
             if (drawOverlay) {
-                String stackSize = String.valueOf(stack.stackSize);
                 if (stack.stackSize > 0) {
                     renderItem.renderItemOverlayIntoGUI(
                             fontRenderer,
@@ -78,17 +77,16 @@ public final class GuiDraw {
                             stack,
                             (int) (x / xScale),
                             (int) (y / yScale),
-                            stackSize);
+                            stackSizeOverride);
                 } else if (General.ghostProduct
                         && !General.forceLegacy) {
-                            stackSize = SpecialChars.YELLOW + stack.stackSize;
                             renderItem.renderItemOverlayIntoGUI(
                                     fontRenderer,
                                     textureManager,
                                     stack,
                                     (int) (x / xScale),
                                     (int) (y / yScale),
-                                    stackSize);
+                                    SpecialChars.YELLOW + stackSizeOverride);
                         }
             }
             net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();

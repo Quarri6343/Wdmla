@@ -181,13 +181,14 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                         }
 
                         if (showName.isTrue()) {
-                            TextComponent name = new TextComponent(DisplayUtil.itemDisplayNameShort(stack)); //TODO:strip color
+                            String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
+                            TextComponent name = new TextComponent(strippedName);
                             int itemSize = name.getHeight();
                             elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
                             String s = String.valueOf(stack.stackSize); //TODO: unit format
                             elements.text(s).text("× ").child(name);
                         } else if (itemView.amountText != null) {
-                            elements.child(new ItemComponent(stack).doDrawOverlay(false).child(new TextComponent(itemView.amountText))); //TODO:allow custom amount on itemcomponent
+                            elements.child(new ItemComponent(stack).stackSizeOverride(itemView.amountText));
                         } else {
                             elements.item(stack);
                         }
