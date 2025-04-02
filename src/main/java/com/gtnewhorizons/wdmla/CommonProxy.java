@@ -5,14 +5,10 @@ import java.util.AbstractMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 import com.google.common.cache.Cache;
 import com.gtnewhorizons.wdmla.api.Accessor;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
@@ -40,15 +36,9 @@ import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.block.BlockChest;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
 
 public class CommonProxy {
 
@@ -199,7 +189,15 @@ public class CommonProxy {
 
     //We collect all inventory whether it is sided or not
     public static ItemCollector<?> createItemCollector(Accessor accessor, Cache<Object, ItemCollector<?>> containerCache) {
-        //TODO: IInvBasic(Horse)
+        if (accessor.getTarget() instanceof EntityHorse) {
+            return new ItemCollector<>(new ItemIterator.IInventoryItemIterator(
+                    o -> {
+                        if (o.getTarget() instanceof EntityHorse horse) {
+                            return horse.horseChest;
+                        }
+                        return null;
+                    }, 0)); //idk if any mod uses vanilla horse inventory (index > 1)
+        }
         try {
             if (accessor.getTarget() instanceof IInventory container) {
                 return containerCache.get(container, () -> new ItemCollector<>(new ItemIterator.IInventoryItemIterator(0)));

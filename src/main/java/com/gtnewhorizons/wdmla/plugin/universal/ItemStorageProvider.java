@@ -11,6 +11,7 @@ import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
@@ -161,7 +162,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     if (group.views.isEmpty() && group.extraData != null) {
                         float progress = group.extraData.getFloat("Collecting");
                         if (progress >= 0 && progress < 1) {
-                            String collectingText = LangUtil.translateG("jade.collectingItems");
+                            String collectingText = LangUtil.translateG("hud.msg.wdmla.collectingItems");
                             if (progress != 0) {
                                 collectingText += String.format(" %s%%", (int) (progress * 100));
                             }
@@ -266,6 +267,11 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
     @Override
     public ResourceLocation getUid() {
         return Identifiers.ITEM_STORAGE;
+    }
+
+    @Override
+    public int getDefaultPriority() {
+        return TooltipPosition.TAIL;
     }
 
     public static class ForBlock extends ItemStorageProvider<BlockAccessor> {

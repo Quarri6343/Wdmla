@@ -113,6 +113,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockBrewingStand.class);
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockDispenser.class);
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockDropper.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, EntityHorse.class);
     }
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
