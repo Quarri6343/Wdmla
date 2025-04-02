@@ -46,13 +46,13 @@ public final class ObjectDataCenter {
 
     public static NBTTagCompound getServerData() {
         if (accessor == null || clientHandler == null || serverData == null) {
-            return new NBTTagCompound();
+            return null;
         }
         if (accessor.verifyData(serverData)) {
             return serverData;
         }
         requestServerData();
-        return new NBTTagCompound();
+        return null;
     }
 
     public static void setServerData(NBTTagCompound tag) {

@@ -86,6 +86,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         for (ItemStack item : viewGroup.views) {
             NBTTagCompound itemNBT = new NBTTagCompound();
             item.writeToNBT(itemNBT);
+            itemNBT.setInteger("intCount", item.stackSize);
             encodedItemStacks.add(itemNBT);
         }
         ViewGroup<NBTTagCompound> contentEncodedGroup = new ViewGroup<>(encodedItemStacks, viewGroup);
@@ -116,7 +117,10 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         List<ItemStack> itemStacks = new ArrayList<>();
         for (NBTTagCompound itemNBT : contentDecodedGroup.views) {
             ItemStack item = ItemStack.loadItemStackFromNBT(itemNBT);
-            itemStacks.add(item);
+            if(item != null) {
+                item.stackSize = itemNBT.getInteger("intCount");
+                itemStacks.add(item);
+            }
         }
 
         return new ViewGroup<>(itemStacks, contentDecodedGroup);
@@ -132,8 +136,6 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         if (groups == null || groups.isEmpty()) {
             return;
         }
-
-
 
         boolean renderGroup = groups.size() > 1 || groups.get(0).shouldRenderGroup();
         ClientViewGroup.tooltip(
