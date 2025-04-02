@@ -34,14 +34,28 @@ public final class GuiDraw {
     private static final TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
     private static final RenderItem renderItem = new RenderItem();
 
-    public static void drawString(String text, int x, int y, int colour, boolean shadow) {
-        if (shadow) fontRenderer.drawStringWithShadow(text, x, y, colour);
-        else fontRenderer.drawString(text, x, y, colour);
+    public static void drawString(String text, int x, int y, int colour, boolean shadow, float scale) {
+        if (scale != 1) {
+            GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+            GL11.glPushMatrix();
+            GL11.glScalef(scale, scale, 1);
+        }
+        if (shadow) {
+            fontRenderer.drawStringWithShadow(text, (int)(x / scale), (int)(y / scale), colour);
+        }
+        else {
+            fontRenderer.drawString(text, x, y, colour);
+        }
+
+        if (scale != 1) {
+            GL11.glPopMatrix();
+            GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        }
     }
 
-    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay) {
+    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay, String stackSizeOverride) {
         if (stack.getItem() == null) {
-            drawString("Err", area.getX(), area.getY(), ColorPalette.INFO, true);
+            drawString("Err", area.getX(), area.getY(), ColorPalette.INFO, true, 1);
             return;
         }
 
@@ -70,7 +84,6 @@ public final class GuiDraw {
                     (int) (x / xScale),
                     (int) (y / yScale));
             if (drawOverlay) {
-                String stackSize = String.valueOf(stack.stackSize);
                 if (stack.stackSize > 0) {
                     renderItem.renderItemOverlayIntoGUI(
                             fontRenderer,
@@ -78,17 +91,16 @@ public final class GuiDraw {
                             stack,
                             (int) (x / xScale),
                             (int) (y / yScale),
-                            stackSize);
+                            stackSizeOverride);
                 } else if (General.ghostProduct
                         && !General.forceLegacy) {
-                            stackSize = SpecialChars.YELLOW + stack.stackSize;
                             renderItem.renderItemOverlayIntoGUI(
                                     fontRenderer,
                                     textureManager,
                                     stack,
                                     (int) (x / xScale),
                                     (int) (y / yScale),
-                                    stackSize);
+                                    SpecialChars.YELLOW + stackSizeOverride);
                         }
             }
             net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();

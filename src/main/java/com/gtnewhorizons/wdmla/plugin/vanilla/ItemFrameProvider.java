@@ -1,27 +1,35 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
-import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import mcp.mobius.waila.cbcore.LangUtil;
-import mcp.mobius.waila.overlay.DisplayUtil;
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
+import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.ItemView;
+import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
-public enum ItemFrameProvider implements IEntityComponentProvider {
+import java.util.Arrays;
+import java.util.List;
+
+public enum ItemFrameProvider implements IServerExtensionProvider<ItemStack>, IClientExtensionProvider<ItemStack, ItemView> {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
-        if(accessor.getEntity() instanceof EntityItemFrame itemFrame) {
-            IPadding itemPadding = new Padding().vertical(2);
-            tooltip.horizontal().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.item")), itemPadding)
-                    .item(itemFrame.getDisplayedItem(), new Padding(), new Size(10, 10))
-                    .text(" " + DisplayUtil.itemDisplayNameShort(itemFrame.getDisplayedItem()), itemPadding);
+    @Nullable
+    public List<ViewGroup<ItemStack>> getGroups(Accessor accessor) {
+        if(accessor.getTarget() instanceof EntityItemFrame itemFrame && itemFrame.getDisplayedItem() != null) {
+            return Arrays.asList(new ViewGroup<>(Arrays.asList(itemFrame.getDisplayedItem())));
         }
+
+        return null;
+    }
+
+    @Override
+    public List<ClientViewGroup<ItemView>> getClientGroups(Accessor accessor, List<ViewGroup<ItemStack>> groups) {
+        return ClientViewGroup.map(groups, ItemView::new, null);
     }
 
     @Override

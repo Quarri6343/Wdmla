@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public interface Accessor {
 
@@ -18,6 +19,9 @@ public interface Accessor {
     boolean isServerConnected();
 
     boolean showDetails();
+
+    @Nullable
+    Object getTarget();
 
     Class<? extends Accessor> getAccessorType();
 

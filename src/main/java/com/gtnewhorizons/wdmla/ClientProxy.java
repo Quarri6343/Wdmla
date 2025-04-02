@@ -1,7 +1,15 @@
 package com.gtnewhorizons.wdmla;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
+import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyIguanaTweaks;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
@@ -16,7 +24,12 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import org.jetbrains.annotations.Nullable;
 
 public class ClientProxy extends CommonProxy {
 
@@ -58,6 +71,32 @@ public class ClientProxy extends CommonProxy {
             loadComplete(); // sort priorities
 
             ConfigHandler.instance().reloadDefaultConfig();
+        }
+    }
+
+    @Nullable
+    public static <IN, OUT> List<ClientViewGroup<OUT>> mapToClientGroups(
+            Accessor accessor,
+            ResourceLocation key,
+            Function<NBTTagCompound, Map.Entry<ResourceLocation, List<ViewGroup<IN>>>> decoder,
+            Function<ResourceLocation, IClientExtensionProvider<IN, OUT>> mapper) {
+        NBTBase tagBase = accessor.getServerData().getTag(key.toString());
+        if (!(tagBase instanceof NBTTagCompound tag)) {
+            return null;
+        }
+        Map.Entry<ResourceLocation, List<ViewGroup<IN>>> entry = decoder.apply(tag);
+        if (entry == null) {
+            return null;
+        }
+        IClientExtensionProvider<IN, OUT> provider = mapper.apply(entry.getKey());
+        if (provider == null) {
+            return null;
+        }
+        try {
+            return provider.getClientGroups(accessor, entry.getValue());
+        } catch (Exception e) {
+            WailaExceptionHandler.handleErr(e, provider.getClass().getName(), null);
+            return null;
         }
     }
 }

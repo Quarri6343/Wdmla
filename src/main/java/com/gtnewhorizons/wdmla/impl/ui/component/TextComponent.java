@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
@@ -25,6 +26,12 @@ public class TextComponent extends Component {
         return this;
     }
 
+    public TextComponent scale(float scale) {
+        ((TextSize)size).scale(scale);
+        ((TextDrawable) this.foreground).scale(scale);
+        return this;
+    }
+
     @Override
     public TextComponent size(@NotNull ISize size) {
         throw new IllegalArgumentException("You can't set the size of TextComponent!");
@@ -40,6 +47,7 @@ public class TextComponent extends Component {
             case CENTER -> foreground
                     .draw(new Area((x + (width / 2)) + padding.getLeft(), y + padding.getTop(), width, height));
             case TOPLEFT -> foreground.draw(new Area(x + padding.getLeft(), y + padding.getTop(), width, height));
+            default -> WailaExceptionHandler.handleErr(new IllegalArgumentException("invalid text alignment"), this.getClass().getName(), null);
         }
     }
 }

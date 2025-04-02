@@ -16,7 +16,7 @@ public class TextStyle implements ITextStyle {
     private boolean shadow;
 
     public TextStyle() {
-        this.alignment = ComponentAlignment.TOPLEFT;
+        this.alignment = DEFAULT_ALIGN;
         this.color = General.currentTheme.get().textColor(MessageType.NORMAL);
         this.shadow = DEFAULT_SHADOW;
     }

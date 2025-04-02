@@ -1,11 +1,23 @@
 package com.gtnewhorizons.wdmla;
 
 import java.lang.reflect.Method;
+import java.util.AbstractMap;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
+import com.google.common.cache.Cache;
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
 import com.gtnewhorizons.wdmla.plugin.core.CorePlugin;
 import com.gtnewhorizons.wdmla.plugin.harvestability.HarvestabilityPlugin;
 import com.gtnewhorizons.wdmla.plugin.harvestability.MissingHarvestInfo;
+import com.gtnewhorizons.wdmla.plugin.universal.ItemCollector;
+import com.gtnewhorizons.wdmla.plugin.universal.ItemIterator;
+import com.gtnewhorizons.wdmla.plugin.universal.UniversalPlugin;
 import com.gtnewhorizons.wdmla.plugin.vanilla.VanillaPlugin;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
@@ -23,6 +35,10 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.overlay.OverlayConfig;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
 
 public class CommonProxy {
 
@@ -73,12 +89,14 @@ public class CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {}
 
     public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
+        new UniversalPlugin().register(commonRegistration);
         new VanillaPlugin().register(commonRegistration);
     }
 
     public void registerBuiltInClientPlugins(WDMlaClientRegistration clientRegistration) {
 
         new CorePlugin().registerClient(clientRegistration);
+        new UniversalPlugin().registerClient(clientRegistration);
         new VanillaPlugin().registerClient(clientRegistration);
         new HarvestabilityPlugin().registerClient(clientRegistration);
     }
@@ -149,5 +167,44 @@ public class CommonProxy {
         } catch (Exception e) {
             Waila.log.warn(String.format("Exception while trying to access the method : %s", e));
         }
+    }
+
+    public static <T> Map.Entry<ResourceLocation, List<ViewGroup<T>>> getServerExtensionData(
+            Accessor accessor,
+            WrappedHierarchyLookup<IServerExtensionProvider<T>> lookup) {
+        for (IServerExtensionProvider<T> provider : lookup.wrappedGet(accessor)) {
+            List<ViewGroup<T>> groups;
+            try {
+                groups = provider.getGroups(accessor);
+            } catch (Exception e) {
+                WailaExceptionHandler.handleErr(e, provider.getClass().getName(), null);
+                continue;
+            }
+            if (groups != null) {
+                return new AbstractMap.SimpleEntry<>(provider.getUid(), groups);
+            }
+        }
+        return null;
+    }
+
+    //We collect all inventory whether it is sided or not
+    public static ItemCollector<?> createItemCollector(Accessor accessor, Cache<Object, ItemCollector<?>> containerCache) {
+        if (accessor.getTarget() instanceof EntityHorse) {
+            return new ItemCollector<>(new ItemIterator.IInventoryItemIterator(
+                    o -> {
+                        if (o.getTarget() instanceof EntityHorse horse) {
+                            return horse.horseChest;
+                        }
+                        return null;
+                    }, 0)); //idk if any mod uses vanilla horse inventory (index > 1)
+        }
+        try {
+            if (accessor.getTarget() instanceof IInventory container) {
+                return containerCache.get(container, () -> new ItemCollector<>(new ItemIterator.IInventoryItemIterator(0)));
+            }
+        } catch (ExecutionException e) {
+            WailaExceptionHandler.handleErr(e, null, null);
+        }
+        return ItemCollector.EMPTY;
     }
 }

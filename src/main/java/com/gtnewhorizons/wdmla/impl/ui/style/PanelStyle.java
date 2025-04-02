@@ -1,11 +1,9 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.style.IPanelStyle;
 import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 public class PanelStyle implements IPanelStyle {
 

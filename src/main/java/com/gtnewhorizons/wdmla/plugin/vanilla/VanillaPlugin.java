@@ -2,13 +2,20 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
+import net.minecraft.block.BlockBrewingStand;
+import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.BlockDropper;
+import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFurnace;
+import net.minecraft.block.BlockHopper;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLog;
@@ -26,6 +33,8 @@ import net.minecraft.block.BlockStem;
 import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockWoodSlab;
 import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.entity.item.EntityMinecartChest;
+import net.minecraft.entity.item.EntityMinecartHopper;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
@@ -82,8 +91,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
         registration.registerEntityComponent(HorseProvider.INSTANCE, EntityHorse.class);
         registration.registerEntityComponent(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
-        registration.registerEntityComponent(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
         registration.registerEntityComponent(VillagerProfessionProvider.INSTANCE, EntityVillager.class);
+
+        registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
         WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
                 .setLanguageKey("provider.wdmla.minecraft.category");
@@ -95,6 +105,18 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
+
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockChest.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockEnderChest.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, EntityMinecartChest.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, EntityMinecartHopper.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockHopper.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockBrewingStand.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockDispenser.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockDropper.class);
+        registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, EntityHorse.class);
+
+        registration.registerItemStorage(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
     }
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {

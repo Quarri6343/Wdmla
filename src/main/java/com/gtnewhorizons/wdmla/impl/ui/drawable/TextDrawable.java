@@ -11,10 +11,12 @@ public class TextDrawable implements IDrawable {
 
     private final @NotNull String text;
     private @NotNull ITextStyle style;
+    private float scale;
 
     public TextDrawable(@NotNull String text) {
         this.text = text;
         this.style = new TextStyle();
+        this.scale = 1;
     }
 
     public TextDrawable style(ITextStyle style) {
@@ -22,8 +24,13 @@ public class TextDrawable implements IDrawable {
         return this;
     }
 
+    public TextDrawable scale(float scale) {
+        this.scale = scale;
+        return this;
+    }
+
     @Override
     public void draw(IArea area) {
-        GuiDraw.drawString(text, area.getX(), area.getY(), style.getColor(), style.getShadow());
+        GuiDraw.drawString(text, area.getX(), area.getY(), style.getColor(), style.getShadow(), scale);
     }
 }

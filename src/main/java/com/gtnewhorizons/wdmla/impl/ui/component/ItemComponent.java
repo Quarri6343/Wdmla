@@ -21,4 +21,9 @@ public class ItemComponent extends TooltipComponent {
         ((ItemDrawable) this.foreground).doDrawOverlay(flag);
         return this;
     }
+
+    public ItemComponent stackSizeOverride(String text) {
+        ((ItemDrawable) this.foreground).stackSizeOverride(text);
+        return this;
+    }
 }
