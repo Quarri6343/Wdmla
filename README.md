@@ -1,6 +1,14 @@
 # WDMla
 **What DreamMaster looks at** is what you look at<br>
-Still in alpha
+Still in alpha, api is subject to change
+
+# Main Features
+- Allows rich non-text expression like item, entity, progress bar
+- Backported many code features from Jade including new and fast registration system
+- Backported powerful component system from The One Probe, makes layout creation more flexible
+- Better config screen and options
+- Rewritten internal tooltips includes WailaHarvestability, Wawla (WailaPlugins is planned)
+- Achieved almost full backward compatibility by retaining legacy Waila api
 
 # Required Dependencies
 - NEI (removal is planned)
@@ -42,6 +50,9 @@ Still in alpha
   - wawla.horse.showspeed
   - wawla.tnt.fuse
   - wawla.showProfession
+
+# Other items to Note:
+- Removed Enchant Screen
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 
