@@ -5,6 +5,7 @@ import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class ClientViewGroup<T> {
             if (data != null) {
                 group.boxProgress = data.getFloat("Progress");
                 String messageTypeString = data.getString("MessageType");
-                group.messageType = messageTypeString != null ?
+                group.messageType = !StringUtils.isNullOrEmpty(messageTypeString) ?
                         MessageType.valueOf(messageTypeString) : MessageType.NORMAL;
             }
             if (clientGroupDecorator != null) {

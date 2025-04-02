@@ -26,6 +26,15 @@ public class ViewGroup<T> {
         this.extraData = extraData;
     }
 
+    /**
+     * instantiate new ViewGroup without extraData check
+     */
+    public ViewGroup(List<T> newViews, ViewGroup<?> oldGroup) {
+        this.views = newViews;
+        this.id = oldGroup.id;
+        this.extraData = oldGroup.extraData;
+    }
+
     public NBTTagCompound getExtraData() {
         if (extraData == null) {
             extraData = new NBTTagCompound();

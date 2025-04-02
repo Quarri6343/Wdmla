@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.test;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.gtnewhorizons.wdmla.api.Accessor;
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -8,6 +9,8 @@ import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ItemView;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,12 +30,23 @@ public enum TestItemStorageProvider implements IServerExtensionProvider<ItemStac
             if (customData == null) {
                 return null;
             }
-            if (!customData.hasKey("amount")) {
+            if (customData.hasKey("amount")) {
+                String text = String.valueOf(customData.getInteger("amount"));
+                return new ItemView(stack).amountText(text);
+            }
+            else if (customData.hasKey("description")) {
+                String desc = customData.getString("description");
+                return new ItemView(stack).description(new TextComponent(desc));
+            }
+            else {
                 return null;
             }
-            String text = String.valueOf(customData.getInteger("amount"));
-            return new ItemView(stack).amountText(text);
-        }, (viewGroup, clientViewGroup) -> clientViewGroup.title = "Test Group");
+
+        }, (viewGroup, clientViewGroup) -> {
+            if (viewGroup.id != null) {
+                clientViewGroup.title = viewGroup.id;
+            }
+        });
     }
 
     @Override
@@ -51,7 +65,15 @@ public enum TestItemStorageProvider implements IServerExtensionProvider<ItemStac
                 stack.setTagCompound(amountNBT);
                 list.add(stack);
             }
-            return Arrays.asList(new ViewGroup<>(list));
+            List<ItemStack> list2 = Lists.newArrayList();
+            for (int i = 0; i < 4; i++) {
+                ItemStack stack = new ItemStack(Items.apple, 3);
+                NBTTagCompound descNBT = new NBTTagCompound();
+                descNBT.setString("description", String.format("This item is %d times important", i));
+                stack.setTagCompound(descNBT);
+                list2.add(stack);
+            }
+            return Arrays.asList(new ViewGroup<>(list, "content", null), new ViewGroup<>(list2, "info", null));
         }
         return null;
     }

@@ -1,8 +1,11 @@
 package com.gtnewhorizons.wdmla.api.view;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ItemView {
 
@@ -10,6 +13,8 @@ public class ItemView {
 
     @Nullable
     public String amountText;
+    @Nullable
+    public IComponent description;
 
     public ItemView(ItemStack item) {
         this.item = item;
@@ -17,6 +22,11 @@ public class ItemView {
 
     public ItemView amountText(String amountText) {
         this.amountText = amountText;
+        return this;
+    }
+
+    public ItemView description(IComponent description) {
+        this.description = description;
         return this;
     }
 

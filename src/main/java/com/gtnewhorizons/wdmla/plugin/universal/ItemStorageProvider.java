@@ -88,7 +88,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
             item.writeToNBT(itemNBT);
             encodedItemStacks.add(itemNBT);
         }
-        ViewGroup<NBTTagCompound> contentEncodedGroup = new ViewGroup<>(encodedItemStacks);
+        ViewGroup<NBTTagCompound> contentEncodedGroup = new ViewGroup<>(encodedItemStacks, viewGroup);
         return ViewGroup.encode(contentEncodedGroup);
     }
 
@@ -119,7 +119,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
             itemStacks.add(item);
         }
 
-        return new ViewGroup<>(itemStacks);
+        return new ViewGroup<>(itemStacks, contentDecodedGroup);
     }
 
 
@@ -133,32 +133,17 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
             return;
         }
 
-        MutableBoolean showName = new MutableBoolean(true);
-        {
-            int showNameAmount = 5; //UNIVERSAL_ITEM_STORAGE_SHOW_NAME_AMOUNT
-            int totalSize = 0;
-            for (var group : groups) {
-                for (var view : group.views) {
-                    if (view.amountText != null) {
-                        showName.setFalse();
-                    }
-                    if (view.item != null) {
-                        ++totalSize;
-                        if (totalSize == showNameAmount) {
-                            showName.setFalse();
-                        }
-                    }
-                }
-            }
-        }
+
 
         boolean renderGroup = groups.size() > 1 || groups.get(0).shouldRenderGroup();
         ClientViewGroup.tooltip(
                 tooltip, groups, renderGroup, (theTooltip, group) -> {
+                    MutableBoolean showName = getShowName(group);
+
                     if (renderGroup) {
                         Theme theme = General.currentTheme.get();
                         if (group.title != null) {
-                            ITooltip hPanel = new HPanelComponent().style(new PanelStyle().alignment(ComponentAlignment.TOPLEFT)); //TODO: MIDDLELEFT alignment
+                            ITooltip hPanel = new HPanelComponent().style(new PanelStyle().alignment(ComponentAlignment.CENTER));
                             hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
                                     .size(new Size(20,1)));
                             hPanel.child(new TextComponent(group.title).scale(0.6f));
@@ -186,7 +171,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     realSize = Math.min(group.views.size(), realSize);
                     TooltipComponent elements = new HPanelComponent();
                     if(showName.isFalse()) {
-                        elements.padding(new Padding(-2, -2, 0, 0));
+                        elements.padding(new Padding(-1, -1, 0, 0));
                     }
 
                     for (int i = 0; i < realSize; i++) {
@@ -199,20 +184,27 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                             theTooltip.child(elements);
                             elements = new HPanelComponent();
                             if(showName.isFalse()) {
-                                elements.padding(new Padding(-2, -2, 0, 0));
+                                elements.padding(new Padding(-1, -1, 0, 0));
                             }
                             drawnCount = 0;
                         }
 
                         if (showName.isTrue()) {
-                            String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
-                            TextComponent name = new TextComponent(strippedName);
-                            int itemSize = name.getHeight();
-                            elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
-                            String s = String.valueOf(stack.stackSize); //TODO: unit format
-                            elements.text(s).text("× ").child(name);
+                            if(itemView.description != null) {
+                                int itemSize = itemView.description.getHeight();
+                                elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)).padding(new Padding(-1, 0, 0, 0)));
+                                elements.child(itemView.description);
+                            }
+                            else {
+                                String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
+                                TextComponent name = new TextComponent(strippedName);
+                                int itemSize = name.getHeight();
+                                elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)).padding(new Padding(-1, 0, 0, 0)));
+                                String s = String.valueOf(stack.stackSize); //TODO: unit format
+                                elements.text(s).text("× ").child(name);
+                            }
                         } else if (itemView.amountText != null) {
-                            elements.child(new ItemComponent(stack).stackSizeOverride(itemView.amountText));
+                            elements.child(new ItemComponent(stack).stackSizeOverride(itemView.amountText).padding(new Padding(-1, 0, 0, 0)));
                         } else {
                             elements.item(stack);
                         }
@@ -223,6 +215,25 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                         theTooltip.child(elements);
                     }
                 });
+    }
+
+    public static MutableBoolean getShowName(ClientViewGroup<ItemView> group) {
+        MutableBoolean showName = new MutableBoolean(true);
+        int showNameAmount = 5; //UNIVERSAL_ITEM_STORAGE_SHOW_NAME_AMOUNT
+        int totalSize = 0;
+        for (var view : group.views) {
+            if (view.amountText != null) {
+                showName.setFalse();
+            }
+            if (view.item != null) {
+                ++totalSize;
+                if (totalSize == showNameAmount) {
+                    showName.setFalse();
+                }
+            }
+        }
+
+        return showName;
     }
 
     public static void putData(NBTTagCompound data, Accessor accessor) {
