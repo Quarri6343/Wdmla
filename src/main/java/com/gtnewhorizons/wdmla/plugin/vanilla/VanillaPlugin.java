@@ -91,8 +91,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
         registration.registerEntityComponent(HorseProvider.INSTANCE, EntityHorse.class);
         registration.registerEntityComponent(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
-        registration.registerEntityComponent(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
         registration.registerEntityComponent(VillagerProfessionProvider.INSTANCE, EntityVillager.class);
+
+        registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
         WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
                 .setLanguageKey("provider.wdmla.minecraft.category");
@@ -114,6 +115,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockDispenser.class);
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockDropper.class);
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, EntityHorse.class);
+
+        registration.registerItemStorage(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
     }
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
