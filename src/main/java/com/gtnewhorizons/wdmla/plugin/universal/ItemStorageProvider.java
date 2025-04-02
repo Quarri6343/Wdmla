@@ -26,6 +26,7 @@ import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.RectComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
@@ -160,7 +161,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                             ITooltip hPanel = new HPanelComponent().style(new PanelStyle().alignment(ComponentAlignment.TOPLEFT)); //TODO: MIDDLELEFT alignment
                             hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
                                     .size(new Size(20,1)));
-                            hPanel.text(group.title);
+                            hPanel.child(new TextComponent(group.title).scale(0.6f));
                             hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
                                     .size(new Size(30,1)));
                             theTooltip.child(hPanel);
@@ -183,7 +184,11 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     int drawnCount = 0;
                     int realSize = accessor.showDetails() ? 54 : 9; //TODO:config UNIVERSAL_ITEM_STORAGE_DETAILED_AMOUNT, UNIVERSAL_ITEM_STORAGE_NORMAL_AMOUNT
                     realSize = Math.min(group.views.size(), realSize);
-                    HPanelComponent elements = new HPanelComponent();
+                    TooltipComponent elements = new HPanelComponent();
+                    if(showName.isFalse()) {
+                        elements.padding(new Padding(-2, -2, 0, 0));
+                    }
+
                     for (int i = 0; i < realSize; i++) {
                         ItemView itemView = group.views.get(i);
                         ItemStack stack = itemView.item;
@@ -193,6 +198,9 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                         if (i > 0 && (showName.isTrue() || drawnCount >= 9)) { //TODO:config UNIVERSAL_ITEM_STORAGE_ITEMS_PER_LINE
                             theTooltip.child(elements);
                             elements = new HPanelComponent();
+                            if(showName.isFalse()) {
+                                elements.padding(new Padding(-2, -2, 0, 0));
+                            }
                             drawnCount = 0;
                         }
 

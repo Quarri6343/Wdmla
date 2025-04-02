@@ -25,6 +25,12 @@ public class TextComponent extends Component {
         return this;
     }
 
+    public TextComponent scale(float scale) {
+        ((TextSize)size).scale(scale);
+        ((TextDrawable) this.foreground).scale(scale);
+        return this;
+    }
+
     @Override
     public TextComponent size(@NotNull ISize size) {
         throw new IllegalArgumentException("You can't set the size of TextComponent!");
