@@ -50,7 +50,12 @@ public class AmountStyle implements IAmountStyle {
     }
 
     @Override
-    public int getBackgroundColor() {
+    public int getBackgroundColor1() {
+        return backgroundColor;
+    }
+
+    @Override
+    public int getBackgroundColor2() {
         return backgroundColor;
     }
 

@@ -10,19 +10,26 @@ import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
 import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ItemView;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.RectComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
+import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
@@ -148,10 +155,19 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         ClientViewGroup.tooltip(
                 tooltip, groups, renderGroup, (theTooltip, group) -> {
                     if (renderGroup) {
-                        theTooltip.child(new HPanelComponent().size(new Size(50,5)));//TODO:Horizontal Line
+                        Theme theme = General.currentTheme.get();
                         if (group.title != null) {
-                            theTooltip.text(group.title);
-                            theTooltip.child(new HPanelComponent().size(new Size(50,5)));
+                            ITooltip hPanel = new HPanelComponent().style(new PanelStyle().alignment(ComponentAlignment.TOPLEFT)); //TODO: MIDDLELEFT alignment
+                            hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                    .size(new Size(20,1)));
+                            hPanel.text(group.title);
+                            hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                    .size(new Size(30,1)));
+                            theTooltip.child(hPanel);
+                        }
+                        else {
+                            tooltip.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                    .size(new Size(50,1)));
                         }
                     }
                     if (group.views.isEmpty() && group.extraData != null) {

@@ -36,7 +36,7 @@ public class AmountDrawable implements IDrawable {
                 1,
                 style.getBorderColor(),
                 style.getBorderColor(),
-                style.getBackgroundColor());
+                style.getBackgroundColor1());
         if (current > 0L && max > 0L) {
             int dx = (int) Math.min(current * (long) (area.getW() - 2) / max, (long) (area.getW() - 2));
             if (style.getFilledColor() == style.getAlternateFilledColor()) {

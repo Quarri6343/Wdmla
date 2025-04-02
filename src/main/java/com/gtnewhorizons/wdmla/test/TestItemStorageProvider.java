@@ -32,7 +32,7 @@ public enum TestItemStorageProvider implements IServerExtensionProvider<ItemStac
             }
             String text = String.valueOf(customData.getInteger("amount"));
             return new ItemView(stack).amountText(text);
-        }, null);
+        }, (viewGroup, clientViewGroup) -> clientViewGroup.title = "Test Group");
     }
 
     @Override
