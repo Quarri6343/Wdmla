@@ -172,7 +172,7 @@ public class CommonProxy {
     public static <T> Map.Entry<ResourceLocation, List<ViewGroup<T>>> getServerExtensionData(
             Accessor accessor,
             WrappedHierarchyLookup<IServerExtensionProvider<T>> lookup) {
-        for (var provider : lookup.wrappedGet(accessor)) {
+        for (IServerExtensionProvider<T> provider : lookup.wrappedGet(accessor)) {
             List<ViewGroup<T>> groups;
             try {
                 groups = provider.getGroups(accessor);

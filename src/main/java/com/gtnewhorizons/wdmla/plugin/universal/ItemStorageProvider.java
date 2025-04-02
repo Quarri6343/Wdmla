@@ -32,6 +32,7 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
@@ -142,6 +143,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         ClientViewGroup.tooltip(
                 tooltip, groups, renderGroup, (theTooltip, group) -> {
                     MutableBoolean showName = getShowName(group);
+                    PluginsConfig.Universal.ItemStorage config = PluginsConfig.universal.itemStorage;
 
                     if (renderGroup) {
                         Theme theme = General.currentTheme.get();
@@ -170,7 +172,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                         }
                     }
                     int drawnCount = 0;
-                    int realSize = accessor.showDetails() ? 54 : 9; //TODO:config UNIVERSAL_ITEM_STORAGE_DETAILED_AMOUNT, UNIVERSAL_ITEM_STORAGE_NORMAL_AMOUNT
+                    int realSize = accessor.showDetails() ? config.detailedAmount : config.normalAmount;
                     realSize = Math.min(group.views.size(), realSize);
                     TooltipComponent elements = new HPanelComponent();
                     if(showName.isFalse()) {
@@ -183,7 +185,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                         if (stack == null) {
                             continue;
                         }
-                        if (i > 0 && (showName.isTrue() || drawnCount >= 9)) { //TODO:config UNIVERSAL_ITEM_STORAGE_ITEMS_PER_LINE
+                        if (i > 0 && (showName.isTrue() || drawnCount >= config.itemsPerLine)) {
                             theTooltip.child(elements);
                             elements = new HPanelComponent();
                             if(showName.isFalse()) {
@@ -222,15 +224,14 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
 
     public static MutableBoolean getShowName(ClientViewGroup<ItemView> group) {
         MutableBoolean showName = new MutableBoolean(true);
-        int showNameAmount = 5; //UNIVERSAL_ITEM_STORAGE_SHOW_NAME_AMOUNT
+        int showNameAmount = PluginsConfig.universal.itemStorage.showNameAmount;
         int totalSize = 0;
-        for (var view : group.views) {
+        for (ItemView view : group.views) {
             if (view.amountText != null) {
                 showName.setFalse();
             }
             if (view.item != null) {
-                ++totalSize;
-                if (totalSize == showNameAmount) {
+                if (++totalSize == showNameAmount) {
                     showName.setFalse();
                 }
             }

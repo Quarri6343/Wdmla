@@ -9,6 +9,8 @@ public class PluginsConfig {
 
     public static final Core core = new Core();
 
+    public static final Universal universal = new Universal();
+
     public static final Vanilla vanilla = new Vanilla();
 
     public static final Harvestability harvestability = new Harvestability();
@@ -49,6 +51,44 @@ public class PluginsConfig {
             @Config.LangKey("option.wdmla.core.show.modname")
             @Config.DefaultBoolean(true)
             public boolean showModName;
+        }
+    }
+
+    @Config.LangKey("provider.wdmla.universal.category")
+    public static class Universal {
+
+        public final ItemStorage itemStorage = new ItemStorage();
+        public final FluidStorage fluidStorage = new FluidStorage();
+        public final EnergyStorage energyStorage = new EnergyStorage();
+
+        @Config.LangKey("provider.wdmla.universal.item.storage")
+        public static class ItemStorage {
+
+            @Config.LangKey("option.wdmla.universal.normal.amount")
+            @Config.DefaultInt(9)
+            public int normalAmount;
+
+            @Config.LangKey("option.wdmla.universal.detailed.amount")
+            @Config.DefaultInt(54)
+            public int detailedAmount;
+
+            @Config.LangKey("option.wdmla.universal.items.per.line")
+            @Config.DefaultInt(9)
+            public int itemsPerLine;
+
+            @Config.LangKey("option.wdmla.universal.show.name.amount")
+            @Config.DefaultInt(4)
+            public int showNameAmount;
+        }
+
+        @Config.LangKey("provider.wdmla.universal.fluid.storage")
+        public static class FluidStorage {
+            //reserved
+        }
+
+        @Config.LangKey("provider.wdmla.universal.energy.storage")
+        public static class EnergyStorage {
+            //reserved
         }
     }
 

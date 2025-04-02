@@ -33,7 +33,7 @@ public class ClientViewGroup<T> {
             Function<IN, OUT> itemFactory,
             @Nullable BiConsumer<ViewGroup<IN>, ClientViewGroup<OUT>> clientGroupDecorator) {
         return groups.stream().map($ -> {
-            var group = new ClientViewGroup<>($.views.stream().map(itemFactory).filter(Objects::nonNull).collect(Collectors.toList()));
+            ClientViewGroup<OUT> group = new ClientViewGroup<>($.views.stream().map(itemFactory).filter(Objects::nonNull).collect(Collectors.toList()));
             NBTTagCompound data = $.extraData;
             if (data != null) {
                 group.boxProgress = data.getFloat("Progress");
@@ -54,7 +54,7 @@ public class ClientViewGroup<T> {
             List<ClientViewGroup<T>> groups,
             boolean renderGroup,
             BiConsumer<ITooltip, ClientViewGroup<T>> consumer) {
-        for (var group : groups) {
+        for (ClientViewGroup<T> group : groups) {
             consumer.accept(tooltip, group);
             if (renderGroup && group.boxProgress > 0 && group.boxProgress < 1) {
                 //TODO:overlap progress bar with item group
