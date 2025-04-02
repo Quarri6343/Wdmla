@@ -280,6 +280,16 @@ option.stevescarts.shifttoggle=Shift toggle
 option.thaumcraft.aspects=Show aspects
 
 
+# missing entity key section
+# vanilla minecart uses special switch case to add lang key
+entity.MinecartRideable.name=Minecart
+entity.MinecartChest.name=Minecart with Chest
+entity.MinecartFurnace.name=Minecart with Furnace
+entity.MinecartHopper.name=Minecart with Hopper
+entity.MinecartTNT.name=Minecart with TNT
+entity.MinecartCommandBlock.name=Minecart with Command Block
+
+
 # legacy key section
 # can't touch naming rule of these otherwise Waila.cfg and Waila KeyBind will be ignored
 waila.cfg.show=Show/Hide Waila
