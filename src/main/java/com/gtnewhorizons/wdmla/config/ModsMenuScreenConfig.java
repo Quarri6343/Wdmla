@@ -20,10 +20,10 @@ import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
 @SuppressWarnings({ "unused", "rawtypes" })
-public class ModsMenuScreenConfig extends GuiConfig {
+public class ModsMenuScreenConfig extends LiveEditGuiConfig {
 
     public ModsMenuScreenConfig(GuiScreen parent) throws ConfigException {
-        super(parent, getMainCategories(), WDMla.MODID, "config", false, false, "WDMla");
+        super(parent, getMainCategories(), WDMla.MODID, false, false, "WDMla", "Waila Replacement Mod");
     }
 
     @Override

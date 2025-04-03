@@ -1,5 +1,12 @@
 package com.gtnewhorizons.wdmla.overlay;
 
+import com.gtnewhorizons.wdmla.WDMla;
+import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.impl.ui.value.HUDRenderArea;
+import cpw.mods.fml.client.config.GuiConfig;
+import mcp.mobius.waila.overlay.OverlayConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -8,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.config.Configuration;
 
@@ -33,8 +41,25 @@ public class WDMlaTickHandler {
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public void tickRender(RenderGameOverlayEvent.Post event) {
-        if (event.type == RenderGameOverlayEvent.ElementType.ALL && mainHUD != null) {
+    public void overlayRender(RenderGameOverlayEvent.Post event) {
+        if (Minecraft.getMinecraft().currentScreen == null
+                && event.type == RenderGameOverlayEvent.ElementType.ALL && mainHUD != null) {
+            mainHUD.renderHUD();
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void screenRender(GuiScreenEvent.DrawScreenEvent.Post event) {
+        if(mainHUD == null || !(event.gui instanceof GuiConfig guiConfig && WDMla.MODID.equals(guiConfig.modID))) {
+            return;
+        }
+
+        Area bgArea = new HUDRenderArea(new Size(mainHUD.getWidth(), mainHUD.getHeight())).computeBackground();
+        Area scaledBGArea = new Area((int)(bgArea.getX() * OverlayConfig.scale), (int)(bgArea.getY() * OverlayConfig.scale),
+                (int)(bgArea.getW() * OverlayConfig.scale), (int)(bgArea.getH() * OverlayConfig.scale));
+        if(event.mouseX < scaledBGArea.getX() || event.mouseX > scaledBGArea.getEX()
+                || event.mouseY < scaledBGArea.getY() || event.mouseY > scaledBGArea.getEY()) {
             mainHUD.renderHUD();
         }
     }
@@ -57,10 +82,12 @@ public class WDMlaTickHandler {
         World world = mc.theWorld;
         EntityPlayer player = mc.thePlayer;
         GuiScreen currentScreen = mc.currentScreen;
+        boolean canDrawOnScreen = currentScreen == null ||
+                (currentScreen instanceof GuiConfig modsConfig && WDMla.MODID.equals(modsConfig.modID));
 
         if (world == null || player == null
                 || !Minecraft.isGuiEnabled()
-                || currentScreen != null
+                || !canDrawOnScreen
                 || mc.gameSettings.keyBindPlayerList.getIsKeyPressed()
                 || !ConfigHandler.instance().showTooltip()) {
             mainHUD = null;

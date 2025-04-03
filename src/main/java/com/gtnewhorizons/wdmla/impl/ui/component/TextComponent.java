@@ -17,7 +17,7 @@ public class TextComponent extends Component {
     protected ITextStyle style;
 
     public TextComponent(String text) {
-        super(new Padding(), new TextSize(DisplayUtil.stripSymbols(text)), new TextDrawable(DisplayUtil.stripSymbols(text)));
+        super(new Padding(), new TextSize(text), new TextDrawable(text));
         this.style = new TextStyle();
     }
 
