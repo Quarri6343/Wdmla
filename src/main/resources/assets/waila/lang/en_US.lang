@@ -1,6 +1,7 @@
 # chat messages
 chat.msg.waila.norecipe=No recipe found.
 chat.msg.waila.nousage=No usage found.
+chat.msg.wdmla.dump.success=Dumped all providers to %s
 
 
 # tooltip messages
