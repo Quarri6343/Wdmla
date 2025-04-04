@@ -1,9 +1,8 @@
 package com.gtnewhorizons.wdmla.plugin.universal;
 
+import com.gtnewhorizon.gtnhlib.util.map.ItemStackMap;
 import com.gtnewhorizons.wdmla.api.Accessor;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
-import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -16,7 +15,7 @@ public class ItemCollector<T> {
     public static final int MAX_SIZE = 54;
     public static final ItemCollector<?> EMPTY = new ItemCollector<>(null);
 
-    private final Object2IntLinkedOpenHashMap<Item> items = new Object2IntLinkedOpenHashMap<>();
+    private final ItemStackMap<Integer> items = new ItemStackMap<>();
     private final ItemIterator<T> iterator;
     public long version;
     public long lastTimeFinished;
@@ -50,8 +49,7 @@ public class ItemCollector<T> {
         iterator.populate(container, MAX_SIZE * 2).forEach(stack -> {
             count.incrementAndGet();
             if (stack != null) {
-                Item def = stack.getItem(); //ignore properties
-                items.addTo(def, stack.stackSize);
+                items.merge(stack, stack.stackSize, Integer::sum);
             }
         });
         iterator.afterPopulate(count.get());
@@ -59,8 +57,10 @@ public class ItemCollector<T> {
             updateCollectingProgress(mergedResult.get(0));
             return mergedResult;
         }
-        List<ItemStack> partialResult = items.object2IntEntrySet().stream().limit(MAX_SIZE).map(entry ->
-            new ItemStack(entry.getKey(), entry.getIntValue())).collect(Collectors.toList());
+        var partialResult = items.entrySet().stream().limit(MAX_SIZE).map(entry -> {
+            entry.getKey().stackSize = entry.getValue();
+            return entry.getKey();
+        }).collect(Collectors.toList());
         List<ViewGroup<ItemStack>> groups = Arrays.asList(updateCollectingProgress(new ViewGroup<>(partialResult)));
         if (iterator.isFinished()) {
             mergedResult = groups;
@@ -85,6 +85,4 @@ public class ItemCollector<T> {
         }
         return group;
     }
-    //backporting Jade itemcollector
-    //itemdefinition -> just use Item
 }

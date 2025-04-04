@@ -231,7 +231,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                 showName.setFalse();
             }
             if (view.item != null) {
-                if (++totalSize == showNameAmount) {
+                if (totalSize++ == showNameAmount) {
                     showName.setFalse();
                 }
             }
