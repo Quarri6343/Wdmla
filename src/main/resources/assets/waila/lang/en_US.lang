@@ -75,6 +75,11 @@ hud.msg.wdmla.substractor=Substractor
 hud.msg.wdmla.yes=Yes
 hud.msg.wdmla.no=No
 
+# dummy tooltip
+hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
+hud.msg.wdmla.cfg.dummy.2=to enable live edit
+hud.msg.wdmla.cfg.dummy.3=This is dummy
+
 # tooltip messages in legacy modules(unsorted, it will be deleted soon)
 # don't add entries to here
 
@@ -168,6 +173,7 @@ option.wdmla.general.category=WDMla General
 option.wdmla.general.forcelegacy=Legacy Mode
 option.wdmla.general.ghostproduct=Ghost Product
 option.wdmla.general.theme=Theme Preset
+option.wdmla.general.previewincfg=Preview in Config
 option.wdmla.textcolor.category=Text Colors
 option.wdmla.general.textcolor.info=Information
 option.wdmla.general.textcolor.title=Title

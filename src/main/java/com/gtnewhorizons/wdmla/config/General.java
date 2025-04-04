@@ -27,6 +27,11 @@ public class General {
     @Config.Comment("Current theme of tooltips. If other than NONE is selected, some values will be overridden")
     public static DefaultThemes currentTheme;
 
+    @Config.LangKey("option.wdmla.general.previewincfg")
+    @Config.DefaultBoolean(true)
+    @Config.Comment("Shows current tooltip preview in config screen")
+    public static boolean previewInCfg;
+
     @Config.Comment("Text color for the custom theme. \n" +
             "See general category for the default text color.")
     @Config.LangKey("option.wdmla.textcolor.category")
