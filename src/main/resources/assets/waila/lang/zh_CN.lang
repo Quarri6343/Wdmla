@@ -1,6 +1,7 @@
 # chat messages
-chat.msg.waila.norecipe=未发现合成表.
-chat.msg.waila.nousage=未发现可参与合成.
+chat.msg.waila.norecipe=未发现合成表
+chat.msg.waila.nousage=未发现可参与合成
+chat.msg.wdmla.dump.success=已将所有数据提供者导出至%s
 
 
 # tooltip messages
@@ -20,6 +21,14 @@ hud.msg.wdmla.toolclass.crowbar=撬棍
 hud.msg.wdmla.toolclass.sword=剑
 hud.msg.wdmla.toolclass.wrench=扳手
 hud.msg.wdmla.toolclass.cutter=剪线钳
+
+# profession
+hud.msg.wdmla.villager.profession.farmer=农民
+hud.msg.wdmla.villager.profession.librarian=图书管理员
+hud.msg.wdmla.villager.profession.priest=牧师
+hud.msg.wdmla.villager.profession.blacksmith=铁匠
+hud.msg.wdmla.villager.profession.butcher=屠夫
+hud.msg.wdmla.villager.profession.nodata=无数据
 
 # unit
 hud.msg.wdmla.tick=刻
@@ -51,6 +60,11 @@ hud.msg.wdmla.animal.growth=成长时间
 hud.msg.wdmla.animal.breedcooldown=繁殖冷却
 hud.msg.wdmla.primary=主效果
 hud.msg.wdmla.secondary=副效果
+hud.msg.wdmla.item=物品
+hud.msg.wdmla.sitting=坐下状态
+hud.msg.wdmla.owner=主人
+hud.msg.wdmla.cansleep=可睡觉
+hud.msg.wdmla.collectingItems=正在收集物品...
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -60,6 +74,11 @@ hud.msg.wdmla.comparator=比较器模式
 hud.msg.wdmla.substractor=减法器模式
 hud.msg.wdmla.yes=是
 hud.msg.wdmla.no=否
+
+# dummy tooltip
+hud.msg.wdmla.cfg.dummy.1=将鼠标悬停于游戏内任意物体
+hud.msg.wdmla.cfg.dummy.2=即可启用实时编辑功能
+hud.msg.wdmla.cfg.dummy.3=此为配置预览占位符
 
 # tooltip messages in legacy modules(unsorted, it will be deleted soon)
 # don't add entries to here
@@ -114,6 +133,11 @@ provider.wdmla.core.blast.resistance=爆炸抗性
 provider.wdmla.core.default.entity=默认实体
 provider.wdmla.core.armor=实体护甲值
 
+provider.wdmla.universal.category=通用
+provider.wdmla.universal.item.storage=物品存储
+provider.wdmla.universal.fluid.storage=流体存储
+provider.wdmla.universal.energy.storage=能量存储
+
 provider.wdmla.minecraft.category=Minecraft
 provider.wdmla.minecraft.custom.meta.header=自定义元数据方块标题
 provider.wdmla.minecraft.redstone.ore=红石矿石
@@ -134,6 +158,8 @@ provider.wdmla.minecraft.mob.spawner.header=刷怪笼标题
 provider.wdmla.minecraft.beacon=信标
 provider.wdmla.minecraft.horse=马
 provider.wdmla.minecraft.primed.tnt=被激活的TNT
+provider.wdmla.minecraft.item.frame=物品展示框
+provider.wdmla.minecraft.villager.profession=村民职业
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
@@ -147,6 +173,7 @@ option.wdmla.general.category=WDMla 通用设置
 option.wdmla.general.forcelegacy=传统模式
 option.wdmla.general.ghostproduct=虚像物品
 option.wdmla.general.theme=主题预设
+option.wdmla.general.previewincfg=配置预览
 option.wdmla.textcolor.category=文本颜色
 option.wdmla.general.textcolor.info=信息颜色
 option.wdmla.general.textcolor.title=标题颜色
@@ -164,10 +191,17 @@ option.wdmla.autogen.priority=优先级
 option.wdmla.plugin.category=插件选项
 
 # core options
-option.wdmla.core.show.icon=显示方块图标
+option.wdmla.core.show.blockicon=显示方块图标
 option.wdmla.core.show.blockname=显示方块名称
 option.wdmla.core.show.modname=显示模组名称
+option.wdmla.core.show.entity=渲染实体
 option.wdmla.core.show.entityname=显示实体名称
+
+# universal options
+option.wdmla.universal.normal.amount=普通数量
+option.wdmla.universal.detailed.amount=详细数量
+option.wdmla.universal.items.per.line=每行物品数
+option.wdmla.universal.show.name.amount=显示名称阈值
 
 # vanilla plugin options
 option.wdmla.vanilla.show.petsitting=显示宠物坐下状态
@@ -251,6 +285,16 @@ option.stevescarts.showall=显示数据
 option.stevescarts.colorblind=色盲模式
 option.stevescarts.shifttoggle=潜行切换
 option.thaumcraft.aspects=显示要素
+
+
+# missing entity key section
+# vanilla minecart uses special switch case to add lang key
+entity.MinecartRideable.name=矿车
+entity.MinecartChest.name=运输矿车
+entity.MinecartFurnace.name=动力矿车
+entity.MinecartHopper.name=漏斗矿车
+entity.MinecartTNT.name=TNT矿车
+entity.MinecartCommandBlock.name=命令方块矿车
 
 
 # legacy key section
