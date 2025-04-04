@@ -160,6 +160,7 @@ provider.wdmla.minecraft.horse=Horse
 provider.wdmla.minecraft.primed.tnt=Primed TNT
 provider.wdmla.minecraft.item.frame=Item Frame
 provider.wdmla.minecraft.villager.profession=Villager Profession
+provider.wdmla.minecraft.command.block=Command Block
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
@@ -211,6 +212,7 @@ option.wdmla.vanilla.show.breedcooldown=Show Animal Breed Cooldown
 option.wdmla.vanilla.leverstate=Show Lever State
 option.wdmla.vanilla.repeater=Show Repeater Delay
 option.wdmla.vanilla.comparator=Show Comparator Mode
+option.wdmla.vanilla.max.command.length=Max Command Length
 
 # waila harvestability options
 option.wdmla.harvestability.harvestlevel=Harvest Level

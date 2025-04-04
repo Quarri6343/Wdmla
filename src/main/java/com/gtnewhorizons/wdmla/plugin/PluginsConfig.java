@@ -98,6 +98,7 @@ public class PluginsConfig {
         public final RedstoneState redstoneState = new RedstoneState();
         public final Pet pet = new Pet();
         public final Animal animal = new Animal();
+        public final CommandBlock commandBlock = new CommandBlock();
 
         @Config.LangKey("provider.wdmla.minecraft.redstone.state")
         public static class RedstoneState {
@@ -133,6 +134,13 @@ public class PluginsConfig {
             @Config.LangKey("option.wdmla.vanilla.show.breedcooldown")
             @Config.DefaultBoolean(true)
             public boolean showBreedCooldown;
+        }
+
+        @Config.LangKey("provider.wdmla.minecraft.command.block")
+        public static class CommandBlock {
+            @Config.LangKey("option.wdmla.vanilla.max.command.length")
+            @Config.DefaultInt(40)
+            public int maxCommandLength;
         }
     }
 

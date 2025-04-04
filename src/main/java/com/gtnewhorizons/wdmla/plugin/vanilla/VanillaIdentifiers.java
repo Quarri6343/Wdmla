@@ -26,6 +26,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation PRIMED_TNT = MC("primed_tnt");
     public static final ResourceLocation ITEM_FRAME = MC("item_frame");
     public static final ResourceLocation VILLAGER_PROFESSION = MC("villager_profession");
+    public static final ResourceLocation COMMAND_BLOCK = MC("command_block");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 
