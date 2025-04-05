@@ -94,6 +94,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(CommandBlockProvider.INSTANCE, BlockCommandBlock.class);
         registration.registerBlockComponent(FlowerPotHeaderProvider.INSTANCE, BlockFlowerPot.class);
         registration.registerBlockComponent(JukeboxProvider.INSTANCE, BlockJukebox.class);
+        registration.registerBlockComponent(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
@@ -115,6 +116,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerBlockDataProvider(CommandBlockProvider.INSTANCE, BlockCommandBlock.class);
         registration.registerBlockDataProvider(JukeboxProvider.INSTANCE, BlockJukebox.class);
+        registration.registerBlockDataProvider(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
 
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);

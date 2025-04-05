@@ -30,6 +30,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation FALLING_BLOCK_HEADER = MC("falling_block_header");
     public static final ResourceLocation FLOWER_POT_HEADER = MC("flower_pot_header");
     public static final ResourceLocation JUKEBOX = MC("jukebox");
+    public static final ResourceLocation MOB_SPAWNER = MC("mob_spawner");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 
