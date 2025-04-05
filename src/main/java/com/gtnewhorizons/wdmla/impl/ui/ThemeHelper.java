@@ -53,6 +53,14 @@ public class ThemeHelper {
         root.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }
 
+    public void overrideEntityTooltipTitle(ITooltip root, String newName) {
+        Theme theme = General.currentTheme.get();
+        IComponent replacedName = new HPanelComponent()
+                .child(new TextComponent(newName).style(new TextStyle().color(theme.textColor(MessageType.TITLE))))
+                .tag(Identifiers.ENTITY_NAME);
+        root.replaceChildWithTag(Identifiers.ENTITY_NAME, replacedName);
+    }
+
     public void overrideTooltipModName(ITooltip root, ItemStack newItemStack) {
         overrideTooltipModName(root, ModIdentification.nameFromStack(newItemStack));
     }

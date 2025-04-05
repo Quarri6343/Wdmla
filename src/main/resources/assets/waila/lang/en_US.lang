@@ -11,6 +11,9 @@ hud.msg.wdmla.wheatcrop=Wheat Crops
 hud.msg.wdmla.pumpkinstem=Pumpkin Stem
 hud.msg.wdmla.melonstem=Melon Stem
 
+# Entity
+hud.msg.wdmla.entity.falling=Falling %s
+
 # tool
 hud.msg.wdmla.toolclass.pickaxe=Pickaxe
 hud.msg.wdmla.toolclass.shovel=Shovel
@@ -163,6 +166,7 @@ provider.wdmla.minecraft.primed.tnt=Primed TNT
 provider.wdmla.minecraft.item.frame=Item Frame
 provider.wdmla.minecraft.villager.profession=Villager Profession
 provider.wdmla.minecraft.command.block=Command Block
+provider.wdmla.minecraft.falling.block.header=Falling Block Header
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
