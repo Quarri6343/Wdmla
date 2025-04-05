@@ -10,6 +10,10 @@ chat.msg.wdmla.dump.success=已将所有数据提供者导出至%s
 hud.msg.wdmla.wheatcrop=小麦作物
 hud.msg.wdmla.pumpkinstem=南瓜茎
 hud.msg.wdmla.melonstem=西瓜茎
+hud.msg.wdmla.flower.pot=%s花盆
+
+# Entity
+hud.msg.wdmla.entity.falling=下落%s
 
 # tool
 hud.msg.wdmla.toolclass.pickaxe=镐
@@ -65,6 +69,8 @@ hud.msg.wdmla.sitting=坐下状态
 hud.msg.wdmla.owner=主人
 hud.msg.wdmla.cansleep=可睡觉
 hud.msg.wdmla.collectingItems=正在收集物品...
+hud.msg.wdmla.enchantment.power=附魔强度
+hud.msg.wdmla.now.playing=正在播放
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -132,6 +138,7 @@ provider.wdmla.core.default.block=默认方块
 provider.wdmla.core.blast.resistance=爆炸抗性
 provider.wdmla.core.default.entity=默认实体
 provider.wdmla.core.armor=实体护甲值
+provider.wdmla.core.enchantment.power=附魔强度
 
 provider.wdmla.universal.category=通用
 provider.wdmla.universal.item.storage=物品存储
@@ -160,6 +167,10 @@ provider.wdmla.minecraft.horse=马
 provider.wdmla.minecraft.primed.tnt=被激活的TNT
 provider.wdmla.minecraft.item.frame=物品展示框
 provider.wdmla.minecraft.villager.profession=村民职业
+provider.wdmla.minecraft.command.block=命令方块
+provider.wdmla.minecraft.falling.block.header=下落方块标题
+provider.wdmla.minecraft.flower.pot.header=花盆标题
+provider.wdmla.minecraft.jukebox=唱片机
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
@@ -211,6 +222,7 @@ option.wdmla.vanilla.show.breedcooldown=显示动物繁殖冷却
 option.wdmla.vanilla.leverstate=显示拉杆状态
 option.wdmla.vanilla.repeater=显示中继器延时
 option.wdmla.vanilla.comparator=显示比较器模式
+option.wdmla.vanilla.max.command.length=最大命令长度
 
 # waila harvestability options
 option.wdmla.harvestability.harvestlevel=挖掘等级
