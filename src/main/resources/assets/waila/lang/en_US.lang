@@ -34,6 +34,13 @@ hud.msg.wdmla.villager.profession.blacksmith=Blacksmith
 hud.msg.wdmla.villager.profession.butcher=Butcher
 hud.msg.wdmla.villager.profession.nodata=No Data
 
+# instrument
+hud.msg.wdmla.instrument.piano=Piano
+hud.msg.wdmla.instrument.bassdrum=Bass Drum
+hud.msg.wdmla.instrument.snare=Snare
+hud.msg.wdmla.instrument.clicks=Clicks
+hud.msg.wdmla.instrument.bassguitar=Bass Guitar
+
 # unit
 hud.msg.wdmla.tick=t
 hud.msg.wdmla.seconds=s
@@ -174,6 +181,7 @@ provider.wdmla.minecraft.flower.pot.header=Flower Pot Header
 provider.wdmla.minecraft.jukebox=Jukebox
 provider.wdmla.minecraft.mob.spawner=Mob Spawner
 provider.wdmla.minecraft.chicken=Chicken
+provider.wdmla.minecraft.note.block=Note Block
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy

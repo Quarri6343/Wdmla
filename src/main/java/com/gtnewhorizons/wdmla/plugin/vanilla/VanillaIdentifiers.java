@@ -32,6 +32,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation JUKEBOX = MC("jukebox");
     public static final ResourceLocation MOB_SPAWNER = MC("mob_spawner");
     public static final ResourceLocation CHICKEN = MC("chicken");
+    public static final ResourceLocation NOTE_BLOCK = MC("note_block");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 
