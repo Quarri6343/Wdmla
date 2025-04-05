@@ -53,6 +53,11 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     @Override
+    public boolean isPriorityFixed() {
+        return true;
+    }
+
+    @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())) {
             return;

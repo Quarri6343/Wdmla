@@ -14,6 +14,7 @@ import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.config.Property;
 
 /**
  * the new configuration file added by WDMla
@@ -50,12 +51,11 @@ public class WDMlaConfig extends Configuration {
 
     // TODO:split provider config file
     public boolean isProviderEnabled(IComponentProvider<?> provider) {
-        if (provider.isRequired()) {
-            return true;
+        Property prop = get(provider.getConfigCategory(), "option.wdmla.autogen.enabled", provider.enabledByDefault(), "");
+        if (!provider.canToggleInGui()) {
+            prop.setShowInGui(false);
         }
-
-        return get(provider.getConfigCategory(), "option.wdmla.autogen.enabled", provider.enabledByDefault(), "")
-                .getBoolean();
+        return prop.getBoolean();
     }
 
     public int getProviderPriority(IComponentProvider<?> provider) {
@@ -63,8 +63,12 @@ public class WDMlaConfig extends Configuration {
             return provider.getDefaultPriority();
         }
 
-        return get(provider.getConfigCategory(), "option.wdmla.autogen.priority", provider.getDefaultPriority(), "")
-                .getInt();
+        Property prop = get(provider.getConfigCategory(), "option.wdmla.autogen.priority", provider.getDefaultPriority(), "");
+        if(!provider.canPrioritizeInGui()) {
+            prop.setShowInGui(false);
+        }
+
+        return prop.getInt();
     }
 
     private void reloadTheme() {

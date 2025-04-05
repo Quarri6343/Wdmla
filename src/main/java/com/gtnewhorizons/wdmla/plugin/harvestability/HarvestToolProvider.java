@@ -52,6 +52,11 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
     }
 
     @Override
+    public boolean isPriorityFixed() {
+        return true;
+    }
+
+    @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (General.forceLegacy) {
             return;

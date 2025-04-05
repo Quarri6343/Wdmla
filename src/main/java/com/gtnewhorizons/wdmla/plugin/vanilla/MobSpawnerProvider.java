@@ -36,6 +36,11 @@ public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataPr
     }
 
     @Override
+    public boolean canToggleInGui() {
+        return false;
+    }
+
+    @Override
     public boolean enabledByDefault() {
         return false;
     }

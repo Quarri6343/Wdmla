@@ -29,6 +29,13 @@ public interface IWDMlaProvider {
         return false;
     }
 
+    /**
+     * Whether player can edit the priority of the provider with in game config.
+     */
+    default boolean canPrioritizeInGui() {
+        return true;
+    }
+
     default String getConfigCategory() {
         return Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER
                 + getUid().getResourceDomain()
