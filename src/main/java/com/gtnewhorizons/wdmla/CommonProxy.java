@@ -101,6 +101,7 @@ public class CommonProxy {
         new HarvestabilityPlugin().registerClient(clientRegistration);
     }
 
+    //TODO:use @WDMlaPlugin instead
     public void processIMC(FMLInterModComms.IMCEvent event) {
         for (FMLInterModComms.IMCMessage imcMessage : event.getMessages()) {
             if (!imcMessage.isStringMessage()) continue;

@@ -18,6 +18,7 @@ import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockHopper;
+import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLog;
@@ -92,6 +93,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(BedProvider.INSTANCE, BlockBed.class);
         registration.registerBlockComponent(CommandBlockProvider.INSTANCE, BlockCommandBlock.class);
         registration.registerBlockComponent(FlowerPotHeaderProvider.INSTANCE, BlockFlowerPot.class);
+        registration.registerBlockComponent(JukeboxProvider.INSTANCE, BlockJukebox.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
@@ -111,6 +113,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(FurnaceProvider.INSTANCE, BlockFurnace.class);
         registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerBlockDataProvider(CommandBlockProvider.INSTANCE, BlockCommandBlock.class);
+        registration.registerBlockDataProvider(JukeboxProvider.INSTANCE, BlockJukebox.class);
+
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
 
