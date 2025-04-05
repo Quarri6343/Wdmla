@@ -1,9 +1,10 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import net.minecraft.util.MathHelper;
+
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
-import net.minecraft.util.MathHelper;
 
 public class ArmorDrawable implements IDrawable {
 

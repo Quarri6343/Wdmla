@@ -5,123 +5,128 @@ import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import com.gtnewhorizons.wdmla.api.Accessor;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
 import org.jetbrains.annotations.Nullable;
 
+import com.gtnewhorizons.wdmla.api.Accessor;
+
 public abstract class ItemIterator<T> {
-	public static final AtomicLong version = new AtomicLong();
-	protected final Function<Accessor, @Nullable T> containerFinder;
-	protected final int fromIndex;
-	protected boolean finished;
-	protected int currentIndex;
 
-	protected ItemIterator(Function<Accessor, @Nullable T> containerFinder, int fromIndex) {
-		this.containerFinder = containerFinder;
-		this.currentIndex = this.fromIndex = fromIndex;
-	}
+    public static final AtomicLong version = new AtomicLong();
+    protected final Function<Accessor, @Nullable T> containerFinder;
+    protected final int fromIndex;
+    protected boolean finished;
+    protected int currentIndex;
 
-	public @Nullable T find(Accessor accessor) {
-		return containerFinder.apply(accessor);
-	}
+    protected ItemIterator(Function<Accessor, @Nullable T> containerFinder, int fromIndex) {
+        this.containerFinder = containerFinder;
+        this.currentIndex = this.fromIndex = fromIndex;
+    }
 
-	public final boolean isFinished() {
-		return finished;
-	}
+    public @Nullable T find(Accessor accessor) {
+        return containerFinder.apply(accessor);
+    }
 
-	public long getVersion(T container) {
-		return version.getAndIncrement();
-	}
+    public final boolean isFinished() {
+        return finished;
+    }
 
-	public abstract Stream<ItemStack> populate(T container, int amount);
+    public long getVersion(T container) {
+        return version.getAndIncrement();
+    }
 
-	public void reset() {
-		currentIndex = fromIndex;
-		finished = false;
-	}
+    public abstract Stream<ItemStack> populate(T container, int amount);
 
-	public void afterPopulate(int count) {
-		currentIndex += count;
-		if (count == 0 || currentIndex >= 10000) {
-			finished = true;
-		}
-	}
+    public void reset() {
+        currentIndex = fromIndex;
+        finished = false;
+    }
 
-	public float getCollectingProgress() {
-		return Float.NaN;
-	}
+    public void afterPopulate(int count) {
+        currentIndex += count;
+        if (count == 0 || currentIndex >= 10000) {
+            finished = true;
+        }
+    }
 
-	public static abstract class SlottedItemIterator<T> extends ItemIterator<T> {
-		protected float progress;
+    public float getCollectingProgress() {
+        return Float.NaN;
+    }
 
-		public SlottedItemIterator(Function<Accessor, @Nullable T> containerFinder, int fromIndex) {
-			super(containerFinder, fromIndex);
-		}
+    public static abstract class SlottedItemIterator<T> extends ItemIterator<T> {
 
-		protected abstract int getSlotCount(T container);
+        protected float progress;
 
-		protected abstract ItemStack getItemInSlot(T container, int slot);
+        public SlottedItemIterator(Function<Accessor, @Nullable T> containerFinder, int fromIndex) {
+            super(containerFinder, fromIndex);
+        }
 
-		@Override
-		public Stream<ItemStack> populate(T container, int amount) {
-			int slotCount = getSlotCount(container);
-			int toIndex = (long) currentIndex + amount > Integer.MAX_VALUE ? Integer.MAX_VALUE : currentIndex + amount;
-			if (toIndex >= slotCount) {
-				toIndex = slotCount;
-				finished = true;
-				progress = 1;
-			} else {
-				progress = (float) (currentIndex - fromIndex) / (slotCount - fromIndex);
-			}
-			return IntStream.range(currentIndex, toIndex).mapToObj(slot -> getItemInSlot(container, slot));
-		}
+        protected abstract int getSlotCount(T container);
 
-		@Override
-		public float getCollectingProgress() {
-			return progress;
-		}
-	}
+        protected abstract ItemStack getItemInSlot(T container, int slot);
 
-	public static class IInventoryItemIterator extends SlottedItemIterator<IInventory> {
-		public IInventoryItemIterator(int fromIndex) {
-			this(IInventoryItemIterator::findIInventory, fromIndex);
-		}
+        @Override
+        public Stream<ItemStack> populate(T container, int amount) {
+            int slotCount = getSlotCount(container);
+            int toIndex = (long) currentIndex + amount > Integer.MAX_VALUE ? Integer.MAX_VALUE : currentIndex + amount;
+            if (toIndex >= slotCount) {
+                toIndex = slotCount;
+                finished = true;
+                progress = 1;
+            } else {
+                progress = (float) (currentIndex - fromIndex) / (slotCount - fromIndex);
+            }
+            return IntStream.range(currentIndex, toIndex).mapToObj(slot -> getItemInSlot(container, slot));
+        }
 
-		public IInventoryItemIterator(Function<Accessor, @Nullable IInventory> containerFinder, int fromIndex) {
-			super(containerFinder, fromIndex);
-		}
+        @Override
+        public float getCollectingProgress() {
+            return progress;
+        }
+    }
 
-		@Override
-		protected int getSlotCount(IInventory container) {
-			return container.getSizeInventory();
-		}
+    public static class IInventoryItemIterator extends SlottedItemIterator<IInventory> {
 
-		@Override
-		protected ItemStack getItemInSlot(IInventory container, int slot) {
-			return container.getStackInSlot(slot);
-		}
+        public IInventoryItemIterator(int fromIndex) {
+            this(IInventoryItemIterator::findIInventory, fromIndex);
+        }
 
-		public static IInventory findIInventory(Accessor accessor) {
-			Object target = accessor.getTarget();
-			if (target instanceof IInventory container) {
-				return container;
-			}
-			return null;
-		}
-	}
+        public IInventoryItemIterator(Function<Accessor, @Nullable IInventory> containerFinder, int fromIndex) {
+            super(containerFinder, fromIndex);
+        }
 
-	public static abstract class SlotlessItemIterator<T> extends ItemIterator<T> {
+        @Override
+        protected int getSlotCount(IInventory container) {
+            return container.getSizeInventory();
+        }
 
-		protected SlotlessItemIterator(Function<Accessor, @Nullable T> containerFinder, int fromIndex) {
-			super(containerFinder, fromIndex);
-		}
+        @Override
+        protected ItemStack getItemInSlot(IInventory container, int slot) {
+            return container.getStackInSlot(slot);
+        }
 
-		@Override
-		public Stream<ItemStack> populate(T container, int amount) {
-			return populateRaw(container).skip(currentIndex).limit(amount);
-		}
+        public static IInventory findIInventory(Accessor accessor) {
+            Object target = accessor.getTarget();
+            if (target instanceof IInventory container) {
+                return container;
+            }
+            return null;
+        }
+    }
 
-		protected abstract Stream<ItemStack> populateRaw(T container);
-	}
+    public static abstract class SlotlessItemIterator<T> extends ItemIterator<T> {
+
+        protected SlotlessItemIterator(Function<Accessor, @Nullable T> containerFinder, int fromIndex) {
+            super(containerFinder, fromIndex);
+        }
+
+        @Override
+        public Stream<ItemStack> populate(T container, int amount) {
+            return populateRaw(container).skip(currentIndex).limit(amount);
+        }
+
+        protected abstract Stream<ItemStack> populateRaw(T container);
+    }
 }

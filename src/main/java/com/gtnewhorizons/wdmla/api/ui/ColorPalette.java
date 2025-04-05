@@ -2,20 +2,20 @@ package com.gtnewhorizons.wdmla.api.ui;
 
 public final class ColorPalette {
 
-    //text colors
-    //access through theme
+    // text colors
+    // access through theme
     public static final int DEFAULT = 0xFFA0A0A0;
     public static final int INFO = 0xFFFFFFFF;
     public static final int TITLE = 0xFFFFFFFF;
-    public static final int SUCCESS = 0xFF00AA00; //dark green
+    public static final int SUCCESS = 0xFF00AA00; // dark green
     public static final int WARNING = 0xFFFFF3CD;
     public static final int DANGER = 0xFFFF5555;
     public static final int FAILURE = 0xFFAA0000;
     public static final int MOD_NAME = 0xFF5555FF;
 
-    public static final int SUCCESS_JADE = 0xFF55FF55; //green
-    public static final int SUCCESS_TOP = 0xFF55FF55; //green
-    public static final int WARNING_TOP = 0xFFFFFF55; //yellow
+    public static final int SUCCESS_JADE = 0xFF55FF55; // green
+    public static final int SUCCESS_TOP = 0xFF55FF55; // green
+    public static final int WARNING_TOP = 0xFFFFFF55; // yellow
 
     // other colors
     public static final int NO_BORDER = 0x00000000;

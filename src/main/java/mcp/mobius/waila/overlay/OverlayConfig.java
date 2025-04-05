@@ -1,9 +1,10 @@
 package mcp.mobius.waila.overlay;
 
-import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraftforge.common.config.Configuration;
 
+import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
+
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 

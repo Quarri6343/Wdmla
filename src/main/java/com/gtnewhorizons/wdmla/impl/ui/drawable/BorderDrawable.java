@@ -1,7 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;

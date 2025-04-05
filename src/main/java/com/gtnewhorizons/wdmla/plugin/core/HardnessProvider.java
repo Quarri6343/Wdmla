@@ -1,17 +1,18 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
-import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
 public enum HardnessProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override
@@ -22,7 +23,8 @@ public enum HardnessProvider implements IBlockComponentProvider {
                 accessor.getHitResult().blockY,
                 accessor.getHitResult().blockZ);
         tooltip.child(
-                ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.hardness"), String.format("%.0f", hardness)));
+                ThemeHelper.INSTANCE
+                        .value(LangUtil.translateG("hud.msg.wdmla.hardness"), String.format("%.0f", hardness)));
     }
 
     @Override

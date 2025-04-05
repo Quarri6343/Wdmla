@@ -26,6 +26,7 @@ import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import mcp.mobius.waila.overlay.DisplayUtil;
 
 public enum TestNBTBlockProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+
     INSTANCE;
 
     @Override
@@ -100,18 +101,18 @@ public enum TestNBTBlockProvider implements IBlockComponentProvider, IServerData
 
     @Override
     public void appendServerData(NBTTagCompound data, BlockAccessor accessor) {
-        ItemStack[] dummyItemStacks = {new ItemStack(Items.potato), new ItemStack(Items.coal), new ItemStack(Items.baked_potato)};
+        ItemStack[] dummyItemStacks = { new ItemStack(Items.potato), new ItemStack(Items.coal),
+                new ItemStack(Items.baked_potato) };
         NBTTagList nbttaglist = new NBTTagList();
-        for (int i = 0; i < 3; ++i)
-        {
+        for (int i = 0; i < 3; ++i) {
             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-            nbttagcompound1.setByte("Slot", (byte)i);
+            nbttagcompound1.setByte("Slot", (byte) i);
             dummyItemStacks[i].writeToNBT(nbttagcompound1);
             nbttaglist.appendTag(nbttagcompound1);
         }
         data.setTag("Items", nbttaglist);
 
-        data.setShort("CookTime", (short)5);
+        data.setShort("CookTime", (short) 5);
         data.setInteger("BurnTime", 5);
         data.setInteger("random", new Random().nextInt(11));
     }

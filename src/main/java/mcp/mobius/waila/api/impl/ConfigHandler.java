@@ -144,7 +144,7 @@ public class ConfigHandler implements IWailaConfigHandler {
 
         loadDefaultConfigInternal();
         config.save();
-//        OverlayConfig.updateColors();
+        // OverlayConfig.updateColors();
     }
 
     // new helper method
@@ -179,10 +179,8 @@ public class ConfigHandler implements IWailaConfigHandler {
         OverlayConfig.scale = config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_SCALE, 100).getInt()
                 / 100.0f;
 
-         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NHEARTS, 20)
-         .getInt();
-         config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MAXHP, 40)
-         .getInt();
+        config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NHEARTS, 20).getInt();
+        config.get(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_MAXHP, 40).getInt();
 
         config.getCategory(Constants.CATEGORY_MODULES).setComment(
                 "Those are the config keys defined in modules [using the old api].\nServer side, it is used to enforce keys client side using the next section.");

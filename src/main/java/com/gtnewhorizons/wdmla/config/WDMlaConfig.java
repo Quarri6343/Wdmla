@@ -2,15 +2,15 @@ package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
 
-import com.gtnewhorizons.wdmla.api.TextColors;
-import com.gtnewhorizons.wdmla.api.Theme;
-import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.TextColors;
+import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -34,7 +34,8 @@ public class WDMlaConfig extends Configuration {
 
     public void reloadConfig() {
         getCategory(Identifiers.CONFIG_AUTOGEN).setLanguageKey("option.wdmla.autogen.category");
-        getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE).setLanguageKey("provider.wdmla.core.category");
+        getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_CORE)
+                .setLanguageKey("provider.wdmla.core.category");
         reloadProviderAutogenConfigs();
         reloadTheme();
     }
@@ -53,11 +54,8 @@ public class WDMlaConfig extends Configuration {
             return true;
         }
 
-        return get(
-                provider.getConfigCategory(),
-                "option.wdmla.autogen.enabled",
-                provider.enabledByDefault(),
-                "").getBoolean();
+        return get(provider.getConfigCategory(), "option.wdmla.autogen.enabled", provider.enabledByDefault(), "")
+                .getBoolean();
     }
 
     public int getProviderPriority(IComponentProvider<?> provider) {
@@ -65,11 +63,8 @@ public class WDMlaConfig extends Configuration {
             return provider.getDefaultPriority();
         }
 
-        return get(
-                        provider.getConfigCategory(),
-                        "option.wdmla.autogen.priority",
-                        provider.getDefaultPriority(),
-                        "").getInt();
+        return get(provider.getConfigCategory(), "option.wdmla.autogen.priority", provider.getDefaultPriority(), "")
+                .getInt();
     }
 
     private void reloadTheme() {
@@ -82,7 +77,6 @@ public class WDMlaConfig extends Configuration {
                 General.textColor.warning,
                 General.textColor.danger,
                 General.textColor.failure,
-                General.textColor.modName
-        );
+                General.textColor.modName);
     }
 }

@@ -5,8 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
-import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -21,8 +19,10 @@ import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 import com.gtnewhorizons.wdmla.impl.lookup.PairHierarchyLookup;
+import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
 
 public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
 

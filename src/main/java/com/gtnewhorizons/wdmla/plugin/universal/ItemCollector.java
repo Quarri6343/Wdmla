@@ -1,17 +1,19 @@
 package com.gtnewhorizons.wdmla.plugin.universal;
 
-import com.gtnewhorizon.gtnhlib.util.map.ItemStackMap;
-import com.gtnewhorizons.wdmla.api.Accessor;
-import com.gtnewhorizons.wdmla.api.view.ViewGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import com.gtnewhorizon.gtnhlib.util.map.ItemStackMap;
+import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+
 public class ItemCollector<T> {
+
     public static final int MAX_SIZE = 54;
     public static final ItemCollector<?> EMPTY = new ItemCollector<>(null);
 

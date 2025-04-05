@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -13,10 +12,9 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
 
 import mcp.mobius.waila.api.SpecialChars;
@@ -41,9 +39,8 @@ public final class GuiDraw {
             GL11.glScalef(scale, scale, 1);
         }
         if (shadow) {
-            fontRenderer.drawStringWithShadow(text, (int)(x / scale), (int)(y / scale), colour);
-        }
-        else {
+            fontRenderer.drawStringWithShadow(text, (int) (x / scale), (int) (y / scale), colour);
+        } else {
             fontRenderer.drawString(text, x, y, colour);
         }
 
@@ -92,16 +89,15 @@ public final class GuiDraw {
                             (int) (x / xScale),
                             (int) (y / yScale),
                             stackSizeOverride);
-                } else if (General.ghostProduct
-                        && !General.forceLegacy) {
-                            renderItem.renderItemOverlayIntoGUI(
-                                    fontRenderer,
-                                    textureManager,
-                                    stack,
-                                    (int) (x / xScale),
-                                    (int) (y / yScale),
-                                    SpecialChars.YELLOW + stackSizeOverride);
-                        }
+                } else if (General.ghostProduct && !General.forceLegacy) {
+                    renderItem.renderItemOverlayIntoGUI(
+                            fontRenderer,
+                            textureManager,
+                            stack,
+                            (int) (x / xScale),
+                            (int) (y / yScale),
+                            SpecialChars.YELLOW + stackSizeOverride);
+                }
             }
             net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         } catch (Exception e) {

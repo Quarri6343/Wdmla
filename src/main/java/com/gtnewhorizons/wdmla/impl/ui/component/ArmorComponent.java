@@ -1,12 +1,13 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import java.util.ArrayList;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 import com.gtnewhorizons.wdmla.impl.ui.drawable.ArmorDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 public class ArmorComponent extends TooltipComponent {
 
@@ -21,11 +22,7 @@ public class ArmorComponent extends TooltipComponent {
     }
 
     public ArmorComponent(int maxArmorsPerLine, float armor, float maxArmor) {
-        super(
-                new ArrayList<>(),
-                new Padding(),
-                new Size(0, 0),
-                new ArmorDrawable(maxArmorsPerLine, armor, maxArmor));
+        super(new ArrayList<>(), new Padding(), new Size(0, 0), new ArmorDrawable(maxArmorsPerLine, armor, maxArmor));
         super.size(getSize(maxArmorsPerLine, maxArmor));
     }
 

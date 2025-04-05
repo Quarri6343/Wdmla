@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.Mods;
 
 public class ToolHelper {
 

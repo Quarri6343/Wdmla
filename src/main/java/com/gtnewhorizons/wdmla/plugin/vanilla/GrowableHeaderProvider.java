@@ -15,6 +15,7 @@ import mcp.mobius.waila.cbcore.LangUtil;
 
 // includes crops and stems
 public enum GrowableHeaderProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override

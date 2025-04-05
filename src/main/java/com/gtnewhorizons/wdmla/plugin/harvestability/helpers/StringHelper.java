@@ -5,12 +5,12 @@ import java.util.List;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyIguanaTweaks;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyIguanaTweaks;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 
 public class StringHelper {
 

@@ -1,11 +1,12 @@
 package com.gtnewhorizons.wdmla.api.view;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+
+import org.jetbrains.annotations.Nullable;
 
 public class ViewGroup<T> {
 
@@ -50,14 +51,14 @@ public class ViewGroup<T> {
         NBTTagList nbttaglist = new NBTTagList();
         for (int i = 0; i < viewGroup.views.size(); i++) {
             NBTTagCompound viewNBTTag = new NBTTagCompound();
-            viewNBTTag.setByte("index", (byte)i);
+            viewNBTTag.setByte("index", (byte) i);
             viewNBTTag.setTag("view", viewGroup.views.get(i));
             nbttaglist.appendTag(viewNBTTag);
         }
 
         NBTTagCompound data = new NBTTagCompound();
         data.setTag("views", nbttaglist);
-        if(viewGroup.id != null) {
+        if (viewGroup.id != null) {
             data.setString("id", viewGroup.id);
         }
         if (viewGroup.extraData != null) {

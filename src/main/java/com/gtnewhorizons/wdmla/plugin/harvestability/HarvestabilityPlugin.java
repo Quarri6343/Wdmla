@@ -1,12 +1,12 @@
 package com.gtnewhorizons.wdmla.plugin.harvestability;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.Block;
+import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import net.minecraftforge.common.config.Configuration;
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 public class HarvestabilityPlugin implements IWDMlaPlugin {
 
@@ -15,7 +15,10 @@ public class HarvestabilityPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(HarvestToolProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(LegacyHarvestToolProvider.INSTANCE, Block.class);
 
-        WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + HarvestabilityIdentifiers.NAMESPACE_HARVESTABILITY)
+        WDMlaConfig.instance()
+                .getCategory(
+                        Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER
+                                + HarvestabilityIdentifiers.NAMESPACE_HARVESTABILITY)
                 .setLanguageKey("provider.wdmla.harvestability.category");
     }
 }

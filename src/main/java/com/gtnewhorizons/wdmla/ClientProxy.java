@@ -5,18 +5,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.common.MinecraftForge;
+
+import org.jetbrains.annotations.Nullable;
+
 import com.gtnewhorizons.wdmla.api.Accessor;
-import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
 import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import com.gtnewhorizons.wdmla.command.GenerateDumpCommand;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.overlay.WDMlaTickHandler;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyIguanaTweaks;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
-import com.gtnewhorizons.wdmla.api.Mods;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
-import com.gtnewhorizons.wdmla.overlay.WDMlaTickHandler;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -26,12 +33,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.common.MinecraftForge;
-import org.jetbrains.annotations.Nullable;
 
 public class ClientProxy extends CommonProxy {
 
@@ -78,9 +79,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Nullable
-    public static <IN, OUT> List<ClientViewGroup<OUT>> mapToClientGroups(
-            Accessor accessor,
-            ResourceLocation key,
+    public static <IN, OUT> List<ClientViewGroup<OUT>> mapToClientGroups(Accessor accessor, ResourceLocation key,
             Function<NBTTagCompound, Map.Entry<ResourceLocation, List<ViewGroup<IN>>>> decoder,
             Function<ResourceLocation, IClientExtensionProvider<IN, OUT>> mapper) {
         NBTBase tagBase = accessor.getServerData().getTag(key.toString());

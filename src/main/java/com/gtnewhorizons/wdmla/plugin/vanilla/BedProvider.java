@@ -1,14 +1,17 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+
 import mcp.mobius.waila.cbcore.LangUtil;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 
 public enum BedProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override
@@ -30,12 +33,11 @@ public enum BedProvider implements IBlockComponentProvider {
             appendCannotSleep(tooltip);
         }
 
-        //we don't suggest player can sleep at this point because we don't check most of the conditions
+        // we don't suggest player can sleep at this point because we don't check most of the conditions
     }
 
     private void appendCannotSleep(ITooltip tooltip) {
-        tooltip.horizontal()
-                .text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.cansleep")))
+        tooltip.horizontal().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.cansleep")))
                 .child(ThemeHelper.INSTANCE.failure(LangUtil.translateG("hud.msg.wdmla.no")));
     }
 

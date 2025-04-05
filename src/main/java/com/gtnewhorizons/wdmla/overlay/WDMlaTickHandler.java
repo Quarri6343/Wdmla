@@ -1,18 +1,7 @@
 package com.gtnewhorizons.wdmla.overlay;
 
-import com.gtnewhorizons.wdmla.WDMla;
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.api.ui.MessageType;
-import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
-import com.gtnewhorizons.wdmla.impl.ui.value.HUDRenderArea;
-import cpw.mods.fml.client.config.GuiConfig;
-import mcp.mobius.waila.cbcore.LangUtil;
-import mcp.mobius.waila.overlay.OverlayConfig;
+import static mcp.mobius.waila.api.SpecialChars.ITALIC;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -28,20 +17,29 @@ import net.minecraftforge.common.config.Configuration;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.input.Keyboard;
 
+import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.ui.MessageType;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.ui.component.RootComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
+import com.gtnewhorizons.wdmla.impl.ui.value.HUDRenderArea;
 
+import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.client.KeyEvent;
+import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
-
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 public class WDMlaTickHandler {
 
@@ -50,8 +48,8 @@ public class WDMlaTickHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void overlayRender(RenderGameOverlayEvent.Post event) {
-        if (Minecraft.getMinecraft().currentScreen == null
-                && event.type == RenderGameOverlayEvent.ElementType.ALL && mainHUD != null) {
+        if (Minecraft.getMinecraft().currentScreen == null && event.type == RenderGameOverlayEvent.ElementType.ALL
+                && mainHUD != null) {
             mainHUD.renderHUD();
         }
     }
@@ -59,23 +57,28 @@ public class WDMlaTickHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void screenRender(GuiScreenEvent.DrawScreenEvent.Post event) {
-        if(!General.previewInCfg || !(event.gui instanceof GuiConfig guiConfig && WDMla.MODID.equals(guiConfig.modID))) {
+        if (!General.previewInCfg
+                || !(event.gui instanceof GuiConfig guiConfig && WDMla.MODID.equals(guiConfig.modID))) {
             return;
         }
 
-        if(mainHUD == null) {
+        if (mainHUD == null) {
             mainHUD = new RootComponent();
-            mainHUD.child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.cfg.dummy.1"))
-            ).child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.cfg.dummy.2"))
-            ).child(new TextComponent(ITALIC + LangUtil.translateG("hud.msg.wdmla.cfg.dummy.3"))
-                    .style(new TextStyle().color(General.currentTheme.get().textColor(MessageType.MOD_NAME))));
+            mainHUD.child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.cfg.dummy.1")))
+                    .child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.cfg.dummy.2"))).child(
+                            new TextComponent(ITALIC + LangUtil.translateG("hud.msg.wdmla.cfg.dummy.3")).style(
+                                    new TextStyle().color(General.currentTheme.get().textColor(MessageType.MOD_NAME))));
         }
 
         Area bgArea = new HUDRenderArea(new Size(mainHUD.getWidth(), mainHUD.getHeight())).computeBackground();
-        Area scaledBGArea = new Area((int)(bgArea.getX() * OverlayConfig.scale), (int)(bgArea.getY() * OverlayConfig.scale),
-                (int)(bgArea.getW() * OverlayConfig.scale), (int)(bgArea.getH() * OverlayConfig.scale));
-        if(event.mouseX < scaledBGArea.getX() || event.mouseX > scaledBGArea.getEX()
-                || event.mouseY < scaledBGArea.getY() || event.mouseY > scaledBGArea.getEY()) {
+        Area scaledBGArea = new Area(
+                (int) (bgArea.getX() * OverlayConfig.scale),
+                (int) (bgArea.getY() * OverlayConfig.scale),
+                (int) (bgArea.getW() * OverlayConfig.scale),
+                (int) (bgArea.getH() * OverlayConfig.scale));
+        if (event.mouseX < scaledBGArea.getX() || event.mouseX > scaledBGArea.getEX()
+                || event.mouseY < scaledBGArea.getY()
+                || event.mouseY > scaledBGArea.getEY()) {
             mainHUD.renderHUD();
         }
     }
@@ -98,8 +101,8 @@ public class WDMlaTickHandler {
         World world = mc.theWorld;
         EntityPlayer player = mc.thePlayer;
         GuiScreen currentScreen = mc.currentScreen;
-        boolean canDrawOnScreen = currentScreen == null ||
-                (currentScreen instanceof GuiConfig modsConfig && WDMla.MODID.equals(modsConfig.modID));
+        boolean canDrawOnScreen = currentScreen == null
+                || (currentScreen instanceof GuiConfig modsConfig && WDMla.MODID.equals(modsConfig.modID));
 
         if (world == null || player == null
                 || !Minecraft.isGuiEnabled()

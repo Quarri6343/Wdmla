@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -15,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeHooks;
 
 import com.gtnewhorizons.wdmla.api.Mods;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

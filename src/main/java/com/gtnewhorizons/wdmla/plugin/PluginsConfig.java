@@ -83,12 +83,12 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.universal.fluid.storage")
         public static class FluidStorage {
-            //reserved
+            // reserved
         }
 
         @Config.LangKey("provider.wdmla.universal.energy.storage")
         public static class EnergyStorage {
-            //reserved
+            // reserved
         }
     }
 
@@ -102,6 +102,7 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.minecraft.redstone.state")
         public static class RedstoneState {
+
             @Config.LangKey("option.wdmla.vanilla.leverstate")
             @Config.DefaultBoolean(true)
             public boolean showLeverState;
@@ -114,8 +115,10 @@ public class PluginsConfig {
             @Config.DefaultBoolean(true)
             public boolean showComparatorMode;
         }
+
         @Config.LangKey("provider.wdmla.minecraft.pet")
         public static class Pet {
+
             @Config.LangKey("option.wdmla.vanilla.show.petsitting")
             @Config.DefaultBoolean(true)
             public boolean showPetSit;
@@ -127,6 +130,7 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.minecraft.animal")
         public static class Animal {
+
             @Config.LangKey("option.wdmla.vanilla.show.animalgrowth")
             @Config.DefaultBoolean(true)
             public boolean showAnimalGrowth;
@@ -138,6 +142,7 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.minecraft.command.block")
         public static class CommandBlock {
+
             @Config.LangKey("option.wdmla.vanilla.max.command.length")
             @Config.DefaultInt(40)
             public int maxCommandLength;

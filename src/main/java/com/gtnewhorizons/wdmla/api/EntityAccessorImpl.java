@@ -11,12 +11,13 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import io.netty.channel.ChannelHandlerContext;
 import mcp.mobius.waila.network.Message0x03EntRequest;
-import org.jetbrains.annotations.NotNull;
 
 public class EntityAccessorImpl extends AccessorImpl implements EntityAccessor {
 

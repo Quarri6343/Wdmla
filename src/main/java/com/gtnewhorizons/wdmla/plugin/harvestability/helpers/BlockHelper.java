@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,9 +20,10 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 
 public class BlockHelper {
 

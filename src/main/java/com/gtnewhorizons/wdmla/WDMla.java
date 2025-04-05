@@ -1,11 +1,11 @@
 package com.gtnewhorizons.wdmla;
 
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
-import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.launchwrapper.Launch;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
 import cpw.mods.fml.common.Mod;

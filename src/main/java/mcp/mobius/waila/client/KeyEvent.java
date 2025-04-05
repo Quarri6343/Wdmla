@@ -1,13 +1,14 @@
 package mcp.mobius.waila.client;
 
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
+import java.util.ArrayList;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.config.Configuration;
 
 import org.lwjgl.input.Keyboard;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizons.wdmla.api.Mods;
 import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
 
@@ -17,8 +18,7 @@ import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.utils.Constants;
-
-import java.util.ArrayList;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 public class KeyEvent {
 

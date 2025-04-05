@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
-import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,28 +14,31 @@ import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.BlockHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.StringHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.ToolHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyCreativeBlocks;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.BlockHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.StringHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.ToolHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyCreativeBlocks;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import mcp.mobius.waila.cbcore.LangUtil;
 
 public enum HarvestToolProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override
@@ -92,7 +93,8 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
      *         <p>
      *         element2: harvestability String if the harvest level is greater than 0
      */
-    public List<IComponent> getHarvestability(EntityPlayer player, Block block, int meta, MovingObjectPosition position) {
+    public List<IComponent> getHarvestability(EntityPlayer player, Block block, int meta,
+            MovingObjectPosition position) {
         if (!player.isCurrentToolAdventureModeExempt(position.blockX, position.blockY, position.blockZ) || BlockHelper
                 .isBlockUnbreakable(block, player.worldObj, position.blockX, position.blockY, position.blockZ)) {
             return Arrays.asList(
@@ -111,8 +113,8 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
         IComponent silkTouchability = BlockHelper.getSilkTouchabilityString(player, block, meta, position);
 
         if (canInstaBreak(harvestLevel, effectiveTool, block, shearability != null, silkTouchability != null)) {
-            return Arrays
-                    .asList(ThemeHelper.INSTANCE.success(PluginsConfig.harvestability.modern.currentlyHarvestableString));
+            return Arrays.asList(
+                    ThemeHelper.INSTANCE.success(PluginsConfig.harvestability.modern.currentlyHarvestableString));
         }
 
         ItemStack itemHeld = player.getHeldItem();

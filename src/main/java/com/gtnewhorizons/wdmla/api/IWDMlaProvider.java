@@ -6,8 +6,8 @@ import net.minecraftforge.common.config.Configuration;
 public interface IWDMlaProvider {
 
     /**
-     * The unique id of this provider. Providers from different registries can have the same id.
-     * The Resource Domain is the mod category that the provider belongs, and Resource Path is expected to be snake_case
+     * The unique id of this provider. Providers from different registries can have the same id. The Resource Domain is
+     * the mod category that the provider belongs, and Resource Path is expected to be snake_case
      */
     ResourceLocation getUid();
 
@@ -38,6 +38,7 @@ public interface IWDMlaProvider {
 
     /**
      * The language key of this provider name displayed in config screen
+     * 
      * @return
      */
     default String getLangKey() {

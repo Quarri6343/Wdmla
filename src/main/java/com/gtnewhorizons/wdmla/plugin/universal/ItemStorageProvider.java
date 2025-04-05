@@ -1,5 +1,23 @@
 package com.gtnewhorizons.wdmla.plugin.universal;
 
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryEnderChest;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntityEnderChest;
+import net.minecraft.util.ResourceLocation;
+
+import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.jetbrains.annotations.Nullable;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.gtnewhorizons.wdmla.ClientProxy;
@@ -33,35 +51,18 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
 import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
+
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryEnderChest;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntityEnderChest;
-import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.mutable.MutableBoolean;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("UnstableApiUsage")
 public class ItemStorageProvider<T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
 
-    public static final Cache<Object, ItemCollector<?>> targetCache = CacheBuilder.newBuilder().weakKeys().expireAfterAccess(
-            60,
-            TimeUnit.SECONDS).build();
-    public static final Cache<Object, ItemCollector<?>> containerCache = CacheBuilder.newBuilder().weakKeys().expireAfterAccess(
-            120,
-            TimeUnit.SECONDS).build();
+    public static final Cache<Object, ItemCollector<?>> targetCache = CacheBuilder.newBuilder().weakKeys()
+            .expireAfterAccess(60, TimeUnit.SECONDS).build();
+    public static final Cache<Object, ItemCollector<?>> containerCache = CacheBuilder.newBuilder().weakKeys()
+            .expireAfterAccess(120, TimeUnit.SECONDS).build();
 
     public static ForBlock getBlock() {
         return ForBlock.INSTANCE;
@@ -119,7 +120,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         List<ItemStack> itemStacks = new ArrayList<>();
         for (NBTTagCompound itemNBT : contentDecodedGroup.views) {
             ItemStack item = ItemStack.loadItemStackFromNBT(itemNBT);
-            if(item != null) {
+            if (item != null) {
                 item.stackSize = itemNBT.getInteger("intCount");
                 itemStacks.add(item);
             }
@@ -127,7 +128,6 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
 
         return new ViewGroup<>(itemStacks, contentDecodedGroup);
     }
-
 
     public static void append(ITooltip tooltip, Accessor accessor) {
         List<ClientViewGroup<ItemView>> groups = ClientProxy.mapToClientGroups(
@@ -140,86 +140,96 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
         }
 
         boolean renderGroup = groups.size() > 1 || groups.get(0).shouldRenderGroup();
-        ClientViewGroup.tooltip(
-                tooltip, groups, renderGroup, (theTooltip, group) -> {
-                    MutableBoolean showName = getShowName(group);
-                    PluginsConfig.Universal.ItemStorage config = PluginsConfig.universal.itemStorage;
+        ClientViewGroup.tooltip(tooltip, groups, renderGroup, (theTooltip, group) -> {
+            MutableBoolean showName = getShowName(group);
+            PluginsConfig.Universal.ItemStorage config = PluginsConfig.universal.itemStorage;
 
-                    if (renderGroup) {
-                        Theme theme = General.currentTheme.get();
-                        if (group.title != null) {
-                            ITooltip hPanel = new HPanelComponent().style(new PanelStyle().alignment(ComponentAlignment.CENTER));
-                            hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
-                                    .size(new Size(20,1)));
-                            hPanel.child(new TextComponent(group.title).scale(0.6f));
-                            hPanel.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
-                                    .size(new Size(30,1)));
-                            theTooltip.child(hPanel);
-                        }
-                        else {
-                            tooltip.child(new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
-                                    .size(new Size(50,1)));
-                        }
+            if (renderGroup) {
+                Theme theme = General.currentTheme.get();
+                if (group.title != null) {
+                    ITooltip hPanel = new HPanelComponent()
+                            .style(new PanelStyle().alignment(ComponentAlignment.CENTER));
+                    hPanel.child(
+                            new RectComponent()
+                                    .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                    .size(new Size(20, 1)));
+                    hPanel.child(new TextComponent(group.title).scale(0.6f));
+                    hPanel.child(
+                            new RectComponent()
+                                    .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                    .size(new Size(30, 1)));
+                    theTooltip.child(hPanel);
+                } else {
+                    tooltip.child(
+                            new RectComponent()
+                                    .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                    .size(new Size(50, 1)));
+                }
+            }
+            if (group.views.isEmpty() && group.extraData != null) {
+                float progress = group.extraData.getFloat("Collecting");
+                if (progress >= 0 && progress < 1) {
+                    String collectingText = LangUtil.translateG("hud.msg.wdmla.collectingItems");
+                    if (progress != 0) {
+                        collectingText += String.format(" %s%%", (int) (progress * 100));
                     }
-                    if (group.views.isEmpty() && group.extraData != null) {
-                        float progress = group.extraData.getFloat("Collecting");
-                        if (progress >= 0 && progress < 1) {
-                            String collectingText = LangUtil.translateG("hud.msg.wdmla.collectingItems");
-                            if (progress != 0) {
-                                collectingText += String.format(" %s%%", (int) (progress * 100));
-                            }
-                            theTooltip.text(collectingText);
-                        }
-                    }
-                    int drawnCount = 0;
-                    int realSize = accessor.showDetails() ? config.detailedAmount : config.normalAmount;
-                    realSize = Math.min(group.views.size(), realSize);
-                    TooltipComponent elements = new HPanelComponent();
-                    if(showName.isFalse()) {
+                    theTooltip.text(collectingText);
+                }
+            }
+            int drawnCount = 0;
+            int realSize = accessor.showDetails() ? config.detailedAmount : config.normalAmount;
+            realSize = Math.min(group.views.size(), realSize);
+            TooltipComponent elements = new HPanelComponent();
+            if (showName.isFalse()) {
+                elements.padding(new Padding(-1, -1, 0, 0));
+            }
+
+            for (int i = 0; i < realSize; i++) {
+                ItemView itemView = group.views.get(i);
+                ItemStack stack = itemView.item;
+                if (stack == null) {
+                    continue;
+                }
+                if (i > 0 && (showName.isTrue() || drawnCount >= config.itemsPerLine)) {
+                    theTooltip.child(elements);
+                    elements = new HPanelComponent();
+                    if (showName.isFalse()) {
                         elements.padding(new Padding(-1, -1, 0, 0));
                     }
+                    drawnCount = 0;
+                }
 
-                    for (int i = 0; i < realSize; i++) {
-                        ItemView itemView = group.views.get(i);
-                        ItemStack stack = itemView.item;
-                        if (stack == null) {
-                            continue;
-                        }
-                        if (i > 0 && (showName.isTrue() || drawnCount >= config.itemsPerLine)) {
-                            theTooltip.child(elements);
-                            elements = new HPanelComponent();
-                            if(showName.isFalse()) {
-                                elements.padding(new Padding(-1, -1, 0, 0));
-                            }
-                            drawnCount = 0;
-                        }
-
-                        if (showName.isTrue()) {
-                            if(itemView.description != null) {
-                                int itemSize = itemView.description.getHeight();
-                                elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)).padding(new Padding(-1, 0, 0, 0)));
-                                elements.child(itemView.description);
-                            }
-                            else {
-                                String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
-                                TextComponent name = new TextComponent(strippedName);
-                                int itemSize = name.getHeight();
-                                elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)).padding(new Padding(-1, 0, 0, 0)));
-                                String s = String.valueOf(stack.stackSize); //TODO: unit format
-                                elements.text(s).text("× ").child(name);
-                            }
-                        } else if (itemView.amountText != null) {
-                            elements.child(new ItemComponent(stack).stackSizeOverride(itemView.amountText).padding(new Padding(-1, 0, 0, 0)));
-                        } else {
-                            elements.item(stack);
-                        }
-                        drawnCount += 1;
+                if (showName.isTrue()) {
+                    if (itemView.description != null) {
+                        int itemSize = itemView.description.getHeight();
+                        elements.child(
+                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize))
+                                        .padding(new Padding(-1, 0, 0, 0)));
+                        elements.child(itemView.description);
+                    } else {
+                        String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
+                        TextComponent name = new TextComponent(strippedName);
+                        int itemSize = name.getHeight();
+                        elements.child(
+                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize))
+                                        .padding(new Padding(-1, 0, 0, 0)));
+                        String s = String.valueOf(stack.stackSize); // TODO: unit format
+                        elements.text(s).text("× ").child(name);
                     }
+                } else if (itemView.amountText != null) {
+                    elements.child(
+                            new ItemComponent(stack).stackSizeOverride(itemView.amountText)
+                                    .padding(new Padding(-1, 0, 0, 0)));
+                } else {
+                    elements.item(stack);
+                }
+                drawnCount += 1;
+            }
 
-                    if (elements.childrenSize() > 0) {
-                        theTooltip.child(elements);
-                    }
-                });
+            if (elements.childrenSize() > 0) {
+                theTooltip.child(elements);
+            }
+        });
     }
 
     public static MutableBoolean getShowName(ClientViewGroup<ItemView> group) {
@@ -241,9 +251,8 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
     }
 
     public static void putData(NBTTagCompound data, Accessor accessor) {
-        Map.Entry<ResourceLocation, List<ViewGroup<ItemStack>>> entry = CommonProxy.getServerExtensionData(
-                accessor,
-                WDMlaCommonRegistration.instance().itemStorageProviders);
+        Map.Entry<ResourceLocation, List<ViewGroup<ItemStack>>> entry = CommonProxy
+                .getServerExtensionData(accessor, WDMlaCommonRegistration.instance().itemStorageProviders);
         if (entry != null) {
             List<ViewGroup<ItemStack>> groups = entry.getValue();
             for (ViewGroup<ItemStack> group : groups) {
@@ -251,7 +260,9 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     group.views = group.views.subList(0, ItemCollector.MAX_SIZE);
                 }
             }
-            data.setTag(Identifiers.ITEM_STORAGE.toString(), encodeGroups(entry)); //transform List<ViewGroup<ItemStack>> into nbttag
+            data.setTag(Identifiers.ITEM_STORAGE.toString(), encodeGroups(entry)); // transform
+                                                                                   // List<ViewGroup<ItemStack>> into
+                                                                                   // nbttag
         }
     }
 
@@ -276,14 +287,18 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
     }
 
     public static class ForBlock extends ItemStorageProvider<BlockAccessor> {
+
         private static final ForBlock INSTANCE = new ForBlock();
     }
 
     public static class ForEntity extends ItemStorageProvider<EntityAccessor> {
+
         private static final ForEntity INSTANCE = new ForEntity();
     }
 
-    public enum Extension implements IServerExtensionProvider<ItemStack>, IClientExtensionProvider<ItemStack, ItemView> {
+    public enum Extension
+            implements IServerExtensionProvider<ItemStack>, IClientExtensionProvider<ItemStack, ItemView> {
+
         INSTANCE;
 
         @Override
@@ -298,15 +313,14 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                 return CommonProxy.createItemCollector(accessor, containerCache).update(accessor);
             }
             EntityPlayer player = accessor.getPlayer();
-            if (target instanceof TileEntityEnderChest) { //TODO:split EnderChest extension
+            if (target instanceof TileEntityEnderChest) { // TODO:split EnderChest extension
                 InventoryEnderChest inventory = player.getInventoryEnderChest();
-                return new ItemCollector<>(new ItemIterator.IInventoryItemIterator($ -> inventory, 0)).update(
-                        accessor
-                );
+                return new ItemCollector<>(new ItemIterator.IInventoryItemIterator($ -> inventory, 0)).update(accessor);
             }
             ItemCollector<?> itemCollector;
             try {
-                itemCollector = targetCache.get(target, () -> CommonProxy.createItemCollector(accessor, containerCache));
+                itemCollector = targetCache
+                        .get(target, () -> CommonProxy.createItemCollector(accessor, containerCache));
             } catch (ExecutionException e) {
                 WailaExceptionHandler.handleErr(e, getClass().getName(), null);
                 return null;

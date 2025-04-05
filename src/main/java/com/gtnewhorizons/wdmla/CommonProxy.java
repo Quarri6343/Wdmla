@@ -7,10 +7,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
+
 import com.google.common.cache.Cache;
 import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
 import com.gtnewhorizons.wdmla.plugin.core.CorePlugin;
 import com.gtnewhorizons.wdmla.plugin.harvestability.HarvestabilityPlugin;
@@ -19,11 +28,6 @@ import com.gtnewhorizons.wdmla.plugin.universal.ItemCollector;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemIterator;
 import com.gtnewhorizons.wdmla.plugin.universal.UniversalPlugin;
 import com.gtnewhorizons.wdmla.plugin.vanilla.VanillaPlugin;
-import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
-import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
-import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
-import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -36,9 +40,6 @@ import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
 
 public class CommonProxy {
 
@@ -101,7 +102,7 @@ public class CommonProxy {
         new HarvestabilityPlugin().registerClient(clientRegistration);
     }
 
-    //TODO:use @WDMlaPlugin instead
+    // TODO:use @WDMlaPlugin instead
     public void processIMC(FMLInterModComms.IMCEvent event) {
         for (FMLInterModComms.IMCMessage imcMessage : event.getMessages()) {
             if (!imcMessage.isStringMessage()) continue;
@@ -170,8 +171,7 @@ public class CommonProxy {
         }
     }
 
-    public static <T> Map.Entry<ResourceLocation, List<ViewGroup<T>>> getServerExtensionData(
-            Accessor accessor,
+    public static <T> Map.Entry<ResourceLocation, List<ViewGroup<T>>> getServerExtensionData(Accessor accessor,
             WrappedHierarchyLookup<IServerExtensionProvider<T>> lookup) {
         for (IServerExtensionProvider<T> provider : lookup.wrappedGet(accessor)) {
             List<ViewGroup<T>> groups;
@@ -188,20 +188,21 @@ public class CommonProxy {
         return null;
     }
 
-    //We collect all inventory whether it is sided or not
-    public static ItemCollector<?> createItemCollector(Accessor accessor, Cache<Object, ItemCollector<?>> containerCache) {
+    // We collect all inventory whether it is sided or not
+    public static ItemCollector<?> createItemCollector(Accessor accessor,
+            Cache<Object, ItemCollector<?>> containerCache) {
         if (accessor.getTarget() instanceof EntityHorse) {
-            return new ItemCollector<>(new ItemIterator.IInventoryItemIterator(
-                    o -> {
-                        if (o.getTarget() instanceof EntityHorse horse) {
-                            return horse.horseChest;
-                        }
-                        return null;
-                    }, 0)); //idk if any mod uses vanilla horse inventory (index > 1)
+            return new ItemCollector<>(new ItemIterator.IInventoryItemIterator(o -> {
+                if (o.getTarget() instanceof EntityHorse horse) {
+                    return horse.horseChest;
+                }
+                return null;
+            }, 0)); // idk if any mod uses vanilla horse inventory (index > 1)
         }
         try {
             if (accessor.getTarget() instanceof IInventory container) {
-                return containerCache.get(container, () -> new ItemCollector<>(new ItemIterator.IInventoryItemIterator(0)));
+                return containerCache
+                        .get(container, () -> new ItemCollector<>(new ItemIterator.IInventoryItemIterator(0)));
             }
         } catch (ExecutionException e) {
             WailaExceptionHandler.handleErr(e, null, null);

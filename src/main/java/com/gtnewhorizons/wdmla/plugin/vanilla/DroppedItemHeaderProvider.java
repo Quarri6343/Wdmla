@@ -10,6 +10,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 public enum DroppedItemHeaderProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override

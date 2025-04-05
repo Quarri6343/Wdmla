@@ -18,6 +18,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import mcp.mobius.waila.cbcore.LangUtil;
 
 public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+
     INSTANCE;
 
     @Override

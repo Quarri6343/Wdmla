@@ -1,9 +1,11 @@
 package com.gtnewhorizons.wdmla.api.view;
 
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
 import org.jetbrains.annotations.Nullable;
+
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 
 public class ItemView {
 

@@ -1,8 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.Identifiers;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
-import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -48,18 +45,21 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
 
 import mcp.mobius.waila.cbcore.LangUtil;
-import net.minecraftforge.common.config.Configuration;
 
 public class VanillaPlugin implements IWDMlaPlugin {
 
@@ -104,7 +104,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
-        WDMlaConfig.instance().getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
+        WDMlaConfig.instance().getCategory(
+                Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + VanillaIdentifiers.NAMESPACE_MINECRAFT)
                 .setLanguageKey("provider.wdmla.minecraft.category");
     }
 
@@ -132,6 +133,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
     }
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
+
         INSTANCE;
 
         @Override
@@ -151,6 +153,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
     }
 
     public enum RedstoneWireProvider implements IBlockComponentProvider {
+
         INSTANCE;
 
         @Override
@@ -168,6 +171,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
     }
 
     public enum RedstoneOreHeaderProvider implements IBlockComponentProvider {
+
         INSTANCE;
 
         @Override

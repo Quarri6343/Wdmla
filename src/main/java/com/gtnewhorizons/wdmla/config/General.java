@@ -32,8 +32,7 @@ public class General {
     @Config.Comment("Shows current tooltip preview in config screen")
     public static boolean previewInCfg;
 
-    @Config.Comment("Text color for the custom theme. \n" +
-            "See general category for the default text color.")
+    @Config.Comment("Text color for the custom theme. \n" + "See general category for the default text color.")
     @Config.LangKey("option.wdmla.textcolor.category")
     public static class TextColor {
 
@@ -66,5 +65,5 @@ public class General {
         public int modName;
     }
 
-    //TODO:AmountStyle Config && Break Progress Config
+    // TODO:AmountStyle Config && Break Progress Config
 }

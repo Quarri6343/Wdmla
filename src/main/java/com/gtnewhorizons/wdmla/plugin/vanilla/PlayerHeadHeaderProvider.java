@@ -13,6 +13,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.mojang.authlib.GameProfile;
 
 public enum PlayerHeadHeaderProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override

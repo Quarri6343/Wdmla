@@ -2,28 +2,29 @@ package com.gtnewhorizons.wdmla.plugin.core;
 
 import static mcp.mobius.waila.api.SpecialChars.*;
 
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
-import com.gtnewhorizons.wdmla.api.Theme;
-import com.gtnewhorizons.wdmla.api.ui.MessageType;
-import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.api.ui.MessageType;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 
 public enum DefaultBlockInfoProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override
@@ -58,7 +59,8 @@ public enum DefaultBlockInfoProvider implements IBlockComponentProvider {
             Theme theme = General.currentTheme.get();
             if (modName != null) {
                 row_vertical.child(
-                        new TextComponent(ITALIC + modName).style(new TextStyle().color(theme.textColor(MessageType.MOD_NAME)))
+                        new TextComponent(ITALIC + modName)
+                                .style(new TextStyle().color(theme.textColor(MessageType.MOD_NAME)))
                                 .tag(Identifiers.MOD_NAME));
             } else {
                 // reserve for replacement

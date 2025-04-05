@@ -15,6 +15,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 
 public enum TestHeaderProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override

@@ -2,9 +2,8 @@ package com.gtnewhorizons.wdmla.impl.ui.component;
 
 import java.util.ArrayList;
 
-import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.utils.Constants;
 import net.minecraftforge.common.config.Configuration;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
@@ -12,10 +11,16 @@ import com.gtnewhorizons.wdmla.impl.ui.drawable.HealthDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 
+import mcp.mobius.waila.api.impl.ConfigHandler;
+import mcp.mobius.waila.utils.Constants;
+
 public class HealthComponent extends TooltipComponent {
 
     public HealthComponent(float health, float maxHealth) {
-        this(ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NHEARTS, 20), health, maxHealth);
+        this(
+                ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NHEARTS, 20),
+                health,
+                maxHealth);
     }
 
     public HealthComponent(int maxHeartsPerLine, float health, float maxHealth) {

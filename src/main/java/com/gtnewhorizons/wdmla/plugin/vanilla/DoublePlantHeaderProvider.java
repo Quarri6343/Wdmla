@@ -11,6 +11,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 public enum DoublePlantHeaderProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override

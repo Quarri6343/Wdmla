@@ -5,17 +5,16 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.api.Theme;
-import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.Theme;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;

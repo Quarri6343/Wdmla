@@ -17,6 +17,7 @@ import mcp.mobius.waila.overlay.DisplayUtil;
 
 // TODO: move NEI part to mod Plugin
 public enum MobSpawnerHeaderProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override

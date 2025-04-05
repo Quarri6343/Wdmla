@@ -3,7 +3,6 @@ package com.gtnewhorizons.wdmla.plugin.harvestability;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,13 +14,6 @@ import net.minecraftforge.common.ForgeHooks;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.BlockHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.OreHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.StringHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.ToolHelper;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyCreativeBlocks;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
-import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
@@ -30,10 +22,19 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.BlockHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.OreHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.StringHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.helpers.ToolHelper;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyCreativeBlocks;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
+import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
 public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
+
     INSTANCE;
 
     @Override
@@ -94,8 +95,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
         boolean showEffectiveTool = PluginsConfig.harvestability.legacy.effectiveTool
                 && (!PluginsConfig.harvestability.legacy.effectiveToolSneakingOnly || isSneaking);
         boolean showCurrentlyHarvestable = PluginsConfig.harvestability.legacy.currentlyHarvestable
-                && (!PluginsConfig.harvestability.legacy.currentlyHarvestableSneakingOnly
-                        || isSneaking);
+                && (!PluginsConfig.harvestability.legacy.currentlyHarvestableSneakingOnly || isSneaking);
         boolean hideWhileHarvestable = PluginsConfig.harvestability.legacy.unHarvestableOnly;
         boolean showOresOnly = PluginsConfig.harvestability.legacy.oresOnly;
         boolean toolRequiredOnly = PluginsConfig.harvestability.legacy.toolRequiredOnly;
@@ -114,8 +114,8 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                             position.blockZ)) {
                 ITooltip unBreakablePanel = new HPanelComponent();
                 unBreakablePanel.child(
-                        ThemeHelper.INSTANCE.failure(
-                                PluginsConfig.harvestability.legacy.notcurrentlyHarvestableString));
+                        ThemeHelper.INSTANCE
+                                .failure(PluginsConfig.harvestability.legacy.notcurrentlyHarvestableString));
                 if (!minimalLayout) {
                     unBreakablePanel.text(LangUtil.translateG("hud.msg.wdmla.harvestable"));
                 }
@@ -206,8 +206,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
             if (harvestLevel != -1 && showEffectiveTool && effectiveTool != null) {
                 String effectiveToolString;
                 if (StatCollector.canTranslate("hud.msg.wdmla.toolclass." + effectiveTool))
-                    effectiveToolString = StatCollector
-                            .translateToLocal("hud.msg.wdmla.toolclass." + effectiveTool);
+                    effectiveToolString = StatCollector.translateToLocal("hud.msg.wdmla.toolclass." + effectiveTool);
                 else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
                 ITooltip effectiveToolPanel = new HPanelComponent();
                 if (!minimalLayout) {

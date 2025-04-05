@@ -21,7 +21,7 @@ public class AmountStyle implements IAmountStyle {
         this.borderColor = ColorPalette.AMOUNT_BORDER_WAILA;
         this.backgroundColor = ColorPalette.AMOUNT_BACKGROUND_WAILA;
         this.filledColor = ColorPalette.AMOUNT_FILLED_WAILA;
-        this.alternateFilledColor =ColorPalette.AMOUNT_FILLED_ALTERNATE_WAILA;
+        this.alternateFilledColor = ColorPalette.AMOUNT_FILLED_ALTERNATE_WAILA;
     }
 
     public AmountStyle borderColor(int borderColor) {
