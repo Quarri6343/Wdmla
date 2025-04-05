@@ -11,6 +11,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum GrowthRateProvider implements IBlockComponentProvider {
 
@@ -35,13 +36,13 @@ public enum GrowthRateProvider implements IBlockComponentProvider {
         if (growthValue < 100.0) {
             tooltip.child(
                     ThemeHelper.INSTANCE
-                            .value(LangUtil.translateG("hud.msg.wdmla.growth"), String.format("%.0f %%", growthValue)));
+                            .value(StatCollector.translateToLocal("hud.msg.wdmla.growth"), String.format("%.0f %%", growthValue)));
         } else {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.growth")))
+                    new HPanelComponent().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.growth")))
                             .child(
                                     ThemeHelper.INSTANCE.success(
-                                            String.format("%s", LangUtil.translateG("hud.msg.wdmla.mature")))));
+                                            String.format("%s", StatCollector.translateToLocal("hud.msg.wdmla.mature")))));
         }
     }
 

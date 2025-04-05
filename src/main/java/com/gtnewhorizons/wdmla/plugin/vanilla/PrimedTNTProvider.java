@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.StringUtils;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
@@ -21,9 +22,9 @@ public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataPr
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         tooltip.child(
                 ThemeHelper.INSTANCE.value(
-                        LangUtil.translateG("hud.msg.wdmla.fuse"),
+                        StatCollector.translateToLocal("hud.msg.wdmla.fuse"),
                         String.valueOf(accessor.getServerData().getByte("Fuse")) + StringUtils.SPACE
-                                + LangUtil.translateG("hud.msg.wdmla.tick")));
+                                + StatCollector.translateToLocal("hud.msg.wdmla.tick")));
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ForgeHooks;
 
 import org.jetbrains.annotations.NotNull;
@@ -252,7 +253,7 @@ public enum HarvestToolProvider implements IBlockComponentProvider {
         if (harvestLevel >= 1) {
             String harvestLevelString = StringHelper.stripFormatting(StringHelper.getHarvestLevelName(harvestLevel));
             harvestLevelText = new HPanelComponent().tag(HarvestabilityIdentifiers.HARVESTABILITY_TEXT)
-                    .text(String.format("%s: ", LangUtil.translateG("hud.msg.wdmla.harvestlevel"))).child(
+                    .text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.harvestlevel"))).child(
                             isCurrentlyHarvestable ? ThemeHelper.INSTANCE.success(harvestLevelString)
                                     : ThemeHelper.INSTANCE.failure(harvestLevelString));
         }

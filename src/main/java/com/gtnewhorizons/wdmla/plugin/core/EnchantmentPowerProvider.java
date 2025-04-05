@@ -9,6 +9,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum EnchantmentPowerProvider implements IBlockComponentProvider {
 
@@ -20,7 +21,7 @@ public enum EnchantmentPowerProvider implements IBlockComponentProvider {
         if (power > 0) {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.enchantment.power"),
+                            StatCollector.translateToLocal("hud.msg.wdmla.enchantment.power"),
                             String.format("%.2f", power)));
         }
     }

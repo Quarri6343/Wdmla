@@ -20,8 +20,6 @@ public class ProxyClient extends ProxyServer {
     @Override
     public void registerHandlers() {
 
-        LangUtil.loadLangDir("waila");
-
         if (Mods.NOTENOUGHITEMS.isLoaded()) {
             NEIHandler.register();
         } else {

@@ -45,6 +45,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -162,7 +163,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.power"),
+                            StatCollector.translateToLocal("hud.msg.wdmla.power"),
                             String.format("%s", accessor.getMetadata())));
         }
 

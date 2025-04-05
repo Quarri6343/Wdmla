@@ -10,6 +10,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum BlastResistanceProvider implements IBlockComponentProvider {
 
@@ -20,7 +21,7 @@ public enum BlastResistanceProvider implements IBlockComponentProvider {
         float blastResistance = accessor.getBlock().getExplosionResistance(null);
         tooltip.child(
                 ThemeHelper.INSTANCE.value(
-                        LangUtil.translateG("hud.msg.wdmla.blast_resistance"),
+                        StatCollector.translateToLocal("hud.msg.wdmla.blast_resistance"),
                         String.format("%.0f", blastResistance)));
     }
 

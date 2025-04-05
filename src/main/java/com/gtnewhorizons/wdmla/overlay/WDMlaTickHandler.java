@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -64,9 +65,9 @@ public class WDMlaTickHandler {
 
         if (mainHUD == null) {
             mainHUD = new RootComponent();
-            mainHUD.child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.cfg.dummy.1")))
-                    .child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.cfg.dummy.2"))).child(
-                            new TextComponent(ITALIC + LangUtil.translateG("hud.msg.wdmla.cfg.dummy.3")).style(
+            mainHUD.child(new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.1")))
+                    .child(new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.2"))).child(
+                            new TextComponent(ITALIC + StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.3")).style(
                                     new TextStyle().color(General.currentTheme.get().textColor(MessageType.MOD_NAME))));
         }
 

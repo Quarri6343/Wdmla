@@ -4,6 +4,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.StringUtils;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
@@ -26,9 +27,9 @@ public enum HorseProvider implements IEntityComponentProvider {
             double jumpStrength = horse.getHorseJumpStrength();
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.jumpStrength"),
+                            StatCollector.translateToLocal("hud.msg.wdmla.jumpStrength"),
                             String.format("%.2f", getJumpHeight(jumpStrength)) + StringUtils.SPACE
-                                    + LangUtil.translateG("hud.msg.wdmla.blocks")));
+                                    + StatCollector.translateToLocal("hud.msg.wdmla.blocks")));
             if (accessor.showDetails()) {
                 tooltip.text("(" + String.format("%.2f", jumpStrength) + ")");
             }
@@ -36,10 +37,10 @@ public enum HorseProvider implements IEntityComponentProvider {
             double movementSpeed = horse.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.speed"),
+                            StatCollector.translateToLocal("hud.msg.wdmla.speed"),
                             String.format("%.2f", movementSpeed * SPEED_UNIT_TO_BLOCKS_PER_SECOND_RATE)
                                     + StringUtils.SPACE
-                                    + LangUtil.translateG("hud.msg.wdmla.blockspersecond")));
+                                    + StatCollector.translateToLocal("hud.msg.wdmla.blockspersecond")));
             if (accessor.showDetails()) {
                 tooltip.text("(" + String.format("%.2f", movementSpeed) + ")");
             }

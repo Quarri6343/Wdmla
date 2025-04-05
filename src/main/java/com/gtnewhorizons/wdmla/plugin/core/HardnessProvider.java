@@ -10,6 +10,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum HardnessProvider implements IBlockComponentProvider {
 
@@ -24,7 +25,7 @@ public enum HardnessProvider implements IBlockComponentProvider {
                 accessor.getHitResult().blockZ);
         tooltip.child(
                 ThemeHelper.INSTANCE
-                        .value(LangUtil.translateG("hud.msg.wdmla.hardness"), String.format("%.0f", hardness)));
+                        .value(StatCollector.translateToLocal("hud.msg.wdmla.hardness"), String.format("%.0f", hardness)));
     }
 
     @Override

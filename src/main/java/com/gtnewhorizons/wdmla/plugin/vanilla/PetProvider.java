@@ -5,6 +5,7 @@ import java.util.UUID;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.UsernameCache;
 
 import com.google.common.base.Objects;
@@ -28,7 +29,7 @@ public enum PetProvider implements IEntityComponentProvider, IServerDataProvider
                 && PluginsConfig.vanilla.pet.showPetSit) {
             tooltip.child(
                     ThemeHelper.INSTANCE
-                            .value(LangUtil.translateG("hud.msg.wdmla.sitting"), String.valueOf(pet.isSitting())));
+                            .value(StatCollector.translateToLocal("hud.msg.wdmla.sitting"), String.valueOf(pet.isSitting())));
         }
 
         String ownerUUID = accessor.getServerData().getString("OwnerUUID");
@@ -41,7 +42,7 @@ public enum PetProvider implements IEntityComponentProvider, IServerDataProvider
             return;
         }
 
-        tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.owner"), ownerString));
+        tooltip.child(ThemeHelper.INSTANCE.value(StatCollector.translateToLocal("hud.msg.wdmla.owner"), ownerString));
     }
 
     @Override

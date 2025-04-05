@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.StringUtils;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
@@ -32,8 +33,8 @@ public enum AnimalProvider implements IEntityComponentProvider {
             int absTimeToGrowInSeconds = Math.abs(animal.getGrowingAge() / 20);
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.animal.growth"),
-                            absTimeToGrowInSeconds + StringUtils.EMPTY + LangUtil.translateG("hud.msg.wdmla.seconds")));
+                            StatCollector.translateToLocal("hud.msg.wdmla.animal.growth"),
+                            absTimeToGrowInSeconds + StringUtils.EMPTY + StatCollector.translateToLocal("hud.msg.wdmla.seconds")));
         }
     }
 
@@ -46,9 +47,9 @@ public enum AnimalProvider implements IEntityComponentProvider {
             int absTimeBreedCooldownInSeconds = Math.abs(animal.getGrowingAge() / 20);
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.animal.breedcooldown"),
+                            StatCollector.translateToLocal("hud.msg.wdmla.animal.breedcooldown"),
                             absTimeBreedCooldownInSeconds + StringUtils.EMPTY
-                                    + LangUtil.translateG("hud.msg.wdmla.seconds")));
+                                    + StatCollector.translateToLocal("hud.msg.wdmla.seconds")));
         }
     }
 
