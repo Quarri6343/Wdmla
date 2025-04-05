@@ -65,6 +65,7 @@ hud.msg.wdmla.sitting=Sitting
 hud.msg.wdmla.owner=Owner
 hud.msg.wdmla.cansleep=Can Sleep
 hud.msg.wdmla.collectingItems=Collecting items...
+hud.msg.wdmla.enchantment.power=Enchantment Power
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -132,6 +133,7 @@ provider.wdmla.core.default.block=Default Block
 provider.wdmla.core.blast.resistance=Blast Resistance
 provider.wdmla.core.default.entity=Default Entity
 provider.wdmla.core.armor=Entity Armor Value
+provider.wdmla.core.enchantment.power=Enchantment Power
 
 provider.wdmla.universal.category=Universal
 provider.wdmla.universal.item.storage=Item Storage
