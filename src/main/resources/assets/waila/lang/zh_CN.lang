@@ -34,6 +34,13 @@ hud.msg.wdmla.villager.profession.blacksmith=铁匠
 hud.msg.wdmla.villager.profession.butcher=屠夫
 hud.msg.wdmla.villager.profession.nodata=无数据
 
+# instrument
+hud.msg.wdmla.instrument.piano=钢琴
+hud.msg.wdmla.instrument.bassdrum=低音鼓
+hud.msg.wdmla.instrument.snare=小军鼓
+hud.msg.wdmla.instrument.clicks=打击乐
+hud.msg.wdmla.instrument.bassguitar=低音吉他
+
 # unit
 hud.msg.wdmla.tick=刻
 hud.msg.wdmla.seconds=秒
@@ -71,6 +78,7 @@ hud.msg.wdmla.cansleep=可睡觉
 hud.msg.wdmla.collectingItems=正在收集物品...
 hud.msg.wdmla.enchantment.power=附魔强度
 hud.msg.wdmla.now.playing=正在播放
+hud.msg.wdmla.nextegg=Next Egg
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -171,6 +179,9 @@ provider.wdmla.minecraft.command.block=命令方块
 provider.wdmla.minecraft.falling.block.header=下落方块标题
 provider.wdmla.minecraft.flower.pot.header=花盆标题
 provider.wdmla.minecraft.jukebox=唱片机
+provider.wdmla.minecraft.mob.spawner=Mob Spawner
+provider.wdmla.minecraft.chicken=Chicken
+provider.wdmla.minecraft.note.block=Note Block
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
