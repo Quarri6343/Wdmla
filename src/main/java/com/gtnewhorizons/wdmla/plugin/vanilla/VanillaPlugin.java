@@ -38,6 +38,7 @@ import net.minecraft.entity.item.EntityMinecartChest;
 import net.minecraft.entity.item.EntityMinecartHopper;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -103,6 +104,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
         registration.registerEntityComponent(VillagerProfessionProvider.INSTANCE, EntityVillager.class);
         registration.registerEntityComponent(FallingBlockHeaderProvider.INSTANCE, EntityFallingBlock.class);
+        registration.registerEntityComponent(ChickenProvider.INSTANCE, EntityChicken.class);
 
         registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
@@ -121,6 +123,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
+        registration.registerEntityDataProvider(ChickenProvider.INSTANCE, EntityChicken.class);
 
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockChest.class);
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockEnderChest.class);
