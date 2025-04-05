@@ -10,6 +10,7 @@ chat.msg.wdmla.dump.success=Dumped all providers to %s
 hud.msg.wdmla.wheatcrop=Wheat Crops
 hud.msg.wdmla.pumpkinstem=Pumpkin Stem
 hud.msg.wdmla.melonstem=Melon Stem
+hud.msg.wdmla.flower.pot=%s Flower Pot
 
 # Entity
 hud.msg.wdmla.entity.falling=Falling %s
@@ -167,6 +168,7 @@ provider.wdmla.minecraft.item.frame=Item Frame
 provider.wdmla.minecraft.villager.profession=Villager Profession
 provider.wdmla.minecraft.command.block=Command Block
 provider.wdmla.minecraft.falling.block.header=Falling Block Header
+provider.wdmla.minecraft.flower.pot.header=Flower Pot Header
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
