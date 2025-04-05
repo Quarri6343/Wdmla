@@ -179,9 +179,9 @@ provider.wdmla.minecraft.command.block=命令方块
 provider.wdmla.minecraft.falling.block.header=下落方块标题
 provider.wdmla.minecraft.flower.pot.header=花盆标题
 provider.wdmla.minecraft.jukebox=唱片机
-provider.wdmla.minecraft.mob.spawner=Mob Spawner
-provider.wdmla.minecraft.chicken=Chicken
-provider.wdmla.minecraft.note.block=Note Block
+provider.wdmla.minecraft.mob.spawner=刷怪笼
+provider.wdmla.minecraft.chicken=鸡
+provider.wdmla.minecraft.note.block=音符盒
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
