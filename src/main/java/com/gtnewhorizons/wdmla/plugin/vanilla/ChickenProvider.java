@@ -18,7 +18,7 @@ public enum ChickenProvider implements IEntityComponentProvider, IServerDataProv
         if (accessor.getServerData().hasKey("nextEgg")) {
             tooltip.child(ThemeHelper.INSTANCE.value(
                     StatCollector.translateToLocal("hud.msg.wdmla.nextegg"),
-                    accessor.getServerData().getInteger("nextEgg") / 20 + StatCollector.translateToLocal("hud.msg.wdmla.second")));
+                    accessor.getServerData().getInteger("nextEgg") / 20 + StatCollector.translateToLocal("hud.msg.wdmla.seconds")));
         }
     }
 

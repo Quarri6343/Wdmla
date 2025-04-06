@@ -90,6 +90,7 @@ public class CommonProxy {
     public void serverStarting(FMLServerStartingEvent event) {}
 
     public void registerBuiltInServerPlugins(WDMlaCommonRegistration commonRegistration) {
+        new CorePlugin().register(commonRegistration);
         new UniversalPlugin().register(commonRegistration);
         new VanillaPlugin().register(commonRegistration);
     }

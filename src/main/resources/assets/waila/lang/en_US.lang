@@ -79,6 +79,7 @@ hud.msg.wdmla.collectingItems=Collecting items...
 hud.msg.wdmla.enchantment.power=Enchantment Power
 hud.msg.wdmla.now.playing=Now Playing
 hud.msg.wdmla.nextegg=Next Egg
+hud.msg.wdmla.infinity.icon=∞
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -88,6 +89,7 @@ hud.msg.wdmla.comparator=Comparator
 hud.msg.wdmla.substractor=Substractor
 hud.msg.wdmla.yes=Yes
 hud.msg.wdmla.no=No
+hud.msg.wdmla.enchant.format=%s (%s)
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
@@ -147,6 +149,7 @@ provider.wdmla.core.blast.resistance=Blast Resistance
 provider.wdmla.core.default.entity=Default Entity
 provider.wdmla.core.armor=Entity Armor Value
 provider.wdmla.core.enchantment.power=Enchantment Power
+provider.wdmla.core.status.effect=Status Effect
 
 provider.wdmla.universal.category=Universal
 provider.wdmla.universal.item.storage=Item Storage

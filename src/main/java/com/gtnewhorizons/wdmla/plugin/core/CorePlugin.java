@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -30,5 +31,11 @@ public class CorePlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(EntityHealthProvider.INSTANCE, Entity.class);
         registration.registerEntityComponent(EntityEquipmentProvider.INSTANCE, EntityLiving.class);
         registration.registerEntityComponent(EntityArmorProvider.INSTANCE, EntityLiving.class);
+        registration.registerEntityComponent(StatusEffectProvider.INSTANCE, EntityLiving.class);
+    }
+
+    @Override
+    public void register(IWDMlaCommonRegistration registration) {
+        registration.registerEntityDataProvider(StatusEffectProvider.INSTANCE, EntityLiving.class);
     }
 }
