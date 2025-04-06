@@ -80,6 +80,7 @@ hud.msg.wdmla.enchantment.power=Enchantment Power
 hud.msg.wdmla.now.playing=Now Playing
 hud.msg.wdmla.nextegg=Next Egg
 hud.msg.wdmla.infinity.icon=∞
+hud.msg.wdmla.total.enchantment.power=Total Enchantment Power
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -89,7 +90,7 @@ hud.msg.wdmla.comparator=Comparator
 hud.msg.wdmla.substractor=Substractor
 hud.msg.wdmla.yes=Yes
 hud.msg.wdmla.no=No
-hud.msg.wdmla.enchant.format=%s (%s)
+hud.msg.wdmla.effect.format=%s (%s)
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
@@ -185,6 +186,7 @@ provider.wdmla.minecraft.jukebox=Jukebox
 provider.wdmla.minecraft.mob.spawner=Mob Spawner
 provider.wdmla.minecraft.chicken=Chicken
 provider.wdmla.minecraft.note.block=Note Block
+provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy

@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.plugin.core.EnchantmentPowerProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -11,6 +12,7 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockDropper;
+import net.minecraft.block.BlockEnchantmentTable;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.BlockFurnace;
@@ -100,6 +102,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(JukeboxProvider.INSTANCE, BlockJukebox.class);
         registration.registerBlockComponent(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
         registration.registerBlockComponent(NoteBlockProvider.INSTANCE, BlockNote.class);
+        registration.registerBlockComponent(TotalEnchantmentPowerProvider.INSTANCE, BlockEnchantmentTable.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);

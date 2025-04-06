@@ -43,7 +43,7 @@ public enum StatusEffectProvider implements IEntityComponentProvider, IServerDat
                     duration = net.minecraft.util.StringUtils.ticksToElapsedTime(effect.getDuration());
                 }
 
-                String builtLine = String.format(StatCollector.translateToLocal("hud.msg.wdmla.enchant.format"), effectName, duration);
+                String builtLine = String.format(StatCollector.translateToLocal("hud.msg.wdmla.effect.format"), effectName, duration);
                 if(Potion.potionTypes[effect.getPotionID()].isBadEffect()) {
                     tooltip.child(ThemeHelper.INSTANCE.danger(builtLine));
                 }
