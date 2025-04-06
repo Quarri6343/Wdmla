@@ -205,6 +205,8 @@ option.wdmla.general.forcelegacy=Legacy Mode
 option.wdmla.general.ghostproduct=Ghost Product
 option.wdmla.general.theme=Theme Preset
 option.wdmla.general.previewincfg=Preview in Config
+option.wdmla.general.customnameoverride=Custom Name Override
+
 option.wdmla.textcolor.category=Text Colors
 option.wdmla.general.textcolor.info=Information
 option.wdmla.general.textcolor.title=Title

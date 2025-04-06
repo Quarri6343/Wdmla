@@ -59,7 +59,8 @@ public enum DefaultEntityInfoProvider implements IEntityComponentProvider {
         if (PluginsConfig.core.defaultEntity.showEntityName) {
             String name = accessor.getEntity().getCommandSenderName();
             if(accessor.getEntity() instanceof EntityLiving living
-                && living.hasCustomNameTag()) {
+                && living.hasCustomNameTag()
+                && General.customNameOverride) {
                 name = ITALIC + living.getCustomNameTag();
             }
             row_vertical.child(

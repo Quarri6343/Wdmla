@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -18,6 +19,9 @@ public enum TECustomNameHeaderProvider implements IServerDataProvider<BlockAcces
 
     @Override
     public void appendServerData(NBTTagCompound data, BlockAccessor accessor) {
+        if(General.customNameOverride) {
+            return;
+        }
         NBTTagCompound nameTag = new NBTTagCompound();
         accessor.getTileEntity().writeToNBT(nameTag);
         if(nameTag.hasKey("CustomName")) {
