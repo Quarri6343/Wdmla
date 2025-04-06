@@ -42,7 +42,7 @@ hud.msg.wdmla.instrument.clicks=打击乐
 hud.msg.wdmla.instrument.bassguitar=低音吉他
 
 # unit
-hud.msg.wdmla.tick=刻
+hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=秒
 hud.msg.wdmla.progress.seconds=%d秒 / %d秒
 hud.msg.wdmla.blocks=方块
@@ -78,7 +78,10 @@ hud.msg.wdmla.cansleep=可睡觉
 hud.msg.wdmla.collectingItems=正在收集物品...
 hud.msg.wdmla.enchantment.power=附魔强度
 hud.msg.wdmla.now.playing=正在播放
-hud.msg.wdmla.nextegg=Next Egg
+hud.msg.wdmla.nextegg=下次产蛋
+hud.msg.wdmla.infinity.icon=∞
+hud.msg.wdmla.total.enchantment.power=总附魔强度
+hud.msg.wdmla.conversion.time=转化时间
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -88,6 +91,7 @@ hud.msg.wdmla.comparator=比较器模式
 hud.msg.wdmla.substractor=减法器模式
 hud.msg.wdmla.yes=是
 hud.msg.wdmla.no=否
+hud.msg.wdmla.effect.format=%s (%s)
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=将鼠标悬停于游戏内任意物体
@@ -147,6 +151,7 @@ provider.wdmla.core.blast.resistance=爆炸抗性
 provider.wdmla.core.default.entity=默认实体
 provider.wdmla.core.armor=实体护甲值
 provider.wdmla.core.enchantment.power=附魔强度
+provider.wdmla.core.status.effect=状态效果
 
 provider.wdmla.universal.category=通用
 provider.wdmla.universal.item.storage=物品存储
@@ -182,6 +187,10 @@ provider.wdmla.minecraft.jukebox=唱片机
 provider.wdmla.minecraft.mob.spawner=刷怪笼
 provider.wdmla.minecraft.chicken=鸡
 provider.wdmla.minecraft.note.block=音符盒
+provider.wdmla.minecraft.total.enchantment.power=总附魔强度
+provider.wdmla.minecraft.zombie.villager=僵尸村民
+provider.wdmla.minecraft.zombie.villager.header=僵尸村民标题
+provider.wdmla.minecraft.te.custom.name.header=自定义名称方块标题
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
@@ -318,6 +327,7 @@ entity.MinecartFurnace.name=动力矿车
 entity.MinecartHopper.name=漏斗矿车
 entity.MinecartTNT.name=TNT矿车
 entity.MinecartCommandBlock.name=命令方块矿车
+entity.zombievillager.name=僵尸村民
 
 
 # legacy key section
