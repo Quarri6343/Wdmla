@@ -24,7 +24,7 @@ public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataPr
                 ThemeHelper.INSTANCE.value(
                         StatCollector.translateToLocal("hud.msg.wdmla.fuse"),
                         String.valueOf(accessor.getServerData().getByte("Fuse")) + StringUtils.SPACE
-                                + StatCollector.translateToLocal("hud.msg.wdmla.tick")));
+                                + StatCollector.translateToLocal("hud.msg.wdmla.ticks")));
     }
 
     @Override

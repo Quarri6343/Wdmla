@@ -35,6 +35,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation NOTE_BLOCK = MC("note_block");
     public static final ResourceLocation PAINTING = MC("painting");
     public static final ResourceLocation TOTAL_ENCHANTMENT_POWER = MC("total_enchantment_power");
+    public static final ResourceLocation ZOMBIE_VILLAGER = MC("zombie_villager");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 

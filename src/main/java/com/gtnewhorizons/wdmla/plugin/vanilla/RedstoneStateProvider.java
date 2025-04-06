@@ -36,7 +36,7 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
                     tooltip.child(
                             ThemeHelper.INSTANCE.value(
                                     StatCollector.translateToLocal("hud.msg.wdmla.delay"),
-                                    String.format("%d %s", tick, StatCollector.translateToLocal("hud.msg.wdmla.tick"))));
+                                    String.format("%d %s", tick, StatCollector.translateToLocal("hud.msg.wdmla.ticks"))));
                 } else
             if (((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator))
                     && PluginsConfig.vanilla.redstoneState.showComparatorMode) {

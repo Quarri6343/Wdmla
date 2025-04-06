@@ -42,7 +42,7 @@ hud.msg.wdmla.instrument.clicks=Clicks
 hud.msg.wdmla.instrument.bassguitar=Bass Guitar
 
 # unit
-hud.msg.wdmla.tick=t
+hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=s
 hud.msg.wdmla.progress.seconds=%ds / %ds
 hud.msg.wdmla.blocks=blocks
@@ -81,6 +81,7 @@ hud.msg.wdmla.now.playing=Now Playing
 hud.msg.wdmla.nextegg=Next Egg
 hud.msg.wdmla.infinity.icon=∞
 hud.msg.wdmla.total.enchantment.power=Total Enchantment Power
+hud.msg.wdmla.conversion.time=Conversion Time
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -187,6 +188,7 @@ provider.wdmla.minecraft.mob.spawner=Mob Spawner
 provider.wdmla.minecraft.chicken=Chicken
 provider.wdmla.minecraft.note.block=Note Block
 provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
+provider.wdmla.minecraft.zombie_villager=Zombie Villager
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy

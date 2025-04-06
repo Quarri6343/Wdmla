@@ -18,7 +18,7 @@ public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataPr
         if (accessor.getServerData().hasKey("delay")) {
             int delay = accessor.getServerData().getInteger("delay");
             tooltip.child(ThemeHelper.INSTANCE.value(
-                    StatCollector.translateToLocal("hud.msg.wdmla.delay"), delay + StatCollector.translateToLocal("hud.msg.wdmla.tick")));
+                    StatCollector.translateToLocal("hud.msg.wdmla.delay"), delay + StatCollector.translateToLocal("hud.msg.wdmla.ticks")));
         }
     }
 
