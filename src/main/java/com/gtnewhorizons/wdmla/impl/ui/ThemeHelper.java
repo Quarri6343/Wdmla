@@ -5,6 +5,8 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.util.StatCollector;
@@ -24,7 +26,6 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 
@@ -53,8 +54,12 @@ public class ThemeHelper {
         root.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }
 
-    public void overrideEntityTooltipTitle(ITooltip root, String newName) {
+    public void overrideEntityTooltipTitle(ITooltip root, String newName, Entity entity) {
         Theme theme = General.currentTheme.get();
+        if(entity instanceof EntityLiving living
+                && living.hasCustomNameTag()) {
+           newName = ITALIC + living.getCustomNameTag();
+        }
         IComponent replacedName = new HPanelComponent()
                 .child(new TextComponent(newName).style(new TextStyle().color(theme.textColor(MessageType.TITLE))))
                 .tag(Identifiers.ENTITY_NAME);

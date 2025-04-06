@@ -13,7 +13,6 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import net.minecraft.util.StatCollector;
 
@@ -36,7 +35,8 @@ public enum FallingBlockHeaderProvider implements IEntityComponentProvider {
                     tooltip,
                     String.format(
                             StatCollector.translateToLocal("hud.msg.wdmla.entity.falling"),
-                            DisplayUtil.itemDisplayNameShort(itemForm)));
+                            DisplayUtil.itemDisplayNameShort(itemForm)),
+                    accessor.getEntity());
         }
     }
 

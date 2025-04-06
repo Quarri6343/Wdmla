@@ -190,6 +190,7 @@ provider.wdmla.minecraft.note.block=Note Block
 provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
 provider.wdmla.minecraft.zombie.villager=Zombie Villager
 provider.wdmla.minecraft.zombie.villager.header=Zombie Villager Header
+provider.wdmla.minecraft.te.custom.name.header=Custom Name Block Header
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy

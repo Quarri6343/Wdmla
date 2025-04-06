@@ -37,6 +37,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation TOTAL_ENCHANTMENT_POWER = MC("total_enchantment_power");
     public static final ResourceLocation ZOMBIE_VILLAGER = MC("zombie_villager");
     public static final ResourceLocation ZOMBIE_VILLAGER_HEADER = MC("zombie_villager_header");
+    public static final ResourceLocation TE_CUSTOM_NAME_HEADER = MC("te_custom_name_header");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 
