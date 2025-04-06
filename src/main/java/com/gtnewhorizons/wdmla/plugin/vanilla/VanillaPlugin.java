@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.plugin.core.EnchantmentPowerProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
@@ -114,6 +116,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(ChickenProvider.INSTANCE, EntityChicken.class);
         registration.registerEntityComponent(PaintingProvider.INSTANCE, EntityPainting.class);
         registration.registerEntityComponent(ZombieVillagerProvider.INSTANCE, EntityZombie.class);
+        registration.registerEntityComponent(ZombieVillagerHeaderProvider.INSTANCE, EntityZombie.class);
 
         registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
@@ -201,6 +204,29 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public ResourceLocation getUid() {
             return VanillaIdentifiers.REDSTONE_ORE_HEADER;
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return TooltipPosition.HEAD;
+        }
+    }
+
+    public enum ZombieVillagerHeaderProvider implements IEntityComponentProvider {
+
+        INSTANCE;
+
+        @Override
+        public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
+            if(accessor.getEntity() instanceof EntityZombie zombie
+                && zombie.isVillager()) {
+                ThemeHelper.INSTANCE.overrideEntityTooltipTitle(tooltip, StatCollector.translateToLocal("entity.zombievillager.name"));
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return VanillaIdentifiers.ZOMBIE_VILLAGER_HEADER;
         }
 
         @Override

@@ -188,7 +188,8 @@ provider.wdmla.minecraft.mob.spawner=Mob Spawner
 provider.wdmla.minecraft.chicken=Chicken
 provider.wdmla.minecraft.note.block=Note Block
 provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
-provider.wdmla.minecraft.zombie_villager=Zombie Villager
+provider.wdmla.minecraft.zombie.villager=Zombie Villager
+provider.wdmla.minecraft.zombie.villager.header=Zombie Villager Header
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
@@ -325,6 +326,7 @@ entity.MinecartFurnace.name=Minecart with Furnace
 entity.MinecartHopper.name=Minecart with Hopper
 entity.MinecartTNT.name=Minecart with TNT
 entity.MinecartCommandBlock.name=Minecart with Command Block
+entity.zombievillager.name=Zombie Villager
 
 
 # legacy key section
