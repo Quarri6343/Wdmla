@@ -37,6 +37,7 @@ import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityMinecartChest;
 import net.minecraft.entity.item.EntityMinecartHopper;
+import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -107,6 +108,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(VillagerProfessionProvider.INSTANCE, EntityVillager.class);
         registration.registerEntityComponent(FallingBlockHeaderProvider.INSTANCE, EntityFallingBlock.class);
         registration.registerEntityComponent(ChickenProvider.INSTANCE, EntityChicken.class);
+        registration.registerEntityComponent(PaintingProvider.INSTANCE, EntityPainting.class);
 
         registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
