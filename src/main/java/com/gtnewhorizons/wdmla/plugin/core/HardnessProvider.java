@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -25,7 +26,7 @@ public enum HardnessProvider implements IBlockComponentProvider {
                 accessor.getHitResult().blockZ);
         tooltip.child(
                 ThemeHelper.INSTANCE
-                        .value(StatCollector.translateToLocal("hud.msg.wdmla.hardness"), String.format("%.0f", hardness)));
+                        .value(StatCollector.translateToLocal("hud.msg.wdmla.hardness"), FormatUtil.STANDARD.format(hardness)));
     }
 
     @Override

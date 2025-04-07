@@ -6,6 +6,7 @@ import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
@@ -33,7 +34,7 @@ public enum StatusEffectProvider implements IEntityComponentProvider, IServerDat
                     amplifier = StatCollector.translateToLocal("enchantment.level." + (effect.getAmplifier() + 1));
                 }
                 else {
-                    amplifier = String.valueOf(effect.getAmplifier() + 1);
+                    amplifier = FormatUtil.STANDARD.format(effect.getAmplifier() + 1);
                 }
                 String effectName = StatCollector.translateToLocal(effect.getEffectName()) + StringUtils.SPACE + amplifier;
                 String duration;

@@ -4,6 +4,7 @@ import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -51,7 +52,7 @@ public enum TotalEnchantmentPowerProvider implements IBlockComponentProvider {
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         float power = calculateEnchantPower(accessor);
         tooltip.child(ThemeHelper.INSTANCE.value(
-                StatCollector.translateToLocal("hud.msg.wdmla.total.enchantment.power"), String.format("%.0f", power)));
+                StatCollector.translateToLocal("hud.msg.wdmla.total.enchantment.power"), FormatUtil.STANDARD.format(power)));
     }
 
     @Override

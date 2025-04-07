@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -22,7 +23,7 @@ public enum EnchantmentPowerProvider implements IBlockComponentProvider {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
                             StatCollector.translateToLocal("hud.msg.wdmla.enchantment.power"),
-                            String.format("%.2f", power)));
+                            FormatUtil.STANDARD.format(power)));
         }
     }
 

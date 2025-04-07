@@ -36,7 +36,7 @@ public enum GrowthRateProvider implements IBlockComponentProvider {
         if (growthValue < 100.0) {
             tooltip.child(
                     ThemeHelper.INSTANCE
-                            .value(StatCollector.translateToLocal("hud.msg.wdmla.growth"), String.format("%.0f %%", growthValue)));
+                            .value(StatCollector.translateToLocal("hud.msg.wdmla.growth"), String.format("%.0f %%", growthValue))); //TODO:percentage format
         } else {
             tooltip.child(
                     new HPanelComponent().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.growth")))

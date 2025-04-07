@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.util.ResourceLocation;
@@ -28,21 +29,21 @@ public enum HorseProvider implements IEntityComponentProvider {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
                             StatCollector.translateToLocal("hud.msg.wdmla.jumpStrength"),
-                            String.format("%.2f", getJumpHeight(jumpStrength)) + StringUtils.SPACE
+                            FormatUtil.STANDARD.format(getJumpHeight(jumpStrength)) + StringUtils.SPACE
                                     + StatCollector.translateToLocal("hud.msg.wdmla.blocks")));
             if (accessor.showDetails()) {
-                tooltip.text("(" + String.format("%.2f", jumpStrength) + ")");
+                tooltip.text("(" + FormatUtil.STANDARD.format(jumpStrength) + ")");
             }
 
             double movementSpeed = horse.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
                             StatCollector.translateToLocal("hud.msg.wdmla.speed"),
-                            String.format("%.2f", movementSpeed * SPEED_UNIT_TO_BLOCKS_PER_SECOND_RATE)
+                            FormatUtil.STANDARD.format(movementSpeed * SPEED_UNIT_TO_BLOCKS_PER_SECOND_RATE)
                                     + StringUtils.SPACE
                                     + StatCollector.translateToLocal("hud.msg.wdmla.blockspersecond")));
             if (accessor.showDetails()) {
-                tooltip.text("(" + String.format("%.2f", movementSpeed) + ")");
+                tooltip.text("(" + FormatUtil.STANDARD.format(movementSpeed) + ")");
             }
         }
     }
