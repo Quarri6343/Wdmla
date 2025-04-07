@@ -208,6 +208,8 @@ provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
 provider.wdmla.harvestability.modern=Modern
 
+provider.wdmla.debug.category=Debug
+provider.wdmla.debug.registry.name=Registry Name
 
 # options
 
@@ -287,6 +289,8 @@ option.wdmla.harvestability.currentlyHarvestable.icon=Currently Harvestable Icon
 option.wdmla.harvestability.effectivetool.icon=Effective Tool Icon
 option.wdmla.harvestability.shearability.icon=Shearability Icon
 option.wdmla.harvestability.silktouchability.icon=Silk Touchability Icon
+
+option.wdmla.debug.entity.registry.name=Show Entity MetaData
 
 # options in the untouched sections(unsorted, it will be deleted soon)
 # don't add entries to here

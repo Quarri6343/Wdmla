@@ -37,7 +37,8 @@ public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
                     .blockComponentProviders.get(block.getClass()).stream().filter(
                             provider -> !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_CORE)
                     && !provider.getUid().getResourceDomain().equals(HarvestabilityIdentifiers.NAMESPACE_HARVESTABILITY)
-                    && !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_UNIVERSAL)).count();
+                    && !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_UNIVERSAL)
+                    && !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_CORE)).count();
             long supportedStorageProvidersCount = WDMlaCommonRegistration.instance()
                     .itemStorageProviders.entries().filter(classCollectionEntry -> classCollectionEntry.getKey().isInstance(block)).count();
             //TODO: fluid, power

@@ -15,6 +15,8 @@ public class PluginsConfig {
 
     public static final Harvestability harvestability = new Harvestability();
 
+    public static final Debug debug = new Debug();
+
     @Config.LangKey("provider.wdmla.core.category")
     public static class Core {
 
@@ -333,6 +335,20 @@ public class PluginsConfig {
             @Config.LangKey("option.wdmla.harvestability.silktouchability.icon")
             @Config.DefaultBoolean(true)
             public boolean modernShowSilkTouchabilityIcon;
+        }
+    }
+
+    @Config.LangKey("provider.wdmla.debug.category")
+    public static class Debug {
+
+        public final RegistryName registryName = new RegistryName();
+
+        @Config.LangKey("provider.wdmla.debug.registry.name")
+        public static class RegistryName {
+
+            @Config.LangKey("option.wdmla.debug.entity.registry.name")
+            @Config.DefaultBoolean(false)
+            public boolean entityRegistryName;
         }
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import com.gtnewhorizons.wdmla.plugin.debug.DebugPlugin;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -101,6 +102,7 @@ public class CommonProxy {
         new UniversalPlugin().registerClient(clientRegistration);
         new VanillaPlugin().registerClient(clientRegistration);
         new HarvestabilityPlugin().registerClient(clientRegistration);
+        new DebugPlugin().registerClient(clientRegistration);
     }
 
     // TODO:use @WDMlaPlugin instead

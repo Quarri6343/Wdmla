@@ -34,17 +34,6 @@ public class HUDHandlerCompat {
         }
 
         if (currenttip.isEmpty()) currenttip.add("< Unnamed >");
-        else {
-            if (ConfigHandler.instance()
-                    .getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_METADATA, true)) {
-                currenttip.add(
-                        String.format(
-                                ITALIC + "[%d:%d] | %s",
-                                accessor.getBlockID(),
-                                accessor.getMetadata(),
-                                accessor.getBlockQualifiedName()));
-            }
-        }
     }
 
     public static void getEntitiesWailaHead(Entity entity, List<String> currenttip) {
