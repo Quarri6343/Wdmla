@@ -23,8 +23,6 @@ public class CorePlugin implements IWDMlaPlugin {
         registration.registerAccessorHandler(EntityAccessor.class, new EntityAccessorClientHandler());
 
         registration.registerBlockComponent(DefaultBlockInfoProvider.INSTANCE, Block.class);
-        registration.registerBlockComponent(HardnessProvider.INSTANCE, Block.class);
-        registration.registerBlockComponent(BlastResistanceProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(EnchantmentPowerProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(BlockFaceProvider.INSTANCE, Block.class);
 

@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.plugin.core;
+package com.gtnewhorizons.wdmla.plugin.debug;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -20,7 +20,7 @@ public enum BlastResistanceProvider implements IBlockComponentProvider {
         float blastResistance = accessor.getBlock().getExplosionResistance(null);
         tooltip.child(
                 ThemeHelper.INSTANCE.value(
-                        StatCollector.translateToLocal("hud.msg.wdmla.blast_resistance"),
+                        StatCollector.translateToLocal("hud.msg.wdmla.blast.resistance"),
                         FormatUtil.STANDARD.format(blastResistance)));
     }
 

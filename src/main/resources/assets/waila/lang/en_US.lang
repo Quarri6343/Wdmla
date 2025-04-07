@@ -154,11 +154,9 @@ hud.msg.black=Black
 # provider names (auto generated key)
 
 provider.wdmla.core.category=Core
-provider.wdmla.core.hardness=Block Hardness
 provider.wdmla.core.equipment=Entity Equipment
 provider.wdmla.core.entity.health=Entity Health
 provider.wdmla.core.default.block=Default Block
-provider.wdmla.core.blast.resistance=Blast Resistance
 provider.wdmla.core.default.entity=Default Entity
 provider.wdmla.core.armor=Entity Armor Value
 provider.wdmla.core.enchantment.power=Enchantment Power
@@ -199,6 +197,7 @@ provider.wdmla.minecraft.jukebox=Jukebox
 provider.wdmla.minecraft.mob.spawner=Mob Spawner
 provider.wdmla.minecraft.chicken=Chicken
 provider.wdmla.minecraft.note.block=Note Block
+provider.wdmla.minecraft.painting=Painting
 provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
 provider.wdmla.minecraft.zombie.villager=Zombie Villager
 provider.wdmla.minecraft.zombie.villager.header=Zombie Villager Header
@@ -209,6 +208,8 @@ provider.wdmla.harvestability.legacy=Legacy
 provider.wdmla.harvestability.modern=Modern
 
 provider.wdmla.debug.category=Debug
+provider.wdmla.debug.hardness=Block Hardness
+provider.wdmla.debug.blast.resistance=Blast Resistance
 provider.wdmla.debug.registry.name=Registry Name
 
 # options

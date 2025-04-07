@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.plugin.core;
+package com.gtnewhorizons.wdmla.plugin.debug;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;

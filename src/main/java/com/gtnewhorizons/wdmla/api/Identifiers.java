@@ -19,8 +19,6 @@ public final class Identifiers {
     public static final ResourceLocation DEFAULT_BLOCK = Core("default_block");
     public static final ResourceLocation DEFAULT_ENTITY = Core("default_entity");
     public static final ResourceLocation ENTITY_HEALTH = Core("entity_health");
-    public static final ResourceLocation HARDNESS = Core("hardness");
-    public static final ResourceLocation BLAST_RESISTANCE = Core("blast_resistance");
     public static final ResourceLocation EQUIPMENT = Core("equipment");
     public static final ResourceLocation ARMOR = Core("armor");
     public static final ResourceLocation ENCHANTMENT_POWER = Core("enchantment_power");
@@ -29,6 +27,8 @@ public final class Identifiers {
     public static final ResourceLocation ITEM_STORAGE = Universal("item_storage");
     public static final ResourceLocation ITEM_STORAGE_DEFAULT = Universal("item_storage_default");
 
+    public static final ResourceLocation HARDNESS = Debug("hardness");
+    public static final ResourceLocation BLAST_RESISTANCE = Debug("blast_resistance");
     public static final ResourceLocation REGISTRY_NAME = Debug("registry_name");
 
     public static final ResourceLocation TEST_HEAD = Test("head");

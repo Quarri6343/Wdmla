@@ -12,6 +12,8 @@ public class DebugPlugin implements IWDMlaPlugin {
 
     @Override
     public void registerClient(IWDMlaClientRegistration registration) {
+        registration.registerBlockComponent(HardnessProvider.INSTANCE, Block.class);
+        registration.registerBlockComponent(BlastResistanceProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(RegistryNameProvider.getBlock(), Block.class);
 
         registration.registerEntityComponent(RegistryNameProvider.getEntity(), Entity.class);
