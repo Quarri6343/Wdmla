@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,7 +11,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor>, ITimeFormatterAccessor {
     INSTANCE;
 
     @Override
@@ -18,7 +19,7 @@ public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataPr
         if (accessor.getServerData().hasKey("delay")) {
             int delay = accessor.getServerData().getInteger("delay");
             tooltip.child(ThemeHelper.INSTANCE.value(
-                    StatCollector.translateToLocal("hud.msg.wdmla.delay"), delay + StatCollector.translateToLocal("hud.msg.wdmla.ticks")));
+                    StatCollector.translateToLocal("hud.msg.wdmla.delay"), getDefaultTimeFormatter().tickFormatter.apply(delay)));
         }
     }
 

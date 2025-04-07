@@ -3,13 +3,15 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public enum ZombieVillagerProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
+public enum ZombieVillagerProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatterAccessor {
     INSTANCE;
 
     @Override
@@ -19,7 +21,7 @@ public enum ZombieVillagerProvider implements IEntityComponentProvider, IServerD
             if(conversionTime != -1) {
                 tooltip.child(ThemeHelper.INSTANCE.value(
                         StatCollector.translateToLocal("hud.msg.wdmla.conversion.time"),
-                        conversionTime + StatCollector.translateToLocal("hud.msg.wdmla.ticks")
+                        getDefaultTimeFormatter().tickFormatter.apply(conversionTime)
                 ));
             }
         }
@@ -34,5 +36,9 @@ public enum ZombieVillagerProvider implements IEntityComponentProvider, IServerD
     public ResourceLocation getUid() {
         return VanillaIdentifiers.ZOMBIE_VILLAGER;
     }
-    //        tagCompound.setInteger("ConversionTime", this.isConverting() ? this.conversionTime : -1);
+
+    @Override
+    public TimeFormattingPattern getDefaultTimeFormatter() {
+        return TimeFormattingPattern.HOUR_MIN_SEC;
+    }
 }

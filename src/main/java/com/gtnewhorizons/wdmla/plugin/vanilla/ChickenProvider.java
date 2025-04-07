@@ -3,14 +3,16 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public enum ChickenProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
+public enum ChickenProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatterAccessor {
     INSTANCE;
 
     @Override
@@ -18,7 +20,7 @@ public enum ChickenProvider implements IEntityComponentProvider, IServerDataProv
         if (accessor.getServerData().hasKey("nextEgg")) {
             tooltip.child(ThemeHelper.INSTANCE.value(
                     StatCollector.translateToLocal("hud.msg.wdmla.nextegg"),
-                    accessor.getServerData().getInteger("nextEgg") / 20 + StatCollector.translateToLocal("hud.msg.wdmla.seconds")));
+                    getDefaultTimeFormatter().tickFormatter.apply(accessor.getServerData().getInteger("nextEgg"))));
         }
     }
 
@@ -32,5 +34,10 @@ public enum ChickenProvider implements IEntityComponentProvider, IServerDataProv
     @Override
     public ResourceLocation getUid() {
         return VanillaIdentifiers.CHICKEN;
+    }
+
+    @Override
+    public TimeFormattingPattern getDefaultTimeFormatter() {
+        return TimeFormattingPattern.HOUR_MIN_SEC;
     }
 }

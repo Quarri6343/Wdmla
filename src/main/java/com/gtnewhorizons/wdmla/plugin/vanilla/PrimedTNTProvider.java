@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,7 +15,7 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
+public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatterAccessor {
 
     INSTANCE;
 
@@ -23,8 +24,7 @@ public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataPr
         tooltip.child(
                 ThemeHelper.INSTANCE.value(
                         StatCollector.translateToLocal("hud.msg.wdmla.fuse"),
-                        String.valueOf(accessor.getServerData().getByte("Fuse")) + StringUtils.SPACE
-                                + StatCollector.translateToLocal("hud.msg.wdmla.ticks")));
+                        getDefaultTimeFormatter().tickFormatter.apply((int) accessor.getServerData().getByte("Fuse"))));
     }
 
     @Override

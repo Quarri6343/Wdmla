@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,7 +16,7 @@ import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 
-public enum AnimalProvider implements IEntityComponentProvider {
+public enum AnimalProvider implements IEntityComponentProvider, ITimeFormatterAccessor {
 
     INSTANCE;
 
@@ -30,11 +32,11 @@ public enum AnimalProvider implements IEntityComponentProvider {
         }
 
         if (accessor.getEntity() instanceof EntityAnimal animal && animal.isChild() && animal.getGrowingAge() != 0) {
-            int absTimeToGrowInSeconds = Math.abs(animal.getGrowingAge() / 20);
+            int absTimeToGrow = Math.abs(animal.getGrowingAge());
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
                             StatCollector.translateToLocal("hud.msg.wdmla.animal.growth"),
-                            absTimeToGrowInSeconds + StringUtils.EMPTY + StatCollector.translateToLocal("hud.msg.wdmla.seconds")));
+                            getDefaultTimeFormatter().tickFormatter.apply(absTimeToGrow)));
         }
     }
 
@@ -44,17 +46,21 @@ public enum AnimalProvider implements IEntityComponentProvider {
         }
 
         if (accessor.getEntity() instanceof EntityAnimal animal && !animal.isChild() && animal.getGrowingAge() != 0) {
-            int absTimeBreedCooldownInSeconds = Math.abs(animal.getGrowingAge() / 20);
+            int absTimeBreedCooldown = Math.abs(animal.getGrowingAge());
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
                             StatCollector.translateToLocal("hud.msg.wdmla.animal.breedcooldown"),
-                            absTimeBreedCooldownInSeconds + StringUtils.EMPTY
-                                    + StatCollector.translateToLocal("hud.msg.wdmla.seconds")));
+                            getDefaultTimeFormatter().tickFormatter.apply(absTimeBreedCooldown)));
         }
     }
 
     @Override
     public ResourceLocation getUid() {
         return VanillaIdentifiers.ANIMAL;
+    }
+
+    @Override
+    public TimeFormattingPattern getDefaultTimeFormatter() {
+        return TimeFormattingPattern.HOUR_MIN_SEC;
     }
 }
