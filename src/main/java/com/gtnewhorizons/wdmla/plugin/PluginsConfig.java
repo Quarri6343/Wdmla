@@ -2,6 +2,7 @@ package com.gtnewhorizons.wdmla.plugin;
 
 import com.gtnewhorizon.gtnhlib.config.Config;
 import com.gtnewhorizons.wdmla.WDMla;
+import com.gtnewhorizons.wdmla.plugin.debug.RegistryDataProvider;
 
 @Config(modid = WDMla.MODID, category = "plugins", configSubDirectory = "WDMla", filename = "plugins")
 @Config.LangKey("option.wdmla.plugin.category")
@@ -341,14 +342,18 @@ public class PluginsConfig {
     @Config.LangKey("provider.wdmla.debug.category")
     public static class Debug {
 
-        public final RegistryName registryName = new RegistryName();
+        public final RegistryData registryData = new RegistryData();
 
-        @Config.LangKey("provider.wdmla.debug.registry.name")
-        public static class RegistryName {
+        @Config.LangKey("provider.wdmla.debug.registry.data")
+        public static class RegistryData {
 
-            @Config.LangKey("option.wdmla.debug.entity.registry.name")
+            @Config.LangKey("option.wdmla.debug.entity.registry.data")
             @Config.DefaultBoolean(false)
-            public boolean entityRegistryName;
+            public boolean entityRegistryData;
+
+            @Config.LangKey("option.wdmla.debug.registry.data.display.mode")
+            @Config.DefaultEnum("SHORT")
+            public RegistryDataProvider.DisplayMode displayMode;
         }
     }
 }

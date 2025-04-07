@@ -29,7 +29,7 @@ public final class Identifiers {
 
     public static final ResourceLocation HARDNESS = Debug("hardness");
     public static final ResourceLocation BLAST_RESISTANCE = Debug("blast_resistance");
-    public static final ResourceLocation REGISTRY_NAME = Debug("registry_name");
+    public static final ResourceLocation REGISTRY_DATA = Debug("registry_data");
 
     public static final ResourceLocation TEST_HEAD = Test("head");
     public static final ResourceLocation TEST_NBT_BLOCK = Test("nbt_block");

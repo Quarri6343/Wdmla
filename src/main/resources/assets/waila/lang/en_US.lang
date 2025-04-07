@@ -93,6 +93,11 @@ hud.msg.wdmla.nextegg=Next Egg
 hud.msg.wdmla.infinity.icon=∞
 hud.msg.wdmla.total.enchantment.power=Total Enchantment Power
 hud.msg.wdmla.conversion.time=Conversion Time
+hud.msg.wdmla.block.id=Block ID
+hud.msg.wdmla.metadata=Metadata
+hud.msg.wdmla.registry.name=Registry Name
+hud.msg.wdmla.registry.id=Registry ID
+hud.msg.wdmla.entity.id=Entity ID
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -103,6 +108,8 @@ hud.msg.wdmla.substractor=Substractor
 hud.msg.wdmla.yes=Yes
 hud.msg.wdmla.no=No
 hud.msg.wdmla.effect.format=%s (%s)
+hud.msg.wdmla.block.registry.data.short=[%d:%d] | %s
+hud.msg.wdmla.entity.registry.data.short=[%d:%d] | %s
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
@@ -210,7 +217,7 @@ provider.wdmla.harvestability.modern=Modern
 provider.wdmla.debug.category=Debug
 provider.wdmla.debug.hardness=Block Hardness
 provider.wdmla.debug.blast.resistance=Blast Resistance
-provider.wdmla.debug.registry.name=Registry Name
+provider.wdmla.debug.registry.data=Registry Data
 
 # options
 
@@ -291,7 +298,9 @@ option.wdmla.harvestability.effectivetool.icon=Effective Tool Icon
 option.wdmla.harvestability.shearability.icon=Shearability Icon
 option.wdmla.harvestability.silktouchability.icon=Silk Touchability Icon
 
-option.wdmla.debug.entity.registry.name=Show Entity MetaData
+# debug options
+option.wdmla.debug.entity.registry.data=Show Entity Registry Data
+option.wdmla.debug.registry.data.display.mode=Display Mode
 
 # options in the untouched sections(unsorted, it will be deleted soon)
 # don't add entries to here
