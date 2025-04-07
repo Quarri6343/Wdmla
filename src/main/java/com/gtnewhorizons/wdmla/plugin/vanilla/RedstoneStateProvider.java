@@ -1,19 +1,18 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
-
-import net.minecraft.util.StatCollector;
 
 public enum RedstoneStateProvider implements IBlockComponentProvider {
 
@@ -28,7 +27,8 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
                     ? ThemeHelper.INSTANCE.failure(StatCollector.translateToLocal("hud.msg.wdmla.off"))
                     : ThemeHelper.INSTANCE.success(StatCollector.translateToLocal("hud.msg.wdmla.on"));
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.state")))
+                    new HPanelComponent()
+                            .text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.state")))
                             .child(redstoneOn));
         } else if (((block == Blocks.unpowered_repeater) || (block == Blocks.powered_repeater))
                 && PluginsConfig.vanilla.redstoneState.showRepeaterDelay) {
@@ -43,7 +43,8 @@ public enum RedstoneStateProvider implements IBlockComponentProvider {
                         String mode = ((accessor.getMetadata() >> 2) & 1) == 0
                                 ? StatCollector.translateToLocal("hud.msg.wdmla.comparator")
                                 : StatCollector.translateToLocal("hud.msg.wdmla.substractor");
-                        tooltip.child(ThemeHelper.INSTANCE.value(StatCollector.translateToLocal("hud.msg.wdmla.mode"), mode));
+                        tooltip.child(
+                                ThemeHelper.INSTANCE.value(StatCollector.translateToLocal("hud.msg.wdmla.mode"), mode));
                     }
     }
 

@@ -13,11 +13,11 @@ public class FormatUtil {
 
     private static DecimalFormat getDecimalFormat() {
         DecimalFormat decimalFormat;
-        NumberFormat format = NumberFormat.getNumberInstance(Locale.US); //we don't want it to depend on JVM system language
-        if(format instanceof DecimalFormat) {
+        NumberFormat format = NumberFormat.getNumberInstance(Locale.US); // we don't want it to depend on JVM system
+                                                                         // language
+        if (format instanceof DecimalFormat) {
             decimalFormat = (DecimalFormat) format;
-        }
-        else {
+        } else {
             decimalFormat = new DecimalFormat();
         }
         decimalFormat.setGroupingUsed(true);
@@ -32,10 +32,9 @@ public class FormatUtil {
     private static DecimalFormat getTimePartFormat() {
         DecimalFormat decimalFormat;
         NumberFormat format = NumberFormat.getNumberInstance(Locale.US);
-        if(format instanceof DecimalFormat) {
+        if (format instanceof DecimalFormat) {
             decimalFormat = (DecimalFormat) format;
-        }
-        else {
+        } else {
             decimalFormat = new DecimalFormat();
         }
         decimalFormat.applyPattern("00");

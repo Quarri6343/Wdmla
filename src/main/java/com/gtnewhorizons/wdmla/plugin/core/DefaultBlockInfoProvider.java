@@ -51,13 +51,12 @@ public enum DefaultBlockInfoProvider implements IBlockComponentProvider {
 
         ITooltip row_vertical = row.vertical();
         if (PluginsConfig.core.defaultBlock.showBlockName) {
-            if(accessor.getServerData() != null
-                && accessor.getServerData().hasKey("CustomName")) {
+            if (accessor.getServerData() != null && accessor.getServerData().hasKey("CustomName")) {
                 itemStack.setStackDisplayName(accessor.getServerData().getString("CustomName"));
             }
             String itemName = DisplayUtil.itemDisplayNameShort(itemStack);
-            row_vertical.horizontal().tag(Identifiers.ITEM_NAME_ROW).child(
-                    ThemeHelper.INSTANCE.title(itemName).tag(Identifiers.ITEM_NAME));
+            row_vertical.horizontal().tag(Identifiers.ITEM_NAME_ROW)
+                    .child(ThemeHelper.INSTANCE.title(itemName).tag(Identifiers.ITEM_NAME));
         }
         String modName = ModIdentification.nameFromStack(itemStack);
         if (PluginsConfig.core.defaultBlock.showModName) {

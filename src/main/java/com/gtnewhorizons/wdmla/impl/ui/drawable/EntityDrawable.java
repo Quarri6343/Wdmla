@@ -28,7 +28,7 @@ public class EntityDrawable implements IDrawable {
         boolean bossHasColorModifier = BossStatus.hasColorModifier;
         float renderTagRange = RendererLivingEntity.NAME_TAG_RANGE;
         float renderTagRangeSneaking = RendererLivingEntity.NAME_TAG_RANGE_SNEAK;
-        //editing entity custom name directly will trigger DataWatcher
+        // editing entity custom name directly will trigger DataWatcher
         RendererLivingEntity.NAME_TAG_RANGE = 0;
         RendererLivingEntity.NAME_TAG_RANGE_SNEAK = 0;
         try {

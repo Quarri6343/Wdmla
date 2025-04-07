@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
-import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -8,6 +7,7 @@ import net.minecraft.entity.EntityLiving;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.impl.BlockAccessorClientHandler;
 import com.gtnewhorizons.wdmla.impl.EntityAccessorClientHandler;

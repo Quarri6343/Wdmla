@@ -1,19 +1,17 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraft.util.StatCollector;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-
-import mcp.mobius.waila.cbcore.LangUtil;
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 
 public enum HorseProvider implements IEntityComponentProvider {
 

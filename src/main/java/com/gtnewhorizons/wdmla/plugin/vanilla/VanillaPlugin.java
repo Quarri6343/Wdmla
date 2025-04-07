@@ -1,8 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.plugin.core.EnchantmentPowerProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -57,7 +54,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
@@ -67,8 +66,6 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
-
-import mcp.mobius.waila.cbcore.LangUtil;
 
 public class VanillaPlugin implements IWDMlaPlugin {
 
@@ -161,7 +158,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerItemStorage(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
     }
 
-    //misc providers section
+    // misc providers section
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
 
@@ -229,9 +226,11 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
-            if(accessor.getEntity() instanceof EntityZombie zombie
-                && zombie.isVillager()) {
-                ThemeHelper.INSTANCE.overrideEntityTooltipTitle(tooltip, StatCollector.translateToLocal("entity.zombievillager.name"), accessor.getEntity());
+            if (accessor.getEntity() instanceof EntityZombie zombie && zombie.isVillager()) {
+                ThemeHelper.INSTANCE.overrideEntityTooltipTitle(
+                        tooltip,
+                        StatCollector.translateToLocal("entity.zombievillager.name"),
+                        accessor.getEntity());
             }
         }
 

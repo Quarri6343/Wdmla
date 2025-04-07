@@ -8,7 +8,6 @@ import com.gtnewhorizons.wdmla.api.Mods;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.handlers.VanillaTooltipHandler;
 import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.server.ProxyServer;

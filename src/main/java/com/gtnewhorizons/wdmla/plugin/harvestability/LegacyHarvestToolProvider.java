@@ -31,8 +31,6 @@ import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyCreativeBlocks;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 
-import mcp.mobius.waila.cbcore.LangUtil;
-
 public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
 
     INSTANCE;
@@ -215,8 +213,8 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                 else effectiveToolString = effectiveTool.substring(0, 1).toUpperCase() + effectiveTool.substring(1);
                 ITooltip effectiveToolPanel = new HPanelComponent();
                 if (!minimalLayout) {
-                    effectiveToolPanel
-                            .child(new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.effectivetool") + ": "));
+                    effectiveToolPanel.child(
+                            new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.effectivetool") + ": "));
                 }
                 if (isEffective && (!isHoldingTinkersTool || canHarvest)) {
                     effectiveToolPanel.child(ThemeHelper.INSTANCE.success(effectiveToolString));
