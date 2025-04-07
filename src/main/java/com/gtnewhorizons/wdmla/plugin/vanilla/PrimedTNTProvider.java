@@ -1,11 +1,12 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraft.util.StatCollector;
-import org.apache.commons.lang3.StringUtils;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
@@ -13,18 +14,17 @@ import com.gtnewhorizons.wdmla.api.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
-import mcp.mobius.waila.cbcore.LangUtil;
-
-public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatterAccessor {
+public enum PrimedTNTProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatConfigurable {
 
     INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
+        TimeFormattingPattern timePattern = WDMlaConfig.instance().getTimeFormatter(this);
         tooltip.child(
                 ThemeHelper.INSTANCE.value(
                         StatCollector.translateToLocal("hud.msg.wdmla.fuse"),
-                        getDefaultTimeFormatter().tickFormatter.apply((int) accessor.getServerData().getByte("Fuse"))));
+                        timePattern.tickFormatter.apply((int) accessor.getServerData().getByte("Fuse"))));
     }
 
     @Override

@@ -3,8 +3,9 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.entity.passive.EntityChicken;
@@ -12,15 +13,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public enum ChickenProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatterAccessor {
+public enum ChickenProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor>, ITimeFormatConfigurable {
     INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if (accessor.getServerData().hasKey("nextEgg")) {
+            TimeFormattingPattern timePattern = WDMlaConfig.instance().getTimeFormatter(this);
             tooltip.child(ThemeHelper.INSTANCE.value(
                     StatCollector.translateToLocal("hud.msg.wdmla.nextegg"),
-                    getDefaultTimeFormatter().tickFormatter.apply(accessor.getServerData().getInteger("nextEgg"))));
+                    timePattern.tickFormatter.apply(accessor.getServerData().getInteger("nextEgg"))));
         }
     }
 

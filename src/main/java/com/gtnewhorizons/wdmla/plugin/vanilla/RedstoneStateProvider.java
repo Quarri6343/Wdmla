@@ -1,6 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -13,10 +13,9 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 
-import mcp.mobius.waila.cbcore.LangUtil;
 import net.minecraft.util.StatCollector;
 
-public enum RedstoneStateProvider implements IBlockComponentProvider, ITimeFormatterAccessor {
+public enum RedstoneStateProvider implements IBlockComponentProvider {
 
     INSTANCE;
 
@@ -37,7 +36,7 @@ public enum RedstoneStateProvider implements IBlockComponentProvider, ITimeForma
                     tooltip.child(
                             ThemeHelper.INSTANCE.value(
                                     StatCollector.translateToLocal("hud.msg.wdmla.delay"),
-                                    getDefaultTimeFormatter().tickFormatter.apply(tick)));
+                                    TimeFormattingPattern.ALWAYS_TICK.tickFormatter.apply(tick)));
                 } else
             if (((block == Blocks.unpowered_comparator) || (block == Blocks.powered_comparator))
                     && PluginsConfig.vanilla.redstoneState.showComparatorMode) {

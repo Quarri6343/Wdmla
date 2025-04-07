@@ -1,7 +1,12 @@
 package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
+import java.util.Arrays;
 
+import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
@@ -46,6 +51,9 @@ public class WDMlaConfig extends Configuration {
             getCategory(provider.getConfigCategory()).setLanguageKey(provider.getLangKey());
             isProviderEnabled(provider);
             WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));
+            if(provider instanceof ITimeFormatConfigurable timeFormat) {
+                getTimeFormatter(timeFormat);
+            }
         }
     }
 
@@ -71,6 +79,15 @@ public class WDMlaConfig extends Configuration {
         return prop.getInt();
     }
 
+    public TimeFormattingPattern getTimeFormatter(ITimeFormatConfigurable instance) {
+        if(instance instanceof IWDMlaProvider provider) {
+            return loadEnum(provider.getConfigCategory(), "option.wdmla.autogen.time.format", instance.getDefaultTimeFormatter(), "");
+        }
+        else {
+            throw new UnsupportedOperationException();
+        }
+    }
+
     private void reloadTheme() {
         Theme custom = DefaultThemes.CUSTOM.get();
         custom.textColors = new TextColors(
@@ -82,5 +99,22 @@ public class WDMlaConfig extends Configuration {
                 General.textColor.danger,
                 General.textColor.failure,
                 General.textColor.modName);
+    }
+
+    public <T extends Enum<T>> T loadEnum(String category, String name, T defaultValue,
+                                                 String comment) {
+
+        Class<T> enumType = defaultValue.getDeclaringClass();
+        return T.valueOf(
+                enumType,
+                getString(
+                        name,
+                        category,
+                        defaultValue.toString(),
+                        comment,
+                        Arrays.stream(enumType.getEnumConstants())
+                                .map(Enum::toString)
+                                .toArray(String[]::new)));
+
     }
 }

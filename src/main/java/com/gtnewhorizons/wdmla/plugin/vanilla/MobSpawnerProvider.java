@@ -3,23 +3,26 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.format.ITimeFormatterAccessor;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor>, ITimeFormatterAccessor {
+public enum MobSpawnerProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor>, ITimeFormatConfigurable {
     INSTANCE;
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (accessor.getServerData().hasKey("delay")) {
             int delay = accessor.getServerData().getInteger("delay");
+            TimeFormattingPattern timePattern = WDMlaConfig.instance().getTimeFormatter(this);
             tooltip.child(ThemeHelper.INSTANCE.value(
-                    StatCollector.translateToLocal("hud.msg.wdmla.delay"), getDefaultTimeFormatter().tickFormatter.apply(delay)));
+                    StatCollector.translateToLocal("hud.msg.wdmla.delay"), timePattern.tickFormatter.apply(delay)));
         }
     }
 
