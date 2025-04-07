@@ -10,6 +10,10 @@ chat.msg.wdmla.dump.success=已将所有数据提供者导出至%s
 hud.msg.wdmla.wheatcrop=小麦作物
 hud.msg.wdmla.pumpkinstem=南瓜茎
 hud.msg.wdmla.melonstem=西瓜茎
+hud.msg.wdmla.flower.pot=%s花盆
+
+# Entity
+hud.msg.wdmla.entity.falling=下落%s
 
 # tool
 hud.msg.wdmla.toolclass.pickaxe=镐
@@ -30,8 +34,15 @@ hud.msg.wdmla.villager.profession.blacksmith=铁匠
 hud.msg.wdmla.villager.profession.butcher=屠夫
 hud.msg.wdmla.villager.profession.nodata=无数据
 
+# instrument
+hud.msg.wdmla.instrument.piano=钢琴
+hud.msg.wdmla.instrument.bassdrum=低音鼓
+hud.msg.wdmla.instrument.snare=小军鼓
+hud.msg.wdmla.instrument.clicks=打击乐
+hud.msg.wdmla.instrument.bassguitar=低音吉他
+
 # unit
-hud.msg.wdmla.tick=刻
+hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=秒
 hud.msg.wdmla.progress.seconds=%d秒 / %d秒
 hud.msg.wdmla.blocks=方块
@@ -65,6 +76,12 @@ hud.msg.wdmla.sitting=坐下状态
 hud.msg.wdmla.owner=主人
 hud.msg.wdmla.cansleep=可睡觉
 hud.msg.wdmla.collectingItems=正在收集物品...
+hud.msg.wdmla.enchantment.power=附魔强度
+hud.msg.wdmla.now.playing=正在播放
+hud.msg.wdmla.nextegg=下次产蛋
+hud.msg.wdmla.infinity.icon=∞
+hud.msg.wdmla.total.enchantment.power=总附魔强度
+hud.msg.wdmla.conversion.time=转化时间
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -74,6 +91,7 @@ hud.msg.wdmla.comparator=比较器模式
 hud.msg.wdmla.substractor=减法器模式
 hud.msg.wdmla.yes=是
 hud.msg.wdmla.no=否
+hud.msg.wdmla.effect.format=%s (%s)
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=将鼠标悬停于游戏内任意物体
@@ -132,6 +150,8 @@ provider.wdmla.core.default.block=默认方块
 provider.wdmla.core.blast.resistance=爆炸抗性
 provider.wdmla.core.default.entity=默认实体
 provider.wdmla.core.armor=实体护甲值
+provider.wdmla.core.enchantment.power=附魔强度
+provider.wdmla.core.status.effect=状态效果
 
 provider.wdmla.universal.category=通用
 provider.wdmla.universal.item.storage=物品存储
@@ -160,6 +180,17 @@ provider.wdmla.minecraft.horse=马
 provider.wdmla.minecraft.primed.tnt=被激活的TNT
 provider.wdmla.minecraft.item.frame=物品展示框
 provider.wdmla.minecraft.villager.profession=村民职业
+provider.wdmla.minecraft.command.block=命令方块
+provider.wdmla.minecraft.falling.block.header=下落方块标题
+provider.wdmla.minecraft.flower.pot.header=花盆标题
+provider.wdmla.minecraft.jukebox=唱片机
+provider.wdmla.minecraft.mob.spawner=刷怪笼
+provider.wdmla.minecraft.chicken=鸡
+provider.wdmla.minecraft.note.block=音符盒
+provider.wdmla.minecraft.total.enchantment.power=总附魔强度
+provider.wdmla.minecraft.zombie.villager=僵尸村民
+provider.wdmla.minecraft.zombie.villager.header=僵尸村民标题
+provider.wdmla.minecraft.te.custom.name.header=自定义名称方块标题
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
@@ -211,6 +242,7 @@ option.wdmla.vanilla.show.breedcooldown=显示动物繁殖冷却
 option.wdmla.vanilla.leverstate=显示拉杆状态
 option.wdmla.vanilla.repeater=显示中继器延时
 option.wdmla.vanilla.comparator=显示比较器模式
+option.wdmla.vanilla.max.command.length=最大命令长度
 
 # waila harvestability options
 option.wdmla.harvestability.harvestlevel=挖掘等级
@@ -295,6 +327,7 @@ entity.MinecartFurnace.name=动力矿车
 entity.MinecartHopper.name=漏斗矿车
 entity.MinecartTNT.name=TNT矿车
 entity.MinecartCommandBlock.name=命令方块矿车
+entity.zombievillager.name=僵尸村民
 
 
 # legacy key section
