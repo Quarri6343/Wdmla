@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.Nullable;
 
@@ -169,7 +170,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
             if (group.views.isEmpty() && group.extraData != null) {
                 float progress = group.extraData.getFloat("Collecting");
                 if (progress >= 0 && progress < 1) {
-                    String collectingText = LangUtil.translateG("hud.msg.wdmla.collectingItems");
+                    String collectingText = StatCollector.translateToLocal("hud.msg.wdmla.collectingItems");
                     if (progress != 0) {
                         collectingText += String.format(" %s%%", (int) (progress * 100));
                     }

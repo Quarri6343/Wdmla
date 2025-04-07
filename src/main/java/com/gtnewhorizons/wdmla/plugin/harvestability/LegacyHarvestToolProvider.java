@@ -53,6 +53,11 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
     }
 
     @Override
+    public boolean isPriorityFixed() {
+        return true;
+    }
+
+    @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (ProxyCreativeBlocks.isCreativeBlock(accessor.getBlock(), accessor.getMetadata())) {
             return;
@@ -117,7 +122,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                         ThemeHelper.INSTANCE
                                 .failure(PluginsConfig.harvestability.legacy.notcurrentlyHarvestableString));
                 if (!minimalLayout) {
-                    unBreakablePanel.text(LangUtil.translateG("hud.msg.wdmla.harvestable"));
+                    unBreakablePanel.text(StatCollector.translateToLocal("hud.msg.wdmla.harvestable"));
                 }
                 components.add(unBreakablePanel);
                 return components;
@@ -186,7 +191,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                     currentlyHarvestable.child(ThemeHelper.INSTANCE.failure(icon));
                 }
                 if (!minimalLayout) {
-                    String suffix = LangUtil.translateG("hud.msg.wdmla.currentlyharvestable");
+                    String suffix = StatCollector.translateToLocal("hud.msg.wdmla.currentlyharvestable");
                     currentlyHarvestable.text(suffix);
                 }
             }
@@ -211,7 +216,7 @@ public enum LegacyHarvestToolProvider implements IBlockComponentProvider {
                 ITooltip effectiveToolPanel = new HPanelComponent();
                 if (!minimalLayout) {
                     effectiveToolPanel
-                            .child(new TextComponent(LangUtil.translateG("hud.msg.wdmla.effectivetool") + ": "));
+                            .child(new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.effectivetool") + ": "));
                 }
                 if (isEffective && (!isHoldingTinkersTool || canHarvest)) {
                     effectiveToolPanel.child(ThemeHelper.INSTANCE.success(effectiveToolString));

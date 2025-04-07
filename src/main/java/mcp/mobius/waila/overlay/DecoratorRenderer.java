@@ -2,18 +2,17 @@ package mcp.mobius.waila.overlay;
 
 import java.util.List;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 
 import org.lwjgl.opengl.GL11;
 
 import com.gtnewhorizons.wdmla.overlay.RayTracing;
-import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -24,19 +23,14 @@ import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+@BackwardCompatibility
 public class DecoratorRenderer {
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        if (RayTracing.instance().getTarget() == null) return;
-
-        ItemStack stack = RayTracingCompat.INSTANCE.getWailaStack(RayTracing.instance().getTarget());
-        if (stack == null) {
-            stack = RayTracing.instance().getTargetStack();
-        }
-
-        if (stack == null) {
+        if (RayTracing.instance().getTarget() == null
+                || RayTracing.instance().getTargetStack() == null) {
             return;
         }
 
@@ -66,7 +60,7 @@ public class DecoratorRenderer {
                     .values()) {
                 for (IWailaBlockDecorator decorator : decoratorsList) try {
                     GL11.glPushMatrix();
-                    decorator.decorateBlock(stack, accessor, ConfigHandler.instance());
+                    decorator.decorateBlock(RayTracing.instance().getTargetStack(), accessor, ConfigHandler.instance());
                     GL11.glPopMatrix();
                 } catch (Throwable e) {
                     GL11.glPopMatrix();

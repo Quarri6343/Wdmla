@@ -1,7 +1,12 @@
 package com.gtnewhorizons.wdmla.config;
 
 import java.io.File;
+import java.util.Arrays;
 
+import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
+import mcp.mobius.waila.utils.WailaExceptionHandler;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
@@ -14,6 +19,7 @@ import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.config.Property;
 
 /**
  * the new configuration file added by WDMla
@@ -45,17 +51,19 @@ public class WDMlaConfig extends Configuration {
             getCategory(provider.getConfigCategory()).setLanguageKey(provider.getLangKey());
             isProviderEnabled(provider);
             WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));
+            if(provider instanceof ITimeFormatConfigurable timeFormat) {
+                getTimeFormatter(timeFormat);
+            }
         }
     }
 
     // TODO:split provider config file
     public boolean isProviderEnabled(IComponentProvider<?> provider) {
-        if (provider.isRequired()) {
-            return true;
+        Property prop = get(provider.getConfigCategory(), "option.wdmla.autogen.enabled", provider.enabledByDefault(), "");
+        if (!provider.canToggleInGui()) {
+            prop.setShowInGui(false);
         }
-
-        return get(provider.getConfigCategory(), "option.wdmla.autogen.enabled", provider.enabledByDefault(), "")
-                .getBoolean();
+        return prop.getBoolean();
     }
 
     public int getProviderPriority(IComponentProvider<?> provider) {
@@ -63,8 +71,21 @@ public class WDMlaConfig extends Configuration {
             return provider.getDefaultPriority();
         }
 
-        return get(provider.getConfigCategory(), "option.wdmla.autogen.priority", provider.getDefaultPriority(), "")
-                .getInt();
+        Property prop = get(provider.getConfigCategory(), "option.wdmla.autogen.priority", provider.getDefaultPriority(), "");
+        if(!provider.canPrioritizeInGui()) {
+            prop.setShowInGui(false);
+        }
+
+        return prop.getInt();
+    }
+
+    public TimeFormattingPattern getTimeFormatter(ITimeFormatConfigurable instance) {
+        if(instance instanceof IWDMlaProvider provider) {
+            return loadEnum(provider.getConfigCategory(), "option.wdmla.autogen.time.format", instance.getDefaultTimeFormatter(), "");
+        }
+        else {
+            throw new UnsupportedOperationException();
+        }
     }
 
     private void reloadTheme() {
@@ -78,5 +99,22 @@ public class WDMlaConfig extends Configuration {
                 General.textColor.danger,
                 General.textColor.failure,
                 General.textColor.modName);
+    }
+
+    public <T extends Enum<T>> T loadEnum(String category, String name, T defaultValue,
+                                                 String comment) {
+
+        Class<T> enumType = defaultValue.getDeclaringClass();
+        return T.valueOf(
+                enumType,
+                getString(
+                        name,
+                        category,
+                        defaultValue.toString(),
+                        comment,
+                        Arrays.stream(enumType.getEnumConstants())
+                                .map(Enum::toString)
+                                .toArray(String[]::new)));
+
     }
 }

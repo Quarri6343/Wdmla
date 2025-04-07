@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
+import com.gtnewhorizons.wdmla.plugin.core.EnchantmentPowerProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -11,6 +14,7 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockDropper;
+import net.minecraft.block.BlockEnchantmentTable;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.BlockFurnace;
@@ -21,6 +25,7 @@ import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.BlockNetherWart;
+import net.minecraft.block.BlockNote;
 import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockRedstoneComparator;
 import net.minecraft.block.BlockRedstoneOre;
@@ -36,8 +41,11 @@ import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityMinecartChest;
 import net.minecraft.entity.item.EntityMinecartHopper;
+import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -45,6 +53,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
@@ -94,6 +103,9 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(CommandBlockProvider.INSTANCE, BlockCommandBlock.class);
         registration.registerBlockComponent(FlowerPotHeaderProvider.INSTANCE, BlockFlowerPot.class);
         registration.registerBlockComponent(JukeboxProvider.INSTANCE, BlockJukebox.class);
+        registration.registerBlockComponent(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
+        registration.registerBlockComponent(NoteBlockProvider.INSTANCE, BlockNote.class);
+        registration.registerBlockComponent(TotalEnchantmentPowerProvider.INSTANCE, BlockEnchantmentTable.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
@@ -101,6 +113,10 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
         registration.registerEntityComponent(VillagerProfessionProvider.INSTANCE, EntityVillager.class);
         registration.registerEntityComponent(FallingBlockHeaderProvider.INSTANCE, EntityFallingBlock.class);
+        registration.registerEntityComponent(ChickenProvider.INSTANCE, EntityChicken.class);
+        registration.registerEntityComponent(PaintingProvider.INSTANCE, EntityPainting.class);
+        registration.registerEntityComponent(ZombieVillagerProvider.INSTANCE, EntityZombie.class);
+        registration.registerEntityComponent(ZombieVillagerHeaderProvider.INSTANCE, EntityZombie.class);
 
         registration.registerItemStorageClient(ItemFrameProvider.INSTANCE);
 
@@ -115,9 +131,22 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(BeaconProvider.INSTANCE, BlockBeacon.class);
         registration.registerBlockDataProvider(CommandBlockProvider.INSTANCE, BlockCommandBlock.class);
         registration.registerBlockDataProvider(JukeboxProvider.INSTANCE, BlockJukebox.class);
+        registration.registerBlockDataProvider(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
+        registration.registerBlockDataProvider(NoteBlockProvider.INSTANCE, BlockNote.class);
+
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockChest.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockFurnace.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockHopper.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockBrewingStand.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockDispenser.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockDropper.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockEnchantmentTable.class);
+        registration.registerBlockDataProvider(TECustomNameHeaderProvider.INSTANCE, BlockCommandBlock.class);
 
         registration.registerEntityDataProvider(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityDataProvider(PrimedTNTProvider.INSTANCE, EntityTNTPrimed.class);
+        registration.registerEntityDataProvider(ChickenProvider.INSTANCE, EntityChicken.class);
+        registration.registerEntityDataProvider(ZombieVillagerProvider.INSTANCE, EntityZombie.class);
 
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockChest.class);
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, BlockEnderChest.class);
@@ -131,6 +160,8 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         registration.registerItemStorage(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
     }
+
+    //misc providers section
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
 
@@ -160,7 +191,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.power"),
+                            StatCollector.translateToLocal("hud.msg.wdmla.power"),
                             String.format("%s", accessor.getMetadata())));
         }
 
@@ -184,6 +215,29 @@ public class VanillaPlugin implements IWDMlaPlugin {
         @Override
         public ResourceLocation getUid() {
             return VanillaIdentifiers.REDSTONE_ORE_HEADER;
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return TooltipPosition.HEAD;
+        }
+    }
+
+    public enum ZombieVillagerHeaderProvider implements IEntityComponentProvider {
+
+        INSTANCE;
+
+        @Override
+        public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
+            if(accessor.getEntity() instanceof EntityZombie zombie
+                && zombie.isVillager()) {
+                ThemeHelper.INSTANCE.overrideEntityTooltipTitle(tooltip, StatCollector.translateToLocal("entity.zombievillager.name"), accessor.getEntity());
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return VanillaIdentifiers.ZOMBIE_VILLAGER_HEADER;
         }
 
         @Override

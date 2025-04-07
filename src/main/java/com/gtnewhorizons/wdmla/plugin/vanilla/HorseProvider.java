@@ -1,9 +1,11 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.StringUtils;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
@@ -26,22 +28,22 @@ public enum HorseProvider implements IEntityComponentProvider {
             double jumpStrength = horse.getHorseJumpStrength();
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.jumpStrength"),
-                            String.format("%.2f", getJumpHeight(jumpStrength)) + StringUtils.SPACE
-                                    + LangUtil.translateG("hud.msg.wdmla.blocks")));
+                            StatCollector.translateToLocal("hud.msg.wdmla.jumpStrength"),
+                            FormatUtil.STANDARD.format(getJumpHeight(jumpStrength)) + StringUtils.SPACE
+                                    + StatCollector.translateToLocal("hud.msg.wdmla.blocks")));
             if (accessor.showDetails()) {
-                tooltip.text("(" + String.format("%.2f", jumpStrength) + ")");
+                tooltip.text("(" + FormatUtil.STANDARD.format(jumpStrength) + ")");
             }
 
             double movementSpeed = horse.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.speed"),
-                            String.format("%.2f", movementSpeed * SPEED_UNIT_TO_BLOCKS_PER_SECOND_RATE)
+                            StatCollector.translateToLocal("hud.msg.wdmla.speed"),
+                            FormatUtil.STANDARD.format(movementSpeed * SPEED_UNIT_TO_BLOCKS_PER_SECOND_RATE)
                                     + StringUtils.SPACE
-                                    + LangUtil.translateG("hud.msg.wdmla.blockspersecond")));
+                                    + StatCollector.translateToLocal("hud.msg.wdmla.blockspersecond")));
             if (accessor.showDetails()) {
-                tooltip.text("(" + String.format("%.2f", movementSpeed) + ")");
+                tooltip.text("(" + FormatUtil.STANDARD.format(movementSpeed) + ")");
             }
         }
     }

@@ -23,6 +23,7 @@ public final class Identifiers {
     public static final ResourceLocation EQUIPMENT = Core("equipment");
     public static final ResourceLocation ARMOR = Core("armor");
     public static final ResourceLocation ENCHANTMENT_POWER = Core("enchantment_power");
+    public static final ResourceLocation STATUS_EFFECT = Core("status_effect");
 
     public static final ResourceLocation ITEM_STORAGE = Universal("item_storage");
     public static final ResourceLocation ITEM_STORAGE_DEFAULT = Universal("item_storage_default");

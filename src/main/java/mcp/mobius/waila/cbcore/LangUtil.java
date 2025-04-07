@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -20,6 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Easy localisation access.
  */
+@BackwardCompatibility
+@Deprecated
 public class LangUtil {
 
     public static LangUtil instance = new LangUtil(null);
@@ -30,6 +33,12 @@ public class LangUtil {
         this.prefix = prefix;
     }
 
+    /**
+     * translate a key with every possible way
+     * @deprecated standard localization is enough in most situation nowadays. <br>
+     * Also, don't do server side localization with LanguageRegistry. It is bad
+     * @see StatCollector#translateToLocal(String)
+     */
     public static String translateG(String s, Object... format) {
         return instance.translate(s, format);
     }

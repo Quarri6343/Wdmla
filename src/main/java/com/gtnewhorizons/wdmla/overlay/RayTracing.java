@@ -110,7 +110,7 @@ public class RayTracing {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (mouseoverBlock == null) return items;
 
-        if (world.getTileEntity(x, y, z) == null) {
+        if (tileEntity == null) {
             try {
                 ItemStack block = new ItemStack(mouseoverBlock, 1, world.getBlockMetadata(x, y, z));
 

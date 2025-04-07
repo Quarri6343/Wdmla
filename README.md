@@ -8,7 +8,7 @@ Still in alpha, api is subject to change
 - Backported powerful component system from The One Probe, makes layout creation more flexible
 - Better config screen and options
 - Rewritten internal tooltips includes WailaHarvestability, Wawla (WailaPlugins is planned)
-- Achieved almost full backward compatibility by retaining legacy Waila api
+- Achieved almost full backward compatibility by keeping legacy Waila api
 
 # Required Dependencies
 - NEI (removal is planned)
@@ -22,7 +22,6 @@ Still in alpha, api is subject to change
 # Permanent Incompatibilities
 - Waila (bundled)
 - Waila Harvestability (bundled)
-
 
 # Partial Incompatibilities
 - Wawla -> required to disable some configs of overlapped features
@@ -52,10 +51,12 @@ Still in alpha, api is subject to change
   - wawla.showProfession
 
 # Other items to Note:
-- Removed Enchant Screen
+- Enchant Screen has been removed
 
 # Credits
 - [Jade](https://github.com/Snownee/Jade) 
   - Backported many codes under same license
 - [The One Probe](https://github.com/McJtyMods/TheOneProbe)
   - Backported HUD component codes under [MIT license](https://github.com/McJtyMods/TheOneProbe/blob/1.20/LICENCE)
+
+<!--Full Changelog from GTNH Waila: https://github.com/Quarri6343/Wdmla/compare/2f738bc...master-->

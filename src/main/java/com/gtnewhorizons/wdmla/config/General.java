@@ -32,6 +32,11 @@ public class General {
     @Config.Comment("Shows current tooltip preview in config screen")
     public static boolean previewInCfg;
 
+    @Config.LangKey("option.wdmla.general.customnameoverride")
+    @Config.DefaultBoolean(true)
+    @Config.Comment("Allow renamed object taking place on tooltip title")
+    public static boolean customNameOverride;
+
     @Config.Comment("Text color for the custom theme. \n" + "See general category for the default text color.")
     @Config.LangKey("option.wdmla.textcolor.category")
     public static class TextColor {

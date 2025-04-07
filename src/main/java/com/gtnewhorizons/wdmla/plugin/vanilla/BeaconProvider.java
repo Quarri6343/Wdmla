@@ -11,6 +11,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
@@ -19,22 +20,22 @@ public enum BeaconProvider implements IBlockComponentProvider, IServerDataProvid
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         int levels = accessor.getServerData().getInteger("Levels");
-        tooltip.child(ThemeHelper.INSTANCE.value(LangUtil.translateG("hud.msg.wdmla.level"), String.valueOf(levels)));
+        tooltip.child(ThemeHelper.INSTANCE.value(StatCollector.translateToLocal("hud.msg.wdmla.level"), String.valueOf(levels)));
 
         int primary = accessor.getServerData().getInteger("Primary");
         if (primary > 0) {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.primary"),
-                            LangUtil.translateG(Potion.potionTypes[primary].getName())));
+                            StatCollector.translateToLocal("hud.msg.wdmla.primary"),
+                            StatCollector.translateToLocal(Potion.potionTypes[primary].getName())));
         }
 
         int secondary = accessor.getServerData().getInteger("Secondary");
         if (secondary > 0) {
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.secondary"),
-                            LangUtil.translateG(Potion.potionTypes[secondary].getName())));
+                            StatCollector.translateToLocal("hud.msg.wdmla.secondary"),
+                            StatCollector.translateToLocal(Potion.potionTypes[secondary].getName())));
         }
     }
 

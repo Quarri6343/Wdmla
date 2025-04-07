@@ -23,6 +23,7 @@ import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
+import net.minecraft.util.StatCollector;
 
 public class GenerateDumpCommand extends GTNHClientCommand {
 
@@ -43,7 +44,7 @@ public class GenerateDumpCommand extends GTNHClientCommand {
             GTNHLib.proxy.addMessageToChat(
                     new ChatComponentText(
                             String.format(
-                                    LangUtil.translateG("chat.msg.wdmla.dump.success"),
+                                    StatCollector.translateToLocal("chat.msg.wdmla.dump.success"),
                                     file.getCanonicalPath())));
         } catch (IOException e) {
             WailaExceptionHandler.handleErr(e, this.getClass().getName(), null);

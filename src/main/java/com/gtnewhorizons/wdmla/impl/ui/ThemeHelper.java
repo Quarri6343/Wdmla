@@ -5,8 +5,11 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.StatCollector;
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -23,7 +26,6 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.ModIdentification;
 
@@ -52,8 +54,12 @@ public class ThemeHelper {
         root.replaceChildWithTag(Identifiers.ITEM_NAME, replacedName);
     }
 
-    public void overrideEntityTooltipTitle(ITooltip root, String newName) {
+    public void overrideEntityTooltipTitle(ITooltip root, String newName, Entity entity) {
         Theme theme = General.currentTheme.get();
+        if(entity instanceof EntityLiving living
+                && living.hasCustomNameTag()) {
+           newName = ITALIC + living.getCustomNameTag();
+        }
         IComponent replacedName = new HPanelComponent()
                 .child(new TextComponent(newName).style(new TextStyle().color(theme.textColor(MessageType.TITLE))))
                 .tag(Identifiers.ENTITY_NAME);
@@ -127,7 +133,7 @@ public class ThemeHelper {
             if (showDetails) {
                 for (ItemStack inputStack : input) {
                     if (inputStack != null) {
-                        vPanel.horizontal().text(String.format("%s: ", LangUtil.translateG("hud.msg.in"))).child(
+                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.in"))).child(
                                 ThemeHelper.INSTANCE.info(
                                         String.format(
                                                 "%dx %s",
@@ -137,7 +143,7 @@ public class ThemeHelper {
                 }
                 for (ItemStack outputStack : output) {
                     if (outputStack != null) {
-                        vPanel.horizontal().text(String.format("%s: ", LangUtil.translateG("hud.msg.out"))).child(
+                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.out"))).child(
                                 ThemeHelper.INSTANCE.info(
                                         String.format(
                                                 "%dx %s",

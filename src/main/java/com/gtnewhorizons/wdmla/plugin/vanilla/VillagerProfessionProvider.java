@@ -9,19 +9,19 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum VillagerProfessionProvider implements IEntityComponentProvider {
 
     INSTANCE;
 
-    private static String[] vanillaVillagers = { "farmer", "librarian", "priest", "blacksmith", "butcher" };
+    private static final String[] VANILLA_VILLAGERS = { "farmer", "librarian", "priest", "blacksmith", "butcher" };
 
     @Override
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
         if (accessor.getEntity() instanceof EntityVillager villager) {
             String name = getVillagerName(villager.getProfession());
-            tooltip.child(ThemeHelper.INSTANCE.info(LangUtil.translateG("hud.msg.wdmla.villager.profession." + name)));
+            tooltip.child(ThemeHelper.INSTANCE.info(StatCollector.translateToLocal("hud.msg.wdmla.villager.profession." + name)));
         }
     }
 
@@ -34,7 +34,7 @@ public enum VillagerProfessionProvider implements IEntityComponentProvider {
     public static String getVillagerName(int id) {
         ResourceLocation skin = VillagerRegistry.getVillagerSkin(id, null);
         if (id >= 0 && id <= 4) {
-            return vanillaVillagers[id];
+            return VANILLA_VILLAGERS[id];
         }
 
         if (skin != null) {

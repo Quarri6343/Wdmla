@@ -30,6 +30,14 @@ public class VanillaIdentifiers {
     public static final ResourceLocation FALLING_BLOCK_HEADER = MC("falling_block_header");
     public static final ResourceLocation FLOWER_POT_HEADER = MC("flower_pot_header");
     public static final ResourceLocation JUKEBOX = MC("jukebox");
+    public static final ResourceLocation MOB_SPAWNER = MC("mob_spawner");
+    public static final ResourceLocation CHICKEN = MC("chicken");
+    public static final ResourceLocation NOTE_BLOCK = MC("note_block");
+    public static final ResourceLocation PAINTING = MC("painting");
+    public static final ResourceLocation TOTAL_ENCHANTMENT_POWER = MC("total_enchantment_power");
+    public static final ResourceLocation ZOMBIE_VILLAGER = MC("zombie_villager");
+    public static final ResourceLocation ZOMBIE_VILLAGER_HEADER = MC("zombie_villager_header");
+    public static final ResourceLocation TE_CUSTOM_NAME_HEADER = MC("te_custom_name_header");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 

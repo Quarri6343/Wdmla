@@ -13,8 +13,8 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
+import net.minecraft.util.StatCollector;
 
 // test command: summon FallingSand ~ ~10 ~ {TileID:137,Time:1}
 public enum FallingBlockHeaderProvider implements IEntityComponentProvider {
@@ -34,8 +34,9 @@ public enum FallingBlockHeaderProvider implements IEntityComponentProvider {
             ThemeHelper.INSTANCE.overrideEntityTooltipTitle(
                     tooltip,
                     String.format(
-                            LangUtil.translateG("hud.msg.wdmla.entity.falling"),
-                            DisplayUtil.itemDisplayNameShort(itemForm)));
+                            StatCollector.translateToLocal("hud.msg.wdmla.entity.falling"),
+                            DisplayUtil.itemDisplayNameShort(itemForm)),
+                    accessor.getEntity());
         }
     }
 

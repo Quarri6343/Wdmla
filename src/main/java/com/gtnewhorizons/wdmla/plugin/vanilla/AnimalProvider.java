@@ -1,9 +1,12 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.ResourceLocation;
 
-import org.apache.commons.lang3.StringUtils;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
@@ -11,9 +14,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 
-import mcp.mobius.waila.cbcore.LangUtil;
-
-public enum AnimalProvider implements IEntityComponentProvider {
+public enum AnimalProvider implements IEntityComponentProvider, ITimeFormatConfigurable {
 
     INSTANCE;
 
@@ -29,11 +30,12 @@ public enum AnimalProvider implements IEntityComponentProvider {
         }
 
         if (accessor.getEntity() instanceof EntityAnimal animal && animal.isChild() && animal.getGrowingAge() != 0) {
-            int absTimeToGrowInSeconds = Math.abs(animal.getGrowingAge() / 20);
+            int absTimeToGrow = Math.abs(animal.getGrowingAge());
+            TimeFormattingPattern timePattern = WDMlaConfig.instance().getTimeFormatter(this);
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.animal.growth"),
-                            absTimeToGrowInSeconds + StringUtils.EMPTY + LangUtil.translateG("hud.msg.wdmla.seconds")));
+                            StatCollector.translateToLocal("hud.msg.wdmla.animal.growth"),
+                            timePattern.tickFormatter.apply(absTimeToGrow)));
         }
     }
 
@@ -43,17 +45,22 @@ public enum AnimalProvider implements IEntityComponentProvider {
         }
 
         if (accessor.getEntity() instanceof EntityAnimal animal && !animal.isChild() && animal.getGrowingAge() != 0) {
-            int absTimeBreedCooldownInSeconds = Math.abs(animal.getGrowingAge() / 20);
+            int absTimeBreedCooldown = Math.abs(animal.getGrowingAge());
+            TimeFormattingPattern timePattern = WDMlaConfig.instance().getTimeFormatter(this);
             tooltip.child(
                     ThemeHelper.INSTANCE.value(
-                            LangUtil.translateG("hud.msg.wdmla.animal.breedcooldown"),
-                            absTimeBreedCooldownInSeconds + StringUtils.EMPTY
-                                    + LangUtil.translateG("hud.msg.wdmla.seconds")));
+                            StatCollector.translateToLocal("hud.msg.wdmla.animal.breedcooldown"),
+                            timePattern.tickFormatter.apply(absTimeBreedCooldown)));
         }
     }
 
     @Override
     public ResourceLocation getUid() {
         return VanillaIdentifiers.ANIMAL;
+    }
+
+    @Override
+    public TimeFormattingPattern getDefaultTimeFormatter() {
+        return TimeFormattingPattern.HOUR_MIN_SEC;
     }
 }

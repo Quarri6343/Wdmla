@@ -57,8 +57,14 @@ public enum DefaultEntityInfoProvider implements IEntityComponentProvider {
 
         ITooltip row_vertical = row.vertical();
         if (PluginsConfig.core.defaultEntity.showEntityName) {
+            String name = accessor.getEntity().getCommandSenderName();
+            if(accessor.getEntity() instanceof EntityLiving living
+                && living.hasCustomNameTag()
+                && General.customNameOverride) {
+                name = ITALIC + living.getCustomNameTag();
+            }
             row_vertical.child(
-                    ThemeHelper.INSTANCE.title(accessor.getEntity().getCommandSenderName())
+                    ThemeHelper.INSTANCE.title(name)
                             .tag(Identifiers.ENTITY_NAME));
         }
         if (PluginsConfig.core.defaultEntity.showModName) {

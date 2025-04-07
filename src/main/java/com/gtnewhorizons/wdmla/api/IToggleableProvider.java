@@ -3,10 +3,10 @@ package com.gtnewhorizons.wdmla.api;
 public interface IToggleableProvider extends IWDMlaProvider {
 
     /**
-     * Whether this provider can be disabled in config.
+     * Whether player can toggle the provider with in game config.
      */
-    default boolean isRequired() {
-        return false;
+    default boolean canToggleInGui() {
+        return true;
     }
 
     default boolean enabledByDefault() {

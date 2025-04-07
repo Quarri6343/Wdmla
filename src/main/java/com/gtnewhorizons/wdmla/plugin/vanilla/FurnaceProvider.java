@@ -16,6 +16,7 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.util.StatCollector;
 
 public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
@@ -54,8 +55,8 @@ public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvi
             IComponent legacyProcessText = null;
             if (cookTime != 0) {
                 legacyProcessText = ThemeHelper.INSTANCE.value(
-                        LangUtil.translateG("hud.msg.wdmla.progress"),
-                        String.format(LangUtil.translateG("hud.msg.wdmla.progress.seconds"), cookTime, 10));
+                        StatCollector.translateToLocal("hud.msg.wdmla.progress"),
+                        String.format(StatCollector.translateToLocal("hud.msg.wdmla.progress.seconds"), cookTime, 10));
             }
             IComponent progressComponent = ThemeHelper.INSTANCE.itemProgress(
                     Arrays.asList(items[0], items[1]),
