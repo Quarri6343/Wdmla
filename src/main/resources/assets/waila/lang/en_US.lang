@@ -41,6 +41,15 @@ hud.msg.wdmla.instrument.snare=Snare
 hud.msg.wdmla.instrument.clicks=Clicks
 hud.msg.wdmla.instrument.bassguitar=Bass Guitar
 
+# side
+hud.msg.wdmla.side.decorator=[%s]
+hud.msg.wdmla.side.down=Down
+hud.msg.wdmla.side.up=Up
+hud.msg.wdmla.side.east=East
+hud.msg.wdmla.side.west=West
+hud.msg.wdmla.side.north=North
+hud.msg.wdmla.side.south=South
+
 # unit
 hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=s
@@ -154,6 +163,7 @@ provider.wdmla.core.default.entity=Default Entity
 provider.wdmla.core.armor=Entity Armor Value
 provider.wdmla.core.enchantment.power=Enchantment Power
 provider.wdmla.core.status.effect=Status Effect
+provider.wdmla.core.block.face=Block Face
 
 provider.wdmla.universal.category=Universal
 provider.wdmla.universal.item.storage=Item Storage

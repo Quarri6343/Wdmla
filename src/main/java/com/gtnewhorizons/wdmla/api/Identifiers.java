@@ -13,6 +13,7 @@ public final class Identifiers {
     public static final ResourceLocation ENTITY = Core("entity");
     public static final ResourceLocation ENTITY_NAME = Core("entity_name");
     public static final ResourceLocation MOD_NAME = Core("mod_name");
+    public static final ResourceLocation BLOCK_FACE = Core("block_face");
 
     // provider Uid
     public static final ResourceLocation DEFAULT_BLOCK = Core("default_block");
