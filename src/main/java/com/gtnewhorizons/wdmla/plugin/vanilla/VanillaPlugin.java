@@ -8,6 +8,7 @@ import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockDaylightDetector;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockDropper;
@@ -103,6 +104,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
         registration.registerBlockComponent(NoteBlockProvider.INSTANCE, BlockNote.class);
         registration.registerBlockComponent(TotalEnchantmentPowerProvider.INSTANCE, BlockEnchantmentTable.class);
+        registration.registerBlockComponent(RedstoneWireProvider.INSTANCE, BlockDaylightDetector.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);

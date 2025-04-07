@@ -12,6 +12,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 
+//TODO:blacklist
 public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
 
     @Override
