@@ -1,0 +1,37 @@
+javadoc {
+    javadocTool = javaToolchains.javadocToolFor {
+        //java 11 crashes with Jabel modern syntax
+        languageVersion = JavaLanguageVersion.of(23)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+
+    include "com/gtnewhorizons/wdmla/api/**"
+    include "com/gtnewhorizons/wdmla/impl/**"
+    include "mcp/mobius/waila/api/**"
+
+    classpath += sourceSets.patchedMc.output
+
+    options {
+        links 'https://docs.oracle.com/javase/8/docs/api/'
+        links 'https://skmedix.github.io/ForgeJavaDocs/javadoc/forge/1.7.10-10.13.4.1614/'
+    }
+
+    destinationDir = file("${projectDir}/src/doc")
+}
+
+tasks.register('javadocJar', Jar) {
+    dependsOn javadoc
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
