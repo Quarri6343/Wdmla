@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -68,6 +69,8 @@ import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
 
+@SuppressWarnings("unused")
+@WDMlaPlugin(uid = VanillaIdentifiers.NAMESPACE_MINECRAFT)
 public class VanillaPlugin implements IWDMlaPlugin {
 
     @Override

@@ -3,11 +3,14 @@ package com.gtnewhorizons.wdmla.plugin.debug;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.common.config.Configuration;
 
+@SuppressWarnings("unused")
+@WDMlaPlugin(uid = Identifiers.NAMESPACE_DEBUG)
 public class DebugPlugin implements IWDMlaPlugin {
 
     @Override

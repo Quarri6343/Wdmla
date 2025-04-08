@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -15,6 +17,8 @@ import com.gtnewhorizons.wdmla.impl.EntityAccessorClientHandler;
 /**
  * The base plugin that registers everything essential
  */
+@SuppressWarnings("unused")
+@WDMlaPlugin(uid = Identifiers.NAMESPACE_CORE)
 public class CorePlugin implements IWDMlaPlugin {
 
     @Override

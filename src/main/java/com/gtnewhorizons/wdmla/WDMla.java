@@ -70,11 +70,6 @@ public class WDMla {
         proxy.serverStarting(event);
     }
 
-    @Mod.EventHandler
-    public void processIMC(FMLInterModComms.IMCEvent event) {
-        proxy.processIMC(event);
-    }
-
     public static boolean isDevEnv() {
         return (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
     }

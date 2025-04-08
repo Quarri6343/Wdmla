@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.plugin.harvestability;
 
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.config.Configuration;
 
@@ -8,6 +9,8 @@ import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
+@SuppressWarnings("unused")
+@WDMlaPlugin(uid = HarvestabilityIdentifiers.NAMESPACE_HARVESTABILITY)
 public class HarvestabilityPlugin implements IWDMlaPlugin {
 
     @Override
