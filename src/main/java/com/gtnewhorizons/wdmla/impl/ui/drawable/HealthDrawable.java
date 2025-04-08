@@ -1,10 +1,11 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import net.minecraft.client.gui.Gui;
 import net.minecraft.util.MathHelper;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
+import com.gtnewhorizons.wdmla.overlay.VanillaUIIcons;
 
 public class HealthDrawable implements IDrawable {
 
@@ -29,17 +30,19 @@ public class HealthDrawable implements IDrawable {
         for (int iheart = 1; iheart <= nHearts; iheart++) {
 
             if (iheart <= MathHelper.floor_float(health)) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaIconUI.HEART);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART_BG, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART, Gui.icons);
                 offsetX += 8;
             }
 
             if ((iheart > health) && (iheart <= health + 0.5f)) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaIconUI.HHEART);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART_BG, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HHEART, Gui.icons);
                 offsetX += 8;
             }
 
             if (iheart > health + 0.5f) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaIconUI.EHEART);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.EHEART, Gui.icons);
                 offsetX += 8;
             }
 

@@ -9,13 +9,15 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.overlay.VanillaIconUI;
+import com.gtnewhorizons.wdmla.overlay.VanillaUIIcons;
 
 import mcp.mobius.waila.api.SpecialChars;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
@@ -188,14 +190,10 @@ public final class GuiDraw {
         tessellator.draw();
     }
 
-    public static void renderVanillaIcon(int x, int y, int w, int h, VanillaIconUI icon) {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(VanillaIconUI.PATH);
+    public static void renderVanillaIcon(int x, int y, int w, int h, IIcon icon, ResourceLocation path) {
+        Minecraft.getMinecraft().getTextureManager().bindTexture(path);
 
         if (icon == null) return;
-
-        if (icon.bu != -1) {
-            drawTexturedModelRect(x, y, icon.bu, icon.bv, w, h, icon.bsu, icon.bsv);
-        }
-        drawTexturedModelRect(x, y, icon.u, icon.v, w, h, icon.su, icon.sv);
+        drawTexturedModelRect(x, y, (int)icon.getMinU(), (int)icon.getMinV(), w, h, icon.getIconWidth(), icon.getIconHeight());
     }
 }
