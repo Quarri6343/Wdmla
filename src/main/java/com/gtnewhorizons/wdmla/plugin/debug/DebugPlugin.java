@@ -15,8 +15,10 @@ public class DebugPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(HardnessProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(BlastResistanceProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(RegistryDataProvider.getBlock(), Block.class);
+        registration.registerBlockComponent(CoordinatesProvider.getBlock(), Block.class);
 
         registration.registerEntityComponent(RegistryDataProvider.getEntity(), Entity.class);
+        registration.registerEntityComponent(CoordinatesProvider.getEntity(), Entity.class);
 
         WDMlaConfig.instance()
                 .getCategory(

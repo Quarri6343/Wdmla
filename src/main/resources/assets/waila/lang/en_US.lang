@@ -98,6 +98,9 @@ hud.msg.wdmla.metadata=Metadata
 hud.msg.wdmla.registry.name=Registry Name
 hud.msg.wdmla.registry.id=Registry ID
 hud.msg.wdmla.entity.id=Entity ID
+hud.msg.wdmla.seeing=Seeing
+hud.msg.wdmla.seeing.block=Seeing Block
+hud.msg.wdmla.seeing.entity=Seeing Entity
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -110,6 +113,7 @@ hud.msg.wdmla.no=No
 hud.msg.wdmla.effect.format=%s (%s)
 hud.msg.wdmla.block.registry.data.short=[%d:%d] | %s
 hud.msg.wdmla.entity.registry.data.short=[%d:%d] | %s
+hud.msg.wdmla.coordinates="%s:%s:%s"
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
@@ -218,6 +222,7 @@ provider.wdmla.debug.category=Debug
 provider.wdmla.debug.hardness=Block Hardness
 provider.wdmla.debug.blast.resistance=Blast Resistance
 provider.wdmla.debug.registry.data=Registry Data
+provider.wdmla.debug.coordinates=Coordinates
 
 # options
 

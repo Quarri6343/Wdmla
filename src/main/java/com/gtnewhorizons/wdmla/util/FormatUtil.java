@@ -6,10 +6,15 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+/**
+ * for unifying formatting,
+ * @see com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern
+ */
 public class FormatUtil {
 
     public static final DecimalFormat STANDARD = getDecimalFormat();
     public static final DecimalFormat TIME_PART = getTimePartFormat();
+    public static final DecimalFormat STANDARD_NO_GROUP = getNoGroupFormat();
 
     private static DecimalFormat getDecimalFormat() {
         DecimalFormat decimalFormat;
@@ -41,6 +46,20 @@ public class FormatUtil {
         decimalFormat.setMaximumIntegerDigits(2);
         decimalFormat.setParseIntegerOnly(true);
         decimalFormat.setGroupingUsed(false);
+        return decimalFormat;
+    }
+
+    private static DecimalFormat getNoGroupFormat() {
+        DecimalFormat decimalFormat;
+        NumberFormat format = NumberFormat.getNumberInstance(Locale.US);
+        if (format instanceof DecimalFormat) {
+            decimalFormat = (DecimalFormat) format;
+        } else {
+            decimalFormat = new DecimalFormat();
+        }
+        decimalFormat.setGroupingUsed(false);
+        decimalFormat.setMaximumFractionDigits(2);
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         return decimalFormat;
     }
 }
