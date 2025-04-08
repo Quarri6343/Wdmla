@@ -5,14 +5,16 @@ javadoc {
         vendor = JvmVendorSpec.ADOPTIUM
     }
 
-    include "com/gtnewhorizons/wdmla/api/**"
-    include "com/gtnewhorizons/wdmla/impl/**"
+//    include "com/gtnewhorizons/wdmla/api/**"
+//    include "com/gtnewhorizons/wdmla/impl/**"
     include "mcp/mobius/waila/api/**"
+    exclude "mcp/mobius/waila/api/impl/**"
 
     classpath += sourceSets.patchedMc.output
 
     options {
-        links 'https://docs.oracle.com/javase/8/docs/api/'
+        addStringOption("Xdoclint:none", "-quiet")
+        links 'https://docs.oracle.com/en/java/javase/24/docs/api/'
         links 'https://skmedix.github.io/ForgeJavaDocs/javadoc/forge/1.7.10-10.13.4.1614/'
     }
 
