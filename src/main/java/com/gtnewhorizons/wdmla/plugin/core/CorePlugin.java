@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
-import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -8,6 +7,7 @@ import net.minecraft.entity.EntityLiving;
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.impl.BlockAccessorClientHandler;
 import com.gtnewhorizons.wdmla.impl.EntityAccessorClientHandler;
@@ -23,9 +23,8 @@ public class CorePlugin implements IWDMlaPlugin {
         registration.registerAccessorHandler(EntityAccessor.class, new EntityAccessorClientHandler());
 
         registration.registerBlockComponent(DefaultBlockInfoProvider.INSTANCE, Block.class);
-        registration.registerBlockComponent(HardnessProvider.INSTANCE, Block.class);
-        registration.registerBlockComponent(BlastResistanceProvider.INSTANCE, Block.class);
         registration.registerBlockComponent(EnchantmentPowerProvider.INSTANCE, Block.class);
+        registration.registerBlockComponent(BlockFaceProvider.INSTANCE, Block.class);
 
         registration.registerEntityComponent(DefaultEntityInfoProvider.INSTANCE, Entity.class);
         registration.registerEntityComponent(EntityHealthProvider.INSTANCE, Entity.class);

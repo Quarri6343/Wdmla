@@ -13,6 +13,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizon.gtnhlib.GTNHLib;
 import com.gtnewhorizon.gtnhlib.commands.GTNHClientCommand;
@@ -21,9 +22,7 @@ import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.util.StatCollector;
 
 public class GenerateDumpCommand extends GTNHClientCommand {
 

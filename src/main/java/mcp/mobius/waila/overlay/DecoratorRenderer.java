@@ -2,7 +2,6 @@ package mcp.mobius.waila.overlay;
 
 import java.util.List;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +16,7 @@ import com.gtnewhorizons.wdmla.overlay.RayTracing;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaBlockDecorator;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
@@ -29,8 +29,7 @@ public class DecoratorRenderer {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        if (RayTracing.instance().getTarget() == null
-                || RayTracing.instance().getTargetStack() == null) {
+        if (RayTracing.instance().getTarget() == null || RayTracing.instance().getTargetStack() == null) {
             return;
         }
 

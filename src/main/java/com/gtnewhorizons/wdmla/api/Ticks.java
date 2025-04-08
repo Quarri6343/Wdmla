@@ -1,17 +1,19 @@
 package com.gtnewhorizons.wdmla.api;
 
-import org.jetbrains.annotations.ApiStatus;
-
 import java.time.Duration;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalUnit;
 
+import org.jetbrains.annotations.ApiStatus;
+
 /**
  * Minecraft Tick
+ * 
  * @see java.time.temporal.ChronoUnit
  */
 @ApiStatus.Experimental
 public enum Ticks implements TemporalUnit {
+
     INSTANCE;
 
     @Override

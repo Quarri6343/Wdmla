@@ -41,6 +41,15 @@ hud.msg.wdmla.instrument.snare=Snare
 hud.msg.wdmla.instrument.clicks=Clicks
 hud.msg.wdmla.instrument.bassguitar=Bass Guitar
 
+# side
+hud.msg.wdmla.side.decorator=[%s]
+hud.msg.wdmla.side.down=Down
+hud.msg.wdmla.side.up=Up
+hud.msg.wdmla.side.east=East
+hud.msg.wdmla.side.west=West
+hud.msg.wdmla.side.north=North
+hud.msg.wdmla.side.south=South
+
 # unit
 hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=s
@@ -84,6 +93,11 @@ hud.msg.wdmla.nextegg=Next Egg
 hud.msg.wdmla.infinity.icon=∞
 hud.msg.wdmla.total.enchantment.power=Total Enchantment Power
 hud.msg.wdmla.conversion.time=Conversion Time
+hud.msg.wdmla.block.id=Block ID
+hud.msg.wdmla.metadata=Metadata
+hud.msg.wdmla.registry.name=Registry Name
+hud.msg.wdmla.registry.id=Registry ID
+hud.msg.wdmla.entity.id=Entity ID
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -94,6 +108,8 @@ hud.msg.wdmla.substractor=Substractor
 hud.msg.wdmla.yes=Yes
 hud.msg.wdmla.no=No
 hud.msg.wdmla.effect.format=%s (%s)
+hud.msg.wdmla.block.registry.data.short=[%d:%d] | %s
+hud.msg.wdmla.entity.registry.data.short=[%d:%d] | %s
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
@@ -145,15 +161,14 @@ hud.msg.black=Black
 # provider names (auto generated key)
 
 provider.wdmla.core.category=Core
-provider.wdmla.core.hardness=Block Hardness
 provider.wdmla.core.equipment=Entity Equipment
 provider.wdmla.core.entity.health=Entity Health
 provider.wdmla.core.default.block=Default Block
-provider.wdmla.core.blast.resistance=Blast Resistance
 provider.wdmla.core.default.entity=Default Entity
 provider.wdmla.core.armor=Entity Armor Value
 provider.wdmla.core.enchantment.power=Enchantment Power
 provider.wdmla.core.status.effect=Status Effect
+provider.wdmla.core.block.face=Block Face
 
 provider.wdmla.universal.category=Universal
 provider.wdmla.universal.item.storage=Item Storage
@@ -189,6 +204,7 @@ provider.wdmla.minecraft.jukebox=Jukebox
 provider.wdmla.minecraft.mob.spawner=Mob Spawner
 provider.wdmla.minecraft.chicken=Chicken
 provider.wdmla.minecraft.note.block=Note Block
+provider.wdmla.minecraft.painting=Painting
 provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
 provider.wdmla.minecraft.zombie.villager=Zombie Villager
 provider.wdmla.minecraft.zombie.villager.header=Zombie Villager Header
@@ -198,6 +214,10 @@ provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
 provider.wdmla.harvestability.modern=Modern
 
+provider.wdmla.debug.category=Debug
+provider.wdmla.debug.hardness=Block Hardness
+provider.wdmla.debug.blast.resistance=Blast Resistance
+provider.wdmla.debug.registry.data=Registry Data
 
 # options
 
@@ -277,6 +297,10 @@ option.wdmla.harvestability.currentlyHarvestable.icon=Currently Harvestable Icon
 option.wdmla.harvestability.effectivetool.icon=Effective Tool Icon
 option.wdmla.harvestability.shearability.icon=Shearability Icon
 option.wdmla.harvestability.silktouchability.icon=Silk Touchability Icon
+
+# debug options
+option.wdmla.debug.entity.registry.data=Show Entity Registry Data
+option.wdmla.debug.registry.data.display.mode=Display Mode
 
 # options in the untouched sections(unsorted, it will be deleted soon)
 # don't add entries to here

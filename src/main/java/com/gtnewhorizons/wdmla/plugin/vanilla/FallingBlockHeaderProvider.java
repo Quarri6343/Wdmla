@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
@@ -14,7 +15,6 @@ import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.overlay.DisplayUtil;
-import net.minecraft.util.StatCollector;
 
 // test command: summon FallingSand ~ ~10 ~ {TileID:137,Time:1}
 public enum FallingBlockHeaderProvider implements IEntityComponentProvider {

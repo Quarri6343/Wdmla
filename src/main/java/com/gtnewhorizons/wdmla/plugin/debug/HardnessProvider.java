@@ -1,7 +1,7 @@
-package com.gtnewhorizons.wdmla.plugin.core;
+package com.gtnewhorizons.wdmla.plugin.debug;
 
-import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
@@ -9,9 +9,7 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-
-import mcp.mobius.waila.cbcore.LangUtil;
-import net.minecraft.util.StatCollector;
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 
 public enum HardnessProvider implements IBlockComponentProvider {
 
@@ -25,8 +23,9 @@ public enum HardnessProvider implements IBlockComponentProvider {
                 accessor.getHitResult().blockY,
                 accessor.getHitResult().blockZ);
         tooltip.child(
-                ThemeHelper.INSTANCE
-                        .value(StatCollector.translateToLocal("hud.msg.wdmla.hardness"), FormatUtil.STANDARD.format(hardness)));
+                ThemeHelper.INSTANCE.value(
+                        StatCollector.translateToLocal("hud.msg.wdmla.hardness"),
+                        FormatUtil.STANDARD.format(hardness)));
     }
 
     @Override

@@ -37,7 +37,6 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.impl.ConfigHandler;
-import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
@@ -67,8 +66,10 @@ public class WDMlaTickHandler {
             mainHUD = new RootComponent();
             mainHUD.child(new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.1")))
                     .child(new TextComponent(StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.2"))).child(
-                            new TextComponent(ITALIC + StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.3")).style(
-                                    new TextStyle().color(General.currentTheme.get().textColor(MessageType.MOD_NAME))));
+                            new TextComponent(ITALIC + StatCollector.translateToLocal("hud.msg.wdmla.cfg.dummy.3"))
+                                    .style(
+                                            new TextStyle().color(
+                                                    General.currentTheme.get().textColor(MessageType.MOD_NAME))));
         }
 
         Area bgArea = new HUDRenderArea(new Size(mainHUD.getWidth(), mainHUD.getHeight())).computeBackground();

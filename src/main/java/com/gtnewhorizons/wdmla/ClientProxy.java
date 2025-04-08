@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import com.gtnewhorizons.wdmla.command.PrintUnsupportedTEsCommand;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -50,6 +51,9 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(tickHandler);
         FMLCommonHandler.instance().bus().register(this);
         ClientCommandHandler.instance.registerCommand(new GenerateDumpCommand());
+        if(WDMla.isDevEnv()) {
+            ClientCommandHandler.instance.registerCommand(new PrintUnsupportedTEsCommand());
+        }
     }
 
     @Override

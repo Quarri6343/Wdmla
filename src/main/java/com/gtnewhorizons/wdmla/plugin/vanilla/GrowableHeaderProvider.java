@@ -4,15 +4,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
-
-import mcp.mobius.waila.cbcore.LangUtil;
-import net.minecraft.util.StatCollector;
 
 // includes crops and stems
 public enum GrowableHeaderProvider implements IBlockComponentProvider {
@@ -22,15 +20,18 @@ public enum GrowableHeaderProvider implements IBlockComponentProvider {
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         if (accessor.getBlock().equals(Blocks.wheat)) {
-            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, StatCollector.translateToLocal("hud.msg.wdmla.wheatcrop"));
+            ThemeHelper.INSTANCE
+                    .overrideTooltipTitle(tooltip, StatCollector.translateToLocal("hud.msg.wdmla.wheatcrop"));
         } else if (accessor.getBlock().equals(Blocks.carrots)) {
             ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Items.carrot));
         } else if (accessor.getBlock().equals(Blocks.potatoes)) {
             ThemeHelper.INSTANCE.overrideTooltipIcon(tooltip, new ItemStack(Items.potato));
         } else if (accessor.getBlock().equals(Blocks.pumpkin_stem)) {
-            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, StatCollector.translateToLocal("hud.msg.wdmla.pumpkinstem"));
+            ThemeHelper.INSTANCE
+                    .overrideTooltipTitle(tooltip, StatCollector.translateToLocal("hud.msg.wdmla.pumpkinstem"));
         } else if (accessor.getBlock().equals(Blocks.melon_stem)) {
-            ThemeHelper.INSTANCE.overrideTooltipTitle(tooltip, StatCollector.translateToLocal("hud.msg.wdmla.melonstem"));
+            ThemeHelper.INSTANCE
+                    .overrideTooltipTitle(tooltip, StatCollector.translateToLocal("hud.msg.wdmla.melonstem"));
         }
     }
 

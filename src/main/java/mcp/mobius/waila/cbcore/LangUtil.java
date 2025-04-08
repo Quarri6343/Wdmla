@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -17,6 +16,7 @@ import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mcp.mobius.waila.api.BackwardCompatibility;
 
 /**
  * Easy localisation access.
@@ -35,8 +35,9 @@ public class LangUtil {
 
     /**
      * translate a key with every possible way
+     * 
      * @deprecated standard localization is enough in most situation nowadays. <br>
-     * Also, don't do server side localization with LanguageRegistry. It is bad
+     *             Also, don't do server side localization with LanguageRegistry. It is bad
      * @see StatCollector#translateToLocal(String)
      */
     public static String translateG(String s, Object... format) {

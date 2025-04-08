@@ -3,23 +3,22 @@ package com.gtnewhorizons.wdmla.config;
 import java.io.File;
 import java.util.Arrays;
 
-import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
-import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
-import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
-import mcp.mobius.waila.utils.WailaExceptionHandler;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 import com.gtnewhorizons.wdmla.api.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TextColors;
 import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.api.format.ITimeFormatConfigurable;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.config.Property;
 
 /**
  * the new configuration file added by WDMla
@@ -51,7 +50,7 @@ public class WDMlaConfig extends Configuration {
             getCategory(provider.getConfigCategory()).setLanguageKey(provider.getLangKey());
             isProviderEnabled(provider);
             WDMlaCommonRegistration.instance().priorities.put(provider, getProviderPriority(provider));
-            if(provider instanceof ITimeFormatConfigurable timeFormat) {
+            if (provider instanceof ITimeFormatConfigurable timeFormat) {
                 getTimeFormatter(timeFormat);
             }
         }
@@ -59,7 +58,11 @@ public class WDMlaConfig extends Configuration {
 
     // TODO:split provider config file
     public boolean isProviderEnabled(IComponentProvider<?> provider) {
-        Property prop = get(provider.getConfigCategory(), "option.wdmla.autogen.enabled", provider.enabledByDefault(), "");
+        Property prop = get(
+                provider.getConfigCategory(),
+                "option.wdmla.autogen.enabled",
+                provider.enabledByDefault(),
+                "");
         if (!provider.canToggleInGui()) {
             prop.setShowInGui(false);
         }
@@ -71,8 +74,12 @@ public class WDMlaConfig extends Configuration {
             return provider.getDefaultPriority();
         }
 
-        Property prop = get(provider.getConfigCategory(), "option.wdmla.autogen.priority", provider.getDefaultPriority(), "");
-        if(!provider.canPrioritizeInGui()) {
+        Property prop = get(
+                provider.getConfigCategory(),
+                "option.wdmla.autogen.priority",
+                provider.getDefaultPriority(),
+                "");
+        if (!provider.canPrioritizeInGui()) {
             prop.setShowInGui(false);
         }
 
@@ -80,10 +87,13 @@ public class WDMlaConfig extends Configuration {
     }
 
     public TimeFormattingPattern getTimeFormatter(ITimeFormatConfigurable instance) {
-        if(instance instanceof IWDMlaProvider provider) {
-            return loadEnum(provider.getConfigCategory(), "option.wdmla.autogen.time.format", instance.getDefaultTimeFormatter(), "");
-        }
-        else {
+        if (instance instanceof IWDMlaProvider provider) {
+            return loadEnum(
+                    provider.getConfigCategory(),
+                    "option.wdmla.autogen.time.format",
+                    instance.getDefaultTimeFormatter(),
+                    "");
+        } else {
             throw new UnsupportedOperationException();
         }
     }
@@ -101,8 +111,7 @@ public class WDMlaConfig extends Configuration {
                 General.textColor.modName);
     }
 
-    public <T extends Enum<T>> T loadEnum(String category, String name, T defaultValue,
-                                                 String comment) {
+    public <T extends Enum<T>> T loadEnum(String category, String name, T defaultValue, String comment) {
 
         Class<T> enumType = defaultValue.getDeclaringClass();
         return T.valueOf(
@@ -112,9 +121,7 @@ public class WDMlaConfig extends Configuration {
                         category,
                         defaultValue.toString(),
                         comment,
-                        Arrays.stream(enumType.getEnumConstants())
-                                .map(Enum::toString)
-                                .toArray(String[]::new)));
+                        Arrays.stream(enumType.getEnumConstants()).map(Enum::toString).toArray(String[]::new)));
 
     }
 }

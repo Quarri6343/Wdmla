@@ -17,7 +17,6 @@ import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
 
 import joptsimple.internal.Strings;
-import mcp.mobius.waila.cbcore.LangUtil;
 
 public enum PetProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
 
@@ -28,8 +27,9 @@ public enum PetProvider implements IEntityComponentProvider, IServerDataProvider
         if (accessor.getEntity() instanceof EntityTameable pet && pet.isTamed()
                 && PluginsConfig.vanilla.pet.showPetSit) {
             tooltip.child(
-                    ThemeHelper.INSTANCE
-                            .value(StatCollector.translateToLocal("hud.msg.wdmla.sitting"), String.valueOf(pet.isSitting())));
+                    ThemeHelper.INSTANCE.value(
+                            StatCollector.translateToLocal("hud.msg.wdmla.sitting"),
+                            String.valueOf(pet.isSitting())));
         }
 
         String ownerUUID = accessor.getServerData().getString("OwnerUUID");

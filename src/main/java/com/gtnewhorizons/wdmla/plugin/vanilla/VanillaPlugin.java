@@ -1,8 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
-import com.gtnewhorizons.wdmla.plugin.core.EnchantmentPowerProvider;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -11,6 +8,7 @@ import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockDaylightDetector;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockDropper;
@@ -57,7 +55,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
@@ -67,8 +67,6 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
-
-import mcp.mobius.waila.cbcore.LangUtil;
 
 public class VanillaPlugin implements IWDMlaPlugin {
 
@@ -106,6 +104,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(MobSpawnerProvider.INSTANCE, BlockMobSpawner.class);
         registration.registerBlockComponent(NoteBlockProvider.INSTANCE, BlockNote.class);
         registration.registerBlockComponent(TotalEnchantmentPowerProvider.INSTANCE, BlockEnchantmentTable.class);
+        registration.registerBlockComponent(RedstoneWireProvider.INSTANCE, BlockDaylightDetector.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);
@@ -161,7 +160,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerItemStorage(ItemFrameProvider.INSTANCE, EntityItemFrame.class);
     }
 
-    //misc providers section
+    // misc providers section
 
     public enum RedstoneWireHeaderProvider implements IBlockComponentProvider {
 
@@ -229,9 +228,11 @@ public class VanillaPlugin implements IWDMlaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, EntityAccessor accessor) {
-            if(accessor.getEntity() instanceof EntityZombie zombie
-                && zombie.isVillager()) {
-                ThemeHelper.INSTANCE.overrideEntityTooltipTitle(tooltip, StatCollector.translateToLocal("entity.zombievillager.name"), accessor.getEntity());
+            if (accessor.getEntity() instanceof EntityZombie zombie && zombie.isVillager()) {
+                ThemeHelper.INSTANCE.overrideEntityTooltipTitle(
+                        tooltip,
+                        StatCollector.translateToLocal("entity.zombievillager.name"),
+                        accessor.getEntity());
             }
         }
 

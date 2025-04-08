@@ -36,7 +36,6 @@ import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyTinkersConstruct;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import mcp.mobius.waila.cbcore.LangUtil;
 
 public enum HarvestToolProvider implements IBlockComponentProvider {
 

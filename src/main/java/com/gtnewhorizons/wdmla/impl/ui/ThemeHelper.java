@@ -8,8 +8,8 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.util.StatCollector;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -56,9 +56,8 @@ public class ThemeHelper {
 
     public void overrideEntityTooltipTitle(ITooltip root, String newName, Entity entity) {
         Theme theme = General.currentTheme.get();
-        if(entity instanceof EntityLiving living
-                && living.hasCustomNameTag()) {
-           newName = ITALIC + living.getCustomNameTag();
+        if (entity instanceof EntityLiving living && living.hasCustomNameTag()) {
+            newName = ITALIC + living.getCustomNameTag();
         }
         IComponent replacedName = new HPanelComponent()
                 .child(new TextComponent(newName).style(new TextStyle().color(theme.textColor(MessageType.TITLE))))
@@ -133,22 +132,24 @@ public class ThemeHelper {
             if (showDetails) {
                 for (ItemStack inputStack : input) {
                     if (inputStack != null) {
-                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.in"))).child(
-                                ThemeHelper.INSTANCE.info(
-                                        String.format(
-                                                "%dx %s",
-                                                inputStack.stackSize,
-                                                DisplayUtil.itemDisplayNameShort(inputStack))));
+                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.in")))
+                                .child(
+                                        ThemeHelper.INSTANCE.info(
+                                                String.format(
+                                                        "%dx %s",
+                                                        inputStack.stackSize,
+                                                        DisplayUtil.itemDisplayNameShort(inputStack))));
                     }
                 }
                 for (ItemStack outputStack : output) {
                     if (outputStack != null) {
-                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.out"))).child(
-                                ThemeHelper.INSTANCE.info(
-                                        String.format(
-                                                "%dx %s",
-                                                outputStack.stackSize,
-                                                DisplayUtil.itemDisplayNameShort(outputStack))));
+                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.out")))
+                                .child(
+                                        ThemeHelper.INSTANCE.info(
+                                                String.format(
+                                                        "%dx %s",
+                                                        outputStack.stackSize,
+                                                        DisplayUtil.itemDisplayNameShort(outputStack))));
                     }
                 }
             }

@@ -3,15 +3,13 @@ package com.gtnewhorizons.wdmla.plugin.vanilla;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.IBlockComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
-
-import mcp.mobius.waila.cbcore.LangUtil;
-import net.minecraft.util.StatCollector;
 
 public enum GrowthRateProvider implements IBlockComponentProvider {
 
@@ -35,14 +33,17 @@ public enum GrowthRateProvider implements IBlockComponentProvider {
     private static void appendGrowthRate(ITooltip tooltip, float growthValue) {
         if (growthValue < 100.0) {
             tooltip.child(
-                    ThemeHelper.INSTANCE
-                            .value(StatCollector.translateToLocal("hud.msg.wdmla.growth"), String.format("%.0f %%", growthValue))); //TODO:percentage format
+                    ThemeHelper.INSTANCE.value(
+                            StatCollector.translateToLocal("hud.msg.wdmla.growth"),
+                            String.format("%.0f %%", growthValue))); // TODO:percentage format
         } else {
             tooltip.child(
-                    new HPanelComponent().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.growth")))
-                            .child(
+                    new HPanelComponent()
+                            .text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.growth"))).child(
                                     ThemeHelper.INSTANCE.success(
-                                            String.format("%s", StatCollector.translateToLocal("hud.msg.wdmla.mature")))));
+                                            String.format(
+                                                    "%s",
+                                                    StatCollector.translateToLocal("hud.msg.wdmla.mature")))));
         }
     }
 
