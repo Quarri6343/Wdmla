@@ -22,7 +22,7 @@ public class Alpha {
      */
     public Alpha fade() {
         float elapsedSecond = (float) (System.currentTimeMillis() - initMilliSecond) / 1000;
-        float fadedAlpha = value - elapsedSecond;
+        float fadedAlpha = value - elapsedSecond * 4;
         if (fadedAlpha < 0) {
             fadedAlpha = 0;
         }

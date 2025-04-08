@@ -11,8 +11,8 @@ Still in alpha, api is subject to change
 - Achieved almost full backward compatibility by keeping legacy Waila api
 
 # Required Dependencies
-- NEI (removal is planned)
-- [GTNHLib](https://github.com/GTNewHorizons/GTNHLib/releases/latest)
+- [GTNHLib](https://github.com/GTNewHorizons/GTNHLib/releases/latest)  
+No, NEI is no longer required
 
 # Supported mods
 - almost every mods that Waila supports

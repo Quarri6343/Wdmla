@@ -36,7 +36,6 @@ import mcp.mobius.waila.utils.ModIdentification;
         modid = "Waila",
         name = "Waila",
         version = Tags.GRADLETOKEN_VERSION,
-        dependencies = "after:NotEnoughItems@[1.0.4.0,)",
         acceptableRemoteVersions = "*")
 public class Waila {
 
