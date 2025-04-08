@@ -172,7 +172,7 @@ provider.wdmla.core.default.entity=默认实体
 provider.wdmla.core.armor=实体护甲值
 provider.wdmla.core.enchantment.power=附魔强度
 provider.wdmla.core.status.effect=状态效果
-provider.wdmla.core.block.face=Block Face
+provider.wdmla.core.block.face=方块朝向
 
 provider.wdmla.universal.category=通用
 provider.wdmla.universal.item.storage=物品存储
@@ -208,7 +208,7 @@ provider.wdmla.minecraft.jukebox=唱片机
 provider.wdmla.minecraft.mob.spawner=刷怪笼
 provider.wdmla.minecraft.chicken=鸡
 provider.wdmla.minecraft.note.block=音符盒
-provider.wdmla.minecraft.painting=Painting
+provider.wdmla.minecraft.painting=画
 provider.wdmla.minecraft.total.enchantment.power=总附魔强度
 provider.wdmla.minecraft.zombie.villager=僵尸村民
 provider.wdmla.minecraft.zombie.villager.header=僵尸村民标题
