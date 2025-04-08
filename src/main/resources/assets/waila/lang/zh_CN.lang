@@ -41,9 +41,20 @@ hud.msg.wdmla.instrument.snare=小军鼓
 hud.msg.wdmla.instrument.clicks=打击乐
 hud.msg.wdmla.instrument.bassguitar=低音吉他
 
+# side
+hud.msg.wdmla.side.decorator=[%s]
+hud.msg.wdmla.side.down=下方
+hud.msg.wdmla.side.up=上方
+hud.msg.wdmla.side.east=东
+hud.msg.wdmla.side.west=西
+hud.msg.wdmla.side.north=北
+hud.msg.wdmla.side.south=南
+
 # unit
 hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=秒
+hud.msg.wdmla.minutes=m
+hud.msg.wdmla.hours=h
 hud.msg.wdmla.progress.seconds=%d秒 / %d秒
 hud.msg.wdmla.blocks=方块
 hud.msg.wdmla.blockspersecond=方块/秒
@@ -82,6 +93,14 @@ hud.msg.wdmla.nextegg=下次产蛋
 hud.msg.wdmla.infinity.icon=∞
 hud.msg.wdmla.total.enchantment.power=总附魔强度
 hud.msg.wdmla.conversion.time=转化时间
+hud.msg.wdmla.block.id=方块ID
+hud.msg.wdmla.metadata=元数据
+hud.msg.wdmla.registry.name=注册名
+hud.msg.wdmla.registry.id=注册ID
+hud.msg.wdmla.entity.id=实体ID
+hud.msg.wdmla.seeing=当前视角
+hud.msg.wdmla.seeing.block=查看方块视角
+hud.msg.wdmla.seeing.entity=查看实体视角
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -92,6 +111,9 @@ hud.msg.wdmla.substractor=减法器模式
 hud.msg.wdmla.yes=是
 hud.msg.wdmla.no=否
 hud.msg.wdmla.effect.format=%s (%s)
+hud.msg.wdmla.block.registry.data.short=[%d:%d] | %s
+hud.msg.wdmla.entity.registry.data.short=[%d:%d] | %s
+hud.msg.wdmla.coordinates="%s:%s:%s"
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=将鼠标悬停于游戏内任意物体
@@ -143,15 +165,14 @@ hud.msg.black=黑色
 # provider names (auto generated key)
 
 provider.wdmla.core.category=核心
-provider.wdmla.core.hardness=方块硬度
 provider.wdmla.core.equipment=实体装备
 provider.wdmla.core.entity.health=实体生命值
 provider.wdmla.core.default.block=默认方块
-provider.wdmla.core.blast.resistance=爆炸抗性
 provider.wdmla.core.default.entity=默认实体
 provider.wdmla.core.armor=实体护甲值
 provider.wdmla.core.enchantment.power=附魔强度
 provider.wdmla.core.status.effect=状态效果
+provider.wdmla.core.block.face=Block Face
 
 provider.wdmla.universal.category=通用
 provider.wdmla.universal.item.storage=物品存储
@@ -187,6 +208,7 @@ provider.wdmla.minecraft.jukebox=唱片机
 provider.wdmla.minecraft.mob.spawner=刷怪笼
 provider.wdmla.minecraft.chicken=鸡
 provider.wdmla.minecraft.note.block=音符盒
+provider.wdmla.minecraft.painting=Painting
 provider.wdmla.minecraft.total.enchantment.power=总附魔强度
 provider.wdmla.minecraft.zombie.villager=僵尸村民
 provider.wdmla.minecraft.zombie.villager.header=僵尸村民标题
@@ -196,6 +218,11 @@ provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
 provider.wdmla.harvestability.modern=现代模式
 
+provider.wdmla.debug.category=调试
+provider.wdmla.debug.hardness=方块硬度
+provider.wdmla.debug.blast.resistance=爆炸抗性
+provider.wdmla.debug.registry.data=注册表数据
+provider.wdmla.debug.coordinates=坐标
 
 # options
 
@@ -205,6 +232,8 @@ option.wdmla.general.forcelegacy=传统模式
 option.wdmla.general.ghostproduct=虚像物品
 option.wdmla.general.theme=主题预设
 option.wdmla.general.previewincfg=配置预览
+option.wdmla.general.customnameoverride=自定义名称覆盖
+
 option.wdmla.textcolor.category=文本颜色
 option.wdmla.general.textcolor.info=信息颜色
 option.wdmla.general.textcolor.title=标题颜色
@@ -218,6 +247,7 @@ option.wdmla.general.textcolor.modname=模组名称颜色
 option.wdmla.autogen.category=自动生成插件选项
 option.wdmla.autogen.enabled=启用
 option.wdmla.autogen.priority=优先级
+option.wdmla.autogen.time.format=时间格式
 
 option.wdmla.plugin.category=插件选项
 
@@ -272,6 +302,10 @@ option.wdmla.harvestability.currentlyHarvestable.icon=当前可采集图标
 option.wdmla.harvestability.effectivetool.icon=有效工具图标
 option.wdmla.harvestability.shearability.icon=剪刀采集图标
 option.wdmla.harvestability.silktouchability.icon=精准采集图标
+
+# debug options
+option.wdmla.debug.entity.registry.data=显示实体注册表数据
+option.wdmla.debug.registry.data.display.mode=数据显示模式
 
 # options in the untouched sections(unsorted, it will be deleted soon)
 # don't add entries to here
