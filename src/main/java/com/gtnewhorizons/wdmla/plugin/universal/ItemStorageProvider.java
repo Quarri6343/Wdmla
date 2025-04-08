@@ -180,9 +180,6 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
             int realSize = accessor.showDetails() ? config.detailedAmount : config.normalAmount;
             realSize = Math.min(group.views.size(), realSize);
             TooltipComponent elements = new HPanelComponent();
-            if (showName.isFalse()) {
-                elements.padding(new Padding(-1, -1, 0, 0));
-            }
 
             for (int i = 0; i < realSize; i++) {
                 ItemView itemView = group.views.get(i);
@@ -193,9 +190,6 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                 if (i > 0 && (showName.isTrue() || drawnCount >= config.itemsPerLine)) {
                     theTooltip.child(elements);
                     elements = new HPanelComponent();
-                    if (showName.isFalse()) {
-                        elements.padding(new Padding(-1, -1, 0, 0));
-                    }
                     drawnCount = 0;
                 }
 
@@ -203,16 +197,14 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     if (itemView.description != null) {
                         int itemSize = itemView.description.getHeight();
                         elements.child(
-                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize))
-                                        .padding(new Padding(-1, 0, 0, 0)));
+                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
                         elements.child(itemView.description);
                     } else {
                         String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
                         TextComponent name = new TextComponent(strippedName);
                         int itemSize = name.getHeight();
                         elements.child(
-                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize))
-                                        .padding(new Padding(-1, 0, 0, 0)));
+                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
                         String s = String.valueOf(stack.stackSize); // TODO: unit format
                         elements.text(s).text("× ").child(name);
                     }

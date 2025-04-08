@@ -10,6 +10,7 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 
+/* /summon Zombie ~ ~ ~ {Equipment:[{id:276},{id:310},{id:311},{id:312},{id:313}]} */
 public enum EntityEquipmentProvider implements IEntityComponentProvider {
 
     INSTANCE;

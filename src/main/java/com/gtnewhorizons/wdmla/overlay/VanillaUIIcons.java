@@ -49,7 +49,7 @@ public enum VanillaUIIcons implements IIcon {
 
     @Override
     public float getInterpolatedU(double interpolation) {
-        return (float)(u + su * interpolation);
+        return u + su * (float)interpolation;
     }
 
     @Override
@@ -64,7 +64,7 @@ public enum VanillaUIIcons implements IIcon {
 
     @Override
     public float getInterpolatedV(double interpolation) {
-        return (float)(v + sv * interpolation);
+        return v + sv * (float)interpolation;
     }
 
     @Override

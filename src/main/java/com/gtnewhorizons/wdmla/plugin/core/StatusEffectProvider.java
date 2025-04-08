@@ -1,5 +1,9 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.IconComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.overlay.PotionIcon;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
@@ -49,11 +53,14 @@ public enum StatusEffectProvider implements IEntityComponentProvider, IServerDat
 
                 String builtLine = String
                         .format(StatCollector.translateToLocal("hud.msg.wdmla.effect.format"), effectName, duration);
+                IComponent lineComponent;
                 if (Potion.potionTypes[effect.getPotionID()].isBadEffect()) {
-                    tooltip.child(ThemeHelper.INSTANCE.danger(builtLine));
+                    lineComponent = ThemeHelper.INSTANCE.danger(builtLine);
                 } else {
-                    tooltip.child(ThemeHelper.INSTANCE.success(builtLine));
+                    lineComponent = ThemeHelper.INSTANCE.success(builtLine);
                 }
+                tooltip.horizontal().child(new IconComponent(new PotionIcon(effect), PotionIcon.PATH).size(new Size(lineComponent.getHeight(), lineComponent.getHeight())))
+                        .child(lineComponent);
             }
         }
     }

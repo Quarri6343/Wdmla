@@ -13,7 +13,7 @@ public class IconComponent extends TooltipComponent {
     public IconComponent(IIcon icon, ResourceLocation path) {
         super(
                 new ArrayList<>(),
-                new Padding(),
+                new Padding(-1, 0, 0, 0),
                 new Size(icon.getIconWidth(), icon.getIconHeight()),
                 new IconDrawable(icon, path));
     }
