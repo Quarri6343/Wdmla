@@ -4,7 +4,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * this class is the actual tooltip object in Legacy Waila
+ * it is directly used by some Waila addons like Steve's cart
+ * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.impl.ui.component.RootComponent}
+ *
+ * @param <E> usually String
+ * @param <T> Tag object Type (String)
+ */
 @BackwardCompatibility
+@SuppressWarnings("unused")
+@Deprecated
 public interface ITaggedList<E, T> extends List<E> {
 
     boolean add(E e, T tag);

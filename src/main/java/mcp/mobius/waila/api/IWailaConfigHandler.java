@@ -4,13 +4,19 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
+ * This class was used to handle configuration file<br>
+ * All legacy plugins were registering their own config to here so all of them can be edited in Waila itself
+ * <br>
+ * <br>
  * Read-only interface for Waila internal config storage.<br>
  * An instance of this interface is passed to most of Waila callbacks as a way to change the behavior depending on
  * client settings.
- * 
+ *
+ * @deprecated Modern version : {@link com.gtnewhorizons.wdmla.config.WDMlaConfig}
  * @author ProfMobius
  *
  */
+@Deprecated
 @BackwardCompatibility
 public interface IWailaConfigHandler {
 

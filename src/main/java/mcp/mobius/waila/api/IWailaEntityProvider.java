@@ -8,20 +8,25 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 /**
+ * <br>
+ * <br>
  * Callback class interface used to provide Entity tooltip informations to Waila.<br>
  * All methods in this interface shouldn't to be called by the implementing mod. An instance of the class is to be
  * registered to Waila via the {@link IWailaRegistrar} instance provided in the original registration callback method
  * (cf. {@link IWailaRegistrar} documentation for more information).
- * 
+ *
+ * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.api.IEntityComponentProvider}
  * @author ProfMobius
  *
  */
+@Deprecated
+@BackwardCompatibility
 public interface IWailaEntityProvider {
 
     /**
      * Callback used to override the default Waila lookup system.</br>
      * Will be used if the implementing class is registered via
-     * {@link IWailaRegistrar}.{@link registerOverrideEntityProvider}.</br>
+     * {@link IWailaRegistrar}.registerOverrideEntityProvider.</br>
      * 
      * @param accessor Contains most of the relevant information about the current environment.
      * @param config   Current configuration of Waila.
@@ -31,7 +36,7 @@ public interface IWailaEntityProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerHeadProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerHeadProvider
      * client side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
@@ -47,7 +52,7 @@ public interface IWailaEntityProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerBodyProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerBodyProvider
      * client side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
@@ -63,7 +68,7 @@ public interface IWailaEntityProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerTailProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerTailProvider
      * client side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
@@ -79,7 +84,7 @@ public interface IWailaEntityProvider {
 
     /**
      * Callback used server side to return a custom synchronization NBTTagCompound.</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerNBTProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerNBTProvider
      * server and client side.</br>
      * You are supposed to always return the modified input NBTTagCompound tag.</br>
      * 

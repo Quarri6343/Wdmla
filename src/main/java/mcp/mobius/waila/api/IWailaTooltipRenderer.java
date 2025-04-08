@@ -4,9 +4,14 @@ import java.awt.Dimension;
 
 /**
  * I have switched render system so this class no longer works.<br>
- * Contact me(WDMla author) if any mod is still using this, so I can add compatibility module on WDMla side
+ * Common "rendername"s are supported in {@link com.gtnewhorizons.wdmla.wailacompat.TooltipCompat}.
+ * I cannot guarantee I can support special cases which depends on this render
+ *
+ * @deprecated every renderer now implements {@link com.gtnewhorizons.wdmla.api.ui.IDrawable} instead
  */
+@SuppressWarnings("unused")
 @Deprecated
+@BackwardCompatibility
 public interface IWailaTooltipRenderer {
 
     /**

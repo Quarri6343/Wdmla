@@ -13,16 +13,19 @@ import net.minecraft.world.World;
  * All methods in this interface shouldn't to be called by the implementing mod. An instance of the class is to be
  * registered to Waila via the {@link IWailaRegistrar} instance provided in the original registration callback method
  * (cf. {@link IWailaRegistrar} documentation for more information).
- * 
+ *
+ * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.api.IBlockComponentProvider}
  * @author ProfMobius
  *
  */
+@Deprecated
+@BackwardCompatibility
 public interface IWailaDataProvider {
 
     /**
      * Callback used to override the default Waila lookup system.</br>
      * Will be used if the implementing class is registered via
-     * {@link IWailaRegistrar}.{@link registerStackProvider}.</br>
+     * {@link IWailaRegistrar}.registerStackProvider.</br>
      * 
      * @param accessor Contains most of the relevant information about the current environment.
      * @param config   Current configuration of Waila.
@@ -32,7 +35,7 @@ public interface IWailaDataProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerHeadProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerHeadProvider
      * client side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
@@ -48,7 +51,7 @@ public interface IWailaDataProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerBodyProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerBodyProvider
      * client side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
@@ -64,7 +67,7 @@ public interface IWailaDataProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerTailProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerTailProvider
      * client side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
@@ -80,7 +83,7 @@ public interface IWailaDataProvider {
 
     /**
      * Callback used server side to return a custom synchronization NBTTagCompound.</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.{@link registerNBTProvider}
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerNBTProvider
      * server and client side.</br>
      * You are supposed to always return the modified input NBTTagCompound tag.</br>
      * 

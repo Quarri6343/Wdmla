@@ -4,6 +4,10 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
+/**
+ * Don't use.
+ * @deprecated  since 2014.
+ */
 @BackwardCompatibility
 @Deprecated
 public interface IWailaBlock {

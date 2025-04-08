@@ -1,6 +1,10 @@
 package mcp.mobius.waila.api;
 
 /**
+ * Legacy Registration system.<br>
+ * Don't access.<br>
+ * <br>
+ * <br>
  * Main registration interface. An instance will be provided to a method specified in an IMC msg formatted as follow<br>
  * FMLInterModComms.sendMessage("Waila", "register", "fully.qualified.path.to.registration.method");<br>
  * The registration method need to follow this signature<br>
@@ -15,12 +19,14 @@ package mcp.mobius.waila.api;
  * modname refers to a String used for display in Waila's config panel.<br>
  * keyname refers to an unique key used internally for config query (cf {@link IWailaConfigHandler}). Those keys are
  * shared across Waila, keep them unique !<br>
- * 
- * 
+ *
+ * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration}, {@link com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration}
  * @author ProfMobius
  *
  */
+@Deprecated
 @BackwardCompatibility
+@SuppressWarnings("unused")
 public interface IWailaRegistrar {
 
     /* Add a config option in the section modname with displayed text configtext and access key keyname */
