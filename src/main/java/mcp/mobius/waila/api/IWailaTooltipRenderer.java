@@ -3,7 +3,7 @@ package mcp.mobius.waila.api;
 import java.awt.Dimension;
 
 /**
- * I have switched render system so this class no longer works.<br>
+ * I have switched the render system so this class no longer works.<br>
  * Common "rendername"s are supported in {@link com.gtnewhorizons.wdmla.wailacompat.TooltipCompat}.
  * I cannot guarantee I can support special cases which depends on this render.
  *

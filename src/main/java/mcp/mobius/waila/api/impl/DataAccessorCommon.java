@@ -20,6 +20,7 @@ import mcp.mobius.waila.api.IWailaCommonAccessor;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaEntityAccessor;
 import mcp.mobius.waila.utils.NBTUtil;
+import org.jetbrains.annotations.NotNull;
 
 @Deprecated
 @BackwardCompatibility
@@ -85,12 +86,12 @@ public class DataAccessorCommon implements IWailaCommonAccessor, IWailaDataAcces
     }
 
     @Override
-    public World getWorld() {
+    public @NotNull World getWorld() {
         return this.world;
     }
 
     @Override
-    public EntityPlayer getPlayer() {
+    public @NotNull EntityPlayer getPlayer() {
         return this.player;
     }
 
@@ -120,7 +121,7 @@ public class DataAccessorCommon implements IWailaCommonAccessor, IWailaDataAcces
     }
 
     @Override
-    public MovingObjectPosition getPosition() {
+    public @NotNull MovingObjectPosition getPosition() {
         return this.mop;
     }
 

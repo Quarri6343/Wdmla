@@ -8,6 +8,7 @@ javadoc {
 //    include "com/gtnewhorizons/wdmla/api/**"
 //    include "com/gtnewhorizons/wdmla/impl/**"
     include "mcp/mobius/waila/**"
+    exclude "mcp/mobius/waila/addons/**"
 
     classpath += sourceSets.patchedMc.output
 

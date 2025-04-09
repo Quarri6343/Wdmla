@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * This class was used to add effect to blocks on world render tick.
- *
+ * <br>
  * Callback class interface used to provide Block/TileEntity decorator.<br>
  * All methods in this interface shouldn't to be called by the implementing mod. An instance of the class is to be
  * registered to Waila via the {@link IWailaRegistrar} instance provided in the original registration callback method

@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
@@ -22,9 +23,9 @@ import mcp.mobius.waila.utils.WailaExceptionHandler;
  */
 public class DisplayUtil {
 
-    private static FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
-    private static TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
-    private static RenderItem renderItem = new RenderItem();
+    private static final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+    private static final TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+    private static final RenderItem renderItem = new RenderItem();
 
     /**
      * Strip all symbols from string includes Minecraft color code and Waila TTRender embedding
@@ -80,7 +81,7 @@ public class DisplayUtil {
      * @param itemstack ItemStack that has custom tooltip
      * @return tooltip list
      */
-    public static List<String> itemDisplayNameMultiline(ItemStack itemstack) {
+    public static @NotNull List<String> itemDisplayNameMultiline(@NotNull ItemStack itemstack) {
         List<String> namelist = null;
         try {
             namelist = itemstack.getTooltip(
@@ -106,7 +107,7 @@ public class DisplayUtil {
      * @param itemstack ItemStack that has custom tooltip
      * @return display name
      */
-    public static String itemDisplayNameShort(ItemStack itemstack) {
+    public static @NotNull String itemDisplayNameShort(@NotNull ItemStack itemstack) {
         List<String> list = itemDisplayNameMultiline(itemstack);
         return list.get(0);
     }

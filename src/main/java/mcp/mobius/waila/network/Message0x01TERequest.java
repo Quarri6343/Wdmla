@@ -84,7 +84,6 @@ public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x0
         }
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message0x01TERequest msg) throws Exception {
         NBTTagCompound tag = new NBTTagCompound();

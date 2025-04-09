@@ -10,6 +10,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This class was used to provide common information to tooltip adder.<br>
@@ -28,26 +30,35 @@ import net.minecraftforge.common.util.ForgeDirection;
 @SuppressWarnings("unused")
 public interface IWailaCommonAccessor {
 
+    @NotNull
     World getWorld();
 
+    @NotNull
     EntityPlayer getPlayer();
 
+    @Nullable
     Block getBlock();
 
     int getBlockID();
 
+    @Nullable
     String getBlockQualifiedName();
 
     int getMetadata();
 
+    @Nullable
     TileEntity getTileEntity();
 
+    @Nullable
     Entity getEntity();
 
+    @NotNull
     MovingObjectPosition getPosition();
 
+    @Nullable
     Vec3 getRenderingPosition();
 
+    @Nullable
     NBTTagCompound getNBTData();
 
     int getNBTInteger(NBTTagCompound tag, String keyname);
@@ -56,5 +67,6 @@ public interface IWailaCommonAccessor {
 
     ForgeDirection getSide();
 
+    @Nullable
     ItemStack getStack();
 }

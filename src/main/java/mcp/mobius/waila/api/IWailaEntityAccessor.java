@@ -6,6 +6,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This class was used to provide Entity specific information to tooltip adder.<br>
@@ -24,16 +26,21 @@ import net.minecraft.world.World;
 @BackwardCompatibility
 public interface IWailaEntityAccessor {
 
+    @NotNull
     World getWorld();
 
+    @NotNull
     EntityPlayer getPlayer();
 
+    @NotNull
     Entity getEntity();
 
+    @NotNull
     MovingObjectPosition getPosition();
 
     Vec3 getRenderingPosition();
 
+    @Nullable
     NBTTagCompound getNBTData();
 
     int getNBTInteger(NBTTagCompound tag, String keyname);

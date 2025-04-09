@@ -31,7 +31,7 @@ public enum WailaPacketHandler {
     /**
      * holds client and server channel
      */
-    public EnumMap<Side, FMLEmbeddedChannel> channels;
+    public final EnumMap<Side, FMLEmbeddedChannel> channels;
 
     /**
      * Don't change the channel name here until the day we want to break Waila compat.<br>

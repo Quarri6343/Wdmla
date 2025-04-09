@@ -14,6 +14,7 @@ import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
+import org.jetbrains.annotations.NotNull;
 
 @BackwardCompatibility
 public class ConfigHandler implements IWailaConfigHandler {

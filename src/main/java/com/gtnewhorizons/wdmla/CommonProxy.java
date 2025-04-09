@@ -127,7 +127,7 @@ public class CommonProxy {
                         .get(container, () -> new ItemCollector<>(new ItemIterator.IInventoryItemIterator(0)));
             }
         } catch (ExecutionException e) {
-            WailaExceptionHandler.handleErr(e, null, null);
+            WailaExceptionHandler.handleErr(e, accessor.getTarget().getClass().getName(), null);
         }
         return ItemCollector.EMPTY;
     }
