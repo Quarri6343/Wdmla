@@ -13,13 +13,36 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
-// TODO: split packet for WDMla and Waila
+
+/**
+ * Requests tile entity data to server side.<br>
+ * Sent data will be processed by both WDMla {@link BlockAccessorImpl}, and Waila {@link TERequestCompat},
+ * and send back as {@link Message0x02TENBTData} <br>
+ * Keys field does nothing right now<br>
+ * Non tile entity block is not supported yet.<br>
+ * TODO: split packet for WDMla and Waila
+ */
 public class Message0x01TERequest extends SimpleChannelInboundHandler<Message0x01TERequest> implements IWailaMessage {
 
+    /**
+     * block dimension id
+     */
     public int dim;
+    /**
+     * block position x
+     */
     public int posX;
+    /**
+     * block position y
+     */
     public int posY;
+    /**
+     * block position z
+     */
     public int posZ;
+    /**
+     * unused
+     */
     public HashSet<String> keys = new HashSet<>();
 
     public Message0x01TERequest() {}

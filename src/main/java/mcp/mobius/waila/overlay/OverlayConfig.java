@@ -8,16 +8,44 @@ import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
+/**
+ * Waila display config which is also referenced on WDMla side.
+ * These variables are public so expect addons depending on
+ */
 @BackwardCompatibility
 public class OverlayConfig {
 
+    /**
+     * X position of the panel. Range:0~10000
+     */
     public static int posX;
+    /**
+     * Y position of the panel. Range:0~10000
+     */
     public static int posY;
+    /**
+     * Alpha value of the panel.
+     */
     public static int alpha;
+    /**
+     * Background color. It is part of the WDMla theme.
+     */
     public static int bgcolor;
+    /**
+     * Background gradient start color. It is part of the WDMla theme.
+     */
     public static int gradient1;
+    /**
+     * Background gradient end color. It is part of the WDMla theme.
+     */
     public static int gradient2;
+    /**
+     * Default text color that can be overridden by {@link com.gtnewhorizons.wdmla.api.ui.MessageType} colors.
+     */
     public static int fontcolor;
+    /**
+     * Panel scale. it will be passed to {@link org.lwjgl.opengl.GL11#glScalef(float, float, float)} directly
+     */
     public static float scale;
 
     public static void updateColors() {

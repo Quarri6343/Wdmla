@@ -2,6 +2,7 @@ package mcp.mobius.waila.handlers;
 
 import java.util.List;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,6 +21,8 @@ import mcp.mobius.waila.api.IWailaFMPProvider;
 import mcp.mobius.waila.api.impl.DataAccessorFMP;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
+@Deprecated
+@BackwardCompatibility
 public class HUDHandlerFMP implements IWailaDataProvider {
 
     @Override

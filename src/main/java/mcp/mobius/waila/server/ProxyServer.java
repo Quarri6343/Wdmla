@@ -136,6 +136,10 @@ public class ProxyServer {
         }
     }
 
+    /**
+     * @deprecated Waila was rendering its own Minecraftia font on tooltip on client side.
+     */
+    @Deprecated
     public Object getFont() {
         return null;
     }

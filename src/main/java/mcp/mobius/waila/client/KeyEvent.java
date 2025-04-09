@@ -20,6 +20,10 @@ import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Handles {@link KeyBinding} and its events.<br>
+ * Cannot reimplement this on WDMla since Waila makes this public to its addons.
+ */
 public class KeyEvent {
 
     public static KeyBinding key_cfg;

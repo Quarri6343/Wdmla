@@ -23,6 +23,11 @@ import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Renders decorator in world.
+ * @see IWailaBlockDecorator
+ */
+@Deprecated
 @BackwardCompatibility
 public class DecoratorRenderer {
 

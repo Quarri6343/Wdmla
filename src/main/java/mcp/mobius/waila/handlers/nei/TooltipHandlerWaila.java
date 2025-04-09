@@ -8,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import codechicken.nei.guihook.IContainerTooltipHandler;
 import mcp.mobius.waila.utils.ModIdentification;
 
+/**
+ * Its 2025, we still rely on Waila see the mod name of items in inventory
+ */
 public class TooltipHandlerWaila implements IContainerTooltipHandler {
 
     @Override

@@ -10,8 +10,14 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import mcp.mobius.waila.api.impl.DataAccessorCommon;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * The server response to {@link Message0x01TERequest}.
+ */
 public class Message0x02TENBTData extends SimpleChannelInboundHandler<Message0x02TENBTData> implements IWailaMessage {
 
+    /**
+     * all nbt tags mainly written by {@link com.gtnewhorizons.wdmla.api.IServerDataProvider}
+     */
     NBTTagCompound tag;
 
     public Message0x02TENBTData() {}

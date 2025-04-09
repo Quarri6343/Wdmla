@@ -18,6 +18,10 @@ import codechicken.nei.recipe.GuiUsageRecipe;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
 
+/**
+ * Do all NEI related stuff<br>
+ * Note: NEI is no longer the dependency by Waila
+ */
 public class NEIHandler {
 
     public static void register() {
@@ -30,6 +34,9 @@ public class NEIHandler {
 
     public static boolean firstInventory = true;
 
+    /**
+     * untouched section
+     */
     public static void openRecipeGUI(boolean recipe) {
         Minecraft mc = Minecraft.getMinecraft();
 

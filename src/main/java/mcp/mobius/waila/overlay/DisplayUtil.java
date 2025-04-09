@@ -15,6 +15,10 @@ import org.lwjgl.opengl.GL11;
 
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Processes Strings and ItemStack into valuable part.
+ * @see mcp.mobius.waila.gui.helpers.UIHelper
+ */
 public class DisplayUtil {
 
     private static FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;

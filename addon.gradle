@@ -9,6 +9,11 @@ javadoc {
 //    include "com/gtnewhorizons/wdmla/impl/**"
     include "mcp/mobius/waila/api/**"
     include "mcp/mobius/waila/cbcore/**"
+    include "mcp/mobius/waila/client/**"
+    include "mcp/mobius/waila/gui/**"
+    include "mcp/mobius/waila/handlers/**"
+    include "mcp/mobius/waila/network/**"
+    include "mcp/mobius/waila/overlay/**"
 
     classpath += sourceSets.patchedMc.output
 

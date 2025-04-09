@@ -1,5 +1,6 @@
 package mcp.mobius.waila.gui.helpers;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
@@ -8,6 +9,13 @@ import net.minecraft.util.Vec3;
 
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Waila graphics implementation
+ * Some methods are reworked in WDMla side.
+ * You should add methods to its Modern counterpart: {@link com.gtnewhorizons.wdmla.impl.ui.drawable.GuiDraw}
+ * for Strings Helper: {@link mcp.mobius.waila.overlay.DisplayUtil}
+ */
+@BackwardCompatibility
 public class UIHelper {
 
     public static void drawTexture(int posX, int posY, int sizeX, int sizeY) {

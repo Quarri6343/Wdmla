@@ -21,12 +21,21 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 
+/**
+ * root packet handler that sends and receives packets
+ */
 public enum WailaPacketHandler {
 
     INSTANCE;
 
+    /**
+     * holds client and server channel
+     */
     public EnumMap<Side, FMLEmbeddedChannel> channels;
 
+    /**
+     * Don't change the channel name here until the day we want to break Waila compat.<br>
+     */
     WailaPacketHandler() {
         this.channels = NetworkRegistry.INSTANCE.newChannel("Waila", new WailaCodec());
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
@@ -35,7 +44,6 @@ public enum WailaPacketHandler {
         } else {
             addServerHandlers();
         }
-
     }
 
     private void addClientHandlers() {

@@ -12,6 +12,10 @@ import mcp.mobius.waila.handlers.VanillaTooltipHandler;
 import mcp.mobius.waila.handlers.nei.NEIHandler;
 import mcp.mobius.waila.server.ProxyServer;
 
+/**
+ * Waila client proxy.
+ * @see com.gtnewhorizons.wdmla.ClientProxy
+ */
 public class ProxyClient extends ProxyServer {
 
     public ProxyClient() {}

@@ -2,6 +2,7 @@ package mcp.mobius.waila.network;
 
 import java.util.HashMap;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraftforge.common.config.ConfigCategory;
 
 import io.netty.buffer.ByteBuf;
@@ -12,8 +13,16 @@ import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Ping server and retrieve the legacy section of server config data.
+ */
+@Deprecated
+@BackwardCompatibility
 public class Message0x00ServerPing extends SimpleChannelInboundHandler<Message0x00ServerPing> implements IWailaMessage {
 
+    /**
+     * The map of Waila addons module config keys, which must be streamed from server.
+     */
     HashMap<String, Boolean> forcedKeys = new HashMap<>();
 
     public Message0x00ServerPing() {

@@ -2,6 +2,7 @@ package mcp.mobius.waila.handlers;
 
 import java.util.List;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -16,6 +17,8 @@ import mcp.mobius.waila.api.IWailaFMPDecorator;
 import mcp.mobius.waila.api.impl.DataAccessorFMP;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
+@Deprecated
+@BackwardCompatibility
 public class DecoratorFMP implements IWailaBlockDecorator {
 
     @Override

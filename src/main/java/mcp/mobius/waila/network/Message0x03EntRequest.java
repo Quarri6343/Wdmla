@@ -13,10 +13,23 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Requests entity data to server side.<br>
+ * Keys field does nothing right now
+ */
 public class Message0x03EntRequest extends SimpleChannelInboundHandler<Message0x03EntRequest> implements IWailaMessage {
 
+    /**
+     * dimension id entity belongs to
+     */
     public int dim;
+    /**
+     * entity id
+     */
     public int id;
+    /**
+     * unused
+     */
     public HashSet<String> keys = new HashSet<>();
 
     public Message0x03EntRequest() {}
