@@ -1,7 +1,8 @@
-package com.gtnewhorizons.wdmla.api;
+package com.gtnewhorizons.wdmla.api.accessor;
 
 import java.util.function.Supplier;
 
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

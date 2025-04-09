@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.impl.ui.drawable;
+package com.gtnewhorizons.wdmla.overlay;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -17,7 +17,6 @@ import org.lwjgl.opengl.GL12;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.overlay.VanillaUIIcons;
 
 import mcp.mobius.waila.api.SpecialChars;
 import mcp.mobius.waila.utils.WailaExceptionHandler;

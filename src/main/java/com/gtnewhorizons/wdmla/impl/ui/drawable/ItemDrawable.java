@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.NotNull;

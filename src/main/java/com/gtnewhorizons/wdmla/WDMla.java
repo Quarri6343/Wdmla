@@ -5,13 +5,12 @@ import net.minecraft.launchwrapper.Launch;
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
+import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import com.gtnewhorizons.wdmla.test.TestMode;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -23,7 +22,7 @@ import mcp.mobius.waila.Tags;
         version = Tags.GRADLETOKEN_VERSION,
         dependencies = "after:Waila",
         acceptableRemoteVersions = "*",
-        guiFactory = "com.gtnewhorizons.wdmla.config.GuiFactory")
+        guiFactory = "com.gtnewhorizons.wdmla.gui.GuiFactory")
 public class WDMla {
 
     static {

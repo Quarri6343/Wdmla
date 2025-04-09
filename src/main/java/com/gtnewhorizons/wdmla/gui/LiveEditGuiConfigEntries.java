@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.config;
+package com.gtnewhorizons.wdmla.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

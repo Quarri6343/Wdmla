@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeHooks;
 
 import com.gtnewhorizons.wdmla.api.Mods;
-import com.gtnewhorizons.wdmla.plugin.PluginsConfig;
+import com.gtnewhorizons.wdmla.config.PluginsConfig;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.config;
+package com.gtnewhorizons.wdmla.gui;
 
 import java.util.Set;
 

@@ -10,7 +10,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizons.wdmla.api.Mods;
-import com.gtnewhorizons.wdmla.config.ModsMenuScreenConfig;
+import com.gtnewhorizons.wdmla.gui.ModsMenuScreenConfig;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

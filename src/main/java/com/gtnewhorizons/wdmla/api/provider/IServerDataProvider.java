@@ -1,5 +1,6 @@
-package com.gtnewhorizons.wdmla.api;
+package com.gtnewhorizons.wdmla.api.provider;
 
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import net.minecraft.nbt.NBTTagCompound;
 
 public interface IServerDataProvider<T extends Accessor> extends IWDMlaProvider {

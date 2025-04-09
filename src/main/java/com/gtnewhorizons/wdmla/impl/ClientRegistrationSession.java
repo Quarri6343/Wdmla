@@ -8,10 +8,10 @@ import net.minecraft.entity.Entity;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 
 import akka.japi.Pair;

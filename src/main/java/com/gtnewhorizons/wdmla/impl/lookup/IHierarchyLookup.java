@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import net.minecraft.util.ResourceLocation;
 
 import com.google.common.collect.ImmutableList;
-import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.PriorityStore;
 
 public interface IHierarchyLookup<T extends IWDMlaProvider> {

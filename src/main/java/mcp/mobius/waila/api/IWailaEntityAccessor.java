@@ -1,5 +1,6 @@
 package mcp.mobius.waila.api;
 
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
  * It will also return things that are unmodified by the overriding systems (like getWailaStack).<br>
  * An instance of this interface is passed to most of Waila Entity callbacks.
  *
- * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.api.EntityAccessor}
+ * @deprecated Modern counterpart: {@link EntityAccessor}
  * @author ProfMobius
  *
  */

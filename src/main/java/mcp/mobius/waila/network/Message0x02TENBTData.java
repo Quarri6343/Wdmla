@@ -1,5 +1,6 @@
 package mcp.mobius.waila.network;
 
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.gtnewhorizons.wdmla.impl.ObjectDataCenter;
@@ -16,7 +17,7 @@ import mcp.mobius.waila.utils.WailaExceptionHandler;
 public class Message0x02TENBTData extends SimpleChannelInboundHandler<Message0x02TENBTData> implements IWailaMessage {
 
     /**
-     * all nbt tags mainly written by {@link com.gtnewhorizons.wdmla.api.IServerDataProvider}
+     * all nbt tags mainly written by {@link IServerDataProvider}
      */
     NBTTagCompound tag;
 

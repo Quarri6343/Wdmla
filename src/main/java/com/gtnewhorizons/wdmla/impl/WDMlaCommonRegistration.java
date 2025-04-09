@@ -14,12 +14,12 @@ import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Preconditions;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
-import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
-import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 import com.gtnewhorizons.wdmla.impl.lookup.PairHierarchyLookup;
 import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;

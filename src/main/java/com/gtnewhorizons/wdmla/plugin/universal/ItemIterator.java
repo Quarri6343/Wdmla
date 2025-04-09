@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.gtnewhorizons.wdmla.api.Accessor;
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 
 public abstract class ItemIterator<T> {
 

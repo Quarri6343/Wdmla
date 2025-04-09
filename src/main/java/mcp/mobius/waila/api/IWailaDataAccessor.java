@@ -1,5 +1,6 @@
 package mcp.mobius.waila.api;
 
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
  * It will also return things that are unmodified by the overriding systems (like getWailaStack).<br>
  * An instance of this interface is passed to most of Waila Block/TileEntity callbacks.
  *
- * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.api.BlockAccessor}
+ * @deprecated Modern counterpart: {@link BlockAccessor}
  * @author ProfMobius
  *
  */

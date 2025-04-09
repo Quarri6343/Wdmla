@@ -6,8 +6,8 @@ import net.minecraft.util.MovingObjectPosition;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.gtnewhorizons.wdmla.api.Accessor;
-import com.gtnewhorizons.wdmla.api.AccessorClientHandler;
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
+import com.gtnewhorizons.wdmla.api.accessor.AccessorClientHandler;
 
 // TODO: full implementation
 public final class ObjectDataCenter {

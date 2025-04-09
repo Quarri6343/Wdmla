@@ -16,9 +16,9 @@ import net.minecraftforge.common.DimensionManager;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.gtnewhorizons.wdmla.api.AccessorImpl;
-import com.gtnewhorizons.wdmla.api.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.accessor.AccessorImpl;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import io.netty.channel.ChannelHandlerContext;

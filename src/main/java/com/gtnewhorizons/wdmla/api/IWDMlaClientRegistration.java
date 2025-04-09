@@ -1,5 +1,10 @@
 package com.gtnewhorizons.wdmla.api;
 
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
+import com.gtnewhorizons.wdmla.api.accessor.AccessorClientHandler;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -7,7 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import com.gtnewhorizons.wdmla.api.view.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ItemView;
 
 @ApiStatus.NonExtendable

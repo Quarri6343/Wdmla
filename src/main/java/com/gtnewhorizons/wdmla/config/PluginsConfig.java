@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.plugin;
+package com.gtnewhorizons.wdmla.config;
 
 import com.gtnewhorizon.gtnhlib.config.Config;
 import com.gtnewhorizons.wdmla.WDMla;

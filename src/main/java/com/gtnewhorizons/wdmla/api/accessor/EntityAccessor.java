@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.api;
+package com.gtnewhorizons.wdmla.api.accessor;
 
 import java.util.function.Supplier;
 

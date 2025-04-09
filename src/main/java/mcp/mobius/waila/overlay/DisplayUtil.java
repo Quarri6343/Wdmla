@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -51,7 +52,7 @@ public class DisplayUtil {
     }
 
     /**
-     * @deprecated Use {@link com.gtnewhorizons.wdmla.impl.ui.drawable.GuiDraw#renderStack(IArea, ItemStack, boolean, String)}
+     * @deprecated Use {@link GuiDraw#renderStack(IArea, ItemStack, boolean, String)}
      */
     @Deprecated
     public static void renderStack(int x, int y, ItemStack stack) {

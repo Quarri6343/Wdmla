@@ -1,5 +1,6 @@
 package mcp.mobius.waila.api;
 
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
  * Common accessor for both Entity and Block/TileEntity.<br>
  * Available data depends on what it is called upon (ie : getEntity() will return null if looking at a block, etc).<br>
  *
- * @deprecated Modern version : {@link com.gtnewhorizons.wdmla.api.Accessor}
+ * @deprecated Modern version : {@link Accessor}
  */
 @Deprecated
 @BackwardCompatibility

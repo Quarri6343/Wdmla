@@ -1,11 +1,14 @@
 package com.gtnewhorizons.wdmla.api;
 
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import com.gtnewhorizons.wdmla.api.view.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
 
 @ApiStatus.NonExtendable
 public interface IWDMlaCommonRegistration {

@@ -2,6 +2,7 @@ package mcp.mobius.waila.api;
 
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +14,7 @@ import net.minecraft.world.World;
  * registered to Waila via the {@link IWailaRegistrar} instance provided in the original registration callback method
  * (cf. {@link IWailaRegistrar} documentation for more information).
  *
- * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.api.IEntityComponentProvider}
+ * @deprecated Modern counterpart: {@link IEntityComponentProvider}
  * @author ProfMobius
  *
  */

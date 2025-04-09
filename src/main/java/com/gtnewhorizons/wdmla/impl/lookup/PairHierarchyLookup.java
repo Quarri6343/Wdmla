@@ -18,7 +18,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.ImmutableList;
-import com.gtnewhorizons.wdmla.api.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
 import com.gtnewhorizons.wdmla.impl.PriorityStore;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 

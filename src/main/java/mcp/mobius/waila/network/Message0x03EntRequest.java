@@ -5,7 +5,7 @@ import java.util.HashSet;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.gtnewhorizons.wdmla.api.EntityAccessorImpl;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessorImpl;
 import com.gtnewhorizons.wdmla.wailacompat.EntRequestCompat;
 
 import io.netty.buffer.ByteBuf;

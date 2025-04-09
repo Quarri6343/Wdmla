@@ -1,4 +1,4 @@
-package com.gtnewhorizons.wdmla.api;
+package com.gtnewhorizons.wdmla.api.provider;
 
 public interface IToggleableProvider extends IWDMlaProvider {
 
