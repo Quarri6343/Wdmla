@@ -3,7 +3,7 @@ package mcp.mobius.waila.api;
 import java.util.regex.Pattern;
 
 /**
- * Convenient access to special characters constant
+ * Convenient access to special characters constant.
  * @deprecated About color codes, just use {@link net.minecraft.util.EnumChatFormatting}<br>
  * About Waila specific characters, these are primarily used to embed icon or formatting into string tooltips
  * We no longer need it since we can append them directly into tooltips.

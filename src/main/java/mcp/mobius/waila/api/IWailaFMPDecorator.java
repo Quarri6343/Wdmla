@@ -3,7 +3,7 @@ package mcp.mobius.waila.api;
 import net.minecraft.item.ItemStack;
 
 /**
- * This was the special accessor for Forge MultiParts mod <br>
+ * This was the special accessor for Forge MultiParts mod. <br>
  * Don't use.
  * Normal version: {@link IWailaCommonAccessor}
  * <br>

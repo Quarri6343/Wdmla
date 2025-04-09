@@ -8,7 +8,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 /**
- * This was the special accessor for Forge MultiParts mod <br>
+ * This was the special accessor for Forge MultiParts mod. <br>
  * Don't use.
  * Normal version: {@link IWailaCommonAccessor}
  * <br>

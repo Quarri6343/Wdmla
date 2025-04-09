@@ -11,6 +11,7 @@ import java.util.Set;
 import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.ITaggedList;
 
+@Deprecated
 @BackwardCompatibility
 public class TipList<E, T> extends ArrayList<E> implements ITaggedList<E, T> {
 

@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * This class was used to provide block/TileEntity specific information to tooltip adder<br>
+ * This class was used to provide block/TileEntity specific information to tooltip adder.<br>
  * <br>
  * <br>
  * The Accessor is used to get some basic data out of the game without having to request direct access to the game

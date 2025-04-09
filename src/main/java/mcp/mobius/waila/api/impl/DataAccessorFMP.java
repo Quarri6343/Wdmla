@@ -11,6 +11,7 @@ import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaFMPAccessor;
 import mcp.mobius.waila.utils.NBTUtil;
 
+@Deprecated
 @BackwardCompatibility
 public class DataAccessorFMP implements IWailaFMPAccessor {
 

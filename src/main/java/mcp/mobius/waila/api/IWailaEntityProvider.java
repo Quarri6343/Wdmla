@@ -8,8 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 /**
- * <br>
- * <br>
  * Callback class interface used to provide Entity tooltip informations to Waila.<br>
  * All methods in this interface shouldn't to be called by the implementing mod. An instance of the class is to be
  * registered to Waila via the {@link IWailaRegistrar} instance provided in the original registration callback method

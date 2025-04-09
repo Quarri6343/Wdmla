@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaBlockDecorator;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaEntityProvider;
@@ -17,6 +18,8 @@ import mcp.mobius.waila.api.IWailaTooltipRenderer;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
 
+@Deprecated
+@BackwardCompatibility
 public class ModuleRegistrar implements IWailaRegistrar {
 
     private static ModuleRegistrar instance = null;

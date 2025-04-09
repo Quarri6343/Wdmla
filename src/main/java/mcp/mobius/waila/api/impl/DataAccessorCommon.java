@@ -1,5 +1,6 @@
 package mcp.mobius.waila.api.impl;
 
+import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -20,6 +21,8 @@ import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaEntityAccessor;
 import mcp.mobius.waila.utils.NBTUtil;
 
+@Deprecated
+@BackwardCompatibility
 public class DataAccessorCommon implements IWailaCommonAccessor, IWailaDataAccessor, IWailaEntityAccessor {
 
     private static final Minecraft mc = Minecraft.getMinecraft();

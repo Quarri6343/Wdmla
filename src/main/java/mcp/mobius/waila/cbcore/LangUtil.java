@@ -19,7 +19,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mcp.mobius.waila.api.BackwardCompatibility;
 
 /**
- * Easy localisation access.
+ * Easy localisation access. by ProfMobius
+ * @deprecated LanguageRegistry should not be used nowadays
  */
 @BackwardCompatibility
 @Deprecated
@@ -27,6 +28,9 @@ public class LangUtil {
 
     public static LangUtil instance = new LangUtil(null);
 
+    /**
+     * Adds prefix to every method input.
+     */
     public String prefix;
 
     public LangUtil(String prefix) {
@@ -34,9 +38,9 @@ public class LangUtil {
     }
 
     /**
-     * translate a key with every possible way
+     * Translate a key with every possible way
      * 
-     * @deprecated standard localization is enough in most situation nowadays. <br>
+     * @deprecated Standard localization is enough in most situation nowadays. <br>
      *             Also, don't do server side localization with LanguageRegistry. It is bad
      * @see StatCollector#translateToLocal(String)
      */
@@ -54,6 +58,13 @@ public class LangUtil {
         return ret;
     }
 
+    /**
+     * Adds a language file to forge language registry. Used on server.
+     * @param resource language file
+     * @param lang language name
+     * @throws IOException　file failed to read
+     * @deprecated Don't do server side localization with LanguageRegistry. It is bad.
+     */
     public void addLangFile(InputStream resource, String lang) throws IOException {
         LanguageRegistry reg = LanguageRegistry.instance();
         BufferedReader reader = new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8));
@@ -70,11 +81,21 @@ public class LangUtil {
         }
     }
 
+    /**
+     * Load language files from client domain. Waila used this to load "waila" package
+     * @param domain client resource domain
+     * @return new instance
+     */
     @SideOnly(Side.CLIENT)
     public static LangUtil loadLangDir(String domain) {
         return new LangUtil(domain).addLangDir(new ResourceLocation(domain, "lang"));
     }
 
+    /**
+     * Load language files from client directory.
+     * @param dir client resource directory
+     * @return current instance
+     */
     @SideOnly(Side.CLIENT)
     public LangUtil addLangDir(ResourceLocation dir) {
         IResourceManager resManager = Minecraft.getMinecraft().getResourceManager();

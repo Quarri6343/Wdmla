@@ -15,9 +15,6 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
 
-/**
- * old configuration file added by Waila
- */
 @BackwardCompatibility
 public class ConfigHandler implements IWailaConfigHandler {
 

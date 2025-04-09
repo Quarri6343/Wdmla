@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 
 /**
- * This was the special provider for Forge MultiParts mod <br>
+ * This was the special provider for Forge MultiParts mod. <br>
  * Don't use.
  * Normal version: {@link IWailaDataProvider}
  * <br>
