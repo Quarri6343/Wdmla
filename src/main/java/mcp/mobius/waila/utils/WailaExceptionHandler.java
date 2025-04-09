@@ -8,6 +8,10 @@ import org.apache.logging.log4j.Level;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.BackwardCompatibility;
 
+/**
+ * Catches error and output information logs
+ * TODO:Too little information, Reimplementation is mandatory. See snownee.jade.util.WailaExceptionHandler
+ */
 @BackwardCompatibility
 public class WailaExceptionHandler {
 

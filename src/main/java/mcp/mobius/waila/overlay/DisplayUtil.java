@@ -5,6 +5,7 @@ import static mcp.mobius.waila.api.SpecialChars.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -25,6 +26,11 @@ public class DisplayUtil {
     private static TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
     private static RenderItem renderItem = new RenderItem();
 
+    /**
+     * Strip all symbols from string includes Minecraft color code and Waila TTRender embedding
+     * @param s input string
+     * @return stripped string
+     */
     public static String stripSymbols(String s) {
         String result = patternRender.matcher(s).replaceAll("");
         result = patternMinecraft.matcher(result).replaceAll("");
@@ -32,12 +38,21 @@ public class DisplayUtil {
         return result;
     }
 
+    /**
+     * Strip Waila TTRender symbol
+     * @param s input string
+     * @return stripped string
+     */
     public static String stripWailaSymbols(String s) {
         String result = patternRender.matcher(s).replaceAll("");
         result = patternWaila.matcher(result).replaceAll("");
         return result;
     }
 
+    /**
+     * @deprecated Use {@link com.gtnewhorizons.wdmla.impl.ui.drawable.GuiDraw#renderStack(IArea, ItemStack, boolean, String)}
+     */
+    @Deprecated
     public static void renderStack(int x, int y, ItemStack stack) {
         enable3DRender();
         try {
@@ -60,6 +75,11 @@ public class DisplayUtil {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
     }
 
+    /**
+     * gets all item tooltip lines
+     * @param itemstack ItemStack that has custom tooltip
+     * @return tooltip list
+     */
     public static List<String> itemDisplayNameMultiline(ItemStack itemstack) {
         List<String> namelist = null;
         try {
@@ -81,6 +101,11 @@ public class DisplayUtil {
         return namelist;
     }
 
+    /**
+     * Gets the first line of item tooltip.
+     * @param itemstack ItemStack that has custom tooltip
+     * @return display name
+     */
     public static String itemDisplayNameShort(ItemStack itemstack) {
         List<String> list = itemDisplayNameMultiline(itemstack);
         return list.get(0);

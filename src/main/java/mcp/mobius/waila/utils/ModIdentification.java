@@ -12,6 +12,9 @@ import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameData;
 
+/**
+ * Gets mod name from itemstack or entity.
+ */
 public class ModIdentification {
 
     public static HashMap<String, String> modSource_Name = new HashMap<>();
@@ -25,6 +28,10 @@ public class ModIdentification {
         modSource_Name.put("Forge", "Minecraft");
     }
 
+    /**
+     * @deprecated use methods below
+     */
+    @Deprecated
     public static String nameFromObject(Object obj) {
         String objPath = obj.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
 
@@ -45,6 +52,11 @@ public class ModIdentification {
         return modName;
     }
 
+    /**
+     * Grants mod name from itemstack.
+     * @param stack itemstack needs identification
+     * @return mod name string
+     */
     public static String nameFromStack(ItemStack stack) {
         try {
             ModContainer mod = GameData.findModOwner(GameData.itemRegistry.getNameForObject(stack.getItem()));
@@ -54,6 +66,11 @@ public class ModIdentification {
         }
     }
 
+    /**
+     *
+     * @param entity entity needs identification
+     * @return mod name string
+     */
     public static String nameFromEntity(Entity entity) {
         String modName;
         try {

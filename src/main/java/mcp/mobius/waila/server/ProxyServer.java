@@ -32,6 +32,9 @@ import mcp.mobius.waila.handlers.DecoratorFMP;
 import mcp.mobius.waila.handlers.HUDHandlerFMP;
 import mcp.mobius.waila.test.LegacyTTRenderTest;
 
+/**
+ * internal server proxy
+ */
 public class ProxyServer {
 
     public ProxyServer() {}

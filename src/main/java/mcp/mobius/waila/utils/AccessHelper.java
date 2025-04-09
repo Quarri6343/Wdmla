@@ -20,6 +20,11 @@ import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaEntityProvider;
 
+/**
+ * reflection helper class
+ * @deprecated Forge reflection helper should be enough.
+ * @see cpw.mods.fml.relauncher.ReflectionHelper
+ */
 @BackwardCompatibility
 public class AccessHelper {
 

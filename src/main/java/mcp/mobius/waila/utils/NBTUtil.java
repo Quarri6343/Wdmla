@@ -15,6 +15,9 @@ import net.minecraft.nbt.NBTTagShort;
 
 import mcp.mobius.waila.api.BackwardCompatibility;
 
+/**
+ * Easy NBT access.
+ */
 @BackwardCompatibility
 public class NBTUtil {
 

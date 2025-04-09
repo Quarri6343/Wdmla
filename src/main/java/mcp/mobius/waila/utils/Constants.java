@@ -2,6 +2,11 @@ package mcp.mobius.waila.utils;
 
 import mcp.mobius.waila.api.BackwardCompatibility;
 
+/**
+ * Waila config constants.
+ * Don't add new entry unless you want a new keybind.
+ * @see com.gtnewhorizons.wdmla.api.Identifiers
+ */
 @BackwardCompatibility
 public final class Constants {
 
