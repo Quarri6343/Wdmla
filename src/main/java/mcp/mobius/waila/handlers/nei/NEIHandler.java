@@ -5,7 +5,6 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraftforge.common.config.Configuration;
 
 import org.lwjgl.input.Keyboard;
 
@@ -13,22 +12,15 @@ import com.gtnewhorizons.wdmla.overlay.RayTracing;
 import com.gtnewhorizons.wdmla.wailacompat.RayTracingCompat;
 
 import codechicken.nei.NEIClientConfig;
-import codechicken.nei.api.API;
 import codechicken.nei.guihook.GuiContainerManager;
 import codechicken.nei.recipe.GuiCraftingRecipe;
 import codechicken.nei.recipe.GuiUsageRecipe;
-import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.cbcore.LangUtil;
 import mcp.mobius.waila.utils.Constants;
 
 public class NEIHandler {
 
     public static void register() {
-        if (ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_NEWFILTERS, true)) {
-            API.addSearchProvider(new ModNameFilter());
-            API.addSearchProvider(new OreDictFilter());
-        }
-
         GuiContainerManager.addTooltipHandler(new TooltipHandlerWaila());
 
         // We mute the default keybind for displaying the tooltip
