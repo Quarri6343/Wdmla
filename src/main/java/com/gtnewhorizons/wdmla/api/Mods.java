@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public enum Mods {
 
     CREATIVEBLOCKS("CreativeBlocks", null),
-    GREGTECH("gregtech", version -> new DefaultArtifactVersion("5.09.48.18").compareTo(version) <= 0),
+    GREGTECH("gregtech", null), // ProcessedVersion of GregTech is always "MC1.7.10"
     IGUANATWEAKS("IguanaTweaksTConstruct", null),
     TCONSTUCT("TConstruct", null),
     NOTENOUGHITEMS("NotEnoughItems", version -> new DefaultArtifactVersion("2.7.29-GTNH").compareTo(version) <= 0),
@@ -35,23 +35,27 @@ public enum Mods {
 
     public boolean isLoaded() {
         if (this.loaded == null) {
-            this.loaded = Loader.isModLoaded(modID);
-        }
-        if (!this.loaded) {
-            return false;
-        }
-
-        if(versionRequirement != null) {
-            if (versionRequirement.test(Loader.instance().getIndexedModList().get(modID).getProcessedVersion())) {
-                return true;
+            if (!Loader.isModLoaded(modID)) {
+                this.loaded = false;
             }
             else {
-                Waila.log.info("Skipped loading %s Compatibility classes due to version mismatch");
-                return false;
+                if(versionRequirement != null) {
+                    ArtifactVersion version = Loader.instance().getIndexedModList().get(modID).getProcessedVersion();
+                    if (versionRequirement.test(version)) {
+                        this.loaded = true;
+                    }
+                    else {
+                        Waila.log.info(String.format("Skipped loading %s Compatibility classes due to version incompatibility. Loaded version: %s",
+                                modID, version.getVersionString()));
+                        this.loaded = false;
+                    }
+                }
+                else {
+                    this.loaded = true;
+                }
             }
         }
-        else {
-            return true;
-        }
+
+        return this.loaded;
     }
 }
