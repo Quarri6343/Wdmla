@@ -9,8 +9,8 @@ import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 
 /**
- * The interface for component which can append child components. Provides quick shortcuts to add simple elements which
- * does not require theme import.
+ * The interface for the advanced component which can append child components.<br>
+ * Also provides quick shortcuts to append simple child elements of this component which does not require theme import.
  */
 public interface ITooltip extends IComponent {
 

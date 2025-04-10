@@ -10,6 +10,9 @@ import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
+/**
+ * This class provides some basic implementation of IComponent, so you don't have to write everything.
+ */
 public abstract class Component implements IComponent {
 
     // settings

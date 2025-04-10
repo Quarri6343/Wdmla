@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla.api.ui;
 
+/**
+ * Every color constant used in WDMla should be stored here for the accessibility.
+ */
 public final class ColorPalette {
 
     // text colors
