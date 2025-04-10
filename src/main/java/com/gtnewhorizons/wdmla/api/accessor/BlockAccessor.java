@@ -11,17 +11,26 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * Provides essential current block & tile entity information to {@link com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider} for easy access<br>
+ * without accessing internal engine.
+ */
 public interface BlockAccessor extends Accessor {
 
     Block getBlock();
 
+    /**
+     * @return tile entity on block pos, if exists.
+     */
+    @Nullable
     TileEntity getTileEntity();
 
     int getMetadata();
 
     /**
-     * Be aware, this behaves different from IWailaDataProvider's itemstack argument, which can be swapped with
+     * Be aware, this behaves different from {@link mcp.mobius.waila.api.IWailaDataProvider}'s itemstack argument, which can be swapped with
      * getWailaStack by any provider!
      * 
      * @return an auto fetched itemstack form of the block
@@ -33,6 +42,9 @@ public interface BlockAccessor extends Accessor {
         return BlockAccessor.class;
     }
 
+    /**
+     * Builds Accessor instance in child class.
+     */
     @ApiStatus.NonExtendable
     interface Builder {
 

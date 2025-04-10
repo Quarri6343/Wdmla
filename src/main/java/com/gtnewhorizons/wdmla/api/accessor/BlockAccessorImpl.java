@@ -1,7 +1,8 @@
-package com.gtnewhorizons.wdmla.impl;
+package com.gtnewhorizons.wdmla.api.accessor;
 
 import java.util.function.Supplier;
 
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -14,16 +15,16 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import com.gtnewhorizons.wdmla.api.accessor.AccessorImpl;
-import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import io.netty.channel.ChannelHandlerContext;
 import mcp.mobius.waila.network.Message0x01TERequest;
 
+@ApiStatus.Internal
 public class BlockAccessorImpl extends AccessorImpl implements BlockAccessor {
 
     private final Block block;

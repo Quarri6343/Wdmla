@@ -4,7 +4,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * Abstract instance of Accessor.<br>
+ * This provides common variable between actual implementations. <br>
+ * <br>
+ * {@inheritDoc}
+ */
+@ApiStatus.Internal
 public abstract class AccessorImpl implements Accessor {
 
     private final World world;
@@ -36,7 +45,7 @@ public abstract class AccessorImpl implements Accessor {
     }
 
     @Override
-    public NBTTagCompound getServerData() {
+    public @NotNull NBTTagCompound getServerData() {
         return serverData;
     }
 

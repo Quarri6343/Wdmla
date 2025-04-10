@@ -5,7 +5,7 @@ import java.util.HashSet;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import com.gtnewhorizons.wdmla.impl.BlockAccessorImpl;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessorImpl;
 import com.gtnewhorizons.wdmla.wailacompat.TERequestCompat;
 
 import io.netty.buffer.ByteBuf;

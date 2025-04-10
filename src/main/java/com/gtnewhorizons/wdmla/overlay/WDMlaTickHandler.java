@@ -157,7 +157,7 @@ public class WDMlaTickHandler {
         }
 
         if (accessor.isServerConnected()) {
-            if (accessor.getServerData() != null && !accessor.verifyData(accessor.getServerData())) {
+            if (!accessor.verifyData(accessor.getServerData())) {
                 accessor.getServerData().func_150296_c().clear();
             }
             boolean request = handler.shouldRequestData(accessor);
