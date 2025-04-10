@@ -87,15 +87,11 @@ public class WDMlaConfig extends Configuration {
     }
 
     public TimeFormattingPattern getTimeFormatter(ITimeFormatConfigurable instance) {
-        if (instance instanceof IWDMlaProvider provider) {
-            return loadEnum(
-                    provider.getConfigCategory(),
-                    "option.wdmla.autogen.time.format",
-                    instance.getDefaultTimeFormatter(),
-                    "");
-        } else {
-            throw new UnsupportedOperationException();
-        }
+        return loadEnum(
+                instance.getConfigCategory(),
+                "option.wdmla.autogen.time.format",
+                instance.getDefaultTimeFormatter(),
+                "");
     }
 
     private void reloadTheme() {
