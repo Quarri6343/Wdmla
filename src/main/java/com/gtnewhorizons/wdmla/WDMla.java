@@ -16,12 +16,17 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import mcp.mobius.waila.Tags;
 
+/**
+ * The Main mod class.<br>
+ * The mod name is supposed to be "WDMla" (the first three letter is upper case) since the full mod name is "What DreamMaster looks at".
+ */
 @Mod(
         modid = WDMla.MODID,
         name = "WDMla",
         version = Tags.GRADLETOKEN_VERSION,
-        dependencies = "after:Waila",
+        dependencies = " after:Waila;" + " required-after:gtnhlib;",
         acceptableRemoteVersions = "*",
+        acceptedMinecraftVersions = "[1.7.10]",
         guiFactory = "com.gtnewhorizons.wdmla.gui.GuiFactory")
 public class WDMla {
 

@@ -5,11 +5,15 @@ import com.gtnewhorizons.wdmla.api.TooltipPosition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 
+/**
+ * Base provider class that interacts with Waila HUD panel.<br>
+ */
 public interface IWDMlaProvider {
 
     /**
      * The unique id of this provider. Providers from different registries can have the same id. The Resource Domain is
      * the mod category that the provider belongs, and Resource Path is expected to be snake_case
+     * This does not interact with resource pack location so feel free to use any mod name.
      */
     ResourceLocation getUid();
 
@@ -18,7 +22,7 @@ public interface IWDMlaProvider {
      * normal tooltip.
      * <p>
      * If you want to show your tooltip a bit to the bottom, you should return a value greater than 0, and less than
-     * 5000. If it is greater than 5000, the content will not be collapsed in lite mode.
+     * 5000.
      * <p>
      * Registration of Default component such as item name occurs on -10000, and Registration of Harvestability occurs
      * on -8000. You can add your own default component between them.
@@ -27,6 +31,9 @@ public interface IWDMlaProvider {
         return TooltipPosition.BODY;
     }
 
+    /**
+     * @return If it is false, tooltips priority cannot be configurable in both file and gui.
+     */
     default boolean isPriorityFixed() {
         return false;
     }
@@ -46,9 +53,8 @@ public interface IWDMlaProvider {
     }
 
     /**
-     * The language key of this provider name displayed in config screen
-     * 
-     * @return
+     * @return The language key of this provider name.<br>
+     * Mainly used in config.
      */
     default String getLangKey() {
         return "provider.wdmla" + Configuration.CATEGORY_SPLITTER

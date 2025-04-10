@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Provides essential information to {@link com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider} for easy access to game object<br>
+ * Provides essential information to {@link com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider} for easy access to game object
  * without accessing internal engine.
  */
 public interface Accessor {

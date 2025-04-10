@@ -7,9 +7,9 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Classes implement this handles main accessor object of specific type, passing it to provider or server.
+ * Classes implement this handles main accessor object of specific type, passing it to provider or server.<br>
  * Only one instance of AccessorHandler per type can be registered in Registration object
- * with {@link com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration#registerAccessorHandler(Class, AccessorClientHandler)}.
+ * with {@link com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration#registerAccessorHandler(Class, AccessorClientHandler)}.<br>
  * Although this class can be implemented outside WDMla, Waila packet only supports Tile Entity and entity, so it can not be used anywhere.
  * @param <T> Accessor type this class want to take care of
  */
@@ -17,9 +17,9 @@ import org.jetbrains.annotations.ApiStatus;
 public interface AccessorClientHandler<T extends Accessor> {
 
     /**
-     * @param accessor accessor object
-     * @return Should the information of accessor be displayed as tooltip in current screen or not.
      * Mainly used to determine is the accessor target blacklisted (not implemented).
+     * @param accessor accessor object
+     * @return Should the information of accessor be displayed as tooltip in current screen or not.<br>
      */
     boolean shouldDisplay(T accessor);
 
