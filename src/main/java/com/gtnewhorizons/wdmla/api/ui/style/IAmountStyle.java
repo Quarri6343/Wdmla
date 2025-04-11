@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.api.ui.style;
 
 /**
  * Collection of filled bar settings.
- * {@inheritDoc}
  */
 public interface IAmountStyle extends IRectStyle {
 

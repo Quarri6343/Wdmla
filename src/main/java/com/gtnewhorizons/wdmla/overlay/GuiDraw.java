@@ -21,6 +21,9 @@ import com.gtnewhorizons.wdmla.config.General;
 import mcp.mobius.waila.api.SpecialChars;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Collection of methods draw gui by calling lower level api.
+ */
 public final class GuiDraw {
 
     private GuiDraw() {

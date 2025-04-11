@@ -20,6 +20,9 @@ import cpw.mods.fml.client.config.IConfigElement;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
+/**
+ * Main config screen class that adds five categories to root config screen. {@link ModsMenuScreenConfig#getMainCategories()}
+ */
 @SuppressWarnings({ "unused", "rawtypes" })
 public class ModsMenuScreenConfig extends LiveEditGuiConfig {
 

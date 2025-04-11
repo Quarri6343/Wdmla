@@ -5,8 +5,7 @@ javadoc {
         vendor = JvmVendorSpec.ADOPTIUM
     }
 
-//    include "com/gtnewhorizons/wdmla/api/**"
-//    include "com/gtnewhorizons/wdmla/impl/**"
+    include "com/gtnewhorizons/wdmla/api/**"
     include "mcp/mobius/waila/**"
     exclude "mcp/mobius/waila/addons/**"
 

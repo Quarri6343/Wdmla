@@ -7,7 +7,9 @@ import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.IConfigElement;
 
-// hacky solution to force configID enabled
+/**
+ * Custom Config Gui that uses hacky solution to force configID enabled.
+ */
 public class LiveEditGuiConfigEntries extends GuiConfigEntries {
 
     public LiveEditGuiConfigEntries(GuiConfig parent, Minecraft mc) {

@@ -21,7 +21,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * the new configuration file added by WDMla
+ * The new configuration file added by WDMla.<br>
+ * This file handles all auto generated config for plugins which GTNHLib can't do.
  */
 public class WDMlaConfig extends Configuration {
 

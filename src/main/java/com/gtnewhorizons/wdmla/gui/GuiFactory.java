@@ -7,6 +7,9 @@ import net.minecraft.client.gui.GuiScreen;
 
 import cpw.mods.fml.client.IModGuiFactory;
 
+/**
+ * Forge requires this class for Mod config gui.
+ */
 @SuppressWarnings("unused")
 public class GuiFactory implements IModGuiFactory {
 

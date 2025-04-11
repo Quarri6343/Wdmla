@@ -12,7 +12,11 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 
-//TODO:blacklist
+/**
+ * Output tile entities which have no WDMla provider associated for developers.<br>
+ * This is especially useful to list up all forgotten tile entity of the mod.
+ * TODO:blacklist for unwanted tile entity
+ */
 public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
 
     @Override

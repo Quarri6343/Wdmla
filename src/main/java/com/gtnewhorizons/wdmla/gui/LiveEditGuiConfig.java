@@ -7,7 +7,9 @@ import net.minecraft.client.gui.GuiScreen;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.IConfigElement;
 
-// hacky solution to force configID enabled
+/**
+ * Custom Config Gui that uses hacky solution to force configID enabled.
+ */
 public class LiveEditGuiConfig extends GuiConfig {
 
     public LiveEditGuiConfig(GuiScreen parentScreen, List<IConfigElement> configElements, String modID,

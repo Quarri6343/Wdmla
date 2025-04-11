@@ -10,8 +10,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Abstract instance of Accessor.<br>
  * This provides common variable between actual implementations. <br>
- * <br>
- * {@inheritDoc}
  */
 @ApiStatus.Internal
 public abstract class AccessorImpl implements Accessor {

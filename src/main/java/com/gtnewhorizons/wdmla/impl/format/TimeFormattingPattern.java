@@ -9,6 +9,9 @@ import net.minecraft.util.StatCollector;
 import com.gtnewhorizons.wdmla.api.Ticks;
 import com.gtnewhorizons.wdmla.util.FormatUtil;
 
+/**
+ * Tries to format time unit into specified time unit with the help of {@link ChronoUnit} & {@link FormatUtil}
+ */
 public enum TimeFormattingPattern {
 
     ALWAYS_TICK(tick -> FormatUtil.STANDARD.format(tick) + StatCollector.translateToLocal("hud.msg.wdmla.ticks")),

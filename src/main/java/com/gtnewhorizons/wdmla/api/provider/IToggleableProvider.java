@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.api.provider;
 
 /**
  * Toggleable provider template.
- * {@inheritDoc}
  */
 public interface IToggleableProvider extends IWDMlaProvider {
 

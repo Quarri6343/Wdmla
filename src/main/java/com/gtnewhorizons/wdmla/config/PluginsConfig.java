@@ -4,6 +4,11 @@ import com.gtnewhorizon.gtnhlib.config.Config;
 import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.plugin.debug.RegistryDataProvider;
 
+/**
+ * List of WDMla plugins config.<br>
+ * All static configuration entry of any plugin inside WDMla should go here.<br>
+ * Note: we can't split config files for each config due to GTNHLib's limitation. Sorry for inconvenience.
+ */
 @Config(modid = WDMla.MODID, category = "plugins", configSubDirectory = "WDMla", filename = "plugins")
 @Config.LangKey("option.wdmla.plugin.category")
 public class PluginsConfig {

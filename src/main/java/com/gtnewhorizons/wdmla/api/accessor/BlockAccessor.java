@@ -14,7 +14,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Provides essential current block & tile entity information to {@link com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider} for easy access<br>
+ * Provides essential current block and tile entity information to {@link com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider} for easy access<br>
  * without accessing internal engine.
  */
 public interface BlockAccessor extends Accessor {
