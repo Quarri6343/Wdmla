@@ -14,6 +14,9 @@ import mcp.mobius.waila.api.impl.ModuleRegistrar;
 import mcp.mobius.waila.api.impl.TipList;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Gathers all tooltips from Waila modules by mimicking legacy api call.
+ */
 public class DataProviderCompat {
 
     public List<String> getLegacyBlockTooltips(ItemStack itemForm, DataAccessorCommon legacyAccessor) {

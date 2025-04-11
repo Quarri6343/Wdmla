@@ -5,6 +5,10 @@ import org.lwjgl.opengl.GL12;
 
 import mcp.mobius.waila.overlay.OverlayConfig;
 
+/**
+ * Controlling GLState to prevent stack corruption.<br>
+ * Similar to GLStateManager.
+ */
 public class GLStateHelper {
 
     private enum HUDGLState {

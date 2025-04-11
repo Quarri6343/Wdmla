@@ -21,6 +21,9 @@ import mcp.mobius.waila.network.Message0x01TERequest;
 import mcp.mobius.waila.utils.AccessHelper;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Handles tile entity data request from client, calls all necessary providers
+ */
 public class TERequestCompat {
 
     private static final Field classToNameMap;

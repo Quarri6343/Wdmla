@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -36,6 +37,16 @@ public final class GuiDraw {
     private static final TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
     private static final RenderItem renderItem = new RenderItem();
 
+    /**
+     * Draws string on ui with Minecraft font renderer.<br>
+     * This means Angelica batch font renderer will be applied and causes unexpected behaviour. (if present)
+     * @param text target string
+     * @param x x ui coordinate
+     * @param y y ui coordinate
+     * @param colour color of string, may be affected by color code
+     * @param shadow apply shadow or not
+     * @param scale scale compared to standard vanilla text scale
+     */
     public static void drawString(String text, int x, int y, int colour, boolean shadow, float scale) {
         if (scale != 1) {
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
@@ -54,9 +65,17 @@ public final class GuiDraw {
         }
     }
 
-    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay, String stackSizeOverride) {
+    /**
+     * Draws ItemStack with Minecraft Item renderer.<br>
+     * @param area the place ItemStack will be rendererd
+     * @param stack the ItemStack. If the stack size is less than 1, {@code General.ghostProduct check will be used}
+     * @param drawOverlay Draws overlay below the icon or not (usually the stack size number and <b>durability bar</b>)
+     * @param stackSizeOverride custom text below the icon if {@code drawOverlay} is enabled.
+     *                          If null, the {@link ItemStack#stackSize} will be used.
+     */
+    public static void renderStack(IArea area, ItemStack stack, boolean drawOverlay, @Nullable String stackSizeOverride) {
         if (stack.getItem() == null) {
-            drawString("Err", area.getX(), area.getY(), ColorPalette.INFO, true, 1);
+            drawString("Err", area.getX(), area.getY(), ColorPalette.WARNING, true, 1);
             return;
         }
 
@@ -93,7 +112,10 @@ public final class GuiDraw {
                             (int) (x / xScale),
                             (int) (y / yScale),
                             stackSizeOverride);
-                } else if (General.ghostProduct && !General.forceLegacy) {
+                } else if (General.ghostProduct) {
+                    if(stackSizeOverride == null) {
+                        stackSizeOverride = String.valueOf(stack.stackSize);
+                    }
                     renderItem.renderItemOverlayIntoGUI(
                             fontRenderer,
                             textureManager,

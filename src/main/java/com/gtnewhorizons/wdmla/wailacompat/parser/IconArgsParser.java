@@ -17,6 +17,6 @@ public class IconArgsParser implements ITTRenderParser {
             default -> VanillaUIIcons.BUBBLEEXP;
         };
         // intentional hardcode to bypass bad enum implementation
-        return new IconComponent(iconUI, Gui.icons);
+        return new IconComponent(iconUI, VanillaUIIcons.PATH);
     }
 }

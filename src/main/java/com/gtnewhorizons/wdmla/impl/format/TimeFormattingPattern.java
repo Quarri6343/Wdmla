@@ -10,15 +10,24 @@ import com.gtnewhorizons.wdmla.api.Ticks;
 import com.gtnewhorizons.wdmla.util.FormatUtil;
 
 /**
- * Tries to format time unit into specified time unit with the help of {@link ChronoUnit} & {@link FormatUtil}
+ * Tries to format time unit into specified time unit with the help of {@link ChronoUnit} and {@link FormatUtil}
  */
 public enum TimeFormattingPattern {
 
+    /**
+     * 123,456t
+     */
     ALWAYS_TICK(tick -> FormatUtil.STANDARD.format(tick) + StatCollector.translateToLocal("hud.msg.wdmla.ticks")),
 
+    /**
+     * 7,890s
+     */
     ALWAYS_SECOND(tick -> FormatUtil.STANDARD.format(Duration.of(tick, Ticks.INSTANCE).get(ChronoUnit.SECONDS))
             + StatCollector.translateToLocal("hud.msg.wdmla.seconds")),
 
+    /**
+     * 1h02m03s
+     */
     HOUR_MIN_SEC(tick -> {
         Duration duration = Duration.of(tick, Ticks.INSTANCE);
         if (duration.toMinutes() < 1) {

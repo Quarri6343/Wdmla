@@ -18,7 +18,7 @@ import com.gtnewhorizons.wdmla.wailacompat.parser.ProgressArgsParser;
 import mcp.mobius.waila.overlay.DisplayUtil;
 
 /**
- * Replacement of old computeRenderables from Waila Tooltip class
+ * Replacement of old computeRenderables from Waila Tooltip class.
  */
 public class TooltipCompat {
 

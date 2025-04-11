@@ -13,7 +13,7 @@ import com.gtnewhorizons.wdmla.impl.PriorityStore;
 
 /**
  * Allows fast and easy access to providers. <br>
- * All lookup classes are backported from Jade.
+ * All inherited lookup classes are backported from Jade.
  */
 public interface IHierarchyLookup<T extends IWDMlaProvider> {
 

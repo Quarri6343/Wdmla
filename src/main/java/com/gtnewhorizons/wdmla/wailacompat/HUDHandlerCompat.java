@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.wailacompat;
 
-import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 import static mcp.mobius.waila.api.SpecialChars.WHITE;
 
 import java.util.List;
@@ -8,13 +7,13 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.config.Configuration;
 
 import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.overlay.DisplayUtil;
-import mcp.mobius.waila.utils.Constants;
 
+/**
+ * Mimicking old Waila class that adds object name.
+ */
 public class HUDHandlerCompat {
 
     public static void getBlocksWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor) {

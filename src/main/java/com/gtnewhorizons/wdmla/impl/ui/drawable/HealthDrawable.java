@@ -31,19 +31,19 @@ public class HealthDrawable implements IDrawable {
         for (int iheart = 1; iheart <= nHearts; iheart++) {
 
             if (iheart <= MathHelper.floor_float(health)) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART_BG, Gui.icons);
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART_BG, VanillaUIIcons.PATH);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART, VanillaUIIcons.PATH);
                 offsetX += 8;
             }
 
             if ((iheart > health) && (iheart <= health + 0.5f)) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART_BG, Gui.icons);
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HHEART, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HEART_BG, VanillaUIIcons.PATH);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HHEART, VanillaUIIcons.PATH);
                 offsetX += 8;
             }
 
             if (iheart > health + 0.5f) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.EHEART, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.EHEART, VanillaUIIcons.PATH);
                 offsetX += 8;
             }
 

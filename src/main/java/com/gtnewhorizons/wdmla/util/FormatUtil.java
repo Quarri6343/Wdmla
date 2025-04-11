@@ -12,8 +12,17 @@ import java.util.Locale;
  */
 public class FormatUtil {
 
+    /**
+     * Example: 123,456.79
+     */
     public static final DecimalFormat STANDARD = getDecimalFormat();
+    /**
+     * Example: 01 (for two-digit time unit)
+     */
     public static final DecimalFormat TIME_PART = getTimePartFormat();
+    /**
+     * Example: 123456.79
+     */
     public static final DecimalFormat STANDARD_NO_GROUP = getNoGroupFormat();
 
     private static DecimalFormat getDecimalFormat() {

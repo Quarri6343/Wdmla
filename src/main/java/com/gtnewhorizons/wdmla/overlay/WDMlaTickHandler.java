@@ -41,6 +41,10 @@ import mcp.mobius.waila.client.KeyEvent;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.Constants;
 
+/**
+ * Entry point of all WDMla tick related events.<br>
+ * Calculates tooltips in TickEvent and draws them in render related event.
+ */
 public class WDMlaTickHandler {
 
     private static @Nullable RootComponent mainHUD = null;

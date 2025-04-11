@@ -5,6 +5,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * Drawable potion sprite IIcon data calculated from potion effect class.
+ * @see net.minecraft.client.renderer.InventoryEffectRenderer
+ */
 public class PotionIcon implements IIcon {
 
     public static final ResourceLocation PATH = new ResourceLocation("textures/gui/container/inventory.png");;

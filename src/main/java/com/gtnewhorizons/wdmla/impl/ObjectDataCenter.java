@@ -9,9 +9,16 @@ import org.jetbrains.annotations.Nullable;
 import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import com.gtnewhorizons.wdmla.api.accessor.AccessorClientHandler;
 
-// TODO: full implementation
+/**
+ * Handles all static data required for WDMla.<br>
+ * It sometimes has to be used along with {@link mcp.mobius.waila.api.impl.DataAccessorCommon}.<br>
+ * TODO: full implementation
+ */
 public final class ObjectDataCenter {
 
+    /**
+     * the passive frequency of requesting server data
+     */
     public static int rateLimiter = 250;
     public static long timeLastUpdate = System.currentTimeMillis();
     private static Accessor accessor;
@@ -85,6 +92,9 @@ public final class ObjectDataCenter {
         timeLastUpdate = System.currentTimeMillis();
     }
 
+    /**
+     * @return is ray cast result from different frames targeting the same object or not
+     */
     private static boolean equals(MovingObjectPosition mop1, MovingObjectPosition mop2) {
         if (mop1 != null && mop1.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
                 && mop2 != null

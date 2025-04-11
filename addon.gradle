@@ -5,9 +5,12 @@ javadoc {
         vendor = JvmVendorSpec.ADOPTIUM
     }
 
-    include "com/gtnewhorizons/wdmla/api/**"
+    include "com/gtnewhorizons/wdmla/**"
+    exclude "com/gtnewhorizons/wdmla/plugin/**"
+    exclude "com/gtnewhorizons/wdmla/test/**"
     include "mcp/mobius/waila/**"
     exclude "mcp/mobius/waila/addons/**"
+    exclude "mcp/mobius/waila/test/**"
 
     classpath += sourceSets.patchedMc.output
 

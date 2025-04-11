@@ -31,19 +31,19 @@ public class ArmorDrawable implements IDrawable {
         for (int iArmor = 1; iArmor <= nArmor; iArmor++) {
 
             if (iArmor <= MathHelper.floor_float(armor)) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.ARMOR_BG, Gui.icons);
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.ARMOR, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.ARMOR_BG, VanillaUIIcons.PATH);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.ARMOR, VanillaUIIcons.PATH);
                 offsetX += 8;
             }
 
             if ((iArmor > armor) && (iArmor <= armor + 0.5f)) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.ARMOR_BG, Gui.icons);
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HARMOR, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.ARMOR_BG, VanillaUIIcons.PATH);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.HARMOR, VanillaUIIcons.PATH);
                 offsetX += 8;
             }
 
             if (iArmor > armor + 0.5f) {
-                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.EARMOR, Gui.icons);
+                GuiDraw.renderVanillaIcon(offsetX, offsetY, 8, 8, VanillaUIIcons.EARMOR, VanillaUIIcons.PATH);
                 offsetX += 8;
             }
 

@@ -2,6 +2,8 @@ package com.gtnewhorizons.wdmla.wailacompat;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +20,10 @@ import mcp.mobius.waila.utils.AccessHelper;
 import mcp.mobius.waila.utils.NBTUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+/**
+ * Handles entity data request from client, calls all necessary providers
+ */
+@SideOnly(Side.SERVER)
 public class EntRequestCompat {
 
     public static void handleRequest(ChannelHandlerContext ctx, NBTTagCompound tag, Message0x03EntRequest msg) {
