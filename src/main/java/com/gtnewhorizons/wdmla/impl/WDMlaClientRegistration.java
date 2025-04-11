@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import com.gtnewhorizons.wdmla.api.accessor.BlockAccessorImpl;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -21,14 +20,15 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import com.gtnewhorizons.wdmla.api.accessor.AccessorClientHandler;
 import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessorImpl;
 import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.accessor.EntityAccessorImpl;
-import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
-import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.view.ItemView;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 

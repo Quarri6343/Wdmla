@@ -35,7 +35,9 @@ public interface IWDMlaPlugin {
     /**
      * Server side registration method.<br>
      * Mostly used to register providers.<br>
-     * Note the order of registration is not limited since all entries will automatically be sorted with priorities (if exists)
+     * Note the order of registration is not limited since all entries will automatically be sorted with priorities (if
+     * exists)
+     * 
      * @param registration WDMla registry
      */
     default void register(IWDMlaCommonRegistration registration) {
@@ -44,8 +46,9 @@ public interface IWDMlaPlugin {
 
     /**
      * Client side registration method.<br>
-     * Mostly used to register providers.
-     * Note the order of registration is not limited since all entries will automatically be sorted with priorities (if exists)
+     * Mostly used to register providers. Note the order of registration is not limited since all entries will
+     * automatically be sorted with priorities (if exists)
+     * 
      * @param registration WDMla registry
      */
     default void registerClient(IWDMlaClientRegistration registration) {

@@ -35,9 +35,10 @@ public interface IComponentProvider<T extends Accessor> extends IToggleableProvi
 
     /**
      * Write tooltip based on information provided by accessor.
-     * @param tooltip tooltip object which can append child
-     * @param accessor Accessor which contains target object that matches this provider.
-     *                Defined in {@link IWDMlaClientRegistration} register method
+     * 
+     * @param tooltip  tooltip object which can append child
+     * @param accessor Accessor which contains target object that matches this provider. Defined in
+     *                 {@link IWDMlaClientRegistration} register method
      */
     void appendTooltip(ITooltip tooltip, T accessor);
 }

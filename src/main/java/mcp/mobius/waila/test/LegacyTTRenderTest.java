@@ -19,6 +19,7 @@ import mcp.mobius.waila.api.impl.ModuleRegistrar;
 
 /**
  * Test code to see compatibility between old TTRender and WDMla component
+ * 
  * @see com.gtnewhorizons.wdmla.wailacompat.TooltipCompat
  */
 public class LegacyTTRenderTest implements IWailaDataProvider {

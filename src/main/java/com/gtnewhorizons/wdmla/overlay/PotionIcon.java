@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 /**
  * Drawable potion sprite IIcon data calculated from potion effect class.
+ * 
  * @see net.minecraft.client.renderer.InventoryEffectRenderer
  */
 public class PotionIcon implements IIcon {
@@ -31,7 +32,7 @@ public class PotionIcon implements IIcon {
 
     @Override
     public float getInterpolatedU(double interporation) {
-        return iconIndex % 8 * 18 + 18 * (float)interporation;
+        return iconIndex % 8 * 18 + 18 * (float) interporation;
     }
 
     @Override
@@ -46,7 +47,7 @@ public class PotionIcon implements IIcon {
 
     @Override
     public float getInterpolatedV(double interporation) {
-        return 198 + (int) (iconIndex / 8) * 18 + 18 * (float)interporation;
+        return 198 + (int) (iconIndex / 8) * 18 + 18 * (float) interporation;
     }
 
     @Override

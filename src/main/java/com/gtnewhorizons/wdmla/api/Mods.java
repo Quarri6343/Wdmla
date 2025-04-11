@@ -1,13 +1,13 @@
 package com.gtnewhorizons.wdmla.api;
 
-import cpw.mods.fml.common.versioning.ArtifactVersion;
-import cpw.mods.fml.common.versioning.DefaultArtifactVersion;
-import mcp.mobius.waila.Waila;
+import java.util.function.Predicate;
+
 import org.jetbrains.annotations.ApiStatus;
 
 import cpw.mods.fml.common.Loader;
-
-import java.util.function.Predicate;
+import cpw.mods.fml.common.versioning.ArtifactVersion;
+import cpw.mods.fml.common.versioning.DefaultArtifactVersion;
+import mcp.mobius.waila.Waila;
 
 /**
  * Mods list that WDMla has integration
@@ -43,20 +43,20 @@ public enum Mods {
         if (this.loaded == null) {
             if (!Loader.isModLoaded(modID)) {
                 this.loaded = false;
-            }
-            else {
-                if(versionRequirement != null) {
+            } else {
+                if (versionRequirement != null) {
                     ArtifactVersion version = Loader.instance().getIndexedModList().get(modID).getProcessedVersion();
                     if (versionRequirement.test(version)) {
                         this.loaded = true;
-                    }
-                    else {
-                        Waila.log.info(String.format("Skipped loading %s Compatibility classes due to version incompatibility. Loaded version: %s",
-                                modID, version.getVersionString()));
+                    } else {
+                        Waila.log.info(
+                                String.format(
+                                        "Skipped loading %s Compatibility classes due to version incompatibility. Loaded version: %s",
+                                        modID,
+                                        version.getVersionString()));
                         this.loaded = false;
                     }
-                }
-                else {
+                } else {
                     this.loaded = true;
                 }
             }

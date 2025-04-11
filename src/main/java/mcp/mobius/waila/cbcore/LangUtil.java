@@ -20,6 +20,7 @@ import mcp.mobius.waila.api.BackwardCompatibility;
 
 /**
  * Easy localisation access. by ProfMobius
+ * 
  * @deprecated LanguageRegistry should not be used nowadays
  */
 @BackwardCompatibility
@@ -60,9 +61,10 @@ public class LangUtil {
 
     /**
      * Adds a language file to forge language registry. Used on server.
+     * 
      * @param resource language file
-     * @param lang language name
-     * @throws IOException　file failed to read
+     * @param lang     language name
+     * @throws IOException file failed to read
      * @deprecated Don't do server side localization with LanguageRegistry. It is bad.
      */
     public void addLangFile(InputStream resource, String lang) throws IOException {
@@ -83,6 +85,7 @@ public class LangUtil {
 
     /**
      * Load language files from client domain. Waila used this to load "waila" package
+     * 
      * @param domain client resource domain
      * @return new instance
      */
@@ -93,6 +96,7 @@ public class LangUtil {
 
     /**
      * Load language files from client directory.
+     * 
      * @param dir client resource directory
      * @return current instance
      */

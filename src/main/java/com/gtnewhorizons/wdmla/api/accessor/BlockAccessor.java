@@ -14,7 +14,8 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Provides essential current block and tile entity information to {@link com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider} for easy access<br>
+ * Provides essential current block and tile entity information to
+ * {@link com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider} for easy access<br>
  * without accessing internal engine.
  */
 public interface BlockAccessor extends Accessor {
@@ -30,8 +31,8 @@ public interface BlockAccessor extends Accessor {
     int getMetadata();
 
     /**
-     * Be aware, this behaves different from {@link mcp.mobius.waila.api.IWailaDataProvider}'s itemstack argument, which can be swapped with
-     * getWailaStack by any provider!
+     * Be aware, this behaves different from {@link mcp.mobius.waila.api.IWailaDataProvider}'s itemstack argument, which
+     * can be swapped with getWailaStack by any provider!
      * 
      * @return an auto fetched itemstack form of the block
      */

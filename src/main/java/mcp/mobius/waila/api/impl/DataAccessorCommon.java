@@ -1,6 +1,5 @@
 package mcp.mobius.waila.api.impl;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -15,12 +14,14 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import org.jetbrains.annotations.NotNull;
+
 import cpw.mods.fml.common.registry.GameData;
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.IWailaCommonAccessor;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaEntityAccessor;
 import mcp.mobius.waila.utils.NBTUtil;
-import org.jetbrains.annotations.NotNull;
 
 @Deprecated
 @BackwardCompatibility

@@ -7,6 +7,7 @@ public interface IRectStyle {
 
     /**
      * Note: getColor is reserved for any child component extend this.
+     * 
      * @return the first gradient color of this rectangle
      */
     int getBackgroundColor1();

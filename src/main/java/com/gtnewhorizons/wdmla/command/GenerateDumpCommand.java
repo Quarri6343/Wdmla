@@ -25,8 +25,8 @@ import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 /**
- * Makes a new markdown file of all providers listed in .minecraft dir.
- * This is for debugging any entry information in registration system (the priority is the obvious case).
+ * Makes a new markdown file of all providers listed in .minecraft dir. This is for debugging any entry information in
+ * registration system (the priority is the obvious case).
  */
 public class GenerateDumpCommand extends GTNHClientCommand {
 

@@ -5,13 +5,14 @@ import static mcp.mobius.waila.api.SpecialChars.*;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
-import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.EntityComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
@@ -19,7 +20,6 @@ import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
-import com.gtnewhorizons.wdmla.config.PluginsConfig;
 
 import mcp.mobius.waila.utils.ModIdentification;
 

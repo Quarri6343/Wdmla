@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This class is the actual tooltip object in Legacy Waila.
- * It is directly used by some Waila addons like Steve's cart.
+ * This class is the actual tooltip object in Legacy Waila. It is directly used by some Waila addons like Steve's cart.
+ * 
  * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.impl.ui.component.RootComponent}
  *
  * @param <E> usually String

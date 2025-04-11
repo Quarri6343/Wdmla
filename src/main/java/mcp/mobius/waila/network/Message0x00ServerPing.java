@@ -2,13 +2,13 @@ package mcp.mobius.waila.network;
 
 import java.util.HashMap;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraftforge.common.config.ConfigCategory;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 import mcp.mobius.waila.utils.WailaExceptionHandler;

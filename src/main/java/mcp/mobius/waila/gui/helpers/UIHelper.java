@@ -1,7 +1,5 @@
 package mcp.mobius.waila.gui.helpers;
 
-import com.gtnewhorizons.wdmla.overlay.GuiDraw;
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,11 +8,13 @@ import net.minecraft.util.Vec3;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
+
+import mcp.mobius.waila.api.BackwardCompatibility;
+
 /**
- * Waila graphics implementation
- * Some methods are reworked in WDMla side.
- * You should add methods to its Modern counterpart: {@link GuiDraw}
- * for Strings Helper: {@link mcp.mobius.waila.overlay.DisplayUtil}
+ * Waila graphics implementation Some methods are reworked in WDMla side. You should add methods to its Modern
+ * counterpart: {@link GuiDraw} for Strings Helper: {@link mcp.mobius.waila.overlay.DisplayUtil}
  */
 @BackwardCompatibility
 public class UIHelper {

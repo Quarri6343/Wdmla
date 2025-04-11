@@ -1,12 +1,12 @@
 package com.gtnewhorizons.wdmla.plugin.harvestability;
 
-import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.config.Configuration;
 
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 @SuppressWarnings("unused")

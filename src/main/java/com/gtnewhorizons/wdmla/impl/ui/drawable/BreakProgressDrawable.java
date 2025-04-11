@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
@@ -8,6 +7,7 @@ import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.impl.ui.value.Alpha;
 import com.gtnewhorizons.wdmla.impl.ui.value.HUDBlockDamage;
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 
 public class BreakProgressDrawable implements IDrawable {
 

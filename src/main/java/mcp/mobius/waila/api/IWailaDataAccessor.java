@@ -1,6 +1,5 @@
 package mcp.mobius.waila.api;
 
-import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,8 +9,11 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 
 /**
  * This class was used to provide block/TileEntity specific information to tooltip adder.<br>

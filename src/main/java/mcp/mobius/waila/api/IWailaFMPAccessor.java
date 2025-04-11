@@ -9,9 +9,7 @@ import net.minecraft.world.World;
 
 /**
  * This was the special accessor for Forge MultiParts mod. <br>
- * Don't use.
- * Normal version: {@link IWailaCommonAccessor}
- * <br>
+ * Don't use. Normal version: {@link IWailaCommonAccessor} <br>
  * <br>
  * The Accessor is used to get some basic data out of the game without having to request direct access to the game
  * engine.<br>

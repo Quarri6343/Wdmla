@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.vanilla;
 
-import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
@@ -55,15 +54,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
-import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
-import com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider;
-import com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.TooltipPosition;
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider;
+import com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;

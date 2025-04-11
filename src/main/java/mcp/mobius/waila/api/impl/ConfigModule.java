@@ -6,6 +6,7 @@ import mcp.mobius.waila.api.BackwardCompatibility;
 
 /**
  * All legacy Waila addons should register their boolean configs with this for storing them in Waila config file.
+ * 
  * @deprecated For static config entry, use {@link com.gtnewhorizon.gtnhlib.config.Config}.
  */
 @BackwardCompatibility

@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Don't use.
- * @deprecated  since 2014.
+ * 
+ * @deprecated since 2014.
  */
 @BackwardCompatibility
 @Deprecated

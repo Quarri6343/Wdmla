@@ -1,7 +1,8 @@
 package com.gtnewhorizons.wdmla.api.provider;
 
-import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 
 // spotless:off
 /**
@@ -40,13 +41,15 @@ public interface IServerDataProvider<T extends Accessor> extends IWDMlaProvider 
 
     /**
      * called in the server side to write server data into packet.
-     * @param data the packet the server will send back to client
+     * 
+     * @param data     the packet the server will send back to client
      * @param accessor accessor object constructed on server side
      */
     void appendServerData(NBTTagCompound data, T accessor);
 
     /**
      * checked from the client side so it will send packet for this provider
+     * 
      * @param accessor accessor object
      * @return is this provider requires packet
      */

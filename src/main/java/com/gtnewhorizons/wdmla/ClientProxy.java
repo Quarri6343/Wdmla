@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.gtnewhorizons.wdmla.command.PrintUnsupportedTEsCommand;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -14,12 +13,13 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import com.gtnewhorizons.wdmla.api.Mods;
-import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import com.gtnewhorizons.wdmla.command.GenerateDumpCommand;
+import com.gtnewhorizons.wdmla.command.PrintUnsupportedTEsCommand;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.overlay.WDMlaTickHandler;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
@@ -52,7 +52,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(tickHandler);
         FMLCommonHandler.instance().bus().register(this);
         ClientCommandHandler.instance.registerCommand(new GenerateDumpCommand());
-        if(WDMla.isDevEnv()) {
+        if (WDMla.isDevEnv()) {
             ClientCommandHandler.instance.registerCommand(new PrintUnsupportedTEsCommand());
         }
     }

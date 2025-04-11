@@ -1,12 +1,12 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.api.ui.style.ITextStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 
 public class TextDrawable implements IDrawable {
 

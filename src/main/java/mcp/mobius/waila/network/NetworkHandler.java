@@ -1,11 +1,11 @@
 package mcp.mobius.waila.network;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.api.BackwardCompatibility;
 
 /**
  * Waila splits network event to this class.

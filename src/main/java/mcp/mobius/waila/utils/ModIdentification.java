@@ -54,6 +54,7 @@ public class ModIdentification {
 
     /**
      * Grants mod name from itemstack.
+     * 
      * @param stack itemstack needs identification
      * @return mod name string
      */

@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 
 public class ItemDrawable implements IDrawable {
 

@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import com.gtnewhorizons.wdmla.plugin.PluginScanner;
-import com.gtnewhorizons.wdmla.test.TestPlugin;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 
 import com.google.common.cache.Cache;
+import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
@@ -20,10 +18,12 @@ import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
+import com.gtnewhorizons.wdmla.plugin.PluginScanner;
 import com.gtnewhorizons.wdmla.plugin.harvestability.MissingHarvestInfo;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemCollector;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemIterator;
 import com.gtnewhorizons.wdmla.test.TestMode;
+import com.gtnewhorizons.wdmla.test.TestPlugin;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;

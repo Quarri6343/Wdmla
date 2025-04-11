@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.config.PluginsConfig;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.harvestability.proxy.ProxyGregTech;
 
 public class BlockHelper {

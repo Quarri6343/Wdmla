@@ -8,8 +8,9 @@ import net.minecraft.util.ResourceLocation;
  * Vanilla ui icons from {@code Gui.icons} sprite sheet location.
  */
 public enum VanillaUIIcons implements IIcon {
+
     HEART(52, 0, 9, 9),
-    HEART_BG(52,9,9,9),
+    HEART_BG(52, 9, 9, 9),
     HHEART(61, 0, 9, 9),
     EHEART(52, 9, 9, 9),
     ARMOR(34, 9, 9, 9),
@@ -54,7 +55,7 @@ public enum VanillaUIIcons implements IIcon {
 
     @Override
     public float getInterpolatedU(double interpolation) {
-        return u + su * (float)interpolation;
+        return u + su * (float) interpolation;
     }
 
     @Override
@@ -69,7 +70,7 @@ public enum VanillaUIIcons implements IIcon {
 
     @Override
     public float getInterpolatedV(double interpolation) {
-        return v + sv * (float)interpolation;
+        return v + sv * (float) interpolation;
     }
 
     @Override

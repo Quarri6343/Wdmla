@@ -17,8 +17,8 @@ import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 /**
- * Faster sorting of map entries.
- * Backported from Jade.
+ * Faster sorting of map entries. Backported from Jade.
+ * 
  * @param <K> unique id of the entry want to sort
  * @param <V> content of the entry, bound with id
  */

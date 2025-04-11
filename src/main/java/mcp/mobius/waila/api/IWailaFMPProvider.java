@@ -6,9 +6,7 @@ import net.minecraft.item.ItemStack;
 
 /**
  * This was the special provider for Forge MultiParts mod. <br>
- * Don't use.
- * Normal version: {@link IWailaDataProvider}
- * <br>
+ * Don't use. Normal version: {@link IWailaDataProvider} <br>
  * <br>
  * Callback class interface used to provide FMP tooltip informations to Waila.<br>
  * All methods in this interface shouldn't to be called by the implementing mod. An instance of the class is to be
@@ -25,8 +23,8 @@ public interface IWailaFMPProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerHeadProvider
-     * client side.</br>
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerHeadProvider client
+     * side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
      * @param itemStack  Current block scanned, in ItemStack form.
@@ -41,8 +39,8 @@ public interface IWailaFMPProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerBodyProvider
-     * client side.</br>
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerBodyProvider client
+     * side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
      * @param itemStack  Current block scanned, in ItemStack form.
@@ -57,8 +55,8 @@ public interface IWailaFMPProvider {
 
     /**
      * Callback used to add lines to one of the three sections of the tooltip (Head, Body, Tail).</br>
-     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerTailProvider
-     * client side.</br>
+     * Will be used if the implementing class is registered via {@link IWailaRegistrar}.registerTailProvider client
+     * side.</br>
      * You are supposed to always return the modified input currenttip.</br>
      * 
      * @param itemStack  Current block scanned, in ItemStack form.

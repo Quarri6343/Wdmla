@@ -1,11 +1,11 @@
 package com.gtnewhorizons.wdmla.api;
 
-import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
 
 /**
  * The plugin annotating this must implement {@link IWDMlaPlugin}

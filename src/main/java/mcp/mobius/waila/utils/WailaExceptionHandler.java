@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.Level;
-
-import mcp.mobius.waila.Waila;
-import mcp.mobius.waila.api.BackwardCompatibility;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import mcp.mobius.waila.Waila;
+import mcp.mobius.waila.api.BackwardCompatibility;
+
 /**
- * Catches error and output information logs
+ * Catches error and output information logs <br>
  * TODO:Too little information, Reimplementation is mandatory. See snownee.jade.util.WailaExceptionHandler
  */
 @BackwardCompatibility
@@ -21,7 +21,8 @@ public class WailaExceptionHandler {
 
     private static ArrayList<String> errs = new ArrayList<String>();
 
-    public static List<String> handleErr(@NotNull Throwable e,@NotNull String className,@Nullable List<String> currenttip) {
+    public static List<String> handleErr(@NotNull Throwable e, @NotNull String className,
+            @Nullable List<String> currenttip) {
         if (!errs.contains(className)) {
             errs.add(className);
 

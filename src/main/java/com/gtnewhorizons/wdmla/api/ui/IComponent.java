@@ -48,27 +48,34 @@ public interface IComponent {
 
     /**
      * Client render tick event. Call everything that consists UI component.
+     * 
      * @param x x position in the minecraft screen coordinate
      * @param y y position in the minecraft screen coordinate
      */
     void tick(int x, int y);
 
     /**
-     * Must return positive value for rendering. If you want a negative sized element for layout, use {@link com.gtnewhorizons.wdmla.api.ui.sizer.IPadding}.
+     * Must return positive value for rendering. If you want a negative sized element for layout, use
+     * {@link com.gtnewhorizons.wdmla.api.ui.sizer.IPadding}.
+     * 
      * @return the ui component width.
      */
     int getWidth();
 
     /**
-     * Must return positive value for rendering. If you want a negative sized element for layout, use {@link com.gtnewhorizons.wdmla.api.ui.sizer.IPadding}.
+     * Must return positive value for rendering. If you want a negative sized element for layout, use
+     * {@link com.gtnewhorizons.wdmla.api.ui.sizer.IPadding}.
+     * 
      * @return the ui component height.
      */
     int getHeight();
 
     /**
      * Applies custom identifier of resource location to component for later lookup purpose.<br>
-     * If any component has potential to be used or replaced by other providers, appending a new tag is the best option.<br>
+     * If any component has potential to be used or replaced by other providers, appending a new tag is the best
+     * option.<br>
      * Only one tag can be applied to component for now.
+     * 
      * @param tag unique identifier of new or existing tag
      * @return this component object
      */
@@ -76,6 +83,7 @@ public interface IComponent {
 
     /**
      * get the tag of this component.
+     * 
      * @return the unique tag.
      */
     ResourceLocation getTag();

@@ -5,8 +5,6 @@ import static mcp.mobius.waila.api.SpecialChars.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
-import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -16,10 +14,14 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
+
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 /**
  * Processes Strings and ItemStack into valuable part.
+ * 
  * @see mcp.mobius.waila.gui.helpers.UIHelper
  */
 public class DisplayUtil {
@@ -30,6 +32,7 @@ public class DisplayUtil {
 
     /**
      * Strip all symbols from string includes Minecraft color code and Waila TTRender embedding
+     * 
      * @param s input string
      * @return stripped string
      */
@@ -42,6 +45,7 @@ public class DisplayUtil {
 
     /**
      * Strip Waila TTRender symbol
+     * 
      * @param s input string
      * @return stripped string
      */
@@ -79,6 +83,7 @@ public class DisplayUtil {
 
     /**
      * gets all item tooltip lines
+     * 
      * @param itemstack ItemStack that has custom tooltip
      * @return tooltip list
      */
@@ -105,6 +110,7 @@ public class DisplayUtil {
 
     /**
      * Gets the first line of item tooltip.
+     * 
      * @param itemstack ItemStack that has custom tooltip
      * @return display name
      */

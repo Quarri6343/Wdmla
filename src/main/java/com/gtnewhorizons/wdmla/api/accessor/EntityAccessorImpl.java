@@ -2,7 +2,6 @@ package com.gtnewhorizons.wdmla.api.accessor;
 
 import java.util.function.Supplier;
 
-import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,6 +14,7 @@ import net.minecraftforge.common.DimensionManager;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 
 import cpw.mods.fml.common.network.NetworkRegistry;

@@ -7,6 +7,7 @@ public interface IAmountStyle extends IRectStyle {
 
     /**
      * TODO:animated sprite instead of single color
+     * 
      * @return the single color for partially filling the background rectangle.
      */
     int getFilledColor();

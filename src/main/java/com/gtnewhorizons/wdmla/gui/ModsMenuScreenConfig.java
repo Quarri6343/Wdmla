@@ -3,8 +3,6 @@ package com.gtnewhorizons.wdmla.gui;
 import java.util.Arrays;
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.config.General;
-import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -14,14 +12,17 @@ import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.PluginsConfig;
+import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 import cpw.mods.fml.client.config.IConfigElement;
 import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
 /**
- * Main config screen class that adds five categories to root config screen. {@link ModsMenuScreenConfig#getMainCategories()}
+ * Main config screen class that adds five categories to root config screen.
+ * {@link ModsMenuScreenConfig#getMainCategories()}
  */
 @SuppressWarnings({ "unused", "rawtypes" })
 public class ModsMenuScreenConfig extends LiveEditGuiConfig {

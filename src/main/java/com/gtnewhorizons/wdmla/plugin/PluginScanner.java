@@ -7,9 +7,9 @@ import java.util.Set;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.discovery.ASMDataTable.ASMData;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -32,7 +32,7 @@ public enum PluginScanner {
                 uid = null;
             }
             List<String> deps = (List<String>) annotationInfo.get("deps");
-            if(!allModsLoaded(deps)) {
+            if (!allModsLoaded(deps)) {
                 Waila.log.info(String.format("skipped plugin %s loading: missing dependency", uid));
                 continue;
             }
@@ -43,12 +43,11 @@ public enum PluginScanner {
                     try {
                         IWDMlaPlugin inst = (IWDMlaPlugin) clazz.getDeclaredConstructor().newInstance();
                         results.add(inst);
-                    } catch (IllegalAccessException | InstantiationException | InvocationTargetException |
-                             NoSuchMethodException e) {
+                    } catch (IllegalAccessException | InstantiationException | InvocationTargetException
+                            | NoSuchMethodException e) {
                         WailaExceptionHandler.handleErr(e, clazz.getName(), null);
                     }
-                }
-                else {
+                } else {
                     Waila.log.info("skipped plugin %s loading: class is not IWDMlaPlugin", uid);
                 }
             } catch (ClassNotFoundException e) {

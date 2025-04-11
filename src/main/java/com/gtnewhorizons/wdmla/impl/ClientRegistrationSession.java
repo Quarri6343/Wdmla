@@ -17,7 +17,7 @@ import com.gtnewhorizons.wdmla.impl.lookup.IHierarchyLookup;
 import akka.japi.Pair;
 
 /**
- * Old implementation of Jade Registration process.
+ * Old implementation of Jade Registration process. <br>
  * TODO:Remove this. Catch up latest Jade.
  */
 public class ClientRegistrationSession {

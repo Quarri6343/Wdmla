@@ -1,13 +1,14 @@
 package com.gtnewhorizons.wdmla.plugin.debug;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraftforge.common.config.Configuration;
+
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraftforge.common.config.Configuration;
 
 @SuppressWarnings("unused")
 @WDMlaPlugin(uid = Identifiers.NAMESPACE_DEBUG)
@@ -24,9 +25,7 @@ public class DebugPlugin implements IWDMlaPlugin {
         registration.registerEntityComponent(CoordinatesProvider.getEntity(), Entity.class);
 
         WDMlaConfig.instance()
-                .getCategory(
-                        Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER
-                                + Identifiers.NAMESPACE_DEBUG)
+                .getCategory(Identifiers.CONFIG_AUTOGEN + Configuration.CATEGORY_SPLITTER + Identifiers.NAMESPACE_DEBUG)
                 .setLanguageKey("provider.wdmla.debug.category");
     }
 }

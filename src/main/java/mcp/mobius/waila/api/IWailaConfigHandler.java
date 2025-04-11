@@ -7,13 +7,12 @@ import java.util.Set;
  * This interface was for handling configuration file.<br>
  * All legacy plugins were registering their own config to here so all of them can be edited in Waila itself.<br>
  * Note this class is still being used actively to proxy Waila.cfg content to WDMla.<br>
- * Also, disabling this class means addons will have unexpected behaviour.
- * <br>
+ * Also, disabling this class means addons will have unexpected behaviour. <br>
  * <br>
  * Read-only interface for Waila internal config storage.<br>
  * An instance of this interface is passed to most of Waila callbacks as a way to change the behavior depending on
- * client settings.
- * Modern version : {@link com.gtnewhorizons.wdmla.config.WDMlaConfig}
+ * client settings. Modern version : {@link com.gtnewhorizons.wdmla.config.WDMlaConfig}
+ * 
  * @author ProfMobius
  *
  */

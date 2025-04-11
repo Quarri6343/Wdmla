@@ -7,7 +7,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * for unifying formatting,
+ * For unifying formatting.
+ * 
  * @see com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern
  */
 public class FormatUtil {

@@ -25,6 +25,7 @@ import mcp.mobius.waila.utils.WailaExceptionHandler;
 
 /**
  * Renders decorator in world.
+ * 
  * @see IWailaBlockDecorator
  */
 @Deprecated

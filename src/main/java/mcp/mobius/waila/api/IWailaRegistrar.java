@@ -20,7 +20,8 @@ package mcp.mobius.waila.api;
  * keyname refers to an unique key used internally for config query (cf {@link IWailaConfigHandler}). Those keys are
  * shared across Waila, keep them unique !<br>
  *
- * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration}, {@link com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration}
+ * @deprecated Modern counterpart: {@link com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration},
+ *             {@link com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration}
  * @author ProfMobius
  *
  */

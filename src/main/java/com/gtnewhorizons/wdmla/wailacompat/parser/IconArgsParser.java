@@ -4,7 +4,6 @@ import com.gtnewhorizons.wdmla.api.ITTRenderParser;
 import com.gtnewhorizons.wdmla.impl.ui.component.Component;
 import com.gtnewhorizons.wdmla.impl.ui.component.IconComponent;
 import com.gtnewhorizons.wdmla.overlay.VanillaUIIcons;
-import net.minecraft.client.gui.Gui;
 
 public class IconArgsParser implements ITTRenderParser {
 

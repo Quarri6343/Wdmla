@@ -9,8 +9,7 @@ import mcp.mobius.waila.api.impl.ConfigHandler;
 import mcp.mobius.waila.utils.Constants;
 
 /**
- * Waila display config which is also referenced on WDMla side.
- * These variables are public so expect addons depending on
+ * Waila display config which is also referenced on WDMla side. These variables are public so expect addons depending on
  */
 @BackwardCompatibility
 public class OverlayConfig {

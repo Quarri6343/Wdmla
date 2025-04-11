@@ -1,9 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.core;
 
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.IconComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import com.gtnewhorizons.wdmla.overlay.PotionIcon;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
@@ -13,15 +9,18 @@ import net.minecraft.util.StatCollector;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
-import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.impl.ui.component.IconComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.overlay.PotionIcon;
 import com.gtnewhorizons.wdmla.util.FormatUtil;
 
-// TODO: render status icon
 public enum StatusEffectProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
 
     INSTANCE;
@@ -59,7 +58,10 @@ public enum StatusEffectProvider implements IEntityComponentProvider, IServerDat
                 } else {
                     lineComponent = ThemeHelper.INSTANCE.success(builtLine);
                 }
-                tooltip.horizontal().child(new IconComponent(new PotionIcon(effect), PotionIcon.PATH).size(new Size(lineComponent.getHeight(), lineComponent.getHeight())))
+                tooltip.horizontal()
+                        .child(
+                                new IconComponent(new PotionIcon(effect), PotionIcon.PATH)
+                                        .size(new Size(lineComponent.getHeight(), lineComponent.getHeight())))
                         .child(lineComponent);
             }
         }

@@ -4,10 +4,12 @@ import com.gtnewhorizon.gtnhlib.config.Config;
 import com.gtnewhorizons.wdmla.WDMla;
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.impl.ui.DefaultThemes;
+
 import mcp.mobius.waila.api.impl.ConfigHandler;
 
 /**
- * List of WDMla general configs. Don't get confused with Waila general config in {@link ConfigHandler#reloadDefaultConfig()}<br>
+ * List of WDMla general configs. Don't get confused with Waila general config in
+ * {@link ConfigHandler#reloadDefaultConfig()}<br>
  * All static configuration entry which does not belong to specific plugin should go here.
  */
 @Config(modid = WDMla.MODID, category = "wdmla_general", configSubDirectory = "WDMla", filename = "general")

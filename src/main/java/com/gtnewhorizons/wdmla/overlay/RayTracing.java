@@ -21,7 +21,8 @@ import mcp.mobius.waila.utils.Constants;
 
 /**
  * RayTracing class from Waila.<br>
- * Important Note: WailaStack and WailaEntity are no longer considered when retrieving results!(Because they are way too outdated)
+ * Important Note: WailaStack and WailaEntity are no longer considered when retrieving results!(Because they are way too
+ * outdated)
  */
 public class RayTracing {
 

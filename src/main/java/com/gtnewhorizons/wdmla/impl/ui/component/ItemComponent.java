@@ -14,7 +14,9 @@ public class ItemComponent extends TooltipComponent {
     public static final int DEFAULT_H = 16;
 
     public ItemComponent(ItemStack itemStack) {
-        super(new ArrayList<>(), new Padding(-1, 0, 0, 0), new Size(DEFAULT_W, DEFAULT_H), new ItemDrawable(itemStack)); //internal offset fix
+        super(new ArrayList<>(),
+                // internal offset fix
+                new Padding(-1, 0, 0, 0), new Size(DEFAULT_W, DEFAULT_H), new ItemDrawable(itemStack));
     }
 
     public ItemComponent doDrawOverlay(boolean flag) {

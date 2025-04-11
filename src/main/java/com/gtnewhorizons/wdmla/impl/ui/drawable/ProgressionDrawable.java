@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
-import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
@@ -9,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.IFilledAmount;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 
 public class ProgressionDrawable implements IDrawable {
 

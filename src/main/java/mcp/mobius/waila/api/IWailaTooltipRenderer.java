@@ -4,8 +4,8 @@ import java.awt.Dimension;
 
 /**
  * I have switched the render system so this class no longer works.<br>
- * Common "rendername"s are supported in {@link com.gtnewhorizons.wdmla.wailacompat.TooltipCompat}.
- * I cannot guarantee I can support special cases which depends on this render.
+ * Common "rendername"s are supported in {@link com.gtnewhorizons.wdmla.wailacompat.TooltipCompat}. I cannot guarantee I
+ * can support special cases which depends on this render.
  *
  * @deprecated every renderer now implements {@link com.gtnewhorizons.wdmla.api.ui.IDrawable} instead
  */

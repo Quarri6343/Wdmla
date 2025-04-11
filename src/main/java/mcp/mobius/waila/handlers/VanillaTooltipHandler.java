@@ -1,11 +1,11 @@
 package mcp.mobius.waila.handlers;
 
-import mcp.mobius.waila.api.BackwardCompatibility;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mcp.mobius.waila.api.BackwardCompatibility;
 import mcp.mobius.waila.utils.ModIdentification;
 
 @Deprecated

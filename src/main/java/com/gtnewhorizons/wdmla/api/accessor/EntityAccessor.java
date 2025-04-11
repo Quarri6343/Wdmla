@@ -11,7 +11,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Provides essential current entity information to {@link com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider} for easy access<br>
+ * Provides essential current entity information to
+ * {@link com.gtnewhorizons.wdmla.api.provider.IEntityComponentProvider} for easy access<br>
  * without accessing internal engine.
  */
 public interface EntityAccessor extends Accessor {

@@ -14,6 +14,7 @@ import mcp.mobius.waila.server.ProxyServer;
 
 /**
  * Waila client proxy.
+ * 
  * @see com.gtnewhorizons.wdmla.ClientProxy
  */
 public class ProxyClient extends ProxyServer {

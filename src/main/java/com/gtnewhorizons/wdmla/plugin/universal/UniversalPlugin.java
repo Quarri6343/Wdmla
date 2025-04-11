@@ -1,6 +1,5 @@
 package com.gtnewhorizons.wdmla.plugin.universal;
 
-import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.common.config.Configuration;
@@ -9,6 +8,7 @@ import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
 @SuppressWarnings("unused")
