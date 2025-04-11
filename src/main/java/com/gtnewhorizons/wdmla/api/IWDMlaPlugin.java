@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.api;
 
+// spotless:off
 /**
  * The entry point of WDMla registration system.<br>
  * When it is defined with {@link WDMlaPlugin} annotation, its method will automatically be called by WDMla at appropriate timing.<br>
@@ -28,6 +29,7 @@ package com.gtnewhorizons.wdmla.api;
  * }
  * </pre>
  */
+// spotless:on
 public interface IWDMlaPlugin {
 
     /**

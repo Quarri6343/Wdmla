@@ -2,14 +2,15 @@ package com.gtnewhorizons.wdmla.api.ui;
 
 import net.minecraft.util.ResourceLocation;
 
+// spotless:off
 /**
  * Base UI Component.<br>
  * How to implement a simple component without considering child element:<br>
  * <ul>
- * <li>Prepare the custom style class like {@link com.gtnewhorizons.wdmla.api.ui.style.ITextStyle} to decide what parameter is required to construct ui element
+ * <li>Prepare the custom style class like {@link com.gtnewhorizons.wdmla.api.ui.style.ITextStyle} to decide what parameter is required to construct ui element</li>
  * <li>Prepare the {@link IDrawable} class.
- * This class will call rendering class to render the ui, based on provided style and {@link com.gtnewhorizons.wdmla.api.ui.sizer.IArea} information
- * <li>Implement {@link com.gtnewhorizons.wdmla.impl.ui.component.Component} class. Call the foreground(drawable) with provided condition in tick method.
+ * This class will call rendering class to render the ui, based on provided style and {@link com.gtnewhorizons.wdmla.api.ui.sizer.IArea} information</li>
+ * <li>Implement {@link com.gtnewhorizons.wdmla.impl.ui.component.Component} class. Call the foreground(drawable) with provided condition in tick method.</li>
  * </ul>
  * Full Example code:<br>
  * <pre>
@@ -42,6 +43,7 @@ import net.minecraft.util.ResourceLocation;
  * }
  * </pre>
  */
+// spotless:on
 public interface IComponent {
 
     /**

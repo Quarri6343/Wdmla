@@ -3,6 +3,7 @@ package com.gtnewhorizons.wdmla.api.provider;
 import com.gtnewhorizons.wdmla.api.accessor.Accessor;
 import net.minecraft.nbt.NBTTagCompound;
 
+// spotless:off
 /**
  * This class is on the both side, however the main function is only called on server side to send server specific data to client.<br>
  * Must have respective {@link IComponentProvider} implemented or the tooltip will not be shown in client.<br>
@@ -34,6 +35,7 @@ import net.minecraft.nbt.NBTTagCompound;
  * </pre>
  * @param <T> The type of accessor this provider accepts.
  */
+// spotless:on
 public interface IServerDataProvider<T extends Accessor> extends IWDMlaProvider {
 
     /**
