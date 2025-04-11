@@ -69,6 +69,9 @@ import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.plugin.universal.ItemStorageProvider;
 
+/**
+ * Registers providers depend on specific vanilla Minecraft mechanics with no mod interaction.
+ */
 @SuppressWarnings("unused")
 @WDMlaPlugin(uid = VanillaIdentifiers.NAMESPACE_MINECRAFT)
 public class VanillaPlugin implements IWDMlaPlugin {

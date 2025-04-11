@@ -56,6 +56,7 @@ import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
 
+
 @SuppressWarnings("UnstableApiUsage")
 public class ItemStorageProvider<T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
 

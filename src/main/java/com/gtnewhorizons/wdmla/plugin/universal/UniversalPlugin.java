@@ -11,6 +11,9 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
+/**
+ * Registers special storage related providers.
+ */
 @SuppressWarnings("unused")
 @WDMlaPlugin(uid = Identifiers.NAMESPACE_UNIVERSAL)
 public class UniversalPlugin implements IWDMlaPlugin {

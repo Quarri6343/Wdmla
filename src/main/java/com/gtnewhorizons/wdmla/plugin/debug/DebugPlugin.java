@@ -10,6 +10,9 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
+/**
+ * The base plugin that registers providers which provide less useful information to very wide range objects.
+ */
 @SuppressWarnings("unused")
 @WDMlaPlugin(uid = Identifiers.NAMESPACE_DEBUG)
 public class DebugPlugin implements IWDMlaPlugin {

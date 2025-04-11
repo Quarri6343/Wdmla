@@ -9,6 +9,9 @@ import com.gtnewhorizons.wdmla.api.Identifiers;
 import com.gtnewhorizons.wdmla.api.WDMlaPlugin;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 
+/**
+ * the plugin dedicated to register harvest tool and harvestability info providers.
+ */
 @SuppressWarnings("unused")
 @WDMlaPlugin(uid = HarvestabilityIdentifiers.NAMESPACE_HARVESTABILITY)
 public class HarvestabilityPlugin implements IWDMlaPlugin {

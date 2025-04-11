@@ -15,7 +15,8 @@ import com.gtnewhorizons.wdmla.impl.BlockAccessorClientHandler;
 import com.gtnewhorizons.wdmla.impl.EntityAccessorClientHandler;
 
 /**
- * The base plugin that registers everything essential
+ * The base plugin that registers everything essential.<br>
+ * any provider that provides important information to very wide range objects should be registered here.
  */
 @SuppressWarnings("unused")
 @WDMlaPlugin(uid = Identifiers.NAMESPACE_CORE)
