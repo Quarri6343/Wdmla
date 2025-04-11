@@ -1,5 +1,9 @@
 package com.gtnewhorizons.wdmla.api;
 
+/**
+ * A record holds colors of text
+ * @see com.gtnewhorizons.wdmla.api.ui.MessageType
+ */
 public class TextColors {
 
     public int _default;

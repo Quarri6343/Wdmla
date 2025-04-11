@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.IPadding;
 import com.gtnewhorizons.wdmla.api.ui.sizer.ISize;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * The interface for the advanced component which can append child components.<br>
@@ -28,15 +29,49 @@ public interface ITooltip extends IComponent {
 
     ITooltip amount(long current, long max, String amountText);
 
+    /**
+     * Appends any component to this tooltip as child.<br>
+     * Child component behaves same as normal component, 
+     * except it can be searched from parent {@link ITooltip#getChildWithTag(ResourceLocation)} and its position might be affected by parent position and setting
+     * Any tooltip is (mostly) the child of {@link com.gtnewhorizons.wdmla.impl.ui.component.RootComponent}.
+     * It can be chained like this:
+     * <pre>
+     * {@code
+     *             tooltip.child(new HPanelComponent().text("example1").item(new ItemStack(Items.apple)))
+     *                     .child(new AmountComponent(10, 100))
+     *                     .child(new ArmorComponent(10));
+     * }
+     * </pre>
+     * @param child The component which will be the child of this component
+     * @return this tooltip instance
+     */
     ITooltip child(@NotNull IComponent child);
 
+    /**
+     * @return the count of children object appended to this tooltip
+     */
     int childrenSize();
 
+    /**
+     * Clears all children appended to this tooltip.
+     */
     ITooltip clear();
 
     ITooltip tag(ResourceLocation tag);
 
+    /**
+     * Search children inside this component with a tag. The target must have a tag applied with {@link ITooltip#tag(ResourceLocation)}.
+     * @param tag the identifier to find a child
+     * @return the first component found
+     */
+    @Nullable
     IComponent getChildWithTag(ResourceLocation tag);
 
+    /**
+     * Replace a child inside this component with a specific tag.
+     * @param tag the identifier to find a child
+     * @param newChild the new child to replace. I strongly recommend give it the same tag with previous one
+     * @return The replacement was succeeded or not. If the child doesn't exist it will always return false
+     */
     boolean replaceChildWithTag(ResourceLocation tag, IComponent newChild);
 }

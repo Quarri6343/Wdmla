@@ -2,6 +2,10 @@ package com.gtnewhorizons.wdmla.api;
 
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * WDMla main constants
+ * @see mcp.mobius.waila.utils.Constants
+ */
 public final class Identifiers {
 
     // component tag

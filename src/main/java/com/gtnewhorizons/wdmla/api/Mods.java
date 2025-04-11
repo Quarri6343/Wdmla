@@ -9,6 +9,9 @@ import cpw.mods.fml.common.Loader;
 
 import java.util.function.Predicate;
 
+/**
+ * Mods list that WDMla has integration
+ */
 @ApiStatus.Internal
 public enum Mods {
 
@@ -33,6 +36,9 @@ public enum Mods {
         this.versionRequirement = versionRequirement;
     }
 
+    /**
+     * @return the mod is active with version requirement satisfied or not
+     */
     public boolean isLoaded() {
         if (this.loaded == null) {
             if (!Loader.isModLoaded(modID)) {

@@ -7,8 +7,8 @@ import java.time.temporal.TemporalUnit;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Minecraft Tick
- * 
+ * Implements Minecraft Tick for {@code java.time.Duration} package.<br>
+ * TODO: make a PR to GTNHLib along with Render Tick
  * @see java.time.temporal.ChronoUnit
  */
 @ApiStatus.Experimental
@@ -18,7 +18,7 @@ public enum Ticks implements TemporalUnit {
 
     @Override
     public Duration getDuration() {
-        return Duration.ofNanos(50000_000);
+        return Duration.ofNanos(50_000_000);
     }
 
     /**

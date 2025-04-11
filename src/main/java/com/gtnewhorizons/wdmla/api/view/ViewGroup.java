@@ -6,8 +6,10 @@ import java.util.List;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
+@ApiStatus.Experimental
 public class ViewGroup<T> {
 
     public List<T> views;

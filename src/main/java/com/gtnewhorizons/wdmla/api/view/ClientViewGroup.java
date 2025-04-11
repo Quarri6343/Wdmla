@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StringUtils;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -16,6 +17,7 @@ import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 
+@ApiStatus.Experimental
 public class ClientViewGroup<T> {
 
     public final List<T> views;

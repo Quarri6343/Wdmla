@@ -137,7 +137,6 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
         accessorHandlers.put((Class<Accessor>) clazz, (AccessorClientHandler<Accessor>) handler);
     }
 
-    @Override
     public AccessorClientHandler<Accessor> getAccessorHandler(Class<? extends Accessor> clazz) {
         return Objects.requireNonNull(accessorHandlers.get(clazz), () -> "No accessor handler for " + clazz);
     }

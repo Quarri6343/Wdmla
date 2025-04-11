@@ -1,5 +1,8 @@
 package com.gtnewhorizons.wdmla.api;
 
+/**
+ * Collection of defined provider priorities
+ */
 public final class TooltipPosition {
 
     public static final int DEFAULT_INFO = -10000;

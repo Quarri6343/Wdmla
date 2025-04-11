@@ -3,6 +3,10 @@ package com.gtnewhorizons.wdmla.api;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 
+/**
+ * Collections of pre-made settings that can override default or custom ui options.<br>
+ * These can be chosen in mod options menu
+ */
 public final class Theme {
 
     public int bgColor;

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.ApiStatus;
  * Classes implement this handles main accessor object of specific type, passing it to provider or server.<br>
  * Only one instance of AccessorHandler per type can be registered in Registration object
  * with {@link com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration#registerAccessorHandler(Class, AccessorClientHandler)}.<br>
- * Although this class can be implemented outside WDMla, Waila packet only supports Tile Entity and entity, so it can not be used anywhere.
+ * Although this class can be implemented outside WDMla, Waila packet only supports Tile Entity and entity, so it can not be used anywhere in current situation.
  * @param <T> Accessor type this class want to take care of
  */
 @ApiStatus.Internal

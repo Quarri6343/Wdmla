@@ -5,7 +5,13 @@ package com.gtnewhorizons.wdmla.api.ui;
  */
 public interface IFilledAmount {
 
+    /**
+     * @return The current amount of filling value which is always smaller than max value.
+     */
     long getCurrent();
 
+    /**
+     * @return The maximum amount of filling value.
+     */
     long getMax();
 }

@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The plugin annotate this must implement IWDMlaPlugin
+ * The plugin annotating this must implement {@link IWDMlaPlugin}
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
