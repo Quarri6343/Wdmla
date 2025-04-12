@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.impl.ui.value;
 
+import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.client.Minecraft;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
@@ -13,6 +14,10 @@ public class HUDBlockDamage {
         damage = Minecraft.getMinecraft().playerController.curBlockDamageMP;
     }
 
+    public HUDBlockDamage(int damage) {
+        this.damage = 1;
+    }
+
     public boolean isIntact() {
         return damage == 0;
     }
@@ -21,6 +26,9 @@ public class HUDBlockDamage {
      * get corresponding alpha value of the current block damage for HUD
      */
     public Alpha getAlphaForProgress() {
+        if(!General.breakProgress.fillAnimation) {
+            return new Alpha(1f);
+        }
         float alpha = Math.min(damage, 0.6F) + 0.4F * damage;
         return new Alpha(Math.min(alpha, 1));
     }

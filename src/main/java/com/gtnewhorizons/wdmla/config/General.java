@@ -19,6 +19,8 @@ public class General {
 
     public static TextColor textColor = new TextColor();
 
+    public static BreakProgress breakProgress = new BreakProgress();
+
     @Config.LangKey("option.wdmla.general.forcelegacy")
     @Config.DefaultBoolean(false)
     @Config.Comment("Disables all modern WDMla features. This will make the system ignore all settings in this category")
@@ -77,5 +79,30 @@ public class General {
         public int modName;
     }
 
-    // TODO:AmountStyle Config && Break Progress Config
+    @Config.LangKey("option.wdmla.breakprogress.category")
+    public static class BreakProgress {
+
+        @Config.LangKey("option.wdmla.general.breakprogress.position")
+        @Config.DefaultEnum("BOTTOM") //Waila displays thing at top of the screen by default
+        public Position position;
+
+        @Config.LangKey("option.wdmla.breakprogress.fill.animation")
+        @Config.DefaultBoolean(true)
+        public boolean fillAnimation;
+
+        @Config.LangKey("option.wdmla.breakprogress.fade.animation")
+        @Config.DefaultBoolean(true)
+        public boolean fadeAnimation;
+
+        @Config.LangKey("option.wdmla.general.breakprogress.fade.speed")
+        @Config.DefaultInt(4)
+        public int fadeSpeed;
+
+        public enum Position {
+            TOP,
+            BOTTOM
+        }
+    }
+
+    // TODO:AmountStyle Config
 }

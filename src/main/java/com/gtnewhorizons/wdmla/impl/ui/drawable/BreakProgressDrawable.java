@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
@@ -9,10 +11,13 @@ import com.gtnewhorizons.wdmla.impl.ui.value.Alpha;
 import com.gtnewhorizons.wdmla.impl.ui.value.HUDBlockDamage;
 import com.gtnewhorizons.wdmla.overlay.GuiDraw;
 
-public class BreakProgressDrawable implements IDrawable {
+public enum BreakProgressDrawable implements IDrawable {
+    INSTANCE;
 
-    private static @NotNull Alpha progressAlpha = new Alpha(0);
+    private @NotNull Alpha progressAlpha = new Alpha(0);
     private static @NotNull HUDBlockDamage savedDamage = new HUDBlockDamage();
+    public boolean isBlockBrokenRecently = false;
+
 
     @Override
     public void draw(IArea area) {
@@ -22,14 +27,25 @@ public class BreakProgressDrawable implements IDrawable {
         }
 
         if (!damage.isIntact()) {
-            progressAlpha = damage.getAlphaForProgress();
             savedDamage = damage;
+            progressAlpha = savedDamage.getAlphaForProgress();
+            isBlockBrokenRecently = false;
         } else {
-            progressAlpha = progressAlpha.fade();
+            if (isBlockBrokenRecently) {
+                savedDamage = new HUDBlockDamage(1);
+                progressAlpha = savedDamage.getAlphaForProgress();
+                isBlockBrokenRecently = false;
+            }
+            else {
+                progressAlpha = progressAlpha.fade();
+            }
         }
 
         int color = progressAlpha.apply(ColorPalette.BREAK_PROGRESS_DEFAULT); // TODO: change color with harvestability
 
+        if (General.breakProgress.position == General.BreakProgress.Position.BOTTOM) {
+            area = new Area(area.getX(), area.getEY(), area.getEX(), area.getEY());
+        }
         GuiDraw.drawGradientRect(savedDamage.computeDrawArea(area), color, color);
     }
 }

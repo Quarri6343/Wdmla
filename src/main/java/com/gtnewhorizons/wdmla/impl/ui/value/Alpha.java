@@ -1,5 +1,7 @@
 package com.gtnewhorizons.wdmla.impl.ui.value;
 
+import com.gtnewhorizons.wdmla.config.General;
+
 /**
  * Alpha value of the color
  */
@@ -22,8 +24,8 @@ public class Alpha {
      */
     public Alpha fade() {
         float elapsedSecond = (float) (System.currentTimeMillis() - initMilliSecond) / 1000;
-        float fadedAlpha = value - elapsedSecond * 4;
-        if (fadedAlpha < 0) {
+        float fadedAlpha = value - elapsedSecond * General.breakProgress.fadeSpeed;
+        if (fadedAlpha < 0 || !General.breakProgress.fadeAnimation) {
             fadedAlpha = 0;
         }
 
@@ -41,7 +43,7 @@ public class Alpha {
         int red = (color >> 16) & 0xFF;
         int green = (color >> 8) & 0xFF;
         int blue = color & 0xFF;
-        int appliedAlpha = (int) (value * 255); // アルファ値を0〜255の範囲に変換
+        int appliedAlpha = (int) (value * 255);
         return (appliedAlpha << 24) | (red << 16) | (green << 8) | blue;
     }
 }

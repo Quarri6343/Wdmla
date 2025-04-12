@@ -14,7 +14,7 @@ import com.gtnewhorizons.wdmla.util.GLStateHelper;
 public final class RootComponent extends VPanelComponent {
 
     private final @NotNull IDrawable background = new BackgroundDrawable();
-    private final @NotNull IDrawable breakProgress = new BreakProgressDrawable();
+    private final @NotNull IDrawable breakProgress = BreakProgressDrawable.INSTANCE;
 
     public RootComponent() {
         super();
