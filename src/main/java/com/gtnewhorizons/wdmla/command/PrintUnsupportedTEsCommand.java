@@ -14,10 +14,13 @@ import com.gtnewhorizons.wdmla.plugin.harvestability.HarvestabilityIdentifiers;
 
 import cpw.mods.fml.common.registry.GameData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Output tile entities which have no WDMla provider associated for developers.<br>
  * This is especially useful to list up all forgotten tile entity of the mod. <br>
- * TODO:blacklist for unwanted tile entity
  */
 public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
 
@@ -32,7 +35,7 @@ public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
             return;
         }
 
-        sender.addChatMessage(new ChatComponentText("Following tile entities are not supported by WDMla"));
+        List<TileEntity> unSupportedTEOutputs = new ArrayList<>();
 
         for (Object block : GameData.getBlockRegistry()) {
             if (!(block instanceof ITileEntityProvider tileEntityProvider)) {
@@ -46,17 +49,34 @@ public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
                                     && !provider.getUid().getResourceDomain()
                                             .equals(HarvestabilityIdentifiers.NAMESPACE_HARVESTABILITY)
                                     && !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_UNIVERSAL)
-                                    && !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_CORE))
+                                    && !provider.getUid().getResourceDomain().equals(Identifiers.NAMESPACE_DEBUG))
                     .count();
             long supportedStorageProvidersCount = WDMlaCommonRegistration.instance().itemStorageProviders.entries()
                     .filter(classCollectionEntry -> classCollectionEntry.getKey().isInstance(block)).count();
             // TODO: fluid, power
             if (supportedNonGlobalProviderCount == 0 && supportedStorageProvidersCount == 0) {
                 TileEntity te = tileEntityProvider.createNewTileEntity(mpPlayer.worldObj, 0);
-                if (te != null) {
-                    sender.addChatMessage(new ChatComponentText(te.getClass().getCanonicalName()));
+                if (te != null && !BlackList.blackListedTE.contains(te.getClass().getCanonicalName())) {
+                    unSupportedTEOutputs.add(te);
                 }
             }
         }
+
+        if(!unSupportedTEOutputs.isEmpty()) {
+            sender.addChatMessage(new ChatComponentText("Following tile entities are not supported by WDMla"));
+            for (TileEntity te : unSupportedTEOutputs) {
+                sender.addChatMessage(new ChatComponentText(te.getClass().getCanonicalName()));
+            }
+        }
+        else {
+            sender.addChatMessage(new ChatComponentText("Nothing has been found so far!"));
+        }
+    }
+
+    //simple blacklist implementation to make result view clean
+    private class BlackList {
+        private static final List<String> blackListedTE = new ArrayList<>(Arrays.asList(
+                "net.minecraft.tileentity.TileEntitySign",
+                "net.minecraft.tileentity.TileEntityEndPortal"));
     }
 }
