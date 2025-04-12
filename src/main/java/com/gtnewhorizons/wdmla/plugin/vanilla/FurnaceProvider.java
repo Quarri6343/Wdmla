@@ -7,7 +7,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IBlockComponentProvider;
@@ -23,7 +22,6 @@ public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvi
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor) {
         int cookTime = accessor.getServerData().getShort("CookTime");
-        cookTime = Math.round(cookTime / 20.0f);
 
         ItemStack[] items = new ItemStack[3];
         NBTTagList itemsTag = accessor.getServerData().getTagList("Items", 10);
@@ -50,18 +48,11 @@ public enum FurnaceProvider implements IBlockComponentProvider, IServerDataProvi
         }
 
         if (!allEmpty) {
-            IComponent legacyProcessText = null;
-            if (cookTime != 0) {
-                legacyProcessText = ThemeHelper.INSTANCE.value(
-                        StatCollector.translateToLocal("hud.msg.wdmla.progress"),
-                        String.format(StatCollector.translateToLocal("hud.msg.wdmla.progress.seconds"), cookTime, 10));
-            }
-            IComponent progressComponent = ThemeHelper.INSTANCE.itemProgress(
+            IComponent progressComponent = ThemeHelper.INSTANCE.furnaceLikeProgress(
                     Arrays.asList(items[0], items[1]),
                     Arrays.asList(items[2]),
                     cookTime,
-                    10,
-                    legacyProcessText,
+                    200,
                     accessor.showDetails());
             if (progressComponent != null) {
                 tooltip.child(progressComponent);

@@ -34,12 +34,11 @@ public enum TestThemeBlockProvider implements IBlockComponentProvider {
         tooltip.child(ThemeHelper.INSTANCE.amount(5, 10, new TextComponent("This is test amount")));
         tooltip.child(ThemeHelper.INSTANCE.value("The answer", "42"));
         tooltip.child(
-                ThemeHelper.INSTANCE.itemProgress(
+                ThemeHelper.INSTANCE.furnaceLikeProgress(
                         Arrays.asList(new ItemStack(Items.egg)),
                         Arrays.asList(new ItemStack(Items.chicken)),
                         1,
                         8,
-                        new TextComponent("1 / 8"),
-                        accessor.showDetails()));
+                        accessor.showDetails(), new TextComponent("1 / 8")));
     }
 }

@@ -55,7 +55,6 @@ hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=s
 hud.msg.wdmla.minutes=m
 hud.msg.wdmla.hours=h
-hud.msg.wdmla.progress.seconds=%ds / %ds
 hud.msg.wdmla.blocks=blocks
 hud.msg.wdmla.blockspersecond=blocks/sec
 hud.msg.wdmla.percent=%
