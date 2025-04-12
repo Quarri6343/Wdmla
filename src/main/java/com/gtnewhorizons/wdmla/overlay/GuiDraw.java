@@ -206,6 +206,9 @@ public final class GuiDraw {
     }
 
     public static void drawTexturedModelRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA,  GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         float zLevel = 0.0F;
@@ -217,6 +220,8 @@ public final class GuiDraw {
         tessellator.addVertexWithUV(x + w, y, zLevel, (u + tw) * f, (v) * f1);
         tessellator.addVertexWithUV(x, y, zLevel, (u) * f, (v) * f1);
         tessellator.draw();
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
     }
 
     public static void renderVanillaIcon(int x, int y, int w, int h, IIcon icon, ResourceLocation path) {
