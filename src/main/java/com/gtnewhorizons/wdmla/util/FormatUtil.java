@@ -14,17 +14,21 @@ import java.util.Locale;
 public class FormatUtil {
 
     /**
-     * Example: 123,456.79
+     * Example: 123456.789 -> 123,456.79
      */
     public static final DecimalFormat STANDARD = getDecimalFormat();
     /**
-     * Example: 01 (for two-digit time unit)
+     * Example: 1 -> 01 (for two-digit time unit)
      */
     public static final DecimalFormat TIME_PART = getTimePartFormat();
     /**
-     * Example: 123456.79
+     * Example: 123456.789 -> 123456.79
      */
     public static final DecimalFormat STANDARD_NO_GROUP = getNoGroupFormat();
+    /**
+     * Example: 0.12345 -> 12%
+     */
+    public static final NumberFormat PERCENTAGE_STANDARD = getPercentageStandardFormat();
 
     private static DecimalFormat getDecimalFormat() {
         DecimalFormat decimalFormat;
@@ -71,5 +75,13 @@ public class FormatUtil {
         decimalFormat.setMaximumFractionDigits(2);
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         return decimalFormat;
+    }
+
+    private static NumberFormat getPercentageStandardFormat() {
+        NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US); // we don't want it to depend on JVM system
+        percentFormat.setGroupingUsed(false);
+        percentFormat.setMaximumFractionDigits(0);
+        percentFormat.setRoundingMode(RoundingMode.HALF_UP);
+        return percentFormat;
     }
 }

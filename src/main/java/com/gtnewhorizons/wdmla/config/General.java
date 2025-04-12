@@ -82,6 +82,10 @@ public class General {
     @Config.LangKey("option.wdmla.breakprogress.category")
     public static class BreakProgress {
 
+        @Config.LangKey("option.wdmla.general.breakprogress.mode")
+        @Config.DefaultEnum("FILLING_BAR")
+        public Mode mode;
+
         @Config.LangKey("option.wdmla.general.breakprogress.position")
         @Config.DefaultEnum("BOTTOM") //Waila displays thing at top of the screen by default
         public Position position;
@@ -97,6 +101,12 @@ public class General {
         @Config.LangKey("option.wdmla.general.breakprogress.fade.speed")
         @Config.DefaultInt(4)
         public int fadeSpeed;
+
+        public enum Mode {
+            FILLING_BAR,
+            TEXT,
+            NONE
+        }
 
         public enum Position {
             TOP,

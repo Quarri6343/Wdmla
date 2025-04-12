@@ -21,6 +21,10 @@ public enum BreakProgressDrawable implements IDrawable {
 
     @Override
     public void draw(IArea area) {
+        if(General.breakProgress.mode != General.BreakProgress.Mode.FILLING_BAR) {
+            return;
+        }
+
         HUDBlockDamage damage = new HUDBlockDamage();
         if (damage.isIntact() && progressAlpha.isTransparent()) {
             return;
