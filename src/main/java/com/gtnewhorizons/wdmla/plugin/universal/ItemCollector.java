@@ -17,7 +17,12 @@ public class ItemCollector<T> {
     public static final int MAX_SIZE = 54;
     public static final ItemCollector<?> EMPTY = new ItemCollector<>(null);
 
-    private final ItemStackMap<Integer> items = new ItemStackMap<>();
+    /**
+     * ItemStack Lookup system from GTNHLib<br>
+     * We must enable these to render itemstack:<br>
+     * item meta (for most items), item damage (ex. GregTech MetaItems) and item NBT (ex. Tinker's Construct Tools)
+     */
+    private final ItemStackMap<Integer> items = new ItemStackMap<>(true);
     private final ItemIterator<T> iterator;
     public long version;
     public long lastTimeFinished;
