@@ -57,7 +57,7 @@ hud.msg.wdmla.minutes=m
 hud.msg.wdmla.hours=h
 hud.msg.wdmla.blocks=blocks
 hud.msg.wdmla.blockspersecond=blocks/sec
-hud.msg.wdmla.percent=%
+hud.msg.wdmla.item.count=x
 
 # information
 hud.msg.wdmla.growth=Growth

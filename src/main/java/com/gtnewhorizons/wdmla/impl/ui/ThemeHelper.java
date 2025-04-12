@@ -6,11 +6,13 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 import java.util.List;
 
 import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -197,5 +199,18 @@ public class ThemeHelper {
 
     public IComponent value(String entry, String value) {
         return new HPanelComponent().text(String.format("%s: ", entry)).child(info(value));
+    }
+
+    /**
+     * Construct a component to display an ItemStack in "(icon) 3x Apple" format
+     */
+    public IComponent itemStackFullLine(ItemStack stack) {
+        String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
+        TextComponent name = new TextComponent(strippedName);
+        int itemSize = name.getHeight();
+        ITooltip hPanel = new HPanelComponent().child(
+                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
+        String s = String.valueOf(stack.stackSize); // TODO: unit format
+        return hPanel.text(s).text(StatCollector.translateToLocal("hud.msg.wdmla.item.count") + StringUtils.EMPTY).child(name);
     }
 }

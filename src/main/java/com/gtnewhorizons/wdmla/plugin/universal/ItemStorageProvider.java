@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.ItemStack;
@@ -198,21 +199,13 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     if (itemView.description != null) {
                         int itemSize = itemView.description.getHeight();
                         elements.child(
-                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
-                        elements.child(itemView.description);
+                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)))
+                                .child(itemView.description);
                     } else {
-                        String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
-                        TextComponent name = new TextComponent(strippedName);
-                        int itemSize = name.getHeight();
-                        elements.child(
-                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
-                        String s = String.valueOf(stack.stackSize); // TODO: unit format
-                        elements.text(s).text("× ").child(name);
+                        elements.child(ThemeHelper.INSTANCE.itemStackFullLine(stack));
                     }
                 } else if (itemView.amountText != null) {
-                    elements.child(
-                            new ItemComponent(stack).stackSizeOverride(itemView.amountText)
-                                    .padding(new Padding(-1, 0, 0, 0)));
+                    elements.child(new ItemComponent(stack).stackSizeOverride(itemView.amountText));
                 } else {
                     elements.item(stack);
                 }
