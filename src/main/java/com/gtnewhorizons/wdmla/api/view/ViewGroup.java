@@ -78,7 +78,7 @@ public class ViewGroup<T> {
             views.add(view);
         }
 
-        String id = data.getString("id");
+        String id = data.hasKey("id") ? data.getString("id") : null;
         NBTTagCompound extraData = data.hasKey("extradata") ? data.getCompoundTag("extradata") : null;
 
         return new ViewGroup<>(views, id, extraData);

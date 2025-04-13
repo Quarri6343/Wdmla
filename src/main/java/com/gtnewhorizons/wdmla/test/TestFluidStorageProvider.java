@@ -22,7 +22,7 @@ public enum TestFluidStorageProvider implements IServerExtensionProvider<FluidVi
     public List<ClientViewGroup<FluidView>> getClientGroups(Accessor accessor, List<ViewGroup<FluidView.Data>> groups) {
         return ClientViewGroup.map(groups, FluidView::readDefault, (group, clientGroup) -> {
             if (group.id != null) {
-                clientGroup.title = group.id; //no title rendered unless boxprogress > 1
+                clientGroup.title = group.id;
             }
             clientGroup.messageType = MessageType.SUCCESS;
         });

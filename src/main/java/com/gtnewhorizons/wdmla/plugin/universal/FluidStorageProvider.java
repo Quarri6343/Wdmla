@@ -97,6 +97,7 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                                 new RectComponent()
                                         .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
                                         .size(new Size(30, 1)));
+                        tooltip.child(hPanel);
                     }
                     for (var view : group.views) {
                         IComponent mainText;
@@ -127,6 +128,7 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                         switch (showMode) {
                             case GAUGE -> {
                                 //TODO:adjust the size with the longest text
+                                //TODO:invert text color with bright fluid
                                 tooltip.child(new AmountComponent(view.ratio).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(150,12))
                                         .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(mainText)));
                             }
