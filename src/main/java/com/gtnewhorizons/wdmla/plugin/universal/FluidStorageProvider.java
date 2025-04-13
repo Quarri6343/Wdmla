@@ -73,6 +73,10 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
 
     @Override
     public void appendTooltip(ITooltip tooltip, T accessor) {
+        if(!accessor.showDetails() && PluginsConfig.universal.fluidStorage.detailed) {
+            return;
+        }
+
         List<ClientViewGroup<FluidView>> groups = ClientProxy.mapToClientGroups(
                 accessor,
                 Identifiers.FLUID_STORAGE,
@@ -105,10 +109,12 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                         ThemeHelper helper = ThemeHelper.INSTANCE;
                         String currentStr = FormatUtil.STANDARD.format(view.current) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
                         String maxStr = FormatUtil.STANDARD.format(view.max) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
+                        PluginsConfig.Universal.FluidStorage.Mode showMode =
+                                General.forceLegacy ? PluginsConfig.Universal.FluidStorage.Mode.TEXT : PluginsConfig.universal.fluidStorage.mode;
                         if (view.overrideText != null) {
                             mainText = new TextComponent(view.overrideText);
                         } else if (view.fluidName == null) {
-                            if(accessor.showDetails()) {
+                            if(accessor.showDetails() && showMode != PluginsConfig.Universal.FluidStorage.Mode.GAUGE) {
                                 mainText = new HPanelComponent()
                                         .child(helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty")))
                                         .text(": / ").text(maxStr);
@@ -118,7 +124,7 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             }
                         } else {
                             String fluidName = DisplayUtil.stripSymbols(view.fluidName);
-                            if (accessor.showDetails()) {
+                            if (accessor.showDetails() && showMode != PluginsConfig.Universal.FluidStorage.Mode.GAUGE) {
                                 mainText = new HPanelComponent()
                                         .child(helper.info(currentStr))
                                         .text(" / ").text(maxStr);
@@ -127,12 +133,11 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             }
                             mainText = new HPanelComponent().child(helper.info(fluidName)).text(": ").child(mainText);
                         }
-                        PluginsConfig.Universal.FluidStorage.Mode showMode = PluginsConfig.universal.fluidStorage.mode;
                         switch (showMode) {
                             case GAUGE -> {
                                 //TODO:adjust the size with the longest text
                                 //TODO:invert text color with bright fluid
-                                tooltip.child(new AmountComponent(view.current, view.max).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(150,12))
+                                tooltip.child(new AmountComponent(view.current, view.max).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(125,12))
                                         .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(mainText)));
                             }
                             case ICON_TEXT -> {
@@ -228,6 +233,11 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
     @Override
     public int getDefaultPriority() {
         return TooltipPosition.TAIL;
+    }
+
+    @Override
+    public boolean shouldRequestData(T accessor) {
+        return accessor.showDetails() || !PluginsConfig.universal.fluidStorage.detailed;
     }
 
     public enum Extension implements IServerExtensionProvider<FluidView.Data>, IClientExtensionProvider<FluidView.Data, FluidView> {

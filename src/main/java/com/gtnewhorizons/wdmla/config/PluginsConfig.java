@@ -100,6 +100,10 @@ public class PluginsConfig {
             @Config.DefaultInt(4)
             public int normalAmount;
 
+            @Config.LangKey("option.wdmla.universal.fluid.detailed")
+            @Config.DefaultBoolean(false)
+            public boolean detailed;
+
             public enum Mode {
                 GAUGE,
                 ICON_TEXT,

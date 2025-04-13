@@ -274,6 +274,7 @@ option.wdmla.universal.detailed.amount=Detailed Amount
 option.wdmla.universal.items.per.line=Items per Line
 option.wdmla.universal.show.name.amount=Show name Threshold
 option.wdmla.universal.fluid.normal.amount=Amount
+option.wdmla.universal.fluid.detailed=Detailed-Only
 
 # vanilla plugin options
 option.wdmla.vanilla.show.petsitting=Show is Pet Sitting
