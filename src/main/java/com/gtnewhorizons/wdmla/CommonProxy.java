@@ -9,19 +9,22 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-import com.google.common.collect.Lists;
-import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
-import com.gtnewhorizons.wdmla.api.view.FluidView;
-import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 
 import com.google.common.cache.Cache;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
 import com.gtnewhorizons.wdmla.api.accessor.Accessor;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import com.gtnewhorizons.wdmla.config.WDMlaConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
@@ -41,12 +44,6 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-import net.minecraft.util.Tuple;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
 
 public class CommonProxy {
 
@@ -174,9 +171,9 @@ public class CommonProxy {
         }
 
         int remaining = storage.length - emptyTanks - map.size();
-        ViewGroup<FluidView.Data> group = new ViewGroup<>(map.entrySet().stream()
-                .map(entry -> new FluidView.Data(entry.getKey(), entry.getValue()))
-                .collect(Collectors.toList()));
+        ViewGroup<FluidView.Data> group = new ViewGroup<>(
+                map.entrySet().stream().map(entry -> new FluidView.Data(entry.getKey(), entry.getValue()))
+                        .collect(Collectors.toList()));
         if (remaining > 0) {
             group.getExtraData().setInteger("+", remaining);
         }

@@ -1,5 +1,21 @@
 package com.gtnewhorizons.wdmla.plugin.universal;
 
+import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+
+import org.jetbrains.annotations.Nullable;
+
 import com.gtnewhorizons.wdmla.ClientProxy;
 import com.gtnewhorizons.wdmla.CommonProxy;
 import com.gtnewhorizons.wdmla.api.Identifiers;
@@ -38,23 +54,10 @@ import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
 import com.gtnewhorizons.wdmla.util.FormatUtil;
+
 import mcp.mobius.waila.overlay.DisplayUtil;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
-
-public class FluidStorageProvider <T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
+public class FluidStorageProvider<T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
 
     public static ForBlock getBlock() {
         return ForBlock.INSTANCE;
@@ -65,10 +68,12 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
     }
 
     public static class ForBlock extends FluidStorageProvider<BlockAccessor> {
+
         private static final ForBlock INSTANCE = new ForBlock();
     }
 
     public static class ForEntity extends FluidStorageProvider<EntityAccessor> {
+
         private static final ForEntity INSTANCE = new ForEntity();
     }
 
@@ -87,98 +92,101 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
     }
 
     public void append(ITooltip tooltip, T accessor, List<ClientViewGroup<FluidView>> groups) {
-        if(!accessor.showDetails() && PluginsConfig.universal.fluidStorage.detailed) {
+        if (!accessor.showDetails() && PluginsConfig.universal.fluidStorage.detailed) {
             return;
         }
 
         boolean renderGroup = groups.size() > 1 || groups.get(0).shouldRenderGroup();
-        ClientViewGroup.tooltip(
-                tooltip, groups, renderGroup, (theTooltip, group) -> {
-                    if (renderGroup && group.title != null) {
-                        Theme theme = General.currentTheme.get();
-                        ITooltip hPanel = new HPanelComponent()
-                                .style(new PanelStyle().alignment(ComponentAlignment.CENTER));
-                        hPanel.child(
-                                new RectComponent()
-                                        .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
-                                        .size(new Size(20, 1)));
-                        hPanel.child(new TextComponent(group.title).scale(0.6f));
-                        hPanel.child(
-                                new RectComponent()
-                                        .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
-                                        .size(new Size(30, 1)));
-                        tooltip.child(hPanel);
+        ClientViewGroup.tooltip(tooltip, groups, renderGroup, (theTooltip, group) -> {
+            if (renderGroup && group.title != null) {
+                Theme theme = General.currentTheme.get();
+                ITooltip hPanel = new HPanelComponent().style(new PanelStyle().alignment(ComponentAlignment.CENTER));
+                hPanel.child(
+                        new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                .size(new Size(20, 1)));
+                hPanel.child(new TextComponent(group.title).scale(0.6f));
+                hPanel.child(
+                        new RectComponent().style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                .size(new Size(30, 1)));
+                tooltip.child(hPanel);
+            }
+            for (var view : group.views) {
+                IComponent mainText;
+                ThemeHelper helper = ThemeHelper.INSTANCE;
+                String currentStr = FormatUtil.STANDARD.format(view.current)
+                        + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
+                String maxStr = FormatUtil.STANDARD.format(view.max)
+                        + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
+                PluginsConfig.Universal.FluidStorage.Mode showMode = General.forceLegacy
+                        ? PluginsConfig.Universal.FluidStorage.Mode.TEXT
+                        : PluginsConfig.universal.fluidStorage.mode;
+                if (view.overrideText != null) {
+                    mainText = new TextComponent(view.overrideText);
+                } else if (view.fluidName == null) {
+                    if (accessor.showDetails() && showMode != PluginsConfig.Universal.FluidStorage.Mode.GAUGE) {
+                        mainText = new HPanelComponent()
+                                .child(helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty"))).text(": / ")
+                                .text(maxStr);
+                    } else {
+                        mainText = helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty"));
                     }
-                    for (var view : group.views) {
-                        IComponent mainText;
-                        ThemeHelper helper = ThemeHelper.INSTANCE;
-                        String currentStr = FormatUtil.STANDARD.format(view.current) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
-                        String maxStr = FormatUtil.STANDARD.format(view.max) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
-                        PluginsConfig.Universal.FluidStorage.Mode showMode =
-                                General.forceLegacy ? PluginsConfig.Universal.FluidStorage.Mode.TEXT : PluginsConfig.universal.fluidStorage.mode;
-                        if (view.overrideText != null) {
-                            mainText = new TextComponent(view.overrideText);
-                        } else if (view.fluidName == null) {
-                            if(accessor.showDetails() && showMode != PluginsConfig.Universal.FluidStorage.Mode.GAUGE) {
-                                mainText = new HPanelComponent()
-                                        .child(helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty")))
-                                        .text(": / ").text(maxStr);
-                            }
-                            else {
-                                mainText = helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty"));
-                            }
+                } else {
+                    String fluidName = DisplayUtil.stripSymbols(view.fluidName);
+                    if (accessor.showDetails() && showMode != PluginsConfig.Universal.FluidStorage.Mode.GAUGE) {
+                        mainText = new HPanelComponent().child(helper.info(currentStr)).text(" / ").text(maxStr);
+                    } else {
+                        mainText = helper.info(currentStr);
+                    }
+                    mainText = new HPanelComponent().child(helper.info(fluidName)).text(": ").child(mainText);
+                }
+                switch (showMode) {
+                    case GAUGE -> {
+                        // TODO:adjust the size with the longest text
+                        // TODO:invert text color with bright fluid
+                        AmountStyle amountStyle = new AmountStyle().overlay(new FluidDrawable(view.overlay));
+                        if (view.hasScale) {
+                            amountStyle.alternateFilledColor(ColorPalette.AMOUNT_BORDER_WAILA);
+                        }
+                        tooltip.child(
+                                new AmountComponent(view.current, view.max).style(amountStyle).size(new Size(125, 12))
+                                        .child(
+                                                new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING)
+                                                        .child(mainText)));
+                    }
+                    case ICON_TEXT -> {
+                        if (view.overlay != null) {
+                            tooltip.horizontal()
+                                    .child(
+                                            new FluidComponent(view.overlay)
+                                                    .size(new Size(mainText.getHeight(), mainText.getHeight())))
+                                    .child(mainText);
                         } else {
-                            String fluidName = DisplayUtil.stripSymbols(view.fluidName);
-                            if (accessor.showDetails() && showMode != PluginsConfig.Universal.FluidStorage.Mode.GAUGE) {
-                                mainText = new HPanelComponent()
-                                        .child(helper.info(currentStr))
-                                        .text(" / ").text(maxStr);
-                            } else {
-                                mainText = helper.info(currentStr);
-                            }
-                            mainText = new HPanelComponent().child(helper.info(fluidName)).text(": ").child(mainText);
-                        }
-                        switch (showMode) {
-                            case GAUGE -> {
-                                //TODO:adjust the size with the longest text
-                                //TODO:invert text color with bright fluid
-                                AmountStyle amountStyle = new AmountStyle().overlay(new FluidDrawable(view.overlay));
-                                if(view.hasScale) {
-                                    amountStyle.alternateFilledColor(ColorPalette.AMOUNT_BORDER_WAILA);
-                                }
-                                tooltip.child(new AmountComponent(view.current, view.max).style(amountStyle).size(new Size(125,12))
-                                        .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(mainText)));
-                            }
-                            case ICON_TEXT -> {
-                                if(view.overlay != null) {
-                                    tooltip.horizontal()
-                                            .child(new FluidComponent(view.overlay).size(new Size(mainText.getHeight(), mainText.getHeight())))
-                                            .child(mainText);
-                                }
-                                else {
-                                    theTooltip.horizontal()
-                                            .item(new ItemStack(Items.bucket), new Padding(),
-                                                    new Size(mainText.getHeight(), mainText.getHeight()))
-                                            .child(mainText);
-                                }
-                            }
-                            case TEXT -> {
-                                theTooltip.child(mainText);
-                            }
+                            theTooltip.horizontal()
+                                    .item(
+                                            new ItemStack(Items.bucket),
+                                            new Padding(),
+                                            new Size(mainText.getHeight(), mainText.getHeight()))
+                                    .child(mainText);
                         }
                     }
-                    if (group.extraData != null) {
-                        int extra = group.extraData.getInteger("+");
-                        if (extra > 0) {
-                            theTooltip.text(StatCollector.translateToLocalFormatted("hud.msg.wdmla.more.tanks", extra));
-                        }
+                    case TEXT -> {
+                        theTooltip.child(mainText);
                     }
-                });
+                }
+            }
+            if (group.extraData != null) {
+                int extra = group.extraData.getInteger("+");
+                if (extra > 0) {
+                    theTooltip.text(StatCollector.translateToLocalFormatted("hud.msg.wdmla.more.tanks", extra));
+                }
+            }
+        });
     }
 
     @Override
     public void appendServerData(NBTTagCompound data, T accessor) {
-        Map.Entry<ResourceLocation, List<ViewGroup<FluidView.Data>>> entry = CommonProxy.getServerExtensionData(accessor, WDMlaCommonRegistration.instance().fluidStorageProviders);
+        Map.Entry<ResourceLocation, List<ViewGroup<FluidView.Data>>> entry = CommonProxy
+                .getServerExtensionData(accessor, WDMlaCommonRegistration.instance().fluidStorageProviders);
         if (entry != null) {
             data.setTag(Identifiers.FLUID_STORAGE.toString(), encodeGroups(entry));
         }
@@ -249,7 +257,9 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
         return accessor.showDetails() || !PluginsConfig.universal.fluidStorage.detailed;
     }
 
-    public enum Extension implements IServerExtensionProvider<FluidView.Data>, IClientExtensionProvider<FluidView.Data, FluidView> {
+    public enum Extension
+            implements IServerExtensionProvider<FluidView.Data>, IClientExtensionProvider<FluidView.Data, FluidView> {
+
         INSTANCE;
 
         @Override
@@ -258,7 +268,8 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
         }
 
         @Override
-        public List<ClientViewGroup<FluidView>> getClientGroups(Accessor accessor, List<ViewGroup<FluidView.Data>> groups) {
+        public List<ClientViewGroup<FluidView>> getClientGroups(Accessor accessor,
+                List<ViewGroup<FluidView.Data>> groups) {
             return ClientViewGroup.map(groups, FluidView::readDefault, null);
         }
 
@@ -270,7 +281,7 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
 
         @Override
         public boolean shouldRequestData(Accessor accessor) {
-            return true; //I need to change this when I want to apply this to every TE
+            return true; // I need to change this when I want to apply this to every TE
         }
 
         @Override

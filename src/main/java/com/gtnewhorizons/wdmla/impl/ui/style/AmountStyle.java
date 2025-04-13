@@ -1,9 +1,10 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
-import org.jetbrains.annotations.Nullable;
 
 public class AmountStyle implements IAmountStyle {
 
@@ -14,7 +15,8 @@ public class AmountStyle implements IAmountStyle {
     @Nullable
     private IDrawable overlay;
 
-    public AmountStyle(int borderColor, int backgroundColor, int filledColor, int alternateFilledColor, IDrawable overlay) {
+    public AmountStyle(int borderColor, int backgroundColor, int filledColor, int alternateFilledColor,
+            IDrawable overlay) {
         this.borderColor = borderColor;
         this.backgroundColor = backgroundColor;
         this.filledColor = filledColor;

@@ -78,7 +78,8 @@ public class FormatUtil {
     }
 
     private static NumberFormat getPercentageStandardFormat() {
-        NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US); // we don't want it to depend on JVM system
+        NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US); // we don't want it to depend on JVM
+                                                                                 // system
         percentFormat.setGroupingUsed(false);
         percentFormat.setMaximumFractionDigits(0);
         percentFormat.setRoundingMode(RoundingMode.HALF_UP);

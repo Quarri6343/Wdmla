@@ -1,9 +1,9 @@
 package com.gtnewhorizons.wdmla.impl.ui.value;
 
-import com.gtnewhorizons.wdmla.config.General;
 import net.minecraft.client.Minecraft;
 
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
+import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Area;
 
 public class HUDBlockDamage {
@@ -26,7 +26,7 @@ public class HUDBlockDamage {
      * get corresponding alpha value of the current block damage for HUD
      */
     public Alpha getAlphaForProgress() {
-        if(!General.breakProgress.fillAnimation) {
+        if (!General.breakProgress.fillAnimation) {
             return new Alpha(1f);
         }
         float alpha = Math.min(damage, 0.6F) + 0.4F * damage;

@@ -7,8 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 
 /**
  * This is the standard Waila packet wrapping object. <br>
- * Packets extend this requires
- * {@link io.netty.channel.SimpleChannelInboundHandler} to be sent
+ * Packets extend this requires {@link io.netty.channel.SimpleChannelInboundHandler} to be sent
  */
 @ApiStatus.Internal
 public interface IWailaMessage {

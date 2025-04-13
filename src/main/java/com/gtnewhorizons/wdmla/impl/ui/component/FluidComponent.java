@@ -1,11 +1,12 @@
 package com.gtnewhorizons.wdmla.impl.ui.component;
 
+import net.minecraftforge.fluids.FluidStack;
+
 import com.gtnewhorizons.wdmla.impl.ui.drawable.FluidDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
-import net.minecraftforge.fluids.FluidStack;
 
-//tmp
+// tmp
 public class FluidComponent extends Component {
 
     public static final int DEFAULT_W = 16;

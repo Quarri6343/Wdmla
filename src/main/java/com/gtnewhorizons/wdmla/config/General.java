@@ -87,7 +87,7 @@ public class General {
         public Mode mode;
 
         @Config.LangKey("option.wdmla.general.breakprogress.position")
-        @Config.DefaultEnum("BOTTOM") //Waila displays thing at top of the screen by default
+        @Config.DefaultEnum("BOTTOM") // Waila displays thing at top of the screen by default
         public Position position;
 
         @Config.LangKey("option.wdmla.breakprogress.fill.animation")

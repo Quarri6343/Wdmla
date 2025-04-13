@@ -10,8 +10,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.channel.ChannelHandlerContext;
 import mcp.mobius.waila.api.IWailaEntityProvider;
 import mcp.mobius.waila.api.impl.ModuleRegistrar;

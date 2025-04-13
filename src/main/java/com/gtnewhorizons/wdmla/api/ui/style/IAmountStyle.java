@@ -1,7 +1,8 @@
 package com.gtnewhorizons.wdmla.api.ui.style;
 
-import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import org.jetbrains.annotations.Nullable;
+
+import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 
 /**
  * Collection of filled bar settings.
@@ -11,6 +12,7 @@ public interface IAmountStyle extends IRectStyle {
     /**
      * If this is not null, it will be rendered instead of filled color.<br>
      * It must have flexible size
+     * 
      * @return the overlay drawable
      */
     @Nullable

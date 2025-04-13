@@ -1,9 +1,10 @@
 package com.gtnewhorizons.wdmla.impl.ui.drawable;
 
+import net.minecraftforge.fluids.FluidStack;
+
 import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.sizer.IArea;
 import com.gtnewhorizons.wdmla.overlay.GuiDraw;
-import net.minecraftforge.fluids.FluidStack;
 
 public class FluidDrawable implements IDrawable {
 

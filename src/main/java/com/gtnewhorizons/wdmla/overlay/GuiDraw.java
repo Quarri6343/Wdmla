@@ -11,9 +11,9 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -211,7 +211,7 @@ public final class GuiDraw {
     public static void drawTexturedModelRect(int x, int y, int u, int v, int w, int h, int tw, int th) {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
-        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA,  GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         float zLevel = 0.0F;
@@ -248,20 +248,33 @@ public final class GuiDraw {
         }
         Fluid fluid = content.getFluid();
         IIcon fluidStill = fluid.getIcon(content);
-//        if (ModularUI.isHodgepodgeLoaded && fluidStill instanceof IPatchedTextureAtlasSprite) {
-//            ((IPatchedTextureAtlasSprite) fluidStill).markNeedsAnimationUpdate();
-//        }
+        // if (ModularUI.isHodgepodgeLoaded && fluidStill instanceof IPatchedTextureAtlasSprite) {
+        // ((IPatchedTextureAtlasSprite) fluidStill).markNeedsAnimationUpdate();
+        // }
         int fluidColor = fluid.getColor(content);
-        float r =  (fluidColor >> 16 & 255) / 255f, g = (fluidColor >> 8 & 255) / 255f, b = (fluidColor & 255) / 255f, a = (fluidColor >> 24 & 255) / 255f;
+        float r = (fluidColor >> 16 & 255) / 255f, g = (fluidColor >> 8 & 255) / 255f, b = (fluidColor & 255) / 255f,
+                a = (fluidColor >> 24 & 255) / 255f;
         a = a == 0f ? 1f : a;
         GL11.glColor4f(r, g, b, a);
         Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-        drawTiledTexture(x0, y0, width, height, fluidStill.getMinU(), fluidStill.getMinV(), fluidStill.getMaxU(), fluidStill.getMaxV(), fluidStill.getIconWidth(), fluidStill.getIconHeight(), z);
+        drawTiledTexture(
+                x0,
+                y0,
+                width,
+                height,
+                fluidStill.getMinU(),
+                fluidStill.getMinV(),
+                fluidStill.getMaxU(),
+                fluidStill.getMaxV(),
+                fluidStill.getIconWidth(),
+                fluidStill.getIconHeight(),
+                z);
         GL11.glColor4f(1f, 1f, 1f, 1f);
     }
 
-    //from ModularUI2
-    public static void drawTiledTexture(float x, float y, float w, float h, float u0, float v0, float u1, float v1, int tileWidth, int tileHeight, float z) {
+    // from ModularUI2
+    public static void drawTiledTexture(float x, float y, float w, float h, float u0, float v0, float u1, float v1,
+            int tileWidth, int tileHeight, float z) {
         int countX = (((int) w - 1) / tileWidth) + 1;
         int countY = (((int) h - 1) / tileHeight) + 1;
         float fillerX = w - (countX - 1) * tileWidth;
@@ -293,7 +306,8 @@ public final class GuiDraw {
         tessellator.draw();
     }
 
-    public static void drawTexture(float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float z) {
+    public static void drawTexture(float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1,
+            float z) {
         Tessellator tessellator = Tessellator.instance;
         tessellator.addVertexWithUV(x0, y1, z, u0, v1);
         tessellator.addVertexWithUV(x1, y1, z, u1, v1);

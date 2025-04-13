@@ -4,11 +4,11 @@ import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaPlugin;
-import net.minecraft.entity.passive.EntitySheep;
 
 public class TestPlugin implements IWDMlaPlugin {
 

@@ -5,8 +5,6 @@ import static mcp.mobius.waila.api.SpecialChars.ITALIC;
 
 import java.util.List;
 
-import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
@@ -21,12 +19,14 @@ import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.impl.format.TimeFormattingPattern;
 import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TexturedProgressComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.TextStyle;
 
 import mcp.mobius.waila.overlay.DisplayUtil;
@@ -114,23 +114,25 @@ public class ThemeHelper {
         return new TextComponent(content).style(new TextStyle().color(theme.textColor(type)));
     }
 
-    public IComponent furnaceLikeProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress,
-                                          boolean showDetails) {
+    public IComponent furnaceLikeProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress,
+            int maxProgress, boolean showDetails) {
         return furnaceLikeProgress(input, output, currentProgress, maxProgress, showDetails, null);
     }
 
     /**
      * Provides Minecraft furnace progress arrow and item display.
-     * @param input the items on the left side of arrow
-     * @param output the items on the right side of arrow
-     * @param currentProgress ticks elapsed
-     * @param maxProgress the length of ticks to fill the arrow
-     * @param showDetails is Show Details button pressed or not (for controlling legacy text)
-     * @param legacyProcessText The text displayed instead of arrow and ItemStacks in legacy mode. If null, it will be auto generated.
+     * 
+     * @param input             the items on the left side of arrow
+     * @param output            the items on the right side of arrow
+     * @param currentProgress   ticks elapsed
+     * @param maxProgress       the length of ticks to fill the arrow
+     * @param showDetails       is Show Details button pressed or not (for controlling legacy text)
+     * @param legacyProcessText The text displayed instead of arrow and ItemStacks in legacy mode. If null, it will be
+     *                          auto generated.
      * @return built component
      */
-    public IComponent furnaceLikeProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress, int maxProgress,
-                                          boolean showDetails, @Nullable IComponent legacyProcessText) {
+    public IComponent furnaceLikeProgress(List<ItemStack> input, List<ItemStack> output, int currentProgress,
+            int maxProgress, boolean showDetails, @Nullable IComponent legacyProcessText) {
         if (!General.forceLegacy) {
             ITooltip hPanel = new HPanelComponent();
             for (ItemStack inputStack : input) {
@@ -150,8 +152,8 @@ public class ThemeHelper {
             if (showDetails) {
                 for (ItemStack inputStack : input) {
                     if (inputStack != null) {
-                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.in")))
-                                .child(
+                        vPanel.horizontal()
+                                .text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.in"))).child(
                                         ThemeHelper.INSTANCE.info(
                                                 String.format(
                                                         "%dx %s",
@@ -161,8 +163,8 @@ public class ThemeHelper {
                 }
                 for (ItemStack outputStack : output) {
                     if (outputStack != null) {
-                        vPanel.horizontal().text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.out")))
-                                .child(
+                        vPanel.horizontal()
+                                .text(String.format("%s: ", StatCollector.translateToLocal("hud.msg.wdmla.out"))).child(
                                         ThemeHelper.INSTANCE.info(
                                                 String.format(
                                                         "%dx %s",
@@ -175,11 +177,11 @@ public class ThemeHelper {
             if (currentProgress != 0 && maxProgress != 0 && legacyProcessText == null) {
                 legacyProcessText = ThemeHelper.INSTANCE.value(
                         StatCollector.translateToLocal("hud.msg.wdmla.progress"),
-                        TimeFormattingPattern.ALWAYS_TICK.tickFormatter.apply(currentProgress)
-                                + " / " +  TimeFormattingPattern.ALWAYS_TICK.tickFormatter.apply(maxProgress));
+                        TimeFormattingPattern.ALWAYS_TICK.tickFormatter.apply(currentProgress) + " / "
+                                + TimeFormattingPattern.ALWAYS_TICK.tickFormatter.apply(maxProgress));
             }
 
-            if(legacyProcessText != null) {
+            if (legacyProcessText != null) {
                 vPanel.child(legacyProcessText);
             }
 
@@ -208,9 +210,10 @@ public class ThemeHelper {
         String strippedName = DisplayUtil.stripSymbols(DisplayUtil.itemDisplayNameShort(stack));
         TextComponent name = new TextComponent(strippedName);
         int itemSize = name.getHeight();
-        ITooltip hPanel = new HPanelComponent().child(
-                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
+        ITooltip hPanel = new HPanelComponent()
+                .child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)));
         String s = String.valueOf(stack.stackSize); // TODO: unit format
-        return hPanel.text(s).text(StatCollector.translateToLocal("hud.msg.wdmla.item.count") + StringUtils.EMPTY).child(name);
+        return hPanel.text(s).text(StatCollector.translateToLocal("hud.msg.wdmla.item.count") + StringUtils.EMPTY)
+                .child(name);
     }
 }
