@@ -1,10 +1,17 @@
 package com.gtnewhorizons.wdmla;
 
 import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
+import com.google.common.collect.Lists;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -33,6 +40,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import mcp.mobius.waila.overlay.OverlayConfig;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
+import net.minecraft.util.Tuple;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.IFluidTank;
 
 public class CommonProxy {
 
@@ -130,5 +143,42 @@ public class CommonProxy {
             WailaExceptionHandler.handleErr(e, accessor.getTarget().getClass().getName(), null);
         }
         return ItemCollector.EMPTY;
+    }
+
+    public static List<ViewGroup<FluidView.Data>> wrapFluidStorage(Accessor accessor) {
+        if (accessor instanceof BlockAccessor blockAccessor
+                && blockAccessor.getTileEntity() instanceof IFluidHandler fluidHandler) {
+            FluidTankInfo[] tankInfo = fluidHandler.getTankInfo(ForgeDirection.UNKNOWN);
+            if (tankInfo != null) {
+                return fromFluidStorage(tankInfo);
+            }
+        }
+        return null;
+    }
+
+    public static List<ViewGroup<FluidView.Data>> fromFluidStorage(FluidTankInfo[] storage) {
+        Map<FluidStack, Long> map = new HashMap<>();
+        int emptyTanks = 0;
+        for (FluidTankInfo fluidTankInfo : storage) {
+            if (fluidTankInfo.fluid.amount == 0) {
+                emptyTanks++;
+            }
+            map.put(fluidTankInfo.fluid, (long) fluidTankInfo.capacity);
+            if (map.size() >= 4) { //max amount of tanks
+                break;
+            }
+        }
+        if (storage.length == 0) {
+            return new ArrayList<>();
+        }
+
+        int remaining = storage.length - emptyTanks - map.size();
+        ViewGroup<FluidView.Data> group = new ViewGroup<>(map.entrySet().stream()
+                .map(entry -> new FluidView.Data(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList()));
+        if (remaining > 0) {
+            group.getExtraData().setInteger("+", remaining);
+        }
+        return Arrays.asList(group);
     }
 }

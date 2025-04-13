@@ -246,9 +246,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     group.views = group.views.subList(0, ItemCollector.MAX_SIZE);
                 }
             }
-            data.setTag(Identifiers.ITEM_STORAGE.toString(), encodeGroups(entry)); // transform
-                                                                                   // List<ViewGroup<ItemStack>> into
-                                                                                   // nbttag
+            data.setTag(Identifiers.ITEM_STORAGE.toString(), encodeGroups(entry));
         }
     }
 
@@ -316,7 +314,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
 
         @Override
         public boolean shouldRequestData(Accessor accessor) {
-            return true;
+            return true; //I need to change this when I want to apply this to every TE
         }
 
         @Override

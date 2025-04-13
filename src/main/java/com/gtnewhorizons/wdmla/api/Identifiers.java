@@ -32,6 +32,8 @@ public final class Identifiers {
 
     public static final ResourceLocation ITEM_STORAGE = Universal("item_storage");
     public static final ResourceLocation ITEM_STORAGE_DEFAULT = Universal("item_storage_default");
+    public static final ResourceLocation FLUID_STORAGE = Universal("fluid_storage");
+    public static final ResourceLocation FLUID_STORAGE_DEFAULT = Universal("fluid_storage_default");
 
     public static final ResourceLocation HARDNESS = Debug("hardness");
     public static final ResourceLocation BLAST_RESISTANCE = Debug("blast_resistance");
@@ -43,6 +45,7 @@ public final class Identifiers {
     public static final ResourceLocation TEST_ENTITY = Test("entity");
     public static final ResourceLocation TEST_THEME_BLOCK = Test("theme_block");
     public static final ResourceLocation TEST_ITEM_STORAGE = Test("item_storage");
+    public static final ResourceLocation TEST_FLUID_STORAGE = Test("fluid_storage");
 
     public static final String NAMESPACE_CORE = "core";
     public static final String NAMESPACE_UNIVERSAL = "universal";

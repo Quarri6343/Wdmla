@@ -1,0 +1,226 @@
+package com.gtnewhorizons.wdmla.plugin.universal;
+
+import com.gtnewhorizons.wdmla.ClientProxy;
+import com.gtnewhorizons.wdmla.CommonProxy;
+import com.gtnewhorizons.wdmla.api.Identifiers;
+import com.gtnewhorizons.wdmla.api.Theme;
+import com.gtnewhorizons.wdmla.api.TooltipPosition;
+import com.gtnewhorizons.wdmla.api.accessor.Accessor;
+import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
+import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
+import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
+import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
+import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
+import com.gtnewhorizons.wdmla.api.ui.ITooltip;
+import com.gtnewhorizons.wdmla.api.ui.MessageType;
+import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
+import com.gtnewhorizons.wdmla.api.view.ViewGroup;
+import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
+import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.RectComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
+import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
+import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
+import mcp.mobius.waila.overlay.DisplayUtil;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class FluidStorageProvider <T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
+
+    public static ForBlock getBlock() {
+        return ForBlock.INSTANCE;
+    }
+
+    public static ForEntity getEntity() {
+        return ForEntity.INSTANCE;
+    }
+
+    public static class ForBlock extends FluidStorageProvider<BlockAccessor> {
+        private static final ForBlock INSTANCE = new ForBlock();
+    }
+
+    public static class ForEntity extends FluidStorageProvider<EntityAccessor> {
+        private static final ForEntity INSTANCE = new ForEntity();
+    }
+
+    @Override
+    public void appendTooltip(ITooltip tooltip, T accessor) {
+        List<ClientViewGroup<FluidView>> groups = ClientProxy.mapToClientGroups(
+                accessor,
+                Identifiers.FLUID_STORAGE,
+                FluidStorageProvider::decodeGroups,
+                WDMlaClientRegistration.instance().fluidStorageProviders::get);
+        if (groups == null || groups.isEmpty()) {
+            return;
+        }
+
+        boolean renderGroup = groups.size() > 1 || groups.get(0).shouldRenderGroup();
+        ClientViewGroup.tooltip(
+                tooltip, groups, renderGroup, (theTooltip, group) -> {
+                    if (renderGroup && group.title != null) {
+                        Theme theme = General.currentTheme.get();
+                        ITooltip hPanel = new HPanelComponent()
+                                .style(new PanelStyle().alignment(ComponentAlignment.CENTER));
+                        hPanel.child(
+                                new RectComponent()
+                                        .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                        .size(new Size(20, 1)));
+                        hPanel.child(new TextComponent(group.title).scale(0.6f));
+                        hPanel.child(
+                                new RectComponent()
+                                        .style(new RectStyle().backgroundColor(theme.textColor(MessageType.NORMAL)))
+                                        .size(new Size(30, 1)));
+                    }
+                    for (var view : group.views) {
+                        String text; //TODO: switch to TextComponent
+//                        IWailaConfig.HandlerDisplayStyle style = config.getEnum(JadeIds.UNIVERSAL_FLUID_STORAGE_STYLE);
+
+                        if (view.overrideText != null) {
+                            text = view.overrideText;
+                        } else if (view.fluidName == null) {
+                            // when do we reach here?
+                            text = view.current;
+                        } else {
+                            String fluidName = DisplayUtil.stripSymbols(view.fluidName);
+                            if (accessor.showDetails()) {
+                                text = String.format(
+                                        "%s / %s",
+                                        view.current,
+                                        view.max);
+                            } else {
+                                text = view.current;
+                            }
+                            text = String.format("%s: %s", fluidName, text); //TODO: ThemeHelper#info
+                        }
+                        TextComponent textComponent = new TextComponent(text);
+                        theTooltip.horizontal().item(new ItemStack(Items.bucket), new Padding(),
+                                        new Size(textComponent.getHeight(), textComponent.getHeight()))
+                                .text(text);
+
+                        //TODO: switch mode to progress bar
+//                        ProgressStyle progressStyle = helper.progressStyle().overlay(view.overlay);
+//                        theTooltip.add(helper.progress(view.ratio, text, progressStyle, BoxStyle.getNestedBox(), true));
+                    }
+                    if (group.extraData != null) {
+                        int extra = group.extraData.getInteger("+");
+                        if (extra > 0) {
+                            theTooltip.text(String.format("+ %d more tanks", extra));
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void appendServerData(NBTTagCompound data, T accessor) {
+        Map.Entry<ResourceLocation, List<ViewGroup<FluidView.Data>>> entry = CommonProxy.getServerExtensionData(accessor, WDMlaCommonRegistration.instance().fluidStorageProviders);
+        if (entry != null) {
+            data.setTag(Identifiers.FLUID_STORAGE.toString(), encodeGroups(entry));
+        }
+    }
+
+    public static NBTTagCompound encodeGroups(Map.Entry<ResourceLocation, List<ViewGroup<FluidView.Data>>> entry) {
+        List<ViewGroup<FluidView.Data>> viewGroups = entry.getValue();
+        NBTTagList groupsNBT = new NBTTagList();
+        for (ViewGroup<FluidView.Data> viewGroup : viewGroups) {
+            groupsNBT.appendTag(encodeGroup(viewGroup));
+        }
+        NBTTagCompound root = new NBTTagCompound();
+        root.setTag(entry.getKey().toString(), groupsNBT);
+
+        return root;
+    }
+
+    public static NBTTagCompound encodeGroup(ViewGroup<FluidView.Data> viewGroup) {
+        List<NBTTagCompound> encodedFluidData = new ArrayList<>();
+        for (FluidView.Data fluidData : viewGroup.views) {
+            encodedFluidData.add(FluidView.Data.encode(fluidData));
+        }
+        ViewGroup<NBTTagCompound> contentEncodedGroup = new ViewGroup<>(encodedFluidData, viewGroup);
+        return ViewGroup.encode(contentEncodedGroup);
+    }
+
+    public static Map.Entry<ResourceLocation, List<ViewGroup<FluidView.Data>>> decodeGroups(NBTTagCompound root) {
+        if (root.hasNoTags()) {
+            return null;
+        }
+
+        String key = root.func_150296_c().iterator().next();
+        ResourceLocation resourceLocation = new ResourceLocation(key);
+
+        NBTTagList groupsNBT = root.getTagList(key, 10);
+        List<ViewGroup<FluidView.Data>> viewGroups = new ArrayList<>();
+        for (int i = 0; i < groupsNBT.tagCount(); i++) {
+            NBTTagCompound groupNBT = groupsNBT.getCompoundTagAt(i);
+            viewGroups.add(decodeGroup(groupNBT));
+        }
+
+        return new AbstractMap.SimpleEntry<>(resourceLocation, viewGroups);
+    }
+
+    public static ViewGroup<FluidView.Data> decodeGroup(NBTTagCompound groupNBT) {
+        ViewGroup<NBTTagCompound> contentDecodedGroup = ViewGroup.decode(groupNBT);
+
+        List<FluidView.Data> fluidDataList = new ArrayList<>();
+        for (NBTTagCompound fluidNBT : contentDecodedGroup.views) {
+            fluidDataList.add(FluidView.Data.decode(fluidNBT));
+        }
+
+        return new ViewGroup<>(fluidDataList, contentDecodedGroup);
+    }
+
+    @Override
+    public ResourceLocation getUid() {
+        return Identifiers.FLUID_STORAGE;
+    }
+
+    @Override
+    public int getDefaultPriority() {
+        return TooltipPosition.TAIL;
+    }
+
+    public enum Extension implements IServerExtensionProvider<FluidView.Data>, IClientExtensionProvider<FluidView.Data, FluidView> {
+        INSTANCE;
+
+        @Override
+        public ResourceLocation getUid() {
+            return Identifiers.FLUID_STORAGE_DEFAULT;
+        }
+
+        @Override
+        public List<ClientViewGroup<FluidView>> getClientGroups(Accessor accessor, List<ViewGroup<FluidView.Data>> groups) {
+            return ClientViewGroup.map(groups, FluidView::readDefault, null);
+        }
+
+        @Nullable
+        @Override
+        public List<ViewGroup<FluidView.Data>> getGroups(Accessor accessor) {
+            return CommonProxy.wrapFluidStorage(accessor);
+        }
+
+        @Override
+        public boolean shouldRequestData(Accessor accessor) {
+            return true; //I need to change this when I want to apply this to every TE
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return 9999;
+        }
+    }
+}

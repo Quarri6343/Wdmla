@@ -1,5 +1,6 @@
 package com.gtnewhorizons.wdmla.api;
 
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -42,6 +43,8 @@ public interface IWDMlaClientRegistration {
     void registerEntityComponent(IComponentProvider<EntityAccessor> provider, Class<? extends Entity> entityClass);
 
     void registerItemStorageClient(IClientExtensionProvider<ItemStack, ItemView> provider);
+
+    void registerFluidStorageClient(IClientExtensionProvider<FluidView.Data, FluidView> provider);
 
     /**
      * @return is server validation succeeded on world join

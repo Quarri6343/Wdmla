@@ -58,6 +58,7 @@ hud.msg.wdmla.hours=h
 hud.msg.wdmla.blocks=blocks
 hud.msg.wdmla.blockspersecond=blocks/sec
 hud.msg.wdmla.item.count=x
+hud.wdmla.msg.millibucket=mb
 
 # information
 hud.msg.wdmla.growth=Growth
