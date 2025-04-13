@@ -21,6 +21,7 @@ import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.component.FluidComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.RectComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
@@ -90,12 +91,15 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                     for (var view : group.views) {
                         String text; //TODO: switch to TextComponent
 //                        IWailaConfig.HandlerDisplayStyle style = config.getEnum(JadeIds.UNIVERSAL_FLUID_STORAGE_STYLE);
-
                         if (view.overrideText != null) {
                             text = view.overrideText;
                         } else if (view.fluidName == null) {
-                            // when do we reach here?
-                            text = view.current;
+                            if(accessor.showDetails()) {
+                                text = "EMPTY: / " + view.max; //TODO: localization
+                            }
+                            else {
+                                text = "EMPTY";
+                            }
                         } else {
                             String fluidName = DisplayUtil.stripSymbols(view.fluidName);
                             if (accessor.showDetails()) {
@@ -109,11 +113,16 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             text = String.format("%s: %s", fluidName, text); //TODO: ThemeHelper#info
                         }
                         TextComponent textComponent = new TextComponent(text);
-                        theTooltip.horizontal().item(new ItemStack(Items.bucket), new Padding(),
-                                        new Size(textComponent.getHeight(), textComponent.getHeight()))
-                                .text(text);
+                        if(view.overlay != null) {
+                            tooltip.horizontal().child(view.overlay).text(text);
+                        }
+                        else {
+                            theTooltip.horizontal().item(new ItemStack(Items.bucket), new Padding(),
+                                            new Size(textComponent.getHeight(), textComponent.getHeight()))
+                                    .text(text);
+                        }
 
-                        //TODO: switch mode to progress bar
+                        //TODO: add config to switch mode to progress bar
 //                        ProgressStyle progressStyle = helper.progressStyle().overlay(view.overlay);
 //                        theTooltip.add(helper.progress(view.ratio, text, progressStyle, BoxStyle.getNestedBox(), true));
                     }
