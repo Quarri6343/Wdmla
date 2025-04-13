@@ -55,9 +55,9 @@ hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=秒
 hud.msg.wdmla.minutes=m
 hud.msg.wdmla.hours=h
-hud.msg.wdmla.progress.seconds=%d秒 / %d秒
 hud.msg.wdmla.blocks=方块
 hud.msg.wdmla.blockspersecond=方块/秒
+hud.msg.wdmla.item.count=x
 
 # information
 hud.msg.wdmla.growth=生长状态
@@ -242,6 +242,13 @@ option.wdmla.general.textcolor.warning=警告颜色
 option.wdmla.general.textcolor.danger=危险颜色
 option.wdmla.general.textcolor.failure=失败颜色
 option.wdmla.general.textcolor.modname=模组名称颜色
+
+option.wdmla.breakprogress.category=破坏进度
+option.wdmla.general.breakprogress.mode=显示模式
+option.wdmla.general.breakprogress.position=显示位置
+option.wdmla.breakprogress.fill.animation=填充透明度动画
+option.wdmla.breakprogress.fade.animation=淡出透明度动画
+option.wdmla.general.breakprogress.fade.speed=淡出速度
 
 # plugin autogen options
 option.wdmla.autogen.category=自动生成插件选项
