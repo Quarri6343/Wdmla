@@ -16,6 +16,10 @@ public class FluidView {
     public String fluidName;
     @Nullable
     public String overrideText;
+    /**
+     * If true, the progress bar will have vertical stripes
+     */
+    public boolean hasScale;
 
     public FluidView(@Nullable FluidStack overlay) {
         this.overlay = overlay;
@@ -39,6 +43,7 @@ public class FluidView {
         }
         fluidView.current = amount;
         fluidView.max = tank.capacity;
+        fluidView.hasScale = false;
         return fluidView;
     }
 

@@ -23,6 +23,9 @@ public enum TestFluidStorageProvider implements IServerExtensionProvider<FluidVi
         return ClientViewGroup.map(groups, FluidView::readDefault, (group, clientGroup) -> {
             if (group.id != null) {
                 clientGroup.title = group.id;
+                for (FluidView view : clientGroup.views) {
+                    view.hasScale = true;
+                }
             }
             clientGroup.messageType = MessageType.SUCCESS;
         });

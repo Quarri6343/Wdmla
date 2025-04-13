@@ -12,6 +12,7 @@ import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
@@ -141,7 +142,11 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             case GAUGE -> {
                                 //TODO:adjust the size with the longest text
                                 //TODO:invert text color with bright fluid
-                                tooltip.child(new AmountComponent(view.current, view.max).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(125,12))
+                                AmountStyle amountStyle = new AmountStyle().overlay(new FluidDrawable(view.overlay));
+                                if(view.hasScale) {
+                                    amountStyle.alternateFilledColor(ColorPalette.AMOUNT_BORDER_WAILA);
+                                }
+                                tooltip.child(new AmountComponent(view.current, view.max).style(amountStyle).size(new Size(125,12))
                                         .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(mainText)));
                             }
                             case ICON_TEXT -> {
