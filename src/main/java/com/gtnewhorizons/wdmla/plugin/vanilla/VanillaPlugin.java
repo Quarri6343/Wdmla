@@ -4,6 +4,7 @@ import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockBrewingStand;
+import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockCommandBlock;
@@ -111,6 +112,7 @@ public class VanillaPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(NoteBlockProvider.INSTANCE, BlockNote.class);
         registration.registerBlockComponent(TotalEnchantmentPowerProvider.INSTANCE, BlockEnchantmentTable.class);
         registration.registerBlockComponent(RedstoneWireProvider.INSTANCE, BlockDaylightDetector.class);
+        registration.registerBlockComponent(CauldronProvider.INSTANCE, BlockCauldron.class);
 
         registration.registerEntityComponent(PetProvider.INSTANCE, EntityTameable.class);
         registration.registerEntityComponent(AnimalProvider.INSTANCE, EntityAnimal.class);

@@ -73,16 +73,20 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
 
     @Override
     public void appendTooltip(ITooltip tooltip, T accessor) {
-        if(!accessor.showDetails() && PluginsConfig.universal.fluidStorage.detailed) {
-            return;
-        }
-
         List<ClientViewGroup<FluidView>> groups = ClientProxy.mapToClientGroups(
                 accessor,
                 Identifiers.FLUID_STORAGE,
                 FluidStorageProvider::decodeGroups,
                 WDMlaClientRegistration.instance().fluidStorageProviders::get);
         if (groups == null || groups.isEmpty()) {
+            return;
+        }
+
+        append(tooltip, accessor, groups);
+    }
+
+    public void append(ITooltip tooltip, T accessor, List<ClientViewGroup<FluidView>> groups) {
+        if(!accessor.showDetails() && PluginsConfig.universal.fluidStorage.detailed) {
             return;
         }
 

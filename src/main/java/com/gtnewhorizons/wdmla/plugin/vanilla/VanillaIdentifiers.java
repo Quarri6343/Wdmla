@@ -38,6 +38,7 @@ public class VanillaIdentifiers {
     public static final ResourceLocation ZOMBIE_VILLAGER = MC("zombie_villager");
     public static final ResourceLocation ZOMBIE_VILLAGER_HEADER = MC("zombie_villager_header");
     public static final ResourceLocation TE_CUSTOM_NAME_HEADER = MC("te_custom_name_header");
+    public static final ResourceLocation CAULDRON = MC("cauldron");
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 
