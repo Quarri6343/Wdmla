@@ -1,6 +1,9 @@
 package com.gtnewhorizons.wdmla.impl.ui.style;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.gtnewhorizons.wdmla.api.ui.ColorPalette;
+import com.gtnewhorizons.wdmla.api.ui.IDrawable;
 import com.gtnewhorizons.wdmla.api.ui.style.IAmountStyle;
 
 public class AmountStyle implements IAmountStyle {
@@ -9,12 +12,16 @@ public class AmountStyle implements IAmountStyle {
     private int backgroundColor;
     private int filledColor;
     private int alternateFilledColor;
+    @Nullable
+    private IDrawable overlay;
 
-    public AmountStyle(int borderColor, int backgroundColor, int filledColor, int alternateFilledColor) {
+    public AmountStyle(int borderColor, int backgroundColor, int filledColor, int alternateFilledColor,
+            IDrawable overlay) {
         this.borderColor = borderColor;
         this.backgroundColor = backgroundColor;
         this.filledColor = filledColor;
         this.alternateFilledColor = alternateFilledColor;
+        this.overlay = overlay;
     }
 
     public AmountStyle() {
@@ -22,6 +29,7 @@ public class AmountStyle implements IAmountStyle {
         this.backgroundColor = ColorPalette.AMOUNT_BACKGROUND_WAILA;
         this.filledColor = ColorPalette.AMOUNT_FILLED_WAILA;
         this.alternateFilledColor = ColorPalette.AMOUNT_FILLED_ALTERNATE_WAILA;
+        this.overlay = null;
     }
 
     public AmountStyle borderColor(int borderColor) {
@@ -41,6 +49,11 @@ public class AmountStyle implements IAmountStyle {
 
     public AmountStyle alternateFilledColor(int alternateFilledColor) {
         this.alternateFilledColor = alternateFilledColor;
+        return this;
+    }
+
+    public AmountStyle overlay(IDrawable overlay) {
+        this.overlay = overlay;
         return this;
     }
 
@@ -67,5 +80,10 @@ public class AmountStyle implements IAmountStyle {
     @Override
     public int getAlternateFilledColor() {
         return alternateFilledColor;
+    }
+
+    @Override
+    public @Nullable IDrawable getOverlay() {
+        return overlay;
     }
 }

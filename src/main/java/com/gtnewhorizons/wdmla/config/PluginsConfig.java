@@ -91,7 +91,24 @@ public class PluginsConfig {
 
         @Config.LangKey("provider.wdmla.universal.fluid.storage")
         public static class FluidStorage {
-            // reserved
+
+            @Config.LangKey("option.wdmla.universal.fluid.mode")
+            @Config.DefaultEnum("GAUGE")
+            public Mode mode;
+
+            @Config.LangKey("option.wdmla.universal.fluid.normal.amount")
+            @Config.DefaultInt(4)
+            public int normalAmount;
+
+            @Config.LangKey("option.wdmla.universal.fluid.detailed")
+            @Config.DefaultBoolean(false)
+            public boolean detailed;
+
+            public enum Mode {
+                GAUGE,
+                ICON_TEXT,
+                TEXT
+            }
         }
 
         @Config.LangKey("provider.wdmla.universal.energy.storage")

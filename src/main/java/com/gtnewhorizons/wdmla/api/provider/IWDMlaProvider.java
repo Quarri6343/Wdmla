@@ -14,8 +14,10 @@ public interface IWDMlaProvider {
     /**
      * The unique id of this provider.<br>
      * Providers from different registries can have the same id.<br>
-     * The Resource Domain is the mod category that the provider belongs, and Resource Path is expected to be snake_case.<br>
-     * Warning: Due to Minecraft ResourceLocation implementation, if Uid contains upper case character the registry will confuse.
+     * The Resource Domain is the mod category that the provider belongs, and Resource Path is expected to be
+     * snake_case.<br>
+     * Warning: Due to Minecraft ResourceLocation implementation, if Uid contains upper case character the registry will
+     * confuse.
      */
     ResourceLocation getUid();
 

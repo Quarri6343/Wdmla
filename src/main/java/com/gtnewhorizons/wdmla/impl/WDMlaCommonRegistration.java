@@ -20,6 +20,7 @@ import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.provider.IWDMlaProvider;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 import com.gtnewhorizons.wdmla.impl.lookup.PairHierarchyLookup;
 import com.gtnewhorizons.wdmla.impl.lookup.WrappedHierarchyLookup;
@@ -33,6 +34,7 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
     public final PriorityStore<ResourceLocation, IWDMlaProvider> priorities;
 
     public final WrappedHierarchyLookup<IServerExtensionProvider<ItemStack>> itemStorageProviders;
+    public final WrappedHierarchyLookup<IServerExtensionProvider<FluidView.Data>> fluidStorageProviders;
 
     private CommonRegistrationSession session;
 
@@ -58,6 +60,7 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
         });
 
         itemStorageProviders = WrappedHierarchyLookup.forAccessor();
+        fluidStorageProviders = WrappedHierarchyLookup.forAccessor();
     }
 
     @Override
@@ -98,6 +101,8 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
         entityDataProviders.loadComplete(priorities);
         itemStorageProviders.invalidate();
         itemStorageProviders.loadComplete(priorities);
+        fluidStorageProviders.invalidate();
+        fluidStorageProviders.loadComplete(priorities);
         session = null;
     }
 
@@ -120,5 +125,10 @@ public class WDMlaCommonRegistration implements IWDMlaCommonRegistration {
     @Override
     public <T> void registerItemStorage(IServerExtensionProvider<ItemStack> provider, Class<? extends T> clazz) {
         itemStorageProviders.register(clazz, provider);
+    }
+
+    @Override
+    public <T> void registerFluidStorage(IServerExtensionProvider<FluidView.Data> provider, Class<? extends T> clazz) {
+        fluidStorageProviders.register(clazz, provider);
     }
 }

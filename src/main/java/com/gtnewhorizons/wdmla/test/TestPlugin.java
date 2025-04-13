@@ -4,6 +4,7 @@ import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 
 import com.gtnewhorizons.wdmla.api.IWDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.api.IWDMlaCommonRegistration;
@@ -16,6 +17,7 @@ public class TestPlugin implements IWDMlaPlugin {
         registration.registerBlockDataProvider(TestNBTBlockProvider.INSTANCE, BlockCommandBlock.class);
         registration.registerEntityDataProvider(TestEntityProvider.INSTANCE, EntityPig.class);
         registration.registerItemStorage(TestItemStorageProvider.INSTANCE, BlockDispenser.class);
+        registration.registerFluidStorage(TestFluidStorageProvider.INSTANCE, EntitySheep.class);
     }
 
     @Override
@@ -25,5 +27,6 @@ public class TestPlugin implements IWDMlaPlugin {
         registration.registerBlockComponent(TestThemeBlockProvider.INSTANCE, BlockDirt.class);
         registration.registerEntityComponent(TestEntityProvider.INSTANCE, EntityPig.class);
         registration.registerItemStorageClient(TestItemStorageProvider.INSTANCE);
+        registration.registerFluidStorageClient(TestFluidStorageProvider.INSTANCE);
     }
 }

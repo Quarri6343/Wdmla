@@ -39,6 +39,7 @@ public enum TestThemeBlockProvider implements IBlockComponentProvider {
                         Arrays.asList(new ItemStack(Items.chicken)),
                         1,
                         8,
-                        accessor.showDetails(), new TextComponent("1 / 8")));
+                        accessor.showDetails(),
+                        new TextComponent("1 / 8")));
     }
 }

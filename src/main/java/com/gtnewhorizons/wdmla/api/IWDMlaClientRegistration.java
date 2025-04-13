@@ -13,6 +13,7 @@ import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 import com.gtnewhorizons.wdmla.api.view.ItemView;
 
 /**
@@ -42,6 +43,8 @@ public interface IWDMlaClientRegistration {
     void registerEntityComponent(IComponentProvider<EntityAccessor> provider, Class<? extends Entity> entityClass);
 
     void registerItemStorageClient(IClientExtensionProvider<ItemStack, ItemView> provider);
+
+    void registerFluidStorageClient(IClientExtensionProvider<FluidView.Data, FluidView> provider);
 
     /**
      * @return is server validation succeeded on world join

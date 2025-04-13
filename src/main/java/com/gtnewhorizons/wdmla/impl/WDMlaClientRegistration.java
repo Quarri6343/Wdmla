@@ -29,6 +29,7 @@ import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.accessor.EntityAccessorImpl;
 import com.gtnewhorizons.wdmla.api.provider.IClientExtensionProvider;
 import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 import com.gtnewhorizons.wdmla.api.view.ItemView;
 import com.gtnewhorizons.wdmla.impl.lookup.HierarchyLookup;
 
@@ -44,6 +45,8 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     private final Set<IComponentProvider<?>> allProviders;
 
     public final Map<ResourceLocation, IClientExtensionProvider<ItemStack, ItemView>> itemStorageProviders = Maps
+            .newHashMap();
+    public final Map<ResourceLocation, IClientExtensionProvider<FluidView.Data, FluidView>> fluidStorageProviders = Maps
             .newHashMap();
 
     public final Map<Class<Accessor>, AccessorClientHandler<Accessor>> accessorHandlers = Maps.newIdentityHashMap();
@@ -99,6 +102,12 @@ public class WDMlaClientRegistration implements IWDMlaClientRegistration {
     public void registerItemStorageClient(IClientExtensionProvider<ItemStack, ItemView> provider) {
         Objects.requireNonNull(provider.getUid());
         itemStorageProviders.put(provider.getUid(), provider);
+    }
+
+    @Override
+    public void registerFluidStorageClient(IClientExtensionProvider<FluidView.Data, FluidView> provider) {
+        Objects.requireNonNull(provider.getUid());
+        fluidStorageProviders.put(provider.getUid(), provider);
     }
 
     @Override

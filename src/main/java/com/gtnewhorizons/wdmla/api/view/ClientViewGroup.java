@@ -1,7 +1,8 @@
 package com.gtnewhorizons.wdmla.api.view;
 
+import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
+
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -12,10 +13,14 @@ import net.minecraft.util.StringUtils;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
+import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 
 @ApiStatus.Experimental
 public class ClientViewGroup<T> {
@@ -36,7 +41,7 @@ public class ClientViewGroup<T> {
             @Nullable BiConsumer<ViewGroup<IN>, ClientViewGroup<OUT>> clientGroupDecorator) {
         return groups.stream().map($ -> {
             ClientViewGroup<OUT> group = new ClientViewGroup<>(
-                    $.views.stream().map(itemFactory).filter(Objects::nonNull).collect(Collectors.toList()));
+                    $.views.stream().map(itemFactory).collect(Collectors.toList()));
             NBTTagCompound data = $.extraData;
             if (data != null) {
                 group.boxProgress = data.getFloat("Progress");
@@ -59,24 +64,16 @@ public class ClientViewGroup<T> {
             consumer.accept(tooltip, group);
             if (renderGroup && group.boxProgress > 0 && group.boxProgress < 1) {
                 // TODO:overlap progress bar with item group
+                IComponent content = new TextComponent(String.format("%d%%", (int) (group.boxProgress * 100)));
                 tooltip.child(
-                        ThemeHelper.INSTANCE.amount(
-                                (long) (group.boxProgress * 100),
-                                100,
-                                new TextComponent(String.format("%d%%", (int) (group.boxProgress * 100)))));
+                        new AmountComponent(group.boxProgress).style(
+                                new AmountStyle().filledColor(General.currentTheme.get().textColor(group.messageType)))
+                                .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(content)));
             }
         }
     }
 
     public boolean shouldRenderGroup() {
         return title != null || boxProgress > 0;
-    }
-
-    public void renderHeader(ITooltip tooltip) {
-        // if (title != null) {
-        // tooltip.add(new HorizontalLineElement());
-        // tooltip.append(IElementHelper.get().text(title).scale(0.5F));
-        // tooltip.append(new HorizontalLineElement());
-        // }
     }
 }

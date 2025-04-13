@@ -9,6 +9,7 @@ import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.accessor.EntityAccessor;
 import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
+import com.gtnewhorizons.wdmla.api.view.FluidView;
 
 /**
  * Main server registration class of WDMla.<br>
@@ -38,4 +39,7 @@ public interface IWDMlaCommonRegistration {
 
     @ApiStatus.Experimental
     <T> void registerItemStorage(IServerExtensionProvider<ItemStack> provider, Class<? extends T> clazz);
+
+    @ApiStatus.Experimental
+    <T> void registerFluidStorage(IServerExtensionProvider<FluidView.Data> provider, Class<? extends T> clazz);
 }

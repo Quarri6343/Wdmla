@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.ItemStack;
@@ -44,19 +43,17 @@ import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.ItemComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.RectComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent;
-import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
 
-import mcp.mobius.waila.overlay.DisplayUtil;
 import mcp.mobius.waila.utils.WailaExceptionHandler;
-
 
 @SuppressWarnings("UnstableApiUsage")
 public class ItemStorageProvider<T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
@@ -198,8 +195,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                 if (showName.isTrue()) {
                     if (itemView.description != null) {
                         int itemSize = itemView.description.getHeight();
-                        elements.child(
-                                new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)))
+                        elements.child(new ItemComponent(stack).doDrawOverlay(false).size(new Size(itemSize, itemSize)))
                                 .child(itemView.description);
                     } else {
                         elements.child(ThemeHelper.INSTANCE.itemStackFullLine(stack));
@@ -246,9 +242,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
                     group.views = group.views.subList(0, ItemCollector.MAX_SIZE);
                 }
             }
-            data.setTag(Identifiers.ITEM_STORAGE.toString(), encodeGroups(entry)); // transform
-                                                                                   // List<ViewGroup<ItemStack>> into
-                                                                                   // nbttag
+            data.setTag(Identifiers.ITEM_STORAGE.toString(), encodeGroups(entry));
         }
     }
 
@@ -316,7 +310,7 @@ public class ItemStorageProvider<T extends Accessor> implements IComponentProvid
 
         @Override
         public boolean shouldRequestData(Accessor accessor) {
-            return true;
+            return true; // I need to change this when I want to apply this to every TE
         }
 
         @Override

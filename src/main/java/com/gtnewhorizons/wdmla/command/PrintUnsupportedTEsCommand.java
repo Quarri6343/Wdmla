@@ -1,5 +1,9 @@
 package com.gtnewhorizons.wdmla.command;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.command.ICommandSender;
@@ -13,10 +17,6 @@ import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
 import com.gtnewhorizons.wdmla.plugin.harvestability.HarvestabilityIdentifiers;
 
 import cpw.mods.fml.common.registry.GameData;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Output tile entities which have no WDMla provider associated for developers.<br>
@@ -62,21 +62,22 @@ public class PrintUnsupportedTEsCommand extends GTNHClientCommand {
             }
         }
 
-        if(!unSupportedTEOutputs.isEmpty()) {
+        if (!unSupportedTEOutputs.isEmpty()) {
             sender.addChatMessage(new ChatComponentText("Following tile entities are not supported by WDMla"));
             for (TileEntity te : unSupportedTEOutputs) {
                 sender.addChatMessage(new ChatComponentText(te.getClass().getCanonicalName()));
             }
-        }
-        else {
+        } else {
             sender.addChatMessage(new ChatComponentText("Nothing has been found so far!"));
         }
     }
 
-    //simple blacklist implementation to make result view clean
+    // simple blacklist implementation to make result view clean
     private class BlackList {
-        private static final List<String> blackListedTE = new ArrayList<>(Arrays.asList(
-                "net.minecraft.tileentity.TileEntitySign",
-                "net.minecraft.tileentity.TileEntityEndPortal"));
+
+        private static final List<String> blackListedTE = new ArrayList<>(
+                Arrays.asList(
+                        "net.minecraft.tileentity.TileEntitySign",
+                        "net.minecraft.tileentity.TileEntityEndPortal"));
     }
 }

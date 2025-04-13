@@ -58,6 +58,7 @@ hud.msg.wdmla.hours=h
 hud.msg.wdmla.blocks=blocks
 hud.msg.wdmla.blockspersecond=blocks/sec
 hud.msg.wdmla.item.count=x
+hud.wdmla.msg.millibucket=mb
 
 # information
 hud.msg.wdmla.growth=Growth
@@ -101,6 +102,7 @@ hud.msg.wdmla.entity.id=Entity ID
 hud.msg.wdmla.seeing=Seeing
 hud.msg.wdmla.seeing.block=Seeing Block
 hud.msg.wdmla.seeing.entity=Seeing Entity
+hud.msg.wdmla.more.tanks=+ %d more tanks
 
 # state
 hud.msg.wdmla.mature=Mature
@@ -114,6 +116,7 @@ hud.msg.wdmla.effect.format=%s (%s)
 hud.msg.wdmla.block.registry.data.short=[%d:%d] | %s
 hud.msg.wdmla.entity.registry.data.short=[%d:%d] | %s
 hud.msg.wdmla.coordinates="%s:%s:%s"
+hud.msg.wdmla.empty=Empty
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=Hover over anything in game
@@ -213,6 +216,7 @@ provider.wdmla.minecraft.total.enchantment.power=Total Enchantment Power
 provider.wdmla.minecraft.zombie.villager=Zombie Villager
 provider.wdmla.minecraft.zombie.villager.header=Zombie Villager Header
 provider.wdmla.minecraft.te.custom.name.header=Custom Name Block Header
+provider.wdmla.minecraft.cauldron=Cauldron
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=Legacy
@@ -270,6 +274,8 @@ option.wdmla.universal.normal.amount=Normal Amount
 option.wdmla.universal.detailed.amount=Detailed Amount
 option.wdmla.universal.items.per.line=Items per Line
 option.wdmla.universal.show.name.amount=Show name Threshold
+option.wdmla.universal.fluid.normal.amount=Amount
+option.wdmla.universal.fluid.detailed=Detailed-Only
 
 # vanilla plugin options
 option.wdmla.vanilla.show.petsitting=Show is Pet Sitting
