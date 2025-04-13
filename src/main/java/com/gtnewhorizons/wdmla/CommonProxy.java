@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import com.google.common.collect.Lists;
 import com.gtnewhorizons.wdmla.api.accessor.BlockAccessor;
 import com.gtnewhorizons.wdmla.api.view.FluidView;
+import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -164,7 +165,7 @@ public class CommonProxy {
                 emptyTanks++;
             }
             map.put(fluidTankInfo.fluid, (long) fluidTankInfo.capacity);
-            if (map.size() >= 4) { //max amount of tanks
+            if (map.size() >= PluginsConfig.universal.fluidStorage.normalAmount) {
                 break;
             }
         }

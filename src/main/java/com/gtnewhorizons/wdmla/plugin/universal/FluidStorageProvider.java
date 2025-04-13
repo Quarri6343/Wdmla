@@ -13,6 +13,7 @@ import com.gtnewhorizons.wdmla.api.provider.IComponentProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerDataProvider;
 import com.gtnewhorizons.wdmla.api.provider.IServerExtensionProvider;
 import com.gtnewhorizons.wdmla.api.ui.ComponentAlignment;
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
@@ -22,6 +23,7 @@ import com.gtnewhorizons.wdmla.config.General;
 import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.FluidComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
@@ -40,6 +42,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.AbstractMap;
@@ -96,61 +99,59 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                                         .size(new Size(30, 1)));
                     }
                     for (var view : group.views) {
-                        String text; //TODO: switch to TextComponent
-//                        IWailaConfig.HandlerDisplayStyle style = config.getEnum(JadeIds.UNIVERSAL_FLUID_STORAGE_STYLE);
+                        IComponent mainText;
+                        ThemeHelper helper = ThemeHelper.INSTANCE;
                         if (view.overrideText != null) {
-                            text = view.overrideText;
+                            mainText = new TextComponent(view.overrideText);
                         } else if (view.fluidName == null) {
                             if(accessor.showDetails()) {
-                                text = "EMPTY: / " + view.max; //TODO: localization
+                                mainText = new HPanelComponent()
+                                        .child(helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty")))
+                                        .text(": / ").text(view.max);
                             }
                             else {
-                                text = "EMPTY";
+                                mainText = helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty"));
                             }
                         } else {
                             String fluidName = DisplayUtil.stripSymbols(view.fluidName);
                             if (accessor.showDetails()) {
-                                text = String.format(
-                                        "%s / %s",
-                                        view.current,
-                                        view.max);
+                                mainText = new HPanelComponent()
+                                        .child(helper.info(view.current))
+                                        .text(" / ").text(view.max);
                             } else {
-                                text = view.current;
+                                mainText = helper.info(view.current);
                             }
-                            text = String.format("%s: %s", fluidName, text); //TODO: ThemeHelper#info
+                            mainText = new HPanelComponent().child(helper.info(fluidName)).text(": ").child(mainText);
                         }
-                        TextComponent textComponent = new TextComponent(text);
                         PluginsConfig.Universal.FluidStorage.Mode showMode = PluginsConfig.universal.fluidStorage.mode;
                         switch (showMode) {
                             case GAUGE -> {
                                 //TODO:adjust the size with the longest text
                                 tooltip.child(new AmountComponent(view.ratio).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(150,12))
-                                        .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(textComponent)));
+                                        .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(mainText)));
                             }
                             case ICON_TEXT -> {
                                 if(view.overlay != null) {
                                     tooltip.horizontal()
-                                            .child(new FluidComponent(view.overlay).size(new Size(textComponent.getHeight(), textComponent.getHeight())))
-                                            .text(text);
+                                            .child(new FluidComponent(view.overlay).size(new Size(mainText.getHeight(), mainText.getHeight())))
+                                            .child(mainText);
                                 }
                                 else {
                                     theTooltip.horizontal()
                                             .item(new ItemStack(Items.bucket), new Padding(),
-                                                    new Size(textComponent.getHeight(), textComponent.getHeight()))
-                                            .text(text);
+                                                    new Size(mainText.getHeight(), mainText.getHeight()))
+                                            .child(mainText);
                                 }
                             }
                             case TEXT -> {
-                                theTooltip.text(text);
+                                theTooltip.child(mainText);
                             }
                         }
-//                        ProgressStyle progressStyle = helper.progressStyle().overlay(view.overlay);
-//                        theTooltip.add(helper.progress(view.ratio, text, progressStyle, BoxStyle.getNestedBox(), true));
                     }
                     if (group.extraData != null) {
                         int extra = group.extraData.getInteger("+");
                         if (extra > 0) {
-                            theTooltip.text(String.format("+ %d more tanks", extra)); //TODO:localize
+                            theTooltip.text(StatCollector.translateToLocalFormatted("hud.msg.wdmla.more.tanks", extra));
                         }
                     }
                 });

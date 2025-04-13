@@ -1,8 +1,7 @@
 package com.gtnewhorizons.wdmla.api.view;
 
 import com.github.bsideup.jabel.Desugar;
-import com.gtnewhorizons.wdmla.api.ui.IComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.FluidComponent;
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 public class FluidView {
 
     @Nullable
-    public FluidStack overlay;
+    public FluidStack overlay; //requires FluidStack to get icon
     public String current;
     public String max;
     public float ratio;
@@ -32,9 +31,8 @@ public class FluidView {
             return null;
         }
         FluidStack fluidObject = tank.fluid;
-        //IElementHelper.get().fluid(fluidObject) snownee.jade.impl.ui.FluidStackElement
-        FluidView fluidView = new FluidView(fluidObject); //TODO: attach fluid component for progress bar
-        fluidView.max = tank.capacity + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
+        FluidView fluidView = new FluidView(fluidObject);
+        fluidView.max = FormatUtil.STANDARD.format(tank.capacity) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
         long amount;
         if (fluidObject == null) {
             amount = 0;
@@ -44,7 +42,7 @@ public class FluidView {
             amount = fluidObject.amount;
             fluidView.fluidName = fluidObject.getLocalizedName();
         }
-        fluidView.current = amount + StatCollector.translateToLocal("hud.wdmla.msg.millibucket"); //TODO: formatter
+        fluidView.current = FormatUtil.STANDARD.format(amount) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket"); //TODO: formatter
         fluidView.ratio = (float) ((double) amount / tank.capacity);
         return fluidView;
     }
