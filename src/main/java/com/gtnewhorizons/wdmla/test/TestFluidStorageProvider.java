@@ -33,7 +33,7 @@ public enum TestFluidStorageProvider implements IServerExtensionProvider<FluidVi
         var tank1 = new ViewGroup<>(Arrays.asList(new FluidView.Data(new FluidStack(FluidRegistry.WATER, 1000), 2000)));
         tank1.id = "1";
         var tank2 = new ViewGroup<>(Arrays.asList(
-                new FluidView.Data(new FluidStack(FluidRegistry.WATER, 500), 2000),
+                new FluidView.Data(new FluidStack(FluidRegistry.LAVA, 500), 2000),
                 new FluidView.Data(null, 2000)));
         return Arrays.asList(tank1, tank2, tank2, tank2, tank2);
     }

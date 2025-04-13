@@ -36,6 +36,7 @@ import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
 import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
+import com.gtnewhorizons.wdmla.util.FormatUtil;
 import mcp.mobius.waila.overlay.DisplayUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -102,13 +103,15 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                     for (var view : group.views) {
                         IComponent mainText;
                         ThemeHelper helper = ThemeHelper.INSTANCE;
+                        String currentStr = FormatUtil.STANDARD.format(view.current) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
+                        String maxStr = FormatUtil.STANDARD.format(view.max) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
                         if (view.overrideText != null) {
                             mainText = new TextComponent(view.overrideText);
                         } else if (view.fluidName == null) {
                             if(accessor.showDetails()) {
                                 mainText = new HPanelComponent()
                                         .child(helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty")))
-                                        .text(": / ").text(view.max);
+                                        .text(": / ").text(maxStr);
                             }
                             else {
                                 mainText = helper.info(StatCollector.translateToLocal("hud.msg.wdmla.empty"));
@@ -117,10 +120,10 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             String fluidName = DisplayUtil.stripSymbols(view.fluidName);
                             if (accessor.showDetails()) {
                                 mainText = new HPanelComponent()
-                                        .child(helper.info(view.current))
-                                        .text(" / ").text(view.max);
+                                        .child(helper.info(currentStr))
+                                        .text(" / ").text(maxStr);
                             } else {
-                                mainText = helper.info(view.current);
+                                mainText = helper.info(currentStr);
                             }
                             mainText = new HPanelComponent().child(helper.info(fluidName)).text(": ").child(mainText);
                         }
@@ -129,7 +132,7 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             case GAUGE -> {
                                 //TODO:adjust the size with the longest text
                                 //TODO:invert text color with bright fluid
-                                tooltip.child(new AmountComponent(view.ratio).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(150,12))
+                                tooltip.child(new AmountComponent(view.current, view.max).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(150,12))
                                         .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(mainText)));
                             }
                             case ICON_TEXT -> {

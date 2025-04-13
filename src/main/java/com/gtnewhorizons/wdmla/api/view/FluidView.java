@@ -1,9 +1,6 @@
 package com.gtnewhorizons.wdmla.api.view;
 
-import com.github.bsideup.jabel.Desugar;
-import com.gtnewhorizons.wdmla.util.FormatUtil;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
@@ -13,9 +10,8 @@ public class FluidView {
 
     @Nullable
     public FluidStack overlay; //requires FluidStack to get icon
-    public String current;
-    public String max;
-    public float ratio;
+    public long current;
+    public long max;
     @Nullable
     public String fluidName;
     @Nullable
@@ -32,7 +28,6 @@ public class FluidView {
         }
         FluidStack fluidObject = tank.fluid;
         FluidView fluidView = new FluidView(fluidObject);
-        fluidView.max = FormatUtil.STANDARD.format(tank.capacity) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
         long amount;
         if (fluidObject == null) {
             amount = 0;
@@ -42,14 +37,20 @@ public class FluidView {
             amount = fluidObject.amount;
             fluidView.fluidName = fluidObject.getLocalizedName();
         }
-        fluidView.current = FormatUtil.STANDARD.format(amount) + StatCollector.translateToLocal("hud.wdmla.msg.millibucket"); //TODO: formatter
-        fluidView.ratio = (float) ((double) amount / tank.capacity);
+        fluidView.current = amount;
+        fluidView.max = tank.capacity;
         return fluidView;
     }
 
-    //TODO: stop using Jabel records
-    @Desugar
-    public record Data(FluidStack fluid, long capacity) {
+    public static class Data {
+
+        public final FluidStack fluid;
+        public final long capacity;
+
+        public Data(FluidStack fluid, long capacity) {
+            this.fluid = fluid;
+            this.capacity = capacity;
+        }
 
         public static NBTTagCompound encode(Data data) {
             NBTTagCompound encoded = new NBTTagCompound();

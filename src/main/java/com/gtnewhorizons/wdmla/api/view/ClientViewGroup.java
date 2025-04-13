@@ -6,6 +6,11 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.gtnewhorizons.wdmla.api.ui.IComponent;
+import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StringUtils;
 
@@ -16,6 +21,8 @@ import com.gtnewhorizons.wdmla.api.ui.ITooltip;
 import com.gtnewhorizons.wdmla.api.ui.MessageType;
 import com.gtnewhorizons.wdmla.impl.ui.ThemeHelper;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+
+import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
 
 @ApiStatus.Experimental
 public class ClientViewGroup<T> {
@@ -59,11 +66,11 @@ public class ClientViewGroup<T> {
             consumer.accept(tooltip, group);
             if (renderGroup && group.boxProgress > 0 && group.boxProgress < 1) {
                 // TODO:overlap progress bar with item group
+                IComponent content = new TextComponent(String.format("%d%%", (int) (group.boxProgress * 100)));
                 tooltip.child(
-                        ThemeHelper.INSTANCE.amount(
-                                (long) (group.boxProgress * 100),
-                                100,
-                                new TextComponent(String.format("%d%%", (int) (group.boxProgress * 100)))));
+                        new AmountComponent(group.boxProgress)
+                                .style(new AmountStyle().filledColor(General.currentTheme.get().textColor(group.messageType)))
+                                .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(content)));
             }
         }
     }
