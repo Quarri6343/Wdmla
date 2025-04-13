@@ -39,17 +39,34 @@ public class AmountDrawable implements IDrawable {
             int dx = (int) Math.min(current * (long) (area.getW() - 2) / max, (long) (area.getW() - 2));
             if (style.getFilledColor() == style.getAlternateFilledColor()) {
                 if (dx > 0) {
-                    GuiDraw.drawThickBeveledBox(
-                            new Area(area.getX() + 1, area.getY() + 1, dx + 1, area.getH() - 1),
-                            1,
-                            style.getFilledColor(),
-                            style.getFilledColor(),
-                            style.getFilledColor());
+                    if(style.getOverlay() != null) {
+                        style.getOverlay().draw(new Area(area.getX() + 1, area.getY() + 1, dx + 1, area.getH() - 2));
+                    }
+                    else {
+                        GuiDraw.drawThickBeveledBox(
+                                new Area(area.getX() + 1, area.getY() + 1, dx + 1, area.getH() - 1),
+                                1,
+                                style.getFilledColor(),
+                                style.getFilledColor(),
+                                style.getFilledColor());
+                    }
                 }
             } else {
-                for (int xx = area.getX() + 1; xx <= area.getX() + dx + 1; ++xx) {
-                    int color = (xx & 1) == 0 ? style.getFilledColor() : style.getAlternateFilledColor();
-                    GuiDraw.drawVerticalLine(xx, area.getY() + 1, area.getEY() - 1, color);
+                if(style.getOverlay() != null) {
+                    style.getOverlay().draw(new Area(area.getX() + 1, area.getY() + 1, dx + 1, area.getH() - 2));
+                    for (int xx = area.getX() + 1; xx <= area.getX() + dx + 1; ++xx) {
+                        if((xx & 1) == 0) {
+                            continue;
+                        }
+                        int color = style.getAlternateFilledColor();
+                        GuiDraw.drawVerticalLine(xx, area.getY() + 1, area.getEY() - 1, color);
+                    }
+                }
+                else {
+                    for (int xx = area.getX() + 1; xx <= area.getX() + dx + 1; ++xx) {
+                        int color = (xx & 1) == 0 ? style.getFilledColor() : style.getAlternateFilledColor();
+                        GuiDraw.drawVerticalLine(xx, area.getY() + 1, area.getEY() - 1, color);
+                    }
                 }
             }
         }

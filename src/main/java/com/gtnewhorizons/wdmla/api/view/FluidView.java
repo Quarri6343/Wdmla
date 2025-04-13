@@ -3,20 +3,17 @@ package com.gtnewhorizons.wdmla.api.view;
 import com.github.bsideup.jabel.Desugar;
 import com.gtnewhorizons.wdmla.api.ui.IComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.FluidComponent;
-import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 @ApiStatus.Experimental
 public class FluidView {
 
     @Nullable
-    public IComponent overlay;
+    public FluidStack overlay;
     public String current;
     public String max;
     public float ratio;
@@ -25,7 +22,7 @@ public class FluidView {
     @Nullable
     public String overrideText;
 
-    public FluidView(@Nullable IComponent overlay) {
+    public FluidView(@Nullable FluidStack overlay) {
         this.overlay = overlay;
     }
 
@@ -36,7 +33,7 @@ public class FluidView {
         }
         FluidStack fluidObject = tank.fluid;
         //IElementHelper.get().fluid(fluidObject) snownee.jade.impl.ui.FluidStackElement
-        FluidView fluidView = new FluidView(fluidObject != null ? new FluidComponent(fluidObject) : null); //TODO: attach fluid component for progress bar
+        FluidView fluidView = new FluidView(fluidObject); //TODO: attach fluid component for progress bar
         fluidView.max = tank.capacity + StatCollector.translateToLocal("hud.wdmla.msg.millibucket");
         long amount;
         if (fluidObject == null) {

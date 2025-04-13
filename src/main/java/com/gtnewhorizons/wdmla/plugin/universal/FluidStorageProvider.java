@@ -19,14 +19,19 @@ import com.gtnewhorizons.wdmla.api.view.ClientViewGroup;
 import com.gtnewhorizons.wdmla.api.view.FluidView;
 import com.gtnewhorizons.wdmla.api.view.ViewGroup;
 import com.gtnewhorizons.wdmla.config.General;
+import com.gtnewhorizons.wdmla.config.PluginsConfig;
 import com.gtnewhorizons.wdmla.impl.WDMlaClientRegistration;
 import com.gtnewhorizons.wdmla.impl.WDMlaCommonRegistration;
+import com.gtnewhorizons.wdmla.impl.ui.component.AmountComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.FluidComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.HPanelComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.RectComponent;
 import com.gtnewhorizons.wdmla.impl.ui.component.TextComponent;
+import com.gtnewhorizons.wdmla.impl.ui.component.VPanelComponent;
+import com.gtnewhorizons.wdmla.impl.ui.drawable.FluidDrawable;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Padding;
 import com.gtnewhorizons.wdmla.impl.ui.sizer.Size;
+import com.gtnewhorizons.wdmla.impl.ui.style.AmountStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.PanelStyle;
 import com.gtnewhorizons.wdmla.impl.ui.style.RectStyle;
 import mcp.mobius.waila.overlay.DisplayUtil;
@@ -41,6 +46,8 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.gtnewhorizons.wdmla.impl.ui.component.TooltipComponent.DEFAULT_AMOUNT_TEXT_PADDING;
 
 public class FluidStorageProvider <T extends Accessor> implements IComponentProvider<T>, IServerDataProvider<T> {
 
@@ -113,16 +120,30 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                             text = String.format("%s: %s", fluidName, text); //TODO: ThemeHelper#info
                         }
                         TextComponent textComponent = new TextComponent(text);
-                        if(view.overlay != null) {
-                            tooltip.horizontal().child(view.overlay).text(text);
+                        PluginsConfig.Universal.FluidStorage.Mode showMode = PluginsConfig.universal.fluidStorage.mode;
+                        switch (showMode) {
+                            case GAUGE -> {
+                                //TODO:adjust the size with the longest text
+                                tooltip.child(new AmountComponent(view.ratio).style(new AmountStyle().overlay(new FluidDrawable(view.overlay))).size(new Size(150,12))
+                                        .child(new VPanelComponent().padding(DEFAULT_AMOUNT_TEXT_PADDING).child(textComponent)));
+                            }
+                            case ICON_TEXT -> {
+                                if(view.overlay != null) {
+                                    tooltip.horizontal()
+                                            .child(new FluidComponent(view.overlay).size(new Size(textComponent.getHeight(), textComponent.getHeight())))
+                                            .text(text);
+                                }
+                                else {
+                                    theTooltip.horizontal()
+                                            .item(new ItemStack(Items.bucket), new Padding(),
+                                                    new Size(textComponent.getHeight(), textComponent.getHeight()))
+                                            .text(text);
+                                }
+                            }
+                            case TEXT -> {
+                                theTooltip.text(text);
+                            }
                         }
-                        else {
-                            theTooltip.horizontal().item(new ItemStack(Items.bucket), new Padding(),
-                                            new Size(textComponent.getHeight(), textComponent.getHeight()))
-                                    .text(text);
-                        }
-
-                        //TODO: add config to switch mode to progress bar
 //                        ProgressStyle progressStyle = helper.progressStyle().overlay(view.overlay);
 //                        theTooltip.add(helper.progress(view.ratio, text, progressStyle, BoxStyle.getNestedBox(), true));
                     }
