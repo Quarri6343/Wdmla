@@ -160,7 +160,7 @@ public class CommonProxy {
         Map<FluidStack, Long> map = new HashMap<>();
         int emptyTanks = 0;
         for (FluidTankInfo fluidTankInfo : storage) {
-            if (fluidTankInfo.fluid.amount == 0) {
+            if (fluidTankInfo.fluid == null) {
                 emptyTanks++;
             }
             map.put(fluidTankInfo.fluid, (long) fluidTankInfo.capacity);

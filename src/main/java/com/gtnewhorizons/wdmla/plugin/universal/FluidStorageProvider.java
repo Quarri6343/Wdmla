@@ -150,7 +150,7 @@ public class FluidStorageProvider <T extends Accessor> implements IComponentProv
                     if (group.extraData != null) {
                         int extra = group.extraData.getInteger("+");
                         if (extra > 0) {
-                            theTooltip.text(String.format("+ %d more tanks", extra));
+                            theTooltip.text(String.format("+ %d more tanks", extra)); //TODO:localize
                         }
                     }
                 });
