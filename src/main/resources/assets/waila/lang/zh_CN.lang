@@ -55,9 +55,10 @@ hud.msg.wdmla.ticks=t
 hud.msg.wdmla.seconds=秒
 hud.msg.wdmla.minutes=m
 hud.msg.wdmla.hours=h
-hud.msg.wdmla.progress.seconds=%d秒 / %d秒
 hud.msg.wdmla.blocks=方块
 hud.msg.wdmla.blockspersecond=方块/秒
+hud.msg.wdmla.item.count=x
+hud.wdmla.msg.millibucket=mb
 
 # information
 hud.msg.wdmla.growth=生长状态
@@ -101,6 +102,7 @@ hud.msg.wdmla.entity.id=实体ID
 hud.msg.wdmla.seeing=当前视角
 hud.msg.wdmla.seeing.block=查看方块视角
 hud.msg.wdmla.seeing.entity=查看实体视角
+hud.msg.wdmla.more.tanks=+%d个储罐
 
 # state
 hud.msg.wdmla.mature=成熟
@@ -114,6 +116,7 @@ hud.msg.wdmla.effect.format=%s (%s)
 hud.msg.wdmla.block.registry.data.short=[%d:%d] | %s
 hud.msg.wdmla.entity.registry.data.short=[%d:%d] | %s
 hud.msg.wdmla.coordinates="%s:%s:%s"
+hud.msg.wdmla.empty=空
 
 # dummy tooltip
 hud.msg.wdmla.cfg.dummy.1=将鼠标悬停于游戏内任意物体
@@ -213,6 +216,7 @@ provider.wdmla.minecraft.total.enchantment.power=总附魔强度
 provider.wdmla.minecraft.zombie.villager=僵尸村民
 provider.wdmla.minecraft.zombie.villager.header=僵尸村民标题
 provider.wdmla.minecraft.te.custom.name.header=自定义名称方块标题
+provider.wdmla.minecraft.cauldron=炼药锅
 
 provider.wdmla.harvestability.category=Waila Harvestability
 provider.wdmla.harvestability.legacy=旧版模式
@@ -243,6 +247,13 @@ option.wdmla.general.textcolor.danger=危险颜色
 option.wdmla.general.textcolor.failure=失败颜色
 option.wdmla.general.textcolor.modname=模组名称颜色
 
+option.wdmla.breakprogress.category=破坏进度
+option.wdmla.general.breakprogress.mode=显示模式
+option.wdmla.general.breakprogress.position=显示位置
+option.wdmla.breakprogress.fill.animation=填充透明度动画
+option.wdmla.breakprogress.fade.animation=淡出透明度动画
+option.wdmla.general.breakprogress.fade.speed=淡出速度
+
 # plugin autogen options
 option.wdmla.autogen.category=自动生成插件选项
 option.wdmla.autogen.enabled=启用
@@ -263,6 +274,8 @@ option.wdmla.universal.normal.amount=普通数量
 option.wdmla.universal.detailed.amount=详细数量
 option.wdmla.universal.items.per.line=每行物品数
 option.wdmla.universal.show.name.amount=显示名称阈值
+option.wdmla.universal.fluid.normal.amount=流体量
+option.wdmla.universal.fluid.detailed=仅详细模式
 
 # vanilla plugin options
 option.wdmla.vanilla.show.petsitting=显示宠物坐下状态
@@ -393,3 +406,4 @@ waila.keybind.recipe=[Waila]显示合成
 waila.keybind.usage=[Waila]显示可参与合成
 waila.keybind.testing=[Waila]测试
 waila.keybind.details=显示详细信息
+
